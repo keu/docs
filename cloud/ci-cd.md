@@ -189,7 +189,7 @@ To automate code deploys to a single Deployment using [GitHub Actions](https://g
 
 To automate code deploys to a single Deployment using [Jenkins](https://www.jenkins.io/), complete the following setup in a Git-based repository hosting an Astronomer project:
 
-1. At the root of your Git repository, add a file named `Jenkinsfile` that includes the following script:
+1. At the root of your Git repository, add a [Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) that includes the following script:
 
     ```jenkins
     pipeline {
@@ -264,7 +264,7 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
                         }
                     }
                 }" | jq -r '.data.imageCreate.id')
-                
+
     # Step 6. Pass the repository URL for the Docker image to your Astronomer Deployment. This completes the deploy process and triggers your Scheduler and Workers to restart.
     echo "deploy image"
     curl --location --request POST "https://api.astronomer.io/hub/v1" \
