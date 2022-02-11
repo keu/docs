@@ -98,14 +98,17 @@ The bolded value above the graph shows the maximum memory usage by a single work
 
 You can view key metrics about recent DAG runs using the **DAGs** page in the Astronomer Cloud UI. This page shows DAG runs from the last 14 days across either all Deployments or a specific Deployment in a Workspace. For a given DAG, the **DAGs** page shows:
 
-- Total DAG runs over the last 14 days, expressed as a bar chart. Each bar in the chart represents a DAG run: its color represents whether the DAG run was a success or a failure, while its length represents the total duration of the DAG run. If there are more than 14 DAG runs in the last 14 days, then the chart shows only the 14 most recent DAG runs
-- **Last Run End**: The ending time of the DAG's most recent DAG run, expressed relative to the current time
-- **Last Run Duration**: The duration of the DAG's most recent DAG run
-- **Average Duration**: The average Duration of all DAG runs from the last 14 days
+- Total DAG runs over the last 14 days, expressed as a bar chart. 
+
+    Each bar in the chart represents an individual DAG run. A bar's color represents whether the DAG run was a success or a failure, while its length represents the total duration of the DAG run. If there are more than 14 DAG runs in the last 14 days, then the chart shows only the 14 most recent DAG runs.
+    
+- **Last Run End**: The ending time of the DAG's most recent DAG run, expressed relative to the current time.
+- **Last Run Duration**: The duration of the DAG's most recent DAG run.
+- **Average Duration**: The average Duration of all DAG runs from the last 14 days.
 
 :::info DAG Visibility
 
-If a DAG hasn't started a DAG run in the last 14 days, then it will not appear in the **DAGs** view.
+If a DAG run for any given DAG has not run in the last 14 days, then it will not appear in the **DAGs** view.
 
 Additionally, the `astronomer_monitoring_dag` will never appear in this view even if it ran in the last 14 days.
 
