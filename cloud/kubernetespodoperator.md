@@ -53,7 +53,7 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
 For each instantiation of the KubernetesPodOperator, you must specify the following values:
 
 - `namespace = conf.get('kubernetes', 'NAMESPACE')`: Astronomer Cloud Deployments run on their own Kubernetes namespaces within a Cluster. The KubernetesPodOperator needs to know information about this namespace. Because the namespace variable is injected into your Deployment's `airflow.cfg` file, you can programmatically import this namespace using this setting.
-- `image`: This is the image that the operator will use to run its defined task, commands, and arguments. The value you specify can be either an image tag that's publicly available on Dockerhub or a complete URL + image tag for another Docker registry. To pull an image from a private registry, read [Pull Images from a Private Registry](kubernetespodoperator#pull-images-from-a-private-registry).
+- `image`: This is the image that the operator will use to run its defined task, commands, and arguments. The value you specify can be either an image tag that's publicly available on Dockerhub or a complete URL + image tag for another Docker registry. To pull an image from a private registry, read [Pull Images from a Private Registry](kubernetespodoperator.md#pull-images-from-a-private-registry).
 - `in_cluster=True`: When this value is set, your task will look inside your Cluster for a Kubernetes configuration. This ensures that the workers running in the Pod have the correct privileges within the Cluster.
 - `is_delete_operator_pod=True`: This setting ensures that the Pods of completed tasks are deleted, which lowers resource usage on your Cluster.
 
