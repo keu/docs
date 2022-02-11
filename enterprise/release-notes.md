@@ -17,7 +17,7 @@ We're committed to testing all Astronomer Enterprise versions for scale, reliabi
 
 ## v0.28.0
 
-Release date: February 10, 2022
+Release date: February 11, 2022
 
 ### Import Identity Provider User Groups as Teams
 
@@ -58,7 +58,7 @@ For example, a validation webhook can reject Deployment creation for any of the 
 - Removed root user permissions for authSidecar
 - Added AWS RDS certificates to list of trusted certificates
 - Removed support for Kubernetes 1.18
-- Fixed some confusing behavior the Git-Sync **SSH Key** field in the UI  
+- Fixed some confusing behavior with the Git-Sync **SSH Key** field in the UI  
 - Fixed an issue where the Astronomer platform and Airflow could not communicate in environments where inter-namespace communication is disabled
 - Fixed an issue where users would frequently get 502 errors when logging in to the Astronomer UI
 - Fixed an issue where users would get timeout issues when attempting to log in to an Astronomer installation on OpenShift
