@@ -1,35 +1,33 @@
 ---
 sidebar_label: 'KubernetesPodOperator'
-title: "Run Airflow's KubernetesPodOperator on Astronomer Cloud"
+title: "Run the KubernetesPodOperator on Astronomer Cloud"
 id: kubernetespodoperator
 ---
 
 ## Overview
 
+This guide provides steps for configuring and running the KubernetesPodOperator on DAGs deployed to Astronomer Cloud.
+
 One of Airflow's most dynamic operators is the [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html), which can run a task in an individual Kubernetes pod. Similar to the Kubernetes Executor, this operator talks to the Kubernetes API to dynamically launch a pod for each task that needs to run and terminates each pod once the task is completed. This results in an isolated, containerized execution environment for each task that is separate from tasks otherwise being executed by Celery workers. Using the KubernetesPodOperator enables the following benefits:
 
-- Task-level resource configuration: If you know how much CPU and Memory your task consumes, you can specify it
 - Execute custom Docker images at the task level, potentially with Python packages and dependencies that would otherwise conflict with the rest of your Deployment's dependencies
+- If you know how much CPU and Memory your task consumes, you can specify those values as limits or minimums at the task level
 - Flexibility to write task logic in a language other than Python
 - Horizontal scaling that is cost-effective, dynamic, and minimally dependent on Worker resources
 - Access to images hosted in private Docker repositories
 - Kubernetes-native configuration, including the ability to set volumes, secrets, and affinities in the form of a YAML file
-- Coupled with Astronomer Cloud's Kubernetes-based Data Plane, the ability to run Kubernetes pods without managing any underlying infrastructure
-
-
-This guide provides steps for configuring and running the KubernetesPodOperator on DAGs deployed to Astronomer Cloud.
+- Coupled with the Data Plane, you have the ability to run Kubernetes pods without managing any underlying infrastructure
 
 ## Prerequisites
 
 To use the KubernetesPodOperator, you need:
 
-- An [Astronomer project](create-project).
-- An Astronomer [Deployment](configure-deployment).
+- An [Astronomer project](create-project.md).
+- An Astronomer [Deployment](configure-deployment.md).
 
 ## Set Up the KubernetesPodOperator
 
 To use the KubernetesPodOperator in a DAG, add the following import statements and instantiation to your DAG file:
-
 
 ```python
 from airflow.contrib.operators.kubernetes_pod_operator import kubernetes_pod_operator
@@ -54,7 +52,7 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
 
 For each instantiation of the KubernetesPodOperator, you must specify the following values:
 
-- `namespace = conf.get('kubernetes', 'NAMESPACE')`: Astronomer Cloud Deployments run on their own Kubernetes namespaces within a Cluster. The KubernetesPodOperator needs to know information about this namespace. Because the namespace variable is injected into your Deployment's `airflow.cfg` file, you can programmatically import this namespace information via environment variables using this setting.
+- `namespace = conf.get('kubernetes', 'NAMESPACE')`: Astronomer Cloud Deployments run on their own Kubernetes namespaces within a Cluster. The KubernetesPodOperator needs to know information about this namespace. Because the namespace variable is injected into your Deployment's `airflow.cfg` file, you can programmatically import this namespace using this setting.
 - `image`: This is the image that the operator will use to run its defined task, commands, and arguments. The value you specify can be either an image tag that's publicly available on Dockerhub or a complete URL + image tag for another Docker registry. To pull an image from a private registry, read [Pull Images from a Private Registry](kubernetespodoperator#pull-images-from-a-private-registry).
 - `in_cluster=True`: When this value is set, your task will look inside your Cluster for a Kubernetes configuration. This ensures that the workers running in the Pod have the correct privileges within the Cluster.
 - `is_delete_operator_pod=True`: This setting ensures that the Pods of completed tasks are deleted, which lowers resource usage on your Cluster.
@@ -65,7 +63,7 @@ Once you push this code to a Deployment, your Cluster will automatically spin up
 
 Astronomer Cloud automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not limited, meaning that the operator could theoretically provision all your Cluster's available remaining CPU and memory to complete a task. Because of this, we recommend managing the KubernetesPodOperator's resource usage by specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) on a per-task basis.
 
-To do so, define a dictionary of compute resources in your DAG. For example, applying the following dictionary to a pod would ensure that the Pod runs with exactly 800m of CPU and 3Gi of memory at all times:
+To do so, define a dictionary of compute resources in your DAG. For example, applying the following dictionary to a Pod would ensure that the Pod runs with exactly 800m of CPU and 3Gi of memory at all times:
 
 ```python
 compute_resources = \
