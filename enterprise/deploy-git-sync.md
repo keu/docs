@@ -33,9 +33,10 @@ Git-sync deploys must be explicitly enabled on Astronomer by a System Admin. To 
 ```yaml
 astronomer:
   houston:
-    deployments:
-      configureDagDeployment: true
-      gitSyncDagDeployment: true
+    config:
+      deployments:
+        configureDagDeployment: true
+        gitSyncDagDeployment: true
 ```
 
 ## Configure a Git Repo for Git-Sync Deploys
