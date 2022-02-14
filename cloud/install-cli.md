@@ -58,7 +58,7 @@ brew install astronomer/cloud/astrocloud
 1. In a PowerShell terminal, create a new directory for your Astronomer project and set it as your current directory:
 
     ```powershell
-    md my-project && cd my-project
+    mkdir my-project && cd my-project
     ```
 
 2. Based on your CPU, run one of the following commands to download the Astronomer Cloud CLI executable into your project directory.
@@ -113,7 +113,7 @@ brew install astronomer/cloud/astrocloud
     tar xzf .\astrocloudcli.tar.gz
     ```
 
-4. To run the executable without specifying its file path, save `astrocloud.exe` in a secure location on your machine and add its filepath in the Linux `$PATH` environment variable. For more information about configuring the PATH environment variable, read [Java documentation](https://www.java.com/en/download/help/path.html).
+4. To run the executable without specifying its file path, save `astrocloud` in a secure location on your machine and add its filepath in the Linux `$PATH` environment variable. For more information about configuring the PATH environment variable, read [Java documentation](https://www.java.com/en/download/help/path.html).
 
 </TabItem>
 
