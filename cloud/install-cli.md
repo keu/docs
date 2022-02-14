@@ -87,7 +87,7 @@ brew install astronomer/cloud/astrocloud
 
 <TabItem value="linux">
 
-1. Create an Astronomer project directory:
+1. In a Linux terminal, create a new directory for your Astronomer project and set it as your current directory:
 
     ```sh
     md my-project && cd my-project
