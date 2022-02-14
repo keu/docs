@@ -41,6 +41,7 @@ To install and use the Astronomer Cloud CLI on Windows, you must have:
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
     ]}>
 <TabItem value="mac">
 
@@ -83,6 +84,39 @@ brew install astronomer/cloud/astrocloud
 4. To run the executable without specifying its file path, save `astrocloud.exe` in a secure location on your machine and add its filepath in the Windows PATH environment variable. For more information about configuring the PATH environment variable, read [Java documentation](https://www.java.com/en/download/help/path.html).
 
 </TabItem>
+
+<TabItem value="linux">
+
+1. Create an Astronomer project directory:
+
+    ```sh
+    md my-project && cd my-project
+    ```
+
+2. Based on your CPU, run one of the following commands to download the Astronomer Cloud CLI executable into your project directory.
+
+    - AMD64:
+
+        ```sh
+        $ curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v1.0.0/cloud-cli_1.0.0_Linux_x86_64.tar.gz -o astrocloudcli.tar.gz
+        ```
+
+    - ARM64:
+
+        ```sh
+        $ curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v1.0.0/cloud-cli_1.0.0_Linux_arm64.tar.gz -o astrocloudcli.tar.gz
+        ```
+
+3. Run the following command to unzip the executable:
+
+    ```sh
+    tar xzf .\astrocloudcli.tar.gz
+    ```
+
+4. To run the executable without specifying its file path, save `astrocloud.exe` in a secure location on your machine and add its filepath in the Linux `$PATH` environment variable. For more information about configuring the PATH environment variable, read [Java documentation](https://www.java.com/en/download/help/path.html).
+
+</TabItem>
+
 </Tabs>
 
 ## Confirm the Install
