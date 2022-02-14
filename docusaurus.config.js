@@ -1,8 +1,8 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
 module.exports = {
-  title: 'Astronomer Cloud',
-  tagline: 'Get Started with the Next Generation of Astronomer Cloud',
+  title: 'Astronomer Documentation',
+  tagline: 'Learn how to use Astro, the next-generation data orchestration platform.',
   url: 'https://docs.astronomer.io/',
   baseUrl: '/',
   noIndex: false,
@@ -47,19 +47,19 @@ module.exports = {
       logo: {
         alt: 'Astronomer',
         src: 'img/LogoPrimaryDarkMode.svg',
-        href: 'https://www.astronomer.io/',
+        href: 'https://docs.astronomer.io/',
       },
       items: [
         {
-          to: 'cloud',
-          label: 'Cloud',
+          to: 'astro',
+          label: 'Astro',
           position: 'left',
         },
         {
           type: 'dropdown',
-          label: 'Enterprise',
+          label: 'Astronomer Software',
           to: 'enterprise/overview',
-          activeBaseRegex: 'enterprise',
+          activeBaseRegex: 'software',
           position: 'left',
           activeClassName: 'navbar__link--active',
           items: [
@@ -90,28 +90,28 @@ module.exports = {
     footer: {
       links: [
         {
-          title: 'Astronomer Cloud',
+          title: 'Astro',
           items: [
             {
-              label: 'Install Astronomer Cloud',
-              to: 'cloud/install-aws',
+              label: 'Install Astro',
+              to: 'astro/install-aws',
             },
             {
               label: 'Install the CLI',
-              to: 'cloud/install-cli',
+              to: 'astro/install-cli',
             },
             {
               label: 'Create a Project',
-              to: 'cloud/create-project',
+              to: 'astro/create-project',
             },
             {
               label: 'Deploy Code',
-              to: 'cloud/deploy-code',
+              to: 'astro/deploy-code',
             },
           ],
         },
         {
-          title: 'Astronomer Enterprise',
+          title: 'Astronomer Software',
           items: [
             {
               label: 'Overview',
@@ -170,12 +170,12 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          sidebarPath: require.resolve('./sidebarsCloud.js'),
+          sidebarPath: require.resolve('./sidebarsAstro.js'),
           editUrl: ({ docPath }) =>
-            `https://github.com/astronomer/docs/blob/main/cloud/${docPath}`,
+            `https://github.com/astronomer/docs/blob/main/astro/${docPath}`,
           editLocalizedFiles: true,
-          routeBasePath: 'cloud',
-          path: 'cloud',
+          routeBasePath: 'astro',
+          path: 'astro',
           admonitions: {
           },
         },
@@ -197,13 +197,13 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'enterprise',
-        routeBasePath: 'enterprise',
+        id: 'software',
+        routeBasePath: 'software',
         editUrl: ({ docPath }) =>
-          `https://github.com/astronomer/docs/blob/main/enterprise/${docPath}`,
+          `https://github.com/astronomer/docs/blob/main/software/${docPath}`,
         editCurrentVersion: true,
-        sidebarPath: require.resolve('./sidebarsEnterprise.js'),
-        path: 'enterprise',
+        sidebarPath: require.resolve('./sidebarsSoftware.js'),
+        path: 'software',
         lastVersion: 'current',
         versions: {
           current: {
