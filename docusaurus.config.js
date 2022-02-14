@@ -57,31 +57,31 @@ module.exports = {
         },
         {
           type: 'dropdown',
-          label: 'Astronomer Software',
-          to: 'enterprise/overview',
+          label: 'Software',
+          to: 'software/overview',
           activeBaseRegex: 'software',
           position: 'left',
           activeClassName: 'navbar__link--active',
           items: [
             {
               label: '0.27 (Latest)',
-              to: '/enterprise/overview',
+              to: '/software/overview',
             },
             {
               label: '0.26',
-              to: '/enterprise/0.26/overview',
+              to: '/software/0.26/overview',
             },
             {
               label: '0.25',
-              to: '/enterprise/0.25/overview'
+              to: '/software/0.25/overview'
             },
             {
               label: '0.23',
-              to: '/enterprise/0.23/overview'
+              to: '/software/0.23/overview'
             },
             {
               label: '0.16',
-              to: '/enterprise/0.16/overview'
+              to: '/software/0.16/overview'
             },
           ],
         },
@@ -115,15 +115,15 @@ module.exports = {
           items: [
             {
               label: 'Overview',
-              to: 'enterprise/overview',
+              to: 'software/overview',
             },
             {
               label: 'Install on AWS',
-              to: 'enterprise/install-aws',
+              to: 'software/install-aws',
             },
             {
               label: 'Release Notes',
-              to: 'enterprise/release-notes',
+              to: 'software/release-notes',
             },
           ],
         },

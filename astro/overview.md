@@ -1,22 +1,22 @@
 ---
 sidebar_label: 'Overview'
-title: 'Astronomer Cloud Documentation'
+title: 'Astro Documentation'
 id: overview
 slug: /
-description: Learn about Astronomer Cloud, the managed service that makes data pipelines easy to write, run, and monitor.
+description: Learn about Astro, the managed service that makes data pipelines easy to write, run, and monitor.
 ---
 
 ## Overview
 
-Astronomer Cloud is a managed software service that offers a next-generation experience for modern data teams running Apache Airflow, the open source industry standard for data orchestration.
+Astro is a managed software service that offers a next-generation experience for modern data teams running Apache Airflow, the open source industry standard for data orchestration.
 
-Astronomer Cloud boasts a hybrid deployment model founded on a Control Plane hosted by Astronomer and a Data Plane that is hosted in your cloud environment. Both are fully managed by Astronomer. This model offers the self-service convenience of a fully managed service while respecting the need to keep data private, secure, and within corporate boundaries. It optimizes for security whilst relieving your team of operational overhead.
+Astro boasts a hybrid deployment model founded on a Control Plane hosted by Astronomer and a Data Plane that is hosted in your cloud environment. Both are fully managed by Astronomer. This model offers the self-service convenience of a fully managed service while respecting the need to keep data private, secure, and within corporate boundaries. It optimizes for security whilst relieving your team of operational overhead.
 
-Beyond architecture, Astronomer Cloud offers a suite of first-class features that make it easy to author, run, and monitor data pipelines.
+Beyond architecture, Astro offers a suite of first-class features that make it easy to author, run, and monitor data pipelines.
 
 ## Features
 
-Astronomer Cloud's architecture enables a few key features, available today:
+Astro's architecture enables a few key features, available today:
 
 - Worker auto-scaling, powered by Airflow's Celery Executor + KEDA
 - The ability to run multiple clusters in your organization's network on AWS
@@ -30,17 +30,17 @@ Astronomer Cloud's architecture enables a few key features, available today:
 The following diagram outlines how the control plane, data plane, and users are connected to enable these features:
 
 <div class="text--center">
-  <img src="/img/docs/architecture-overview.png" alt="High level overview of Astronomer Cloud's architecture" />
+  <img src="/img/docs/architecture-overview.png" alt="High level overview of Astro's architecture" />
 </div>
 
 ## Get Started
 
 The Astronomer team will schedule an onboarding session for your initial install. From there, we recommend reading through the following docs:
 
-- [Install the Astronomer Cloud CLI](install-cli)
+- [Install the Astro CLI](install-cli)
 - [Develop Project](develop-project)
 - [Configure your Deployment](configure-deployment.md)
 
 If you have a feature request or a bug to report, reach out to [Astronomer Support](https://support.astronomer.io). We're here to help.
 
-To check on the operational status of Astronomer Cloud, visit our [status page](https://cloud-status.astronomer.io). You can subscribe to updates by clicking on **Subscribe to Updates** on the top-right of the page and entering your email address.
+To check on the operational status of Astro, visit our [status page](https://cloud-status.astronomer.io). You can subscribe to updates by clicking on **Subscribe to Updates** on the top-right of the page and entering your email address.

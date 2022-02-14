@@ -1,8 +1,8 @@
 {
-  "version-0.16/enterprise": [
+  "version-0.25/software": [
     {
       "type": "doc",
-      "id": "version-0.16/overview"
+      "id": "version-0.25/overview"
     },
     {
       "type": "category",
@@ -10,11 +10,11 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/quickstart"
+          "id": "version-0.25/quickstart"
         },
         {
           "type": "doc",
-          "id": "version-0.16/faq"
+          "id": "version-0.25/faq"
         }
       ],
       "collapsible": true,
@@ -26,15 +26,15 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/cli-quickstart"
+          "id": "version-0.25/cli-quickstart"
         },
         {
           "type": "doc",
-          "id": "version-0.16/customize-image"
+          "id": "version-0.25/customize-image"
         },
         {
           "type": "doc",
-          "id": "version-0.16/kubepodoperator-local"
+          "id": "version-0.25/kubepodoperator-local"
         }
       ],
       "collapsible": true,
@@ -46,15 +46,15 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/install-aws"
+          "id": "version-0.25/install-aws"
         },
         {
           "type": "doc",
-          "id": "version-0.16/install-azure"
+          "id": "version-0.25/install-azure"
         },
         {
           "type": "doc",
-          "id": "version-0.16/install-gcp"
+          "id": "version-0.25/install-gcp"
         }
       ],
       "collapsible": true,
@@ -66,27 +66,31 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/manage-workspaces"
+          "id": "version-0.25/manage-workspaces"
         },
         {
           "type": "doc",
-          "id": "version-0.16/configure-deployment"
+          "id": "version-0.25/configure-deployment"
         },
         {
           "type": "doc",
-          "id": "version-0.16/deploy-cli"
+          "id": "version-0.25/deploy-cli"
         },
         {
           "type": "doc",
-          "id": "version-0.16/deployment-logs"
+          "id": "version-0.25/deploy-nfs"
         },
         {
           "type": "doc",
-          "id": "version-0.16/environment-variables"
+          "id": "version-0.25/deployment-logs"
         },
         {
           "type": "doc",
-          "id": "version-0.16/ci-cd"
+          "id": "version-0.25/environment-variables"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.25/ci-cd"
         }
       ],
       "collapsible": true,
@@ -98,35 +102,35 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/manage-airflow-versions"
+          "id": "version-0.25/manage-airflow-versions"
         },
         {
           "type": "doc",
-          "id": "version-0.16/access-airflow-database"
+          "id": "version-0.25/access-airflow-database"
         },
         {
           "type": "doc",
-          "id": "version-0.16/kubepodoperator"
+          "id": "version-0.25/kubepodoperator"
         },
         {
           "type": "doc",
-          "id": "version-0.16/kubernetes-executor"
+          "id": "version-0.25/kubernetes-executor"
         },
         {
           "type": "doc",
-          "id": "version-0.16/airflow-alerts"
+          "id": "version-0.25/airflow-alerts"
         },
         {
           "type": "doc",
-          "id": "version-0.16/secrets-backend"
+          "id": "version-0.25/secrets-backend"
         },
         {
           "type": "doc",
-          "id": "version-0.16/integrate-iam"
+          "id": "version-0.25/integrate-iam"
         },
         {
           "type": "doc",
-          "id": "version-0.16/airflow-api"
+          "id": "version-0.25/airflow-api"
         }
       ],
       "collapsible": true,
@@ -138,39 +142,51 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/integrate-auth-system"
+          "id": "version-0.25/integrate-auth-system"
         },
         {
           "type": "doc",
-          "id": "version-0.16/workspace-permissions"
+          "id": "version-0.25/workspace-permissions"
         },
         {
           "type": "doc",
-          "id": "version-0.16/manage-platform-users"
+          "id": "version-0.25/manage-platform-users"
         },
         {
           "type": "doc",
-          "id": "version-0.16/houston-api"
+          "id": "version-0.25/houston-api"
         },
         {
           "type": "doc",
-          "id": "version-0.16/upgrade-astronomer-stable"
+          "id": "version-0.25/upgrade-astronomer-stable"
         },
         {
           "type": "doc",
-          "id": "version-0.16/apply-platform-config"
+          "id": "version-0.25/upgrade-to-0-25"
         },
         {
           "type": "doc",
-          "id": "version-0.16/registry-backend"
+          "id": "version-0.25/apply-platform-config"
         },
         {
           "type": "doc",
-          "id": "version-0.16/configure-platform-resources"
+          "id": "version-0.25/registry-backend"
         },
         {
           "type": "doc",
-          "id": "version-0.16/renew-tls-cert"
+          "id": "version-0.25/configure-platform-resources"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.25/renew-tls-cert"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.25/pre-create-namespaces"
+        },
+        {
+          "type": "doc",
+          "id": "version-0.25/third-party-ingress-controllers"
         }
       ],
       "collapsible": true,
@@ -182,19 +198,19 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/grafana-metrics"
+          "id": "version-0.25/grafana-metrics"
         },
         {
           "type": "doc",
-          "id": "version-0.16/kibana-logging"
+          "id": "version-0.25/kibana-logging"
         },
         {
           "type": "doc",
-          "id": "version-0.16/platform-alerts"
+          "id": "version-0.25/platform-alerts"
         },
         {
           "type": "doc",
-          "id": "version-0.16/logs-to-s3"
+          "id": "version-0.25/logs-to-s3"
         }
       ],
       "collapsible": true,
@@ -206,27 +222,27 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/image-architecture"
+          "id": "version-0.25/image-architecture"
         },
         {
           "type": "doc",
-          "id": "version-0.16/single-node-install"
+          "id": "version-0.25/single-node-install"
         },
         {
           "type": "doc",
-          "id": "version-0.16/install-packages"
+          "id": "version-0.25/install-packages"
         },
         {
           "type": "doc",
-          "id": "version-0.16/upgrade-ac"
+          "id": "version-0.25/upgrade-ac"
         },
         {
           "type": "doc",
-          "id": "version-0.16/ac-cve"
+          "id": "version-0.25/ac-cve"
         },
         {
           "type": "doc",
-          "id": "version-0.16/ac-support-policy"
+          "id": "version-0.25/ac-support-policy"
         }
       ],
       "collapsible": true,
@@ -238,15 +254,15 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/kubectl"
+          "id": "version-0.25/kubectl"
         },
         {
           "type": "doc",
-          "id": "version-0.16/debug-install"
+          "id": "version-0.25/debug-install"
         },
         {
           "type": "doc",
-          "id": "version-0.16/disaster-recovery"
+          "id": "version-0.25/disaster-recovery"
         }
       ],
       "collapsible": true,
@@ -258,27 +274,27 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-0.16/release-notes"
+          "id": "version-0.25/release-notes"
         },
         {
           "type": "doc",
-          "id": "version-0.16/system-components"
+          "id": "version-0.25/system-components"
         },
         {
           "type": "doc",
-          "id": "version-0.16/support"
+          "id": "version-0.25/support"
         },
         {
           "type": "doc",
-          "id": "version-0.16/cli-reference"
+          "id": "version-0.25/cli-reference"
         },
         {
           "type": "doc",
-          "id": "version-0.16/version-compatibility-reference"
+          "id": "version-0.25/version-compatibility-reference"
         },
         {
           "type": "doc",
-          "id": "version-0.16/release-lifecycle-policy"
+          "id": "version-0.25/release-lifecycle-policy"
         }
       ],
       "collapsible": true,
