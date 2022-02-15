@@ -290,7 +290,7 @@ astronomer:
 
 These are the minimum values you need to configure for installing Astronomer. For information on additional configuration, read [What's Next](install-aws-standard.md#whats-next).
 
-:::info 
+:::info
 
 If you are installing Astronomer in an airgapped environment without access to the public internet, complete all of the setup in [Install in an Airgapped Environment](install-airgapped.md) and then skip directly to Step 10 in this document.
 
@@ -317,10 +317,10 @@ helm repo update
 This will ensure that you pull the latest from our Helm repository. Finally, run:
 
 ```sh
-helm install -f config.yaml --version=0.27 --namespace=astronomer <your-platform-release-name> astronomer/astronomer
+helm install -f config.yaml --version=0.28 --namespace=astronomer <your-platform-release-name> astronomer/astronomer
 ```
 
-This command will install the latest available patch version of Astronomer Enterprise v0.27. To override latest and specify a patch, add it to the `--version=` flag in the format of `0.27.x`. To install Astronomer Enterprise v0.27.0, for example, specify `--version=0.27.0`. For information on all available patch versions, refer to [Enterprise Release Notes](release-notes.md).
+This command will install the latest available patch version of Astronomer Enterprise v0.28. To override latest and specify a patch, add it to the `--version=` flag in the format of `0.28.x`. To install Astronomer Enterprise v0.28.0, for example, specify `--version=0.28.0`. For information on all available patch versions, refer to [Enterprise Release Notes](release-notes.md).
 
 Once you run the commands above, a set of Kubernetes pods will be generated in your namespace. These pods power the individual services required to run our platform, including the Astronomer UI and Houston API.
 
