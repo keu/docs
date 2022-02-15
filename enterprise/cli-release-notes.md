@@ -17,7 +17,6 @@ Release date: February 15, 2022
 
 ### Additional Improvements
 
-- If you run `astro deployment create` when [Deployment validation webhooks](release-notes.md#apply-validation-webhooks-to-deployment-creation) are enabled, then the CLI now prompts you to specify a namespace for your new Deployment.
 - After successfully pushing code to a Deployment via `astro deploy`, the CLI now provides a URL that you can use to directly access that Deployment via the UI.
 - You can now retrieve Triggerer logs using `astro deployment logs triggerer`.
 
