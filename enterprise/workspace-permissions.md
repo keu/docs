@@ -19,25 +19,25 @@ The guidelines below will cover:
 
 ## Invite Users
 
-Workspace and Deployment _Admins_ can invite and otherwise manage users both via the Astronomer UI and CLI. All users who have access to a Workspace must be assigned 1 of 3 Workspace roles, though deployment-level roles are not required.
+Workspace and Deployment Admins can invite and otherwise manage users both via the Astronomer UI and CLI. All users who have access to a Workspace must be assigned 1 of 3 Workspace roles, though deployment-level roles are not required.
 
 Read below for guidelines.
 
 ### Invite to Workspace
 
-The ability to invite users to an Astronomer Workspace is limited to Workspace _Admins_, who can also grant the _Admin_ role to other users. Workspace _Editors_ and _Viewers_ cannot invite or otherwise manage other Workspace users, though they may do so at the deployment level depending on their deployment-level role.
+The ability to invite users to an Astronomer Workspace is limited to Workspace Admins, who can also grant the Admin role to other users. Workspace Editors and Viewers cannot invite or otherwise manage other Workspace users, though they may do so at the deployment level depending on their deployment-level role.
 
-A user who creates a Workspace is automatically granted the _Admin_ role for the Workspace and has the ability to create any number of Airflow Deployments within it. Every Workspace must have at least 1 Workspace _Admin_.
+A user who creates a Workspace is automatically granted the Admin role for the Workspace and has the ability to create any number of Airflow Deployments within it. Every Workspace must have at least 1 Workspace Admin.
 
 #### via Astronomer UI
 
 To invite a user to a Workspace via the Astronomer UI, navigate to **Workspace** > **Users** > **Invite User**.
 
-When a Workspace _Admin_ invites a user to a Workspace in which one or more Airflow Deployments exist, they'll have the opportunity to set that user's deployment-level roles as well, though it is not required.
+When a Workspace Admin invites a user to a Workspace in which one or more Airflow Deployments exist, they'll have the opportunity to set that user's deployment-level roles as well, though it is not required.
 
 ![Invite Workspace User](https://assets2.astronomer.io/main/docs/astronomer-ui/invite-user-workspace.gif)
 
-If a Workspace Admin invites a user to a Workspace that does _not_ have any Airflow Deployments within it, the **Deployment Roles** modal above will not appear.
+If a Workspace Admin invites a user to a Workspace that has 0 Airflow Deployments, the **Deployment Roles** modal above will not appear.
 
 #### via Astronomer CLI
 
@@ -61,6 +61,29 @@ To set a **Role**, add a flag in the following format:
 - `--WORKSPACE_ADMIN`
 
 If you do _not_ specify a role in this command, `WORKSPACE_VIEWER` will be set by default. In all cases where a user is invited to a Workspace and deployment-level role is not specified, no deployment-level role will be assumed.
+
+#### via Teams
+
+You can invite a group of users from a configured third party identity provider (IDP) as a Team on your Workspace. A Team is an IDP-defined group of users who all share the same permissions to a given Deployment or Workspace.
+
+Note that to use Teams, a System Admin must first complete the setup in [Integrate an Auth System](integrate-auth-system.md) and configure user groups as described in [Import IDP Groups](import-idp-group.md).
+
+To add a Team to a Workspace:
+
+1. In the Astronomer UI, go to your Workspace and open the **Teams** tab.
+2. Click **Add Team**.
+3. Under **Team Name**, enter the name of your IDP group.
+4. Select a **Workspace Role** for the Team. If your Workspace has existing Deployments, you can also configure the Team's permissions to those Deployments on this page:
+
+    ![Screen for adding a Team to a Workspace](/img/docs/add-team-workspace.png)
+
+5. Click **Add**.
+
+:::caution
+
+If a user already exists on a Workspace before being invited via a Team, the user context with the most permissive role will be applied to the Workspace. For more information, read [Import IDP Groups](import-idp-group.md).
+
+:::
 
 ### Invite to Deployment
 
@@ -101,6 +124,26 @@ To set a **Role**, add a flag in the following format:
 - `--DEPLOYMENT_ADMIN`
 
 If you do _not_ specify a role in this command, `DEPLOYMENT_VIEWER` will be set by default.
+
+#### via Teams
+
+You can invite a group of users from a configured third party identity provider (IDP) as a Team on your Deployment. A Team is an IDP-defined group of users who all share the same permissions to a given Deployment or Workspace.
+
+Note that to use Teams, a System Admin must first complete the setup in [Integrate an Auth System](integrate-auth-system.md) and configure user groups as described in [Import IDP Groups](import-idp-group.md).
+
+To add a team to a Deployment:
+
+1. In the Astronomer UI, go to your Deployment and open the **Teams** tab.
+2. In the search bar that appears, search for your Team's name.
+3. When your Team appears, select a Deployment-level role for the Team and click the **+** button:
+
+    ![Screen for adding a Team to a Deployment](/img/docs/add-team-deployment.png)
+
+:::caution
+
+If a user already exists on a Deployment before being invited via a Team, the user context with the most permissive role will be applied to the Deployment. For more information, read [Import IDP Groups](import-idp-group.md).
+
+:::
 
 ## View and Edit User Roles
 

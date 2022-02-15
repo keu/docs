@@ -13,11 +13,12 @@ Read below for a high-level overview of user management and guidelines around pu
 
 ## Add Users to Astronomer
 
-When Astronomer Enterprise is first deployed, the first user to log in is granted "System Admin" permissions by default (more on that below). From there, a user is created on Astronomer Enterprise by:
+When Astronomer Enterprise is first deployed, the first user to log in is granted "System Admin" permissions by default. From there, a user is created on Astronomer Enterprise by any of the following:
 
 - Invitation to a Workspace by a Workspace Admin
 - Invitation to Astronomer by a System Admin
 - Signing up via the Astronomer UI without an invitation (requires "Public Signups")
+- Imported to Astronomer through an [IDP group](import-idp-groups.md)
 
 On Astronomer, administrators have the option to either open the platform to public signups or limit account creation to users invited by others.
 
