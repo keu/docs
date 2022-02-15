@@ -110,7 +110,7 @@ brew install astronomer/cloud/astrocloud
 3. Run the following command to unzip the executable:
 
     ```sh
-    tar xzf .\astrocloudcli.tar.gz
+    tar xzf astrocloudcli.tar.gz
     ```
 
 4. To run the executable without specifying its file path, save `astrocloud` in a secure location on your machine and add its filepath in the Linux `$PATH` environment variable. For more information about configuring the PATH environment variable, read [Java documentation](https://www.java.com/en/download/help/path.html).
