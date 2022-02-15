@@ -80,7 +80,7 @@ module.exports = {
               to: '/enterprise/0.23/overview'
             },
             {
-              label: '0.16',
+              label: '0.16 (Deprecated)',
               to: '/enterprise/0.16/overview'
             },
           ],
