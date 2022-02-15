@@ -124,7 +124,7 @@ The following section provides basic templates for configuring individual CI pip
 
 ### GitHub Actions
 
-To automate code deploys to a single Deployment using [GitHub Actions](https://github.com/features/actions), complete the following setup in a GitHub repository hosting an Astronomer project:
+To automate code deploys to a Deployment using [Jenkins](https://www.jenkins.io/), complete the following setup in a Git-based repository that hosts an Astronomer project:
 
 1. Set the following as [GitHub secrets](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
 
@@ -217,9 +217,9 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
     }
     ```
 
-    Specifically, this Jenkinsfile deploys to Astronomer every time there is a merge to the `main` branch of your repository.
+    This Jenkinsfile triggers a code push to Astronomer Cloud every time a commit or pull request is merged to the `main` branch of your repository.
 
-2. Add the following environment variables in your repository:
+2. Add the following environment variables to your repository:
 
     - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
     - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret
@@ -229,6 +229,11 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
 3. At the root of your repository, create a file called `build.sh` and add the following to it:
 
     ```sh
+    DEPLOYMENT_ID=$1
+    ASTRONOMER_KEY_ID=$2
+    ASTRONOMER_KEY_SECRET=$3
+    ORGANIZATION_ID=$4
+
     # Create time stamp
     TAG=deploy-`date "+%Y-%m-%d-%HT%M-%S"`
 
