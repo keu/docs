@@ -55,13 +55,13 @@ Workspace editors can configure a new or existing Airflow Deployment to use a gi
 
     - **Repository URL**: The URL for the Git repository that hosts your Astronomer project
     - **Branch Name**: The name of the Git branch that you want to sync with your Deployment
-    - **Sync Interval**: The time interval between checks for updates in your Git repository, in seconds. A sync is only performed when an update is detected. We recommend a 1 second interval.
-    - **DAGs Directory:** The directory in your Git repository that hosts your DAGs. Specify the directory's path as relative to the repository's root directory. To use your root directory as your DAGs directory, specify this value as `./`. Other changes outside the DAGs directory in your Git repository must be deployed using `astro deploy`.
+    - **Sync Interval**: The time interval between checks for updates in your Git repository, in seconds. A sync is only performed when an update is detected. We recommend a 1 second interval
+    - **DAGs Directory:** The directory in your Git repository that hosts your DAGs. Specify the directory's path as relative to the repository's root directory. To use your root directory as your DAGs directory, specify this value as `./`. Other changes outside the DAGs directory in your Git repository must be deployed using `astro deploy`
     - **Rev**: The commit reference of the branch that you want to sync with your Deployment
     - **Ssh Key**: The SSH private key for your Git repository
     - **Known Hosts**: The known_hosts for your Git provider, formatted as: `<host1>,<ip1> <public_key>`
-    - **Ephemeral Storage Overwrite Gigabytes**: The storage limit for your Git repository. If your Git repo is larger than 2GB, we recommend setting this slider to your repo size + 1 Gi.
-    - **Sync Timeout**: The maximum amount of seconds allowed for a sync. We recommend increasing this value if your repo is larger than 1GB.
+    - **Ephemeral Storage Overwrite Gigabytes**: The storage limit for your Git repository. If your Git repo is larger than 2GB, we recommend setting this slider to your repo size + 1 Gi
+    - **Sync Timeout**: The maximum amount of seconds allowed for a sync. We recommend increasing this value if your repo is larger than 1GB
 
 5. Save your changes.
 
