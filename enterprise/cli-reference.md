@@ -315,7 +315,7 @@ Generates a list of Airflow Deployments in your current Astronomer Workspace.
 
 ## astro deployment logs
 
-Returns logs from your Airflow Deployment's Scheduler, Webserver, and Celery Workers.
+Returns logs from your Airflow Deployment's Scheduler, Webserver, Triggerer, and Celery Workers.
 
 ### Usage
 
@@ -324,6 +324,7 @@ You can run any of the following commands depending on which logs you want to st
 - `astro deployment logs scheduler [flags]`
 - `astro deployment logs webserver [flags]`
 - `astro deployment logs workers [flags]`
+- `astro deployment logs triggerer [flags]`
 
 ### Flags
 
