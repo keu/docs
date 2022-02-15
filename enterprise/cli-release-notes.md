@@ -24,4 +24,4 @@ Release date: February 15, 2022
 ### Bug Fixes
 
 - Fixed an issue where some objects specified in `airflow_settings.yaml` were not rendered after running `astro dev start`
-- Fixed an issue where environment variables in `docker-compose.override.yml` were unresolved after running `astro dev start`
+- Fixed an issue where environment variables in `docker-compose.override.yml` were not correctly applied after running `astro dev start`

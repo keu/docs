@@ -11,6 +11,14 @@ This document provides a summary of all changes made to the [Astronomer CLI](cli
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
+## 0.27.3
+
+Release date: February 15, 2022
+
+### Bug Fixes
+
+- Fixed an issue where environment variables in `docker-compose.override.yml` were not correctly applied after running `astro dev start`
+
 ## 0.27.2
 
 Release date: January 21, 2022
