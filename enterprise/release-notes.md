@@ -17,7 +17,7 @@ We're committed to testing all Astronomer Enterprise versions for scale, reliabi
 
 ## v0.28.0
 
-Release date: February 11, 2022
+Release date: February 15, 2022
 
 ### Import Identity Provider User Groups as Teams
 
