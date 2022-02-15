@@ -56,16 +56,22 @@ Once you log in, you should see the DAGs you just deployed.
 
 ## What Happens During a Code Deploy
 
-When you deploy code to Astronomer Cloud, your Astronomer project is built into a Docker image. This includes system-level dependencies, Python-level dependencies, DAGs, and your `Dockerfile`. It does not include any of the metadata associated with your local Airflow environment, including task history and Airflow Connections or Variables that were set locally. This Docker image is then pushed to all containers running the Apache Airflow application on Astronomer Cloud. With the exception of the Airflow Webserver and some Celery Workers, Kubernetes gracefully terminates all containers during this process. This forces them to restart and begin running your latest code.
+When you deploy code to Astronomer Cloud, your Astronomer project is built into a Docker image. This includes system-level dependencies, Python-level dependencies, DAGs, and your `Dockerfile`. It does not include any of the metadata associated with your local Airflow environment, including task history and Airflow Connections or Variables that were set locally. This Docker image is then pushed to all containers running the Apache Airflow application on Astronomer Cloud. With the exception of the Airflow Webserver and some workers, Kubernetes gracefully terminates all containers during this process. This forces them to restart and begin running your latest code.
 
 ![Deploy Code](/img/docs/deploy-architecture.png)
 
 If you deploy code to a Deployment that is running a previous version of your code, then the following happens:
 
-1. Tasks that are `running` will continue to execute on existing Celery Workers and will not be interrupted unless the task does not complete within 24 hours of the code deploy.
-2. One or more autoscaling Workers will spin up to immediately start executing new tasks based on your latest code. These Celery Workers do not wait for your previous Workers to terminate.
+1. Tasks that are `running` will continue to execute on existing Celery workers and will not be interrupted unless the task does not complete within 24 hours of the code deploy.
+2. One or more new worker(s) will spin up alongside your existing workers and immediately start executing scheduled tasks based on your latest code.
 
-Astronomer sets a grace period of 24 hours for all Celery Workers to allow running tasks to continue executing. This grace period is not configurable. If a task does not complete within 24 hours, its Worker will be terminated. Airflow will mark the task as a [zombie](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks) and it will retry according to the task's retry policy. This is to ensure that our team can reliably upgrade and maintain Astronomer as a service.
+    These new workers will execute downstream tasks of DAG runs that are in progress. For example, if you deploy to Astronomer when `Task A` of your DAG is running, `Task A` will continue to run on an old Celery worker. If `Task B` and `Task C` are downstream of `Task A`, they will both be scheduled on new Celery workers running your latest code. This means that DAG runs could fail due to downstream tasks running code from a different source than their upstream tasks.
+
+  :::tip
+  To protect against DAG run failures that are due to a change in source code, we recommend implementing at least two retries at the DAG level as described in the [DAG Best Practices Airflow Guide](https://www.astronomer.io/guides/dag-best-practices).
+  :::
+  
+Astronomer sets a grace period of 24 hours for all workers to allow running tasks to continue executing. This grace period is not configurable. If a task does not complete within 24 hours, its worker will be terminated. Airflow will mark the task as a [zombie](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks) and it will retry according to the task's retry policy. This is to ensure that our team can reliably upgrade and maintain Astronomer as a service.
 
 :::tip
 
