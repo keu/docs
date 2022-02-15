@@ -66,7 +66,7 @@ If you do _not_ specify a role in this command, `WORKSPACE_VIEWER` will be set b
 
 You can invite a group of users from a configured third party identity provider (IDP) as a Team on your Workspace. A Team is an IDP-defined group of users who all share the same permissions to a given Deployment or Workspace.
 
-Note that to use Teams, a System Admin must first complete the setup in [Integrate an Auth System](integrate-auth-system.md) and configure user groups as described in [Import IDP Groups](import-idp-group.md).
+Note that to use Teams, a System Admin must first complete the setup in [Integrate an Auth System](integrate-auth-system.md) and configure user groups as described in [Import IDP Groups](import-idp-groups.md).
 
 To add a Team to a Workspace:
 
@@ -81,7 +81,7 @@ To add a Team to a Workspace:
 
 :::caution
 
-If a user already exists on a Workspace before being invited via a Team, the user context with the most permissive role will be applied to the Workspace. For more information, read [Import IDP Groups](import-idp-group.md).
+If a user already exists on a Workspace before being invited via a Team, the user context with the most permissive role will be applied to the Workspace. For more information, read [Import IDP Groups](import-idp-groups.md).
 
 :::
 
@@ -129,7 +129,7 @@ If you do _not_ specify a role in this command, `DEPLOYMENT_VIEWER` will be set 
 
 You can invite a group of users from a configured third party identity provider (IDP) as a Team on your Deployment. A Team is an IDP-defined group of users who all share the same permissions to a given Deployment or Workspace.
 
-Note that to use Teams, a System Admin must first complete the setup in [Integrate an Auth System](integrate-auth-system.md) and configure user groups as described in [Import IDP Groups](import-idp-group.md).
+Note that to use Teams, a System Admin must first complete the setup in [Integrate an Auth System](integrate-auth-system.md) and configure user groups as described in [Import IDP Groups](import-idp-groups.md).
 
 To add a team to a Deployment:
 
@@ -141,7 +141,7 @@ To add a team to a Deployment:
 
 :::caution
 
-If a user already exists on a Deployment before being invited via a Team, the user context with the most permissive role will be applied to the Deployment. For more information, read [Import IDP Groups](import-idp-group.md).
+If a user already exists on a Deployment before being invited via a Team, the user context with the most permissive role will be applied to the Deployment. For more information, read [Import IDP Groups](import-idp-groups.md).
 
 :::
 

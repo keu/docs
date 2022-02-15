@@ -92,6 +92,6 @@ The following table contains the exact lifecycle for each published version of A
 | 0.25 (LTS)         | May 11, 2021     | December 2022*         |
 | 0.26               | Nov 23, 2021     | May 2022                |
 | 0.27               | Dec 21, 2021     | June 2022               |
-| 0.28               | Feb 9, 2022      | August 2022             |
+| 0.28               | Feb 15, 2022      | August 2022             |
 
 > *Given the wide usage of Astronomer Enterprise v0.25, Astronomer has extended the maintenance period for this version through December 2022.
