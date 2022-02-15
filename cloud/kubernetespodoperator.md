@@ -8,15 +8,16 @@ id: kubernetespodoperator
 
 This guide provides steps for configuring and running the KubernetesPodOperator on DAGs deployed to Astronomer Cloud.
 
-One of Airflow's most dynamic operators is the [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html), which can run a task in an individual Kubernetes pod. Similar to the Kubernetes Executor, this operator talks to the Kubernetes API to dynamically launch a pod for each task that needs to run and terminates each pod once the task is completed. This results in an isolated, containerized execution environment for each task that is separate from tasks otherwise being executed by Celery workers. Using the KubernetesPodOperator enables the following benefits:
+The [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html) is one of Apache Airflow's most powerful operators. Similar to the Kubernetes Executor, this operator talks to the Kubernetes API to dynamically launch a pod in Kubernetes for each task that needs to run and terminates each pod once the task is completed. This results in an isolated, containerized execution environment for each task that is separate from tasks otherwise being executed by Celery workers. The KubernetesPodOperator enables you to:
 
-- Execute custom Docker images at the task level, potentially with Python packages and dependencies that would otherwise conflict with the rest of your Deployment's dependencies
-- If you know how much CPU and Memory your task consumes, you can specify those values as limits or minimums at the task level
-- Flexibility to write task logic in a language other than Python
-- Horizontal scaling that is cost-effective, dynamic, and minimally dependent on Worker resources
-- Access to images hosted in private Docker repositories
-- Kubernetes-native configuration, including the ability to set volumes, secrets, and affinities in the form of a YAML file
-- Coupled with the Data Plane, you have the ability to run Kubernetes pods without managing any underlying infrastructure
+- Execute a custom Docker image per task with Python packages and dependencies that would otherwise conflict with the rest of your Deployment's dependencies. This includes Docker images in a private registry or repository.
+- Specify CPU and Memory as task-level limits or minimums to optimize costs and performance.
+- Write task logic in a language other than Python. This gives you flexibility and can enable new use cases across teams.
+- Scale task growth horizontally in a way that is cost-effective, dynamic, and minimally dependent on Worker resources.
+- Access images hosted in private Docker repositories.
+- Set Kubernetes-native configurations in a YAML file, including volumes, secrets, and affinities.
+
+On Astronomer Cloud, the Kubernetes infrastructure required to run the KubernetesPodOperator is built into every Cluster in the Data Plane and is managed by Astronomer.
 
 ## Prerequisites
 
@@ -42,7 +43,7 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
     image="<your-docker-image>",
     cmds=["<commands-for-image>"],
     arguments=["<arguments-for-image>"],
-    labels={"<pod-Label>": "<label-name>"},
+    labels={"<pod-label>": "<label-name>"},
     name="<pod-name>",
     is_delete_operator_pod=True,
     in_cluster=True,
@@ -52,12 +53,12 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
 
 For each instantiation of the KubernetesPodOperator, you must specify the following values:
 
-- `namespace = conf.get('kubernetes', 'NAMESPACE')`: Astronomer Cloud Deployments run on their own Kubernetes namespaces within a Cluster. The KubernetesPodOperator needs to know information about this namespace. Because the namespace variable is injected into your Deployment's `airflow.cfg` file, you can programmatically import this namespace using this setting.
-- `image`: This is the image that the operator will use to run its defined task, commands, and arguments. The value you specify can be either an image tag that's publicly available on Dockerhub or a complete URL + image tag for another Docker registry. To pull an image from a private registry, read [Pull Images from a Private Registry](kubernetespodoperator.md#pull-images-from-a-private-registry).
-- `in_cluster=True`: When this value is set, your task will look inside your Cluster for a Kubernetes configuration. This ensures that the workers running in the Pod have the correct privileges within the Cluster.
-- `is_delete_operator_pod=True`: This setting ensures that the Pods of completed tasks are deleted, which lowers resource usage on your Cluster.
+- `namespace = conf.get('kubernetes', 'NAMESPACE')`: Every Astronomer Deployment runs on its own Kubernetes namespace within a Cluster. Information about this namespace can be programmatically imported as long as you set this variable.
+- `image`: This is the Docker image that the operator will use to run its defined task, commands, and arguments. The value you specify is assumed to be an image tag that's publicly available on [Docker Hub](https://hub.docker.com/). To pull an image from a private registry, read [Pull Images from a Private Registry](kubernetespodoperator.md#pull-images-from-a-private-registry).
+- `in_cluster=True`: When this value is set, your task will run within the Cluster from which it's instantiated on Astronomer. This ensures that the Kubernetes pod running your task has the correct permissions within the Cluster.
+- `is_delete_operator_pod=True`: This setting ensures that once a KubernetesPodOperator task is complete, the Kubernetes Pod that ran that task is terminated. This ensures that there are no unused pods in your Cluster taking up resources.
 
-Once you push this code to a Deployment, your Cluster will automatically spin up and down Pods to run tasks that use the KubernetesPodOperator.
+This is the minimum configuration required to run tasks with the KubernetesPodOperator on Astronomer Cloud. To further customize the way your tasks are run, see the topics below.
 
 ## Configure Task-Level Pod Resources
 
