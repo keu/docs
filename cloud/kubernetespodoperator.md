@@ -64,7 +64,7 @@ This is the minimum configuration required to run tasks with the KubernetesPodOp
 
 Astronomer Cloud automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not limited, meaning that the operator could theoretically provision all your Cluster's available remaining CPU and memory to complete a task. Because of this, we recommend managing the KubernetesPodOperator's resource usage by specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) on a per-task basis.
 
-To do so, define a dictionary of compute resources in your DAG. For example, applying the following dictionary to a Pod would ensure that the Pod runs with exactly 800m of CPU and 3Gi of memory at all times:
+To do so, define a dictionary of compute resources in your DAG. For example, applying the following dictionary to a task would ensure that a Pod runs that task with exactly 800m of CPU and 3Gi of memory at all times:
 
 ```python
 compute_resources = \
@@ -77,24 +77,24 @@ compute_resources = \
 To use a dictionary, specify the `resources` variable in your instantiation of the KubernetesPodOperator:
 
 ```python {11}
+namespace = conf.get('kubernetes', 'NAMESPACE')
 with dag:
     k = KubernetesPodOperator(
         namespace=namespace,
-        image="hello-world",
-        labels={"foo": "bar"},
-        name="airflow-test-pod",
-        task_id="task-one",
-        in_cluster=in_cluster, # if set to true, will look in the cluster, if false, looks for file
-        cluster_context='docker-for-desktop', # is ignored when in_cluster is set to True
-        config_file=config_file,
+        image="<your-docker-image>",
+        labels={"<pod-label>": "<label-name>"},
+        name="<pod-name>",
+        task_id="<task-name>",
+        in_cluster=True,
+        cluster_context='docker-for-desktop',
         resources=compute_resources,
         is_delete_operator_pod=True,
         get_logs=True)
 ```
 
-## Pull Images from a Private Registry
+## Run Images from a Private Registry
 
-By default, the KubernetesPodOperator expects to pull an image that's hosted publicly on Dockerhub. If you want to pull images from a private registry, complete the setup in this topic.
+By default, the KubernetesPodOperator expects to pull a Docker image that's hosted publicly on Docker Hub. If you want to execute a Docker image that's hosted in a private registry, complete the setup below.
 
 ### Prerequisites
 
@@ -107,21 +107,14 @@ To complete this setup, you need:
 
 ### Step 1: Create a Kubernetes Secret
 
-To securely use private Docker images on Astronomer Cloud, you need to create a Kubernetes secret for accessing your private Docker registry. To do this, complete one of the following two setups:
+To run Docker images from a private registry on Astronomer Cloud, you first need to create a Kubernetes secret that contains credentials to your registry. Astronomer will then inject that secret into your Deployment's namespace, which will give your tasks access to Docker images within your registry. To do this, complete one of the following two setups:
 
 #### Option 1: Manually Create a Kubernetes Secret
 
-1. Follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line) to create a Kubernetes secret for accessing your private registry. Note the name of the secret for the next step.
+1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
+2. Reach out to [Astronomer Support](https://support.astronomer.io) and send the Namespace of the Deployment you want to use the KubernetesPodOperator with. A Deployment's namespace can be found in the Deployment view of the Astronomer UI.
 
-2. Run the following command to confirm that the `dockerconfigjson` file was created correctly:
-
-    ```sh
-    kubectl get secret <secret-name> --output="jsonpath={.data.\.dockerconfigjson}" | base64 --decode
-    ```
-
-    Copy this output.
-
-3. Send the output from Step 2 and the name of the Cluster that you are configuring to Astronomer Support. From here, Astronomer Support  will add your secret to the Cluster.
+From here, Astronomer Support will give you instructions on how to securely send the output of your `/.docker/config.json` file. Do not send this file via email, as it contains sensitive credentials to your registry.
 
 #### Option 2: Let Astronomer Create a Kubernetes Secret
 
@@ -139,21 +132,21 @@ Astronomer Support will use this information to directly create a Kubernetes sec
 
 Once Astronomer has added the Kubernetes secret to your Cluster, you will be notified and provided with the name of the secret.
 
-From here, you can use the KubernetesPodOperator with your private images by importing Kubernetes client Models and specifying `image_pull_secrets` in your operator instantiation:
+From here, you can run images from your private registry by importing `models` from `kubernetes.client` and specifying `image_pull_secrets` in your KubernetesPodOperator instantiation:
 
 ```python {1,6}
 from kubernetes.client import models as k8s
 
 k = kubernetes_pod_operator.KubernetesPodOperator(
     namespace=namespace,
-    image="ubuntu:16.04",
     image_pull_secrets=[k8s.V1LocalObjectReference('<secret-name>')],
-    cmds=["bash", "-cx"],
-    arguments=["echo", "10", "echo pwd"],
-    labels={"foo": "bar"},
-    name="airflow-test-pod",
+    image="<your-docker-image>",
+    cmds=["<commands-for-image>"],
+    arguments=["<arguments-for-image>"],
+    labels={"<pod-label>": "<label-name>"},
+    name="<pod-name>",
     is_delete_operator_pod=True,
     in_cluster=True,
-    task_id="task-two",
+    task_id="<task-name>",
     get_logs=True)
 ```
