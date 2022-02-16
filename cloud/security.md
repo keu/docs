@@ -22,7 +22,7 @@ Astronomer Cloud boasts a hybrid deployment model founded on a Control Plane hos
 
 ## Resilience
 
-The Astronomer Cloud Control and Data Planes are architected and deployed on major public clouds to take advantage of their resilient, secure and highly available regions. Additionally, both planes are designed and architected to take advantage of best-in-class security products offered by the public clouds. For more information, read about our built-in [Resilience](resilience.md).
+The Astronomer Cloud Control and Data Planes are architected and deployed on major public clouds to take advantage of their resilient, secure and highly available regions. Additionally, both planes are designed and architected to take advantage of best-in-class security products offered by the public clouds. For more information, see [Resilience](resilience.md).
 
 ## Disaster Recovery
 
