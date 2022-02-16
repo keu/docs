@@ -20,13 +20,6 @@ To install Astronomer on AKS, you'll need access to the following tools and perm
 * Permission to create and modify resources on AKS
 * Permission to generate a certificate (not self-signed) that covers a defined set of subdomains
 
-:::caution
-
-Because of a Kubernetes version incompatibility, Astronomer Enterprise 0.28.x cannot be installed directly on [Microsoft Azure Red Hat OpenShift](https://cloud.redhat.com/products/azure-openshift?intcmp=701f2000000tjyaAAA). Instead, you must [install Enterprise 0.27.x](https://docs.astronomer.io/enterprise/0.27/install-azure) and then [upgrade to 0.28.x](upgrade-astronomer-stable.md).
-
-:::
-
-
 ## Step 1: Choose a Base Domain
 
 All Astronomer services will be tied to a base domain of your choice, under which you will need the ability to add and edit DNS records.
