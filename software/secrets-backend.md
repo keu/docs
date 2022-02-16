@@ -140,7 +140,7 @@ This tells Airflow to look for variable and connection information at the `secre
 
 :::warning
 
-If you want to deploy your project to a hosted Git repository before deploying to Astronomer, be sure to save `<your-approle-id>` and `<your-approle-secret>` securely. We recommend adding them to your project's [`.env` file](develop-project.md#set-environment-variables-via-env-local-development-only) and specifying this file in `.gitignore`.
+If you want to deploy your project to a hosted Git repository before deploying to Astronomer, be sure to save `<your-approle-id>` and `<your-approle-secret>` securely. We recommend adding them to your project's [`.env` file](customize-image.md#add-environment-variables-locally) and specifying this file in `.gitignore`.
 
 When you deploy to Astronomer Software in Step 4, you can set these values as secrets via the Software UI.
 

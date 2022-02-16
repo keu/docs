@@ -308,7 +308,7 @@ Once you've confirmed that the integration with AWS SSM Parameter Store works lo
   :::
 
 2. In your Astro project, delete the environment variables from your `Dockerfile`.
-3. [Deploy your changes](https://docs.astronomer.io/cloud/deploy-code) to Astro.
+3. [Deploy your changes](https://docs.astronomer.io/astro/deploy-code) to Astro.
 
 Now, any Airflow variable or connection that you write to AWS SSM Parameter Store can be automatically pulled by any DAG in your Deployment on Astro.
 
@@ -420,7 +420,7 @@ Once you've confirmed that the integration with Google Cloud Secret Manager work
   :::
 
 2. In your Astro project, delete the environment variables from your `Dockerfile`.
-3. [Deploy your changes](https://docs.astronomer.io/cloud/deploy-code) to Astro.
+3. [Deploy your changes](https://docs.astronomer.io/astro/deploy-code) to Astro.
 
 You now should be able to see your secret information being pulled from Secret Manager on Astro. From here, you can store any Airflow variables or connections as secrets on Secret Manager and use them in your project.
 
@@ -534,6 +534,6 @@ Once you've confirmed that your secrets are being imported correctly to your loc
   :::
 
 2. In your Astro project, delete the environment variables from your `Dockerfile`.
-3. [Deploy your changes](https://docs.astronomer.io/cloud/deploy-code) to Astro.
+3. [Deploy your changes](https://docs.astronomer.io/astro/deploy-code) to Astro.
 
 From here, you can store any Airflow variables or connections as secrets on Key Vault and use them in your project.
