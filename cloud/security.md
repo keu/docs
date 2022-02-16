@@ -30,7 +30,7 @@ While Astronomer Cloud Data Plane is designed to withstand and survive in-region
 
 ## Physical and Environment Security
 
-Astronomer Cloud leverages all three major public cloud providers (Azure, Google Cloud Platform, Amazon Web Services), thus physical and environmental security is handled entirely by those providers. Each cloud service provider provides an extensive list of compliance and regulatory assurances that they are rigorously tested against, including SOC 1/2-3, PCI-DSS, and ISO27001. For more information, read about [Physical and Environmental Security](shared-responsibility-model.md#cloud-provider-security-responsibilities).
+Astronomer Cloud leverages all three major public cloud providers (Azure, Google Cloud Platform, Amazon Web Services), thus physical and environmental security is handled entirely by those providers. Each cloud service provider provides an extensive list of compliance and regulatory assurances that they are rigorously tested against, including SOC 1/2-3, PCI-DSS, and ISO27001. For more information, read [Cloud Provider Security Responsibilities](shared-responsibility-model.md#cloud-provider-security-responsibilities).
 
 Astronomer is a global remote company first. We have some small offices in the United States, but they are treated as trustless. Employees need to authenticate to all applications and systems using our IdP (Okta) with MFA even if using office WiFi.
 
