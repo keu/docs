@@ -219,14 +219,14 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
 
     This Jenkinsfile triggers a code push to Astronomer Cloud every time a commit or pull request is merged to the `main` branch of your repository.
 
-2. Add the following environment variables to your repository:
+2. Specify the following environment variables:
 
     - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
     - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret
     - `ORGANIZATION_ID`: Your Organization ID
     - `DEPLOYMENT_ID`: Your Deployment ID
 
-    Be sure to set the values your API key secret and ID as secrets.
+    Be sure to set the values for your API credentials as secret.
 
 3. At the root of your repository, create a file called `build.sh` and add the following to it:
 
