@@ -48,4 +48,4 @@ Astronomer Cloud uses both encryption in transit and encryption at rest to prote
 
 ## Secrets Management
 
-Astronomer Cloud is designed and built to protect and offer integrations with popular tools to secure sensitive information about your external systems. Rest assured the sensitive information shared with Astronomer is securely stored and transmitted for consumption by your data pipelines. For more information, read about [Secrets Management](secrets-management.md).
+Astronomer Cloud is designed to secure sensitive information about your external systems. Sensitive information shared with Astronomer is securely stored and transmitted for consumption by your data pipelines. For more information, see [Secrets Management](secrets-management.md).
