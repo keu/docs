@@ -86,6 +86,27 @@ Each bar in the graph shows how much CPU was being used by a single worker at th
 
 The bolded value above the graph shows maximum CPU usage by a single worker at any point in time over the last 24 hours. This can help you answer, "Did any of my workers approach 100% usage of total available CPU in the past 24 hours?"
 
+## DAG Runs
+
+You can view key metrics about recent DAG runs using the **DAGs** page in the Astronomer Cloud UI. This page shows DAG runs from the last 14 days across either all Deployments or a specific Deployment in a Workspace. For a given DAG, the **DAGs** page shows:
+
+- Total DAG runs over the last 14 days, expressed as a bar chart. Each bar in the chart represents a DAG run: its color represents whether the DAG run was a success or a failure, while its length represents the total duration of the DAG run. If there are more than 14 DAG runs in the last 14 days, then the chart shows only the 14 most recent DAG runs
+- **Last Run End**: The ending time of the DAG's most recent DAG run, expressed relative to the current time
+- **Last Run Duration**: The duration of the DAG's most recent DAG run
+- **Average Duration**: The average Duration of all DAG runs for the last 14 days
+
+:::info DAG Visibility
+
+There are some circumstances where a DAG will not appear in the **DAGs** view. For example, if a DAG hasn't started a DAG run in the last 14 days, then it will not appear in the **DAGs** view.
+
+Note also that the `astronomer_monitoring_dag` does not appear in this view, even if it ran in the last 14 days.
+
+:::
+
+To access the **DAGs** page, you can either click the DAGs icon in the UI or click **View DAGs** on a Deployment's information page.
+
+![DAGs page](/img/docs/dags-page.png)
+
 #### Worker Memory
 
 **Worker Memory** records the peak memory usage by worker nodes over hour-long intervals.
