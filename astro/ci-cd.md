@@ -124,7 +124,7 @@ The following section provides basic templates for configuring individual CI pip
 
 ### GitHub Actions
 
-Use this GitHub Action in a repository that hosts a single Astro project created via the Astro CLI on `astrocloud dev init`. To start using the template:
+To automate code deploys to a Deployment using [GitHub Actions](https://github.com/features/actions), complete the following setup in a Git-based repository that hosts an Astro project:
 
 1. Set the following as [GitHub secrets](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
 
@@ -182,4 +182,104 @@ Use this GitHub Action in a repository that hosts a single Astro project created
             --header 'Authorization: Bearer ${{ steps.token.outputs.auth_token }}' \
             --header 'Content-Type: application/json' \
             --data-raw '{"query":"mutation imageDeploy(\n    $input: ImageDeployInput!\n  ) {\n    imageDeploy(\n      input: $input\n    ) {\n      id\n      deploymentId\n      digest\n      env\n      labels\n      name\n      tag\n      repository\n    }\n}","variables":{"input":{"id":"${{ steps.image.outputs.image_id }}","tag":"deploy-${{ steps.date.outputs.date }}","repository":"images.astronomer.cloud/${{ env.ORGANIZATION_ID }}/${{ env.DEPLOYMENT_ID }}"}}}'
+    ```
+
+
+### Jenkins
+
+To automate code deploys to a single Deployment using [Jenkins](https://www.jenkins.io/), complete the following setup in a Git-based repository hosting an Astronomer project:
+
+1. At the root of your Git repository, add a [Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) that includes the following script:
+
+    ```jenkins
+    pipeline {
+     agent any
+       stages {
+         stage('Deploy to Astronomer') {
+           when {
+            expression {
+              return env.GIT_BRANCH == "origin/main"
+            }
+           }
+           steps {
+             script {
+               sh "chmod +x -R ${env.WORKSPACE}"
+               sh('./build.sh')
+             }
+           }
+         }
+       }
+     post {
+       always {
+         cleanWs()
+       }
+     }
+    }
+    ```
+
+    This Jenkinsfile triggers a code push to Astronomer Cloud every time a commit or pull request is merged to the `main` branch of your repository.
+
+2. Configure the following environment variables:
+
+    - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
+    - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret
+    - `ORGANIZATION_ID`: Your Organization ID
+    - `DEPLOYMENT_ID`: Your Deployment ID
+
+    Be sure to set the values for your API credentials as secret.
+
+3. At the root of your Git repository, create a file called `build.sh` and add the following to it:
+
+    ```sh
+    # Create time stamp
+    TAG=deploy-`date "+%Y-%m-%d-%HT%M-%S"`
+
+    # Step 1. Authenticate to Astronomer's Docker registry with your Deployment API key ID and secret. This is equivalent to running `$ astrocloud auth login` via the Astronomer Cloud CLI.
+    docker login images.astronomer.cloud -u $ASTRONOMER_KEY_ID -p $ASTRONOMER_KEY_SECRET
+
+    # Step 2. Build your Astronomer project into a tagged Docker image.
+    docker build . -t images.astronomer.cloud/$ORGANIZATION_ID/$DEPLOYMENT_ID:$TAG
+
+    # Step 3. Push that Docker image to Astronomer's Docker registry.
+    docker push images.astronomer.cloud/$ORGANIZATION_ID/$DEPLOYMENT_ID:$TAG
+
+    # Step 4. Fetch an API access token with your Deployment API key ID and secret.
+    echo "get token"
+    TOKEN=$( curl --location --request POST "https://auth.astronomer.io/oauth/token" \
+            --header "content-type: application/json" \
+            --data-raw "{
+                \"client_id\": \"$ASTRONOMER_KEY_ID\",
+                \"client_secret\": \"$ASTRONOMER_KEY_SECRET\",
+                \"audience\": \"astronomer-ee\",
+                \"grant_type\": \"client_credentials\"}" | jq -r '.access_token' )
+    # Step 5. Make a request to the Astronomer API that passes metadata from your new Docker image and creates a record for it.
+    echo "get image id"
+    IMAGE=$( curl --location --request POST "https://api.astronomer.io/hub/v1" \
+            --header "Authorization: Bearer $TOKEN" \
+            --header "Content-Type: application/json" \
+            --data-raw "{
+                \"query\" : \"mutation imageCreate(\n    \$input: ImageCreateInput!\n) {\n    imageCreate (\n    input: \$input\n) {\n    id\n    tag\n    repository\n    digest\n    env\n    labels\n    deploymentId\n  }\n}\",
+                \"variables\" : {
+                    \"input\" : {
+                        \"deploymentId\" : \"$DEPLOYMENT_ID\",
+                        \"tag\" : \"$TAG\"
+                        }
+                    }
+                }" | jq -r '.data.imageCreate.id')
+
+    # Step 6. Pass the repository URL for the Docker image to your Astronomer Deployment. This completes the deploy process and triggers your Scheduler and Workers to restart.
+    echo "deploy image"
+    curl --location --request POST "https://api.astronomer.io/hub/v1" \
+            --header "Authorization: Bearer $TOKEN" \
+            --header "Content-Type: application/json" \
+            --data-raw "{
+                \"query\" : \"mutation imageDeploy(\n    \$input: ImageDeployInput!\n  ) {\n    imageDeploy(\n      input: \$input\n    ) {\n      id\n      deploymentId\n      digest\n      env\n      labels\n      name\n      tag\n      repository\n    }\n}\",
+                \"variables\" : {
+                    \"input\" : {
+                        \"id\" : \"$IMAGE\",
+                        \"tag\" : \"$TAG\",
+                        \"repository\" : \"images.astronomer.cloud/$ORGANIZATION_ID/$DEPLOYMENT_ID\"
+                        }
+                    }
+                }"
     ```

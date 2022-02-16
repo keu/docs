@@ -109,10 +109,17 @@ module.exports = {
       type: 'category',
       label: 'Resources',
       items: [
-        'shared-responsibility-model',
-        'resilience',
-        'disaster-recovery',
-        'data-protection',
+        {
+          type: 'category',
+          label: 'Security',
+          link: {type: 'doc', id: 'security'},
+          items: [
+            'shared-responsibility-model',
+            'resilience',
+            'disaster-recovery',
+            'data-protection',
+            'secrets-management',  ],
+        },
       ],
     },
   ],

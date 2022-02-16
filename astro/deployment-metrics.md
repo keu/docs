@@ -46,7 +46,7 @@ These charts serve as high-level reports that are intended to be viewed at a gla
 
 The following sections describe each of the 4 available charts.
 
-### DAG Runs
+### Total DAG Runs
 
 The **DAG Runs** metric records successful and failed DAG runs over hour-long intervals. A [DAG run](https://airflow.apache.org/docs/apache-airflow/stable/dag-run.html) is defined as an instantiation of a DAG at a specific point in time.
 
@@ -93,6 +93,30 @@ The bolded value above the graph shows maximum CPU usage by a single worker at a
 Each bar in the graph shows how much memory was being used by a single worker at the height of its usage for a given hour. This value is measured as a percentage of the total available memory usage per worker as defined in **Worker Resources**. Hovering over a single bar in the graph can help you answer, "Did any of my workers approach 100% usage of total available memory during this specific hour interval?"
 
 The bolded value above the graph shows the maximum memory usage by a single worker at any point in time over the last 24 hours. This can help you answer, "Did any of my workers approach 100% usage of total available memory in the past 24 hours?"
+
+## DAG Runs
+
+You can view key metrics about recent DAG runs using the **DAGs** page in the Astro UI. This page shows DAG runs from the last 14 days across either all Deployments or a specific Deployment in a Workspace. For a given DAG, the **DAGs** page shows:
+
+- Total DAG runs over the last 14 days, expressed as a bar chart.
+
+    Each bar in the chart represents an individual DAG run. A bar's color represents whether the DAG run was a success or a failure, while its length represents the total duration of the DAG run. If there are more than 14 DAG runs in the last 14 days, then the chart shows only the 14 most recent DAG runs.
+
+- **Last Run End**: The ending time of the DAG's most recent DAG run, expressed relative to the current time.
+- **Last Run Duration**: The duration of the DAG's most recent DAG run.
+- **Average Duration**: The average Duration of all DAG runs from the last 14 days.
+
+:::info DAG Visibility
+
+If a DAG run for any given DAG has not run in the last 14 days, then it will not appear in the **DAGs** view.
+
+Additionally, the `astronomer_monitoring_dag` will never appear in this view even if it ran in the last 14 days.
+
+:::
+
+To access the **DAGs** page, you can either click the DAGs icon in the UI or click **View DAGs** on a Deployment's information page.
+
+![DAGs page](/img/docs/dags-page.png)
 
 ## Astro Usage
 

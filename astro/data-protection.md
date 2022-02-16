@@ -13,7 +13,7 @@ Astro uses both encryption in transit and encryption at rest to protect data acr
 
 All communication between Control and Data Planes is encrypted in transit using [TLS](https://www.acunetix.com/blog/articles/tls-security-what-is-tls-ssl-part-1/) 1.2, strong ciphers, and secure transfer (data layer).
 
-All customer data flows within the Control Plane transit through a mTLS mesh, enforcing TLS 1.2 and secure strong ciphers. Encrypted secret environment variables transit from the Cloud API to a managed secrets backend using TLS 1.2 and strong ciphers.
+All customer data flows within the Control Plane transit through a mTLS mesh, enforcing TLS 1.2 and secure strong ciphers. Encrypted secret environment variables transit from the Cloud API to a managed secrets backend using TLS 1.2 and strong ciphers. Data Planes pull base64 encoded secret environment variables, along with other Airflow configurations over an encrypted TLS connection. As part of the application of configuration manifests in the Data Plane, all secret and sensitive information is stored in an encrypted etcd cluster at rest.
 
 All internal service communication within the Data Plane is transmitted using TLS 1.2 and secure ciphers. Astronomer plans to enforce an mTLS mesh to all Airflow Deployment namespaces in early 2022.
 

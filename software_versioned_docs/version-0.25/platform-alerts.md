@@ -98,7 +98,6 @@ prometheus:
     # Provide as a block string in yaml list form
     platform:
       - alert: ExamplePlatformAlert
-        # If greater than 10% task failure
         expr: count(rate(airflow_scheduler_heartbeat{}[1m]) <= 0) > 2
         for: 5m
         labels:

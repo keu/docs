@@ -7,12 +7,17 @@ description: Release notes for the Astronomer Software CLI.
 
 ## Overview
 
+<<<<<<< HEAD:software/cli-release-notes.md
 This document provides a summary of all changes made to the [Astronomer Software CLI](cli-quickstart.md). For general product release notes, go to [Astronomer Software Release Notes](release-notes.md).
+=======
+This document provides a summary of all changes made to the [Astronomer CLI](cli-quickstart.md) for the v0.28.x series of Astronomer Enterprise. For general product release notes, go to [Astronomer Enterprise Release Notes](release-notes.md).
+>>>>>>> 419ab29de486ef0d6398c21630351fa7d179ea0c:enterprise/cli-release-notes.md
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
-## 0.27.2
+## 0.28.0
 
+<<<<<<< HEAD:software/cli-release-notes.md
 Release date: January 21, 2022
 
 ### Improvements to the Local Development Experience
@@ -44,7 +49,16 @@ Astronomer Software CLI v0.27.2 includes several improvements to the local devel
 ### Additional Improvements
 
 - The Astronomer Software CLI can now be [installed](cli-quickstart.md) on machines with an [Apple M1 chip](https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/) via both curl and Homebrew.
+=======
+Release date: February 15, 2022
+
+### Additional Improvements
+
+- After successfully pushing code to a Deployment via `astro deploy`, the CLI now provides a URL that you can use to directly access that Deployment via the UI.
+- You can now retrieve Triggerer logs using `astro deployment logs triggerer`.
+>>>>>>> 419ab29de486ef0d6398c21630351fa7d179ea0c:enterprise/cli-release-notes.md
 
 ### Bug Fixes
 
-- Fixed an issue where you could not run an Astronomer project via `astro dev init/ astro dev start` in a directory with certain characters in the directory name
+- Fixed an issue where some objects specified in `airflow_settings.yaml` were not rendered after running `astro dev start`
+- Fixed an issue where environment variables in `docker-compose.override.yml` were not correctly applied after running `astro dev start`

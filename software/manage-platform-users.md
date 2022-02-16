@@ -13,11 +13,12 @@ Read below for a high-level overview of user management and guidelines around pu
 
 ## Add Users to Astronomer
 
-When Astronomer Software is first deployed, the first user to log in is granted "System Admin" permissions by default (more on that below). From there, a user is created on Astronomer Software by:
+When Astronomer Software is first deployed, the first user to log in is granted "System Admin" permissions by default. From there, a user is created on Astronomer Software by any of the following:
 
 - Invitation to a Workspace by a Workspace Admin
 - Invitation to Astronomer by a System Admin
 - Signing up via the Software UI without an invitation (requires "Public Signups")
+- Imported to Astronomer through an [IDP group](import-idp-groups.md)
 
 On Astronomer, administrators have the option to either open the platform to public signups or limit account creation to users invited by others.
 
@@ -86,7 +87,7 @@ To customize permissions, follow the steps below.
 
 <!--- Version-specific -->
 
-First, take a look at our default roles and permissions in the [default Houston API configuration](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.27/default.yaml) and identify two things:
+First, take a look at our default roles and permissions in the [default Houston API configuration](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.28/default.yaml) and identify two things:
 
 1. What role do you want to configure? (e.g. `DEPLOYMENT_EDITOR`)
 2. What permission(s) would you like to add to or remove from that role? (e.g. `deployment.images.push`)
@@ -164,7 +165,7 @@ In addition to the commonly used System Admin role, the Astronomer platform also
 
 No user is assigned the System Editor or Viewer Roles by default, but they can be added by System Admins via our API. Once assigned, System Viewers, for example, can access both Grafana and Kibana but don't have permission to delete a Workspace they're not a part of.
 
-All three permission sets are entirely customizable on Astronomer Software. For a full breakdown of the default configurations attached to the System Admin, Editor and Viewer Roles, refer to the [Houston API source code](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.27/default.yaml).
+All three permission sets are entirely customizable on Astronomer Software. For a full breakdown of the default configurations attached to the System Admin, Editor and Viewer Roles, refer to the [Houston API source code](https://github.com/astronomer/docs/tree/main/software_configs/0.28/default.yaml).
 
 For guidelines on assigning users any System Level role, read below.
 
