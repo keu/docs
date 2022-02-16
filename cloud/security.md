@@ -44,7 +44,7 @@ Astronomer is committed to pursuing SOC 2 Type II, GDPR, and HIPAA compliance in
 
 ## Data Protection
 
-Astronomer Cloud uses both encryption in transit and encryption at rest to protect data across and within the Data and Control Planes, using strong and secure protocols and ciphers, and built-in public cloud features. For more information, read about [Data Protection](data-protection.md).
+Astronomer Cloud uses both encryption in transit and encryption at rest to protect data across and within the Data and Control Planes, using strong and secure protocols and ciphers, and built-in public cloud features. For more information, see [Data Protection](data-protection.md).
 
 ## Secrets Management
 
