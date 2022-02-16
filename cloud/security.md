@@ -18,7 +18,7 @@ Astronomer Cloud operates on a model of shared responsibility, which means that 
 
 ## Architecture
 
-Astronomer Cloud boasts a hybrid deployment model founded on a Control Plane hosted by Astronomer and a Data Plane that is hosted in your cloud environment. It optimizes for security whilst relieving your team of operational overhead. For more information, read about our [Architecture](overview.md#architecture).
+Astronomer Cloud boasts a hybrid deployment model founded on a Control Plane hosted by Astronomer and a Data Plane that is hosted in your cloud environment. It optimizes for security whilst relieving your team of operational overhead. For more information, see [Architecture](overview.md#architecture).
 
 ## Resilience
 
