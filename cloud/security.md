@@ -11,7 +11,6 @@ Astronomer Cloud is a fully managed data orchestration service that allows you t
 
 The Astronomer Cloud architecture is secure by default, using encryption in transit, encryption at rest, strong cryptographic protocols, authentication, and role-based access control for authorization to your data pipelines, with a host of flexible and secure connectivity options to your critical data sources.
 
-Astronomer Cloud uses a shared responsibility model, where security and compliance is a shared responsibility between Astronomer, Astronomer Cloud customers, and public cloud providers.
 
 ## Shared Responsibility Model
 
