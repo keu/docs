@@ -15,8 +15,7 @@ Astronomer Cloud uses a shared responsibility model, where security and complian
 
 ## Shared Responsibility Model
 
-Astronomer Cloud operates on a model of shared responsibility, which means that both the Astronomer team and Astronomer customers are responsible for the security of the platform.
-For more information, read about our [Shared Responsibility Model](shared-responsibility-model.md).
+Astronomer Cloud operates on a model of shared responsibility, which means that both the Astronomer team and Astronomer customers are responsible for the security of the platform. For more information, see [Shared Responsibility Model](shared-responsibility-model.md).
 
 ## Architecture
 
