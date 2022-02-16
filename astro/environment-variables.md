@@ -1,8 +1,8 @@
 ---
 sidebar_label: 'Environment Variables'
-title: 'Set Environment Variables on Astronomer'
+title: 'Set Environment Variables on Astro'
 id: environment-variables
-description: Set environment variables on Astronomer to specify Airflow configurations and custom logic.
+description: Set environment variables on Astro to specify Airflow configurations and custom logic.
 ---
 
 ## Overview
@@ -18,17 +18,17 @@ For instance, you can set environment variables to:
 
 This guide covers:
 
-- How to set environment variables on Astronomer.
-- How environment variables are stored on Astronomer.
+- How to set environment variables on Astro.
+- How environment variables are stored on Astro.
 - How to store Airflow Connections and Variables as environment variables.
 
-> **Note:** Some environment variables on Astronomer Cloud are set globally and cannot be overridden for individual Deployments. For more information on these environment variables, read [Global Environment Variables](platform-variables.md).
+> **Note:** Some environment variables on Astro are set globally and cannot be overridden for individual Deployments. For more information on these environment variables, read [Global Environment Variables](platform-variables.md).
 
-## Set Environment Variables via the Astronomer UI
+## Set Environment Variables via the Cloud UI
 
-Environment variables can be set directly in the Astronomer UI. To do so:
+Environment variables can be set directly in the Cloud UI. To do so:
 
-1. In the Astronomer UI, open a Deployment.
+1. In the Cloud UI, open a Deployment.
 2. In the Deployment's **Configuration** menu, click **Edit Variables**.
 
     ![Edit Variables button highlighted in the Deployment configuration page](/img/docs/edit-variables.png)
@@ -43,7 +43,7 @@ Environment variables can be set directly in the Astronomer UI. To do so:
 
 :::caution
 
-Environment variables marked as secret are stored securely by Astronomer and will never be shown in the Astronomer UI, but it's possible for a user in your organization to proactively create or configure a DAG that exposes those values in Airflow task logs. Airflow task logs are visible to all Workspace members in the Airflow UI and accessible in your Astronomer Cluster's Amazon S3 bucket.
+Environment variables marked as secret are stored securely by Astronomer and will never be shown in the Cloud UI, but it's possible for a user in your organization to proactively create or configure a DAG that exposes those values in Airflow task logs. Airflow task logs are visible to all Workspace members in the Airflow UI and accessible in your Astro Cluster's Amazon S3 bucket.
 
 To avoid exposing secret values in task logs, instruct your team to not log environment variables in DAG code. At this time, there is no way for Astronomer to prohibit this.
 
@@ -53,7 +53,7 @@ To avoid exposing secret values in task logs, instruct your team to not log envi
 
 If you want to make changes to an existing environment variable, you can modify the variable's value at any time. To do so:
 
-1. In the Astronomer UI, open a Deployment.
+1. In the Cloud UI, open a Deployment.
 2. In the Deployment's **Configuration** menu, click **Edit Variables**.
 3. Click the pencil icon next to the value you want to edit.
 
@@ -73,19 +73,19 @@ Environment Variables that are set as secret can be modified, but the variable's
 
 :::
 
-### How environment variables are stored on Astronomer
+### How environment variables are stored on Astro
 
-Environment variables that are set via the Astronomer UI or API and are not marked as secret are stored in a database managed by Astronomer.
+Environment variables that are set via the Cloud UI or API and are not marked as secret are stored in a database managed by Astronomer.
 
-Environment variables that are set via the Astronomer UI or API and _are_ marked as secret are encrypted and stored in a secrets backend that is managed by Astronomer and hosted in the Control Plane.
+Environment variables that are set via the Cloud UI or API and _are_ marked as secret are encrypted and stored in a secrets backend that is managed by Astronomer and hosted in the Control Plane.
 
 ## Set Environment Variables via Dockerfile
 
-If you want to store environment variables using an external version control tool, we recommend setting them in your `Dockerfile`. This file is automatically created when you first initialize an Astronomer project via `astrocloud dev init`.
+If you want to store environment variables using an external version control tool, we recommend setting them in your `Dockerfile`. This file is automatically created when you first initialize an Astro project via `astrocloud dev init`.
 
 :::caution
 
-Given that this file will be committed to your version control tool and to Astronomer, we strongly recommend either storing sensitive environment variables via the Astronomer UI or using a third party secrets backend.
+Given that this file will be committed to your version control tool and to Astronomer, we strongly recommend either storing sensitive environment variables via the Cloud UI or using a third party secrets backend.
 
 :::
 
@@ -105,7 +105,7 @@ Once your environment variables are added:
 
 > **Note:** Environment variables injected via the `Dockerfile` are mounted at build time and can be referenced in any other processes run during the Docker build process that immediately follows `astrocloud deploy` or `astrocloud dev start`.
 >
-> Environment variables applied via the Astronomer UI only become available once the Docker build process has been completed.
+> Environment variables applied via the Cloud UI only become available once the Docker build process has been completed.
 
 ## Add Airflow Connections and Variables via Environment Variables
 
@@ -134,7 +134,7 @@ Here, the full environment variable would read:
 ENV AIRFLOW_CONN_MY_PROD_DB=my-conn-type://login:password@host:5432/schema
 ```
 
-You can set this environment variable via an `.env` file locally, via your Dockerfile, or via the Astronomer UI as explained above. For more information on how to generate your Connection URI, refer to the [Apache Airflow documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
+You can set this environment variable via an `.env` file locally, via your Dockerfile, or via the Cloud UI as explained above. For more information on how to generate your Connection URI, refer to the [Apache Airflow documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
 
 > **Note:** Airflow Connections set via environment variables do not appear in the Airflow UI and cannot be modified there.
 
@@ -159,11 +159,11 @@ ENV AIRFLOW_VAR_MY_VAR=2
 
 ## Environment Variable Priority
 
-On Astronomer, environment variables are applied and overridden in the following order:
+On Astro, environment variables are applied and overridden in the following order:
 
-1. Astronomer UI
+1. Cloud UI
 2. [.env (local development only)](develop-project.md#set-environment-variables-via-env-local-development-only))
 3. Dockerfile
 4. Default Airflow Values (`airflow.cfg`)
 
-For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value via the Astronomer UI and you set the same environment variable with another value in your `Dockerfile`, the value set in the Astronomer UI will take precedence.
+For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value via the Cloud UI and you set the same environment variable with another value in your `Dockerfile`, the value set in the Cloud UI will take precedence.

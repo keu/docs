@@ -7,7 +7,7 @@ description: Learn how Astronomer uses encryption to protect Clusters and data.
 
 ## Overview
 
-Astronomer Cloud uses both encryption in transit and encryption at rest to protect data across and within the Data and Control Planes. This document contains details about each type of encryption used in Astronomer Cloud processes.
+Astro uses both encryption in transit and encryption at rest to protect data across and within the Data and Control Planes. This document contains details about each type of encryption used in Astro processes.
 
 ## Encryption in Transit
 

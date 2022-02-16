@@ -1,13 +1,13 @@
 ---
 sidebar_label: "AWS Resource Reference"
-title: "Resources Required for Astronomer Cloud on AWS"
+title: "Resources Required for Astro on AWS"
 id: resource-reference-aws
-description: Reference of all supported configurations for new Clusters on Astronomer Cloud in AWS.
+description: Reference of all supported configurations for new Clusters on Astro in AWS.
 ---
 
 ## Overview
 
-Unless otherwise specified, new Clusters on Astronomer Cloud are created with a set of default AWS resources that our team has deemed appropriate for most use cases.
+Unless otherwise specified, new Clusters on Astro are created with a set of default AWS resources that our team has deemed appropriate for most use cases.
 
 Read the following document for a reference of our default resources as well as supported Cluster configurations, including **AWS Region** and **Node Instance Type**.
 
@@ -15,9 +15,9 @@ Read the following document for a reference of our default resources as well as 
 
 | Resource                                                                                            | Description                                                                                                                                                                                                                                                                                                       | Quantity / Default Size |
 | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| [EKS Cluster](https://aws.amazon.com/eks)                                                           | An EKS cluster is required to run the Astronomer Cloud Data Plane, which hosts the resources and data required to execute Airflow tasks.                                                                                                                                                                          | 1x                      |
+| [EKS Cluster](https://aws.amazon.com/eks)                                                           | An EKS cluster is required to run the Astro Data Plane, which hosts the resources and data required to execute Airflow tasks.                                                                                                                                                                          | 1x                      |
 | [EC2 Instances](https://aws.amazon.com/ec2/instance-types/)                                         | EC2 instances (nodes) power the system and Airflow components (Webserver, Scheduler, Workers). EC2 instances auto-scale for additional Airflow Deployments.                                                                                                                                                       | 2x m5.xlarge            |
-| [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/)                                          | The RDS instance is the primary database of the Astronomer Cloud Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster.                                                                                                                                                  | 1x db.r5.large          |
+| [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/)                                          | The RDS instance is the primary database of the Astro Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster.                                                                                                                                                  | 1x db.r5.large          |
 | [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)    | Elastic IPs are required for connectivity with the Control Plane, and other public services.                                                                                                                                                                                                                      | 2x                      |
 | [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html)                        | Subnets are provisioned in 2 different [Availability Zones (AZs)](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for redundancy, with 1 public and 1 private subnet per AZ. Public subnets are required for the NAT and Internet gateways, while private subnets are required for EC2 nodes. | 2x /26 and 2x /22       |
 | [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)      | Required for connectivity with the Control Plane and other public services.                                                                                                                                                                                                                                       | 1x                      |
@@ -29,13 +29,13 @@ Read the following document for a reference of our default resources as well as 
 
 ## Supported Cluster Configurations
 
-Depending on the needs of your team, you may be interested in modifying certain configurations of a new or existing Cluster on Astronomer Cloud. This section provides a reference for which configuration options are supported during the install process.
+Depending on the needs of your team, you may be interested in modifying certain configurations of a new or existing Cluster on Astro. This section provides a reference for which configuration options are supported during the install process.
 
-To create a new Cluster on Astronomer Cloud with a specified configuration, read [Install on AWS](install-aws.md) or [Create a Cluster](create-cluster.md). For instructions on how to make a change to an existing Cluster, read [Modify a Cluster](modify-cluster.md).
+To create a new Cluster on Astro with a specified configuration, read [Install on AWS](install-aws.md) or [Create a Cluster](create-cluster.md). For instructions on how to make a change to an existing Cluster, read [Modify a Cluster](modify-cluster.md).
 
 ### AWS Region
 
-Astronomer Cloud supports the following AWS regions:
+Astro supports the following AWS regions:
 
 - `us-east-1`
 - `us-east-2`
@@ -49,11 +49,11 @@ Astronomer Cloud supports the following AWS regions:
 - `ap-southeast-2`
 - `ap-south-1`
 
-Modifying the region of an existing Cluster on Astronomer is not supported. If you're interested in an AWS region that is not on this list, reach out to [Astronomer Support](https://support.astronomer.io).
+Modifying the region of an existing Cluster on Astro is not supported. If you're interested in an AWS region that is not on this list, reach out to [Astronomer Support](https://support.astronomer.io).
 
 ### Node Instance Type
 
-Astronomer Cloud supports a variety of AWS EC2 instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. All system and Airflow components within a single Cluster are powered by the nodes specified during the Cluster creation or modification process.
+Astro supports a variety of AWS EC2 instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. All system and Airflow components within a single Cluster are powered by the nodes specified during the Cluster creation or modification process.
 
 For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/ec2/instance-types/). If you're interested in a node type that is not on this list, reach out to [Astronomer Support](https://support.astronomer.io). Not all instance types are supported in all AWS regions.
 
@@ -92,7 +92,7 @@ For detailed information on each instance type, reference [AWS documentation](ht
 
 :::info
 
-Currently, a single Cluster on Astronomer Cloud cannot be configured with more than one node instance type. In early 2022, we expect to introduce support for Worker Queues, which will allow you to run Airflow Workers of varying node types and sizes within a single Deployment. If this is something your team is interested in, reach out to us - we'd love to hear from you.
+Currently, a single Cluster on Astro cannot be configured with more than one node instance type. In early 2022, we expect to introduce support for Worker Queues, which will allow you to run Airflow Workers of varying node types and sizes within a single Deployment. If this is something your team is interested in, reach out to us - we'd love to hear from you.
 
 :::
 
@@ -108,9 +108,9 @@ Keep in mind that leveraging ephemeral storage is not recommended and can be a r
 
 ### RDS Instance Type
 
-Every Astronomer Cluster on AWS is created with and requires an [RDS instance](https://aws.amazon.com/rds/). RDS serves as a primary relational database for the Data Plane and powers the metadata database of each Airflow Deployment within a single Cluster. During the Cluster creation process, you'll be asked to specify an RDS instance type according to your use case and expected workload, but it can be modified at any time.
+Every Astro Cluster on AWS is created with and requires an [RDS instance](https://aws.amazon.com/rds/). RDS serves as a primary relational database for the Data Plane and powers the metadata database of each Airflow Deployment within a single Cluster. During the Cluster creation process, you'll be asked to specify an RDS instance type according to your use case and expected workload, but it can be modified at any time.
 
-Astronomer Cloud supports a variety of AWS RDS instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, reach out to [Astronomer Support](https://support.astronomer.io).
+Astro supports a variety of AWS RDS instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, reach out to [Astronomer Support](https://support.astronomer.io).
 
 #### db.r5
 

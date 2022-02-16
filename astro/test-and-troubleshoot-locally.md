@@ -2,12 +2,12 @@
 sidebar_label: 'Test and Troubleshoot Locally'
 title: 'Test and Troubleshoot Locally'
 id: test-and-troubleshoot-locally
-description: A guide to running an Astronomer project locally and diagnosing common problems.
+description: A guide to running an Astro project locally and diagnosing common problems.
 ---
 
 ## Overview
 
-As you develop data pipelines on Astronomer, we strongly recommend running and testing your DAGs locally before deploying your project to a Deployment on Astronomer Cloud. This document provides information about testing and troubleshooting DAGs in a local Apache Airflow environment with the Astronomer Cloud CLI.
+As you develop data pipelines on Astro, we strongly recommend running and testing your DAGs locally before deploying your project to a Deployment on Astro. This document provides information about testing and troubleshooting DAGs in a local Apache Airflow environment with the Astro CLI.
 
 ## Run a Project Locally
 
@@ -70,7 +70,7 @@ To run [Apache Airflow CLI](https://airflow.apache.org/docs/apache-airflow/stabl
 astrocloud dev run <airflow-cli-command>
 ```
 
-For example, the Apache Airflow command for viewing your entire configuration is `airflow config list`. To run this command with the Astronomer Cloud CLI, you would run `astrocloud dev run config list` instead.
+For example, the Apache Airflow command for viewing your entire configuration is `airflow config list`. To run this command with the Astro CLI, you would run `astrocloud dev run config list` instead.
 
 ## Hard Reset Your Local Environment
 

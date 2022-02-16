@@ -7,9 +7,9 @@ description: Reference documentation for astrocloud deploy.
 
 ## Description
 
-[Deploy your Astronomer project](deploy-code.md) to a Deployment on Astronomer Cloud.
+[Deploy your Astro project](deploy-code.md) to a Deployment on Astro.
 
-If you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment's namespace in the command. To retrieve a Deployment's namespace, go to the Deployment's information page in the Astronomer UI and copy the value under **Namespace**.
+If you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment's namespace in the command. To retrieve a Deployment's namespace, go to the Deployment's information page in the Cloud UI and copy the value under **Namespace**.
 
 ## Usage
 
@@ -35,7 +35,7 @@ $ astrocloud deploy
 $ astrocloud deploy asteroidic-vacuum-4865
 # Deploy directly to a specific Deployment
 $ astrocloud deploy asteroidic-vacuum-4865 --save
-# Running `astrocloud deploy` will now automatically select this Deployment for your Astronomer project
+# Running `astrocloud deploy` will now automatically select this Deployment for your Astro project
 ```
 
 ## Related Commands

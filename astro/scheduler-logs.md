@@ -2,18 +2,18 @@
 title: 'View Scheduler Logs'
 sidebar_label: 'Scheduler Logs'
 id: scheduler-logs
-description: View your Deployments' Airflow Scheduler logs in the Astronomer Cloud UI.
+description: View your Deployments' Airflow Scheduler logs in the Astro UI.
 ---
 
 ## Overview
 
-Astronomer Cloud exposes your Airflow Deployment's Scheduler logs in the **Scheduler Logs** page of the Astronomer UI. While Airflow task logs available in the Airflow UI are most critical to common troubleshooting, errors specific to the Scheduler component are often helpful to understand task failures.
+Astro exposes your Airflow Deployment's Scheduler logs in the **Scheduler Logs** page of the Cloud UI. While Airflow task logs available in the Airflow UI are most critical to common troubleshooting, errors specific to the Scheduler component are often helpful to understand task failures.
 
-This guide explains how to access your Deployments' Scheduler logs via the Astronomer Cloud UI. For more information about viewing component logs in a local Airflow environment, see [Access Airflow Component Logs](test-and-troubleshoot-locally.md#access-airflow-component-logs). For Deployments on Astronomer Cloud, logs for the Airflow Webserver, Workers, and Triggerer are not available.
+This guide explains how to access your Deployments' Scheduler logs via the Astro UI. For more information about viewing component logs in a local Airflow environment, see [Access Airflow Component Logs](test-and-troubleshoot-locally.md#access-airflow-component-logs). For Deployments on Astro, logs for the Airflow Webserver, Workers, and Triggerer are not available.
 
 ## Access Scheduler Logs
 
-You can access the **Scheduler Logs** page clicking the Logs icon in the Astronomer UI sidebar:
+You can access the **Scheduler Logs** page clicking the Logs icon in the Cloud UI sidebar:
 
 ![Logs icon and button](/img/docs/log-location.png)
 

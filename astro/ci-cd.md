@@ -2,7 +2,7 @@
 sidebar_label: 'CI/CD'
 title: 'Automate Code Deploys with CI/CD'
 id: ci-cd
-description: Create a CI/CD pipeline that triggers a deploy to Astronomer Cloud based on changes to your Airflow DAGs.
+description: Create a CI/CD pipeline that triggers a deploy to Astro based on changes to your Airflow DAGs.
 ---
 
 ## Overview
@@ -13,28 +13,28 @@ There are many benefits to deploying DAGs and other changes to Airflow via a CI/
 - Decrease the maintenance cost of integrating changes, allowing your team to quickly respond in case of an error or failure.
 - Enforce continuous, automating testing, which increases code quality and protects your DAGs in production.
 
-This guide provides setup steps for configuring a CI/CD pipeline to deploy DAGs on Astronomer Cloud.
+This guide provides setup steps for configuring a CI/CD pipeline to deploy DAGs on Astro.
 
 ## Prerequisites
 
 To set up CI/CD for a given Deployment, you need:
 
 - A [Deployment API key ID and secret](api-keys.md)
-- An Organization ID. To find this, go to [**Organization Settings** in the Astronomer UI](https://cloud.astronomer.io/settings) and copy the Organization ID displayed there.
-- A Deployment ID. To find this, open your Deployment in the Astronomer UI and copy the unique string at the end of the URL (e.g. `cktogz2eg847343yzo9pru1b0d` is the ID in `https://cloud.astronomer.io/<workspaceId>/deployments/cktogz2eg847343yzo9pru1b0d`)
+- An Organization ID. To find this, go to [**Organization Settings** in the Cloud UI](https://cloud.astronomer.io/settings) and copy the Organization ID displayed there.
+- A Deployment ID. To find this, open your Deployment in the Cloud UI and copy the unique string at the end of the URL (e.g. `cktogz2eg847343yzo9pru1b0d` is the ID in `https://cloud.astronomer.io/<workspaceId>/deployments/cktogz2eg847343yzo9pru1b0d`)
 - A CI/CD management tool, such as [GitHub Actions](https://docs.github.com/en/actions)
-- An Astronomer project directory that was [initialized via the Astronomer Cloud CLI](deploy-code.md) and is hosted in a place that your CI/CD tool can access
+- An Astro project directory that was [initialized via the Astro CLI](deploy-code.md) and is hosted in a place that your CI/CD tool can access
 - [Docker](https://docs.docker.com/get-docker/)
 - curl
 
 ## Workflow Overview
 
-This section provides a high-level overview of how a CI/CD script can use Deployment API keys to push DAGs to Astronomer. Regardless of what CI/CD tool you use, your pipeline needs to complete these key steps. You can also use this information to manually test the API calls that complete these steps in your pipeline.
+This section provides a high-level overview of how a CI/CD script can use Deployment API keys to push DAGs to Astro. Regardless of what CI/CD tool you use, your pipeline needs to complete these key steps. You can also use this information to manually test the API calls that complete these steps in your pipeline.
 
 At a high level, your CI/CD pipeline will:
 
 1. Access your Deployment using the `Key ID` and `Key secret` of an existing Deployment API key.
-2. Build your Astronomer project into a Docker image.
+2. Build your Astro project into a Docker image.
 3. Deploy the image to your Deployment.
 
 This workflow is equivalent to the following bash script:
@@ -52,15 +52,15 @@ DEPLOYMENT_ID=$4
 
 TAG=deploy-`date "+%Y-%m-%d-%HT%M-%S"`
 
-# Step 1. Authenticate to Astronomer's Docker registry with your Deployment API key ID and secret. This is equivalent to running `$ astrocloud auth login` via the Astronomer Cloud CLI.
+# Step 1. Authenticate to Astro's Docker registry with your Deployment API key ID and secret. This is equivalent to running `$ astrocloud auth login` via the Astro CLI.
 
 docker login images.astronomer.cloud -u $ASTRONOMER_KEY_ID -p $ASTRONOMER_KEY_SECRET
 
-# Step 2. Build your Astronomer project into a tagged Docker image.
+# Step 2. Build your Astro project into a tagged Docker image.
 
 docker build . -t images.astronomer.cloud/$ORGANIZATION_ID/$DEPLOYMENT_ID:$TAG
 
-# Step 3. Push that Docker image to Astronomer's Docker registry.
+# Step 3. Push that Docker image to Astro's Docker registry.
 
 docker push images.astronomer.cloud/$ORGANIZATION_ID/$DEPLOYMENT_ID:$TAG
 
@@ -75,7 +75,7 @@ TOKEN=$( curl --location --request POST "https://auth.astronomer.io/oauth/token"
             \"audience\": \"astronomer-ee\",
             \"grant_type\": \"client_credentials\"}" | jq -r '.access_token' )
 
-# Step 5. Make a request to the Astronomer API that passes metadata from your new Docker image and creates a record for it.
+# Step 5. Make a request to the Astro API that passes metadata from your new Docker image and creates a record for it.
 
 echo "get image id"
 IMAGE=$( curl --location --request POST "https://api.astronomer.io/hub/v1" \
@@ -91,7 +91,7 @@ IMAGE=$( curl --location --request POST "https://api.astronomer.io/hub/v1" \
                 }
             }" | jq -r '.data.imageCreate.id')
 
-# Step 6. Pass the repository URL for the Docker image to your Astronomer Deployment. This completes the deploy process and triggers your Scheduler, Webserver, and Workers to restart.
+# Step 6. Pass the repository URL for the Docker image to your Astro Deployment. This completes the deploy process and triggers your Scheduler, Webserver, and Workers to restart.
 
 echo "deploy image"
 curl --location --request POST "https://api.astronomer.io/hub/v1" \
@@ -124,7 +124,7 @@ The following section provides basic templates for configuring individual CI pip
 
 ### GitHub Actions
 
-Use this GitHub Action in a repository that hosts a single Astronomer project created via the Astronomer Cloud CLI on `astrocloud dev init`. To start using the template:
+Use this GitHub Action in a repository that hosts a single Astro project created via the Astro CLI on `astrocloud dev init`. To start using the template:
 
 1. Set the following as [GitHub secrets](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
 
@@ -144,8 +144,8 @@ Use this GitHub Action in a repository that hosts a single Astronomer project cr
       build:
         runs-on: ubuntu-latest
         env:
-          ORGANIZATION_ID: <organization-id> # Found in `Organization Settings` in the Astronomer UI
-          DEPLOYMENT_ID: <deployment-id> # Found at the end of your Deployment's URL from the Astronomer UI
+          ORGANIZATION_ID: <organization-id> # Found in `Organization Settings` in the Cloud UI
+          DEPLOYMENT_ID: <deployment-id> # Found at the end of your Deployment's URL from the Cloud UI
         steps:
         - uses: actions/checkout@v2
         - name: Get current date

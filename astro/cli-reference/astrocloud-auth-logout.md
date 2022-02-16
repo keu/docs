@@ -7,7 +7,7 @@ description: Reference documentation for astrocloud auth logout.
 
 ## Description
 
-Unauthenticate from the Astronomer Cloud CLI. Note that this command does not affect your current login session in the Astronomer UI.
+Unauthenticate from the Astro CLI. Note that this command does not affect your current login session in the Cloud UI.
 
 ## Usage
 

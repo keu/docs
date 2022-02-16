@@ -1,15 +1,15 @@
 ---
 sidebar_label: 'Develop a Project'
-title: 'Develop Your Astronomer Project'
+title: 'Develop Your Astro project'
 id: develop-project
-description: Learn how to add Airflow dependencies and customize an Astronomer project to fit your use case.
+description: Learn how to add Airflow dependencies and customize an Astro project to fit your use case.
 ---
 
 import {siteVariables} from '@site/src/versions';
 
 ## Overview
 
-This document explains the various ways you can modify and build your Astronomer project to fit your team's use case. Specifically, this guide provides instructions on how to:
+This document explains the various ways you can modify and build your Astro project to fit your team's use case. Specifically, this guide provides instructions on how to:
 
 - Build and run a project
 - Deploy changes to a project
@@ -19,15 +19,15 @@ This document explains the various ways you can modify and build your Astronomer
 
 ## Prerequisites
 
-To develop an Astronomer project and test it locally, you need:
+To develop an Astro project and test it locally, you need:
 
-- An existing [Astronomer project](create-project.md).
-- [The Astronomer Cloud CLI](install-cli.md)
+- An existing [Astro project](create-project.md).
+- [The Astro CLI](install-cli.md)
 - [Docker](https://www.docker.com/products/docker-desktop)
 
 ## Build and Run a Project Locally
 
-To run your Astronomer project locally, run the following command:
+To run your Astro project locally, run the following command:
 
 ```sh
 astrocloud dev start
@@ -43,7 +43,7 @@ Once the project builds, you can access the Airflow UI by going to `http://local
 
 :::info
 
-The Astronomer Cloud CLI is a wrapper around [Docker Compose](https://docs.docker.com/compose/), a tool for defining and running multi-container Docker applications. If you're familiar with Docker Compose, you'll recognize that the `astrocloud dev start` command, for example, is functionally equivalent to `docker compose start`.
+The Astro CLI is a wrapper around [Docker Compose](https://docs.docker.com/compose/), a tool for defining and running multi-container Docker applications. If you're familiar with Docker Compose, you'll recognize that the `astrocloud dev start` command, for example, is functionally equivalent to `docker compose start`.
 
 :::
 
@@ -66,9 +66,9 @@ These commands rebuild your image and restart the Docker containers running on y
 
 ## Make Changes to Your Project
 
-All Astronomer projects require you to specify a Debian-based Astronomer Runtime image in a `Dockerfile`. When you run your project locally or on Astronomer Cloud, all of your DAG code, packages, and configurations are built into a Docker image based on Astronomer Runtime.
+All Astro projects require you to specify a Debian-based Astro Runtime image in a `Dockerfile`. When you run your project locally or on Astro, all of your DAG code, packages, and configurations are built into a Docker image based on Astro Runtime.
 
-Depending on the change you're making to your Astronomer project, you might have to rebuild your image to run your changes locally.
+Depending on the change you're making to your Astro project, you might have to rebuild your image to run your changes locally.
 
 ### DAG Code Changes
 
@@ -93,7 +93,7 @@ To rebuild your project after making a change to any of these files, you must [r
 
 ## Explore Airflow Providers and Modules
 
-As you customize your Astronomer Project and expand your use case for Airflow, we recommend exploring the [Astronomer Registry](https://registry.astronomer.io/), a library of Airflow modules, providers, and DAGs that serve as the building blocks for data pipelines.
+As you customize your Astro project and expand your use case for Airflow, we recommend exploring the [Astronomer Registry](https://registry.astronomer.io/), a library of Airflow modules, providers, and DAGs that serve as the building blocks for data pipelines.
 
 The Astronomer Registry includes:
 
@@ -101,11 +101,11 @@ The Astronomer Registry includes:
 - Documentation for Airflow providers, such as [Databricks](https://registry.astronomer.io/providers/databricks), [Snowflake](https://registry.astronomer.io/providers/snowflake), and [Postgres](https://registry.astronomer.io/providers/postgres). This documentation is comprehensive and based on Airflow source code.
 - Documentation for Airflow modules, such as the [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator), [BashOperator](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator), and [S3ToRedshiftOperator](https://registry.astronomer.io/providers/amazon/modules/s3toredshiftoperator). These modules include guidance on how to set Airflow connections and their parameters.
 
-As you browse the Astronomer Registry, follow this document for instructions on how to install providers as Python packages and make other changes to your Astronomer Project.
+As you browse the Astronomer Registry, follow this document for instructions on how to install providers as Python packages and make other changes to your Astro project.
 
 ## Add Python and OS-level Packages
 
-To build Python and OS-level packages into your Astronomer project, add them to your `requirements.txt` and `packages.txt` files. Add Python packages to your `requirements.txt` and OS-level packages to your `packages.txt` file.
+To build Python and OS-level packages into your Astro project, add them to your `requirements.txt` and `packages.txt` files. Add Python packages to your `requirements.txt` and OS-level packages to your `packages.txt` file.
 
 To pin a version of a package, use the following syntax:
 
@@ -139,11 +139,11 @@ pymongo==3.7.2
 
 ## Add DAGs
 
-DAGs are stored in the `dags` folder of your Astronomer project. To add a DAG to your project, simply add its `.py` file to this folder.
+DAGs are stored in the `dags` folder of your Astro project. To add a DAG to your project, simply add its `.py` file to this folder.
 
 ### Add DAG Helper Functions
 
-To build additional helper functions for DAGs into your Astronomer project, we recommend adding a folder with a set of files that can be used by Airflow DAGs.
+To build additional helper functions for DAGs into your Astro project, we recommend adding a folder with a set of files that can be used by Airflow DAGs.
 
 To do this:
 
@@ -183,9 +183,9 @@ To confirm that your helper functions were successfully installed:
 
 ## Configure `airflow_settings.yaml` (Local Development Only)
 
-When you first initialize a new Astronomer project, a file called `airflow_settings.yaml` is automatically generated. With this file, you can configure and programmatically generate Airflow [Connections](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html), [Pools](https://airflow.apache.org/docs/apache-airflow/stable/concepts/pools.html), and [Variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) so that you don't have to manually redefine these values in the Airflow UI every time you restart your project.
+When you first initialize a new Astro project, a file called `airflow_settings.yaml` is automatically generated. With this file, you can configure and programmatically generate Airflow [Connections](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html), [Pools](https://airflow.apache.org/docs/apache-airflow/stable/concepts/pools.html), and [Variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) so that you don't have to manually redefine these values in the Airflow UI every time you restart your project.
 
-As a security measure, `airflow_settings.yaml` works only in local environments. Once you deploy your project to a Deployment on Astronomer, the values in this file will not be included. To more easily manage Airflow secrets on Astronomer, we recommend [configuring a secrets backend](https://docs.astronomer.io/enterprise/secrets-backend).
+As a security measure, `airflow_settings.yaml` works only in local environments. Once you deploy your project to a Deployment on Astro, the values in this file will not be included. To more easily manage Airflow secrets on Astro, we recommend [configuring a secrets backend](https://docs.astronomer.io/enterprise/secrets-backend).
 
 :::caution
 If you are storing your project in a public directory or version control tool, we recommend adding this file to your `.gitignore` or equivalent secret management service.
@@ -239,9 +239,9 @@ RUN ls
 
 ## Override the CLI's Docker Compose File (Local Development Only)
 
-The Astronomer Cloud CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. You can override the CLI's Docker Compose configurations by adding a `docker-compose.override.yml` file to your Astronomer project. Any values in this file override the CLI's default settings whenever you run `astrocloud dev start`.
+The Astro CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. You can override the CLI's Docker Compose configurations by adding a `docker-compose.override.yml` file to your Astro project. Any values in this file override the CLI's default settings whenever you run `astrocloud dev start`.
 
-To see what values you can override, reference the CLI's [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go). The linked file is for the original Astronomer Cloud CLI, but the values here are identical to those used in the Astronomer Cloud CLI. Common use cases for Docker Compose overrides include:
+To see what values you can override, reference the CLI's [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go). The linked file is for the original Astro CLI, but the values here are identical to those used in the Astro CLI. Common use cases for Docker Compose overrides include:
 
 - Modifying the ports at which the Airflow Webserver or Postgres database start on if another service is already running on those same ports (8080 and 5432, respectively). You can override this default and point your containers to a different port.
 - Adding extra containers to mimic services that your Airflow environment needs to interact with locally, such as an SFTP server.
@@ -267,17 +267,17 @@ docker exec -it <container-name> ls -al
 
 :::info
 
-The Astronomer Cloud CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astronomer enforces, see [Global Environment Variables](platform-variables.md). To learn more about environment variables, read [Environment Variables](environment-variables.md).
+The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global Environment Variables](platform-variables.md). To learn more about environment variables, read [Environment Variables](environment-variables.md).
 
 :::
 
 ## Set Environment Variables via .env (Local Development Only)
 
-For Astronomer projects deployed on Astronomer Cloud, we generally recommend [setting environment variables via the Astronomer UI](environment-variables.md#set-environment-variables-via-the-astronomer-ui). For local development, you can use the [Astronomer Cloud CLI](install-cli.md) to set environment variables in your project's `.env` file.
+For Astro projects deployed on Astro, we generally recommend [setting environment variables via the Cloud UI](environment-variables.md#set-environment-variables-via-the-astro-ui). For local development, you can use the [Astro CLI](install-cli.md) to set environment variables in your project's `.env` file.
 
 To add Environment Variables locally:
 
-1. Open the `.env` file in your Astronomer project directory.
+1. Open the `.env` file in your Astro project directory.
 2. Add your environment variables to the `.env` file.
 3. Rebuild your image by running `astrocloud dev start --env .env`.
 
@@ -328,7 +328,7 @@ This should output all Environment Variables that are running locally, some of w
 
 ### Use multiple .env files
 
-The Astronomer Cloud CLI will look for `.env` by default, but if you want to specify multiple files, make `.env` a top-level directory and create sub-files within that folder.
+The Astro CLI will look for `.env` by default, but if you want to specify multiple files, make `.env` a top-level directory and create sub-files within that folder.
 
 A project with multiple `.env` files might look like the following:
 

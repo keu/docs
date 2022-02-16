@@ -2,12 +2,12 @@
 sidebar_label: 'Deployment Metrics'
 title: 'Deployment Metrics'
 id: deployment-metrics
-description: Monitor Deployment performance, health, and total task volume in the Astronomer UI.
+description: Monitor Deployment performance, health, and total task volume in the Cloud UI.
 ---
 
 ## Overview
 
-The Astronomer UI exposes a suite of observability metrics that show real-time data related to the performance and health of your Deployments. These metrics are a useful reference as you troubleshoot issues and can inform how you allocate resources. They can also help you estimate the cost of your Deployments. This document explains each available metric and where to find them.
+The Cloud UI exposes a suite of observability metrics that show real-time data related to the performance and health of your Deployments. These metrics are a useful reference as you troubleshoot issues and can inform how you allocate resources. They can also help you estimate the cost of your Deployments. This document explains each available metric and where to find them.
 
 ## Deployment Health
 
@@ -23,7 +23,7 @@ Deployment health can have one of two statuses:
     - Your Deployment was recently created and the Airflow Webserver and Scheduler are still spinning up.
     - Your Deployment's Webserver and/or Scheduler are restarting or otherwise not in a healthy, running state.
 
-If your Deployment is unhealthy, we recommend checking the status of your tasks and waiting for a few minutes. If your Deployment is unhealthy for more than 5 minutes, we recommend [reviewing Scheduler logs](scheduler-logs.md) in the Astronomer UI or reaching out to [Astronomer Support](https://support.astronomer.io).
+If your Deployment is unhealthy, we recommend checking the status of your tasks and waiting for a few minutes. If your Deployment is unhealthy for more than 5 minutes, we recommend [reviewing Scheduler logs](scheduler-logs.md) in the Cloud UI or reaching out to [Astronomer Support](https://support.astronomer.io).
 
 ## Deployment Performance
 
@@ -42,7 +42,7 @@ The data in these four charts is recorded hourly and is displayed in both UTC an
 
 The data for the most recent hour is for the hour to date. For example, if you are looking at this page at 16:30, then the bar for the `16:00-17:00` hour interval would show data for `16:00-16:30`.
 
-These charts serve as high-level reports that are intended to be viewed at a glance. For example, you might notice failed task instances in the Astronomer Cloud UI and then open the Airflow UI to troubleshoot.
+These charts serve as high-level reports that are intended to be viewed at a glance. For example, you might notice failed task instances in the Astro UI and then open the Airflow UI to troubleshoot.
 
 The following sections describe each of the 4 available charts.
 
@@ -70,7 +70,7 @@ The bolded value above the graph denotes the total number of tasks that have run
 
 ### Resource Usage
 
-The **Worker CPU** and **Worker Memory** charts in the Astronomer UI provide visibility into the resources being consumed by the Workers in your Deployment as measured by CPU and memory consumption.
+The **Worker CPU** and **Worker Memory** charts in the Cloud UI provide visibility into the resources being consumed by the Workers in your Deployment as measured by CPU and memory consumption.
 
 :::info
 
@@ -94,11 +94,11 @@ Each bar in the graph shows how much memory was being used by a single worker at
 
 The bolded value above the graph shows the maximum memory usage by a single worker at any point in time over the last 24 hours. This can help you answer, "Did any of my workers approach 100% usage of total available memory in the past 24 hours?"
 
-## Astronomer Usage
+## Astro Usage
 
-Use the **Usage** tab in the Astronomer Cloud UI to review the number of successful task runs across Deployments in your Organization. Astronomer Cloud is priced based on successful task runs, so this view can help you monitor both Astronomer cost as well as Airflow usage in aggregate.
+Use the **Usage** tab in the Astro UI to review the number of successful task runs across Deployments in your Organization. Astro is priced based on successful task runs, so this view can help you monitor both Astro cost as well as Airflow usage in aggregate.
 
-![Usage tab in the Astronomer UI](/img/docs/usage.png)
+![Usage tab in the Cloud UI](/img/docs/usage.png)
 
 The bar chart on the left shows your Organization's total task runs per day for the past 31 days, with each day's volume sorted by Deployment. Each color in the bar chart represents a different Deployment. To see each Deployment's number of successful task runs for a given day, you can hover over the bar chart for that day with your mouse.
 

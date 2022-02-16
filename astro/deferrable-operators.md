@@ -2,7 +2,7 @@
 sidebar_label: 'Deferrable Operators'
 title: 'Deferrable Operators'
 id: deferrable-operators
-description: Run Airflow's deferrable operators on Astronomer for improved performance and cost savings.
+description: Run Airflow's deferrable operators on Astro for improved performance and cost savings.
 ---
 
 ## Overview
@@ -11,7 +11,7 @@ description: Run Airflow's deferrable operators on Astronomer for improved perfo
 
 In Airflow, it's common to use [sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/sensors.html) and some [operators](https://airflow.apache.org/docs/apache-airflow/stable/concepts/operators.html) to configure tasks that wait for some external condition to be met before executing or triggering another task. While tasks using standard operators and sensors take up a Worker or Scheduler slot when checking if an external condition has been met, deferrable operators suspend themselves during that process. This releases the Worker to take on other tasks. Using the deferrable versions of operators or sensors that typically spend a long time waiting for a condition to be met, such as the `S3Sensor`, the `HTTPSensor`, or the `DatabricksSubmitRunOperator`, can result in significant per-task cost savings and performance improvements.
 
-Deferrable operators rely on a new Airflow component called the Triggerer. The Triggerer is highly available and entirely managed on Astronomer Cloud, meaning that you can start using deferrable operators in your DAGs as long as you're running Astronomer Runtime 4.0+. As an Astronomer customer, you additionally have exclusive access to several deferrable versions of open source operators.
+Deferrable operators rely on a new Airflow component called the Triggerer. The Triggerer is highly available and entirely managed on Astro, meaning that you can start using deferrable operators in your DAGs as long as you're running Astro Runtime 4.0+. As an Astronomer customer, you additionally have exclusive access to several deferrable versions of open source operators.
 
 This guide explains how deferrable operators work and how to implement them in your DAGs.
 
@@ -34,13 +34,13 @@ For implementation details on deferrable operators, read the [Apache Airflow doc
 
 ## Prerequisites
 
-To use deferrable operators on Astronomer Cloud, you must deploy your code to a Deployment running [Astronomer Runtime 4.0+](runtime-release-notes.md#astronomer-runtime-400). For more information on upgrading your Deployment's Runtime version, read [Upgrade Runtime](upgrade-runtime.md).
+To use deferrable operators on Astro, you must deploy your code to a Deployment running [Astro Runtime 4.0+](runtime-release-notes.md#astro-runtime-400). For more information on upgrading your Deployment's Runtime version, read [Upgrade Runtime](upgrade-runtime.md).
 
-To use deferrable operators available exclusively on Astronomer Runtime, you must additionally add the `astronomer-operator-wrappers` package to the `packages.txt` file of your Astronomer project.
+To use deferrable operators available exclusively on Astro Runtime, you must additionally add the `astronomer-operator-wrappers` package to the `packages.txt` file of your Astro project.
 
 :::info
 
-Support for the Triggerer in local Airflow environments running via the Astronomer Cloud CLI is coming soon. In the meantime, this means that you cannot test deferrable operator functionally locally. If you run a DAG locally that imports a deferrable operator, the DAG falls back to using the non-deferrable version of that operator.
+Support for the Triggerer in local Airflow environments running via the Astro CLI is coming soon. In the meantime, this means that you cannot test deferrable operator functionally locally. If you run a DAG locally that imports a deferrable operator, the DAG falls back to using the non-deferrable version of that operator.
 
 :::
 
@@ -66,15 +66,15 @@ Some additional notes about using deferrable operators:
 
 ## Astronomer's Deferrable Operators
 
-Astronomer maintains a collection of deferrable operators that are available exclusively on Astronomer Runtime. These operators are drop-in replacements for non-Deferrable operators, meaning that you only have to change the import statements in your DAGs to begin using them.
+Astronomer maintains a collection of deferrable operators that are available exclusively on Astro Runtime. These operators are drop-in replacements for non-Deferrable operators, meaning that you only have to change the import statements in your DAGs to begin using them.
 
 This section contains information and example import statements for all deferrable operators written by Astronomer.
 
-> **Note:** When you use deferrable operators in the `astronomer-operator-wrappers` package outside of an Astronomer Runtime environment, the package falls back to using the open source, non-deferrable versions of each operator.
+> **Note:** When you use deferrable operators in the `astronomer-operator-wrappers` package outside of an Astro Runtime environment, the package falls back to using the open source, non-deferrable versions of each operator.
 
 ### Databricks operators
 
-Astronomer Runtime includes the following Databricks operators:
+Astro Runtime includes the following Databricks operators:
 
 - `DatabricksSubmitRunOperator`
 - `DatabricksRunNowOperator`

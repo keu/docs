@@ -1,36 +1,36 @@
 ---
 sidebar_label: 'Create a Cluster'
-title: "Create a New Cluster on Astronomer Cloud"
+title: "Create a New Cluster on Astro"
 id: create-cluster
-description: Create a new Astronomer Cluster for your Organization.
+description: Create a new Astro Cluster for your Organization.
 ---
 
 ## Overview
 
-The Astronomer Cloud install process on AWS typically starts with 1 Cluster per Organization. Depending on your use case, however, your team can choose to configure multiple Astronomer Clusters. This could enable a few benefits, including:
+The Astro install process on AWS typically starts with 1 Cluster per Organization. Depending on your use case, however, your team can choose to configure multiple Astro Clusters. This could enable a few benefits, including:
 
 - Clusters in multiple AWS regions
 - Different Clusters for Development and Production
 
 Within a single Workspace, you can host Deployments across multiple Clusters. For example, you can have Production Deployments running in your Production Cluster and Development Deployments running in your Development Cluster.
 
-This guide provides instructions for provisioning additional Clusters within your Astronomer Cloud Organization.
+This guide provides instructions for provisioning additional Clusters within your Astro Organization.
 
 ## Prerequisites
 
 To complete this setup, you need to have:
 
-- Completed the initial Astronomer Cloud install process as described in [Install on AWS](install-aws.md).
-- Permissions to edit trust policies in your AWS account for Astronomer.
+- Completed the initial Astro install process as described in [Install on AWS](install-aws.md).
+- Permissions to edit trust policies in your AWS account for Astro.
 
 ## Step 1: Submit a Request to Astronomer
 
 To create a new Cluster in your Organization, you must first reach out to your Astronomer representative. For each new Cluster that you want to provision, you'll need to provide our team with the following information:
 
 - Your AWS Account ID.
-- Your preferred Astronomer Cluster name.
+- Your preferred Astro Cluster name.
 - The AWS region that you want to host your Cluster in.
-- Your preferred node instance type.
+- Your preferred node insAstro.
 
 If not specified, we will create a Cluster with two `m5.xlarge` nodes in `us-east-1` by default. For information on all supported regions, configurations, and defaults, see [AWS Resource Reference](resource-reference-aws.md).
 
@@ -64,7 +64,7 @@ If you only have 1 existing Cluster, you will see the following under **Policy D
 
 Now, add the External ID that corresponds to your new Cluster to the bottom of the existing trust policy such that the External IDs for all of your Clusters are listed.
 
-For example, your policy for two Astronomer Clusters might look like the following:
+For example, your policy for two Astro Clusters might look like the following:
 
 ```yaml
 {

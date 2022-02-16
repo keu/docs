@@ -1,30 +1,30 @@
 ---
 sidebar_label: 'Airflow Alerts'
-title: 'Configure Airflow Alerts on Astronomer'
+title: 'Configure Airflow Alerts on Astro'
 id: airflow-alerts
 description: Set up email alerts for Airflow task successes and failures.
 ---
 
 ## Overview
 
-You can utilize Airflow's alerting framework to monitor the health of individual tasks and DAGs across your Airflow Deployments. This guide provides information about configuring various Airflow alerts on Astronomer.
+You can utilize Airflow's alerting framework to monitor the health of individual tasks and DAGs across your Airflow Deployments. This guide provides information about configuring various Airflow alerts on Astro.
 
 ## Configure Slack Notifications, Custom Notifications, and SLAs
 
-Most built-in Airflow alerts, including Slack alerts and SLAs, work out of the box on Astronomer Cloud. You can also write custom alerts that trigger a certain behavior whenever a given task or DAG succeeds or fails. For more information on configuring event-based notifications in Airflow generally, read Astronomer's guide on [Airflow Alerts](https://www.astronomer.io/guides/error-notifications-in-airflow).
+Most built-in Airflow alerts, including Slack alerts and SLAs, work out of the box on Astro. You can also write custom alerts that trigger a certain behavior whenever a given task or DAG succeeds or fails. For more information on configuring event-based notifications in Airflow generally, read Astronomer's guide on [Airflow Alerts](https://www.astronomer.io/guides/error-notifications-in-airflow).
 
-Unlike Slack alerts, Airflow email alerts require additional configuration on Astronomer Cloud. The following section covers how to set up an SMTP service to enable Airflow email alerts.
+Unlike Slack alerts, Airflow email alerts require additional configuration on Astro. The following section covers how to set up an SMTP service to enable Airflow email alerts.
 
 ## Configure Airflow Email Alerts
 
-On Astronomer, setting up email alerts requires configuring an SMTP service for delivering each alert.
+On Astro, setting up email alerts requires configuring an SMTP service for delivering each alert.
 
 If your team isn't already using an SMTP service, we recommend one of the following:
 
 - [SendGrid](https://sendgrid.com/)
 - [Amazon SES](https://aws.amazon.com/ses/)
 
-The following topics provide setup steps for integrating each of these external SMTP services on Astronomer Cloud, but note that any external SMTP service can be used.
+The following topics provide setup steps for integrating each of these external SMTP services on Astro, but note that any external SMTP service can be used.
 
 ### Integrate with SendGrid
 
@@ -34,7 +34,7 @@ To get started with SendGrid:
 
 1. [Create a SendGrid account](https://signup.sendgrid.com). Be prepared to disclose some standard information about yourself and your organization.
 
-2. [Verify a Single Sender Identity](https://sendgrid.com/docs/ui/sending-email/sender-verification/). Because you're sending emails only for internal administrative purposes, a single sender identity is sufficient for integrating with Astronomer. The email address you verify here is used as the sender for your Airflow alert emails.
+2. [Verify a Single Sender Identity](https://sendgrid.com/docs/ui/sending-email/sender-verification/). Because you're sending emails only for internal administrative purposes, a single sender identity is sufficient for integrating with Astro. The email address you verify here is used as the sender for your Airflow alert emails.
 
 3. Create a key using SendGrid's web API. In SendGrid, go to **Email API** > **Integration Guide**. Follow the steps to generate a new API key using SendGrid's Web API and cURL.
 
@@ -66,7 +66,7 @@ This setup requires an AWS account and use of the [AWS Management Console](https
 
 1. In the AWS Management Console, go to **AWS Console** > **Simple Email Service** > **Email Addresses** to add and verify the email addresses you want to receive alerts.
 
-2. Open the inbox of each email address you specified and verify them through the emails sent by Amazon.
+2. Open the inbox of each email address you specified and verify tAstroh the emails sent by Amazon.
 
 3. In the AWS Console, go to **Simple Email Service** > **SMTP Settings** and use the **Create My SMTP Credentials** button to generate a username and password. This will look similar to an access and secret access key. Write down this username and password for step 5, as well as the **Server Name** and **Port**.
 

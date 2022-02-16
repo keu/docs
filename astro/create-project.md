@@ -1,29 +1,29 @@
 ---
 sidebar_label: 'Create a Project'
-title: 'Create an Astronomer Project'
+title: 'Create an Astro project'
 id: 'create-project'
-description: Create an Astronomer project and run it locally with the Astronomer Cloud CLI.
+description: Create an Astro project and run it locally with the Astro CLI.
 ---
 
 import {siteVariables} from '@site/src/versions';
 
 ## Overview
 
-To run Airflow pipelines on Astronomer Cloud, you first need to create an Astronomer project. An Astronomer project contains the set of files necessary to run Airflow, including dedicated folders for your DAG files, plugins, and dependencies. Once you've tested these files locally, the Astronomer project structure makes it easy to deploy your pipelines to Astronomer.
+To run Airflow pipelines on Astro, you first need to create an Astro project. An Astro project contains the set of files necessary to run Airflow, including dedicated folders for your DAG files, plugins, and dependencies. Once you've tested these files locally, the Astro project structure makes it easy to deploy your pipelines to Astro.
 
-This guide provides instructions for creating a new Astronomer project, as well as information about the default Astronomer project structure.
+This guide provides instructions for creating a new Astro project, as well as information about the default Astro project structure.
 
 ## Prerequisites
 
-To create an Astronomer project, you need:
+To create an Astro project, you need:
 
-- [The Astronomer Cloud CLI](install-cli.md)
+- [The Astro CLI](install-cli.md)
 - [Docker](https://www.docker.com/products/docker-desktop)
 
-## Step 1: Create an Astronomer Project
+## Step 1: Create an Astro project
 
-To create a new Astronomer project folder, open the directory where you installed the CLI and run:
-
+To create a new Astro project folder, open the directory where you installed the CLI and run:
+Astro
 ```sh
 astrocloud dev init
 ```
@@ -34,7 +34,7 @@ This command generates the following files in the directory:
 .
 ├── dags # Where your DAGs go
 │   └── example-dag.py # An example DAG that comes with the initialized project
-├── Dockerfile # For the Astronomer Runtime Docker image, environment variables, and overrides
+├── Dockerfile # For the Astro Runtime Docker image, environment variables, and overrides
 ├── include # For any other files you'd like to include
 ├── plugins # For any custom or community Airflow plugins
 ├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
@@ -42,11 +42,11 @@ This command generates the following files in the directory:
 └── requirements.txt # For Python packages
 ```
 
-This set of files will build into a Docker image that you can both run on your local machine and deploy to Astronomer Cloud.
+This set of files will build into a Docker image that you can both run on your local machine and deploy to Astro.
 
-### Astronomer Runtime
+### Astro Runtime
 
-Your `Dockerfile` includes a reference to Astronomer Runtime. Packaged into a Debian-based Docker image, Astronomer Runtime extends the Apache Airflow open source project to provide you with differentiated functionality that centers around reliability, efficiency, and performance. For more information on what's included in Runtime and how it's versioned, see [Runtime Versioning](runtime-version-lifecycle-policy.md).
+Your `Dockerfile` includes a reference to Astro Runtime. Packaged into a Debian-based Docker image, Astro Runtime extends the Apache Airflow open source project to provide you with differentiated functionality that centers around reliability, efficiency, and performance. For more information on what's included in Runtime and how it's versioned, see [Runtime Versioning](runtime-version-lifecycle-policy.md).
 
 By default, the Docker image in your Dockerfile is:
 
@@ -55,7 +55,7 @@ By default, the Docker image in your Dockerfile is:
 
 ## Step 2: Build Your Project Locally
 
-To confirm that you successfully initialized an Astronomer project, run the following command from your project directory:
+To confirm that you successfully initialized an Astro project, run the following command from your project directory:
 
 ```sh
 astrocloud dev start
@@ -112,4 +112,4 @@ After logging in, you should see the DAGs from your `dags` directory in the Airf
 
 ## Next Steps
 
-Running your project locally is the best way to test your DAGs before pushing them to Astronomer Cloud. For more information on running a local Airflow environment, read [Test and Troubleshoot](test-and-troubleshoot-locally.md#run-a-project-locally).
+Running your project locally is the best way to test your DAGs before pushing them to Astro. For more information on running a local Airflow environment, read [Test and Troubleshoot](test-and-troubleshoot-locally.md#run-a-project-locally).

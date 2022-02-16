@@ -2,7 +2,7 @@
 title: 'Make Requests to the Apache Airflow API'
 sidebar_label: 'Airflow API'
 id: airflow-api
-description: Make requests to Apache Airflow's REST API with Deployment API Keys on Astronomer.
+description: Make requests to Apache Airflow's REST API with Deployment API Keys on Astro.
 ---
 
 ## Overview
@@ -15,7 +15,7 @@ If you're looking to externally trigger DAG runs without needing to access your 
 
 To make an Airflow API request, you need:
 
-- A Deployment on Astronomer Cloud
+- A Deployment on Astro
 - [cURL](https://curl.se/)
 
 ## Step 1: Retrieve an Access Token and Deployment URL
@@ -25,7 +25,7 @@ All Airflow API calls require the following two values:
 - An access token
 - A Deployment URL
 
-To retrieve an access token, [create a Deployment API key](api-keys.md#create-an-api-key) on Astronomer and follow the instructions in [Request Access Token](api-keys.md#request-access-token). Note that you need to refresh that token every time you make a request to the Airflow API. To avoid manually doing so, we strongly recommend adding a step that fetches a new access token to any CI/CD pipeline that calls the Airflow API. That way, your access token is automatically refreshed every time your CI/CD pipeline needs it. For examples of this implementation, see [CI/CD Templates](ci-cd.md#cicd-templates).
+To retrieve an access token, [create a Deployment API key](api-keys.md#create-an-api-key) on Astro and follow the instructions in [Request Access Token](api-keys.md#request-access-token). Note that you need to refresh that token every time you make a request to the Airflow API. To avoid manually doing so, we strongly recommend adding a step that fetches a new access token to any CI/CD pipeline that calls the Airflow API. That way, your access token is automatically refreshed every time your CI/CD pipeline needs it. For examples of this implementation, see [CI/CD Templates](ci-cd.md#cicd-templates).
 
 :::info
 
@@ -33,7 +33,7 @@ If you need to call the Airflow API only once, you can retrieve a temporary acce
 
 :::
 
-To retrieve your Deployment URL, open your Deployment in the Astronomer UI and click **Open Airflow**. The URL for the Airflow UI is your Deployment URL. It includes the name of your Organization and a short Deployment ID. For example, your Deployment URL will look similar to `https://mycompany.astronomer.run/dhbhijp0`.
+To retrieve your Deployment URL, open your Deployment in the Cloud UI and click **Open Airflow**. The URL for the Airflow UI is your Deployment URL. It includes the name of your Organization and a short Deployment ID. For example, your Deployment URL will look similar to `https://mycompany.astronomer.run/dhbhijp0`.
 
 ## Step 2: Make an Airflow API Request
 

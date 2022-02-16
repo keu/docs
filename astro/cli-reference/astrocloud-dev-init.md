@@ -7,7 +7,7 @@ description: Reference documentation for astrocloud dev init.
 
 ## Description
 
-Initialize an [Astronomer project](create-project.md) in an empty local directory. An Astronomer project contains the set of files necessary to run Airflow, including dedicated folders for your DAG files, plugins, and dependencies. An Astronomer project can be either run locally with `astro dev start` or pushed to Astronomer via `astro deploy`.
+Initialize an [Astro project](create-project.md) in an empty local directory. An Astro project contains the set of files necessary to run Airflow, including dedicated folders for your DAG files, plugins, and dependencies. An Astro project can be either run locally with `astro dev start` or pushed to Astronomer via `astro deploy`.
 
 ## Usage
 

@@ -1,13 +1,13 @@
 ---
-sidebar_label: 'Astronomer Cloud CLI'
-title: 'Astronomer Cloud CLI Release Notes'
+sidebar_label: 'Astro CLI'
+title: 'Astro CLI Release Notes'
 id: cli-release-notes
-description: Release notes for the Astronomer Cloud CLI.
+description: Release notes for the Astro CLI.
 ---
 
 ## Overview
 
-This document provides a summary of all changes made to the [Astronomer Cloud CLI](install-cli.md). For general product release notes, go to [Astronomer Cloud Release Notes](release-notes.md).
+This document provides a summary of all changes made to the [Astro CLI](install-cli.md). For general product release notes, go to [Astro Release Notes](release-notes.md).
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
@@ -15,29 +15,29 @@ If you have any questions or a bug to report, don't hesitate to reach out to us 
 
 Release date: February 3, 2022
 
-### Introducing the Astronomer Cloud CLI
+### Introducing the Astro CLI
 
-The Astronomer Cloud CLI (`astrocloud`) is now generally available as the official command-line tool for Astronomer Cloud. It is a direct replacement of the previously released `astro` executable.
+The Astro CLI (`astrocloud`) is now generally available as the official command-line tool for Astro. It is a direct replacement of the previously released `astro` executable.
 
-The Astronomer Cloud CLI sets the foundation for more robust functionality in the future and includes several significant improvements to both the local development experience as well as use cases specific to Astronomer Cloud. These changes are summarized in the following sections.
+The Astro CLI sets the foundation for more robust functionality in the future and includes several significant improvements to both the local development experience as well as use cases specific to Astro. These changes are summarized in the following sections.
 
-The Astronomer Cloud CLI can be installed via Homebrew. Commands take the form of:
+The Astro CLI can be installed via Homebrew. Commands take the form of:
 
 ```sh
 astrocloud <command> # E.g. `astrocloud dev start`
 ```
 
-We strongly recommend that all users install the Astronomer Cloud CLI and delete the `astro` executable from local directories as soon as possible. For guidelines, read [Install the Astronomer Cloud CLI](install-cli.md). As of February 2022, `astro` will no longer be maintained by our team. With that said, the release of the Astronomer Cloud CLI does not have any impact on your existing Deployments or DAGs.
+We strongly recommend that all users install the Astro CLI and delete the `astro` executable from local directories as soon as possible. For guidelines, read [Install the Astro CLI](install-cli.md). As of February 2022, `astro` will no longer be maintained by our team. With that said, the release of the Astro CLI does not have any impact on your existing Deployments or DAGs.
 
 ### New Authentication Flow
 
-The Astronomer Cloud CLI introduces an easy way to authenticate. Instead of requiring that users manually pass authentication tokens, the new CLI consists of a simple, browser-based login process.
+The Astro CLI introduces an easy way to authenticate. Instead of requiring that users manually pass authentication tokens, the new CLI consists of a simple, browser-based login process.
 
-Built with refresh tokens, the Astronomer Cloud CLI also does not require that users re-authenticate every 24 hours, as was the case with `astro`. As long as you remain authenticated via the Astronomer UI, your session via the Astronomer CLI will remain valid. You can expect to be asked to re-authenticate only once every few months instead of on a daily basis.
+Built with refresh tokens, the Astro CLI also does not require that users re-authenticate every 24 hours, as was the case with `astro`. As long as you remain authenticated via the Cloud UI, your session via the Astro CLI will remain valid. You can expect to be asked to re-authenticate only once every few months instead of on a daily basis.
 
 ### Improved Local Development
 
-Astronomer Cloud CLI v1.0.0 includes several improvements to the local development experience:
+Astro CLI v1.0.0 includes several improvements to the local development experience:
 
 - You can now run `astrocloud dev start` with [Docker Buildkit](https://docs.docker.com/develop/develop-images/build_enhancements/) enabled. This resolves a [common issue](https://forum.astronomer.io/t/buildkit-not-supported-by-daemon-error-command-docker-build-t-airflow-astro-bcb837-airflow-latest-failed-failed-to-execute-cmd-exit-status-1/857) where users with Docker Buildkit enabled could not run this command.
 - After running `astrocloud dev start`, the CLI no shows you the status of the Webserver container as it spins up on your local machine. This makes it easier to know whether the Airflow UI is unavailable because the Airflow Webserver container is still spinning up.
@@ -52,7 +52,7 @@ Release date: December 9, 2021
 
 ### Improved Example DAGs
 
-The Astronomer Cloud CLI is built to enable developers to learn about, test, automate, and make the most of Apache Airflow both locally and on Astronomer. To that end, we've updated the CLI with two example DAGs that will be present for all users in the `/dags` folder that is automatically generated by `astro dev init`.
+The Astro CLI is built to enable developers to learn about, test, automate, and make the most of Apache Airflow both locally and on Astro. To that end, we've updated the CLI with two example DAGs that will be present for all users in the `/dags` folder that is automatically generated by `astro dev init`.
 
 The file names are:
 - `example-dag-basic.py`
@@ -80,20 +80,20 @@ Release date: October 25, 2021
 
 Release date: October 15, 2021
 
-- This release contains changes exclusively related to the Astronomer Cloud CLI developer experience.
+- This release contains changes exclusively related to the Astro CLI developer experience.
 
 ## v1.0.0 (`astro`)
 
 Release date: September 28, 2021
 
-- Improvement: `astro dev init` now always pulls the latest version of Astronomer Runtime for new projects. This means that you no longer have to upgrade the CLI in order to take advantage of a new Runtime release. Note that you still need to manually [upgrade Runtime](upgrade-runtime.md) for existing projects.
+- Improvement: `astro dev init` now always pulls the latest version of Astro Runtime for new projects. This means that you no longer have to upgrade the CLI in order to take advantage of a new Runtime release. Note that you still need to manually [upgrade Runtime](upgrade-runtime.md) for existing projects.
 - Improvement: Updated error messages throughout the CLI to be more clear and useful
 
 ## v0.2.9-beta (`astro`)
 
 Release date: September 20, 2021
 
-- Improvement: Bumped the default Astronomer Runtime version for new projects to [`3.0.2`](runtime-release-notes.md#astronomer-runtime-302)
+- Improvement: Bumped the default Astro Runtime version for new projects to [`3.0.2`](runtime-release-notes.md#astro-runtime-302)
 - Improvement: You can now use `astro dev run` to run Airflow CLI commands
 - Improvement: You can now use `astro dev logs` to show logs for the Airflow Scheduler and Webserver when developing locally
 
@@ -101,7 +101,7 @@ Release date: September 20, 2021
 
 Release date: August 31, 2021
 
-- Improvement: Bumped the default Astronomer Runtime version for new projects to [`3.0.0`](runtime-release-notes.md#astronomer-runtime-300)
+- Improvement: Bumped the default Astro Runtime version for new projects to [`3.0.0`](runtime-release-notes.md#astro-runtime-300)
 - Improvement: Updated help text throughout the CLI
 - Improvement: Projects created with `astro dev init` now include a README file
 
@@ -109,7 +109,7 @@ Release date: August 31, 2021
 
 Release date: July 31, 2021
 
-- Bug Fix: Fixed an issue where users could not push DAGs to Deployments on Astronomer via the CLI.
+- Bug Fix: Fixed an issue where users could not push DAGs to Deployments on Astro via the CLI.
 
 ## v0.2.6-beta (`astro`)
 

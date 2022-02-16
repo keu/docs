@@ -7,12 +7,12 @@ description: Create Deployment API keys to make requests to Airflow's REST API a
 
 ## Overview
 
-This guide provides instructions for how to create API keys for Deployments on Astronomer. You can use API keys to programmatically deploy DAGs to a Deployment on Astronomer.
+This guide provides instructions for how to create API keys for Deployments on Astro. You can use API keys to programmatically deploy DAGs to a Deployment on Astro.
 
 A Deployment API key has the following properties:
 
-- It can deploy code to Astronomer (customizable permissions coming soon).
-- Its key ID and secret are valid indefinitely and can be used to fetch a short-lived access token that assumes the permissions of the Deployment API key. This access token is required by the Astronomer API to complete the deploy code process. For more information on using this token, read [Refresh Access Token](api-keys#refresh-access-token).
+- It can deploy code to Astro (customizable permissions coming soon).
+- Its key ID and secret are valid indefinitely and can be used to fetch a short-lived access token that assumes the permissions of the Deployment API key. This access token is required by the Astro API to complete the deploy code process. For more information on using this token, read [Refresh Access Token](api-keys#refresh-access-token).
 - It is deleted permanently if its corresponding Deployment is deleted.
 
 This guide provides steps for creating and deleting Deployment API keys.
@@ -21,7 +21,7 @@ This guide provides steps for creating and deleting Deployment API keys.
 
 To create an API key for a Deployment:
 
-1. In the Astronomer UI, open your Deployment.
+1. In the Cloud UI, open your Deployment.
 2. In the **API Keys** menu, click **Add API Key**:
 
     <div class="text--center">
@@ -44,7 +44,7 @@ If you just need to make a single API call, you can use a temporary user authent
 
 ## Request Access Token
 
-In order to deploy code on Astronomer with a Deployment API key, you need to use the API key ID and secret to request an access token. This access token is required by the Astronomer API to trigger the deploy code process. It is valid only for 24 hours. To fetch a token with an existing API key ID and secret, run the following API request:
+In order to deploy code on Astro with a Deployment API key, you need to use the API key ID and secret to request an access token. This access token is required by the Astro API to trigger the deploy code process. It is valid only for 24 hours. To fetch a token with an existing API key ID and secret, run the following API request:
 
 ```curl
 curl --location --request POST "https://auth.astronomer.io/oauth/token" \
@@ -64,7 +64,7 @@ To avoid manually fetching this token, we strongly recommend adding this API req
 
 To delete a Deployment API Key:
 
-1. In the Astronomer UI, open your Deployment.
+1. In the Cloud UI, open your Deployment.
 2. In the menu for the API key you want to delete, click **Edit**:
 
     <div class="text--center">
