@@ -226,14 +226,11 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
     - `ORGANIZATION_ID`: Your Organization ID
     - `DEPLOYMENT_ID`: Your Deployment ID
 
+    Be sure to set the values your API key secret and ID as secrets.
+
 3. At the root of your repository, create a file called `build.sh` and add the following to it:
 
     ```sh
-    DEPLOYMENT_ID=$1
-    ASTRONOMER_KEY_ID=$2
-    ASTRONOMER_KEY_SECRET=$3
-    ORGANIZATION_ID=$4
-
     # Create time stamp
     TAG=deploy-`date "+%Y-%m-%d-%HT%M-%S"`
 
