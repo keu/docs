@@ -91,9 +91,9 @@ Within the maintenance window of each Astro Runtime version, the following is tr
 When the maintenance window for a given version of Runtime ends, the following is true:
 
 - The Astronomer Support team is not obligated to answer questions regarding an Airflow Deployment that is running that version.
-- New Deployments cannot be created on Astro with that version of Runtime. Unsupported versions will _not_ render as an option in the Deployment creation process from the Astro UI, API, or CLI.
+- New Deployments cannot be created on Astro with that version of Runtime. Unsupported versions will _not_ render as an option in the Deployment creation process from the Cloud UI, API, or CLI.
 - The latest version of the Astro CLI will show a warning if a user pushes a Docker image which specifies that version to Astro.
-- The Astro UI will show a warning if any of your Deployments are currently running that version.
+- The Cloud UI will show a warning if any of your Deployments are currently running that version.
 
 To ensure reliability, service will not be interrupted for Deployments running a version of Runtime that is no longer supported. Unsupported versions will also continue to be available for local development and testing via the Astro CLI.
 

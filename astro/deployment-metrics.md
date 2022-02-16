@@ -42,7 +42,7 @@ The data in these four charts is recorded hourly and is displayed in both UTC an
 
 The data for the most recent hour is for the hour to date. For example, if you are looking at this page at 16:30, then the bar for the `16:00-17:00` hour interval would show data for `16:00-16:30`.
 
-These charts serve as high-level reports that are intended to be viewed at a glance. For example, you might notice failed task instances in the Astro UI and then open the Airflow UI to troubleshoot.
+These charts serve as high-level reports that are intended to be viewed at a glance. For example, you might notice failed task instances in the Cloud UI and then open the Airflow UI to troubleshoot.
 
 The following sections describe each of the 4 available charts.
 
@@ -96,7 +96,7 @@ The bolded value above the graph shows the maximum memory usage by a single work
 
 ## DAG Runs
 
-You can view key metrics about recent DAG runs using the **DAGs** page in the Astro UI. This page shows DAG runs from the last 14 days across either all Deployments or a specific Deployment in a Workspace. For a given DAG, the **DAGs** page shows:
+You can view key metrics about recent DAG runs using the **DAGs** page in the Cloud UI. This page shows DAG runs from the last 14 days across either all Deployments or a specific Deployment in a Workspace. For a given DAG, the **DAGs** page shows:
 
 - Total DAG runs over the last 14 days, expressed as a bar chart.
 
@@ -120,7 +120,7 @@ To access the **DAGs** page, you can either click the DAGs icon in the UI or cli
 
 ## Astro Usage
 
-Use the **Usage** tab in the Astro UI to review the number of successful task runs across Deployments in your Organization. Astro is priced based on successful task runs, so this view can help you monitor both Astro cost as well as Airflow usage in aggregate.
+Use the **Usage** tab in the Cloud UI to review the number of successful task runs across Deployments in your Organization. Astro is priced based on successful task runs, so this view can help you monitor both Astro cost as well as Airflow usage in aggregate.
 
 ![Usage tab in the Cloud UI](/img/docs/usage.png)
 

@@ -125,7 +125,7 @@ Fixed various bugs in the Cloud UI to better handle nulls and unknowns in Deploy
 
 ### Additional Improvements
 
-- In the Astro UI, the **Open Airflow** button now shows more specific status messages when a Deployment's Airflow UI is inaccessible.
+- In the Cloud UI, the **Open Airflow** button now shows more specific status messages when a Deployment's Airflow UI is inaccessible.
 
 ### Bug Fixes
 
@@ -135,7 +135,7 @@ Fixed various bugs in the Cloud UI to better handle nulls and unknowns in Deploy
 
 ### New "Usage" Tab in the Cloud UI
 
-Total task volume for your Organization is now available in a new **Usage** tab in the Astro UI. Astro is priced based on successful task runs, so this view can help you monitor both Astro cost as well as Airflow usage in aggregate and between Deployments.
+Total task volume for your Organization is now available in a new **Usage** tab in the Cloud UI. Astro is priced based on successful task runs, so this view can help you monitor both Astro cost as well as Airflow usage in aggregate and between Deployments.
 
 ![Usage tab in the Cloud UI](/img/docs/usage.png)
 
@@ -180,7 +180,7 @@ For a full list of AWS regions supported on Astro, see [AWS Resource Reference](
 
 ### Secret Environment Variables
 
-You can now set secret environment variables via the Astro UI. The values of secret environment variables are hidden from all users in your Workspace, making them ideal for storing sensitive information related to your Astro projects.
+You can now set secret environment variables via the Cloud UI. The values of secret environment variables are hidden from all users in your Workspace, making them ideal for storing sensitive information related to your Astro projects.
 
 ![Secrets checkbox available in the Cloud UI](/img/release-notes/secrets-feature.png)
 

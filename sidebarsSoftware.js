@@ -8,7 +8,7 @@
  */
 
 module.exports = {
-  enterprise: [
+  software: [
     {
       type: 'doc',
       id: 'overview',

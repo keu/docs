@@ -86,7 +86,7 @@ To customize permissions, follow the steps below.
 
 <!--- Version-specific -->
 
-First, take a look at our default roles and permissions in the [default Houston API configuration](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.27/default.yaml) and identify two things:
+First, take a look at our default roles and permissions in the [default Houston API configuration](https://github.com/astronomer/docs/tree/main/software_configs/0.27/default.yaml) and identify two things:
 
 1. What role do you want to configure? (e.g. `DEPLOYMENT_EDITOR`)
 2. What permission(s) would you like to add to or remove from that role? (e.g. `deployment.images.push`)
@@ -164,7 +164,7 @@ In addition to the commonly used System Admin role, the Astronomer platform also
 
 No user is assigned the System Editor or Viewer Roles by default, but they can be added by System Admins via our API. Once assigned, System Viewers, for example, can access both Grafana and Kibana but don't have permission to delete a Workspace they're not a part of.
 
-All three permission sets are entirely customizable on Astronomer Software. For a full breakdown of the default configurations attached to the System Admin, Editor and Viewer Roles, refer to the [Houston API source code](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.27/default.yaml).
+All three permission sets are entirely customizable on Astronomer Software. For a full breakdown of the default configurations attached to the System Admin, Editor and Viewer Roles, refer to the [Houston API source code](https://github.com/astronomer/docs/tree/main/software_configs/0.27/default.yaml).
 
 For guidelines on assigning users any System Level role, read below.
 
@@ -176,7 +176,7 @@ Keep in mind that:
 - Only existing System Admins can grant the SysAdmin role to another user
 - The user must have a verified email address and already exist in the system
 
-> **Note:** If you'd like to assign a user a different System-Level Role (either `SYSTEM_VIEWER` or `SYSTEM_EDITOR`), you'll have to do so via an API call from your platform's GraphQL playground. For guidelines, refer to our ["Houston API" doc](/enterprise/houston-api).
+> **Note:** If you'd like to assign a user a different System-Level Role (either `SYSTEM_VIEWER` or `SYSTEM_EDITOR`), you'll have to do so via an API call from your platform's GraphQL playground. For guidelines, refer to our ["Houston API" doc](houston-api.md).
 
 #### Verify SysAdmin Access
 

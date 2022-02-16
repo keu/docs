@@ -87,7 +87,7 @@ To customize permissions, follow the steps below.
 
 <!--- Version-specific -->
 
-First, take a look at our default roles and permissions in the [default Houston API configuration](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.28/default.yaml) and identify two things:
+First, take a look at our default roles and permissions in the [default Houston API configuration](https://github.com/astronomer/docs/tree/main/software_configs/0.28/default.yaml) and identify two things:
 
 1. What role do you want to configure? (e.g. `DEPLOYMENT_EDITOR`)
 2. What permission(s) would you like to add to or remove from that role? (e.g. `deployment.images.push`)
@@ -177,7 +177,7 @@ Keep in mind that:
 - Only existing System Admins can grant the SysAdmin role to another user
 - The user must have a verified email address and already exist in the system
 
-> **Note:** If you'd like to assign a user a different System-Level Role (either `SYSTEM_VIEWER` or `SYSTEM_EDITOR`), you'll have to do so via an API call from your platform's GraphQL playground. For guidelines, refer to our ["Houston API" doc](/enterprise/houston-api).
+> **Note:** If you'd like to assign a user a different System-Level Role (either `SYSTEM_VIEWER` or `SYSTEM_EDITOR`), you'll have to do so via an API call from your platform's GraphQL playground. For guidelines, refer to our ["Houston API" doc](houston-api.md).
 
 #### Verify SysAdmin Access
 
