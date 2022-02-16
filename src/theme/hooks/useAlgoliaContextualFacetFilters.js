@@ -14,10 +14,10 @@ export default function useAlgoliaContextualFacetFilters() {
 
   let tagsFilter = tags.map((tag) => `docusaurus_tag:${tag}`);
   const currentPath = typeof window !== 'undefined' ? window.location.pathname : '';
-  const currentEnterpriseTag = tags.find(tag => tag.includes('enterprise'));
+  const currentSoftwareTag = tags.find(tag => tag.includes('software'));
   // limit search results to current docset
- if (currentPath.includes('enterprise')) {
-  tagsFilter = [`docusaurus_tag:${currentEnterpriseTag}`]
+ if (currentPath.includes('software')) {
+  tagsFilter = [`docusaurus_tag:${currentSoftwareTag}`]
  } else if (currentPath.includes('cloud')) {
   tagsFilter = ['docusaurus_tag:docs-default-current']
  }

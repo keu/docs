@@ -299,7 +299,7 @@ To test your changes:
 
 Once you've confirmed that the integration with AWS SSM Parameter Store works locally, you can complete a similar set up with a Deployment on Astro.
 
-1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/cloud/environment-variables). Specify both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as **secret** ensure that your credentials are stored securely.
+1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/astro/environment-variables). Specify both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as **secret** ensure that your credentials are stored securely.
 
   :::warning
 
@@ -411,7 +411,7 @@ Once you confirm that the setup was successful, you can delete this DAG.
 
 Once you've confirmed that the integration with Google Cloud Secret Manager works locally, you can complete a similar set up with a Deployment on Astro.
 
-1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/cloud/environment-variables). Specify both `AIRFLOW__SECRETS__BACKEND` and `AIRFLOW__SECRETS__BACKEND_KWARGS` as **Secret** to ensure that your credentials are stored securely.
+1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/astro/environment-variables). Specify both `AIRFLOW__SECRETS__BACKEND` and `AIRFLOW__SECRETS__BACKEND_KWARGS` as **Secret** to ensure that your credentials are stored securely.
 
   :::warning
 
@@ -525,7 +525,7 @@ Once you confirm that the setup was successful, you can delete this DAG.
 
 Once you've confirmed that your secrets are being imported correctly to your local environment, you're ready to configure the same feature in a Deployment on Astro.
 
-1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/cloud/environment-variables). Specify the `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_CLIENT_SECRET` variables as **Secret** to ensure that your credentials are stored securely.
+1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/astro/environment-variables). Specify the `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, and `AZURE_CLIENT_SECRET` variables as **Secret** to ensure that your credentials are stored securely.
 
   :::warning
 
