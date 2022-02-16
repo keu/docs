@@ -228,7 +228,7 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
 
     Be sure to set the values for your API credentials as secret.
 
-3. At the root of your repository, create a file called `build.sh` and add the following to it:
+3. At the root of your Git repository, create a file called `build.sh` and add the following to it:
 
     ```sh
     # Create time stamp
