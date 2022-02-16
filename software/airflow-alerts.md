@@ -1,19 +1,19 @@
 ---
 sidebar_label: 'Airflow Alerts'
-title: 'Configure Airflow Alerts on Astronomer Enterprise'
+title: 'Configure Airflow Alerts on Astronomer Software'
 id: airflow-alerts
-description: Configure Email Alerts on Astronomer Enterprise to monitor the health of your Airflow Deployment and the status of your tasks.
+description: Configure Email Alerts on Astronomer Software to monitor the health of your Airflow Deployment and the status of your tasks.
 ---
 
 ## Overview
 
-Whether you're just starting to use Apache Airflow or your team is running it at scale, incorporating an alerting framework is critical to the health of your data. On Astronomer Enterprise, users have access to three types of alerting solutions:
+Whether you're just starting to use Apache Airflow or your team is running it at scale, incorporating an alerting framework is critical to the health of your data. On Astronomer Software, users have access to three types of alerting solutions:
 
 - Airflow task and DAG-level alerts, which notify you via email when an Airflow task or DAG fails, succeeds, or retries.
 - Deployment-level alerts, which notify you when the health of an Airflow Deployment is low or if any of Airflow's underlying components are underperforming, including the Airflow Scheduler.
 - Platform-level alerts, which notify you when a component of your Astronomer platform is unhealthy, such as Elasticsearch, Astronomer's Houston API, or your Docker Registry.
 
-This guide focuses on configuring task and DAG-level alerts. For information on configuring platform and Deployment-level alerts, read [Alerting on Astronomer Enterprise](platform-alerts.md).
+This guide focuses on configuring task and DAG-level alerts. For information on configuring platform and Deployment-level alerts, read [Alerting on Astronomer Software](platform-alerts.md).
 
 ## Subscribe to Task-Level Alerts
 

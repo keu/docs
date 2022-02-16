@@ -30,11 +30,11 @@ If you're upgrading an Astronomer Certified environment running on Docker, all y
 
     If you're developing locally, make sure to save your changes before proceeding.
 
-4. If you are using the Astronomer CLI, run `astro dev stop` followed by `astro dev start` to restart your 3 Airflow components (Scheduler, Webserver, and Database).
+4. If you are using the Astronomer Software CLI, run `astro dev stop` followed by `astro dev start` to restart your 3 Airflow components (Scheduler, Webserver, and Database).
 
-    If you aren't using the Astronomer CLI, you can manually stop all Airflow containers using `docker-compose down --volumes --rmi all`.
+    If you aren't using the Astronomer Software CLI, you can manually stop all Airflow containers using `docker-compose down --volumes --rmi all`.
 
-5. Open the Airflow UI and click **About** > **Version** to confirm that the upgrade was successful. If you're developing locally with the Astronomer CLI, the Airflow UI is available at `http://localhost:8080/`.
+5. Open the Airflow UI and click **About** > **Version** to confirm that the upgrade was successful. If you're developing locally with the Astronomer Software CLI, the Airflow UI is available at `http://localhost:8080/`.
 
 ## Upgrade the Astronomer Certified Python Wheel
 

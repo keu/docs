@@ -1,8 +1,8 @@
 ---
 sidebar_label: 'CI/CD'
-title: 'Configure CI/CD on Astronomer Enterprise'
+title: 'Configure CI/CD on Astronomer Software'
 id: ci-cd
-description: Automate the deploy process to your Airflow Deployment on Astronomer Enterprise.
+description: Automate the deploy process to your Airflow Deployment on Astronomer Software.
 ---
 
 ## Overview
@@ -42,7 +42,7 @@ From there, you'll write a script that allows your Service Account to do the fol
 2. Authenticate to a Docker Registry
 3. Push your Image to that Docker Registry
 
-From there, a webhook triggers an update to your Airflow Deployment using the CI/CD tool of your choice. At its core, the Astronomer CLI does the equivalent of the above upon every manual `$ astro deploy`.
+From there, a webhook triggers an update to your Airflow Deployment using the CI/CD tool of your choice. At its core, the Astronomer Software CLI does the equivalent of the above upon every manual `$ astro deploy`.
 
 The rest of this guide describes how to create a Service Account and what your CI/CD script should look like based on the tool you're using.
 
@@ -51,12 +51,12 @@ The rest of this guide describes how to create a Service Account and what your C
 Before completing this setup, make sure you:
 
 - Have access to a running Airflow Deployment on Astronomer.
-- Installed the [Astronomer CLI](https://github.com/astronomer/astro-cli).
+- Installed the [Astronomer Software CLI](https://github.com/astronomer/astro-cli).
 - Are familiar with your CI/CD tool of choice.
 
 ## Step 1: Create a Service Account
 
-In order to authenticate your CI/CD pipeline to Astronomer's private Docker registry, you'll need to create a Service Account and grant it an appropriate set of permissions. You can do so via the Astronomer UI or CLI. Once created, you can always delete this Service Account at any time. In both cases, creating a Service Account will generate an API key that will be used for the CI/CD process.
+In order to authenticate your CI/CD pipeline to Astronomer's private Docker registry, you'll need to create a Service Account and grant it an appropriate set of permissions. You can do so via the Software UI or CLI. Once created, you can always delete this Service Account at any time. In both cases, creating a Service Account will generate an API key that will be used for the CI/CD process.
 
 Note that you're able to create Service Accounts at the:
 
@@ -65,7 +65,7 @@ Note that you're able to create Service Accounts at the:
 
 Creating a Service Account at the Workspace level allows you to deploy to *multiple* Airflow deployments with one code push, while creating them at the Deployment level ensures that your CI/CD pipeline only deploys to one particular deployment on Astronomer.
 
-Read below for guidelines on how to create a service account via the CLI and via the Astronomer UI.
+Read below for guidelines on how to create a service account via the CLI and via the Software UI.
 
 ### Create a Service Account via the CLI
 
@@ -101,13 +101,13 @@ With that UUID, run:
 astro workspace service-account create -w <workspace-id> --label <service-account-label> --role <workspace-role>
 ```
 
-### Create a Service Account via the Astronomer UI
+### Create a Service Account via the Software UI
 
-If you prefer to provision a Service Account through the Astronomer UI, start by logging into Astronomer.
+If you prefer to provision a Service Account through the Software UI, start by logging into Astronomer.
 
 #### Navigate to your Deployment's "Configure" Page
 
-From the Astronomer UI, navigate to: `Deployment` > `Service Accounts`
+From the Software UI, navigate to: `Deployment` > `Service Accounts`
 
 ![New Service Account](https://assets2.astronomer.io/main/docs/ci-cd/ci-cd-new-service-account.png)
 
@@ -141,7 +141,7 @@ docker login registry.${BASE_DOMAIN} -u _ -p $${API_KEY_SECRET}
 
 In this example:
 
-- `BASE_DOMAIN` = The domain at which your Enterprise platform is running
+- `BASE_DOMAIN` = The domain at which your Software instance is running
 - `API_KEY_SECRET` = The API Key that you got from the CLI or the UI and stored in your secret manager
 
 ### Building and Pushing an Image
@@ -152,7 +152,7 @@ Once you are authenticated you can build, tag and push your Airflow image to the
 
 #### Registry Address
 
-*Registry Address* tells Docker where to push images to. On Astronomer Enterprise, your private registry is located at `registry.${BASE_DOMAIN}`.
+*Registry Address* tells Docker where to push images to. On Astronomer Software, your private registry is located at `registry.${BASE_DOMAIN}`.
 
 #### Release Name
 
@@ -221,7 +221,7 @@ The following setup is an example implementation of CI/CD using GitHub Actions. 
 
     Ensure the branches match the names of the branches in your repository, and replace `<dev-release-name>` and `<prod-release-name>` with the respective release names of your development and production Airflow Deployments on Astronomer.
 
-5. Test the GitHub Action by making a change on your `dev` branch and committing that change. This should update your development Airflow Deployment on Astronomer, which you can confirm in the Astronomer UI. If that update was successful, try then merging `dev` into `main` to update your production Airflow Deployment. If both updates were successful, you now have a functioning, scalable CI/CD pipeline that can automatically deploy code to multiple Airflow Deployments.
+5. Test the GitHub Action by making a change on your `dev` branch and committing that change. This should update your development Airflow Deployment on Astronomer, which you can confirm in the Software UI. If that update was successful, try then merging `dev` into `main` to update your production Airflow Deployment. If both updates were successful, you now have a functioning, scalable CI/CD pipeline that can automatically deploy code to multiple Airflow Deployments.
 
 > **Note:** The prod-push action as defined here will run on any push to the `main` branch, including a pull request and merge from the `dev` branch as we recommend.
 >

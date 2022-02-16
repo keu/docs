@@ -1,20 +1,20 @@
 ---
 sidebar_label: 'Configure a Deployment'
-title: 'Configure a Deployment on Astronomer Enterprise'
+title: 'Configure a Deployment on Astronomer Software'
 id: configure-deployment
-description: Configure your Airflow Deployment's resources on Astronomer Enterprise.
+description: Configure your Airflow Deployment's resources on Astronomer Software.
 ---
 
 ## Overview
 
-An Airflow Deployment on Astronomer is an instance of Apache Airflow that was created either via the Astronomer UI or the Astronomer CLI. Each Airflow Deployment on Astronomer is hosted on a single Kubernetes namespace, has a dedicated set of resources, and operates with an isolated Postgres Metadata Database.
+An Airflow Deployment on Astronomer is an instance of Apache Airflow that was created either via the Software UI or the Astronomer Software CLI. Each Airflow Deployment on Astronomer is hosted on a single Kubernetes namespace, has a dedicated set of resources, and operates with an isolated Postgres Metadata Database.
 
 This guide walks you through the process of creating and configuring an Airflow Deployment on Astronomer.
 
 ## Prerequisites
 
 To create an Airflow Deployment, you'll need:
-* [The Astronomer CLI](cli-quickstart.md) installed.
+* [The Astronomer Software CLI](cli-quickstart.md) installed.
 * An Astronomer platform at `app.BASEDOMAIN`.
 * An Astronomer [Workspace](manage-workspaces.md).
 
@@ -64,7 +64,7 @@ Apache Airflow requires two primary components:
 - The Airflow Webserver
 - The Airflow Scheduler
 
-To scale either resource, simply adjust the corresponding slider in the Astronomer UI to increase its available computing power.
+To scale either resource, simply adjust the corresponding slider in the Software UI to increase its available computing power.
 
 Read the following sections to help you determine which core resources to scale and when.
 
@@ -118,7 +118,7 @@ Environment Variables can be used to set [Airflow configurations](https://airflo
 
 These can include setting Airflow Parallelism, an SMTP service for Alerts, or a [secrets backend](secrets-backend.md) to manage Airflow Connections and Variables.
 
-Environment Variables can be set for your Airflow Deployment either in the **Variables** tab of the Astronomer UI or in your `Dockerfile`. If you're developing locally, they can also be added to a local `.env` file. For more information on configuring Environment Variables, read [Environment Variables on Astronomer](environment-variables.md).
+Environment Variables can be set for your Airflow Deployment either in the **Variables** tab of the Software UI or in your `Dockerfile`. If you're developing locally, they can also be added to a local `.env` file. For more information on configuring Environment Variables, read [Environment Variables on Astronomer](environment-variables.md).
 
 > **Note**: Environment Variables are distinct from [Airflow Variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html?highlight=variables) and [XComs](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#concepts-xcom), which you can configure directly via the Airflow UI and are used for inter-task communication.
 
@@ -138,7 +138,7 @@ astronomer:
 
 Then, push the updated `config.yaml` file to your installation as described in [Apply a Config Change](apply-platform-config.md).
 
-After applying this change, the **Release Name** field in the Astronomer UI becomes configurable:
+After applying this change, the **Release Name** field in the Software UI becomes configurable:
 
 ![Custom Release Name Field](https://assets2.astronomer.io/main/docs/astronomer-ui/custom-release-name.png)
 

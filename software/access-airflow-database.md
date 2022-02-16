@@ -2,7 +2,7 @@
 sidebar_label: 'Access the Airflow Database'
 title: 'Access the Airflow Database'
 id: access-airflow-database
-description: Access Airflow's Postgres Metadata Database on Astronomer Enterprise.
+description: Access Airflow's Postgres Metadata Database on Astronomer Software.
 
 ---
 
@@ -10,7 +10,7 @@ description: Access Airflow's Postgres Metadata Database on Astronomer Enterpris
 
 On Astronomer, each Airflow deployment is equipped with a PostgreSQL database that serves as Airflow's underlying metadata database and your Airflow Scheduler's source of truth.
 
-On Astronomer Enterprise, a Postgres Metadata database will be created for each individual Airflow Deployment and hosted within your wider Platform Database.
+On Astronomer Software, a Postgres Metadata database will be created for each individual Airflow Deployment and hosted within your wider Platform Database.
 
 This guide will cover guidelines for the following:
 
@@ -24,7 +24,7 @@ This guide will cover guidelines for the following:
 
 ### Risk Associated with Database Access
 
-As noted above, every Airflow Deployment's Metadata Database on Astronomer is hosted within the Platform Database your team initiated during the install process for Astronomer Enterprise. Given its importance to the Scheduler's performance, it's worth noting the risks associated with accessing Airflow's Database.
+As noted above, every Airflow Deployment's Metadata Database on Astronomer is hosted within the Platform Database your team initiated during the install process for Astronomer Software. Given its importance to the Scheduler's performance, it's worth noting the risks associated with accessing Airflow's Database.
 
 We strongly recommend users do not write to the database directly as it can compromise both the integrity of your Airflow Deployment and both of our team's ability to support a user in the case of an issue.
 
@@ -146,7 +146,7 @@ Schema: airflow
 Login: root
 ```
 
-While this information is incorrect in the Airflow UI, the underlying connection will still succeed, as connections set by an Environment Variable take precedence over connection details in the Astronomer UI and in the Metadata Database itself.
+While this information is incorrect in the Airflow UI, the underlying connection will still succeed, as connections set by an Environment Variable take precedence over connection details in the Software UI and in the Metadata Database itself.
 
 For clarity, we intend to make sure this connection is properly populated in upcoming versions of Astronomer.
 
@@ -205,7 +205,7 @@ On Astronomer, your deployment's Postgres credentials are also stored as a [Kube
 
 The rest of this guide will assume the use of [kubectx](https://github.com/ahmetb/kubectx) - a command line tool that allows you to easily switch between Kubernetes Clusters and Namespaces.
 
-To start, switch into the Kubernetes Cluster that hosts Astronomer Enterprise.
+To start, switch into the Kubernetes Cluster that hosts Astronomer Software.
 
 ```
 kubectx

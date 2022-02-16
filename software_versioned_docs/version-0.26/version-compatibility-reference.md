@@ -1,28 +1,28 @@
 ---
-title: 'Version Compatibility Reference for Astronomer Enterprise'
+title: 'Version Compatibility Reference for Astronomer Software'
 sidebar_label: 'Version Compatibility Reference'
 id: version-compatibility-reference
-description: A reference of all adjacent tooling required to run Astronomer Enterprise and corresponding version compatibility.
+description: A reference of all adjacent tooling required to run Astronomer Software and corresponding version compatibility.
 ---
 
 ## Overview
 
-The Astronomer Platform ships with and requires a number of adjacent technologies that support it, including Kubernetes, Helm and Apache Airflow itself. For users looking to install or upgrade Astronomer, we've provided a reference of all required tooling with corresponding versions that are compatible with each version of Astronomer Enterprise. For those running Astronomer Certified (our distribution of Apache Airflow) _without_ our platform, we've included a reference table below as well.
+The Astronomer Platform ships with and requires a number of adjacent technologies that support it, including Kubernetes, Helm and Apache Airflow itself. For users looking to install or upgrade Astronomer, we've provided a reference of all required tooling with corresponding versions that are compatible with each version of Astronomer Software. For those running Astronomer Certified (our distribution of Apache Airflow) _without_ our platform, we've included a reference table below as well.
 
 It's worth noting that while the tables below reference the minimum compatible versions, we typically recommend running the _latest_ of all tooling if possible.
 
-## Astronomer Enterprise
+## Astronomer Software
 
-| Astronomer Platform | Kubernetes                   | Helm | Terraform    | Postgres | Python                                    | Astronomer CLI | Astronomer Certified |
+| Astronomer Platform | Kubernetes                   | Helm | Terraform    | Postgres | Python                                    | Astronomer Software CLI | Astronomer Certified |
 | ------------------- | ---------------------------- | ---- | ------------ | -------- | ----------------------------------------- | -------------- | -------------------- |
 | v0.23               | 1.16, 1.17, 1.18             | 3    | 0.13.5       | 9.6+     | 3.6, 3.7, 3.8                             | 0.23.x         | All                  |
 | v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 3.6  | 0.13.5       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.25.x         | All                  |
 | v0.26               | 1.17, 1.18, 1.19, 1.20, 1.21 | 3.6  | 0.13.5       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.26.x         | All                  |
 | v0.27               | 1.18, 1.19, 1.20, 1.21       | 3.6  | 0.13.5       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.27.x         | All                  |
 
-For more detail on changes between Enterprise versions, refer to [Astronomer Enterprise Release Notes](release-notes.md).
+For more detail on changes between Software versions, refer to [Astronomer Software Release Notes](release-notes.md).
 
-> **Note:** On Astronomer v0.23+, new versions of Apache Airflow on Astronomer Certified are automatically made available in the Astronomer UI and CLI within 24 hours of their publication. For more information, refer to [Available Astronomer Certified Versions](ac-support-policy.md#astronomer-certified-lifecycle-schedule).
+> **Note:** On Astronomer v0.23+, new versions of Apache Airflow on Astronomer Certified are automatically made available in the Software UI and CLI within 24 hours of their publication. For more information, refer to [Available Astronomer Certified Versions](ac-support-policy.md#astronomer-certified-lifecycle-schedule).
 
 > **Note:** Due to the [deprecation of Dockershim](https://kubernetes.io/blog/2020/12/02/dockershim-faq/), Azure does not support private CAs starting with Kubernetes 1.19. If you use a private CA, contact [Astronomer support](https://support.astronomer.io) before upgrading to Kubernetes 1.19 on AKS.
 
@@ -30,7 +30,7 @@ For more detail on changes between Enterprise versions, refer to [Astronomer Ent
 
 ### Kubernetes Version Support Policy
 
-In general, Astronomer Enterprise will support a given version of Kubernetes through its End of Life. This includes Kubernetes upstream and cloud-managed variants like GKE, AKS, and EKS. When a version of Kubernetes reaches End of Life, support will be removed in the next major or minor release of Astronomer Enterprise. For more information on Kubernetes versioning and release policies, refer to [Kubernetes Release History](https://kubernetes.io/releases/) or your cloud provider.
+In general, Astronomer Software will support a given version of Kubernetes through its End of Life. This includes Kubernetes upstream and cloud-managed variants like GKE, AKS, and EKS. When a version of Kubernetes reaches End of Life, support will be removed in the next major or minor release of Astronomer Software. For more information on Kubernetes versioning and release policies, refer to [Kubernetes Release History](https://kubernetes.io/releases/) or your cloud provider.
 
 For more information on upgrading Kubernetes versions, follow the guidelines offered by your cloud provider.
 

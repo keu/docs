@@ -1,23 +1,23 @@
 ---
-title: 'Manage Users on Astronomer Enterprise'
+title: 'Manage Users on Astronomer Software'
 sidebar_label: 'Platform User Management'
 id: manage-platform-users
-description: Add and customize user permissions on Astronomer Enterprise.
+description: Add and customize user permissions on Astronomer Software.
 ---
 
 ## Overview
 
-In addition to Workspace-level [role-based access control (RBAC) functionality](workspace-permissions.md) core to our platform, Astronomer Enterprise allows teams to customize *how* they want users to create accounts on Astronomer and what they're able to do on the platform - both on Astronomer and Airflow.
+In addition to Workspace-level [role-based access control (RBAC) functionality](workspace-permissions.md) core to our platform, Astronomer Software allows teams to customize *how* they want users to create accounts on Astronomer and what they're able to do on the platform - both on Astronomer and Airflow.
 
 Read below for a high-level overview of user management and guidelines around public signups, role customization and adding System Admins. For a list of each role's specific permissions, read [Reference: Platform Permissions](manage-platform-users.md#reference-platform-permissions).
 
 ## Add Users to Astronomer
 
-When Astronomer Enterprise is first deployed, the first user to log in is granted "System Admin" permissions by default (more on that below). From there, a user is created on Astronomer Enterprise by:
+When Astronomer Software is first deployed, the first user to log in is granted "System Admin" permissions by default (more on that below). From there, a user is created on Astronomer Software by:
 
 - Invitation to a Workspace by a Workspace Admin
 - Invitation to Astronomer by a System Admin
-- Signing up via the Astronomer UI without an invitation (requires "Public Signups")
+- Signing up via the Software UI without an invitation (requires "Public Signups")
 
 On Astronomer, administrators have the option to either open the platform to public signups or limit account creation to users invited by others.
 
@@ -27,7 +27,7 @@ On Astronomer, administrators have the option to either open the platform to pub
 
 ### Enable Public Signups
 
-As noted above, public signups allow any user with access to the platform URL (the Astronomer UI) to create an account. If public signups are disabled, users that try to access Astronomer without an invitation from another user will be met with an error.
+As noted above, public signups allow any user with access to the platform URL (the Software UI) to create an account. If public signups are disabled, users that try to access Astronomer without an invitation from another user will be met with an error.
 
 In cases where SMTP credentials are difficult to acquire, enabling this flag might facilitate initial setup, as disabling public signups requires that a user accept an email invitation. Public signups are a configuration available in Astronomer's Houston API and can be enabled in the `config.yaml` file of your Helm chart.
 
@@ -142,7 +142,7 @@ Then, push the configuration change to your platform as described in [Apply a Pl
 
 ### Overview
 
-The System Admin role on Astronomer Enterprise brings a range of cluster-wide permissions that supercedes Workspace-level access and allows a user to monitor and take action across Workspaces, Deployments and Users within a single cluster.
+The System Admin role on Astronomer Software brings a range of cluster-wide permissions that supercedes Workspace-level access and allows a user to monitor and take action across Workspaces, Deployments and Users within a single cluster.
 
 On Astronomer, System Admins specifically can:
 
@@ -154,7 +154,7 @@ On Astronomer, System Admins specifically can:
 - Access Grafana and Kibana for cluster-level monitoring
 - Add other System Admins
 
-By default, the first user to log into an Astronomer Enterprise installation is granted the System Admin permission set.
+By default, the first user to log into an Astronomer Software installation is granted the System Admin permission set.
 
 ### System Editor, Viewer
 
@@ -162,13 +162,13 @@ In addition to the commonly used System Admin role, the Astronomer platform also
 
 No user is assigned the System Editor or Viewer Roles by default, but they can be added by System Admins via our API. Once assigned, System Viewers, for example, can access both Grafana and Kibana but don't have permission to delete a Workspace they're not a part of.
 
-All three permission sets are entirely customizable on Astronomer Enterprise. For a full breakdown of the default configurations attached to the System Admin, Editor and Viewer Roles, refer to the [Houston API source code](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.16/default.yaml).
+All three permission sets are entirely customizable on Astronomer Software. For a full breakdown of the default configurations attached to the System Admin, Editor and Viewer Roles, refer to the [Houston API source code](https://github.com/astronomer/docs/tree/main/enterprise_configs/0.16/default.yaml).
 
 For guidelines on assigning users any System Level role, read below.
 
 #### Assign Users System-Level Roles
 
-System Admins can be added to Astronomer Enterprise via the 'System Admin' tab of the Astronomer UI.
+System Admins can be added to Astronomer Software via the 'System Admin' tab of the Software UI.
 
 Keep in mind that:
 - Only existing System Admins can grant the SysAdmin role to another user
@@ -182,11 +182,11 @@ To verify a user was successfully granted the SysAdmin role, ensure they can do 
 
 - Navigate to `grafana.BASEDOMAIN`
 - Navigate to `kibana.BASEDOMAIN`
-- Access the 'System Admin' tab from the top left menu of the Astronomer UI
+- Access the 'System Admin' tab from the top left menu of the Software UI
 
 ## Reference: System Permissions
 
-This section contains the specific default permissions for each System user role on Astronomer. System roles apply to all Workspaces, users, and Deployments within a single Astronomer Enterprise installation.
+This section contains the specific default permissions for each System user role on Astronomer. System roles apply to all Workspaces, users, and Deployments within a single Astronomer Software installation.
 
 ### System Viewer
 
@@ -194,8 +194,8 @@ The System Viewer has the following permissions by default:
 
 - `system.airflow.get`: View the Airflow UI for any Deployment
 - `system.deployment.variables.get`: View [environment variables](environment-variables.md) for any Deployment
-- `system.deployments.get`: View any setting for any Deployment in the Astronomer UI
-- `system.invites.get`: View all pending user invites in the **System Admin** tab of the Astronomer UI
+- `system.deployments.get`: View any setting for any Deployment in the Software UI
+- `system.invites.get`: View all pending user invites in the **System Admin** tab of the Software UI
 - `system.invite.get`: View information for any pending user invite
 - `system.monitoring.get`: Access to [Grafana](grafana-metrics.md) and [Kibana](kibana-logging.md) for system-level monitoring
 - `system.serviceAccounts.get`: View [service accounts](ci-cd.md#step-1-create-a-service-account) for any Deployment or Workspace
@@ -269,7 +269,7 @@ For a given Deployment, a Deployment Viewer has the following permissions:
 - `deployment.config.get`: View the Deployment's settings
 - `deployment.logs.get`: View the Deployment's logs
 - `deployment.images.pull`: Access the Deployment's running Docker image
-- `deployment.metrics.get`: View the Deployment's **Metrics** tab in the Astronomer UI
+- `deployment.metrics.get`: View the Deployment's **Metrics** tab in the Software UI
 - `deployment.serviceAccounts.get`: View any [service account](ci-cd.md#step-1-create-a-service-account) for the Deployment
 - `deployment.variables.get`: View the Deployment's [environment variables](environment-variables.md)
 - `deployment.users.get`: View the list of users with access to the Deployment
@@ -282,7 +282,7 @@ For a given Deployment, the Deployment Editor has all of the same default permis
 
 - `deployment.airflow.user`: Airflow [user permissions](https://airflow.apache.org/docs/apache-airflow/stable/security/access-control.html#user) for all Deployments, including modifying task runs and DAG runs
 - `deployment.config.update`: Modify the Deployment's settings
-- `deployment.images.push`: Push code to the Deployment via the Astronomer CLI
+- `deployment.images.push`: Push code to the Deployment via the Astronomer Software CLI
 - `deployment.serviceAccounts.create`: Create a Deployment-level service account
 - `deployment.serviceAccounts.update`: Modify a Deployment-level service account
 - `deployment.serviceAccounts.delete`: Delete a Deployment-level service account

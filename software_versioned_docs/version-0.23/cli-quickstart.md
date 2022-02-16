@@ -1,8 +1,8 @@
 ---
-title: "Astronomer Enterprise CLI Quickstart"
-sidebar_label: "Enterprise CLI Quickstart"
+title: "Astronomer Software CLI Quickstart"
+sidebar_label: "Software CLI Quickstart"
 id: cli-quickstart
-description: Establish a local testing environment and deploy to Astronomer Enterprise from the CLI.
+description: Establish a local testing environment and deploy to Astronomer Software from the CLI.
 ---
 
 ## Overview
@@ -11,7 +11,7 @@ Astronomer's [open source CLI](https://github.com/astronomer/astro-cli) is the e
 
 From the CLI, both Astronomer and non-Astronomer users can create a local Apache Airflow instance with a dedicated Webserver, Scheduler and Postgres Database. Once you initialize a project on Astronomer, you can easily customize your image (e.g. add Python or OS-level packages, plugins etc.) and push that image to run on your local machine.
 
-If you're an Astronomer Enterprise user, you might use the Astronomer CLI to do the following:
+If you're an Astronomer Software user, you might use the Astronomer Software CLI to do the following:
 
 - Authenticate to Astronomer
 - List Astronomer Workspaces and Deployments you have access to
@@ -19,11 +19,11 @@ If you're an Astronomer Enterprise user, you might use the Astronomer CLI to do 
 - Create Astronomer Service Accounts, Users and Deployments
 - Append annotations to your Deployment's Pods
 
-This guide provides steps for installing the CLI, initializing an Astronomer project, and deploying to an Airflow instance on your local machine. For more information on specific CLI workflows and features, read the [Astronomer CLI Reference Guide](cli-reference.md).
+This guide provides steps for installing the CLI, initializing an Astronomer project, and deploying to an Airflow instance on your local machine. For more information on specific CLI workflows and features, read the [Astronomer Software CLI Reference Guide](cli-reference.md).
 
-## Step 1: Install the Astronomer CLI
+## Step 1: Install the Astronomer Software CLI
 
-There are two ways to install any version of the Astronomer CLI:
+There are two ways to install any version of the Astronomer Software CLI:
 
 - [Homebrew](https://brew.sh/)
 - cURL
@@ -32,7 +32,7 @@ There are two ways to install any version of the Astronomer CLI:
 
 ### Prerequisites
 
-The Astronomer CLI installation process requires [Docker](https://www.docker.com/) (v18.09 or higher).
+The Astronomer Software CLI installation process requires [Docker](https://www.docker.com/) (v18.09 or higher).
 
 ### Install with Homebrew
 
@@ -42,7 +42,7 @@ If you have Homebrew installed, run:
 brew install astronomer/tap/astro
 ```
 
-To install a specific version of the Astro CLI, you'll have to specify `@major.minor.patch`. To install v0.23.0, for example, run:
+To install a specific version of the Astronomer Software CLI, you'll have to specify `@major.minor.patch`. To install v0.23.0, for example, run:
 
 ```sh
 brew install astronomer/tap/astro@0.23.0
@@ -50,13 +50,13 @@ brew install astronomer/tap/astro@0.23.0
 
 ### Install with cURL
 
-To install the latest version of the Astronomer CLI, run:
+To install the latest version of the Astronomer Software CLI, run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash
 ```
 
-To install a specific version of the Astronomer CLI, specify `-s -- major.minor.patch` as a flag at the end of the cURL command. To install v0.23.0, for example, run:
+To install a specific version of the Astronomer Software CLI, specify `-s -- major.minor.patch` as a flag at the end of the cURL command. To install v0.23.0, for example, run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash -s -- v0.23.0
@@ -77,7 +77,7 @@ curl -sSL https://install.astronomer.io | sudo bash -s < /dev/null
 
 #### Install the CLI on Apple M1 Machines
 
-To install the Astronomer CLI on a machine with an [Apple M1 chip](https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/), you must use Homebrew. Because the Astronomer CLI does not yet have an ARM64 build, installing it via Homebrew on a machine with an Apple M1 chip requires a few additional steps:
+To install the Astronomer Software CLI on a machine with an [Apple M1 chip](https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/), you must use Homebrew. Because the Astronomer Software CLI does not yet have an ARM64 build, installing it via Homebrew on a machine with an Apple M1 chip requires a few additional steps:
 
 1. Run the following command to install the x86_64 version of Homebrew:
 
@@ -86,7 +86,7 @@ To install the Astronomer CLI on a machine with an [Apple M1 chip](https://www.a
     ```
 
 2. Confirm that the script successfully installed Homebrew on `/usr/local`.
-3. Run the following command to install the Astronomer CLI:
+3. Run the following command to install the Astronomer Software CLI:
 
     ```sh
     arch -x86_64 /usr/local/Homebrew/bin/brew install astronomer/tap/astro
@@ -96,7 +96,7 @@ If you still have issues during installation, ensure that [Rosetta 2](https://su
 
 ## Step 2: Confirm the Install
 
-To make sure that you have the Astronomer CLI installed on your machine, run:
+To make sure that you have the Astronomer Software CLI installed on your machine, run:
 
 ```bash
 astro version
@@ -105,7 +105,7 @@ astro version
 If the installation was successful, you should see the version of the CLI that you installed in the output:
 
 ```
-Astro CLI Version: 0.23.2
+Astronomer Software CLI Version: 0.23.2
 Git Commit: c4fdeda96501ac9b1f3526c97a1c5c9b3f890d71
 ```
 
@@ -126,9 +126,9 @@ Available Commands:
   deployment      Manage airflow deployments
   dev             Manage airflow projects
   help            Help about any command
-  upgrade         Check for newer version of Astronomer CLI
+  upgrade         Check for newer version of Astronomer Software CLI
   user            Manage astronomer user
-  version         Astronomer CLI version
+  version         Astronomer Software CLI version
   workspace       Manage Astronomer workspaces
 
 Flags:
@@ -139,7 +139,7 @@ Use "astro [command] --help" for more information about a command.
 
 ## Step 3: Initialize an Airflow Project
 
-Once the Astronomer CLI is installed, the next step is to initialize an Airflow project on Astronomer. To do so:
+Once the Astronomer Software CLI is installed, the next step is to initialize an Airflow project on Astronomer. To do so:
 
 1. Create a new directory on your machine by running the following command:
 
@@ -166,7 +166,7 @@ Once the Astronomer CLI is installed, the next step is to initialize an Airflow 
     └── requirements.txt # For any Python packages
     ```
 
-    These files make up the Docker image you'll then push to the Airflow instance on your local machine or to an Airflow Deployment on Astronomer Enterprise.
+    These files make up the Docker image you'll then push to the Airflow instance on your local machine or to an Airflow Deployment on Astronomer Software.
 
 ## Step 4: Start Airflow Locally
 
@@ -200,13 +200,13 @@ You can now push your project to a local instance of Airflow. To do so:
 
 ## Step 5: Authenticate to Astronomer
 
-To authenticate to Astronomer Cloud via the Astronomer CLI, run:
+To authenticate to Astronomer Cloud via the Astronomer Software CLI, run:
 
 ```
 astro auth login BASEDOMAIN
 ```
 
-If you created your account with a username and password, you'll be prompted to enter them directly in your terminal. If you did so via Google or GitHub, you'll be prompted to grab a temporary token from the Astronomer UI in your browser.
+If you created your account with a username and password, you'll be prompted to enter them directly in your terminal. If you did so via Google or GitHub, you'll be prompted to grab a temporary token from the Software UI in your browser.
 
 If you do not yet have an account on Astronomer, ask a Workspace Admin on your team to send you an invitation.
 
@@ -251,15 +251,15 @@ astro dev start
 
 > **Note:** As you develop locally, it may be necessary to reset your Docker containers and metadata DB for testing purposes. To do so, run [`astro dev kill`](cli-reference.md#astro-dev-kill) instead of [`astro dev stop`](cli-reference.md#astro-dev-stop) when rebuilding your image. This will delete all data associated with your local Postgres metadata database, including Airflow Connections, logs, and task history.
 
-## Astronomer CLI and Platform Versioning
+## Astronomer Software CLI and Platform Versioning
 
-For every minor version of Astronomer, a corresponding minor version of the Astronomer CLI is made available. To ensure that you can continue to develop locally and deploy successfully, you should always upgrade to the corresponding minor version of the Astronomer CLI when you upgrade to a new minor version of Astronomer. If you're on Astronomer v0.23+, for example, Astronomer CLI v0.23+ is required.
+For every minor version of Astronomer, a corresponding minor version of the Astronomer Software CLI is made available. To ensure that you can continue to develop locally and deploy successfully, you should always upgrade to the corresponding minor version of the Astronomer Software CLI when you upgrade to a new minor version of Astronomer. If you're on Astronomer v0.23+, for example, Astronomer Software CLI v0.23+ is required.
 
-While upgrading to a new minor version of Astronomer requires upgrading the Astronomer CLI, subsequent patch versions will remain compatible. For instance, consider a system where Astronomer is on v0.25.2 and the Astronomer CLI is on v0.25.0. While we encourage users to always run the latest available version of all components, these patch versions of Astronomer and the Astronomer CLI remain compatible because they're both in the v0.25 series.
+While upgrading to a new minor version of Astronomer requires upgrading the Astronomer Software CLI, subsequent patch versions will remain compatible. For instance, consider a system where Astronomer is on v0.25.2 and the Astronomer Software CLI is on v0.25.0. While we encourage users to always run the latest available version of all components, these patch versions of Astronomer and the Astronomer Software CLI remain compatible because they're both in the v0.25 series.
 
-### Check Running Versions of Astronomer and the Astronomer CLI
+### Check Running Versions of Astronomer and the Astronomer Software CLI
 
-To check your working versions of Astronomer (`Astro Server Version`) and the Astronomer CLI (`Astro CLI`), run:
+To check your working versions of Astronomer (`Astro Server Version`) and the Astronomer Software CLI (`Astronomer Software CLI`), run:
 
 ```sh
 astro version
@@ -269,24 +269,24 @@ This command will output something like the following:
 
 ```sh
 $ astro version
-Astro CLI Version: 0.23.2
+Astronomer Software CLI Version: 0.23.2
 Astro Server Version: 0.23.9
 Git Commit: 748ca2e9de1e51e9f48f9d85eb8315b023debc2f
 ```
 
-Here, the listed versions of Astronomer and the Astronomer CLI are compatible because they're both in the v0.25 series. If the minor versions for the two components do not match, you'll receive an error message in your command line with instructions to either upgrade or downgrade the Astronomer CLI accordingly. If you're running v0.16.10 of Astronomer and v0.25.0 of the Astronomer CLI, for example, you'll be instructed to downgrade the CLI to the latest in the v0.16 series. If you have access to more than one Astronomer Enterprise installation, `Astro Server Version` will correspond to the `<base-domain>` that you're currently authenticated into.
+Here, the listed versions of Astronomer and the Astronomer Software CLI are compatible because they're both in the v0.25 series. If the minor versions for the two components do not match, you'll receive an error message in your command line with instructions to either upgrade or downgrade the Astronomer Software CLI accordingly. If you're running v0.16.10 of Astronomer and v0.25.0 of the Astronomer Software CLI, for example, you'll be instructed to downgrade the CLI to the latest in the v0.16 series. If you have access to more than one Astronomer Software installation, `Astro Server Version` will correspond to the `<base-domain>` that you're currently authenticated into.
 
-For more information on Astronomer and Astronomer CLI releases, refer to:
+For more information on Astronomer and Astronomer Software CLI releases, refer to:
 
 * [CLI Release Changelog](https://github.com/astronomer/astro-cli/releases)
 * [Astronomer Release Notes](release-notes.md)
 
 ## Next Steps
 
-After installing and trying out the Astronomer CLI, we recommend reading through the following guides:
+After installing and trying out the Astronomer Software CLI, we recommend reading through the following guides:
 
-* [Astronomer CLI Reference Guide](cli-reference.md)
-* [Deploy DAGs via the Astronomer CLI](deploy-cli.md)
+* [Astronomer Software CLI Reference Guide](cli-reference.md)
+* [Deploy DAGs via the Astronomer Software CLI](deploy-cli.md)
 * [Deploy DAGs via NFS Volume](deploy-nfs.md)
 * [Customize Your Image](customize-image.md)
 * [Upgrade Apache Airflow on Astronomer](manage-airflow-versions.md)

@@ -1,5 +1,5 @@
 ---
-title: "Install Astronomer Enterprise in an Airgapped Environment"
+title: "Install Astronomer Software in an Airgapped Environment"
 sidebar_label: "Install in an Airgapped Environment"
 description: "Infrastructure considerations and Helm configuration to install Astronomer in an airgapped environment"
 id: install-airgapped
@@ -7,7 +7,7 @@ id: install-airgapped
 
 ## Overview
 
-By default, the Astronomer installation process requires accessing public repositories to download various components:
+By default, the Software installation process requires accessing public repositories to download various components:
 
 - Docker images from `quay.io/astronomer`, `docker.io`, and `gcr.io`
 - Astronomer Helm charts from `helm.astronomer.io`
@@ -40,7 +40,7 @@ You can also set up your own registry using a dedicated registry service such as
 
 ## Step 2: Fetch Images from Astronomer's Helm Template
 
-The images and tags which are required for your Astronomer installation depend on the version of Astronomer you're installing. Image tags are subject to change, even within existing versions, for example to resolve critical security issues, and therefore not listed here. To gather a list of exact images and tags required for your Astronomer Helm chart version, you can template the Helm chart and fetch the rendered image tags:
+The images and tags which are required for your Software installation depend on the version of Astronomer you're installing. Image tags are subject to change, even within existing versions, for example to resolve critical security issues, and therefore not listed here. To gather a list of exact images and tags required for your Astronomer Helm chart version, you can template the Helm chart and fetch the rendered image tags:
 
 ```bash
 $ helm template astronomer/astronomer --version 0.27 | grep "image: " | sed 's/^ *//g' | sort | uniq
@@ -86,7 +86,7 @@ This will set the repository for all Docker images specified in the Astronomer H
 Alternatively, you can configure each image (repository) and/or tag individually. This is useful in certain situations, for example where your image tags might vary from Astronomer's default tags, or if your organization has a naming convention of prepending image tags with `myteam-`.
 
 ```yaml
-# Example configuration only. To determine the necessary images, render Helm template for your Astronomer installation version.
+# Example configuration only. To determine the necessary images, render Helm template for your Software installation version.
 alertmanager:
   images:
     alertmanager:
@@ -365,7 +365,7 @@ To validate if the updates JSON is accessible you have several options:
     $ curl http://localhost:8001/api/v1/namespaces/astronomer/services/astronomer-certified/astronomer-certified.json
     ```
 
-- Complete the entire Astronomer installation, then use one of the `astro-ui` pods which include `bash` and `curl`:
+- Complete the entire Software installation, then use one of the `astro-ui` pods which include `bash` and `curl`:
 
     ```bash
     $ kubectl exec -it astronomer-astro-ui-7cfbbb97fd-fv8kl -n=astronomer -- /bin/bash

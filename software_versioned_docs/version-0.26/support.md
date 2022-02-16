@@ -1,5 +1,5 @@
 ---
-title: 'Support for Astronomer Enterprise'
+title: 'Support for Astronomer Software'
 navTitle: 'Support'
 id: support
 description: Get the most from Astronomer Support.
@@ -67,8 +67,8 @@ In order for our team to serve you most effectively, it's critical that we under
 
     Examples:
 
-    - There is a bug in the Astronomer UI.
-    - Astronomer CLI usage is impaired (for example, there are incompatibility errors between installed packages).
+    - There is a bug in the Software UI.
+    - Astronomer Software CLI usage is impaired (for example, there are incompatibility errors between installed packages).
     - There is an Airflow issue that has a code-based solution.
     - You received a log alert on Astronomer.
 

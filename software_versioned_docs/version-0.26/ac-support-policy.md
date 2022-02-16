@@ -96,15 +96,15 @@ Within the maintenance window of each Astronomer Certified version, the followin
 - A Python wheel and set of Docker images corresponding to that version are available for download via [Quay.io](http://quay.io), PyPi and [Downloads](https://www.astronomer.io/downloads).
 - Astronomer will regularly publish hotfixes for bug or security issues identified as high priority.
 - The Astronomer Support team will offer support for paying customers running a supported version of AC via the [Astronomer Support Portal](https://support.astronomer.io).
-- A user can create a new Airflow Deployment via the Astronomer UI, CLI, or API with any supported version of AC.
+- A user can create a new Airflow Deployment via the Software UI, CLI, or API with any supported version of AC.
 
 When the maintenance window for a version of AC ends, the following is true:
 
 - The Astronomer Support team is not obligated to answer questions regarding an Airflow Deployment that is running that version.
-- New Airflow Deployments cannot be created with that version of AC. Unsupported versions will _not_ render as an option in the Deployment creation process from the Astronomer UI, API, or CLI.
-- The latest version of the Astronomer CLI will show a warning if a user pushes a Docker image to Astronomer that corresponds to that version.
+- New Airflow Deployments cannot be created with that version of AC. Unsupported versions will _not_ render as an option in the Deployment creation process from the Software UI, API, or CLI.
+- The latest version of the Astronomer Software CLI will show a warning if a user pushes a Docker image to Astronomer that corresponds to that version.
 
-To ensure reliability, service will not be interrupted for Astronomer Deployments running a version of AC that is no longer supported. Unsupported versions will also continue to be available for local development and testing via the Astronomer CLI.
+To ensure reliability, service will not be interrupted for Astronomer Deployments running a version of AC that is no longer supported. Unsupported versions will also continue to be available for local development and testing via the Astronomer Software CLI.
 
 ### End of Maintenance Date
 

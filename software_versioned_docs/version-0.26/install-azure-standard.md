@@ -1,11 +1,11 @@
 ---
 sidebar_label: 'Azure'
-title: 'Install Astronomer Enterprise on Azure AKS'
+title: 'Install Astronomer Software on Azure AKS'
 id: install-azure
-description: Install Astronomer Enterprise on Azure Kubernetes Service (AKS).
+description: Install Astronomer Software on Azure Kubernetes Service (AKS).
 ---
 
-This guide describes the steps to install Astronomer Enterprise on Azure, which allows you to deploy and scale [Apache Airflow](https://airflow.apache.org/) on an [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/) (AKS) cluster.
+This guide describes the steps to install Astronomer Software on Azure, which allows you to deploy and scale [Apache Airflow](https://airflow.apache.org/) on an [Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/) (AKS) cluster.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ Once created, your Astronomer base domain will be linked to a variety of sub-ser
 
 For the base domain `astro.mydomain.com`, for example, here are some corresponding URLs that your users would be able to reach:
 
-* Astronomer UI: `app.astro.mydomain.com`
+* Software UI: `app.astro.mydomain.com`
 * Airflow Deployments: `deployments.astro.mydomain.com/uniquely-generated-airflow-name/airflow`
 * Grafana Dashboard: `grafana.astro.mydomain.com`
 * Kibana Dashboard: `kibana.astro.mydomain.com`
@@ -45,7 +45,7 @@ The steps below will walk you through how to:
 
 You can view Microsoft Azure's Web Portal at https://portal.azure.com/.
 
-> Note: Each version of Astronomer Enterprise is compatible with only a particular set of Kubernetes versions. For more information, refer to Astronomer's [Version Compatibility Reference](version-compatibility-reference.md).
+> Note: Each version of Astronomer Software is compatible with only a particular set of Kubernetes versions. For more information, refer to Astronomer's [Version Compatibility Reference](version-compatibility-reference.md).
 
 ### Create an Azure Resource Group
 
@@ -109,7 +109,7 @@ Once Astronomer is running, each Airflow Deployment that you create will have it
 
 ## Step 4: Configure TLS
 
-We recommend running Astronomer Enterprise on a dedicated domain (`BASEDOMAIN`) or subdomain (`astro.BASEDOMAIN`).
+We recommend running Astronomer Software on a dedicated domain (`BASEDOMAIN`) or subdomain (`astro.BASEDOMAIN`).
 
 In order for users to access the web applications they need to manage Astronomer, you'll need a TLS certificate that covers the following subdomains:
 
@@ -357,9 +357,9 @@ This will ensure that you pull the latest from our Helm repository. Finally, run
 helm install -f config.yaml --version=0.26 --namespace=astronomer <your-platform-release-name> astronomer/astronomer
 ```
 
-This command will install the latest available patch version of Astronomer Enterprise v0.26. To override latest and specify a patch, add it to the `--version=` flag in the format of `0.26.x`. To install Astronomer Enterprise v0.26.0, for example, specify `--version=0.26.0`. For information on all available patch versions, refer to [Enterprise Release Notes](release-notes.md).
+This command will install the latest available patch version of Astronomer Software v0.26. To override latest and specify a patch, add it to the `--version=` flag in the format of `0.26.x`. To install Astronomer Software v0.26.0, for example, specify `--version=0.26.0`. For information on all available patch versions, refer to [Software Release Notes](release-notes.md).
 
-Once you run the commands above, a set of Kubernetes pods will be generated in your namespace. These pods power the individual services required to run our platform, including the Astronomer UI and Houston API.
+Once you run the commands above, a set of Kubernetes pods will be generated in your namespace. These pods power the individual services required to run our platform, including the Software UI and Houston API.
 
 ## Step 10: Verify all pods are up
 
@@ -463,15 +463,15 @@ alertmanager.astro.mydomain.com
 prometheus.astro.mydomain.com
 ```
 
-## Step 12: Verify You Can Access the Astronomer UI
+## Step 12: Verify You Can Access the Software UI
 
-Go to `app.BASEDOMAIN` to see the Astronomer UI.
+Go to `app.BASEDOMAIN` to see the Software UI.
 
-Consider this your new Airflow control plane. From the Astronomer UI, you'll be able to both invite and manage users as well as create and monitor Airflow Deployments on the platform.
+Consider this your new Airflow control plane. From the Software UI, you'll be able to both invite and manage users as well as create and monitor Airflow Deployments on the platform.
 
 ## Step 13: Verify Your TLS Setup
 
-To check if your TLS certificates were accepted, log in to the Astronomer UI. Then, go to `app.BASEDOMAIN/token` and run:
+To check if your TLS certificates were accepted, log in to the Software UI. Then, go to `app.BASEDOMAIN/token` and run:
 
 ```
 curl -v -X POST https://houston.BASEDOMAIN/v1 -H "Authorization: Bearer <token>"
@@ -483,7 +483,7 @@ Verify that this output matches with that of the following command, which doesn'
 curl -v -k -X POST https://houston.BASEDOMAIN/v1 -H "Authorization: Bearer <token>"
 ```
 
-Next, to make sure the registry is accepted by Astronomer's local docker client, try authenticating to Astronomer with the Astronomer CLI:
+Next, to make sure the registry is accepted by Astronomer's local docker client, try authenticating to Astronomer with the Astronomer Software CLI:
 
 ```sh
 astro auth login <your-astronomer-base-domain>
@@ -496,7 +496,7 @@ $ mkdir -p /etc/docker/certs.d
 $ cp privateCA.pem /etc/docker/certs.d/
 ```
 
-Finally, try running `$ astro deploy` on a test deployment. Create a deployment in the Astronomer UI, then run:
+Finally, try running `$ astro deploy` on a test deployment. Create a deployment in the Software UI, then run:
 ```sh
 $ mkdir demo
 $ cd demo
@@ -509,12 +509,12 @@ If you have Airflow pods in the state "ImagePullBackoff", check the pod descript
 
 ## What's Next
 
-To help you make the most of Astronomer Enterprise, check out the following additional resources:
+To help you make the most of Astronomer Software, check out the following additional resources:
 
-* [Renew TLS Certificates on Astronomer Enterprise](renew-tls-cert.md)
+* [Renew TLS Certificates on Astronomer Software](renew-tls-cert.md)
 * [Integrating an Auth System](integrate-auth-system.md)
 * [Configuring Platform Resources](configure-platform-resources.md)
-* [Managing Users on Astronomer Enterprise](manage-platform-users.md)
+* [Managing Users on Astronomer Software](manage-platform-users.md)
 
 ### Astronomer Support Team
 

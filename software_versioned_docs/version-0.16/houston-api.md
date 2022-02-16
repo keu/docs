@@ -2,14 +2,14 @@
 sidebar_label: 'Houston API'
 title: 'Houston API'
 id: houston-api
-description: Use the GraphQL Playground to interact with Astronomer Enterprise's API.
+description: Use the GraphQL Playground to interact with Astronomer Software's API.
 ---
 
 ## Overview
 
 Astronomer's Houston API is the source of truth across the entire Astronomer platform.
 
-For Astronomer Enterprise users, our API is an easy way to do any of the following:
+For Astronomer Software users, our API is an easy way to do any of the following:
 
 1. Query the platform's database for information about a user, Workspace, or Deployment
 2. Make changes to the platform's database (with the right permissions)
@@ -21,7 +21,7 @@ For example, you can:
 - Add a user to a Workspace
 - Make a user a System Administrator
 
-Anything you can do via the Astronomer UI, you can do programmatically via Astronomer's Houston API. Read below for guidelines.
+Anything you can do via the Software UI, you can do programmatically via Astronomer's Houston API. Read below for guidelines.
 
 ## Getting Started
 
@@ -35,7 +35,7 @@ In short, the Playground is a portal that allows you to write GraphQL queries di
 
 The URL at which you can reach Houston's GraphQL playground depends on the platform you're running. For your installation of Astronomer, it will be `https://houston.BASEDOMAIN/v1/`.
 
-E.g. If you're an Enterprise customer and your basedomain were `Astronomer`, you would navigate to https://houston.astronomer/v1/.
+E.g. If you're a Software customer and your basedomain were `Astronomer`, you would navigate to https://houston.astronomer/v1/.
 
 ### Authenticate
 
@@ -181,7 +181,7 @@ To delete a Deployment, you'll need:
 
 > **Note:** For more information about the SysAdmin role, reference our ["User Management" doc](manage-platform-users.md).
 
-If you don't already have a Deployment ID, run `astro deployment list` via the Astronomer CLI or follow the steps in the "Query an Airflow Deployment" section above.
+If you don't already have a Deployment ID, run `astro deployment list` via the Astronomer Software CLI or follow the steps in the "Query an Airflow Deployment" section above.
 
 Then, to delete a Deployment, run the following:
 
@@ -202,7 +202,7 @@ To create a Deployment user, you'll need:
 1. Workspace Admin privileges
 2. A Deployment ID
 
-If you don't already have a Deployment ID, run `astro deployment list` via the Astronomer CLI or follow the steps in the "Query an Airflow Deployment" section above.
+If you don't already have a Deployment ID, run `astro deployment list` via the Astronomer Software CLI or follow the steps in the "Query an Airflow Deployment" section above.
 
 First, add the following to your GraphQL playground:
 
@@ -288,9 +288,9 @@ mutation verifyEmail {
 
 > **Note:** To run this mutation, ensure that the user in question has already begun creating an account on the platform (i.e. the user has signed up and the platform has generated an "invite token" for that user).
 
-### Add a SysAdmin (_Enterprise Only_)
+### Add a SysAdmin (_Software Only_)
 
-System Admins can be added either via the Astronomer UI ('System Admin' > 'User' > 'User Details') or via an API call to Houston. To run the mutation in the GraphQL Playground, you'll need:
+System Admins can be added either via the Software UI ('System Admin' > 'User' > 'User Details') or via an API call to Houston. To run the mutation in the GraphQL Playground, you'll need:
 
 - `userUuid`
 - `role` (SYSTEM_ADMIN)
@@ -314,7 +314,7 @@ If you're assigning a user a different System-Level Role, replace `SYSTEM_ADMIN`
 
 ### Create a service account
 
-You can create Deployment and Workspace-level accounts in the Astronomer UI as described in [Deploy to Astronomer via CI/CD](ci-cd.md). Alternatively, you can create platform-level service accounts programatically via the Houston API. To create a service account via the Houston API, run the following in your GraphQL Playground:
+You can create Deployment and Workspace-level accounts in the Software UI as described in [Deploy to Astronomer via CI/CD](ci-cd.md). Alternatively, you can create platform-level service accounts programatically via the Houston API. To create a service account via the Houston API, run the following in your GraphQL Playground:
 
 ```graphql
 mutation CreateSystemServiceAccount {
@@ -331,7 +331,7 @@ To programmatically update environment variables, you'll need:
 1. A Deployment ID
 2. A Deployment release name
 
-If you don't already have a Deployment ID, run `astro deployment list` via the Astronomer CLI or follow the steps in the "Query an Airflow Deployment" section above.
+If you don't already have a Deployment ID, run `astro deployment list` via the Astronomer Software CLI or follow the steps in the "Query an Airflow Deployment" section above.
 
 Then, in your GraphQL Playground, run the following:
 
@@ -372,7 +372,7 @@ As input, you need:
 2. Email address of the user
 3. Role you'd like to designate that user (e.g. Workspace "Admin", "Editor" or "Viewer")
 
-If you don't already have a Workspace ID, run `astro workspace list` via the Astronomer CLI.
+If you don't already have a Workspace ID, run `astro workspace list` via the Astronomer Software CLI.
 
 With that information, run the following:
 

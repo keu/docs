@@ -2,16 +2,16 @@
 title: 'Astronomer v0.26 Release Notes'
 sidebar_label: 'Release Notes'
 id: release-notes
-description: Astronomer Enterprise release notes.
+description: Astronomer Software release notes.
 ---
 
 ## Overview
 
-This document includes all release notes for Astronomer Enterprise v0.26.
+This document includes all release notes for Astronomer Software v0.26.
 
-Astronomer v0.27 is the latest Stable version of Astronomer Enterprise, while v0.25 remains the latest long-term support (LTS) version. To upgrade to Astronomer v0.26 from v0.25, read [Upgrade to v0.26](upgrade-astronomer-stable.md). For more information about Enterprise release channels, read [Release and Lifecycle Policies](release-lifecycle-policy.md).
+Astronomer v0.27 is the latest Stable version of Astronomer Software, while v0.25 remains the latest long-term support (LTS) version. To upgrade to Astronomer v0.26 from v0.25, read [Upgrade to v0.26](upgrade-astronomer-stable.md). For more information about Software release channels, read [Release and Lifecycle Policies](release-lifecycle-policy.md).
 
-We're committed to testing all Astronomer Enterprise versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
+We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
 ## 0.26.6
 
@@ -51,7 +51,7 @@ As part of supporting deferrable operators, you can provision multiple Triggerer
 
 ### CLI Verbosity Flag
 
-You can now specify a `--verbosity` flag for all Astronomer CLI commands. When you specify this flag with a CLI command, the CLI prints out [Logrus](https://github.com/sirupsen/logrus) logs as the command runs. This is useful for debugging any errors that might result from a CLI command.
+You can now specify a `--verbosity` flag for all Astronomer Software CLI commands. When you specify this flag with a CLI command, the CLI prints out [Logrus](https://github.com/sirupsen/logrus) logs as the command runs. This is useful for debugging any errors that might result from a CLI command.
 
 The flag prints out different levels of logs depending on the value that you pass it. Each possible value (`debug`, `info`, `warn`, `error`, `fatal`, and `panic`) maps to a different Logrus logging level. For more information about these logging levels, read the [Logrus documentation](https://github.com/sirupsen/logrus#level-logging).
 
@@ -65,7 +65,7 @@ The flag prints out different levels of logs depending on the value that you pas
 
 ### Bug Fixes
 
-- Fixed an issue where you could not update an existing Deployment's IAM role via the Astronomer CLI
+- Fixed an issue where you could not update an existing Deployment's IAM role via the Astronomer Software CLI
 - Fixed an issue where Deployments would not work on clusters with custom domains
 - Fixed error handling when interacting with a Deployment that wasn't fully spun up
 - Added a new validation step for Airflow Helm chart values configured in the `astronomer.houston.config.deployments.helm.airflow` section of `config.yaml`

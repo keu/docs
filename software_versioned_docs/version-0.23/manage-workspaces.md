@@ -8,9 +8,9 @@ id: manage-workspaces
 
 A Workspace is the highest level of organization on Astronomer. From a Workspace, you can manage a collection of Airflow Deployments and a set of users with varying levels of access to those Deployments.
 
-If you're not a member of any Workspaces already, you'll be prompted to create one as soon as you log in to the Astronomer UI. If you already have access to at least 1 Workspace, you can create a new one using the **New Workspace** button in the sidebar of the Astronomer UI.
+If you're not a member of any Workspaces already, you'll be prompted to create one as soon as you log in to the Software UI. If you already have access to at least 1 Workspace, you can create a new one using the **New Workspace** button in the sidebar of the Software UI.
 
-This guide walks through the best practices for creating and managing Workspaces as a Workspace admin. It's organized by the 4 tabs you can access from a Workspace's menu in the Astronomer UI:
+This guide walks through the best practices for creating and managing Workspaces as a Workspace admin. It's organized by the 4 tabs you can access from a Workspace's menu in the Software UI:
 
 * Deployments
 * Settings
@@ -23,7 +23,7 @@ This guide walks through the best practices for creating and managing Workspaces
 
 The most important function of Workspaces is creating and managing access to one or more Airflow Deployments. An Airflow Deployment is an instance of Apache Airflow that consists of a Scheduler, Webserver, and one or more Workers if you're running the Celery or Kubernetes Executors.
 
-To create a new Deployment, click the **New Deployment** button in the **Deployments** tab or use the Astronomer CLI as described in [CLI Quickstart](cli-quickstart.md). For more information on configuring Deployment settings and resources, read [Configure a Deployment](configure-deployment.md).
+To create a new Deployment, click the **New Deployment** button in the **Deployments** tab or use the Astronomer Software CLI as described in [CLI Quickstart](cli-quickstart.md). For more information on configuring Deployment settings and resources, read [Configure a Deployment](configure-deployment.md).
 
 The **Deployments** tab also contains information on all of your existing Deployments, including name, Executor type, and Deployment status. A blue dot next to a Deployment's name indicates that the Deployment is still spinning up, while a green dot indicates that the Deployment is fully operational:
 
@@ -43,7 +43,7 @@ If you'd like to share access to other members of your organization, invite them
 
 An exact breakdown of user roles and their respective levels of access can be found in [Manage User Permissions on an Astronomer Workspace](workspace-permissions.md).
 
-In addition, Enterprise system admins can add or remove specific permissions for each type of user role. For more information on this feature, read [Customize Permissions](manage-platform-users.md#customize-permissions).
+In addition, Software system admins can add or remove specific permissions for each type of user role. For more information on this feature, read [Customize Permissions](manage-platform-users.md#customize-permissions).
 
 ## Service Accounts
 

@@ -6,11 +6,11 @@ id: release-notes
 
 ## Overview
 
-Astronomer v0.25 is the latest available Long-Term Support (LTS) version for Astronomer Enterprise. For more information about Enterprise release channels, read [Release and Lifecycle Policies](release-lifecycle-policy.md).
+Astronomer v0.25 is the latest available Long-Term Support (LTS) version for Astronomer Software. For more information about Software release channels, read [Release and Lifecycle Policies](release-lifecycle-policy.md).
 
-If you're looking to upgrade to Astronomer v0.25, refer to [Upgrade to Astronomer v0.25](upgrade-to-0-25.md). For instructions on how to upgrade to a patch version within the Astronomer v0.25 series, refer to [Upgrade to a Patch Version of Astronomer Enterprise](upgrade-astronomer-patch.md).
+If you're looking to upgrade to Astronomer v0.25, refer to [Upgrade to Astronomer v0.25](upgrade-to-0-25.md). For instructions on how to upgrade to a patch version within the Astronomer v0.25 series, refer to [Upgrade to a Patch Version of Astronomer Software](upgrade-astronomer-patch.md).
 
-We're committed to testing all Astronomer Enterprise versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
+We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
 ## 0.25.12
 
@@ -50,7 +50,7 @@ This feature must first be enabled and configured on your platform before it can
 - Fixed an issue where you couldn't set custom image paths for private certificate authorities (CAs)
 - Fixed an issue where setting the `global.storageClass` key in `values.yaml` did not update the storage class for all PVCs on your platform
 - Fixed an issue where Houston workers failed to get the issuer certificate for custom CA certs
-- Fixed Celery Worker logs not appearing in the Astronomer UI
+- Fixed Celery Worker logs not appearing in the Software UI
 
 ## v0.25.6
 
@@ -75,7 +75,7 @@ Release Date: July 2, 2021
 
 ### Minor Improvements
 
-- Added support for installing Astronomer Enterprise via ArgoCD, which facilitates continuous delivery for Kubernetes applications. For more information, read the [Astronomer Forum](https://forum.astronomer.io/t/installing-astronomer-with-argocd/1341).
+- Added support for installing Astronomer Software via ArgoCD, which facilitates continuous delivery for Kubernetes applications. For more information, read the [Astronomer Forum](https://forum.astronomer.io/t/installing-astronomer-with-argocd/1341).
 
 ### Bug fixes
 
@@ -93,7 +93,7 @@ For more information and setup steps, read [Third-Party Ingress Controllers](thi
 
 ### Support for Kubernetes 1.19 and 1.20
 
-The Astronomer platform is now compatible with Kubernetes 1.19 and 1.20. As an Enterprise user, you can now upgrade your clusters to either of these two versions and take advantage of the latest Kubernetes features. For more information, refer to [Kubernetes 1.20 release notes](https://kubernetes.io/blog/2020/12/08/kubernetes-1-20-release-announcement/).
+The Astronomer platform is now compatible with Kubernetes 1.19 and 1.20. As a Software user, you can now upgrade your clusters to either of these two versions and take advantage of the latest Kubernetes features. For more information, refer to [Kubernetes 1.20 release notes](https://kubernetes.io/blog/2020/12/08/kubernetes-1-20-release-announcement/).
 
 ### Bypass Email Verification for Users via Houston API
 
@@ -113,10 +113,10 @@ The Houston API `workspaceAddUser` mutation now includes a `bypassInvite` field.
 
 - Fixed an issue where private root CAs did not work due to an unmounted certificate.
 - Fixed broken links to Deployments in alert emails.
-- Fixed an issue where historical logs did not appear in the Astronomer UI.
+- Fixed an issue where historical logs did not appear in the Software UI.
 - Fixed an issue where System Admins were unable to create Deployments.
-- Fixed a visual bug where some Deployments with only 1 Scheduler were shown as having 2 in the Astronomer UI.
-- Fixed a visual bug where users without Workspace Admin permissions had a non-functional **Invite Users** button in the Astronomer UI.
+- Fixed a visual bug where some Deployments with only 1 Scheduler were shown as having 2 in the Software UI.
+- Fixed a visual bug where users without Workspace Admin permissions had a non-functional **Invite Users** button in the Software UI.
 
 ## v0.25.2
 

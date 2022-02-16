@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Environment Variables'
-title: 'Set Environment Variables on Astronomer Enterprise'
+title: 'Set Environment Variables on Astronomer Software'
 id: environment-variables
 ---
 
@@ -28,7 +28,7 @@ On Astronomer, there are 3 ways to set Environment Variables:
 
 - via your `.env` file (_Local Only_)
 - via your `Dockerfile`
-- via the Astronomer UI
+- via the Software UI
 
 Read below for instructions on how to configure them via all 3 methods.
 
@@ -36,7 +36,7 @@ Read below for instructions on how to configure them via all 3 methods.
 
 ### via `.env` (_Local Only_)
 
-The [Astronomer CLI](cli-quickstart.md) comes with the ability to bring in Environment Variables from a specified `.env` file, which was automatically generated when you initialized an Airflow project on Astronomer via `$ astro dev init`.
+The [Astronomer Software CLI](cli-quickstart.md) comes with the ability to bring in Environment Variables from a specified `.env` file, which was automatically generated when you initialized an Airflow project on Astronomer via `$ astro dev init`.
 
 To add Environment Variables locally,
 
@@ -108,7 +108,7 @@ my_project
 
 If you're working on an Airflow project locally but intend to deploy to Astronomer and want to commit your Environment Variables to your source control tool, you can set them in your `Dockerfile`. This file was automatically created when you first initialized your Airflow project on Astronomer (via `$ astro dev init`).
 
-> **Note:** Given that this file will be committed upstream, we strongly recommend witholding Environment Variables containing sensitive credentials from your `Dockerfile` and instead inserting them via your `.env` file locally (while adding the file to your `.gitignore`) or setting them as 'secret' via the Astronomer UI, as described in a dedicated section below.
+> **Note:** Given that this file will be committed upstream, we strongly recommend witholding Environment Variables containing sensitive credentials from your `Dockerfile` and instead inserting them via your `.env` file locally (while adding the file to your `.gitignore`) or setting them as 'secret' via the Software UI, as described in a dedicated section below.
 
 To add Environment Variables, insert the value and key in your `Dockerfile` beginning with `ENV`, ensuring all-caps for all characters. With your Airflow image commonly referenced as a "FROM" statement at the top, your Dockerfile might look like this:
 
@@ -126,15 +126,15 @@ Once your Environment Variables are added,
 
 > **Note:** Environment Variables injected via the `Dockerfile` are mounted at build time and can be referenced in any other processes run during the docker build process that immediately follows `$ astro deploy` or `$ astro dev start`.
 >
-> Environment Variables applied via the Astronomer UI only become available once the docker build process has been completed.
+> Environment Variables applied via the Software UI only become available once the docker build process has been completed.
 
-### via the Astronomer UI
+### via the Software UI
 
-The last way to add Environment Variables on Astronomer is to add them via the Astronomer UI. For Environment Variables that you _only_ need on Astronomer and not locally, we'd recommend using this method.
+The last way to add Environment Variables on Astronomer is to add them via the Software UI. For Environment Variables that you _only_ need on Astronomer and not locally, we'd recommend using this method.
 
 To set them,
 
-1. Navigate to the Astronomer UI
+1. Navigate to the Software UI
 2. Go to "Deployment" > "Variables"
 3. Add your Environment Variables
 
@@ -173,18 +173,18 @@ Given the ability to set Environment Variables across 3 different methods potent
 
 On Astronomer, Environment Variables will be applied and overridden in the following order:
 
-1. Astronomer UI
+1. Software UI
 2. .env (_Local Only_)
 3. Dockerfile
 4. Default Airflow Values (`airflow.cfg`)
 
-In other words, if you set `AIRFLOW__CORE__PARALLELISM` with one value via the Astronomer UI and you set the same Environment Variable with another value in your `Dockerfile`, the value set in the Astronomer UI will take precedence.
+In other words, if you set `AIRFLOW__CORE__PARALLELISM` with one value via the Software UI and you set the same Environment Variable with another value in your `Dockerfile`, the value set in the Software UI will take precedence.
 
 ### How Environment Variables are Stored on Astronomer
 
-All values for Environment Variables that are added via the Astronomer UI are stored as a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/), which is encrypted at rest and mounted to your Deployment's Airflow pods (Scheduler, Webserver, Worker(s)) as soon as they're set or changed.
+All values for Environment Variables that are added via the Software UI are stored as a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/), which is encrypted at rest and mounted to your Deployment's Airflow pods (Scheduler, Webserver, Worker(s)) as soon as they're set or changed.
 
-Environment Variables are _not_ stored in Airflow's Metadata Database and are _not_ stored in Astronomer's platform database. Unlike other components, the Astronomer Houston API fetches them from the Kubernetes Secret instead of the platform's database to render them in the Astronomer UI.
+Environment Variables are _not_ stored in Airflow's Metadata Database and are _not_ stored in Astronomer's platform database. Unlike other components, the Astronomer Houston API fetches them from the Kubernetes Secret instead of the platform's database to render them in the Software UI.
 
 For information on how Airflow Connections and Variables are encrypted on Astronomer, refer to [this forum post](https://forum.astronomer.io/t/how-are-connections-variables-and-env-vars-encrypted-on-astronomer/173).
 
@@ -215,7 +215,7 @@ Here, the full Environment Variable would read:
 ENV AIRFLOW_CONN_MY_PROD_DB=my-conn-type://login:password@host:5432/schema
 ```
 
-You're free to set this Environment Variable via an `.env` file locally, via your Dockerfile or via the Astronomer UI as explained above. For more information on how to generate your Connection URI, refer to [Airflow's documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
+You're free to set this Environment Variable via an `.env` file locally, via your Dockerfile or via the Software UI as explained above. For more information on how to generate your Connection URI, refer to [Airflow's documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
 
 ### Airflow Variables
 

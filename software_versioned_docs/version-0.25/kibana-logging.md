@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Logging'
-title: 'Kibana Logging on Astronomer Enterprise'
+title: 'Kibana Logging on Astronomer Software'
 id: kibana-logging
 ---
 

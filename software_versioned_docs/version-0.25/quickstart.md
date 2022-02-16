@@ -1,5 +1,5 @@
 ---
-title: 'Astronomer Enterprise Quickstart'
+title: 'Astronomer Software Quickstart'
 sidebar_label: 'Quickstart'
 id: quickstart
 ---
@@ -8,13 +8,13 @@ Welcome to Astronomer.
 
 This guide will help you get started on Astronomer by walking through a sample DAG deployment from start to finish.
 
-Whether you're exploring our Enterprise or Cloud offering, we've designed this to be a great way to become familiar with our platform.
+Whether you're exploring our Software or Cloud offering, we've designed this to be a great way to become familiar with our platform.
 
-## Step 1: Install the Astronomer CLI
+## Step 1: Install the Astronomer Software CLI
 
-The [Astronomer CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. From the CLI, you can establish a local testing environment and deploy to Astronomer Cloud whenever you're ready.
+The [Astronomer Software CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. From the CLI, you can establish a local testing environment and deploy to Astronomer Cloud whenever you're ready.
 
-There are two ways to install any version of the Astronomer CLI:
+There are two ways to install any version of the Astronomer Software CLI:
 
 - cURL
 - [Homebrew](https://brew.sh/)
@@ -27,7 +27,7 @@ The CLI installation process requires [Docker](https://www.docker.com/) (v18.09 
 
 #### Install the CLI via cURL
 
-To install the latest version of the Astronomer CLI via cURL, run:
+To install the latest version of the Astronomer Software CLI via cURL, run:
 
 ```bash
 curl -ssl https://install.astronomer.io | sudo bash
@@ -35,17 +35,17 @@ curl -ssl https://install.astronomer.io | sudo bash
 
 #### Install the CLI via Homebrew
 
-To install the latest version of the Astronomer CLI via [Homebrew](https://brew.sh/), run:
+To install the latest version of the Astronomer Software CLI via [Homebrew](https://brew.sh/), run:
 
 ```bash
 brew install astronomer/tap/astro
 ```
 
-For more information on the Astronomer CLI, read [CLI Quickstart](cli-quickstart.md).
+For more information on the Astronomer Software CLI, read [CLI Quickstart](cli-quickstart.md).
 
-## Step 2: Install Astronomer Enterprise
+## Step 2: Install Astronomer Software
 
-If you are in charge of setting up Astronomer for your team, follow one of our Enterprise installation guides to get Astronomer running on your Kubernetes Cluster.
+If you are in charge of setting up Astronomer for your team, follow one of our Software installation guides to get Astronomer running on your Kubernetes Cluster.
 
 We have documentation for deploying Astronomer on:
 
@@ -55,7 +55,7 @@ We have documentation for deploying Astronomer on:
 
 ## Step 3: Create a Project
 
-Using the Astronomer CLI, create an Airflow project to work from that lives on your local machine:
+Using the Astronomer Software CLI, create an Airflow project to work from that lives on your local machine:
 
  ```sh
 mkdir <your-new-directory> && cd <your-new-directory>
@@ -105,7 +105,7 @@ If you'd like to deploy some more functional DAGs, upload your own or check out 
 
 ## Step 4: Identify your Base Domain and Log in
 
-Since Astronomer is running entirely on your infrastructure, the Astronomer UI will be located at a base domain specific to your organization. Head to `app.BASEDOMAIN` in your web browser and log in. You're in the right place if you see the following login screen:
+Since Astronomer is running entirely on your infrastructure, the Software UI will be located at a base domain specific to your organization. Head to `app.BASEDOMAIN` in your web browser and log in. You're in the right place if you see the following login screen:
 
 ![Log In](https://assets2.astronomer.io/main/docs/enterprise_quickstart/log_into_astro.png)
 
@@ -113,7 +113,7 @@ Since Astronomer is running entirely on your infrastructure, the Astronomer UI w
 
 ## Step 5: Create a Workspace
 
-If you're the first person to log in to the Astronomer UI, click **New Workspace** to create a Workspace.
+If you're the first person to log in to the Software UI, click **New Workspace** to create a Workspace.
 
 ![Create a Workspace on Astronomer](https://assets2.astronomer.io/main/docs/getting-started/create-workspace.png)
 
@@ -131,11 +131,11 @@ astro auth login BASEDOMAIN
 
 You'll be prompted to authenticate and select the Workspace that you want to operate in.
 
-The first user to log in to the Astronomer platform will become a System Admin by default. Additional users can be added via the Astronomer UI or CLI. For more information on user permissions at the platform level, read [Manage Users on Astronomer Enterprise](manage-platform-users.md).
+The first user to log in to the Astronomer platform will become a System Admin by default. Additional users can be added via the Software UI or CLI. For more information on user permissions at the platform level, read [Manage Users on Astronomer Software](manage-platform-users.md).
 
 ## Step 7: Create an Airflow Deployment
 
-In the Astronomer UI, use the **New Deployment** menu to configure the following:
+In the Software UI, use the **New Deployment** menu to configure the following:
 
 * **Name**
 * **Description** (Optional)
@@ -164,7 +164,7 @@ You can now use Astronomer to start Airflow locally and deploy code. To do so:
     - **Webserver:** The Airflow component responsible for rendering the Airflow UI
     - **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
 
-    > **Note:** If you’re running the Astronomer CLI with the [buildkit](https://docs.docker.com/develop/develop-images/build_enhancements/) feature enabled in Docker, you may see an error (`buildkit not supported by daemon`). Learn more in [this forum post](https://forum.astronomer.io/t/buildkit-not-supported-by-daemon-error-command-docker-build-t-airflow-astro-bcb837-airflow-latest-failed-failed-to-execute-cmd-exit-status-1/857).
+    > **Note:** If you’re running the Astronomer Software CLI with the [buildkit](https://docs.docker.com/develop/develop-images/build_enhancements/) feature enabled in Docker, you may see an error (`buildkit not supported by daemon`). Learn more in [this forum post](https://forum.astronomer.io/t/buildkit-not-supported-by-daemon-error-command-docker-build-t-airflow-astro-bcb837-airflow-latest-failed-failed-to-execute-cmd-exit-status-1/857).
 
 2. Verify that all 3 Docker containers were created by running the following command:
 
@@ -187,13 +187,13 @@ You can now use Astronomer to start Airflow locally and deploy code. To do so:
 
 ## Step 9: Access Metrics
 
-Once you've turned on the `example-dag` in the Airflow UI, go to the **Metrics** tab in the Astronomer UI to see metrics for your Deployment in real time.
+Once you've turned on the `example-dag` in the Airflow UI, go to the **Metrics** tab in the Software UI to see metrics for your Deployment in real time.
 
-The **Metrics** tab only shows metrics for a given Deployment. If you are the first user to authenticate to Astronomer, you'll additionally have access to administrative views of Grafana and Kibana via the dropdown menu in the Astronomer UI:
+The **Metrics** tab only shows metrics for a given Deployment. If you are the first user to authenticate to Astronomer, you'll additionally have access to administrative views of Grafana and Kibana via the dropdown menu in the Software UI:
 
 ![Admin](https://assets2.astronomer.io/main/docs/enterprise_quickstart/admin_panel.png)
 
-These views show logs and metrics across all Deployments running on your Astronomer platform. To learn more about using Grafana, read [Metrics in Astronomer Enterprise](grafana-metrics.md). To learn more about using Kibana, read [Logging in Astronomer Enterprise](kibana-logging.md).
+These views show logs and metrics across all Deployments running on your Astronomer platform. To learn more about using Grafana, read [Metrics in Astronomer Software](grafana-metrics.md). To learn more about using Kibana, read [Logging in Astronomer Software](kibana-logging.md).
 
 ## What's Next?
 

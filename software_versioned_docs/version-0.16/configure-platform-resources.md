@@ -1,8 +1,8 @@
 ---
 sidebar_label: 'Configure Platform Resources'
-title: 'Astronomer Enterprise Platform Resources'
+title: 'Astronomer Software Platform Resources'
 id: configure-platform-resources
-description: A summary of how platform and Airflow deployment resources are created in the context of Astronomer Enterprise.
+description: A summary of how platform and Airflow deployment resources are created in the context of Astronomer Software.
 ---
 
 ## Configuring Platform Resources
@@ -40,7 +40,7 @@ To change something like the resources allocated to `astro-ui`, add the followin
 
 ```yaml
 #####
-#Changing Astronomer UI CPU
+#Changing Software UI CPU
 ####
 
 astronomer:
@@ -99,7 +99,7 @@ The [Azure Price Calculator](https://azure.microsoft.com/en-us/pricing/calculato
 
 Most of the key components that you will need to run Airflow can be controlled via the sliders in our UI. However, you may find that there are some discrepancies between the number in the UI and what exists in Kubernetes at any given moment. Below is a summary the less-visible resources that get provisioned with each Airflow deployment you create on Astronomer. All of these resources will exist within the namespace created for your Airflow deployment.
 
-> Note: These are resources that are provisioned in addition to the scheduler, webserver, and worker resources that you've set in your Astronomer UI. If you're running the Kubernetes Executor or Kubernetes Pod Operator, resources will be created dynamically, but will not exceed the resource quota you've dictated by your `Extra Capacity` slider.
+> Note: These are resources that are provisioned in addition to the scheduler, webserver, and worker resources that you've set in your Software UI. If you're running the Kubernetes Executor or Kubernetes Pod Operator, resources will be created dynamically, but will not exceed the resource quota you've dictated by your `Extra Capacity` slider.
 
 | Component                                      | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | AU   | CPU/Memory   |
 | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- | ------------ |

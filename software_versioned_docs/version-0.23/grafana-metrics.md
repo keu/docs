@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Metrics'
-title: 'Metrics in Astronomer Enterprise'
+title: 'Metrics in Astronomer Software'
 id: grafana-metrics
 ---
 
@@ -14,9 +14,9 @@ If you're interested in customizing the pre-built dashboards to create other vie
 
 ## Access Grafana
 
-By default, users with [System Admin permissions](manage-platform-users.md#system-roles) can access Grafana. To access Grafana from the Astronomer UI:
+By default, users with [System Admin permissions](manage-platform-users.md#system-roles) can access Grafana. To access Grafana from the Software UI:
 
-1. As a System Admin, open Grafana from the Astronomer UI:
+1. As a System Admin, open Grafana from the Software UI:
 
     ![Create Grafana Dashboard](https://assets2.astronomer.io/main/docs/grafana/ui-access.png)
 
@@ -36,9 +36,9 @@ Grafana dashboards that display cluster-level metrics often allow you to filter 
 
 To filter Grafana metrics by Deployment:
 
-1. In the Astronomer UI, click on a Workspace to see a list of all Deployments in that Workspace.
+1. In the Software UI, click on a Workspace to see a list of all Deployments in that Workspace.
 
-    ![Open Workspace in the Astronomer UI](https://assets2.astronomer.io/main/docs/grafana/click-workspace.png)
+    ![Open Workspace in the Software UI](https://assets2.astronomer.io/main/docs/grafana/click-workspace.png)
 
 2. The release name for a Deployment is listed under the Deployment's proper name. Make note of the release names for each Deployment you want to monitor.  
 
@@ -90,7 +90,7 @@ This dashboard shows the amount of persistent storage available to Prometheus, t
 
     ![PG Bouncer metrics](https://assets2.astronomer.io/main/docs/grafana/PGBouncer.png)
 
-- **Unhealthy Schedulers:**  This metric shows the number of unhealthy Schedulers in a given Deployment. It's available in the **Airflow Health** panel, but Scheduler health can also be assessed for each individual Deployment in the **Metrics** tab of the Astronomer UI. A Scheduler is considered "Unhealthy" if it has not emitted a heartbeat for over 1 minute.
+- **Unhealthy Schedulers:**  This metric shows the number of unhealthy Schedulers in a given Deployment. It's available in the **Airflow Health** panel, but Scheduler health can also be assessed for each individual Deployment in the **Metrics** tab of the Software UI. A Scheduler is considered "Unhealthy" if it has not emitted a heartbeat for over 1 minute.
 
     The lack of a Scheduler heartbeat is expected during a code push, but erratic restarts or an "Unhealthy" state that persists for a significant amount of time is worth investigating further.
 
@@ -138,7 +138,7 @@ This dashboard shows several detailed metrics for each Kubernetes pod in your cl
 
 ## Airflow Deployment Overview
 
-This dashboard shows a set of resource and health-based metrics for individual Deployments. It is most similar to the one displayed in the **Metrics** tab of the Astronomer UI.
+This dashboard shows a set of resource and health-based metrics for individual Deployments. It is most similar to the one displayed in the **Metrics** tab of the Software UI.
 
 ![Astronomer Deployments](https://assets2.astronomer.io/main/docs/ee/airflow_deployment_overview.png)
 
@@ -158,9 +158,9 @@ This dashboard tracks the performance of Fluentd, which writes logs to Elasticse
 
 - **Buffer Size and Buffer Length:** These metrics track whether the Fluentd buffer is backed up, which might indicate an issue with writing logs to Elasticsearch. These metrics should ideally be hovering around zero.
 
-## Astronomer UI Metrics Dashboard
+## Software UI Metrics Dashboard
 
-In addition to dashboards in Grafana, each of your Deployments has a built-in metrics dashboard in the Astronomer UI. Any user with access to a given Deployment can access this dashboard. To get there, open a Deployment and go to the **Metrics** tab:
+In addition to dashboards in Grafana, each of your Deployments has a built-in metrics dashboard in the Software UI. Any user with access to a given Deployment can access this dashboard. To get there, open a Deployment and go to the **Metrics** tab:
 
 ![Astronomer Metrics Dashboard](https://assets2.astronomer.io/main/docs/grafana/astro-metrics.png)
 
@@ -178,7 +178,7 @@ This dashboard is most useful for tracking the performance and resource usage of
 
 Because Astronomer's key metrics are distributed across several dashboards, you might want to create custom dashboards that compile the metrics you find most important. To create a custom dashboard:
 
-1. As a System Admin, open Grafana from the Astronomer UI.
+1. As a System Admin, open Grafana from the Software UI.
 
 2. Log in to Grafana. If you're on the Welcome page, you can log in via the **Sign In** button at the bottom of the sidebar menu. The default login credentials are `admin:admin`
 

@@ -25,8 +25,8 @@ If you want to use an ingress controller that isn't listed here, please contact 
 Additionally, all of the following must be true:
 
 - Your ingress controller must service ingresses from the Astronomer Platform namespace, as well as all namespaces that host Airflow.
-- Ingresses should work in newly created namespaces prior to installing Astronomer Enterprise.
-- Your third-party ingress controller must be able to resolve the DNS entries associated with your Astronomer installation.
+- Ingresses should work in newly created namespaces prior to installing Astronomer Software.
+- Your third-party ingress controller must be able to resolve the DNS entries associated with your Software installation.
 - Your third-party ingress controller must support SSL connections on port 443 and must present a certificate valid for all of the following hostnames:
 
     - BASE_DOMAIN
@@ -85,7 +85,7 @@ To install your existing ingress controller and disable the default one, add the
 global:
   # Disable the default ingress controller
   nginxEnabled: false
-  # valid tlsSecret still required to be present in the Astronomer Enterprise Platform namespace
+  # valid tlsSecret still required to be present in the Astronomer Software Platform namespace
   tlsSecret: astronomer-tls
   # Specify your CA's public certificate here if using a private CA
   globalPrivateCaCerts:

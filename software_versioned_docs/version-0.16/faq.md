@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'FAQ'
-title: 'Astronomer Enterprise FAQ'
-description: Commonly asked questions and answers for Astronomer Enterprise.
+title: 'Astronomer Software FAQ'
+description: Commonly asked questions and answers for Astronomer Software.
 ---
 
 ## Networking
@@ -159,7 +159,7 @@ All platform components and Airflow deployment logs are retained within the plat
 
 ### How do we manage application and system logs?
 
-Astronomer's Enterprise offering has a robust logging structure sitting atop Airflow. See https://www.astronomer.io/docs/ee-logging/
+Astronomer's Software offering has a robust logging structure sitting atop Airflow. See https://www.astronomer.io/docs/ee-logging/
 
 
 ## Updating

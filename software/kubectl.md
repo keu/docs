@@ -1,8 +1,8 @@
 ---
 sidebar_label: 'kubectl'
-title: 'Use kubectl To Administer Astronomer Enterprise'
+title: 'Use kubectl To Administer Astronomer Software'
 id: kubectl
-description: Deploy Astronomer Enterprise Airflow instances with kubectl and Helm.
+description: Deploy Astronomer Software Airflow instances with kubectl and Helm.
 ---
 
 ### Kubectl and Helm
@@ -69,7 +69,7 @@ There is a release for Astronomer (`single-chimp`) and postgres (`cautious-seal`
 
 ### Deploying New Airflow Instances
 
-If you navigate to the Astronomer UI and create a new Airflow deployment, it will create a new helm release in a new namespace.
+If you navigate to the Software UI and create a new Airflow deployment, it will create a new helm release in a new namespace.
 
 ```bash
 root@orbiter helm ls

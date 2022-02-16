@@ -1,19 +1,19 @@
 ---
-title: "Upgrade to Astronomer Enterprise v0.25"
+title: "Upgrade to Astronomer Software v0.25"
 sidebar_label: "Upgrade to v0.25"
 id: upgrade-to-0-25
-description: "How to upgrade the Astronomer Enterprise Platform."
+description: "How to upgrade the Astronomer Software Platform."
 ---
 
 ## Overview
 
-Astronomer releases are made generally available to Enterprise customers on a quarterly basis as part of a long-term support (LTS) release model.
+Astronomer releases are made generally available to Software customers on a quarterly basis as part of a long-term support (LTS) release model.
 
-This guide provides steps for upgrading your Astronomer Enterprise platform from v0.23.x to [v0.25](release-notes.md), which is the latest available LTS release.
+This guide provides steps for upgrading your Astronomer Software platform from v0.23.x to [v0.25](release-notes.md), which is the latest available LTS release.
 
 A few important notes before you start:
 
-- You must be on Astronomer Enterprise v0.23.x in order to upgrade to Astronomer v0.25+. If you are running a version of Astronomer that's lower than v0.23, submit a request to [Astronomer Support](https://support.astronomer.io) and our team will help you define an alternate upgrade path.
+- You must be on Astronomer Software v0.23.x in order to upgrade to Astronomer v0.25+. If you are running a version of Astronomer that's lower than v0.23, submit a request to [Astronomer Support](https://support.astronomer.io) and our team will help you define an alternate upgrade path.
 - The guidelines below only apply to users who are upgrading to the Astronomer v0.25 series for the first time. Once you've completed the upgrade to any v0.25 version, you'll be free to upgrade to subsequent v0.25.x patch versions as they are released by our team. For instructions, read [Upgrade to a Patch Version](upgrade-astronomer-stable.md).
 
 ## Step 1: Check Version Compatibility
@@ -42,7 +42,7 @@ Ensure that the following software is updated to the appropriate version:
 
 ## Step 2: Check Permissions
 
-Minor version upgrades can be initiated only by a user with System Admin permissions on Astronomer. To confirm you're an Astronomer SysAdmin, confirm that you have access to **System Admin** features in the Astronomer UI:
+Minor version upgrades can be initiated only by a user with System Admin permissions on Astronomer. To confirm you're an Astronomer SysAdmin, confirm that you have access to **System Admin** features in the Software UI:
 
 ![Admin](https://assets2.astronomer.io/main/docs/enterprise_quickstart/admin_panel.png)
 
@@ -103,10 +103,10 @@ kubectl logs <your-pod-name>
 If the upgrade was successful, you should be able to:
 
 * Log in to Astronomer at `https://app.BASEDOMAIN`.
-* See Workspaces and Airflow Deployments in the Astronomer UI.
-* Access the **Settings** tab for each of your Deployments in the Astronomer UI.
-* See metrics on the **Metrics** tab in the Astronomer UI.
-* Successfully run `$ astro deploy` using the Astronomer CLI.
+* See Workspaces and Airflow Deployments in the Software UI.
+* Access the **Settings** tab for each of your Deployments in the Software UI.
+* See metrics on the **Metrics** tab in the Software UI.
+* Successfully run `$ astro deploy` using the Astronomer Software CLI.
 * Open the Airflow UI for each of your Deployments
 * Access logs for your DAGs in the Airflow UI.
 
@@ -118,11 +118,11 @@ We recommend cleaning up any remaining Kubernetes resources after your upgrade. 
 kubectl delete -f https://raw.githubusercontent.com/astronomer/astronomer/release-0.25/migrations/scripts/lts-to-lts/0.23-to-0.25/manifests/upgrade-0.23-to-0.25.yaml
 ```
 
-## Step 9: Upgrade the Astronomer CLI to v0.25
+## Step 9: Upgrade the Astronomer Software CLI to v0.25
 
-To ensure reliability and full access to features included in Astronomer Enterprise v0.25, all users must upgrade to v0.25 of the Astronomer CLI. We recommend the latest available version, though you may choose to install a particular patch release within the v0.25 series.
+To ensure reliability and full access to features included in Astronomer Software v0.25, all users must upgrade to v0.25 of the Astronomer Software CLI. We recommend the latest available version, though you may choose to install a particular patch release within the v0.25 series.
 
-To upgrade to the latest available v0.25 version of the Astronomer CLI, run:
+To upgrade to the latest available v0.25 version of the Astronomer Software CLI, run:
 
 ```sh
 curl -sSL https://install.astronomer.io | sudo bash -s -- v0.25.0
@@ -134,9 +134,9 @@ To do so via Homebrew, run:
 brew install astronomer/tap/astro@0.25
 ```
 
-Earlier versions of the Astronomer CLI are backwards incompatible with Astronomer v0.25. All team members within your organization must upgrade the Astronomer CLI individually before taking any further action on the platform or in a local Airflow environment. For a detailed breakdown of CLI changes between versions, refer to [Astronomer CLI releases](https://github.com/astronomer/astro-cli/releases). For detailed install guidelines and more information on the Astronomer CLI, refer to [Astronomer CLI Quickstart](cli-quickstart.md).
+Earlier versions of the Astronomer Software CLI are backwards incompatible with Astronomer v0.25. All team members within your organization must upgrade the Astronomer Software CLI individually before taking any further action on the platform or in a local Airflow environment. For a detailed breakdown of CLI changes between versions, refer to [Astronomer Software CLI releases](https://github.com/astronomer/astro-cli/releases). For detailed install guidelines and more information on the Astronomer Software CLI, refer to [Astronomer Software CLI Quickstart](cli-quickstart.md).
 
-## Roll Back to Enterprise v0.23
+## Roll Back to Software v0.23
 
 If you encounter an issue during your upgrade that requires you to recover your original platform, you can roll back to Astronomer v0.23. To do so:
 

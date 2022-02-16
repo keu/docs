@@ -1,30 +1,30 @@
 ---
 sidebar_label: 'CLI Reference Guide'
-title: 'Astronomer CLI Reference Guide'
+title: 'Astronomer Software CLI Reference Guide'
 id: cli-reference
-description: A list of every command and setting in the Astronomer CLI.
+description: A list of every command and setting in the Astronomer Software CLI.
 ---
 
 ## Overview
 
-Astronomer's [open source CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your local machine. From the CLI, you can create a local Apache Airflow instance with a dedicated Webserver, Scheduler and Postgres Database. If you're an Astronomer customer, you can use the Astronomer CLI to create and manage users, Workspaces, Airflow Deployments, service accounts, and more.
+Astronomer's [open source CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your local machine. From the CLI, you can create a local Apache Airflow instance with a dedicated Webserver, Scheduler and Postgres Database. If you're an Astronomer customer, you can use the Astronomer Software CLI to create and manage users, Workspaces, Airflow Deployments, service accounts, and more.
 
-This document contains information about all commands and settings available in the Astronomer CLI, including examples and flags. It does not contain detailed guidelines on each command, but each section provides resources for additional information in a **Related documentation** section if it's available.
+This document contains information about all commands and settings available in the Astronomer Software CLI, including examples and flags. It does not contain detailed guidelines on each command, but each section provides resources for additional information in a **Related documentation** section if it's available.
 
 ## Installation
 
-There are two ways to install any version of the Astronomer CLI:
+There are two ways to install any version of the Astronomer Software CLI:
 
 - [Homebrew](https://brew.sh/)
 - cURL
 
-For a detailed changelog of all Astronomer CLI versions, see [GitHub Releases](https://github.com/astronomer/astro-cli/releases).
+For a detailed changelog of all Astronomer Software CLI versions, see [GitHub Releases](https://github.com/astronomer/astro-cli/releases).
 
 > **Note:** Both methods only work for Unix (Linux+Mac) based systems. If you're running on Windows 10, follow [this guide](cli-install-windows-10.md) to get set up with Docker for WSL.
 
 ### Prerequisites
 
-The Astronomer CLI installation process requires [Docker](https://www.docker.com/) (v18.09 or higher).
+The Astronomer Software CLI installation process requires [Docker](https://www.docker.com/) (v18.09 or higher).
 
 ### Install with Homebrew
 
@@ -34,7 +34,7 @@ If you have Homebrew installed, run:
 brew install astronomer/tap/astro
 ```
 
-To install a specific version of the Astro CLI, you'll have to specify `@major.minor.patch`. To install v0.16.1, for example, run:
+To install a specific version of the Astronomer Software CLI, you'll have to specify `@major.minor.patch`. To install v0.16.1, for example, run:
 
 ```sh
 brew install astronomer/tap/astro@0.16.1
@@ -42,13 +42,13 @@ brew install astronomer/tap/astro@0.16.1
 
 ### Install with cURL
 
-To install the latest version of the Astronomer CLI, run:
+To install the latest version of the Astronomer Software CLI, run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash
 ```
 
-To install a specific version of the Astronomer CLI, specify `-s -- major.minor.patch` as a flag at the end of the cURL command. To install v0.16.1, for example, run:
+To install a specific version of the Astronomer Software CLI, specify `-s -- major.minor.patch` as a flag at the end of the cURL command. To install v0.16.1, for example, run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash -s -- v0.16.1
@@ -69,7 +69,7 @@ curl -sSL https://install.astronomer.io | sudo bash -s < /dev/null
 
 ### Confirm the install
 
-To make sure that you have the Astronomer CLI installed on your machine, run:
+To make sure that you have the Astronomer Software CLI installed on your machine, run:
 
 ```bash
 astro version
@@ -78,7 +78,7 @@ astro version
 If the installation was successful, you should see the version of the CLI that you installed in the output:
 
 ```
-Astro CLI Version: 0.15.0
+Astronomer Software CLI Version: 0.15.0
 Git Commit: c4fdeda96501ac9b1f3526c97a1c5c9b3f890d71
 ```
 
@@ -99,9 +99,9 @@ Available Commands:
   deployment      Manage airflow deployments
   dev             Manage airflow projects
   help            Help about any command
-  upgrade         Check for newer version of Astronomer CLI
+  upgrade         Check for newer version of Astronomer Software CLI
   user            Manage astronomer user
-  version         Astronomer CLI version
+  version         Astronomer Software CLI version
   workspace       Manage Astronomer workspaces
 
 Flags:
@@ -118,7 +118,7 @@ Authenticates you to Astronomer.
 
 ### Usage
 
-Run `astro auth <subcommand> <base-domain>` in your terminal to log in or out of your Astronomer platform. This is equivalent to using the login screen of the Astronomer UI.
+Run `astro auth <subcommand> <base-domain>` in your terminal to log in or out of your Astronomer platform. This is equivalent to using the login screen of the Software UI.
 
 If you have access to more than one Astronomer platform, each will have a unique `<base-domain>`. When switching between platforms, make sure to log out of one `<base domain>` before logging into another.
 
@@ -126,16 +126,16 @@ If you have access to more than one Astronomer platform, each will have a unique
 
 | Subcommand | Usage                                                                                                                                              |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `login`    | To log in to Astronomer Cloud, run `astro auth login`. For Enterprise, run `astro auth login <base-domain>`.    |
-| `logout`   | To log out of Astronomer Cloud, run `astro auth logout`. For Enterprise, run `astro auth logout <base-domain>`. |
+| `login`    | To log in to Astronomer Cloud, run `astro auth login`. For Software, run `astro auth login <base-domain>`.    |
+| `logout`   | To log out of Astronomer Cloud, run `astro auth logout`. For Software, run `astro auth logout <base-domain>`. |
 
 ## astro cluster
 
-Allows Astronomer Enterprise users to switch between the Astronomer installations they have access to.
+Allows Astronomer Software users to switch between the Software installations they have access to.
 
 ### Usage
 
-Run `astro cluster <subcommand>` in your terminal to see or access available Astronomer installations.
+Run `astro cluster <subcommand>` in your terminal to see or access available Software installations.
 
 ### Subcommands
 
@@ -166,7 +166,7 @@ Use `astro completion <subcommand>` to generate autocompletion scripts, which ca
 
 ## astro config
 
-Modifies certain platform-level settings on Astronomer Enterprise without needing to manually adjust them in your `config.yaml` file.
+Modifies certain platform-level settings on Astronomer Software without needing to manually adjust them in your `config.yaml` file.
 
 ### Usage
 
@@ -213,9 +213,9 @@ Run `astro deploy <your-deployment-release-name> [flags]` in your terminal to pu
 
 If you have the appropriate Workspace and Deployment-level permissions, your code is packaged into a Docker image, pushed to Astronomer's Docker Registry, and applied to your Airflow Webserver, Scheduler(s), and Worker(s).
 
-To identify your Deployment's release name, go to **Settings** > **Basics** > **Release Name** in the Astronomer UI or run `astro deployment list`.
+To identify your Deployment's release name, go to **Settings** > **Basics** > **Release Name** in the Software UI or run `astro deployment list`.
 
-If you run `astro deploy` without specifying `your-deployment-release-name`, the Astronomer CLI will list all Airflow Deployments in your Workspace to choose from.
+If you run `astro deploy` without specifying `your-deployment-release-name`, the Astronomer Software CLI will list all Airflow Deployments in your Workspace to choose from.
 
 ### Flags
 
@@ -252,7 +252,7 @@ Initializes the Airflow version upgrade process on any Airflow Deployment on Ast
 
 Run `astro deployment airflow upgrade --deployment-id` to initialize the Airflow upgrade process. To finalize the Airflow upgrade process, complete all of the steps as described in [Upgrade Apache Airflow on Astronomer](manage-airflow-versions.md).
 
-If you do not specify `--desired-airflow-version`, this command will output a list of available versions of Airflow you can choose from and prompt you to pick one. The Astronomer CLI will only make available versions of Airflow that are higher than the version you're currently running in your `Dockerfile`.
+If you do not specify `--desired-airflow-version`, this command will output a list of available versions of Airflow you can choose from and prompt you to pick one. The Astronomer Software CLI will only make available versions of Airflow that are higher than the version you're currently running in your `Dockerfile`.
 
 ### Flags
 
@@ -272,7 +272,7 @@ Creates a new Airflow Deployment in your current Astronomer Workspace.
 
 ### Usage
 
-Run `astro deployment create <new-deployment-name> [flags]` to create a new Deployment in your Astronomer Workspace. This is equivalent to using the **New Deployment** button in the Astronomer UI.
+Run `astro deployment create <new-deployment-name> [flags]` to create a new Deployment in your Astronomer Workspace. This is equivalent to using the **New Deployment** button in the Software UI.
 
 ### Flags
 
@@ -281,7 +281,7 @@ Run `astro deployment create <new-deployment-name> [flags]` to create a new Depl
 | `--airflow-version` | String     | The Airflow version for the new Deployment.                                                                                          |
 | `--cloud-role`      | String     | Append an AWS or GCP IAM role to your Airflow Deployment's Webserver, Scheduler, and Worker Pods.                                    |
 | `--executor`        | String     | The Executor type for the Deployment. Can be `local`, `celery`, or `kubernetes`. If no executor is specified, then `celery` is used. |
-| `--release-name`    | String     | A custom release name for the Airflow Deployment. Applies only to Deployments on Astronomer Enterprise.                              |
+| `--release-name`    | String     | A custom release name for the Airflow Deployment. Applies only to Deployments on Astronomer Software.                              |
 | `--dag-deployment-type` | String     | The DAG deploy method for the Deployment. Can be either `image` or `volume`. The default value is `image`.                                                               |
 | `--nfs-location` | String     | The location for an NFS volume mount, specified as: `<IP>:/<path>`. Must be specified when `--dag-deployment-type=volume`. Input is automatically prepended with `nfs:/` - do not include this in your input.                                  |
 | `--triggerer-replicas` | Integer     | The number of replica Triggerers to provision for the Deployment.                      |
@@ -293,7 +293,7 @@ Run `astro deployment create <new-deployment-name> [flags]` to create a new Depl
 
 ## astro deployment delete
 
-Deletes an Airflow Deployment from an Astronomer Workspace. This is equivalent to the **Delete Deployment** action in the Astronomer UI.
+Deletes an Airflow Deployment from an Astronomer Workspace. This is equivalent to the **Delete Deployment** action in the Software UI.
 
 ### Usage
 
@@ -349,7 +349,7 @@ Creates a Deployment-level service account on Astronomer, which you can use to c
 
 | Flag                         | Value Type | Usage                                                                                                                             |
 | ---------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `--category`                 | String     | The category for the new service account as displayed in the Astronomer UI. This is optional, and the default value is `Not set`. |
+| `--category`                 | String     | The category for the new service account as displayed in the Software UI. This is optional, and the default value is `Not set`. |
 | `--deployment-id` (Required) | String     | The Deployment you're creating a service account for.                                                                             |
 | `--label` (Required)         | String     | The name or label for the new service account.                                                                                    |
 | `--role`                     | String     | The User Role for the new service account. Can be `viewer`, `editor`, or `admin`. The default value is `viewer`.                  |
@@ -637,13 +637,13 @@ Runs a script that checks whether all files in your local Airflow project are co
 
 ## astro upgrade
 
-Checks for the latest version of the Astronomer CLI, but does not perform the upgrade.
+Checks for the latest version of the Astronomer Software CLI, but does not perform the upgrade.
 
 ### Usage
 
 `astro upgrade`
 
-> **Note:** This command only checks whether or not a new version of the Astronomer CLI is available. To actually upgrade the CLI to the latest version, run:
+> **Note:** This command only checks whether or not a new version of the Astronomer Software CLI is available. To actually upgrade the CLI to the latest version, run:
 >
 > ```sh
 > brew install astronomer/tap/astro
@@ -667,11 +667,11 @@ Creates a new user on Astronomer. An invitation email will be sent to the email 
 ### Related documentation
 
 - [Manage Workspace Permissions on Astronomer](workspace-permissions.md)
-- [Manage Users on Astronomer Enterprise](manage-platform-users.md)
+- [Manage Users on Astronomer Software](manage-platform-users.md)
 
 ## astro version
 
-Displays the running versions of both the Astronomer CLI and the Astronomer platform to which you are authenticated. If the minor versions of the Astronomer CLI and your Astronomer platform don't match, we encourage you to upgrade.
+Displays the running versions of both the Astronomer Software CLI and the Astronomer platform to which you are authenticated. If the minor versions of the Astronomer Software CLI and your Astronomer platform don't match, we encourage you to upgrade.
 
 ### Usage
 

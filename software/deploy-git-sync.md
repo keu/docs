@@ -1,8 +1,8 @@
 ---
 sidebar_label: 'Deploy DAGs via Git-Sync'
-title: 'Deploy DAGs to Astronomer Enterprise via Git-Sync'
+title: 'Deploy DAGs to Astronomer Software via Git-Sync'
 id: deploy-git-sync
-description: Push DAGs to your Airflow Deployment on Astronomer Enterprise using git-sync.
+description: Push DAGs to your Airflow Deployment on Astronomer Software using git-sync.
 ---
 
 ## Overview
@@ -19,8 +19,8 @@ This is currently an experimental feature because it relies on very frequent syn
 
 To enable the git-sync deploy feature, you need:
 
-- An Astronomer installation running an OSS Airflow Chart (this is the default for most installations).
-- Permission to push new configuration changes to your Astronomer installation.
+- A Software installation running an OSS Airflow Chart (this is the default for most installations).
+- Permission to push new configuration changes to your Software installation.
 
 To configure a git-sync deploy mechanism for a Deployment on Astronomer, you need Workspace Editor permissions.
 
@@ -48,7 +48,7 @@ If you want to deploy DAGs via a private Git repo, you additionally need to conf
 
 Workspace editors can configure a new or existing Airflow Deployment to use a git-sync mechanism for DAG deploys. From there, any member of your organization with write permissions to the Git repository can deploy DAGs to the Deployment. To configure a Deployment for git-sync deploys:
 
-1. In the Astronomer UI, create a new Airflow Deployment or open an existing one.
+1. In the Software UI, create a new Airflow Deployment or open an existing one.
 2. Go to the **DAG Deployment** section of the Deployment's Settings page.
 3. For your **Mechanism**, select **Git Sync.**
 4. Configure the following values:

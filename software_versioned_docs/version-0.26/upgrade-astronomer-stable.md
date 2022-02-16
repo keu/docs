@@ -1,21 +1,21 @@
 ---
-title: 'Upgrade to a Stable or Patch Version of Astronomer Enterprise'
+title: 'Upgrade to a Stable or Patch Version of Astronomer Software'
 sidebar_label: 'Upgrade Astronomer'
 id: upgrade-astronomer-stable
-description: Upgrade to a new stable or patch version of Astronomer Enterprise.
+description: Upgrade to a new stable or patch version of Astronomer Software.
 ---
 
 ## Overview
 
-For Astronomer Enterprise customers, new product features are regularly made available in stable and long-term support (LTS) releases as described in [Release and Lifecycle Policy](release-lifecycle-policy.md). Patch versions of Astronomer Enterprise with additional bug and security fixes are also released on a regular basis.
+For Astronomer Software customers, new product features are regularly made available in stable and long-term support (LTS) releases as described in [Release and Lifecycle Policy](release-lifecycle-policy.md). Patch versions of Astronomer Software with additional bug and security fixes are also released on a regular basis.
 
-All stable and patch releases of Astronomer Enterprise require a simple upgrade process. When an [LTS version](release-lifecycle-policy.md#release-channels) is released, additional upgrade guidance specific to that version will be made available.
+All stable and patch releases of Astronomer Software require a simple upgrade process. When an [LTS version](release-lifecycle-policy.md#release-channels) is released, additional upgrade guidance specific to that version will be made available.
 
-Follow this guide to upgrade to any stable or patch version of Astronomer Enterprise. For information on new features and changes, refer to [Enterprise Release Notes](release-notes.md).
+Follow this guide to upgrade to any stable or patch version of Astronomer Software. For information on new features and changes, refer to [Software Release Notes](release-notes.md).
 
 A few notes before you get started:
 - The patch upgrade process will not affect running Airflow tasks as long as `upgradeDeployments.enabled=false` is set in the script below.
-- Patch and stable version updates will not cause any downtime to Astronomer services, including the Astronomer UI, the Astronomer CLI, and the Houston API.
+- Patch and stable version updates will not cause any downtime to Astronomer services, including the Software UI, the Astronomer Software CLI, and the Houston API.
 
 :::info
 
@@ -79,10 +79,10 @@ Make sure to substitute the following 3 variables with your own values:
 - `<astronomer-platform-namespace>`
 - `<astronomer-patch-version>`
 
-To upgrade to Astronomer Enterprise v0.26.5, for example, set `ASTRO_VERSION=0.26.5`.
+To upgrade to Astronomer Software v0.26.5, for example, set `ASTRO_VERSION=0.26.5`.
 
 :::tip
 
-If you do not specify a patch version above, the script will automatically pull the latest Astronomer Enterprise patch available in the [Astronomer Helm Chart](https://github.com/astronomer/astronomer/releases). If you set `ASTRO_VERSION=0.26`, for example, Astronomer v0.26.5 will be installed if it is the latest v0.26 patch available.
+If you do not specify a patch version above, the script will automatically pull the latest Astronomer Software patch available in the [Astronomer Helm Chart](https://github.com/astronomer/astronomer/releases). If you set `ASTRO_VERSION=0.26`, for example, Astronomer v0.26.5 will be installed if it is the latest v0.26 patch available.
 
 :::

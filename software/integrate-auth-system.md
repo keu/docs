@@ -1,13 +1,13 @@
 ---
 sidebar_label: 'Integrate an Auth System'
-title: 'Integrate an Auth System on Astronomer Enterprise'
+title: 'Integrate an Auth System on Astronomer Software'
 id: integrate-auth-system
-description: Integrate your internal authentication server with Astronomer Enterprise.
+description: Integrate your internal authentication server with Astronomer Software.
 ---
 
 ## Overview
 
-Astronomer Enterprise by default allows users to create an account with and authenticate using one of the 3 methods below:
+Astronomer Software by default allows users to create an account with and authenticate using one of the 3 methods below:
 
 - Google OAuth
 - GitHub OAuth
@@ -45,7 +45,7 @@ astronomer:
 
 ## General OIDC Configuration
 
-If you'd like to integrate an OIDC provider with Astronomer Enterprise, you can enable that configuration in the `config.yaml` file of your `astronomer` directory.
+If you'd like to integrate an OIDC provider with Astronomer Software, you can enable that configuration in the `config.yaml` file of your `astronomer` directory.
 
 Example:
 
@@ -160,7 +160,7 @@ Follow the steps below.
 
 2. In your Okta account, create a new web app for Astronomer.
 
-3. In Okta, under **General Settings** > **Application**, set `Login redirect URIs` to `https://houston.BASEDOMAIN/v1/oauth/redirect/`, where `BASEDOMAIN` is the domain where you're hosting your Astronomer installation.
+3. In Okta, under **General Settings** > **Application**, set `Login redirect URIs` to `https://houston.BASEDOMAIN/v1/oauth/redirect/`, where `BASEDOMAIN` is the domain where you're hosting your Software installation.
 
 4. Under **Allowed grant types**, select `Implicit (Hybrid)`.
 
@@ -186,7 +186,7 @@ astronomer:
 
 Then, push the configuration change to your platform as described in [Apply a Platform Configuration Change on Astronomer](apply-platform-config.md).
 
->> **Note:** `okta-base-domain` will be different from the basedomain of your Astronomer installation. You can read [Okta's docs on finding your domain](https://developer.okta.com/docs/api/getting_started/finding_your_domain/) if you are unsure what this value should be.
+>> **Note:** `okta-base-domain` will be different from the basedomain of your Software installation. You can read [Okta's docs on finding your domain](https://developer.okta.com/docs/api/getting_started/finding_your_domain/) if you are unsure what this value should be.
 
 ## Auth0
 
@@ -361,4 +361,4 @@ If you configured a fully custom OAuth flow, you should see a new **Log in with 
 
 ![Custom login button on the Astronomer login screen](/img/docs/custom-oauth.png)
 
-You will also see the name you configured in `AUTH__OPENID_CONNECT__CUSTOM__DISPLAY_NAME` when authenticating via the Astronomer CLI.
+You will also see the name you configured in `AUTH__OPENID_CONNECT__CUSTOM__DISPLAY_NAME` when authenticating via the Astronomer Software CLI.

@@ -1,8 +1,8 @@
 ---
 sidebar_label: 'Disaster Recovery'
-title: 'Astronomer Enterprise Disaster Recovery Guide'
+title: 'Astronomer Software Disaster Recovery Guide'
 id: disaster-recovery
-description: A guide to platform backups and disaster recovery for Astronomer Enterprise.
+description: A guide to platform backups and disaster recovery for Astronomer Software.
 ---
 
 ## Overview
@@ -133,7 +133,7 @@ The steps below are valid for the Astronomer Platform on Helm3 (Astronomer v0.14
 
 #### Non-Deleted Airflow Deployment
 
-To restore a previous version of a deployment that has NOT been deleted via the Astronomer UI (or CLI/API) and that has been backed up with Velero, follow the steps below.
+To restore a previous version of a deployment that has NOT been deleted via the Software UI (or CLI/API) and that has been backed up with Velero, follow the steps below.
 
 1. Identify the Velero backup you intend to use by running:
 
@@ -153,7 +153,7 @@ To restore a previous version of a deployment that has NOT been deleted via the 
 
 #### Deleted Airflow Deployment
 
-To restore a single Airflow Deployment that _was_ deleted via the Astronomer UI (or CLI/API), first perform the steps detailed above for restoring its namespace with Velero.
+To restore a single Airflow Deployment that _was_ deleted via the Software UI (or CLI/API), first perform the steps detailed above for restoring its namespace with Velero.
 
 Once that is complete, the Astronomer Database needs to be updated to mark that release as not deleted. Follow the steps below.
 
@@ -187,7 +187,7 @@ Once that is complete, the Astronomer Database needs to be updated to mark that 
     UPDATE houston$default."Deployment" SET "deletedAt" = NULL WHERE "releaseName" = '<YOUR RELEASE NAME>';
     ```
 
-Following these steps, the restored Airflow Deployment should render in the Astronomer UI with its corresponding Workspace. All associated pods should be running in the cluster.
+Following these steps, the restored Airflow Deployment should render in the Software UI with its corresponding Workspace. All associated pods should be running in the cluster.
 
 ### Whole Platform
 

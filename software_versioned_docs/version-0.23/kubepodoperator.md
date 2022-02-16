@@ -1,5 +1,5 @@
 ---
-title: 'Run the KubernetesPodOperator on Astronomer Enterprise'
+title: 'Run the KubernetesPodOperator on Astronomer Software'
 sidebar_label: 'KubernetesPodOperator'
 id: kubepodoperator
 ---
@@ -18,7 +18,7 @@ If you're using the Kubernetes Executor, you can also configure task-level Kuber
 
 To run the KubernetesPodOperator on Astronomer, make sure you:
 
-- Have a running Airflow Deployment on Astronomer Enterprise
+- Have a running Airflow Deployment on Astronomer Software
 - Run Astronomer Airflow 1.10+
 
 > **Note:** If you haven't already, we'd encourage you to first test the KubernetesPodOperator in your local environment. Follow our [Running KubePodOperator Locally](kubepodoperator-local.md) for guidelines.
@@ -61,7 +61,7 @@ To successfully instantiate the operator, you'll need to make note of a few para
 1. `namespace`
    - On Astronomer, each Airflow deployment sits on top of a corresponding [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
     - If you're running the KubernetesPodOperator, it needs to know *which* namespace to run in and where to look for the config file
-    - On Astronomer Enterprise, this would be a combination of your platform namespace and your deployment's release name in the following format: `base-namespace-deployment-release-name` (e.g. `astronomer-frigid-vacuum-0996`)
+    - On Astronomer Software, this would be a combination of your platform namespace and your deployment's release name in the following format: `base-namespace-deployment-release-name` (e.g. `astronomer-frigid-vacuum-0996`)
     - The namespace variable is injected into your deployment's [airflow.cfg](https://airflow.apache.org/howto/set-config.html), which means you can programmatically import the namespace as an Environment Variable (shown above)
 2. `in_cluster`
     - Set the `in_cluster` parameter to `True` in your code
@@ -72,7 +72,7 @@ To successfully instantiate the operator, you'll need to make note of a few para
 
 #### Add Resources to your Deployment on Astronomer
 
-The KubernetesPodOperator is entirely powered by the resources allocated to the `Extra Capacity` slider of your deployment's `Configure` page in the [Astronomer UI](manage-workspaces.md) in lieu of needing a Celery Worker (or Scheduler resources for those running the Local Executor). Raising the slider will increase your namespace's [resource quota](https://kubernetes.io/docs/concepts/policy/resource-quotas/) such that Airflow has permissions to successfully launch pods within your deployment's namespace.
+The KubernetesPodOperator is entirely powered by the resources allocated to the `Extra Capacity` slider of your deployment's `Configure` page in the [Software UI](manage-workspaces.md) in lieu of needing a Celery Worker (or Scheduler resources for those running the Local Executor). Raising the slider will increase your namespace's [resource quota](https://kubernetes.io/docs/concepts/policy/resource-quotas/) such that Airflow has permissions to successfully launch pods within your deployment's namespace.
 
 > **Note:** Your Airflow Scheduler and Webserver will remain necessary fixed resources that ensure the rest of your tasks can execute and that your deployment stays up and running.
 
@@ -84,9 +84,9 @@ Reason: Forbidden
 "Failure","message":"pods is forbidden: User \"system:serviceaccount:astronomer-cloud-solar-orbit-4143:solar-orbit-4143-worker-serviceaccount\" cannot create pods in the namespace \"datarouter\"","reason":"Forbidden","details":{"kind":"pods"},"code":403}
 ```
 
-On Astronomer Enterprise, the largest node a single pod can occupy is dependent on the size of your underlying node pool.
+On Astronomer Software, the largest node a single pod can occupy is dependent on the size of your underlying node pool.
 
-> **Note:** If you need to increase your [limit range](https://kubernetes.io/docs/concepts/policy/limit-range/) on Astronomer Enterprise, contact your system admin. \\
+> **Note:** If you need to increase your [limit range](https://kubernetes.io/docs/concepts/policy/limit-range/) on Astronomer Software, contact your system admin. \\
 
 #### Define Resources per Task
 
@@ -179,7 +179,7 @@ By default, the KubernetesPodOperator will look for images hosted publicly on [D
 
 > **Note:** The KubernetesPodOperator doesn't support passing in `image_pull_secrets` until [Airflow 1.10.2](https://github.com/apache/airflow/blob/master/CHANGELOG.txt#L526).
 
-To pull images from a private registry on Astronomer Enterprise, follow the guidelines below.
+To pull images from a private registry on Astronomer Software, follow the guidelines below.
 
 **1.** Pull a `dockerconfigjson` file with your existing Docker credentials by following [this guide](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#registry-secret-existing-credentials) (step 1 above)
 

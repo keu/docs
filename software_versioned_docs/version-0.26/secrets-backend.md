@@ -1,8 +1,8 @@
 ---
-title: 'Configure an External Secrets Backend on Astronomer Enterprise'
+title: 'Configure an External Secrets Backend on Astronomer Software'
 sidebar_label: 'Configure a Secrets Backend'
 id: secrets-backend
-description: Configure a secret backend tool on Astronomer Enterprise to store Airflow Connections and Variables.
+description: Configure a secret backend tool on Astronomer Software to store Airflow Connections and Variables.
 ---
 
 As of [Airflow 1.10.10](https://airflow.apache.org/docs/1.10.10/howto/use-alternative-secrets-backend.html), users can manage and sync Airflow Connections and Variables from a variety of external secrets backend tools, including [Hashicorp Vault](https://www.vaultproject.io/), [AWS SSM Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html), and [GCP Secret Manager](https://cloud.google.com/secret-manager).
@@ -22,7 +22,7 @@ In this section, we'll walk through how to use Vault as a secrets backend both l
 To use this feature, you'll need the following:
 
 - "Admin" access to an Airflow Deployment on Astronomer
-- [The Astro CLI](cli-quickstart.md)
+- [The Astronomer Software CLI](cli-quickstart.md)
 - A running Hashicorp Vault server
 - [The Vault CLI](https://www.vaultproject.io/docs/install)
 - Your Vault server's [Root Token](https://www.vaultproject.io/docs/concepts/tokens#root-tokens)
@@ -149,7 +149,7 @@ You can also pass the `conn_id` of your secret directly to most Airflow operator
 
 Once you've confirmed that your connections are being imported correctly locally, you're ready to set your Environment Variables on Astronomer.
 
-1. Navigate to `Deployment > Configure > Environment Variables` section of the Astronomer UI
+1. Navigate to `Deployment > Configure > Environment Variables` section of the Software UI
 2. Set your `VAULT__ROOT_TOKEN` and `VAULT__URL` as you did above
 3. Click `Deploy Changes` to save and publish your changes
 4. Deploy to Astronomer by running `$ astro deploy`
@@ -179,7 +179,7 @@ For the purpose of this doc, we'll assume you already have an SSM Parameter Stor
 To use this feature, you'll need the following:
 
 - "Admin" access to an Airflow Deployment on Astronomer
-- The [Astro CLI](cli-quickstart.md)
+- The [Astronomer Software CLI](cli-quickstart.md)
 - A running AWS SSM Parameter Store instance
 - A valid AWS Access Key ID and Secret Access Key
 
@@ -239,7 +239,7 @@ This setup assumes that you already have a Google Cloud project with [Secret Man
 1. [Create a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) with the appropriate permissions on Google Cloud.
 2. Add the [Secret Manager Secret Accessor](https://cloud.google.com/secret-manager/docs/access-control) role to the service account.
 3. Create and download a [JSON service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys) for the service account.
-4. In the Astronomer UI, set the following [environment variables](environment-variables.md) in your Airflow Deployment, making sure to paste the entire JSON key file in place of `<your-key-file>`:
+4. In the Software UI, set the following [environment variables](environment-variables.md) in your Airflow Deployment, making sure to paste the entire JSON key file in place of `<your-key-file>`:
 
     ```sh
     AIRFLOW__SECRETS__BACKEND=airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend

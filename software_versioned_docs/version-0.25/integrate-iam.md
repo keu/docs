@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Integrate IAM Roles'
-title: 'Integrate IAM Roles on Astronomer Enterprise'
+title: 'Integrate IAM Roles on Astronomer Software'
 id: integrate-iam
 ---
 
@@ -14,13 +14,13 @@ A few clarifying notes:
 
 * Webserver, Scheduler and Worker pods within your Airflow Deployment will assume the IAM role. There is currently no way to use more than 1 IAM role per deployment.
 * If you’d like your IAM role to apply to more than 1 deployment, you must annotate each deployment.
-* You must use the Astro CLI to pass IAM role annotations.
+* You must use the Astronomer Software CLI to pass IAM role annotations.
 * Only Workspace Admins can pass IAM role annotations.
 * Once a Deployment is created or updated with an IAM role, there is no way to delete that annotation.
 
 ## Prerequisites
 
-* [The Astronomer CLI](cli-quickstart.md)
+* [The Astronomer Software CLI](cli-quickstart.md)
 * Admin access on an Astronomer Workspace
 * Direct access to your Kubernetes Cluster (e.g. permission to run `$ kubectl describe po`)
 * A compatible version of Kubernetes as described in Astronomer's [Version Compatibility Reference](version-compatibility-reference.md)
@@ -216,7 +216,7 @@ In order to apply your IAM role to any Airflow Deployment on Astronomer, you'll 
 
 ### Step 5: Create or update an Airflow Deployment with an attached IAM role
 
-1. To create a new Airflow Deployment with your IAM role attached, run the following Astronomer CLI command:
+1. To create a new Airflow Deployment with your IAM role attached, run the following Astronomer Software CLI command:
 
     ```sh
     astro deployment create <deployment-id> --executor=celery --cloud-role=arn:aws:iam::<your-iam-id>:role/<your-role>

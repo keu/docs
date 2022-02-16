@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Debugging'
-title: 'Debug Your Astronomer Enterprise Installation'
+title: 'Debug Your Astronomer Software Installation'
 id: debug-install
 ---
 

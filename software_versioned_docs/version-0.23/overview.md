@@ -1,17 +1,17 @@
 ---
-title: 'Astronomer Enterprise Overview'
+title: 'Astronomer Software Overview'
 sidebar_label: 'Overview'
 id: overview
-description: 'Documentation for how to run Airflow at enterprise scale with Astronomer Enterprise.'
+description: 'Documentation for how to run Airflow at enterprise scale with Astronomer Software.'
 ---
 
 ## Overview
 
-Astronomer Enterprise is the best way to run Apache Airflow in your private cloud. Using Astronomer's tooling, you can have fine-tuned control over every aspect of your Airflow experience.
+Astronomer Software is the best way to run Apache Airflow in your private cloud. Using Astronomer's tooling, you can have fine-tuned control over every aspect of your Airflow experience.
 
 ## Features
 
-Astronomer Enterprise's key features ensure that enterprise organizations can run Apache Airflow securely and reliably:
+Astronomer Software's key features ensure that enterprise organizations can run Apache Airflow securely and reliably:
 
 - Push-button Deployments of Apache Airflow
 - Role-based access control (RBAC) for configurable and secure user management
@@ -21,13 +21,13 @@ Astronomer Enterprise's key features ensure that enterprise organizations can ru
 
 ## Architecture
 
-The following diagram shows how you can run Airflow in your private cloud using Astronomer Enterprise:
+The following diagram shows how you can run Airflow in your private cloud using Astronomer Software:
 
-![Astronomer Enterprise Overview](https://assets2.astronomer.io/main/enterpriseArchitecture.svg)
+![Astronomer Software Overview](https://assets2.astronomer.io/main/enterpriseArchitecture.svg)
 
 ## Installation Guides
 
-If you are new to Astronomer Enterprise, use the following guides to install the system on your cloud service:
+If you are new to Astronomer Software, use the following guides to install the system on your cloud service:
 
 * [Amazon Web Services EKS](install-aws-standard.md)
 * [Google Cloud Platform GKE](install-gcp-standard.md)
@@ -35,7 +35,7 @@ If you are new to Astronomer Enterprise, use the following guides to install the
 
 ## Customizing Your Installation
 
-Because the platform uses Helm, it's easy to customize your Astronomer installation. Below are some guides for most common customizations:
+Because the platform uses Helm, it's easy to customize your Software installation. Below are some guides for most common customizations:
 
 * [Integrating Auth Systems](integrate-auth-system.md)
 * [Configuring Resources with Helm](manage-platform-users.md)
@@ -51,8 +51,8 @@ There are many tools at your disposal for administering Astronomer:
 * [Using Kibana](kibana-logging.md)
 * [Using kubectl](kubectl.md)
 * [Pulling Postgres Credentials](access-airflow-database.md)
-* [Upgrade to a Patch Version of Astronomer Enterprise](upgrade-astronomer-stable.md/)
+* [Upgrade to a Patch Version of Astronomer Software](upgrade-astronomer-stable.md/)
 
 ## License
 
-Usage of Astronomer requires an [Astronomer Platform Enterprise Edition license](https://github.com/astronomer/astronomer/blob/master/LICENSE).
+Usage of Astronomer requires an [Astronomer Platform Software Edition license](https://github.com/astronomer/astronomer/blob/master/LICENSE).

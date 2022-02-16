@@ -1,5 +1,5 @@
 ---
-title: 'Run the Kubernetes Executor on Astronomer Enterprise'
+title: 'Run the Kubernetes Executor on Astronomer Software'
 sidebar_label: 'Kubernetes Executor'
 id: kubernetes-executor
 description: Run and configure the Kubernetes Executor on Astronomer.
@@ -29,7 +29,7 @@ By default, Airflow Deployments on Astronomer use a pod template to construct ea
     kubectl get ns
     ```
 
-    You can also find this information in the Astronomer UI under the **Deployments** tab of your Workspace menu.
+    You can also find this information in the Software UI under the **Deployments** tab of your Workspace menu.
 
 2. Run the following command to get the `pod_template_spec` for your release:
 
@@ -48,7 +48,7 @@ By default, Airflow Deployments on Astronomer use a pod template to construct ea
 
     > **Note:** Depending on your configuration, you may also need to change your `USER` line to `root` in order to have the appropriate copy permissions.
 
-5. In the Astronomer UI, add the `AIRFLOW__KUBERNETES__POD_TEMPLATE_FILE` environment variable to your Deployment. Its value should be the directory path for the pod template in your Docker image. In this example, the file path would be `/tmp/copied_pod_template.yaml`.
+5. In the Software UI, add the `AIRFLOW__KUBERNETES__POD_TEMPLATE_FILE` environment variable to your Deployment. Its value should be the directory path for the pod template in your Docker image. In this example, the file path would be `/tmp/copied_pod_template.yaml`.
 6. In your terminal, run `astro deploy -f` to deploy your code and rebuild your Docker image.
 7. To confirm that the deploy was successful, launch the Airflow UI for your Deployment, click into any single task, and click `K8s Pod Spec`. You should see the updates you made to the pod template in this specification.
 

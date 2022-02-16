@@ -1,5 +1,5 @@
 ---
-title: 'Manage User Permissions on Astronomer Enterprise'
+title: 'Manage User Permissions on Astronomer Software'
 sidebar_label: 'User Permissions'
 id: workspace-permissions
 ---
@@ -8,7 +8,7 @@ id: workspace-permissions
 
 Astronomer supports a permissions and role-based access control (RBAC) framework that allows users to configure varying levels of access both at the Workspace and Airflow Deployment levels.
 
-Workspace and Deployment-level access can each be configured with 3 user roles (_Admin_, _Editor_, _Viewer_), all of which can be set and changed via the Astronomer UI and CLI. Each role maps to a combination of permissions to both Astronomer and Apache Airflow itself.
+Workspace and Deployment-level access can each be configured with 3 user roles (_Admin_, _Editor_, _Viewer_), all of which can be set and changed via the Software UI and CLI. Each role maps to a combination of permissions to both Astronomer and Apache Airflow itself.
 
 The guidelines below will cover:
 
@@ -18,7 +18,7 @@ The guidelines below will cover:
 
 ## Invite Users
 
-Workspace and Deployment _Admins_ can invite and otherwise manage users both via the Astronomer UI and CLI. All users who have access to a Workspace must be assigned 1 of 3 Workspace roles, though deployment-level roles are not required.
+Workspace and Deployment _Admins_ can invite and otherwise manage users both via the Software UI and CLI. All users who have access to a Workspace must be assigned 1 of 3 Workspace roles, though deployment-level roles are not required.
 
 Read below for guidelines.
 
@@ -28,9 +28,9 @@ The ability to invite users to an Astronomer Workspace is limited to Workspace _
 
 A user who creates a Workspace is automatically granted the _Admin_ role for the Workspace and has the ability to create any number of Airflow Deployments within it. Every Workspace must have at least 1 Workspace _Admin_.
 
-#### via Astronomer UI
+#### via Software UI
 
-To invite a user to a Workspace via the Astronomer UI, navigate to **Workspace** > **Users** > **Invite User**.
+To invite a user to a Workspace via the Software UI, navigate to **Workspace** > **Users** > **Invite User**.
 
 When a Workspace _Admin_ invites a user to a Workspace in which one or more Airflow Deployments exist, they'll have the opportunity to set that user's deployment-level roles as well, though it is not required.
 
@@ -38,9 +38,9 @@ When a Workspace _Admin_ invites a user to a Workspace in which one or more Airf
 
 If a Workspace Admin invites a user to a Workspace that does _not_ have any Airflow Deployments within it, the **Deployment Roles** modal above will not appear.
 
-#### via Astronomer CLI
+#### via Astronomer Software CLI
 
-To invite a user to a Workspace via the Astronomer CLI, run:
+To invite a user to a Workspace via the Astronomer Software CLI, run:
 
 ```bash
 astro workspace user add <email-address> --workspace-id=<workspace-id> --role=<workspace-role>
@@ -67,9 +67,9 @@ The ability to invite Workspace users to an Airflow Deployment within it is limi
 
 > **Note:** In order for a user to be granted access to an Airflow Deployment, they must _first_ be invited to and assigned a role within the Workspace. On the other hand, a user could be a part of a Workspace but have no access or role to any Airflow Deployments within it.
 
-#### via Astronomer UI
+#### via Software UI
 
-To invite a Workspace user to an Airflow Deployment via the Astronomer UI, navigate to: **Workspace** > **Deployment** > **Access**.
+To invite a Workspace user to an Airflow Deployment via the Software UI, navigate to: **Workspace** > **Deployment** > **Access**.
 
 From there:
 
@@ -79,9 +79,9 @@ From there:
 
 ![Invite Deployment User](https://assets2.astronomer.io/main/docs/astronomer-ui/invite-user-deployment.gif)
 
-#### via Astronomer CLI
+#### via Astronomer Software CLI
 
-To invite a Workspace user to an Airflow Deployment via the Astronomer CLI, run:
+To invite a Workspace user to an Airflow Deployment via the Astronomer Software CLI, run:
 
 ```
 astro deployment user add <email-address> --deployment-id=<deployment-id> --role=<deployment-role>
@@ -107,11 +107,11 @@ If you do _not_ specify a role in this command, `DEPLOYMENT_VIEWER` will be set 
 
 #### View Workspace Users
 
-To view roles within a Workspace via the Astronomer UI, navigate to **Workspace** > **Users**. All Workspace users have access to this view and can see the roles of other users.
+To view roles within a Workspace via the Software UI, navigate to **Workspace** > **Users**. All Workspace users have access to this view and can see the roles of other users.
 
 ![View Workspace Users](https://assets2.astronomer.io/main/docs/astronomer-ui/view-workspace-users.png)
 
-To list Workspace users via the Astronomer CLI, run:
+To list Workspace users via the Astronomer Software CLI, run:
 
 ```bash
 astro workspace user list
@@ -125,7 +125,7 @@ If you're a Workspace _Admin_, you can edit both Workspace and deployment-level 
 
 ![Configure Access](https://assets2.astronomer.io/main/docs/astronomer-ui/configure_access-0.22.png)
 
-To edit a user's role via the Astro CLI, run:
+To edit a user's role via the Astronomer Software CLI, run:
 
 ```bash
 astro workspace user update <email> --workspace-id=<workspace-id> --role=<workspace-role>
@@ -139,7 +139,7 @@ Workspace _Admins_ can remove users from a Workspace by navigating to: **Workspa
 
 ![Remove Workspace User](https://assets2.astronomer.io/main/docs/astronomer-ui/remove-workspace-user.gif)
 
-To remove a user from a Workspace via the Astronomer CLI, make sure you're first operating in that Workspace. Then, run:
+To remove a user from a Workspace via the Astronomer Software CLI, make sure you're first operating in that Workspace. Then, run:
 
 ```bash
 astro workspace user remove <email>
@@ -155,7 +155,7 @@ To list all users within a Deployment and their corresponding roles, navigate to
 
 ![Deployment Users](https://assets2.astronomer.io/main/docs/astronomer-ui/deployment_users_0.22.png)
 
-To list Deployment users via the Astronomer CLI, run:
+To list Deployment users via the Astronomer Software CLI, run:
 
 ```bash
 astro deployment user list <deployment-id>
@@ -163,11 +163,11 @@ astro deployment user list <deployment-id>
 
 #### Edit Deployment User Role
 
-Deployment _Admins_ can edit permissions using the dropdown menu in the **Access** tab in the Astronomer UI.
+Deployment _Admins_ can edit permissions using the dropdown menu in the **Access** tab in the Software UI.
 
 ![Configure Deployment Access](https://assets2.astronomer.io/main/docs/astronomer-ui/configure-deployment-user-access.png)
 
-To edit a user's role via the Astro CLI, run:
+To edit a user's role via the Astronomer Software CLI, run:
 
 ```bash
 astro deployment user update <email> --deployment-id=<deployment-id> --role=<deployment-role>
@@ -177,9 +177,9 @@ astro deployment user update <email> --deployment-id=<deployment-id> --role=<dep
 
 #### Remove Deployment User
 
-To delete a user from an Airflow Deployment via the Astronomer UI, Deployment _Admins_ can click on the red "wastebasket" icon within the **Access** tab shown in the screenshot above.
+To delete a user from an Airflow Deployment via the Software UI, Deployment _Admins_ can click on the red "wastebasket" icon within the **Access** tab shown in the screenshot above.
 
-To delete a user from an Airflow Deployment via the Astro CLI, run:
+To delete a user from an Airflow Deployment via the Astronomer Software CLI, run:
 
 ```bash
 astro deployment user delete <email> --deployment-id=<deployment-id>
@@ -269,7 +269,7 @@ Deployment Viewers cannot deploy to, modify, or delete anything within an Airflo
 
 ## What's Next
 
-As an Astronomer Enterprise user, you're free to customize all user permissions at the platform-level. For more information, read:
+As an Astronomer Software user, you're free to customize all user permissions at the platform-level. For more information, read:
 
-- [Manage Users on Astronomer Enterprise](manage-platform-users.md#customize-permissions)
+- [Manage Users on Astronomer Software](manage-platform-users.md#customize-permissions)
 - [Integrate an Auth System](integrate-auth-system.md)

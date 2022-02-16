@@ -1,21 +1,21 @@
 ---
 sidebar_label: 'Windows 10'
-title: 'Astronomer CLI Installation for Windows 10'
+title: 'Astronomer Software CLI Installation for Windows 10'
 id: cli-install-windows-10
 ---
 
 Welcome to Astronomer!
 
-If you're a Windows User looking to install and use the Astronomer CLI, you have 2 options:
+If you're a Windows User looking to install and use the Astronomer Software CLI, you have 2 options:
 
 1. Install the Unix-based CLI a Windows Subsystem for Linux (WSL)
 2. Install the Windows-based CLI
 
 > **Note:** Either option will require Windows 10 or greater.
 
-## Astronomer CLI on Windows Subsystem for Linux (WSL)
+## Astronomer Software CLI on Windows Subsystem for Linux (WSL)
 
-This guide will walk you through the setup and configuration process for using the Astronomer CLI in the Windows Subsystem for Linux (WSL) on Windows 10. Before you start, make sure:
+This guide will walk you through the setup and configuration process for using the Astronomer Software CLI in the Windows Subsystem for Linux (WSL) on Windows 10. Before you start, make sure:
  - You're running the bash terminal
  - You have the [the WSL enabled](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
  - You're on Windows 10
@@ -68,9 +68,9 @@ You're all set! You can now run `docker run hello-world` through your WSL instan
 
 Once you've completed the steps above, head over to our [CLI Quickstart Guide](cli-quickstart.md) to finish the installation and start deployment DAGs.
 
-## Astronomer CLI on Windows 10
+## Astronomer Software CLI on Windows 10
 
-If for any reason you can't install WSL, you can install a Windows adapted version of the Astronomer CLI directly by following the instructions below.
+If for any reason you can't install WSL, you can install a Windows adapted version of the Astronomer Software CLI directly by following the instructions below.
 
 ### Step 1. Pre-Flight Checklist
 
@@ -85,9 +85,9 @@ Make sure you enabled Hyper-V, which is required to run Docker and Linux Contain
 
 If you have any issues with Docker, check out [Docker's Troubleshooting Guide for Windows](https://docs.docker.com/docker-for-windows/troubleshoot/).
 
-### Step 3. Download the Astro CLI
+### Step 3. Download the Astronomer Software CLI
 
-Currently, Astronomer on Windows outside of WSL is only supported by Astronomer CLI versions 0.8 and beyond.
+Currently, Astronomer on Windows outside of WSL is only supported by Astronomer Software CLI versions 0.8 and beyond.
 
 You can download the latest version of the CLI [here](https://github.com/astronomer/astro-cli/releases/).
 
@@ -111,7 +111,7 @@ Now, open your Terminal or PowerShell console and run the following:
 
 ```
 C:\Windows\system32>astro version
-Astro CLI Version: 0.8.2
+Astronomer Software CLI Version: 0.8.2
 Git Commit: f5cdab8f832da3c6184a7ac167b491e3bac3c022
 ```
 

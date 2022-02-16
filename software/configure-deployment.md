@@ -1,20 +1,20 @@
 ---
 sidebar_label: 'Configure a Deployment'
-title: 'Configure a Deployment on Astronomer Enterprise'
+title: 'Configure a Deployment on Astronomer Software'
 id: configure-deployment
-description: Configure your Airflow Deployment's resources on Astronomer Enterprise.
+description: Configure your Airflow Deployment's resources on Astronomer Software.
 ---
 
 ## Overview
 
-An Airflow Deployment on Astronomer is an instance of Apache Airflow that was created either via the Astronomer UI or the Astronomer CLI. Each Airflow Deployment on Astronomer is hosted on a single Kubernetes namespace, has a dedicated set of resources, and operates with an isolated Postgres Metadata Database.
+An Airflow Deployment on Astronomer is an instance of Apache Airflow that was created either via the Software UI or the Astronomer Software CLI. Each Airflow Deployment on Astronomer is hosted on a single Kubernetes namespace, has a dedicated set of resources, and operates with an isolated Postgres Metadata Database.
 
 This guide walks you through the process of creating and configuring an Airflow Deployment on Astronomer.
 
 ## Prerequisites
 
 To create an Airflow Deployment, you'll need:
-* [The Astronomer CLI](cli-quickstart.md) installed.
+* [The Astronomer Software CLI](cli-quickstart.md) installed.
 * An Astronomer platform at `app.BASEDOMAIN`.
 * An Astronomer [Workspace](manage-workspaces.md).
 
@@ -66,7 +66,7 @@ Apache Airflow requires two primary components:
 - The Airflow Webserver
 - The Airflow Scheduler
 
-To scale either resource, simply adjust the corresponding slider in the Astronomer UI to increase its available computing power.
+To scale either resource, simply adjust the corresponding slider in the Software UI to increase its available computing power.
 
 Read the following sections to help you determine which core resources to scale and when.
 
@@ -88,7 +88,7 @@ If you experience delays in task execution, which you can track via the [Gantt C
 
 #### Scheduler Count
 
-Airflow 2.0 comes with the ability for users to run multiple Schedulers concurrently to ensure high-availability, zero recovery time, and faster performance. By adjusting the **Scheduler Count** slider in the Astronomer UI, you can provision up to 4 Schedulers on any Deployment running Airflow 2.0+ on Astronomer.
+Airflow 2.0 comes with the ability for users to run multiple Schedulers concurrently to ensure high-availability, zero recovery time, and faster performance. By adjusting the **Scheduler Count** slider in the Software UI, you can provision up to 4 Schedulers on any Deployment running Airflow 2.0+ on Astronomer.
 
 Each individual Scheduler will be provisioned with the AU specified in **Scheduler Resources**. For example, if you set **Scheduler Resources** to 10 AU and **Scheduler Count** to 2, your Airflow Deployment will run with 2 Airflow Schedulers using 10 AU each for a total of 20 AU.
 
@@ -98,7 +98,7 @@ To increase the speed at which tasks are scheduled and ensure high-availability,
 
 Airflow 2.2 introduces the Triggerer, which is a component for running tasks with [Deferrable Operators](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html). Like the Scheduler, the Triggerer is highly-available: If a Triggerer shuts down unexpectedly, the tasks it was deferring can be recovered and moved to another Triggerer.
 
-By adjusting the **Triggerer** slider in the Astronomer UI, you can provision up to 2 Triggerers on any Deployment running Airflow 2.2+. To take advantage of the Triggerer's high availability, we recommend provisioning 2 Triggerers for production Deployments.
+By adjusting the **Triggerer** slider in the Software UI, you can provision up to 2 Triggerers on any Deployment running Airflow 2.2+. To take advantage of the Triggerer's high availability, we recommend provisioning 2 Triggerers for production Deployments.
 
 Note that this feature must first be enabled by a System Admin before it appears in your Deployments. To enable Triggerers, follow the steps in the following section.
 
@@ -172,7 +172,7 @@ Environment Variables can be used to set [Airflow configurations](https://airflo
 
 These can include setting Airflow Parallelism, an SMTP service for Alerts, or a [secrets backend](secrets-backend.md) to manage Airflow Connections and Variables.
 
-Environment Variables can be set for your Airflow Deployment either in the **Variables** tab of the Astronomer UI or in your `Dockerfile`. If you're developing locally, they can also be added to a local `.env` file. For more information on configuring Environment Variables, read [Environment Variables on Astronomer](environment-variables.md).
+Environment Variables can be set for your Airflow Deployment either in the **Variables** tab of the Software UI or in your `Dockerfile`. If you're developing locally, they can also be added to a local `.env` file. For more information on configuring Environment Variables, read [Environment Variables on Astronomer](environment-variables.md).
 
 > **Note**: Environment Variables are distinct from [Airflow Variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html?highlight=variables) and [XComs](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#concepts-xcom), which you can configure directly via the Airflow UI and are used for inter-task communication.
 
@@ -192,7 +192,7 @@ astronomer:
 
 Then, push the updated `config.yaml` file to your installation as described in [Apply a Config Change](apply-platform-config.md).
 
-After applying this change, the **Release Name** field in the Astronomer UI becomes configurable:
+After applying this change, the **Release Name** field in the Software UI becomes configurable:
 
 ![Custom Release Name Field](https://assets2.astronomer.io/main/docs/astronomer-ui/custom-release-name.png)
 
@@ -209,7 +209,7 @@ By default, you can deploy DAGs to an Airflow Deployment by building them into a
 
 This mechanism builds your DAGs into a Docker image alongside all other files in your Airflow project directory, including your Python and OS-level packages, your Dockerfile, and your plugins.
 
-The resulting image is then used to generate a set of Docker containers for each of Airflow's core components. Every time you run `astro deploy` via the Astronomer CLI, your DAGs are rebuilt into a new Docker image and all Docker containers are restarted.
+The resulting image is then used to generate a set of Docker containers for each of Airflow's core components. Every time you run `astro deploy` via the Astronomer Software CLI, your DAGs are rebuilt into a new Docker image and all Docker containers are restarted.
 
 Since the image-based deploy does not require additional setup, we recommend it for those getting started with Airflow.
 
@@ -239,7 +239,7 @@ In your Astronomer database, the corresponding `Deployment` record will be given
 
 > **Note:** This feature must first be enabled at the platform level before it can be used. To enable this feature, set `astronomer.houston.config.deployments.hardDeleteDeployment: true` in your `config.yaml` file and push the changes to your platform as described in [Apply a Config Change](apply-platform-config.md).
 
-To reuse a custom release name given to an existing Deployment, you need to first hard delete both the Deployment's metadata database and the Deployment's entry in your Astronomer database. To do so, select the **Hard Delete?** checkbox before clicking **Delete Deployment**. Alternatively, you can run `astro deployment delete --hard` via the Astronomer CLI.
+To reuse a custom release name given to an existing Deployment, you need to first hard delete both the Deployment's metadata database and the Deployment's entry in your Astronomer database. To do so, select the **Hard Delete?** checkbox before clicking **Delete Deployment**. Alternatively, you can run `astro deployment delete --hard` via the Astronomer Software CLI.
 
 ![Hard delete checkbox](https://assets2.astronomer.io/main/docs/astronomer-ui/hard-delete.png)
 

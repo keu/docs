@@ -2,7 +2,7 @@
 sidebar_label: 'Astronomer Certified Architecture'
 title: 'Astronomer Certified Image Architecture'
 id: image-architecture
-description: Reference documentation for Astronomer Certified, Astronomer Enterprise's Docker image for Apache Airflow.
+description: Reference documentation for Astronomer Certified, Astronomer Software's Docker image for Apache Airflow.
 ---
 
 ## Overview

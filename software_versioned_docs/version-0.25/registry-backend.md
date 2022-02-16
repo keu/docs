@@ -1,12 +1,12 @@
 ---
-title: 'Using Registry Back Ends in Astronomer Enterprise'
+title: 'Using Registry Back Ends in Astronomer Software'
 sidebar_label: 'Use a Registry Backend'
 id: registry-backend
 ---
 
 ## Overview
 
-Astronomer Enterprise requires a Docker Registry to store the Docker Images generated every time a user either pushes code or a configuration change to an Airflow Deployment on Astronomer.
+Astronomer Software requires a Docker Registry to store the Docker Images generated every time a user either pushes code or a configuration change to an Airflow Deployment on Astronomer.
 
 The default storage backend for this Docker Registry is a [Kubernetes Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/). While this may be sufficient for teams just getting started on Astronomer, we strongly recommend backing the registry with an external storage solution for any team running in production.
 
@@ -18,7 +18,7 @@ This doc will walk through configuring the 3 tools that Astronomer supports:
 
 ## Google Cloud Storage
 
-If you're running Astronomer Enterprise on GCP GKE, we'd recommend Google Cloud Storage (GCS) as a registry backend solution. Read below for guidelines.
+If you're running Astronomer Software on GCP GKE, we'd recommend Google Cloud Storage (GCS) as a registry backend solution. Read below for guidelines.
 
 To read more about the Google Cloud Storage driver, reference [this doc](https://github.com/docker/docker.github.io/blob/master/registry/storage-drivers/gcs.md).
 
@@ -90,7 +90,7 @@ astronomer:
 
 ## AWS S3
 
-If you're running Astronomer Enterprise on AWS EKS, we'd recommend AWS S3 as a registry backend solution. Read below for guidelines.
+If you're running Astronomer Software on AWS EKS, we'd recommend AWS S3 as a registry backend solution. Read below for guidelines.
 
 To read more about the AWS S3 storage driver, [go here](https://github.com/docker/docker.github.io/blob/master/registry/storage-drivers/s3.md).
 
@@ -179,7 +179,7 @@ astronomer:
 
 ## Azure Blob Storage
 
-If you're running Astronomer Enterprise on Azure AKS, we'd recommend Azure Blob Storage as a registry backend solution. Read below for guidelines.
+If you're running Astronomer Software on Azure AKS, we'd recommend Azure Blob Storage as a registry backend solution. Read below for guidelines.
 
 To read more about the Azure Blog Storage driver, [go here](https://github.com/docker/docker.github.io/blob/master/registry/storage-drivers/azure.md).
 
