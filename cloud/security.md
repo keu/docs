@@ -26,7 +26,7 @@ The Astronomer Cloud Control and Data Planes are architected and deployed on maj
 
 ## Disaster Recovery
 
-While Astronomer Cloud Data Plane is designed to withstand and survive in-region Availability Zone (AZ) degradations and outages, rest assured Astronomer can also help you recover from major region failures by restoring configuration and secrets from a secure and highly available data store. For more information, read about our [Disaster Recovery](disaster-recovery.md) capabilities.
+While Astronomer Cloud Data Plane is designed to withstand and survive in-region Availability Zone (AZ) degradations and outages, rest assured Astronomer can also help you recover from major region failures by restoring configuration and secrets from a secure and highly available data store. For more information, read [Disaster Recovery](disaster-recovery.md).
 
 ## Physical and Environment Security
 
