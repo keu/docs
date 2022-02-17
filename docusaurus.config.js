@@ -97,6 +97,10 @@ module.exports = {
           title: 'Astro',
           items: [
             {
+              label: 'Log In',
+              href: 'https://cloud.astronomer.io/login',
+            },
+            {
               label: 'Install Astro',
               to: 'astro/install-aws',
             },
