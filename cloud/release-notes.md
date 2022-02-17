@@ -18,13 +18,35 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ## February 17, 2022
 
-### Product Reskin and Renaming
+### Introducing Astro
 
-The UI has been updated to match Astronomer's latest branding and design changes. Additionally, Astronomer Cloud has been renamed to Astro. These changes have been applied in the Astro UI (formerly known as the Astronomer UI) and all Astronomer websites.
+This week's update brings some significant branding and design changes to Astronomer Cloud. Most notably, Astronomer Cloud has been renamed to **Astro**. These changes have been applied in the Astro UI (formerly known as the Astronomer UI) and all Astronomer websites.
 
 ![New branding](/img/release-notes/new-branding.png)
 
-These changes are entirely cosmetic; no technical values have been changed as part of this update.
+These changes are entirely cosmetic; no technical values have been changed as part of this update. With that said, a few high level components have been renamed:
+
+- **Astronomer Cloud CLI** has been renamed to **Astro CLI**
+- **Astronomer UI** has been renamed to **Cloud UI**
+- **Astronomer Runtime** has been renamed to **Astro Runtime**
+
+### Organization roles
+
+The following Organizational-level roles have been newly introduced to Astro's RBAC schema:
+
+- **Organization Member**: This role can create new Workspaces and invite new users to an Organization. Organization Members automatically become Workspace Admins within the Workspaces that they create.
+- **Organization Billing Admin:** This role has all of the Organization Member's permissions, plus they can view all Workspaces and Task Run usage within the Organization.
+- **Organization Owner:** This role has all of the Organization Billing Admin's permissions, plus they can update any user's Organization-level permissions. Additionally, this role has Workspace Admin permissions to all Workspaces within the Organization.
+
+Organization-level roles can be updated by an Organization Admin in the **People** tab of the Cloud UI.
+
+### Create New Workspaces from the Cloud UI
+
+Any user with an Organization-level role can now create a new Workspace directly from the **Overview** tab of the Cloud UI:
+
+![Create Workspace button](/img/release-notes/add-workspace.png)
+
+When you create a new Workspace, you will automatically become a Workspace Admin for it.
 
 ### Additional improvements
 
