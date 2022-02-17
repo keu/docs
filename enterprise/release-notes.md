@@ -25,26 +25,6 @@ You now can import existing identity provider (IDP) groups into Astronomer Enter
 
 For more information about configuring this feature, read [Import IDP Groups](import-idp-groups.md). To learn more about adding and setting permissions for Teams via the Astronomer UI, read [User Permissions](workspace-permissions.md#via-teams).
 
-### Apply Validation Webhooks to Deployment Creation
-
-You can now configure Astronomer to apply a custom validation webhook whenever a user attempts to create a new Astronomer Deployment.
-
-This feature can be configured in the following section of your `config.yaml` file:
-
-```yaml
-houston:
-  deployments:
-    namespaceFreeFormEntry: true #true|false
-    preDeploymentValidationHook: http://my-provision-hook.com/prod-us
-    preDeploymentValidationHookTimeout: 30000 # 30 sec
-```
-
-For example, a validation webhook can reject Deployment creation for any of the following reasons:
-
-- The namespace for a Deployment is already in use.
-- The namespace for a Deployment is in an incorrect format.
-- The user creating a Deployment is unauthorized to complete this action.
-
 ### Additional Improvements
 
 - Astronomer now supports `prefer` and `require` SSL modes for connecting to PGBouncer. You can set this SSL mode via the `global.ssl.mode` value in your `config.yaml` file. Note that in v0.28.0, this feature works only with AWS and Azure.
