@@ -7,7 +7,7 @@ description: Release notes for the Astronomer Software CLI.
 
 ## Overview
 
-This document provides a summary of all changes made to the [Software CLI](cli-quickstart.md) for the v0.28.x series of Astronomer Enterprise. For general product release notes, go to [Astronomer Software Release Notes](release-notes.md).
+This document provides a summary of all changes made to the [Software CLI](cli-quickstart.md) for the v0.28.x series of Astronomer Software. For general product release notes, go to [Astronomer Software Release Notes](release-notes.md).
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 

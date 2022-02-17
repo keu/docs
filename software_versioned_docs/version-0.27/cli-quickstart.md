@@ -186,7 +186,7 @@ You can now push your project to a local instance of Airflow. To do so:
 
 ## Step 5: Authenticate to Astronomer
 
-To authenticate to Astronomer Cloud via the Astronomer CLI, run:
+To authenticate to Astro via the Astronomer CLI, run:
 
 ```
 astro auth login BASEDOMAIN

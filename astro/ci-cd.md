@@ -217,7 +217,7 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
     }
     ```
 
-    This Jenkinsfile triggers a code push to Astronomer Cloud every time a commit or pull request is merged to the `main` branch of your repository.
+    This Jenkinsfile triggers a code push to Astro every time a commit or pull request is merged to the `main` branch of your repository.
 
 2. Configure the following environment variables:
 
@@ -234,7 +234,7 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
     # Create time stamp
     TAG=deploy-`date "+%Y-%m-%d-%HT%M-%S"`
 
-    # Step 1. Authenticate to Astronomer's Docker registry with your Deployment API key ID and secret. This is equivalent to running `$ astrocloud auth login` via the Astronomer Cloud CLI.
+    # Step 1. Authenticate to Astronomer's Docker registry with your Deployment API key ID and secret. This is equivalent to running `$ astrocloud auth login` via the Astro CLI.
     docker login images.astronomer.cloud -u $ASTRONOMER_KEY_ID -p $ASTRONOMER_KEY_SECRET
 
     # Step 2. Build your Astronomer project into a tagged Docker image.

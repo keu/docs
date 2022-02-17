@@ -12,7 +12,7 @@ If you're looking to upgrade to Astronomer v0.23 from Astronomer v0.16, refer to
 
 We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
-> **Note:** The perceived version gap between Astronomer Software v0.16 and v0.23 is due to the nature of Astronomer's release schedule. To optimize for security and reliability, Astronomer Cloud releases are made available to Software users only after they've passed a dedicated testing process. Astronomer Software v0.23 includes _all_ changes made available on Astronomer Cloud between v0.16 and v0.23, in addition to Software-only functionality.
+> **Note:** The perceived version gap between Astronomer Software v0.16 and v0.23 is due to the nature of Astronomer's release schedule. To optimize for security and reliability, Astro releases are made available to Software users only after they've passed a dedicated testing process. Astronomer Software v0.23 includes _all_ changes made available on Astro between v0.16 and v0.23, in addition to Software-only functionality.
 
 ## 0.23.18
 

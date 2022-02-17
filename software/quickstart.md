@@ -13,7 +13,7 @@ Whether you're exploring our Software offering, we've designed this to be a grea
 
 ## Step 1: Install the Astronomer Software CLI
 
-The [Astronomer Software CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. From the CLI, you can establish a local testing environment and deploy to Astronomer Cloud whenever you're ready.
+The [Astronomer Software CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. From the CLI, you can establish a local testing environment and deploy to Astro whenever you're ready.
 
 There are two ways to install any version of the Astronomer Software CLI:
 
@@ -88,7 +88,7 @@ A few of these files are essential for deploying your Airflow image for the firs
 
 Your Dockerfile will include reference to an Astronomer Certified Docker Image. [Astronomer Certified](https://www.astronomer.io/downloads/) (AC) is a Debian-based, production-ready distribution of Apache Airflow that mirrors the open source project and undergoes additional levels of rigorous testing conducted by our team.
 
-This Docker image is hosted on [Astronomer's Docker Registry](https://quay.io/repository/astronomer/ap-airflow?tab=tags) and allows you to run Airflow on Astronomer. Additionally, the image you include in your Dockerfile dictates the version of Airflow you'd like to run both when you're developing locally and pushing up to Astronomer Cloud.
+This Docker image is hosted on [Astronomer's Docker Registry](https://quay.io/repository/astronomer/ap-airflow?tab=tags) and allows you to run Airflow on Astronomer. Additionally, the image you include in your Dockerfile dictates the version of Airflow you'd like to run both when you're developing locally and pushing up to Astro.
 
 The Docker image you'll find in your Dockerfile by default is:
 

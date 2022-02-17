@@ -19,7 +19,7 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ### Monitor DAG Runs Across All Deployments in a Workspace
 
-You can view key metrics about recent DAG runs through the new **DAGs** page in the Astronomer Cloud UI. Use this page to view DAG runs at a glance, including successes and failures, across all Deployments in a given Workspace. You can also drill down to a specific DAG and see metrics about its recent runs.
+You can view key metrics about recent DAG runs through the new **DAGs** page in the Cloud UI. Use this page to view DAG runs at a glance, including successes and failures, across all Deployments in a given Workspace. You can also drill down to a specific DAG and see metrics about its recent runs.
 
 ![DAGs page](/img/docs/dags-page.png)
 
@@ -30,7 +30,7 @@ For more information about the **DAGs** page, see [Deployment Metrics](deploymen
 - All resource settings in the Deployment view of the Astronomer UI now show exact CPU and Memory usage to the right of every slider, previously shown only in Astronomer Units (AUs). This makes it easy to know exactly how many resources you allocate to each component.
 - A banner now appears in the Astronomer UI if a Deployment is running a version of Astronomer Runtime that is no longer maintained. To make the most of features and bug fixes, we encourage users to upgrade to recent versions as much as possible.
 - Added more ways to sort pages that utilize card views, such as the **Deployments** page
-- Added user account avatars next to usernames in several places across the Astronomer Cloud UI
+- Added user account avatars next to usernames in several places across the Cloud UI
 
 ### Bug Fixes
 

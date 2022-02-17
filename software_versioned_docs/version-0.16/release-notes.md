@@ -281,7 +281,7 @@ Release Date: June 29, 2020
 
 #### New "Environment Variables" Tab in the Software UI
 
-Astronomer v0.16 comes with significant improvements to the experience of setting Environment Variables on Astronomer. Namely, we've introduced a dedicated 'Variables' tab, lessening the density of the "Settings" page and making these configurations accessible to "Trial" users on Astronomer Cloud.
+Astronomer v0.16 comes with significant improvements to the experience of setting Environment Variables on Astronomer. Namely, we've introduced a dedicated 'Variables' tab, lessening the density of the "Settings" page and making these configurations accessible to "Trial" users on Astro.
 
 With the new tab comes the ability for Workspace Admins and Editors to create and mark a value as 'secret', permanently hiding the value from the Software UI (and from the client). From the same tab, users can now export Environment Variables as 'JSON' as well.
 

@@ -125,8 +125,8 @@ If you have access to more than one Astronomer platform, each will have a unique
 
 | Subcommand | Usage                                                                                                                                              |
 | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `login`    | To log in to Astronomer Cloud, run `astro auth login`. For Software, run `astro auth login <base-domain>`.    |
-| `logout`   | To log out of Astronomer Cloud, run `astro auth logout`. For Software, run `astro auth logout <base-domain>`. |
+| `login`    | To log in to Astro, run `astro auth login`. For Software, run `astro auth login <base-domain>`.    |
+| `logout`   | To log out of Astro, run `astro auth logout`. For Software, run `astro auth logout <base-domain>`. |
 
 ## astro cluster
 
