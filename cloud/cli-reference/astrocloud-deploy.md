@@ -21,7 +21,7 @@ astrocloud deploy <options>
 
 | Option                    | Description                                                                            | Possible Values                |
 | ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------ |
-| `<deployment-namespace>`  | Specify the Deployment to deploy to.                                                   | Any valid Deployment namespace |
+| `<deployment-id>`  | Specify the Deployment to deploy to. Can be used in conjunction with environment variables in [CI/CD pipelines](ci-cd.md).                                                  | Any valid Deployment ID |
 | `-f`,`--force`               | Force the deploy even if uncommitted changes exist                                     | ``                             |
 | `p`,`--prompt`                | Force the prompt for selecting deployments to appear even if a Deployment is specified | ``                             |
 | `s`,`--save`                  | Save the current directory/Deployment combination for future deploys                   | ``                             |
@@ -32,9 +32,9 @@ astrocloud deploy <options>
 ```sh
 $ astrocloud deploy
 # List of Deployments appears
-$ astrocloud deploy asteroidic-vacuum-4865
+$ astrocloud deploy ckzcyxeax19441fxijp7hsmo6
 # Deploy directly to a specific Deployment
-$ astrocloud deploy asteroidic-vacuum-4865 --save
+$ astrocloud deploy ckzcyxeax19441fxijp7hsmo6 --save
 # Running `astrocloud deploy` will now automatically select this Deployment for your Astronomer project
 ```
 
