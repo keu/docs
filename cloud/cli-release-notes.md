@@ -15,13 +15,14 @@ If you have any questions or a bug to report, don't hesitate to reach out to us 
 
 Release date: February 17, 2022
 
-### Restart local Airflow environments with `astrocloud dev restart`
+### Restart Local Airflow Environments with `astrocloud dev restart`
 
 If you want to quickly rebuild your Astro project or retest your project in a local Airflow environment, you can now run `astro dev restart`. This command is equivalent to running `astrocloud dev stop` and `astrocloud dev start` together.
 
-### Additional improvements
+### Additional Improvements
 
 - `astrocloud dev logs` now shows logs for Triggers running in your local Airflow environment. Additionally, you can filter logs to see only Triggerer logs using `astro dev logs --triggerer`.
+- Postgres has been upgraded from 12.2 to [12.6](https://www.postgresql.org/docs/12/release-12-6.html) for local Airflow environments.
 
 ## v1.0.0
 

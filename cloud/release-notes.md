@@ -6,6 +6,7 @@ description: A real-time reference of the latest features and bug fixes in Astro
 ---
 
 ## Overview
+<!--- Version-specific -->
 
 Astronomer is committed to continuous delivery of both features and bug fixes to Astronomer Cloud. To keep your team up to date on what's new, this document will provide a regular summary of all changes officially released to Astronomer Cloud.
 
@@ -13,7 +14,7 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest Runtime Version**: 4.0.8 ([Release notes](runtime-release-notes.md))
 
-**Latest CLI Version**: 1.0.0 ([Release notes](cli-release-notes.md))
+**Latest CLI Version**: 1.1.0 ([Release notes](cli-release-notes.md))
 
 ## February 17, 2022
 
