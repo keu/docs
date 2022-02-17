@@ -54,9 +54,9 @@ Once you select a version, you can expect to see a banner next to **Airflow Vers
 
 > **Note:** If you'd like to change the version of Airflow you'd like to upgrade to, you can do so at anytime by clicking **Cancel**, re-selecting a new version and once again clicking **Upgrade**. More on that below.
 
-### via the Astronomer Software CLI
+### via the Astronomer CLI
 
-To initialize the Airflow upgrade process via the Astronomer Software CLI, first make sure you're authenticated by running `$ astro auth login <your-base-domain>`.
+To initialize the Airflow upgrade process via the Astronomer CLI, first make sure you're authenticated by running `$ astro auth login <your-base-domain>`.
 
 Once authenticated, grab the `Deployment ID` of the Airflow Deployment you'd like to upgrade by running:
 
@@ -102,7 +102,7 @@ To complete the upgrade, all you have to do is add a corresponding AC image to y
 
 ### 1. Locate your Dockerfile in your Project Directory
 
-First, open the `Dockerfile` within your Astronomer directory. When you initialized an Airflow project via the Astronomer Software CLI, the following files should have been automatially generated:
+First, open the `Dockerfile` within your Astronomer directory. When you initialized an Airflow project via the Astronomer CLI, the following files should have been automatially generated:
 
 ```
 .
@@ -224,7 +224,7 @@ Modify your `requirements.txt` and `packages.txt` files as needed. If you includ
 
 ### Step 3. Modify your Dockerfile
 
-Now, try to build your Debian-based image via the Astronomer Software CLI locally. To do so, replace the Alpine image in your `Dockerfile` with an available Debian image.
+Now, try to build your Debian-based image via the Astronomer CLI locally. To do so, replace the Alpine image in your `Dockerfile` with an available Debian image.
 
 For AC 1.10.12, you would replace:
 
@@ -242,7 +242,7 @@ For all available images, refer to the matrix above or [Astronomer's Docker Regi
 
 ### Step 4. Test your Image Locally
 
-Now, test your changes locally via the Astronomer Software CLI by running:
+Now, test your changes locally via the Astronomer CLI by running:
 
 1. `$ astro dev stop`, then
 2. `$ astro dev start`
@@ -271,7 +271,7 @@ Via the Software UI, select **Cancel** next to **Airflow Version**.
 
 ![Cancel Airflow Upgrade via Software UI](https://assets2.astronomer.io/main/docs/manage-airflow-versions/airflow-upgrade-astro-ui-cancel.gif)
 
-Via the Astronomer Software CLI, run:
+Via the Astronomer CLI, run:
 
 ```
 astro deployment airflow upgrade --cancel --deployment-id=<deployment-id>
@@ -299,6 +299,6 @@ If you're looking for the latest Astronomer Certified 1.10.10, for example, you 
 
 In this case, that would be: `FROM quay.io/astronomer/ap-airflow:1.10.10-5-buster-onbuild` (Debian).
 
-> **Note:** If you're pushing code to an Airflow Deployment via the Astronomer Software CLI and install a new Astronomer Certified image for the first time _without_ pinning a specific patch, the latest version available will automatically be pulled.
+> **Note:** If you're pushing code to an Airflow Deployment via the Astronomer CLI and install a new Astronomer Certified image for the first time _without_ pinning a specific patch, the latest version available will automatically be pulled.
 >
 > If a patch release becomes available _after_ you've already built an Astronomer Certified image for the first time, subsequent code pushes will _not_ automatically pull the latest corresponding patch. You must follow the process above to pin your image to a particular version.

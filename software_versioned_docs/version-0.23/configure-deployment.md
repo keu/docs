@@ -6,14 +6,14 @@ id: configure-deployment
 
 ## Overview
 
-An Airflow Deployment on Astronomer is an instance of Apache Airflow that was created either via the Software UI or the Astronomer Software CLI. Each Airflow Deployment on Astronomer is hosted on a single Kubernetes namespace, has a dedicated set of resources, and operates with an isolated Postgres Metadata Database.
+An Airflow Deployment on Astronomer is an instance of Apache Airflow that was created either via the Software UI or the Astronomer CLI. Each Airflow Deployment on Astronomer is hosted on a single Kubernetes namespace, has a dedicated set of resources, and operates with an isolated Postgres Metadata Database.
 
 This guide walks you through the process of creating and configuring an Airflow Deployment on Astronomer.
 
 ## Prerequisites
 
 To create an Airflow Deployment, you'll need:
-* [The Astronomer Software CLI](cli-quickstart.md) installed.
+* [The Astronomer CLI](cli-quickstart.md) installed.
 * An Astronomer platform at `app.BASEDOMAIN`.
 * An Astronomer [Workspace](manage-workspaces.md).
 

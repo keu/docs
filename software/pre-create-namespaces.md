@@ -15,7 +15,7 @@ You might want to configure this feature to limit the number of active Deploymen
 
 ## Prerequisites
 
-Deploying code to a platform with pre-created namespaces requires an Astronomer Software CLI version of 0.25.5 or higher.
+Deploying code to a platform with pre-created namespaces requires an Astronomer CLI version of 0.25.5 or higher.
 
 ## Enable Pre-Created Namespaces
 
@@ -67,7 +67,7 @@ Once you enable pre-created namespaces, the namespaces you specified appear as a
 
 ![Kubernetes Namespace option in the UI](https://assets2.astronomer.io/main/docs/astronomer-ui/kubernetes-namespace.png)
 
-Alternatively, when you run `astro deployment create` command via the Astronomer Software CLI, you will be prompted to select one of the available namespaces for your new Deployment.
+Alternatively, when you run `astro deployment create` command via the Astronomer CLI, you will be prompted to select one of the available namespaces for your new Deployment.
 
 If no namespaces are available, you will receive an error when creating a new Deployment in both the UI and the CLI. To reuse a pre-created namespace, you need to first delete the Deployment using it.
 

@@ -15,7 +15,7 @@ Follow this guide to upgrade to any stable or patch version of Astronomer Softwa
 
 A few notes before you get started:
 - The patch upgrade process will not affect running Airflow tasks as long as `upgradeDeployments.enabled=false` is set in the script below.
-- Patch and stable version updates will not cause any downtime to Astronomer services (Software UI, Houston API, Astronomer Software CLI).
+- Patch and stable version updates will not cause any downtime to Astronomer services (Software UI, Houston API, Astronomer CLI).
 
 > **Note:** Astronomer v0.16.5 and beyond includes an improved upgrade process that allows Airflow Deployments to remain unaffected through a platform upgrade that includes changes to the [Astronomer Airflow Chart](https://github.com/astronomer/airflow-chart).
 >

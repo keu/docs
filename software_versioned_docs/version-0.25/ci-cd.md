@@ -41,7 +41,7 @@ From there, you'll write a script that allows your Service Account to do the fol
 2. Authenticate to a Docker Registry
 3. Push your Image to that Docker Registry
 
-From there, a webhook triggers an update to your Airflow Deployment using the CI/CD tool of your choice. At its core, the Astronomer Software CLI does the equivalent of the above upon every manual `$ astro deploy`.
+From there, a webhook triggers an update to your Airflow Deployment using the CI/CD tool of your choice. At its core, the Astronomer CLI does the equivalent of the above upon every manual `$ astro deploy`.
 
 The rest of this guide describes how to create a Service Account and what your CI/CD script should look like based on the tool you're using.
 
@@ -50,7 +50,7 @@ The rest of this guide describes how to create a Service Account and what your C
 Before completing this setup, make sure you:
 
 - Have access to a running Airflow Deployment on Astronomer.
-- Installed the [Astronomer Software CLI](https://github.com/astronomer/astro-cli).
+- Installed the [Astronomer CLI](https://github.com/astronomer/astro-cli).
 - Are familiar with your CI/CD tool of choice.
 
 ## Step 1: Create a Service Account

@@ -26,11 +26,11 @@ To meet the unique needs of different operating environments, we offer all Astro
 - **Stable:** Includes the latest Astronomer and Airflow features
 - **Long-term Support (LTS):** Includes long-term testing, stability, and maintenance for a core set of features
 
-For customers looking to access Astronomer's newest features on an incremental basis, we recommend following the stable release channel and upgrading to new versions as soon as they are made generally available. Stable releases are issued roughly once per month for Astronomer Software and the Astronomer Software CLI.
+For customers looking to access Astronomer's newest features on an incremental basis, we recommend following the stable release channel and upgrading to new versions as soon as they are made generally available. Stable releases are issued roughly once per month for Astronomer Software and the Astronomer CLI.
 
 For customers looking for less frequent upgrades and functional changes, we recommend following the LTS release channel. Release channels are not binding, so you are free to upgrade to any available version of Astronomer Software at any time.
 
-> **Note:** Release channels apply to Astronomer Software and Astronomer Certified versions. We do not currently support a long-term release channel for the Astronomer Software CLI.
+> **Note:** Release channels apply to Astronomer Software and Astronomer Certified versions. We do not currently support a long-term release channel for the Astronomer CLI.
 
 ## Astronomer Software Versioning
 

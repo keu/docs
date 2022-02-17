@@ -6,27 +6,27 @@ id: deploy-cli
 
 ## Overview
 
-This guide provides the setup steps for deploying DAGs to Astronomer using the Astronomer Software CLI.
+This guide provides the setup steps for deploying DAGs to Astronomer using the Astronomer CLI.
 
-If you've used the Astronomer Software CLI to develop locally, you'll find it similarly easy to deploy your DAGs to an Airflow Deployment on Astronomer. The Astronomer Software CLI builds your DAGs into a Docker image alongside all other files in your Airflow project directory, including your Python and OS-level packages, your Dockerfile, and your plugins. The resulting image is then used to generate a set of Docker containers for each of Airflow's core components.
+If you've used the Astronomer CLI to develop locally, you'll find it similarly easy to deploy your DAGs to an Airflow Deployment on Astronomer. The Astronomer CLI builds your DAGs into a Docker image alongside all other files in your Airflow project directory, including your Python and OS-level packages, your Dockerfile, and your plugins. The resulting image is then used to generate a set of Docker containers for each of Airflow's core components.
 
 For guidance on automating this process, refer to [Deploy to Astronomer via CI/CD](ci-cd.md). To learn how to add Python and OS-level packages or otherwise customize your Docker image, read [Customize your Image](customize-image.md).
 
 Alternatively, you can configure an external NFS volume for DAG deploys. For more information, read [Deploy DAGs to an NFS Volume](deploy-nfs.md).
 
-> **Note:** We recommend that all users test their code locally via the Astronomer Software CLI before pushing it to an Airflow Deployment on Astronomer. For guidelines on developing locally, refer to [CLI Quickstart](cli-quickstart.md).
+> **Note:** We recommend that all users test their code locally via the Astronomer CLI before pushing it to an Airflow Deployment on Astronomer. For guidelines on developing locally, refer to [CLI Quickstart](cli-quickstart.md).
 
 ## Prerequisites
 
 In order to push up DAGs to a Deployment on Astronomer, you must have:
 
-* [The Astronomer Software CLI](cli-quickstart.md) installed.
+* [The Astronomer CLI](cli-quickstart.md) installed.
 * Access to an Astronomer platform at `https://app.BASEDOMAIN`.
 * An Astronomer [Workspace](manage-workspaces.md) with at least one active [Airflow Deployment](configure-deployment.md).
 
 ## Step 1: Authenticate to Astronomer
 
-To authenticate via the Astronomer Software CLI, run:
+To authenticate via the Astronomer CLI, run:
 
 ```sh
 astro auth login BASEDOMAIN
@@ -34,7 +34,7 @@ astro auth login BASEDOMAIN
 
 ## Step 2: Confirm Your Workspace and Deployment
 
-From the Astronomer Software CLI, you're free to push code to any Airflow Deployment you have access to as long as you have the appropriate deployment-level permissions to do so. For more information on both Workspace and Deployment-level permissions on Astronomer, refer to [User Permissions](workspace-permissions.md).
+From the Astronomer CLI, you're free to push code to any Airflow Deployment you have access to as long as you have the appropriate deployment-level permissions to do so. For more information on both Workspace and Deployment-level permissions on Astronomer, refer to [User Permissions](workspace-permissions.md).
 
 Before you deploy to Astronomer, make sure that the Airflow Deployment you'd like to deploy to is within the Workspace you're operating in.
 

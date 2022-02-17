@@ -77,8 +77,8 @@ For more information, refer to [Upgrade Apache Airflow on Astronomer](manage-air
 
 #### Bug Fixes & Improvements
 
-- Improvement: Support Airflow's ["upgrade check"](https://airflow.apache.org/docs/apache-airflow/stable/upgrade-check.html) in the Astronomer Software CLI (`$ astro dev upgrade-check`) (_v0.16.5_)
-- Improvement: Support for [Airflow 2.0 in the Astronomer Software CLI](https://www.astronomer.io/guides/get-started-airflow-2) (_v0.16.5_)
+- Improvement: Support Airflow's ["upgrade check"](https://airflow.apache.org/docs/apache-airflow/stable/upgrade-check.html) in the Astronomer CLI (`$ astro dev upgrade-check`) (_v0.16.5_)
+- Improvement: Support for [Airflow 2.0 in the Astronomer CLI](https://www.astronomer.io/guides/get-started-airflow-2) (_v0.16.5_)
 
 ### v0.16.12
 
@@ -243,8 +243,8 @@ More specifically, this changes the behavior of our API's `updateDeployment` mut
 
 #### Bug Fixes and Improvements
 
-- BugFix: 400 Error on ` $ astro workspace user add` in Astronomer Software CLI (CLI v0.16.3)
-- BugFix: 400 Error on ` $ astro workspace user remove` in Astronomer Software CLI (CLI v0.16.3)
+- BugFix: 400 Error on ` $ astro workspace user add` in Astronomer CLI (CLI v0.16.3)
+- BugFix: 400 Error on ` $ astro workspace user remove` in Astronomer CLI (CLI v0.16.3)
 - BugFix: Users able to create 2+ Service Accounts with the same label
 - BugFix: Link to Workspace broken in 'SysAdmin' > 'Users' View
 - BugFix: Navigating directly to the 'Metrics' Tab of the Software UI renders error
@@ -328,7 +328,7 @@ To activate this feature on the platform, refer to the `manualReleaseNames` valu
 
 As of Astronomer v0.15, IAM roles can now be appended to all pods within any individual Airflow Deployment on the platform. Users who integrate Airflow with some resource or set of resources (e.g. an AWS S3 bucket or Secret Backend) can now configure them to be accessible only to a subset of Kubernetes pods within your wider Astronomer cluster.
 
-Leverage this feature by specifying an existing IAM role `arn` when you create or update an Airflow Deployment via the Astronomer Software CLI. For guidelines, go [here](integrate-iam.md).
+Leverage this feature by specifying an existing IAM role `arn` when you create or update an Airflow Deployment via the Astronomer CLI. For guidelines, go [here](integrate-iam.md).
 
 #### Bug Fixes & Improvements
 

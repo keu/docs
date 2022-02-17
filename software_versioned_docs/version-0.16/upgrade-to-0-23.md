@@ -98,7 +98,7 @@ If the upgrade was successful, you should be able to:
 * See Workspaces and Airflow Deployments in the Software UI.
 * Access the **Settings** tab for each of your Deployments in the Software UI.
 * See metrics on the **Metrics** tab in the Software UI.
-* Successfully run `$ astro deploy` using the Astronomer Software CLI.
+* Successfully run `$ astro deploy` using the Astronomer CLI.
 * Open the Airflow UI for each of your Deployments
 * Access logs for your DAGs in the Airflow UI.
 
@@ -110,11 +110,11 @@ We recommend cleaning up any remaining Kubernetes resources after your upgrade. 
 kubectl delete -f https://raw.githubusercontent.com/astronomer/astronomer/release-0.23/bin/migration-scripts/lts-to-lts/0.16-to-0.23/manifests/upgrade-0.16-to-0.23.yaml
 ```
 
-## Step 9: Upgrade the Astronomer Software CLI to v0.23
+## Step 9: Upgrade the Astronomer CLI to v0.23
 
-To ensure reliability and full access to features included in Astronomer Software v0.23, all users must upgrade to v0.23 of the Astronomer Software CLI. We recommend the latest available version, though you may choose to install a particular patch release within the v0.23 series.
+To ensure reliability and full access to features included in Astronomer Software v0.23, all users must upgrade to v0.23 of the Astronomer CLI. We recommend the latest available version, though you may choose to install a particular patch release within the v0.23 series.
 
-To upgrade to the latest available v0.23 version of the Astronomer Software CLI, run:
+To upgrade to the latest available v0.23 version of the Astronomer CLI, run:
 
 ```sh
 curl -sSL https://install.astronomer.io | sudo bash -s -- v0.23.0
@@ -126,7 +126,7 @@ To do so via Homebrew, run:
 brew install astronomer/tap/astro@0.23
 ```
 
-All team members within your organization should upgrade the Astronomer Software CLI individually before taking any further action on the platform or in a local Airflow environment. For a detailed breakdown of CLI changes between versions, refer to [Astronomer Software CLI releases](https://github.com/astronomer/astro-cli/releases). For detailed install guidelines and more information on the Astronomer Software CLI, refer to [Astronomer Software CLI Quickstart](cli-quickstart.md).
+All team members within your organization should upgrade the Astronomer CLI individually before taking any further action on the platform or in a local Airflow environment. For a detailed breakdown of CLI changes between versions, refer to [Astronomer CLI releases](https://github.com/astronomer/astro-cli/releases). For detailed install guidelines and more information on the Astronomer CLI, refer to [Astronomer CLI Quickstart](cli-quickstart.md).
 
 ## Roll Back to Software v0.16
 

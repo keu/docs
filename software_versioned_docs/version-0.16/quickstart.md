@@ -11,11 +11,11 @@ This guide will help you get started on Astronomer by walking through a sample D
 
 Whether you're exploring our Software or Cloud offering, we've designed this to be a great way to become familiar with our platform.
 
-## Step 1: Install the Astronomer Software CLI
+## Step 1: Install the Astronomer CLI
 
-The [Astronomer Software CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. From the CLI, you can establish a local testing environment and deploy to Astro whenever you're ready.
+The [Astronomer CLI](https://github.com/astronomer/astro-cli) is the easiest way to run Apache Airflow on your machine. From the CLI, you can establish a local testing environment and deploy to Astro whenever you're ready.
 
-There are two ways to install any version of the Astronomer Software CLI:
+There are two ways to install any version of the Astronomer CLI:
 
 - cURL
 - [Homebrew](https://brew.sh/)
@@ -28,7 +28,7 @@ The CLI installation process requires [Docker](https://www.docker.com/) (v18.09 
 
 #### Install the CLI via cURL
 
-To install the latest version of the Astronomer Software CLI via cURL, run:
+To install the latest version of the Astronomer CLI via cURL, run:
 
 ```bash
 curl -ssl https://install.astronomer.io | sudo bash
@@ -36,13 +36,13 @@ curl -ssl https://install.astronomer.io | sudo bash
 
 #### Install the CLI via Homebrew
 
-To install the latest version of the Astronomer Software CLI via [Homebrew](https://brew.sh/), run:
+To install the latest version of the Astronomer CLI via [Homebrew](https://brew.sh/), run:
 
 ```bash
 brew install astronomer/tap/astro
 ```
 
-For more information on the Astronomer Software CLI, read [CLI Quickstart](cli-quickstart.md).
+For more information on the Astronomer CLI, read [CLI Quickstart](cli-quickstart.md).
 
 ## Step 2: Install Astronomer Software
 
@@ -56,7 +56,7 @@ We have documentation for deploying Astronomer on:
 
 ## Step 3: Create a Project
 
-Using the Astronomer Software CLI, create an Airflow project to work from that lives on your local machine:
+Using the Astronomer CLI, create an Airflow project to work from that lives on your local machine:
 
  ```sh
 mkdir <your-new-directory> && cd <your-new-directory>
@@ -165,7 +165,7 @@ You can now use Astronomer to start Airflow locally and deploy code. To do so:
     - **Webserver:** The Airflow component responsible for rendering the Airflow UI
     - **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
 
-    > **Note:** If you’re running the Astronomer Software CLI with the [buildkit](https://docs.docker.com/develop/develop-images/build_enhancements/) feature enabled in Docker, you may see an error (`buildkit not supported by daemon`). Learn more in [this forum post](https://forum.astronomer.io/t/buildkit-not-supported-by-daemon-error-command-docker-build-t-airflow-astro-bcb837-airflow-latest-failed-failed-to-execute-cmd-exit-status-1/857).
+    > **Note:** If you’re running the Astronomer CLI with the [buildkit](https://docs.docker.com/develop/develop-images/build_enhancements/) feature enabled in Docker, you may see an error (`buildkit not supported by daemon`). Learn more in [this forum post](https://forum.astronomer.io/t/buildkit-not-supported-by-daemon-error-command-docker-build-t-airflow-astro-bcb837-airflow-latest-failed-failed-to-execute-cmd-exit-status-1/857).
 
 2. Verify that all 3 Docker containers were created by running the following command:
 

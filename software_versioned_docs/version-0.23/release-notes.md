@@ -141,12 +141,12 @@ Release Date: February 11, 2021
 
 ### Bug Fixes & Improvements
 
-- BugFix: Connections, Pools, and Variables in `airflow_settings.yaml` not built into image via Astronomer Software CLI if Airflow 2.0 image (*Resolved in CLI v0.23.3*)
+- BugFix: Connections, Pools, and Variables in `airflow_settings.yaml` not built into image via Astronomer CLI if Airflow 2.0 image (*Resolved in CLI v0.23.3*)
 - BugFix: Houston API does not pull latest available Airflow patch on deploy (e.g. Airflow `2.0.0-1` if Airflow `2.0.0-2` is available)
 - BugFix: A SysAdmin Service Account created via the Houston API does not have right to see all Workspaces and can only be seen by a SysAdmin user in the Workspace(s) they're a part of.
 - BugFix: Workspace Service Account suddenly only available as a Deployment Service account (Error: `Insufficient Permissions`)
 - BugFix: The Houston DB migration pod stuck in interactive mode on upgrade to Astronomer v0.23
-- BugFix: Upgrade from Airflow 2.0.0 to Airflow 2.0.1 via the Astronomer Software CLI fails
+- BugFix: Upgrade from Airflow 2.0.0 to Airflow 2.0.1 via the Astronomer CLI fails
 
 ## v0.23.9
 
@@ -160,7 +160,7 @@ In support of Airflow 2.0, Astronomer v0.23 includes:
 
 - Support for Multiple Schedulers
 - A mechanism to ensure that users migrate to Airflow 1.10.14 prior to upgrading to 2.0
-- Support for Airflow's ["upgrade check"](https://airflow.apache.org/docs/apache-airflow/v0.23/upgrade-check.html) in the Astronomer Software CLI (`$ astro dev upgrade-check`)
+- Support for Airflow's ["upgrade check"](https://airflow.apache.org/docs/apache-airflow/v0.23/upgrade-check.html) in the Astronomer CLI (`$ astro dev upgrade-check`)
 
 For local development guidelines, read [Get Started with Airflow 2.0](https://www.astronomer.io/guides/get-started-airflow-2).
 
@@ -192,11 +192,11 @@ Astronomer Software v0.23 introduces Deployment-level permissions, a much-awaite
 
 Within each individual Airflow Deployment, users can now configure and be assigned 1 of 3 user roles:  _Admin_, _Editor_, or _Viewer_. If you operate with production and development environments, for example, you can restrict a user's access to your production Airflow Deployment as a _Viewer_ but grant them full access to your development Airflow Deployment as an _Admin_ all within the same Workspace. Users who exclusively need Workspace permissions do not require permissions to any or all Airflow Deployments within it.
 
-This new permissions framework comes with support via the Software UI/API and a new set of commands for the Astronomer Software CLI. For more information, refer to [User Permissions](workspace-permissions.md).
+This new permissions framework comes with support via the Software UI/API and a new set of commands for the Astronomer CLI. For more information, refer to [User Permissions](workspace-permissions.md).
 
 ### A New "Deployment Status" Framework
 
-A significant infrastructural change in Astronomer v0.23 is the introduction of a new `deploymentStatus` query that allows the platform to more reliably communicate the status of a _deploy_ and the overall health of your Airflow Deployment. We define a _deploy_ as the process that begins when a user triggers a change to an Airflow Deployment (e.g. a code push from the Astronomer Software CLI or the addition of an Environment Variable) and ends when that change is successfully passed and considered to be live.
+A significant infrastructural change in Astronomer v0.23 is the introduction of a new `deploymentStatus` query that allows the platform to more reliably communicate the status of a _deploy_ and the overall health of your Airflow Deployment. We define a _deploy_ as the process that begins when a user triggers a change to an Airflow Deployment (e.g. a code push from the Astronomer CLI or the addition of an Environment Variable) and ends when that change is successfully passed and considered to be live.
 
 While this change largely sets the foundation for new features in later releases, Astronomer v0.23 includes:
 
@@ -223,28 +223,28 @@ Astronomer v0.23 includes standardization of the following two mutations to be m
 
 If you're calling either of those mutations in your current workflow, Astronomer v0.23 will introduce a breaking change.
 
-As we strive to polish and standardize the schema more generally, our API will undergo rapid and potentially breaking changes over the next few releases. The Astronomer Software CLI and UI will continue to stay in sync with API changes and is our recommended way to interact with the platform.
+As we strive to polish and standardize the schema more generally, our API will undergo rapid and potentially breaking changes over the next few releases. The Astronomer CLI and UI will continue to stay in sync with API changes and is our recommended way to interact with the platform.
 
 If calling our API programmatically is critical to your use case, reference the [Houston API Documentation](houston-api.md) for details and stay in close touch with our team.
 
-### Support for v0.23 of the Astronomer Software CLI
+### Support for v0.23 of the Astronomer CLI
 
-Astronomer Software v0.23 is fully compatible with the latest version of the Astronomer Software CLI, v0.23.2.
+Astronomer Software v0.23 is fully compatible with the latest version of the Astronomer CLI, v0.23.2.
 
-In addition to functionality already available in v0.16, v0.23 of the Astronomer Software CLI includes:
+In addition to functionality already available in v0.16, v0.23 of the Astronomer CLI includes:
 
 - Email validation on `$ astro workspace user add`
 - Clarify "success" output on `$ astro deploy`
 - BugFix: Inaccurate CLI version output on `$ astro upgrade`
 - BugFix: Correct output for `deployment service-account create --help` subcommand to read `--deployment-id`
 
-Users running Astronomer Software v0.23 MUST upgrade to the latest version of the Astronomer Software CLI. To do so, run:
+Users running Astronomer Software v0.23 MUST upgrade to the latest version of the Astronomer CLI. To do so, run:
 
 ```
 curl -sSL https://install.astronomer.io | sudo bash
 ```
 
-For detailed instructions, refer to [CLI Quickstart](cli-quickstart.md). For a full reference of Astronomer Software CLI releases, go to the [Astronomer Software CLI GitHub repo](https://github.com/astronomer/astro-cli/releases).
+For detailed instructions, refer to [CLI Quickstart](cli-quickstart.md). For a full reference of Astronomer CLI releases, go to the [Astronomer CLI GitHub repo](https://github.com/astronomer/astro-cli/releases).
 
 ### Bug Fixes & Improvements
 

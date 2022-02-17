@@ -1,6 +1,6 @@
 ---
-title: "Astronomer Software CLI Quickstart"
-sidebar_label: "Software CLI Quickstart"
+title: "Astronomer CLI Quickstart"
+sidebar_label: "Astronomer CLI Quickstart"
 id: cli-quickstart
 description: Establish a local testing environment and deploy to Astronomer Software from the CLI.
 ---

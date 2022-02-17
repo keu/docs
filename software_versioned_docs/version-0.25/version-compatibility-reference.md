@@ -12,7 +12,7 @@ It's worth noting that while the tables below reference the minimum compatible v
 
 ## Astronomer Software
 
-| Astronomer Platform | Kubernetes                   | Helm | Terraform    | Postgres | Python                                    | Astronomer Software CLI | Astronomer Certified |
+| Astronomer Platform | Kubernetes                   | Helm | Terraform    | Postgres | Python                                    | Astronomer CLI | Astronomer Certified |
 | ------------------- | ---------------------------- | ---- | ------------ | -------- | ----------------------------------------- | -------------- | -------------------- |
 | v0.16               | 1.16, 1.17, 1.18             | 3    | 0.12, 0.13.5 | 9.6+     | 3.6, 3.7, 3.8                             | 0.16.x         | N/A                  |
 | v0.23               | 1.16, 1.17, 1.18             | 3    | 0.13.5       | 9.6+     | 3.6, 3.7, 3.8                             | 0.23.x         | All                  |
