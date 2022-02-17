@@ -15,6 +15,25 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest CLI Version**: 1.0.0 ([Release notes](cli-release-notes.md))
 
+## February 17, 2022
+
+### Product Reskin and Renaming
+
+The UI has been updated to match Astronomer's latest branding and design changes. Additionally, Astronomer Cloud has been renamed to Astro. These changes have been applied in the Astro UI (formerly known as the Astronomer UI) and all Astronomer websites.
+
+![New branding](/img/release-notes/new-branding.png)
+
+These changes are entirely cosmetic; no technical values have been changed as part of this update.
+
+### Additional improvements
+
+- Added a minimum height for bar chart elements in the **DAGs** page
+
+### Bug fixes
+
+- Fixed an issue where login tokens for the Astronomer UI weren't applied when accessing the Airflow UI for a Deployment
+- Fixed an issue where long environment variable values could spill out of their table cell in the Astro UI
+
 ## February 11, 2022
 
 ### Monitor DAG Runs Across All Deployments in a Workspace
