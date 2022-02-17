@@ -42,14 +42,23 @@ If you just need to make a single API call, you can use a temporary user authent
 
 :::
 
-## Push Code to a Deployment via API Key
+## Request Access Token
 
-To push code to a Deployment using a Deployment API key, you need to configure a CI/CD pipeline that includes your API key credentials as the following environment variables:
+In order to deploy code on Astronomer with a Deployment API key, you need to use the API key ID and secret to request an access token. This access token is required by the Astronomer API to trigger the deploy code process. It is valid only for 24 hours. To fetch a token with an existing API key ID and secret, run the following API request:
 
-- `ASTRONOMER_KEY_ID`
-- `ASTRONOMER_KEY_SECRET`
+```curl
+curl --location --request POST "https://auth.astronomer.io/oauth/token" \
+        --header "content-type: application/json" \
+        --data-raw "{
+            \"client_id\": \"<api-key-id>\",
+            \"client_secret\": \"<api-key-secret>\",
+            \"audience\": \"astronomer-ee\",
+            \"grant_type\": \"client_credentials\"}" | jq -r '.access_token'
+```
 
-When you call `astrocloud deploy <deployment-id>` from the CI/CD pipeline, the Astro CLI will automatically pull in the API key credentials and use them to push code to your Deployment. For examples of this implementation, see [CI/CD Templates](ci-cd.md#cicd-templates).
+Make sure to replace `api-key-id` and `api-key-secret` in this request with values that correspond to your own API key.
+
+To avoid manually fetching this token, we strongly recommend adding this API request to any CI/CD pipeline that uses Deployment API keys. That way, your access token is automatically refreshed every time your CI/CD pipeline needs it to complete the deploy code process. For examples of this implementation, see [CI/CD Templates](ci-cd.md#cicd-templates).
 
 ## Delete an API Key
 

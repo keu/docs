@@ -15,12 +15,6 @@ If you have any questions or a bug to report, don't hesitate to reach out to us 
 
 Release date: February 17, 2022
 
-### Use the Astro CLI in CI/CD pipelines
-
-You can now use the Astro CLI to automatically deploy changes from your repository to an Astro Deployment.
-
-To do this, you need only your [Deployment API key credentials](api-keys.md) and your Deployment ID configured as environment variables in your CI/CD pipeline. For examples of how use the Astro CLI in popular CI/CD tools, see [CI/CD templates](ci-cd.md#cicd-templates).
-
 ### Restart local Airflow environments with `astrocloud dev restart`
 
 If you want to quickly rebuild your Astro project or retest your project in a local Airflow environment, you can now run `astro dev restart`. This command is equivalent to running `astrocloud dev stop` and `astrocloud dev start` together.
