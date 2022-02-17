@@ -19,9 +19,14 @@ Release date: February 17, 2022
 
 If you want to quickly rebuild your Astro project or retest your project in a local Airflow environment, you can now run `astro dev restart`. This command is equivalent to running `astrocloud dev stop` and `astrocloud dev start` together.
 
+### Full Support for Triggerers in Local Environments
+
+You can now run a Triggerer in a local Airflow environment. This means that you can test DAGs that use [deferrable operators](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html) locally before pushing them to a Deployment on Astronomer. Additionally, Triggerer logs appear alongside Webserver and Scheduler logs when you run `astro dev logs`.
+
+Note that the Triggerer can run only in environments running Astro Runtime 4.0.0+.
+
 ### Additional Improvements
 
-- `astrocloud dev logs` now shows logs for Triggers running in your local Airflow environment. Additionally, you can filter logs to see only Triggerer logs using `astro dev logs --triggerer`.
 - Postgres has been upgraded from 12.2 to [12.6](https://www.postgresql.org/docs/12/release-12-6.html) for local Airflow environments.
 
 ## v1.0.0
