@@ -91,7 +91,9 @@ From here, our team will provision an Astronomer Cluster according to the specif
 
 ## Step 3: Create an IAM Role for Astronomer
 
-Once your Astronomer Cluster has been created, an Astronomer team member will provide you with an [External ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) that will allow Astronomer to connect to your AWS account. Save the External ID as a secret or in an otherwise secure format for use in the AWS CLI.
+Astronomer uses a [Cross Account AWS IAM Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html) to provide a managed experience in the Data Plane. To create this role and allow Astronomer to connect to your AWS account, an Astronomer team member will provide you with an [External ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) once your Astronomer Cluster has been created.
+
+Save the External ID as a secret or in an otherwise secure format for use with the AWS CLI.
 
 Then, click the link below to create an [admin IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html#getting-started_create-admin-group-console) for Astronomer in your new AWS account:
 
