@@ -21,7 +21,7 @@ If you want to quickly rebuild your Astro project or retest your project in a lo
 
 ### Full Support for Triggerers in Local Environments
 
-You can now run a Triggerer in a local Airflow environment. This means that you can test DAGs that use [deferrable operators](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html) locally before pushing them to a Deployment on Astronomer. Additionally, Triggerer logs appear alongside Webserver and Scheduler logs when you run `astrocloud dev logs`.
+You can now run a Triggerer in a local Airflow environment. This means that you can test DAGs that use [deferrable operators](deferrable-operators.md) locally before pushing them to a Deployment on Astronomer. Additionally, Triggerer logs appear alongside Webserver and Scheduler logs when you run `astrocloud dev logs`.
 
 Note that the Triggerer can run only in environments running Astro Runtime 4.0.0+.
 
