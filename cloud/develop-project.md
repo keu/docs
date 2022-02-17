@@ -55,11 +55,10 @@ If you see `Error: cannot start, project already running` when you run this comm
 
 ### Restart Your Local Environment
 
-To restart your local Airflow environment, run the following two commands:
+To restart your local Airflow environment, run the following command:
 
 ```sh
-$ astrocloud dev stop
-$ astrocloud dev start
+astrocloud dev restart
 ```
 
 These commands rebuild your image and restart the Docker containers running on your local machine with that new image. Alternatively, you can run just `astrocloud dev stop` to stop your Docker containers without restarting or rebuilding your project.
