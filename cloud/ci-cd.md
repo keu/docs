@@ -127,10 +127,12 @@ The following section provides basic templates for configuring individual CI pip
 
 To automate code deploys to a Deployment using [Jenkins](https://www.jenkins.io/), complete the following setup in a Git-based repository that hosts an Astronomer project:
 
-1. Set the following as [GitHub secrets](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
+1. Set the following environment variables as [GitHub secrets](https://docs.github.com/en/actions/reference/encrypted-secrets#creating-encrypted-secrets-for-a-repository):
 
    - `ASTRONOMER_KEY_ID` = `<your-key-id>`
    - `ASTRONOMER_KEY_SECRET` = `<your-key-secret>`
+
+   Be sure to use these exact environment variable IDs, or else the Astro CLI will not recognize them.
 
 2. Add the following to a new file in `.github/workflows`, making sure to replace `<organization-id>` and `<deployment-id>` with the values for your Deployment:
 
