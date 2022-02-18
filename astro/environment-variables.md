@@ -100,7 +100,7 @@ ENV AIRFLOW__CORE__PARALLELISM=25
 
 Once your environment variables are added:
 
-1. Run `astrocloud dev stop` and `astrocloud dev start` to rebuild your image and apply your changes locally OR
+1. Run `astrocloud dev restart` to rebuild your image and apply your changes locally OR
 2. Run `astrocloud deploy` to apply your changes to your running Airflow Deployment on Astronomer
 
 > **Note:** Environment variables injected via the `Dockerfile` are mounted at build time and can be referenced in any other processes run during the Docker build process that immediately follows `astrocloud deploy` or `astrocloud dev start`.

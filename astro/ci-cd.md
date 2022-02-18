@@ -219,7 +219,7 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
 
     This Jenkinsfile triggers a code push to Astro every time a commit or pull request is merged to the `main` branch of your repository.
 
-2. Configure the following environment variables:
+2. In your Git repository, configure the following environment variables:
 
     - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
     - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret

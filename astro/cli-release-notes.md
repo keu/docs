@@ -11,6 +11,24 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
+## v1.1.0
+
+Release date: February 17, 2022
+
+### New `astrocloud dev restart` Command to Test Local Changes
+
+For users making quick and continuous changes to an Astronomer project locally, the Astro CLI now supports a new `astro dev restart` command. This command makes local testing significantly easier and is equivalent to running `astrocloud dev stop` followed by `astrocloud dev start`.
+
+### Support for the Triggerer in Local Airflow Environments
+
+The Astro CLI now supports the Apache Airflow [Triggerer component](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html?) in a local environment. This means that you can test DAGs that use [deferrable operators](deferrable-operators.md) locally before pushing them to a Deployment on Astronomer. Additionally, Triggerer logs appear alongside Webserver and Scheduler logs when you run `astrocloud dev logs`.
+
+The Triggerer will only be created in local environments running Astro Runtime 4.0.0+.
+
+### Additional Improvements
+
+- Postgres has been upgraded from 12.2 to [12.6](https://www.postgresql.org/docs/12/release-12-6.html) for local Airflow environments.
+
 ## v1.0.0
 
 Release date: February 3, 2022
