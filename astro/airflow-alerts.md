@@ -66,7 +66,7 @@ This setup requires an AWS account and use of the [AWS Management Console](https
 
 1. In the AWS Management Console, go to **AWS Console** > **Simple Email Service** > **Email Addresses** to add and verify the email addresses you want to receive alerts.
 
-2. Open the inbox of each email address you specified and verify tAstroh the emails sent by Amazon.
+2. Open the inbox of each email address you specified and verify them through the emails sent by Amazon.
 
 3. In the AWS Console, go to **Simple Email Service** > **SMTP Settings** and use the **Create My SMTP Credentials** button to generate a username and password. This will look similar to an access and secret access key. Write down this username and password for step 5, as well as the **Server Name** and **Port**.
 

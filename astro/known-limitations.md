@@ -17,9 +17,7 @@ If you have questions or thoughts about any item below, don't hesitate to reach 
 
 - Assistance from our team is required to give the first user in your Organization access to Astro.
 - When a user first creates an account, they will be asked to validate their email address. Email validation is not currently required to access Astro, but we encourage users to follow the process anyway as we will enforce it in the future.
-- During the install process, your team will be added to 1 Astro Workspace that supports multiple users and Deployments. To create additional Workspaces in your Organization, assistance from our team is required.
 - If you're running Astro Runtime `2.1.1`, `3.0.0`, or `3.0.1`, the Astro Runtime field in the Cloud UI shows `Unknown`. Once you upgrade to Runtime 3.0.2+, your Deployment's version of Runtime is correctly listed.
-- We do not currently support PgBouncer, but the RDS instance provisioned in your Cluster will support around 1000 connections to your database, enough to support 10-12 Deployments.
 - If a user changes Workspace roles on Astro, it can take a maximum of 10 minutes for corresponding Airflow permission changes to take effect.
 - The usage of [Deployment API Keys](api-keys.md) in [CI/CD processes](ci-cd.md) currently requires fetching a short-lived authentication token and making requests directly to our Docker registry and the Astro API. Native support for Deployment API Keys in the Astro CLI is coming soon.
 - The Astro CLI is generally limited to `astrocloud dev` commands, in addition to `astrocloud deploy` and `astrocloud auth`.
@@ -28,8 +26,6 @@ If you have questions or thoughts about any item below, don't hesitate to reach 
 ## Coming Soon
 
 - Long-lasting Deployment API Keys
-- Support for CLI Install via Homebrew
-- Single Sign-On
 - Full CLI functionality
-- Self-service Cluster and Workspace creation
+- Self-service Cluster
 - Analytics

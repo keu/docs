@@ -30,7 +30,7 @@ To create a new Cluster in your Organization, you must first reach out to your A
 - Your AWS Account ID.
 - Your preferred Astro Cluster name.
 - The AWS region that you want to host your Cluster in.
-- Your preferred node insAstro.
+- Your preferred node instance type.
 
 If not specified, we will create a Cluster with two `m5.xlarge` nodes in `us-east-1` by default. For information on all supported regions, configurations, and defaults, see [AWS Resource Reference](resource-reference-aws.md).
 
