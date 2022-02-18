@@ -134,7 +134,8 @@
 }
 
 html[data-theme="dark"] {
-  --ifm-font-color-base: var(--white);
+  :root {
+    --ifm-font-color-base: var(--white);
   --ifm-menu-color: var(--white);
   --ifm-heading-color: var(--white);
   --ifm-background-color: var(--gray-900);
@@ -158,6 +159,7 @@ html[data-theme="dark"] {
 
   --ifm-menu-color-background-hover: var(--gray-800);
   --ifm-menu-color-background-active: var(--gray-800);
+  }
 }
 
 h1,
