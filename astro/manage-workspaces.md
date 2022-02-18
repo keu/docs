@@ -43,7 +43,7 @@ As a Workspace Admin, you can add or remove users from your Workspace. To add a 
 2. Click **Add member**.
 3. Specify the user's email and role within the Workspace. For more information about Workspace roles and permissions, see [User Permissions](user-permissions.md).
 
-From here, the user that you invite will receive an invite to join the Workspace via email. They must accept this invite before they appear as an active Workspace member in the **Access** tab.
+From here, the user that you invite will receive an invite to join the Workspace via email. They must accept this invite before they appear as an active Workspace member in the **Access** tab. For more information about inviting users to Astronomer, see [Add User](add-user.md).
 
 ### Update or Remove a Workspace User
 
