@@ -24,13 +24,11 @@ If you have questions or thoughts about any item below, don't hesitate to reach 
 - The usage of [Deployment API Keys](api-keys.md) in [CI/CD processes](ci-cd.md) currently requires fetching a short-lived authentication token and making requests directly to our Docker registry and the Astronomer API. Native support for Deployment API Keys in the Astronomer Cloud CLI is coming soon.
 - The Astronomer Cloud CLI is generally limited to `astrocloud dev` commands, in addition to `astrocloud deploy` and `astrocloud auth`.
 - Clicking on **Refresh DAG** in the Airflow UI will redirect you to `<org-name>.astronomer.run` (Astronomer Home Page) instead of the task instance URL. We recommend upgrading to [Runtime 4.0](runtime-release-notes.md#astronomer-runtime-400), as Airflow 2.2 no longer supports this refresh button in the Airflow UI.
-- [Deferrable operators](deferrable-operators.md) cannot be tested in local Airflow environments running via the Astronomer Cloud CLI. To use deferrable operators, you must have a Deployment running [Runtime 4.0+](runtime-release-notes.md#astronomer-runtime-400).
 
 ## Coming Soon
 
 - Long-lasting Deployment API Keys
 - Support for CLI Install via Homebrew
-- Single Sign-On
 - Full CLI functionality
-- Self-service Cluster and Workspace creation
+- Self-service Cluster creation
 - Analytics

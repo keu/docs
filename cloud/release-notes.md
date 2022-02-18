@@ -6,6 +6,7 @@ description: A real-time reference of the latest features and bug fixes in Astro
 ---
 
 ## Overview
+<!--- Version-specific -->
 
 Astronomer is committed to continuous delivery of both features and bug fixes to Astronomer Cloud. To keep your team up to date on what's new, this document will provide a regular summary of all changes officially released to Astronomer Cloud.
 
@@ -13,7 +14,48 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest Runtime Version**: 4.0.8 ([Release notes](runtime-release-notes.md))
 
-**Latest CLI Version**: 1.0.0 ([Release notes](cli-release-notes.md))
+**Latest CLI Version**: 1.1.0 ([Release notes](cli-release-notes.md))
+
+## February 17, 2022
+
+### Introducing Astro and Astronomer's New Look
+
+This week's release introduces a reimagined Astronomer brand that embraces **Astro** as a rename of Astronomer Cloud. The rebrand includes a new Astronomer logo, color palette, and font.
+
+![New branding](/img/release-notes/new-branding.png)
+
+The new Astronomer brand is now reflected both in the [Cloud UI](https://cloud.astronomer.io) as well as in the main [Astronomer website](https://astronomer.io) and [documentation](https://docs.astronomer.io).
+
+In addition to visual changes, we've renamed the following high-level Astro components:
+
+- **Astronomer Cloud CLI** is now **Astro CLI**
+- **Astronomer UI** is now **Cloud UI**
+- **Astronomer Runtime** is now **Astro Runtime**
+
+A formal company announcement is coming soon. We're thrilled.
+
+### New Organization Roles for Users
+
+The following Organization-level roles are now supported on Astro:
+
+- **Organization Member**: This role can view Organization details and membership. This includes everything in the **People**, **Clusters**, and **Settings** page of the Cloud UI. Organization members can create new Workspaces and invite new users to an Organization.
+- **Organization Billing Admin:** This role has all of the Organization Member's permissions, plus the ability to manage Organization-level settings and billing. Organization Billing Admins can access the **Usage** tab of the Cloud UI and view all Workspaces across the Organization.
+- **Organization Owner:** This role has all of the Organization Billing Admin's permissions, plus the ability to manage and modify anything within the entire Organization. This includes Deployments, Workspaces, Clusters, and users. Organization Owners have Workspace Admin permissions to all Workspaces within the Organization.
+
+Organization roles can be updated by an Organization Owner in the **People** tab of the Cloud UI.
+
+### Create New Workspaces from the Cloud UI
+
+All users can now create a new Workspace directly from the **Overview** tab of the Cloud UI:
+
+![Create Workspace button](/img/release-notes/add-workspace.png)
+
+When you create a new Workspace, you will automatically become a Workspace Admin within it and can create Deployments.
+
+### Bug fixes
+
+- Fixed an issue where authentication tokens to Astro weren't properly applied when accessing the Airflow UI for a Deployment. This would result in an authenticated user seeing `Error: Cannot find this astro cloud user` in the Airflow UI.
+- Fixed an issue where long environment variable values would spill out of the **Value** column and onto the **Updated** column in the **Environment Variables** view of a Deployment in the Cloud UI.
 
 ## February 11, 2022
 

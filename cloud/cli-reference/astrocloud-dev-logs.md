@@ -22,6 +22,7 @@ astrocloud dev logs
 | `-f`,`--follow` | Continue streaming most recent log output to your terminal. | ``|
 | `-s`,`--scheduler`            | Show only Scheduler logs                                                                                  | ``                  |
 | `-w`,`--webserver`            | Show only Webserver logs                                                                                  | ``                 |
+| `-t`,`--triggerer`            | Show only Triggerer logs                                                                                  | ``                 |
 
 
 ## Examples
