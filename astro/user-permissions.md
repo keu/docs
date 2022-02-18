@@ -43,4 +43,4 @@ Workspace Admins can set user roles via the **Access** tab in the Cloud UI. For 
 To give a user an Organization role:
 
 1. In the Cloud UI, go to the **People** tab. This tab is available in the Organization view of the UI.
-2. Find the user in the table and click the **Edit** button next to their entry. The **Members** table contains a list all users that have been added to at least one Workspace in your Organization. If you can't find a user in this table, it might be because they haven't yet been invited to a Workspace or accepted their invite.
+2. Find the user in the table and click the **Edit** button next to their entry. The **Members** table contains a list of all users that have been added to at least one Workspace in your Organization. If you can't find a user in this table, it might be because they haven't yet been invited to a Workspace or accepted their invite.
