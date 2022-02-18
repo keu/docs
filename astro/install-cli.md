@@ -90,7 +90,7 @@ brew install astronomer/cloud/astrocloud
 1. In a Linux terminal, create a new directory for your Astro project and set it as your current directory:
 
     ```sh
-    md my-project && cd my-project
+    mkdir my-project && cd my-project
     ```
 
 2. Based on your CPU, run one of the following commands to download the Astro CLI executable into your project directory.
