@@ -30,13 +30,17 @@ Workspace Admins can set user roles via the **Access** tab in the Cloud UI. For 
 
 ## Organization Roles
 
-| Permission                           | **Organization Member** | **Organization Billing Admin** | **Organization Owner** |
-| ------------------------------------ | -------------------- | -------------------- | ------------------- |
-| Workspace Admin permissions to all Workspaces                 | ✔️                   | ✔️                   | ✔️                  |
-| View all Deployments in the Cloud UI | ✔️                   | ✔️                   | ✔️                  |
-| View DAGs in the Airflow UI          | ✔️                   | ✔️                   | ✔️                  |
-| Push code to Deployments             |                      | ✔️                   | ✔️                  |
-| Update Deployment settings           |                      | ✔️                   | ✔️                  |
-| Update user roles and information    |                      |                      | ✔️                  |
+| Permission                                          | **Organization Member** | **Organization Billing Admin** | **Organization Owner** |
+| --------------------------------------------------- | ----------------------- | ------------------------------ | ---------------------- |
+| Workspace Admin permissions to all Workspaces       | ✔️                      | ✔️                             | ✔️                     |
+| Create a new Workspace                              | ✔️                      | ✔️                             | ✔️                     |
+| View Organization details and user membership       | ✔️                      | ✔️                             | ✔️                     |
+| Update Organization settings and billing            |                         | ✔️                             | ✔️                     |
+| Update Organization user membership and information |                         |                                | ✔️                     |
 
 ### Update Organization Roles
+
+To give a user an Organization role:
+
+1. In the Cloud UI, go to the **People** tab. This tab is available in the Organization view of the UI.
+2. Find the user in the table and click the **Edit** button next to their entry. The **Members** table contains a list all users that have been added to at least one Workspace in your Organization. If you can't find a user in this table, it might be because they haven't yet been invited to a Workspace or accepted their invite.
