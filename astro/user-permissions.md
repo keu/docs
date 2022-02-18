@@ -1,7 +1,7 @@
 ---
 sidebar_label: "User Permissions"
 title: "Manage User Permissions in Astro"
-id: manage-workspaces
+id: user-permissions
 description: Learn about Astronomer's RBAC system and how to assign roles to users.
 ---
 
