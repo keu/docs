@@ -66,7 +66,7 @@ This command builds your project and spins up 3 Docker containers on your machin
 - **Postgres:** Airflow's metadata database
 - **Webserver:** The Airflow component responsible for rendering the Airflow UI
 - **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
-- **Triggerer:** The Airflow component responsible for running tasks with [deferrable operators](deferrable-operators.md)
+- **Triggerer:** The Airflow component responsible for running Triggers and signaling tasks to resume when their conditions have been met. The Triggerer is used exclusively for tasks that are run with [deferrable operators](deferrable-operators.md).
 
 As your project builds locally, you should see the following output:
 

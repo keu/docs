@@ -18,7 +18,7 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ## February 17, 2022
 
-### Introducing Astro
+### Introducing Astro and Astronomer's New Look
 
 This week's release introduces a reimagined Astronomer brand that embraces **Astro** as a rename of Astronomer Cloud. The rebrand includes a new Astronomer logo, color palette, and font.
 
@@ -34,13 +34,14 @@ In addition to visual changes, we've renamed the following high-level Astro comp
 
 A formal company announcement is coming soon. We're thrilled.
 
-### Organization roles
+### New Organization Roles for Users
 
 The following Organization-level roles are now supported on Astro:
 
 - **Organization Member**: This role can view Organization details and membership. This includes everything in the **People**, **Clusters**, and **Settings** page of the Cloud UI. Organization members can create new Workspaces and invite new users to an Organization.
 - **Organization Billing Admin:** This role has all of the Organization Member's permissions, plus the ability to manage Organization-level settings and billing. Organization Billing Admins can access the **Usage** tab of the Cloud UI and view all Workspaces across the Organization.
 - **Organization Owner:** This role has all of the Organization Billing Admin's permissions, plus the ability to manage and modify anything within the entire Organization. This includes Deployments, Workspaces, Clusters, and users. Organization Owners have Workspace Admin permissions to all Workspaces within the Organization.
+
 Organization roles can be updated by an Organization Owner in the **People** tab of the Cloud UI.
 
 ### Create New Workspaces from the Cloud UI
@@ -50,7 +51,6 @@ All users can now create a new Workspace directly from the **Overview** tab of t
 ![Create Workspace button](/img/release-notes/add-workspace.png)
 
 When you create a new Workspace, you will automatically become a Workspace Admin within it and can create Deployments.
-
 
 ### Bug fixes
 
