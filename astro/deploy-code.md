@@ -58,6 +58,8 @@ Once you log in, you should see the DAGs you just deployed.
 
 When you deploy code to Astro, your Astro project is built into a Docker image. This includes system-level dependencies, Python-level dependencies, DAGs, and your `Dockerfile`. It does not include any of the metadata associated with your local Airflow environment, including task history and Airflow Connections or Variables that were set locally. This Docker image is then pushed to all containers running the Apache Airflow application on Astro.
 
+![Deploy Code](/img/docs/deploy-architecture.png)
+
 With the exception of the Airflow Webserver and some Celery Workers, Kubernetes gracefully terminates all containers during this process. This forces them to restart and begin running your latest code.
 
 If you deploy code to a Deployment that is running a previous version of your code, then the following happens:
