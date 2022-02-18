@@ -15,15 +15,15 @@ If you have any questions or a bug to report, don't hesitate to reach out to us 
 
 Release date: February 17, 2022
 
-### Restart Local Airflow Environments with `astrocloud dev restart`
+### New `astrocloud dev restart` Command to Test Local Changes
 
-If you want to quickly rebuild your Astro project or retest your project in a local Airflow environment, you can now run `astro dev restart`. This command is equivalent to running `astrocloud dev stop` and `astrocloud dev start` together.
+For users making quick and continuous changes to an Astronomer project locally, the Astro CLI now supports a new `astro dev restart` command. This command makes local testing significantly easier and is equivalent to running `astrocloud dev stop` followed by `astrocloud dev start`.
 
-### Full Support for Triggerers in Local Environments
+### Support for the Triggerer in Local Airflow Environments
 
-You can now run a Triggerer in a local Airflow environment. This means that you can test DAGs that use [deferrable operators](deferrable-operators.md) locally before pushing them to a Deployment on Astronomer. Additionally, Triggerer logs appear alongside Webserver and Scheduler logs when you run `astrocloud dev logs`.
+The Astro CLI now supports the Apache Airflow [Triggerer component](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html?) in a local environment. This means that you can test DAGs that use [deferrable operators](deferrable-operators.md) locally before pushing them to a Deployment on Astronomer. Additionally, Triggerer logs appear alongside Webserver and Scheduler logs when you run `astrocloud dev logs`.
 
-Note that the Triggerer can run only in environments running Astro Runtime 4.0.0+.
+The Triggerer will only be created in local environments running Astro Runtime 4.0.0+.
 
 ### Additional Improvements
 
