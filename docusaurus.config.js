@@ -188,7 +188,7 @@ module.exports = {
           },
         },
         gtag: {
-          trackingID: 'G-W97HK48NPT',
+          trackingID: 'G-DKTB1B78FV',
           anonymizeIP: true,
         },
         theme: {
