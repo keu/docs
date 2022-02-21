@@ -34,6 +34,9 @@
 /test-and-troubleshoot-locally /astro/test-and-troubleshoot-locally 301
 /upgrade-runtime /astro/upgrade-runtime 301
 
+# redirect cloud paths to astro
+/cloud/install-cli/ /astro/install-cli/ 301
+
 # redirect enterprise paths to software
 /enterprise /software/overview 301
 /enterprise/cli-quickstart  /software/cli-quickstart 301
