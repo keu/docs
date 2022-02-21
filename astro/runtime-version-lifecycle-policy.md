@@ -2,14 +2,14 @@
 title: "Astro Runtime Versioning and Lifecycle Policy"
 sidebar_label: "Versioning and Lifecycle Policy"
 id: runtime-version-lifecycle-policy
-description: Learn how Astronomer releases and maintains Astro Runtime, the core component that powers a differentiated Apache Airflow experience in Astro.
+description: Learn how Astronomer releases and maintains Astro Runtime, the core component that powers a differentiated Apache Airflow experience on Astro.
 ---
 
 ## Overview
 
 Astro Runtime is a Debian-based, production-ready distribution of Apache Airflow that extends the open source project to provide you with differentiated functionality that centers around reliability, efficiency, and performance.
 
-Astro Runtime Docker images are hosted on [Astronomer's Docker registry](https://quay.io/repository/astronomer/astro-runtime) and enable Airflow on Astro. All Astro projects require that you specify an Astro Runtime image in your `Dockerfile`, and all Deployments on Astro must run one version of Runtime. Every version of Astro Runtime correlates to one version of Apache Airflow. Depending on the needs of your pipelines, you can run different versions of Runtime on different Deployments within a given Workspace or Cluster.
+Astro Runtime Docker images are hosted on [Astronomer's Docker registry](https://quay.io/repository/astronomer/astro-runtime) and enable Airflow on Astro. All Astro projects require that you specify an Astro Runtime image in your `Dockerfile`, and all Deployments on Astro must run only one version of Runtime. Every version of Astro Runtime correlates to one version of Apache Airflow. Depending on the needs of your pipelines, you can run different versions of Astro Runtime on different Deployments within a given Workspace or Cluster.
 
 This document provides information on the following:
 
@@ -21,14 +21,16 @@ For guidelines on how to upgrade to a new version of Runtime, read [Upgrade Runt
 
 ## Release Channels
 
-To meet the unique needs of different operating environments, Astro Runtime versions fall into one of two release channels:
+To meet the unique needs of different operating environments, Astro Runtime versions are associated with the following release channels:
 
-- **Stable:** Includes the latest Astro and Apache Airflow features
-- **Long-term Support (LTS):** Includes rigorous testing, long-term stability, and additional maintenance for a core set of features
+- **Stable:** Includes the latest Astronomer and Apache Airflow features, available on release
+- **Long-term Support (LTS):** Includes additional testing, stability, and maintenance for a core set of features
 
-For users that want the newest features from Astro and Airflow on an incremental basis, we recommend following the stable release channel and upgrading to new versions as soon as they are made generally available. New versions of Runtime are issued regularly and include timely support for the latest major, minor, and patch versions of Airflow.
+All releases of Astro Runtime are considered stable. The LTS release channel is a subset of the stable release channel that promises additional stability, reliablity, and support from our team.
 
-For customers looking for less frequent upgrades and functional changes, we recommend following the LTS release channel. Release channels are not binding, so you are free to upgrade to any available version of Runtime at any time.
+For users that want to keep up with the latest Astronomer and Airflow features on an incremental basis, we recommend upgrading to new versions of Astro Runtime as soon as they are made generally available. This should be regardless of release channel. New versions of Runtime are issued regularly and include timely support for the latest major, minor, and patch versions of Airflow.
+
+For customers looking for less frequent upgrades and functional changes, we recommend following the LTS release channel exclusively.
 
 ## Versioning Scheme
 
@@ -86,14 +88,14 @@ Within the maintenance window of each Astro Runtime version, the following is tr
 - A set of Docker images corresponding to that version are available for download via [Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags) and PyPi.
 - Astronomer will regularly publish bug or security fixes identified as high priority.
 - The Astronomer Support team will offer support for paying customers running a supported version of Runtime via the [Astronomer Support Portal](https://support.astronomer.io).
-- A user can create a new Airflow Deployment via the Cloud UI, CLI, or API with any supported `major.minor` version pair of Runtime. For new Deployments, the Cloud UI assumes the latest patch.
+- A user can create a new Deployment via the Cloud UI, API, or Astro CLI with any supported `major.minor` version pair of Runtime. For new Deployments, the Cloud UI assumes the latest patch.
 
 When the maintenance window for a given version of Runtime ends, the following is true:
 
-- The Astronomer Support team is not obligated to answer questions regarding an Airflow Deployment that is running that version.
-- New Deployments cannot be created on Astro with that version of Runtime. Unsupported versions will _not_ render as an option in the Deployment creation process from the Cloud UI, API, or CLI.
-- The latest version of the Astro CLI will show a warning if a user pushes a Docker image which specifies that version to Astro.
-- The Cloud UI will show a warning if any of your Deployments are currently running that version.
+- The Astronomer Support team is not obligated to answer questions regarding a Deployment that is running that version.
+- New Deployments cannot be created on Astro with that version of Runtime. Versions that are no longer maintained will not render as an option in the Deployment creation process from the Cloud UI, API, or Astro CLI.
+- The Deployment view of the Cloud UI will show a warning that encourages the user to upgrade if the Deployment is running that version.
+- The latest version of the Astro CLI will show a warning if a user pushes a Docker image to Astronomer that corresponds to that version.
 
 To ensure reliability, service will not be interrupted for Deployments running a version of Runtime that is no longer supported. Unsupported versions will also continue to be available for local development and testing via the Astro CLI.
 
