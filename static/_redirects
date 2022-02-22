@@ -43,4 +43,5 @@
 
 # temporary wildcard redirects for enterprise and cloud paths
 /enterprise/* /software/overview
-/cloud/* /astro
+
+/cloud/* /astro/overview
