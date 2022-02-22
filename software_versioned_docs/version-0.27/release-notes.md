@@ -25,6 +25,10 @@ To provide more control over resource usage across your organization, System Adm
 
 For more information about the permissions that different roles have, including instructions for how to modify a role's permissions, see [Platform User Management](manage-platform-users.md).
 
+### Additional improvements
+
+- System Admins are now the only role that can create a Deployment with a deprecated version of Astronomer Certified.
+
 ### Bug fixes
 
 - Fixed documentation links in the Software UI
