@@ -219,6 +219,7 @@ The System Editor has all of the same default permissions as the System Viewer, 
 
 The System Admin has all of the same default permissions as the System Viewer and System Editor for a given cluster, plus:
 
+- `system.workspace.create`: Create a new Workspace
 - `system.deployments.create`: Create a Deployment on any Workspace
 - `system.deployments.update`: Modify any Deployment
 - `system.deployments.delete`: Delete any Deployment
