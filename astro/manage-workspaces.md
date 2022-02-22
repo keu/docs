@@ -11,13 +11,13 @@ This guide provides steps for creating and managing Workspaces on Astro.
 
 Workspaces are collections of Deployments that can all be accessed by a specific group of users. You can use Workspaces to group Deployments that all share a trait. For example, you can create one Workspace that stores all of your production pipelines and another Workspace that stores all of your development pipelines.
 
+## Create a Workspace
+
 :::info
 
-Workspace management can only be completed by users with an Organization-level role.
+Workspaces can be created only by users with an [Organization-level](user-permissions.md#organization-roles) role.
 
 :::
-
-## Create a Workspace
 
 To create a Workspace, click the **Add Workspace** button from the **Overview** tab.
 
