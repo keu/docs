@@ -98,7 +98,7 @@ global:
 
   authSidecar:  
     enabled: true
-    repository: nginxinc/nginx-unprivileged
+    repository: nginxinc/nginx-unprivileged # In airgapped installations, change this to specify your private registry
 ```
 
 If you use a Traefik or Contour ingress controller, you need to configure additional values in your chart. For more information, read the following subsections.
