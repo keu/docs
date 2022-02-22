@@ -42,5 +42,5 @@
 /enterprise/cli-quickstart  /software/cli-quickstart 301
 
 # temporary wildcard redirects for enterprise and cloud paths
-/enterprise/* /software
+/enterprise/* /software/overview
 /cloud/* /astro
