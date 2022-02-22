@@ -106,26 +106,12 @@ To complete this setup, you need:
 
 ### Step 1: Create a Kubernetes Secret
 
-To run Docker images from a private registry on Astronomer Cloud, you first need to create a Kubernetes secret that contains credentials to your registry. Astronomer will then inject that secret into your Deployment's namespace, which will give your tasks access to Docker images within your registry. To do this, complete one of the following two setups:
-
-#### Option 1: Manually Create a Kubernetes Secret
+To run Docker images from a private registry on Astronomer Cloud, you first need to create a Kubernetes secret that contains credentials to your registry. Astronomer will then inject that secret into your Deployment's namespace, which will give your tasks access to Docker images within your registry. To do this, complete the following setup:
 
 1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
 2. Reach out to [Astronomer Support](https://support.astronomer.io) and include the namespace of the Deployment you want to use the KubernetesPodOperator with. A Deployment's namespace can be found in the Deployment view of the Astronomer UI.
 
 From here, Astronomer Support will give you instructions on how to securely send the output of your `/.docker/config.json` file. Do not send this file via email, as it contains sensitive credentials to your registry.
-
-#### Option 2: Let Astronomer Create a Kubernetes Secret
-
-Instead of creating a Kubernetes secret yourself, you can send Astronomer the following credentials:
-
-- Astronomer Cluster
-- Docker username
-- Docker password
-- Docker email
-- Docker server (only if other than Dockerhub)
-
-Astronomer Support will use this information to directly create a Kubernetes secret and `dockerconfigjson` file in the specified Cluster.
 
 ### Step 2: Specify the Kubernetes Secret in your DAG
 
