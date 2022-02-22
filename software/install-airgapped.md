@@ -53,22 +53,15 @@ image: quay.io/astronomer/ap-cli-install:0.26.1
 ...
 ```
 
+Once you have this list of images, add them to a private image registry hosted within your organization's network. In Step 3, you will specify this private registry in your Astronomer configuration.
+
 > **Note:** If you have already enabled/disabled Astronomer platform components in your `config.yaml`, you can pass `-f/--values config.yaml` to `helm template` to print a list specific to your `config.yaml` configuration.
 
 ## Step 3: Add Images to Your config.yaml File
 
 Regardless of whether you choose to mirror or manually pull/push images to your private registry, the returned images and/or tags must be made accessible within your network.
 
-In your `config.yaml` file, you must refer to the private registry. There are two options for doing this:
-
-- Configure only the private registry URL, leaving images and tags as their default values in the Helm chart.
-- Configure each image individually, which allows you to specify a different image/tag if desired.
-
-Use the following topics to learn more about each of these options.
-
-### Option 1: Configure a private registry
-
-A private registry can be configured in the `global` section of `config.yaml`:
+To make these images accessible to Astronomer, specify your organization's private registry in the `global` section of your `config.yaml` file:
 
 ```yaml
 global:
@@ -79,150 +72,28 @@ global:
     # password: ~
 ```
 
-This will set the repository for all Docker images specified in the Astronomer Helm chart. If you didn't change the default names or tags of any images uploaded to your private registry, this means that you don't have to do any further configuration to pull images from the correct location.
-
-### Option 2: Configure images individually
-
-Alternatively, you can configure each image (repository) and/or tag individually. This is useful in certain situations, for example where your image tags might vary from Astronomer's default tags, or if your organization has a naming convention of prepending image tags with `myteam-`.
+This configuration automatically pulls most Docker images required in the Astronomer Helm chart. You must configure the following additional images individually in a separate section of your `config.yaml` file:
 
 ```yaml
-# Example configuration only. To determine the necessary images, render Helm template for your Software installation version.
-alertmanager:
-  images:
-    alertmanager:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-alertmanager
-      tag: 0.23.0
 astronomer:
-  images:
-    commander:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-commander
-      tag: 0.26.4
-    registry:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-registry
-      tag: 3.14.2-2
     houston:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-houston-api
-      tag: 0.27.1
-    astroUI:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-astro-ui
-      tag: 0.27.1
-    dbBootstrapper:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-db-bootstrapper
-      tag: 0.26.1
-    cliInstall:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-cli-install
-      tag: 0.26.0
-  # Additionally, you can configure the images used for each Airflow deployment under astronomer.houston.config.deployments.helm
-  houston:
-    config:
-      deployments:
-        helm:
-          # (1) Here you can also define a default repository
-          defaultAirflowRepository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-airflow
-          # (2) or individual images
-          defaultAirflowTag: 2.0.0-buster
-          images:
+        deployments:
+          helm:
             airflow:
-              repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-airflow
-              tag: null
-            pgbouncer:
-              repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-pgbouncer
-              tag: 1.8.1
-elasticsearch:
-  images:
-    es:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-elasticsearch
-      tag: 7.10.2-3
-    init:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-base
-      tag: 3.14.2-1
-    curator:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-curator
-      tag: 5.8.4-5
-    exporter:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-elasticsearch-exporter
-      tag: 1.2.1
-    nginx:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-nginx-es
-      tag: 1.21.3
-fluentd:
-  images:
-    fluentd:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-fluentd
-      tag: 1.14.2
-grafana:
-  images:
-    grafana:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-grafana
-      tag: 7.5.10
-    dbBootstrapper:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-db-bootstrapper
-      tag: 0.26.1
-keda:
-  keda:
-    image:
-      keda: "012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-keda:1.3.0"
-      metricsAdapter: "012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-keda-metrics-adapter:1.3.0"
-kibana:
-  images:
-    kibana:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-kibana
-      tag: 7.10.2-2
-kube-state:
-  images:
-    kubeState:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-kube-state
-      tag: 1.7.2
-kubed:
-  images:
-    kubed:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-kubed
-      tag: 0.12.0
-nats:
-  images:
-    nats:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-nats-server
-      tag: 2.3.2-3
-nginx:
-  images:
-    nginx:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-nginx
-      tag: 0.49.3
-    defaultBackend:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-default-backend
-      tag: 0.25.4
-postgresql:
-  image:
-    registry: 012345678910.dkr.ecr.us-east-1.amazonaws.com
-    repository: myrepo/myteam-ap-postgresql
-    tag: 11.13.0
-prometheus:
-  images:
-    prometheus:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-prometheus
-      tag: 2.30.3
-prometheus-blackbox-exporter:
-  image:
-    repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-blackbox-exporter
-    tag: 0.19.0-3
-prometheus-node-exporter:
-  image:
-    repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-node-exporter
-    tag: v1.2.2
-prometheus-postgres-exporter:
-  image:
-    repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-postgres-exporter
-    tag: 0.10.0
-stan:
-  images:
-    init:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-base
-      tag: 3.14.2-1
-    stan:
-      repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/myteam-ap-nats-streaming
-      tag: 0.22.0-2
+              defaultAirflowRepository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/astronomer/ap-airflow
+              images:
+                airflow:
+                  repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/astronomer/ap-airflow
+                statsd:
+                  repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/astronomer/ap-statsd-exporter
+                redis:
+                  repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/astronomer/ap-redis
+                pgbouncer:
+                  repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/astronomer/ap-pgbouncer
+                pgbouncerExporter:
+                  repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo/astronomer/ap-pgbouncer-exporter
 ```
-
+​
 ## Step 4: Fetch Airflow Helm Charts
 
 There are two Helm charts required for Astronomer:
