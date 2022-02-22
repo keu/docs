@@ -61,7 +61,7 @@ Once you have this list of images, add them to a private image registry hosted w
 
 Regardless of whether you choose to mirror or manually pull/push images to your private registry, the returned images and/or tags must be made accessible within your network.
 
-In your `config.yaml` file, you must refer to your organization's private registry. A private registry can be configured in the `global` section of `config.yaml`:
+To make these images accessible to Astronomer, specify your organization's private registry in the `global` section of your `config.yaml` file:
 
 ```yaml
 global:
