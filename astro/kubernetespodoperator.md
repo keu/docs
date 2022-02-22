@@ -32,7 +32,7 @@ To use the KubernetesPodOperator in a DAG, add the following import statements a
 ```python
 from airflow.contrib.operators.kubernetes_pod_operator import kubernetes_pod_operator
 
-# Pulls environment information from Astronomer Cloud
+# Pulls environment information from Astro
 from airflow import configuration as conf
 ...
 
@@ -106,7 +106,7 @@ To complete this setup, you need:
 
 ### Step 1: Create a Kubernetes Secret
 
-To run Docker images from a private registry on Astronomer Cloud, you first need to create a Kubernetes secret that contains credentials to your registry. Astronomer will then inject that secret into your Deployment's namespace, which will give your tasks access to Docker images within your registry. To do this, complete the following setup:
+To run Docker images from a private registry on Astro, you first need to create a Kubernetes secret that contains credentials to your registry. Astronomer will then inject that secret into your Deployment's namespace, which will give your tasks access to Docker images within your registry. To do this, complete the following setup:
 
 1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
 2. Reach out to [Astronomer Support](https://support.astronomer.io) and include the namespace of the Deployment you want to use the KubernetesPodOperator with. A Deployment's namespace can be found in the Deployment view of the Astronomer UI.
