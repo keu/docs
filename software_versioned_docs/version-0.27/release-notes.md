@@ -21,13 +21,13 @@ Release date: Feb 22, 2022
 
 ### Limit Workspace Creation to System Admins
 
-To provide more control over resource usage across your organization, Workspace creation has been limited to users with System Admin permissions. 
+To provide more control over resource usage across your organization, you can now limit the ability to create Workspaces only to users with System Admin permissions.
 
 For more information about each role's permissions, including instructions for how to modify a role's permissions, see [Platform User Management](manage-platform-users.md).
 
 ### Additional improvements
 
-- System Admins are now the only users that can create a Deployment with a deprecated version of Astronomer Certified.
+- Added the ability for System Admins to create Deployments that run deprecated versions of Astronomer Certified 
 
 ### Bug fixes
 
