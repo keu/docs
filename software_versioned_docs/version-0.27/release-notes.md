@@ -15,6 +15,20 @@ Astronomer v0.27 is the latest Stable version of Astronomer Software, while v0.2
 
 We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
+## 0.27.3
+
+Release date: Feb 22, 2022
+
+### Limit Workspace Creation to System Admins
+
+To provide more control over resource usage across your organization, System Admins are now the only role that can create new Workspaces.
+
+For more information about the roles that different permissions have, including instructions for how to modify role permissions, see [Platform User Management](manage-platform-users.md).
+
+### Bug fixes
+
+- Fixed documentation links in the Software UI
+
 ## 0.27.1
 
 Release date: January 10, 2022
