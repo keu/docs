@@ -115,7 +115,7 @@ From here, Astronomer Support will give you instructions on how to securely send
 
 ### Step 2: Specify the Kubernetes Secret in your DAG
 
-Once Astronomer has added the Kubernetes secret to your Cluster, you will be notified and provided with the name of the secret.
+Once Astronomer has added the Kubernetes secret to your Deployment, you will be notified and provided with the name of the secret.
 
 From here, you can run images from your private registry by importing `models` from `kubernetes.client` and configuring `image_pull_secrets` in your KubernetesPodOperator instantiation:
 
