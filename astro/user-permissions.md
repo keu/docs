@@ -9,7 +9,7 @@ description: Learn about Astronomer's RBAC system and how to assign roles to use
 
 This document provides information about all available user roles in Astro.
 
-To better protect your data pipelines and cloud infrastructure, Astro offers role-based access control for Organizations and Workspaces. Each Astro user has a single role that defines their level access across both the Control Plane and the Data Plane.
+To better protect your data pipelines and cloud infrastructure, Astro offers role-based access control for Organizations and Workspaces. Each Astro user has a single role that defines their level of access across both the Control Plane and the Data Plane.
 
 ## Workspace Roles
 
