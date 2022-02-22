@@ -192,6 +192,10 @@ module.exports = {
           trackingID: 'G-DKTB1B78FV',
           anonymizeIP: true,
         },
+        googleAnalytics: {
+          trackingID: 'UA-54102728-4',
+          anonymizeIP: true,
+        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
