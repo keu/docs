@@ -23,7 +23,7 @@ Release date: Feb 22, 2022
 
 To provide more control over resource usage across your organization, System Admins are now the only role that can create new Workspaces.
 
-For more information about the roles that different permissions have, including instructions for how to modify role permissions, see [Platform User Management](manage-platform-users.md).
+For more information about the permissions that different roles have, including instructions for how to modify a role's permissions, see [Platform User Management](manage-platform-users.md).
 
 ### Bug fixes
 
