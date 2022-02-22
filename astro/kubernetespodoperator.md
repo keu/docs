@@ -1,30 +1,29 @@
 ---
 sidebar_label: 'KubernetesPodOperator'
-title: "Run the KubernetesPodOperator on Astronomer Cloud"
+title: "Run the KubernetesPodOperator on Astro"
 id: kubernetespodoperator
 ---
 
 ## Overview
 
-This guide provides steps for configuring and running the KubernetesPodOperator on DAGs deployed to Astronomer Cloud.
+This guide provides steps for configuring and running the KubernetesPodOperator on DAGs deployed to Astro.
 
-The [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html) is one of Apache Airflow's most powerful operators. Similar to the Kubernetes Executor, this operator talks to the Kubernetes API to dynamically launch a pod in Kubernetes for each task that needs to run and terminates each pod once the task is completed. This results in an isolated, containerized execution environment for each task that is separate from tasks otherwise being executed by Celery workers. The KubernetesPodOperator enables you to:
+The [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html) is one of Apache Airflow's most powerful operators. Similar to the Kubernetes Executor, this operator talks to the Kubernetes API to dynamically launch a Pod in Kubernetes for each task that needs to run and terminates each Pod once the task is completed. This results in an isolated, containerized execution environment for each task that is separate from tasks otherwise being executed by Celery workers. The KubernetesPodOperator enables you to:
 
 - Execute a custom Docker image per task with Python packages and dependencies that would otherwise conflict with the rest of your Deployment's dependencies. This includes Docker images in a private registry or repository.
-- Specify CPU and Memory as task-level limits or minimums to optimize costs and performance.
+- Specify CPU and Memory as task-level limits or minimums to optimize for cost and performance.
 - Write task logic in a language other than Python. This gives you flexibility and can enable new use cases across teams.
 - Scale task growth horizontally in a way that is cost-effective, dynamic, and minimally dependent on Worker resources.
-- Access images hosted in private Docker repositories.
 - Set Kubernetes-native configurations in a YAML file, including volumes, secrets, and affinities.
 
-On Astronomer Cloud, the Kubernetes infrastructure required to run the KubernetesPodOperator is built into every Cluster in the Data Plane and is managed by Astronomer.
+On Astro, the Kubernetes infrastructure required to run the KubernetesPodOperator is built into every Cluster in the Data Plane and is managed by Astronomer.
 
 ## Prerequisites
 
 To use the KubernetesPodOperator, you need:
 
-- An [Astronomer project](create-project.md).
-- An Astronomer [Deployment](configure-deployment.md).
+- An [Astro project](create-project.md).
+- An Astro [Deployment](configure-deployment.md).
 
 ## Set Up the KubernetesPodOperator
 
@@ -53,16 +52,16 @@ k = kubernetes_pod_operator.KubernetesPodOperator(
 
 For each instantiation of the KubernetesPodOperator, you must specify the following values:
 
-- `namespace = conf.get('kubernetes', 'NAMESPACE')`: Every Astronomer Deployment runs on its own Kubernetes namespace within a Cluster. Information about this namespace can be programmatically imported as long as you set this variable.
+- `namespace = conf.get('kubernetes', 'NAMESPACE')`: Every Deployment runs on its own Kubernetes namespace within a Cluster. Information about this namespace can be programmatically imported as long as you set this variable.
 - `image`: This is the Docker image that the operator will use to run its defined task, commands, and arguments. The value you specify is assumed to be an image tag that's publicly available on [Docker Hub](https://hub.docker.com/). To pull an image from a private registry, read [Pull Images from a Private Registry](kubernetespodoperator.md#pull-images-from-a-private-registry).
-- `in_cluster=True`: When this value is set, your task will run within the Cluster from which it's instantiated on Astronomer. This ensures that the Kubernetes pod running your task has the correct permissions within the Cluster.
+- `in_cluster=True`: When this value is set, your task will run within the Cluster from which it's instantiated on Astro. This ensures that the Kubernetes Pod running your task has the correct permissions within the Cluster.
 - `is_delete_operator_pod=True`: This setting ensures that once a KubernetesPodOperator task is complete, the Kubernetes Pod that ran that task is terminated. This ensures that there are no unused pods in your Cluster taking up resources.
 
-This is the minimum configuration required to run tasks with the KubernetesPodOperator on Astronomer Cloud. To further customize the way your tasks are run, see the topics below.
+This is the minimum configuration required to run tasks with the KubernetesPodOperator on Astro. To further customize the way your tasks are run, see the topics below.
 
 ## Configure Task-Level Pod Resources
 
-Astronomer Cloud automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not limited, meaning that the operator could theoretically provision all your Cluster's available remaining CPU and memory to complete a task. Because of this, we recommend managing the KubernetesPodOperator's resource usage by specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) on a per-task basis.
+Astro automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not technically limited, meaning that the operator could theoretically use any CPU and memory that's available in your Cluster to complete a task. Because of this, we recommend specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) per task.
 
 To do so, define a dictionary of compute resources in your DAG. For example, applying the following dictionary to a task would ensure that a Pod runs that task with exactly 800m of CPU and 3Gi of memory at all times:
 
@@ -100,10 +99,10 @@ By default, the KubernetesPodOperator expects to pull a Docker image that's host
 
 To complete this setup, you need:
 
-- A private registry that hosts your images.
-- kubectl.
-- An Astronomer Cloud project.
-- A Deployment hosting your project.
+- An [Astro project](create-project.md).
+- An [Astro Deployment](configure-deployment.md).
+- Access to a private Docker registry.
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/), the command line tool for Kubernetes.
 
 ### Step 1: Create a Kubernetes Secret
 
@@ -112,7 +111,7 @@ To run Docker images from a private registry on Astronomer Cloud, you first need
 #### Option 1: Manually Create a Kubernetes Secret
 
 1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
-2. Reach out to [Astronomer Support](https://support.astronomer.io) and send the Namespace of the Deployment you want to use the KubernetesPodOperator with. A Deployment's namespace can be found in the Deployment view of the Astronomer UI.
+2. Reach out to [Astronomer Support](https://support.astronomer.io) and include the namespace of the Deployment you want to use the KubernetesPodOperator with. A Deployment's namespace can be found in the Deployment view of the Astronomer UI.
 
 From here, Astronomer Support will give you instructions on how to securely send the output of your `/.docker/config.json` file. Do not send this file via email, as it contains sensitive credentials to your registry.
 
@@ -128,7 +127,7 @@ Instead of creating a Kubernetes secret yourself, you can send Astronomer the fo
 
 Astronomer Support will use this information to directly create a Kubernetes secret and `dockerconfigjson` file in the specified Cluster.
 
-### Step 2: Run the KubernetesPodOperator
+### Step 2: Specify the Kubernetes Secret in your DAG
 
 Once Astronomer has added the Kubernetes secret to your Cluster, you will be notified and provided with the name of the secret.
 
