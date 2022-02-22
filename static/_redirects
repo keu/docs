@@ -4,6 +4,9 @@
 # redirect base software path to overview
 /software /software/overview 301
 
+# redirect base cloud path to astro overview
+/cloud /astro/overview 301
+
 # redirect renamed pages
 /runtime-versioning /astro/runtime-version-lifecycle-policy 301
 
