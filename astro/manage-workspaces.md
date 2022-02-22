@@ -15,7 +15,7 @@ Workspaces are collections of Deployments that can all be accessed by a specific
 
 :::info
 
-Workspaces can be created only by users with an [Organization-level](user-permissions.md#organization-roles) role.
+To create a Workspace, you must have an [Organization-level](user-permissions.md#organization-roles) role.
 
 :::
 
