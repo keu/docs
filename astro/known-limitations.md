@@ -1,4 +1,4 @@
-Astro---
+---
 sidebar_label: 'Known Limitations'
 title: 'Known Limitations'
 id: known-limitations
