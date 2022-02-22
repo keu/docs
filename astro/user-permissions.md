@@ -30,6 +30,8 @@ Workspace Admins can set user roles via the **Access** tab in the Cloud UI. For 
 
 ## Organization Roles
 
+An Organization role grants a user some level of access to an Astro Organization, including all of the Workspaces within that Organization. The following Organization roles are available:
+
 | Permission                                          | **Organization Member** | **Organization Billing Admin** | **Organization Owner** |
 | --------------------------------------------------- | ----------------------- | ------------------------------ | ---------------------- |
 | Workspace Admin permissions to all Workspaces       | ✔️                      | ✔️                             | ✔️                     |
