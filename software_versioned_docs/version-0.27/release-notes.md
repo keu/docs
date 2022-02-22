@@ -27,7 +27,7 @@ For more information about each role's permissions, including instructions for h
 
 ### Additional improvements
 
-- Added the `houston.config.deployments.enableSystemAdminCanCreateDeprecatedAirflows` configuration which enables System Admins to create Deployments with deprecated versions of Astronomer Certified. 
+- Added the `houston.config.deployments.enableSystemAdminCanCreateDeprecatedAirflows` configuration which enables System Admins to create Deployments with deprecated versions of Astronomer Certified 
 
 ### Bug fixes
 
