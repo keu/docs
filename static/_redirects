@@ -1,6 +1,9 @@
 # redirect base path to astro
 / /astro 301!
 
+# redirect base software path to overview
+/software /software/overview 301
+
 # redirect renamed pages
 /runtime-versioning /astro/runtime-version-lifecycle-policy 301
 
@@ -125,7 +128,6 @@
 /enterprise/upgrade-astronomer-stable /software/upgrade-astronomer-stable 301
 /enterprise/version-compatibility-reference /software/version-compatibility-reference 301
 /enterprise/workspace-permissions /software/workspace-permissions 301
-
 
 # temporary wildcard redirects for enterprise versioned docs
 /enterprise/0.27/* /software/0.27/overview
