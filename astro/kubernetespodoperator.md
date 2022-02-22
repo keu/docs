@@ -124,7 +124,7 @@ from kubernetes.client import models as k8s
 
 k = kubernetes_pod_operator.KubernetesPodOperator(
     namespace=namespace,
-    image_pull_secrets=[k8s.V1LocalObjectReference('<secret-name>')],
+    image_pull_secrets=[k8s.V1LocalObjectReference('<your-secret-name>')],
     image="<your-docker-image>",
     cmds=["<commands-for-image>"],
     arguments=["<arguments-for-image>"],
