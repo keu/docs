@@ -66,6 +66,10 @@
 /cloud/resource-reference-aws /astro/resource-reference-aws 301
 /cloud/runtime-release-notes /astro/runtime-release-notes 301
 /cloud/runtime-version-lifecycle-policy /astro/runtime-version-lifecycle-policy 301
+/cloud/scheduler-logs /astro/scheduler-logs 301
+/cloud/secrets-backend /astro/secrets-backend 301
+/cloud/secrets-management /astro/secrets-management 301
+/cloud/security /astro/security 301
 /cloud/shared-responsibility-model /astro/shared-responsibility-model 301
 /cloud/test-and-troubleshoot-locally /astro/test-and-troubleshoot-locally 301
 /cloud/upgrade-runtime /astro/upgrade-runtime 301
