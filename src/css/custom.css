@@ -15,7 +15,8 @@
 
 :root {
   /* Typography */
-  --font-sans: "Strawford", "Open Sans", sans-serif;
+  --font-sans: "GoodSans", "Open Sans", sans-serif;
+  --font-sans-heading: "Strawford", "Open Sans", sans-serif;
   --font-serif: "Zilla Slab", "Times New Roman", serif;
   --font-mono: "SFMono-Regular", "Menlo", monospace;
   --font-size-00: 0.75rem;
@@ -136,29 +137,29 @@
 html[data-theme="dark"] {
   :root {
     --ifm-font-color-base: var(--white);
-  --ifm-menu-color: var(--white);
-  --ifm-heading-color: var(--white);
-  --ifm-background-color: var(--gray-900);
+    --ifm-menu-color: var(--white);
+    --ifm-heading-color: var(--white);
+    --ifm-background-color: var(--gray-900);
 
-  --ifm-navbar-link-color: var(--white);
+    --ifm-navbar-link-color: var(--white);
 
-  --ifm-footer-background-color: var(--gray-800);
-  --ifm-footer-color: var(--gray-200);
-  --ifm-footer-link-color: var(--white);
+    --ifm-footer-background-color: var(--gray-800);
+    --ifm-footer-color: var(--gray-200);
+    --ifm-footer-link-color: var(--white);
 
-  --ifm-color-primary: var(--blue-400);
-  --ifm-color-primary-dark: var(--blue-700);
-  --ifm-color-primary-darker: var(--blue-800);
-  --ifm-color-primary-darkest: var(--blue-900);
-  --ifm-color-primary-light: var(--blue-500);
-  --ifm-color-primary-lighter: var(--blue-400);
-  --ifm-color-primary-lightest: var(--blue-300);
+    --ifm-color-primary: var(--blue-400);
+    --ifm-color-primary-dark: var(--blue-700);
+    --ifm-color-primary-darker: var(--blue-800);
+    --ifm-color-primary-darkest: var(--blue-900);
+    --ifm-color-primary-light: var(--blue-500);
+    --ifm-color-primary-lighter: var(--blue-400);
+    --ifm-color-primary-lightest: var(--blue-300);
 
-  --ifm-color-success-contrast-background: var(--mint-800);
-  --ifm-color-success-contrast-foreground: var(--mint-100);
+    --ifm-color-success-contrast-background: var(--mint-800);
+    --ifm-color-success-contrast-foreground: var(--mint-100);
 
-  --ifm-menu-color-background-hover: var(--gray-800);
-  --ifm-menu-color-background-active: var(--gray-800);
+    --ifm-menu-color-background-hover: var(--gray-800);
+    --ifm-menu-color-background-active: var(--gray-800);
   }
 }
 
@@ -169,6 +170,7 @@ h4,
 h5,
 h6 {
   font-weight: 500;
+  font-family: var(--font-sans-heading);
 }
 
 h1 {
