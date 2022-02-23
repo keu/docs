@@ -11,6 +11,26 @@ Astro Runtime is a Docker image built and published by Astronomer that extends t
 
 For instructions on how to upgrade, read [Upgrade Astro Runtime](upgrade-runtime.md). For general product release notes, go to [Astro Release Notes](release-notes.md). If you have any questions or a bug to report, reach out to [Astronomer Support](https://support.astronomer.io).
 
+## Astro Runtime 4.0.10
+
+- Release date: December 21, 2021
+- Airflow version: 2.2.3
+
+### Additional Improvements
+
+- In the Airflow UI for both locally running and deployed Astro projects, you can now see the current version of Astro Runtime in the footer: 
+- Updated all Astronomer operators to version `1.1.0`.
+- The `apache-airflow-providers-elasticsearch` provider package is now installed by default.
+
+## Astro Runtime 4.0.9
+
+- Release date: December 21, 2021
+- Airflow version: 2.2.3
+
+### Additional Improvements
+
+- The `openlineage-airflow` provider package is now installed in Runtime by default.
+
 ## Astro Runtime 4.0.8
 
 - Release date: December 21, 2021
