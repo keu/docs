@@ -2,6 +2,7 @@
 sidebar_label: 'Astronomer Certified Architecture'
 title: 'Astronomer Certified Image Architecture'
 id: image-architecture
+description: Reference documentation for Astronomer Certified, Astronomer Software's Docker image for Apache Airflow.
 ---
 
 ## Overview
@@ -27,6 +28,8 @@ The Astronomer Certified Docker image is built from the Python wheel and incorpo
 
 Every supported version of the Astronomer Certified Python wheel is available at [pip.astronomer.io](https://pip.astronomer.io/simple/astronomer-certified/). The Dockerfiles for all supported Astronomer Certified images can be found in [Astronomer's `ap-airflow` GitHub repository](https://github.com/astronomer/ap-airflow):
 
+- [Airflow 2.2.4](https://github.com/astronomer/ap-airflow/blob/master/2.2.4/bullseye/Dockerfile)
+- [Airflow 2.2.3](https://github.com/astronomer/ap-airflow/blob/master/2.2.3/bullseye/Dockerfile)
 - [Airflow 2.2.2](https://github.com/astronomer/ap-airflow/blob/master/2.2.2/bullseye/Dockerfile)
 - [Airflow 2.2.1](https://github.com/astronomer/ap-airflow/blob/master/2.2.1/bullseye/Dockerfile)
 - [Airflow 2.2.0](https://github.com/astronomer/ap-airflow/blob/master/2.2.0/bullseye/Dockerfile)
@@ -36,6 +39,7 @@ Every supported version of the Astronomer Certified Python wheel is available at
 - [Airflow 1.10.15](https://github.com/astronomer/ap-airflow/blob/master/1.10.15/buster/Dockerfile)
 - [Airflow 1.10.14](https://github.com/astronomer/ap-airflow/blob/master/1.10.14/buster/Dockerfile)
 - [Airflow 1.10.12](https://github.com/astronomer/ap-airflow/blob/master/1.10.12/buster/Dockerfile)
+- [Airflow 1.10.10](https://github.com/astronomer/ap-airflow/blob/master/1.10.10/buster/Dockerfile)
 
 ## Image Requirements
 
@@ -92,6 +96,8 @@ Starting in version 2.0.0, the Astronomer Certified image includes provider pack
 |**2.2.0**|1!2.2.0|1!3.2.0|1!2.1.0|1!2.0.3|1!2.0.3|1!2.0.1|1!6.0.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.2.0|
 |**2.2.1**|1!2.2.0|1!3.2.0|1!2.1.0|1!2.0.3|1!2.0.3|1!2.0.1|1!6.0.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.2.0|
 |**2.2.2**|1!2.3.0|1!3.3.0|1!2.1.0|1!2.1.0|1!2.1.0|1!2.0.1|1!6.1.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.3.0|
+|**2.2.3**|1!2.3.0|1!3.3.0|1!2.1.0|1!2.1.0|1!2.1.0|1!2.0.1|1!6.1.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.3.0|
+|**2.2.4**|1!3.0.0|1!3.6.0|1!2.1.0|1!3.0.2|1!2.2.0|1!2.0.1|1!6.4.0|1!2.0.3|1!2.2.0|1!2.2.0|1!3.0.0|1!2.0.1|1!4.2.0|1!2.1.0|1!2.4.0|
 
 ## System Dependencies
 
@@ -127,7 +133,7 @@ The Astronomer Certified Docker image includes a number of OS-level dependencies
 
 Astronomer Certified includes a few packages that don't have a corresponding provider. These packages are used for basic system functions or optional Airflow functionality. The following list contains all extra packages built into Astronomer Certified by default:
 
-- async: Provides asynchronous workers for Gunicorn
-- password: Adds support for user password hashing
-- statsd: Adds support for sending metrics to StatsD
-- virtualenv: Adds support for running Python tasks in local virtual environments
+- `async`: Provides asynchronous workers for Gunicorn
+- `password`: Adds support for user password hashing
+- `statsd`: Adds support for sending metrics to StatsD
+- `virtualenv`: Adds support for running Python tasks in local virtual environments

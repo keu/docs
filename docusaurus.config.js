@@ -47,7 +47,8 @@ module.exports = {
       logo: {
         alt: 'Astronomer',
         src: 'img/LogoPrimaryDarkMode.svg',
-        href: 'https://docs.astronomer.io/',
+        href: 'https://docs.astronomer.io/astro',
+        target: '_self',
       },
       items: [
         {
@@ -188,7 +189,11 @@ module.exports = {
           },
         },
         gtag: {
-          trackingID: 'G-W97HK48NPT',
+          trackingID: 'G-DKTB1B78FV',
+          anonymizeIP: true,
+        },
+        googleAnalytics: {
+          trackingID: 'UA-54102728-4',
           anonymizeIP: true,
         },
         theme: {

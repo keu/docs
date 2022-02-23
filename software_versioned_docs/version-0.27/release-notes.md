@@ -15,6 +15,24 @@ Astronomer v0.27 is the latest Stable version of Astronomer Software, while v0.2
 
 We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
+## 0.27.3
+
+Release date: Feb 22, 2022
+
+### Limit Workspace Creation to System Admins
+
+To provide more control over resource usage across your organization, you can now limit the ability to create Workspaces only to users with System Admin permissions.
+
+For more information about each role's permissions, including instructions for how to modify a role's permissions, see [Platform User Management](manage-platform-users.md).
+
+### Additional improvements
+
+- Added the `houston.config.deployments.enableSystemAdminCanCreateDeprecatedAirflows` configuration which enables System Admins to create Deployments with deprecated versions of Astronomer Certified 
+
+### Bug fixes
+
+- Fixed documentation links in the Software UI
+
 ## 0.27.1
 
 Release date: January 10, 2022

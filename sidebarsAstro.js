@@ -31,6 +31,7 @@ module.exports = {
         'deploy-code',
         'airflow-api',
         'airflow-alerts',
+        'kubernetespodoperator',
         'deferrable-operators',
         'test-and-troubleshoot-locally',
       ],

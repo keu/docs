@@ -12,13 +12,13 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, don't hesitate to reach out to [Astronomer Support](https://support.astronomer.io).
 
-**Latest Runtime Version**: 4.0.8 ([Release notes](runtime-release-notes.md))
+**Latest Runtime Version**: 4.0.11 ([Release notes](runtime-release-notes.md))
 
 **Latest CLI Version**: 1.1.0 ([Release notes](cli-release-notes.md))
 
 ## February 17, 2022
 
-### Introducing Astro and Astronomer's New Look
+### Introducing Astro and a New Look
 
 This week's release introduces a reimagined Astronomer brand that embraces **Astro** as a rename of Astronomer Cloud. The rebrand includes a new Astronomer logo, color palette, and font.
 

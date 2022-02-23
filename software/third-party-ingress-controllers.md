@@ -94,7 +94,11 @@ global:
   extraAnnotations:
     # if not using Astronomers built-in ingress controller, you MUST
     # explicitly set kubernetes.io/ingress.class here
-    kubernetes.io/ingress.class: <ingressClass Name>
+    kubernetes.io/ingress.class: <ingressClass-name>
+
+  authSidecar:  
+    enabled: true
+    repository: nginxinc/nginx-unprivileged # In airgapped installations, change this to specify your private registry
 ```
 
 If you use a Traefik or Contour ingress controller, you need to configure additional values in your chart. For more information, read the following subsections.
