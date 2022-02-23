@@ -5,7 +5,7 @@
 /software /software/overview 301
 
 # redirect base cloud path to astro overview
-/cloud /astro/overview 301
+/cloud /astro 301
 
 # redirect renamed pages
 /runtime-versioning /astro/runtime-version-lifecycle-policy 301
@@ -131,6 +131,9 @@
 /enterprise/upgrade-astronomer-stable /software/upgrade-astronomer-stable 301
 /enterprise/version-compatibility-reference /software/version-compatibility-reference 301
 /enterprise/workspace-permissions /software/workspace-permissions 301
+
+# redirect links out in the wild (beyond our control)
+/v2/* /astro 301
 
 # temporary wildcard redirects for enterprise versioned docs
 /enterprise/0.27/* /software/0.27/overview
