@@ -40,7 +40,6 @@ module.exports = {
       type: 'category',
       label: 'Manage Deployments',
       items: [
-        'manage-workspaces',
         'configure-deployment',
         'api-keys',
         'ci-cd',
@@ -56,6 +55,7 @@ module.exports = {
       items: [
         'create-cluster',
         'configure-idp',
+        'manage-workspaces',
         'add-user',
         'user-permissions',
         'modify-cluster',
