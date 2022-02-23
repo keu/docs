@@ -18,7 +18,7 @@ For instructions on how to upgrade, read [Upgrade Astro Runtime](upgrade-runtime
 
 ### Additional Improvements
 
-- Upgraded to Airflow [2.2.4](https://airflow.apache.org/docs/apache-airflow/stable/changelog.html#airflow-2-2-4-2022-02-22), which exclusively contains bug fixes and performance improvements.  
+- Upgraded to Airflow [2.2.4](https://airflow.apache.org/docs/apache-airflow/stable/changelog.html#airflow-2-2-4-2022-02-22), which exclusively contains bug fixes and performance improvements
 
 ## Astro Runtime 4.0.8
 
