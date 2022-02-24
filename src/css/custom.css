@@ -200,9 +200,9 @@ small {
 
 .navbar {
   background-image: linear-gradient(
-    to right,
+    to left,
     var(--black),
-    #2e1f51 80%
+    var(--purple-800) 80%
   );
 }
 
