@@ -403,3 +403,28 @@ table::-webkit-scrollbar-thumb {
   padding-left: 1rem;
 }
 
+.footer {
+  /* font-family: var(--font-sans-heading); */
+  background-color: var(--purple-900);
+  padding: 4rem 0;
+}
+
+.footer__title {
+  font-size: 1rem;
+  border-bottom: 1px solid var(--purple-500);
+  margin-bottom: .5rem;
+  padding-bottom: .5rem;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.footer__items > * + * {
+  margin-top: 0.5rem;
+}
+
+.footer__bottom {
+  margin-top: 4rem;
+  color: var(--white);
+  font-size: 1rem;
+  text-align: left;
+}
