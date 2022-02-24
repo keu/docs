@@ -34,8 +34,10 @@ The Airflow UI now shows the Docker image tag that is running on the Airflow Web
 When you push code to a Deployment on Astro via the Astro CLI or CI/CD, reference this tag in the Airflow UI to verify that your changes were successfully applied.
 
 ::: info
+
 The Docker image tag shown in the Airflow UI only represents the tag that is running on at least 1 Webserver container in your Deployment. While it is a likely indicator, it is not a guarantee that this Docker image and version of your Astro project is running on your Airflow Scheduler, Workers, or Triggerer.
-If you ever have trouble verifying a code push to a Deployment on Astro, reach out to [Astronomer Support](https://support.astronomer.io). We're here to help.
+If you ever have trouble verifying a code push to a Deployment on Astro, reach out to [Astronomer Support](https://support.astronomer.io).
+
 :::
 
 ### New Deferrable Operators Now Available
@@ -60,7 +62,7 @@ These are all [deferrable operators](deferrable-operators.md) built by Astronome
 
 ### Additional Improvements
 
-- The `openlineage-airflow` provider package is now installed in Runtime by default.
+- The [`openlineage-airflow`](https://openlineage.io/integration/apache-airflow/) provider package is now installed in Runtime by default.
 
 ## Astro Runtime 4.0.8
 
