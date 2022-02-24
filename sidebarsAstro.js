@@ -107,12 +107,6 @@ module.exports = {
         'known-limitations',
         'resource-reference-aws',
         'platform-variables',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Resources',
-      items: [
         {
           type: 'category',
           label: 'Security',
