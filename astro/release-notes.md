@@ -18,13 +18,9 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ## February 24, 2022
 
-### Additional Improvements
-
-- The Airflow UI now shows the Docker image tag that a Deployment is running. Note that this feature requires Runtime 4.0.10 or greater. For more information, see [Runtime Release Notes](runtime-release-notes.md).
-- Removed the nonfunctional **Teams** tab from the Cloud UI.
-
 ### Bug fixes
 
+- Removed the nonfunctional **Teams** tab from the Cloud UI
 - Fixed an issue where a user's Workspace membership count in the Organization view of the UI wasn't updated properly
 - Fixed an issue where updates to secret environment variable values were not applied to Deployments
 
