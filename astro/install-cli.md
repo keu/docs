@@ -65,15 +65,11 @@ brew install astronomer/cloud/astrocloud
 
     - AMD64:
 
-        ```powershell
-        Invoke-WebRequest -Uri https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v1.0.0/cloud-cli_1.0.0_Windows_x86_64.tar.gz -o astrocloudcli.tar.gz
-        ```
+        <pre><code parentName="pre">{`Invoke-WebRequest -Uri https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Windows_x86_64.tar.gz -o astrocloudcli.tar.gz`}</code></pre>
 
     - ARM64:
 
-        ```powershell
-        Invoke-WebRequest -Uri https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v1.0.0/cloud-cli_1.0.0_Windows_arm64.tar.gz -OutFile astrocloudcli.tar.gz
-        ```
+        <pre><code parentName="pre">{`Invoke-WebRequest -Uri https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Windows_arm64.tar.gz -OutFile astrocloudcli.tar.gz`}</code></pre>
 
 3. Run the following command to unzip the executable:
 
@@ -97,15 +93,11 @@ brew install astronomer/cloud/astrocloud
 
     - AMD64:
 
-        ```sh
-        $ curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v1.0.0/cloud-cli_1.0.0_Linux_x86_64.tar.gz -o astrocloudcli.tar.gz
-        ```
+        <pre><code parentName="pre">{`curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Linux_x86_64.tar.gz -o astrocloudcli.tar.gz`}</code></pre>
 
     - ARM64:
 
-        ```sh
-        $ curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v1.0.0/cloud-cli_1.0.0_Linux_arm64.tar.gz -o astrocloudcli.tar.gz
-        ```
+        <pre><code parentName="pre">{`curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Linux_arm64.tar.gz -o astrocloudcli.tar.gz`}</code></pre>
 
 3. Run the following command to unzip the executable:
 
