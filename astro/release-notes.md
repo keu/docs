@@ -16,6 +16,12 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest CLI Version**: 1.1.0 ([Release notes](cli-release-notes.md))
 
+## February 24, 2022
+
+### Additional Improvements
+
+- Removed the nonfunctional **Teams** tab from the Cloud UI 
+
 ## February 17, 2022
 
 ### Introducing Astro and a New Look
