@@ -42,7 +42,7 @@ The following Organization-level roles are now supported on Astro:
 - **Organization Billing Admin:** This role has all of the Organization Member's permissions, plus the ability to manage Organization-level settings and billing. Organization Billing Admins can access the **Usage** tab of the Cloud UI and view all Workspaces across the Organization.
 - **Organization Owner:** This role has all of the Organization Billing Admin's permissions, plus the ability to manage and modify anything within the entire Organization. This includes Deployments, Workspaces, Clusters, and users. Organization Owners have Workspace Admin permissions to all Workspaces within the Organization.
 
-Organization roles can be updated by an Organization Owner in the **People** tab of the Cloud UI.
+Organization roles can be updated by an Organization Owner in the **People** tab of the Cloud UI. For more information about these roles, see [User Permissions](user-permissions.md).
 
 ### Create New Workspaces from the Cloud UI
 
@@ -50,7 +50,7 @@ All users can now create a new Workspace directly from the **Overview** tab of t
 
 ![Create Workspace button](/img/release-notes/add-workspace.png)
 
-When you create a new Workspace, you will automatically become a Workspace Admin within it and can create Deployments.
+When you create a new Workspace, you will automatically become a Workspace Admin within it and can create Deployments. For more information about managing Workspaces, see [Manage Workspaces](manage-workspaces.md).
 
 ### Bug fixes
 
