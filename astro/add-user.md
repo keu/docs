@@ -46,12 +46,7 @@ To add a user with an Astro account to your Workspace:
     </div>
 
 3. Enter the user's email from Step 1.
-4. Set a Workspace role for the user. The available roles are:
-
-    - **Workspace Viewer**: Has permission to view anything in the Workspace, including users, Deployments, and DAG code in the Airflow UI
-    - **Workspace Editor**: Has Viewer permissions, plus permission to [deploy code](deploy-code.md) and [configure Deployments](configure-deployment.md)
-    - **Workspace Admin**: Has Editor permissions, plus permission to add users, remove users, and assign user roles
-
+4. Set a Workspace role for the user. For a list of available roles and their permissions, see [Workspace Roles](user-permissions.md#workspace-roles)
 5. Click **Add member**.
 
 Once you add the user, their information will appear in the **Access** tab as a new entry in the **Members** table.

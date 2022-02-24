@@ -55,7 +55,9 @@ module.exports = {
       items: [
         'create-cluster',
         'configure-idp',
+        'manage-workspaces',
         'add-user',
+        'user-permissions',
         'modify-cluster',
       ],
     },
