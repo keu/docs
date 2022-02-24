@@ -36,6 +36,4 @@ To push your upgrade to Astro, run `astrocloud deploy` and select the Deployment
 2. Click **Open Airflow**.
 3. In the Airflow UI, scroll to the bottom of any page. You should see your new Runtime version in the footer:
 
-<div class="text--center">
-  <img src="/img/docs/version-footer.png" alt="Astro Runtime version shown in the Airflow UI footer" />
-</div>
+    ![Runtime Version banner](/img/docs/runtime-version.png)
