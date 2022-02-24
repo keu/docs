@@ -26,6 +26,7 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 ### Bug fixes
 
 - Fixed an issue where a user's Workspace membership count in the Organization view of the UI wasn't updated properly
+- Fixed an issue where updates to secret environment variable values were not applied to Deployments
 
 ## February 17, 2022
 
