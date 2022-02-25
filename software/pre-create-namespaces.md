@@ -13,17 +13,15 @@ Hosting Astronomer Software in a multi-tenant Kubernetes cluster poses challenge
 
 After configuring this feature, users will be required to select a namespace from the pool whenever they create a new Deployment. After they create a Deployment, the namespace they select will no longer be available for any users or new Deployments. Once a Deployment is deleted, its namespace will be returned to the pool and again become available for use.
 
-This pool is global and namespaces can be used across all workspaces. At any given time, the number of active Deployments will never be greater than the number of namespaces you have preallocated for Astronomer Software to use.
-
 ### When To Use Pre-Created Namespaces
 
-When a user creates a new Deployment via the UI or CLI, Astronomer Software will creates the necessary Airflow components and isolates them in a dedicated Kubernetes namespace. Within this namespace, many Kubernetes resources, such as Kubernetes secrets, roles, and service accounts, are spun up.
+When a user creates a new Deployment via the UI or CLI, Astronomer Software creates the necessary Airflow components and isolates them in a dedicated Kubernetes namespace. These Airflow components depend on Kubernetes resources such as secrets, roles, and service accounts.
 
-By default, Astronomer protects against Deployments having access to more resources than they need by using dedicated service accounts for parts of your Deployment that need to interact with external components. However, to manage this process, Astronomer Software itself needs extensive cluster-level permissions, which can pose security risks when other applications are running in the same cluster.
+By default, Astronomer protects your Deployment's sensitive resources by using dedicated service accounts for parts of your Deployment that need to interact with external components. To manage this process, Astronomer Software itself needs extensive cluster-level permissions, which can pose security risks when other applications are running in the same cluster.
 
-By configuring a pool of pre-created namespaces, Astronomer Software requires only namespace-scoped permissions for the individual namespaces you configure. If your organization does not want Astronomer Software to have cluster-level permissions in your multi-tenant cluster, then we recommend configuring this feature.
+By configuring a pool of pre-created namespaces, Astronomer Software requires permissions only for the individual namespaces you configure. If your organization does not want Astronomer Software to have cluster-level permissions in your multi-tenant cluster, then we recommend configuring this feature.
 
-The other benefit to using a pre-created namespace pool is resource preservation. By default, Astronomer Software allows users to create Deployments until there is no more unreserved space in your cluster. When using a pool, you can limit the number of active Deployments running at the same time. This is especially important if you run other Elastic workloads on the same cluster and need to prevent users from accidentally claiming your entire pool of unallocated resources.
+The other benefit to using a pre-created namespace pool is resource preservation. By default, Astronomer Software allows users to create Deployments until there is no more unreserved space in your cluster. When using a pool, you can limit the number of active Deployments running at the same time. This is especially important if you run other Elastic workloads on your Software cluster and need to prevent users from accidentally claiming your entire pool of unallocated resources.
 
 ## Prerequisites
 
