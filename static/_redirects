@@ -42,6 +42,8 @@
 
 # redirect cloud paths to astro
 /cloud/add-user /astro/add-user 301
+/cloud/configure-idp /astro/configure-idp 301
+/cloud/api-keys /astro/api-keys 301
 /cloud/airflow-alerts /astro/airflow-alerts 301
 /cloud/airflow-api /astro/airflow-api 301
 /cloud/ci-cd /astro/ci-cd 301
