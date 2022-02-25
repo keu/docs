@@ -16,9 +16,9 @@ For instructions on how to upgrade, read [Upgrade Astro Runtime](upgrade-runtime
 - Release date: February 22, 2022
 - Airflow version: 2.2.4
 
-### Additional Improvements
+### Support for Airflow 2.2.4
 
-- Upgraded to Airflow [2.2.4](https://airflow.apache.org/docs/apache-airflow/stable/changelog.html#airflow-2-2-4-2022-02-22), which exclusively contains bug fixes and performance improvements
+Astro Runtime 4.1.0 includes support for Apache Airflow 2.2.4, which exclusively contains bug fixes and performance improvements. For details on the release, read the [Airflow 2.2.4 changelog](https://airflow.apache.org/docs/apache-airflow/stable/changelog.html#airflow-2-2-4-2022-02-22).
 
 ## Astro Runtime 4.0.11
 
