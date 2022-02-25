@@ -11,6 +11,26 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
+## v1.2.0
+
+Release date: February 25, 2022
+
+## New `astrocloud deployment logs` Command to display logs from your Astro deployments
+
+For users who would like to use the CLI to observe their deployments. Users can supply the command log level flags such as warn, error, and info to filter their deployment’s logs. 
+
+## New `astrocloud deployment create/delete` Commands to create and delete Astro deployments
+
+These commands are for users who wish to manage Astro deployments from the CLI. Users can supply the command an array of flags to create custom deployments. Deployment create flags include Deployment name, description, cluster-id, runtime-version, scheduler-au, scheduler-replicas, and worker-au.
+
+## Deployment level API keys for the `astrocloud deploy command` to use the Astro CLI during CI/CD
+
+The Astro CLI can now be supplied Deployment level API keys through OS environment variables `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`. This enable users to automate deployment of their DAG code with the Astro CLI and dramatically clean up their CI/CD pipelines. 
+
+## New `astrocloud dev pytest` Command and Pytest Deploy flag to make testing your DAGs and custom python code easier
+
+Users can now run custom pytests on their code with `dev pytest`. This commands with spin up a python environment that includes your DAG code, requirements, and runtime image. The web server and scheduler is not created so the command only takes a few seconds to run. Running `astrocloud dev init` will now create a `tests` directory and example Pytests. Pytests that are run using `astrocloud dev pytest` must be located in this directory. Users can use a new Pytest flag with `astrocloud deploy` to test their DAG code during a deploy. These new features will make running Pytests much more convenient.
+
 ## v1.1.0
 
 Release date: February 17, 2022
