@@ -22,6 +22,7 @@ astrocloud deploy <options>
 | Option                    | Description                                                                            | Possible Values                |
 | ------------------------- | -------------------------------------------------------------------------------------- | ------------------------------ |
 | `<deployment-id>`  | Specify the Deployment to deploy to.                                                   | Any valid Deployment namespace |
+| `-e`,`--env`               | Location of file containing environment variables for Pytests                                    | `.env`                             |
 | `-f`,`--force`               | Force the deploy even if uncommitted changes exist                                     | ``                             |
 | `p`,`--prompt`                | Force the prompt for selecting deployments to appear even if a Deployment is specified | ``                             |
 | `--pytest`                | Deploy code to Astro only if the specified Pytests are passed                             | ``                             |
