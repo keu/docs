@@ -55,7 +55,9 @@ module.exports = {
       items: [
         'create-cluster',
         'configure-idp',
+        'manage-workspaces',
         'add-user',
+        'user-permissions',
         'modify-cluster',
       ],
     },
@@ -105,12 +107,6 @@ module.exports = {
         'known-limitations',
         'resource-reference-aws',
         'platform-variables',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Resources',
-      items: [
         {
           type: 'category',
           label: 'Security',

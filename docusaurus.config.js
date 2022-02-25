@@ -189,7 +189,7 @@ module.exports = {
           },
         },
         gtag: {
-          trackingID: 'G-DKTB1B78FV',
+          trackingID: 'G-W97HK48NPT',
           anonymizeIP: true,
         },
         googleAnalytics: {

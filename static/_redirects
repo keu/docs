@@ -45,6 +45,7 @@
 /cloud/airflow-alerts /astro/airflow-alerts 301
 /cloud/airflow-api /astro/airflow-api 301
 /cloud/ci-cd /astro/ci-cd 301
+/cloud/cli-reference /astro/cli-reference 301
 /cloud/cli-release-notes /astro/cli-release-notes 301
 /cloud/configure-deployment /astro/configure-deployment 301
 /cloud/create-cluster /astro/create-cluster 301
@@ -66,9 +67,29 @@
 /cloud/resource-reference-aws /astro/resource-reference-aws 301
 /cloud/runtime-release-notes /astro/runtime-release-notes 301
 /cloud/runtime-version-lifecycle-policy /astro/runtime-version-lifecycle-policy 301
+/cloud/scheduler-logs /astro/scheduler-logs 301
+/cloud/secrets-backend /astro/secrets-backend 301
+/cloud/secrets-management /astro/secrets-management 301
+/cloud/security /astro/security 301
 /cloud/shared-responsibility-model /astro/shared-responsibility-model 301
 /cloud/test-and-troubleshoot-locally /astro/test-and-troubleshoot-locally 301
 /cloud/upgrade-runtime /astro/upgrade-runtime 301
+/cloud/upgrade-runtime /astro/upgrade-runtime 301
+/cloud/cli-reference/astrocloud-auth-login /astro/cli-reference/astrocloud-auth-login 301
+/cloud/cli-reference/astrocloud-auth-logout /astro/cli-reference/astrocloud-auth-logout 301
+/cloud/cli-reference/astrocloud-completion /astro/cli-reference/astrocloud-completion 301
+/cloud/cli-reference/astrocloud-deploy /astro/cli-reference/astrocloud-deploy 301
+/cloud/cli-reference/astrocloud-deployment-list /astro/cli-reference/astrocloud-deployment-list 301
+/cloud/cli-reference/astrocloud-dev-init /astro/cli-reference/astrocloud-dev-init 301
+/cloud/cli-reference/astrocloud-dev-kill /astro/cli-reference/astrocloud-dev-kill 301
+/cloud/cli-reference/astrocloud-dev-logs /astro/cli-reference/astrocloud-dev-logs 301
+/cloud/cli-reference/astrocloud-dev-run /astro/cli-reference/astrocloud-dev-run 301
+/cloud/cli-reference/astrocloud-dev-start /astro/cli-reference/astrocloud-dev-start 301
+/cloud/cli-reference/astrocloud-dev-stop /astro/cli-reference/astrocloud-dev-stop 301
+/cloud/cli-reference/astrocloud-dev-restart /astro/cli-reference/astrocloud-dev-restart 301
+/cloud/cli-reference/astrocloud-version /astro/cli-reference/astrocloud-version 301
+/cloud/cli-reference/astrocloud-workspace-list /astro/cli-reference/astrocloud-workspace-list 301
+/cloud/cli-reference/astrocloud-workspace-switch /astro/cli-reference/astrocloud-workspace-switch 301
 
 # redirect enterprise paths to software
 /enterprise /software/overview 301
