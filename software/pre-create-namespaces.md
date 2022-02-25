@@ -15,9 +15,9 @@ After configuring this feature, users will be required to select a namespace fro
 
 ### When To Use Pre-Created Namespaces
 
-When a user creates a new Deployment via the UI or CLI, Astronomer Software creates the necessary Airflow components and isolates them in a dedicated Kubernetes namespace. These Airflow components depend on Kubernetes resources such as secrets, roles, and service accounts.
+When a user creates a new Deployment via the UI or CLI, Astronomer Software creates the necessary Airflow components and isolates them in a dedicated Kubernetes namespace. These Airflow components depend on Kubernetes resources, some of which are stored as secrets.
 
-By default, Astronomer protects your Deployment's sensitive resources by using dedicated service accounts for parts of your Deployment that need to interact with external components. To manage this process, Astronomer Software itself needs extensive cluster-level permissions, which can pose security risks when other applications are running in the same cluster.
+By default, Astronomer protects your Deployment's Kubernetes secrets by using dedicated service accounts for parts of your Deployment that need to interact with external components. To manage this process, Astronomer Software needs extensive cluster-level permissions that provide it some level of access to all namespaces running in your cluster. Cluster-level permissions are appropriate when Astronomer Software is running in its own dedicated cluster, but it can pose security risks when other applications are running in the same cluster.
 
 By configuring a pool of pre-created namespaces, Astronomer Software requires permissions only for the individual namespaces you configure. If your organization does not want Astronomer Software to have cluster-level permissions in your multi-tenant cluster, then we recommend configuring this feature.
 
@@ -102,9 +102,6 @@ For every namespace you want to add to a pool, you must create a [namespace](htt
        - apiGroups: ["apps"]
          resources: ["statefulsets"]
          verbs: ["create", "delete", "get", "list", "patch", "watch"]
-       - apiGroups: ["apps"]
-         resources: ["daemonsets"]
-         verbs: ["create", "delete", "get", "patch"]
        - apiGroups: ["apps"]
          resources: ["deployments"]
          verbs: ["create", "delete", "get", "patch","update"]
