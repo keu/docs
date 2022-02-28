@@ -16,7 +16,7 @@
 :root {
   /* Typography */
   --font-sans: "Inter", "Open Sans", sans-serif;
-  --font-sans-heading: "Strawford", "Open Sans", sans-serif;
+  --font-sans-heading: "Inter", "Open Sans", sans-serif;
   --font-serif: "Zilla Slab", "Times New Roman", serif;
   --font-mono: "SFMono-Regular", "Menlo", monospace;
   --font-size-00: 0.75rem;
