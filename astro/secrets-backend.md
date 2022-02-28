@@ -345,7 +345,95 @@ To use Google Cloud Secret Manager as your Airflow secrets backend, you need:
 - An AWS account with the `SecretsManagerReadWrite` policy.
 - A valid AWS Access Key ID and Secret Access Key.
 
-#### Step 1: Configure a Secret in Secrets Manager
+#### Step 1: Write an Airflow Variable or Connection to AWS Secret Manager
+
+To start, add an Airflow variable or connection as a secret to AWS Secrets Manager.
+
+Secrets must be formatted such that:
+- Airflow variables are stored in `airflow/variables/<variable-key>`.
+- Airflow connections are stored in `airflow/connections/<connection-id>`.
+
+
+#### Step 2: Set Up Secret Manager Locally
+
+To test AWS Secrets Manager locally, configure it as a secrets backend in your Astro project.
+
+First, install the [Airflow provider for Amazon](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/index.html) by adding the following to your project's `requirements.txt` file:
+
+```
+apache-airflow-providers-amazon
+```
+
+Then, add the following environment variables to your project's Dockerfile:
+
+```sh
+ENV AWS_ACCESS_KEY_ID=<your-aws-access-key-id>
+ENV AWS_SECRET_ACCESS_KEY=<your-aws-secret-access-key>
+ENV AWS_DEFAULT_REGION=us-<your-aws-region>
+ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend
+ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables"}
+```
+
+:::warning
+
+If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-aws-access-key-id>` and `<your-aws-secret-access-key>` securely. We recommend adding it to your project's [`.env` file](develop-project.md#set-environment-variables-via-env-local-development-only) and specifying this file in `.gitignore`. When you deploy to Astro, you should set these values as secrets via the Cloud UI.
+
+:::
+
+#### Step 3: Run an Example DAG to Test Secret Manager Locally
+
+To test Secrets Manager, [create a secret](https://cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#create) containing either an Airflow variable or connection for testing.
+
+Once you create a test secret, write a simple DAG which calls the secret and add this DAG to your project's `dags` directory. For example, you can use the following DAG to print the value of a variable to your task logs:
+
+```py
+from airflow import DAG
+from airflow.operators.python_operator import PythonOperator
+from datetime import datetime
+from airflow.hooks.base_hook import BaseHook
+
+def print_var():
+    my_var = Variable.get("<your-variable-key>")
+    print(f'My variable is: {my_var}')
+
+with DAG('example_secrets_dags', start_date=datetime(2022, 1, 1), schedule_interval=None) as dag:
+
+  test_task = PythonOperator(
+
+      task_id='test-task',
+      python_callable=print_var,
+)
+```
+
+To test your changes:
+
+1. Run `astro dev restart` to push your changes to your local Airflow environment.
+2. In the Airflow UI (`http://localhost:8080/admin/`), trigger your new DAG.
+3. Click on `test-task` > **View Logs**. If you ran the example DAG above, you should should see the contents of your secret in the task logs:
+
+    ```text
+    {logging_mixin.py:109} INFO - My variable is: my-test-variable
+    ```
+
+Once you confirm that the setup was successful, you can delete this DAG.
+
+#### Step 4: Deploy to Astro
+
+Once you've confirmed that the integration with Google Cloud Secret Manager works locally, you can complete a similar set up with a Deployment on Astro.
+
+1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/astro/environment-variables). Specify both `AIRFLOW__SECRETS__BACKEND` and `AIRFLOW__SECRETS__BACKEND_KWARGS` as **Secret** to ensure that your credentials are stored securely.
+
+  :::warning
+
+  Make sure to strip the quotations (`"`) from your environment variable values. If you add these values with the quotation marks included in your Dockerfile, your configuration will not work on Astro.
+
+  :::
+
+2. In your Astro project, delete the environment variables from your `Dockerfile`.
+3. [Deploy your changes](https://docs.astronomer.io/astro/deploy-code) to Astro.
+
+You now should be able to see your secret information being pulled from Secret Manager on Astro. From here, you can store any Airflow variables or connections as secrets on Secret Manager and use them in your project.
+
 </TabItem>
 
 <TabItem value="gcp">
