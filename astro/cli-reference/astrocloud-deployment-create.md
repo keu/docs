@@ -41,3 +41,4 @@ $ astrocloud deployment create -a=50
 ## Related Commands
 
 - [`astrocloud deployment delete`](cli-reference/astrocloud-deployment-delete.md)
+- [`astrocloud deployment list`](cli-reference/astrocloud-deployment-list.md)

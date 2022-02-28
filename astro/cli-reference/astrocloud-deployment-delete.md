@@ -12,7 +12,7 @@ Delete a Deployment on Astro.
 ## Usage
 
 ```sh
-astrocloud deployment create
+astrocloud deployment delete
 ```
 
 ## Options
@@ -34,3 +34,4 @@ $ astrocloud deployment delete quasarian-photon-9326 -f
 ## Related Commands
 
 - [`astrocloud deployment create`](cli-reference/astrocloud-deployment-create.md)
+- [`astrocloud deployment list`](cli-reference/astrocloud-deployment-list.md)
