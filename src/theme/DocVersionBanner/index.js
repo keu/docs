@@ -8,8 +8,7 @@ import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Link from '@docusaurus/Link';
 import Translate from '@docusaurus/Translate';
-import {useActivePlugin} from '@docusaurus/plugin-content-docs/client';
-import {useDocVersionSuggestions} from '@docusaurus/theme-common';
+import {useActivePlugin, useDocVersionSuggestions} from '@docusaurus/plugin-content-docs/client';
 import {
   ThemeClassNames,
   useDocsPreferredVersion,
