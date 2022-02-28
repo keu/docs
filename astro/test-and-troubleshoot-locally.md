@@ -72,6 +72,20 @@ astrocloud dev run <airflow-cli-command>
 
 For example, the Apache Airflow command for viewing your entire configuration is `airflow config list`. To run this command with the Astro CLI, you would run `astrocloud dev run config list` instead.
 
+## Test DAGs Using Pytests
+
+As an alternative to testing your DAGs in an Airflow environment, you can run a minimal Python environment and test DAG code using pytests. This type of testing is faster and optimized for catching code-level errors that might not be immediately detectable in a local Airflow environment.
+
+By default, Astro projects created via `astrocloud dev init` include a DAG integrity test that checks whether tasks have required arguments, DAG IDs are unique, DAGs have no cycles, and more using Airflow's DagBag.
+
+To run the default pytest and any other pytests in your `tests` directory, run the following command:
+
+```sh
+astrocloud dev pytest
+```
+
+For more information about running pytests, see the [CLI Reference Guide](cli-reference/astrocloud-dev-pytest.md).
+
 ## Hard Reset Your Local Environment
 
 In most cases, [restarting your local project](develop-project.md#restart-your-local-environment) is sufficient for testing and making changes to your project. However, it is sometimes necessary to kill your Docker containers and metadata DB for testing purposes. To do so, run the following command:

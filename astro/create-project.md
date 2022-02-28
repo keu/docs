@@ -37,6 +37,7 @@ This command generates the following files in the directory:
 ├── Dockerfile # For the Astro Runtime Docker image, environment variables, and overrides
 ├── include # For any other files you'd like to include
 ├── plugins # For any custom or community Airflow plugins
+├── tests # Includes pytests for testing DAG code
 ├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
 ├── packages.txt # For OS-level packages
 └── requirements.txt # For Python packages
