@@ -9,9 +9,9 @@ description: Reference documentation for astrocloud deploy.
 
 [Deploy your Astro project](deploy-code.md) to a Deployment on Astro.
 
-If you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment's ID in the command. To retrieve a Deployment's ID, go to the Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also get the Deployment's ID by running `astrocloud deployment list`.
+When you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also get the Deployment's ID by running `astrocloud deployment list`.
 
-If the CLI has access to Deployment API key credentials set as the `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` environment variables, then it can push code to a specific Deployment without needing user authentication.
+If you configured a [Deployment API key](api-keys.md) by setting `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` as OS-level environment variables on your machine, you can run this Astro CLI command without user authentication. This is commonly automated in a [CI/CD workflow](ci-cd.md).
 
 ## Usage
 
@@ -23,23 +23,23 @@ astrocloud deploy <options>
 
 | Option                    | Description                                                                                                       | Possible Values                          |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| `<deployment-id>`         | Specify the Deployment to deploy to.                                                                              | Any valid Deployment namespace           |
-| `-e`,`--env`              | Location of the file containing environment variables for Pytests (default: `.env`)                               | Any valid filepath to an `.env` file     |
+| `<deployment-id>`         | Specify the Deployment to deploy to                                                                              | Any valid Deployment ID           |
+| `-e`,`--env`              | Location of the file containing environment variables for Pytests. By default, this is `.env`.                                 | Any valid filepath to an `.env` file     |
 | `-f`,`--force`            | Force the deploy even if uncommitted changes exist                                                                | ``                                       |
-| `p`,`--prompt`            | Force the prompt for selecting deployments to appear even if a Deployment is specified                            | ``                                       |
+| `p`,`--prompt`            | Force the Deployment selection prompt even if a Deployment ID is specified                           | ``                                       |
 | `--pytest`                | Deploy code to Astro only if the specified Pytests are passed                                                     | ``                                       |
-| `s`,`--save`              | Save the current directory/Deployment combination for future deploys                                              | ``                                       |
-| `t`,`--test`              | The filepath to an alternative pytest file/ directory| Valid filepath within your Astro project |
-| `--workspace-id <string>` | Workspace assigned to the Deployment                                                                              | Any value                                |
+| `s`,`--save`              | Save the current Deployment and working directory combination for future deploys                                              | ``                                       |
+| `t`,`--test`              | The filepath to an alternative pytest file or directory | Valid filepath within your Astro project |
+| `--workspace-id <string>` | In the prompt to select a Deployment, only show Deployments within this Workspace                                                                             | Any valid Workspace ID                                |
 
 ## Examples
 
 ```sh
 $ astrocloud deploy
 # List of Deployments appears
-$ astrocloud deploy asteroidic-vacuum-4865
+$ astrocloud deploy ckvvfp9tf509941drl4vela81n
 # Deploy directly to a specific Deployment
-$ astrocloud deploy asteroidic-vacuum-4865 --save
+$ astrocloud deploy ckvvfp9tf509941drl4vela81n --save
 # Running `astrocloud deploy` will now automatically select this Deployment for your Astro project
 ```
 

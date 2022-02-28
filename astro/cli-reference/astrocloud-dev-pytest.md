@@ -7,7 +7,9 @@ description: Reference documentation for astrocloud dev pytest.
 
 ## Description
 
-Run pytests from the `test` folder of your Astro project. After you run this command, the CLI spins up Python environment that includes your DAG code, requirements, and Runtime image. The CLI then runs all pytests in your `tests` directory and shows you the results of these tests in your terminal.
+Run pytests from the `tests` folder of your locally hosted Astro project. When you run this command, the Astro CLI provisions a local Python environment that includes your DAG code, dependencies, and Astro Runtime image. The CLI then runs all pytests in your `tests` directory and shows you the results of these tests in your terminal.
+
+Note that this command requires using Runtime version `4.1.0+` in your project.
 
 ## Usage
 
@@ -17,10 +19,10 @@ astrocloud dev pytest
 
 ## Options
 
-| Option              | Description                                                                                                       | Possible Values                          |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| `<pytest-filepath>` | The filepath to an alternative pytest file/ directory | Valid filepath within your Astro project |
-| `-e`, `--env` | The filepath to your environment variables (default: `.env`) | Valid filepath within your Astro project |
+| Option              | Description                                                                                   | Possible Values                                 |
+| ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `<pytest-filepath>` | The filepath to an alternative pytest file or directory. Must be within the `tests` directory | Any valid filepath within the `tests` directory |
+| `-e`, `--env`       | The filepath to your environment variables. The default is `.env`)                            | Any valid filepath within your Astro project    |
 
 ## Examples
 
@@ -32,4 +34,5 @@ $ astrocloud dev pytest --env=myAlternativeEnvFile.env
 ## Related Commands
 
 - [`astrocloud dev init`](cli-reference/astrocloud-dev-init.md)
+- [`astrocloud dev start`](cli-reference/astrocloud-dev-start.md)
 - [`astrocloud deploy`](cli-reference/astrocloud-deploy.md)

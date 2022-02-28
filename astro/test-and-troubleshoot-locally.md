@@ -84,7 +84,7 @@ To run the default pytest and any other pytests in your `tests` directory, run t
 astrocloud dev pytest
 ```
 
-For more information about running pytests, see the [CLI Reference Guide](cli-reference/astrocloud-dev-pytest.md).
+For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-dev-pytest.md).
 
 ## Hard Reset Your Local Environment
 

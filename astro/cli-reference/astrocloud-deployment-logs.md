@@ -7,7 +7,7 @@ description: Reference documentation for astrocloud deployment logs.
 
 ## Description
 
-Show Scheduler logs over the last 24 hours for a given Deployment. These Scheduler logs are the same logs that appear in the **Logs** tab of the Cloud UI.
+Show [Scheduler logs](scheduler-logs.md)over the last 24 hours for a given Deployment. These Scheduler logs are the same logs that appear in the **Logs** tab of the Cloud UI.
 
 ## Usage
 
@@ -17,22 +17,22 @@ astrocloud deployment logs
 
 ## Options
 
-| Option                   | Description                                  | Possible Values                     |
-| ------------------------ | -------------------------------------------- | ----------------------------------- |
-| `<deployment-namespace>` | The Deployment to show logs for              | Any existing Deployment's namespace |
-| `-e`,`--error`           | Show only logs with a log level of `ERROR`   | ``                                  |
-| `-w`,`--warn`            | Show only logs with a log level of `WARNING` | ``                                  |
-| `-i`,`--info`            | Show only logs with a log level of `INFO`    | ``                                  |
-| `-c`,`--log-count`       | The number of logs to show (default: `500`)  | Any integer                         |
+| Option                   | Description                                     | Possible Values                     |
+| ------------------------ | ----------------------------------------------- | ----------------------------------- |
+| `<deployment-namespace>` | The Deployment to show logs for                 | Any existing Deployment's namespace |
+| `-e`,`--error`           | Show only logs with a log level of `ERROR`      | ``                                  |
+| `-w`,`--warn`            | Show only logs with a log level of `WARNING`    | ``                                  |
+| `-i`,`--info`            | Show only logs with a log level of `INFO`       | ``                                  |
+| `-c`,`--log-count`       | The number of logs to show. The default is`500` | Any integer                         |
 
 ## Examples
 
 ```sh
 $ astrocloud deployment logs
 # CLI prompts you for a Deployment to view logs for
-$ astrocloud deployment logs quasarian-photon-9326
+$ astrocloud deployment logs cl03oiq7d80402nwn7fsl3dmv
 # View logs for a specific Deployment
-$ astrocloud deployment logs quasarian-photon-9326 --error --log-count=25
+$ astrocloud deployment logs cl03oiq7d80402nwn7fsl3dmv --error --log-count=25
 # Show only the last 25 error-level logs for a specific Deployment
 ```
 

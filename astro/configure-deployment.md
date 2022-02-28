@@ -37,7 +37,7 @@ To create an Airflow Deployment on Astro:
 
 :::tip
 
-If you prefer to work within a CLI, Deployments can also be created using the Astro CLI's [`deployment create`](cli-reference/astrocloud-deployment-create.md) command.
+If you prefer to work with the Astro CLI, you can also create a Deployment by running the `astrocloud deployment create` command. For more information, see [CLI Command Reference](cli-reference/astrocloud-deployment-create.md).
 
 :::
 

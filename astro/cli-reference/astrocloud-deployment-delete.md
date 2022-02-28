@@ -7,7 +7,9 @@ description: Reference documentation for astrocloud deployment delete.
 
 ## Description
 
-Delete a Deployment on Astro.
+Delete a Deployment on Astro. This command is functionally identical to deleting a Deployment via the Cloud UI.
+
+To complete this action, [Workspace Admin](user-permissions.md#workspace-roles) permissions are required.
 
 ## Usage
 
@@ -17,18 +19,18 @@ astrocloud deployment delete
 
 ## Options
 
-| Option                   | Description                                                         | Possible Values                     |
-| ------------------------ | ------------------------------------------------------------------- | ----------------------------------- |
-| `<deployment-namespace>` | The namespace of the Deployment to delete.                          | Any existing Deployment's namespace |
-| `-f`,`--force`           | Do not include a confirmation prompt before deleting the Deployment | ``                                  |
+| Option            | Description                                                         | Possible Values         |
+| ----------------- | ------------------------------------------------------------------- | ----------------------- |
+| `<deployment-id>` | The ID of the Deployment to delete         | Any valid Deployment ID |
+| `-f`,`--force`    | Do not include a confirmation prompt before deleting the Deployment | ``                      |
 
 ## Examples
 
 ```sh
 $ astrocloud deployment delete
 # CLI prompts you for a Deployment to delete
-$ astrocloud deployment delete quasarian-photon-9326 -f
-# Force delete a Deployment without any prompts
+$ astrocloud deployment delete ckvvfp9tf509941drl4vela81n -f
+# Force delete a Deployment without a confirmation prompt
 ```
 
 ## Related Commands
