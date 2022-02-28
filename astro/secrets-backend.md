@@ -112,7 +112,7 @@ To use Vault as a secrets backend, we recommend configuring a Vault AppRole with
 
 #### Step 2: Write an Airflow Variable or Connection to Vault
 
-To test whether your Vault server is set up properly, create a test Airflow variable or connection to store as a secret.
+To test whether your Vault server is set up properly, create a test Airflow variable or connection to store as a secret. You will use this secret to test your backend's functionality in Step 4, so it can be either a real or placeholder value.
 
 To store an Airflow variable in Vault as a secret, run the following Vault CLI command with your own values:
 
@@ -236,7 +236,7 @@ To use this feature, you need:
 
 #### Step 1: Write an Airflow Variable or Connection to AWS Parameter Store
 
-To start, add an Airflow variable or connection as a secret to Parameter Store for testing. For instructions, read AWS documentation on how to do so via the [AWS Systems Manager Console](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-create-console.html), the [AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-cli.html), or [Tools for Windows PowerShell](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-ps.html).
+To start, add an Airflow variable or connection as a secret to Parameter Store for testing. You will use this secret to test your backend's functionality in Step 3, so it can be either a real or placeholder value. For instructions, read AWS documentation on how to do so via the [AWS Systems Manager Console](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-create-console.html), the [AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-cli.html), or [Tools for Windows PowerShell](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-ps.html).
 
 Variables and connections should live at `/airflow/variables` and `/airflow/connections`, respectively. For example, if you're setting a secret variable with the key `my_secret`, it should exist at `/airflow/connections/my_secret`.
 
@@ -337,7 +337,7 @@ This topic provides setup steps for configuring [AWS Secrets Manager](https://aw
 
 #### Prerequisites
 
-To use Google Cloud Secret Manager as your Airflow secrets backend, you need:
+To use AWS Secrets Manager as your Airflow secrets backend, you need:
 
 - A [Deployment](configure-deployment.md).
 - The [Astro CLI](install-cli.md).
@@ -345,16 +345,18 @@ To use Google Cloud Secret Manager as your Airflow secrets backend, you need:
 - An AWS account with the `SecretsManagerReadWrite` policy.
 - A valid AWS Access Key ID and Secret Access Key.
 
-#### Step 1: Write an Airflow Variable or Connection to AWS Secret Manager
+#### Step 1: Write an Airflow Variable or Connection to AWS Secrets Manager
 
-To start, add an Airflow variable or connection as a secret to AWS Secrets Manager.
+To start, add an Airflow variable or connection as a secret to AWS Secrets Manager. You will use this secret to test your backend's functionality in Step 3, so it can be either a real or placeholder value.
 
 Secrets must be formatted such that:
+
 - Airflow variables are stored in `airflow/variables/<variable-key>`.
 - Airflow connections are stored in `airflow/connections/<connection-id>`.
 
+For more information on adding secrets to Secrets Manager, see [AWS documentation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html).
 
-#### Step 2: Set Up Secret Manager Locally
+#### Step 2: Set Up Secrets Manager Locally
 
 To test AWS Secrets Manager locally, configure it as a secrets backend in your Astro project.
 
@@ -380,11 +382,9 @@ If you want to deploy your project to a hosted Git repository before deploying t
 
 :::
 
-#### Step 3: Run an Example DAG to Test Secret Manager Locally
+#### Step 3: Run an Example DAG to Test Secrets Manager Locally
 
-To test Secrets Manager, [create a secret](https://cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#create) containing either an Airflow variable or connection for testing.
-
-Once you create a test secret, write a simple DAG which calls the secret and add this DAG to your project's `dags` directory. For example, you can use the following DAG to print the value of a variable to your task logs:
+Write a test DAG which calls the secret you created in Step 1 and add this DAG to your project's `dags` directory. For example, you can use the following DAG to print the value of a variable to your task logs:
 
 ```py
 from airflow import DAG
@@ -419,9 +419,9 @@ Once you confirm that the setup was successful, you can delete this DAG.
 
 #### Step 4: Deploy to Astro
 
-Once you've confirmed that the integration with Google Cloud Secret Manager works locally, you can complete a similar set up with a Deployment on Astro.
+Once you've confirmed that the integration with AWS Secrets Manager works locally, you can complete a similar set up with a Deployment on Astro.
 
-1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/astro/environment-variables). Specify both `AIRFLOW__SECRETS__BACKEND` and `AIRFLOW__SECRETS__BACKEND_KWARGS` as **Secret** to ensure that your credentials are stored securely.
+1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/astro/environment-variables). Specify both `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as **Secret** to ensure that your credentials are stored securely.
 
   :::warning
 
@@ -432,12 +432,11 @@ Once you've confirmed that the integration with Google Cloud Secret Manager work
 2. In your Astro project, delete the environment variables from your `Dockerfile`.
 3. [Deploy your changes](https://docs.astronomer.io/astro/deploy-code) to Astro.
 
-You now should be able to see your secret information being pulled from Secret Manager on Astro. From here, you can store any Airflow variables or connections as secrets on Secret Manager and use them in your project.
+You now should be able to see your secret information being pulled from Secrets Manager on Astro. From here, you can store any Airflow variables or connections as secrets on Secrets Manager and use them in your project.
 
 </TabItem>
 
 <TabItem value="gcp">
-
 This topic provides setup steps for configuring [Google Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astro.
 
 #### Prerequisites
@@ -454,7 +453,7 @@ To use Google Cloud Secret Manager as your Airflow secrets backend, you need:
 
 #### Step 1: Write an Airflow Variable or Connection to Google Cloud Secret Manager
 
-To start, add an Airflow variable or connection as a secret to Google Cloud Secret Manager. You can do so via the Cloud Console or the gcloud CLI.
+To start, add an Airflow variable or connection as a secret to Google Cloud Secret Manager. You can do so via the Cloud Console or the gcloud CLI. You will use this secret to test your backend's functionality in Step 3, so it can be either a real or placeholder value.
 
 Secrets must be formatted such that:
 - Airflow variables are set as `airflow-variables-<variable-key>`.
@@ -496,9 +495,7 @@ If you want to deploy your project to a hosted Git repository before deploying t
 
 #### Step 3: Run an Example DAG to Test Secret Manager Locally
 
-To test Secret Manager, [create a secret](https://cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#create) containing either an Airflow variable or connection for testing.
-
-Once you create a test secret, write a simple DAG which calls the secret and add this DAG to your project's `dags` directory. For example, you can use the following DAG to print the value of a variable to your task logs:
+Write a test DAG which calls the secret you created in Step 1 and add this DAG to your project's `dags` directory. For example, you can use the following DAG to print the value of a variable to your task logs:
 
 ```py
 from airflow import DAG
