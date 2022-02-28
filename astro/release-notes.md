@@ -16,6 +16,14 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest CLI Version**: 1.1.0 ([Release notes](cli-release-notes.md))
 
+## February 24, 2022
+
+### Bug fixes
+
+- Removed the nonfunctional **Teams** tab from the Cloud UI
+- Fixed an issue where a user's Workspace membership count in the Organization view of the UI wasn't updated properly
+- Fixed an issue where updates to secret environment variable values were not applied to Deployments
+
 ## February 17, 2022
 
 ### Introducing Astro and a New Look
