@@ -15,21 +15,6 @@ If you have any questions or a bug to report, don't hesitate to reach out to us 
 
 Release date: February 25, 2022
 
-### View Logs from Astro Deployments with a New Astro CLI Command
-
-If you prefer to troubleshoot DAGs and monitor your Deployments from the command line, you can now run `astrocloud deployment logs`, a new Astro CLI command that allows you to view the same Scheduler logs that appear in the **Logs** tab of the Cloud UI.
-
-When you run this command, all Scheduler logs emitted by a Deployment over the last 24 hours appear in your terminal. Similarly to the Cloud UI, you can filter logs by log level using command flags. For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-deployment-logs.md).
-
-### Create and Delete Deployments on Astro with New Astro CLI Commands
-
-You can now use the Astro CLI to create and delete Deployments on Astro with two new commands:
-
-- `astrocloud deployment create`
-- `astrocloud deployment delete`
-
-These commands are functionally identical to the [Deployment configuration](configure-deployment.md) and deletion process in the Cloud UI. For more information, see the [CLI Command Reference](cli-reference/astrocloud-deployment-create.md).
-
 ### Deploy to Astro with Deployment API Keys for Simpler CI/CD
 
 You can now use [Deployment API keys](api-keys.md) to run `astrocloud deploy` either from the CLI directly or via a CI/CD script. This update simplifies deploying code to Astro via CI/CD.
@@ -43,7 +28,7 @@ When `astrocloud deploy` is run, the CLI will now automatically look for and use
 
 Previously, any script that automated code pushes to Astro had to include a series of `cURL` requests to the Cloud API and could not use Deployment API keys to run an Astro CLI command. If your existing CI/CD pipelines still utilize this method, we recommend replacing those commands with an Astro CLI-based workflow. For more information and guiding examples, see [CI/CD](ci-cd.md).
 
-### Run DAG Unit Tests Locally with new Astro CLI Command
+### Run DAG Unit Tests Locally with New Astro CLI Command
 
 You can now run custom unit tests for all DAGs in your Astro project with `astrocloud dev pytest`, a new Astro CLI command that uses [pytest](https://docs.pytest.org/en/7.0.x/index.html), a common testing framework for Python. As part of this change, new Astro projects created via `astrocloud dev init` now include a `tests` directory, which includes one example pytest built by Astronomer.
 
@@ -58,7 +43,22 @@ For example, you can use this command to run tests that check for:
 
 These tests don't require a fully functional Airflow environment in order to execute, which makes this Astro CLI command the fastest and easiest way to test DAGs locally.
 
-In addition to running tests locally, you can also run pytest as part of the Astro deploy process. To do so, specify the `--pytest` flag when running `astrocloud deploy`. This ensures that your code push to Astro automatically fails if any DAGs do not pass all pytests specified in the `tests` directory of your Astro project.
+In addition to running tests locally, you can also run pytest as part of the Astro deploy process. To do so, specify the `--pytest` flag when running `astrocloud deploy`. This ensures that your code push to Astro automatically fails if any DAGs do not pass all pytests specified in the `tests` directory of your Astro project. For more information, see [Test DAGs Locally with pytest](test-and-troubleshoot-locally.md#test-dags-locally-with-pytest).
+
+### View Astro Deployment Scheduler Logs with New Astro CLI Command
+
+If you prefer to troubleshoot DAGs and monitor your Deployments from the command line, you can now run `astrocloud deployment logs`, a new Astro CLI command that allows you to view the same Scheduler logs that appear in the **Logs** tab of the Cloud UI.
+
+When you run this command, all Scheduler logs emitted by a Deployment over the last 24 hours appear in your terminal. Similarly to the Cloud UI, you can filter logs by log level using command flags. For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-deployment-logs.md).
+
+### Create and Delete Deployments on Astro with New Astro CLI Commands
+
+You can now use the Astro CLI to create and delete Deployments on Astro with two new commands:
+
+- `astrocloud deployment create`
+- `astrocloud deployment delete`
+
+These commands are functionally identical to the [Deployment configuration](configure-deployment.md) and deletion process in the Cloud UI. For more information, see the [CLI Command Reference](cli-reference/astrocloud-deployment-create.md).
 
 ## v1.1.0
 
