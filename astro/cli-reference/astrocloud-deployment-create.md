@@ -22,7 +22,7 @@ astrocloud deployment create
 | `-c`, `--cluster-id`        | The Cluster in which you want to create a Deployment                                                                      | The name of any Cluster that you can create Deployments in               |
 | `-d`,`--description`        | The description for the Deployment                                    | Any string. Multiple-word descriptions should be specified in quotations (`"`) |
 | `-l`,`--name`        | The Deployment's name                                                       | Any string. Multiple-word descriptions should be specified in quotations |
-| `-v`,`--runtime-version`    | The Deployment's Runtime version                                                   | Any version of Runtime that is supported. Major, minor, and patch versions must be specified.                                                |
+| `-v`,`--runtime-version`    | The Astro Runtime version for the Deployment                                                   | Any version of Runtime that is supported. Major, minor, and patch versions must be specified.                                                |
 | `-s`,`--scheduler-au`       | The number of AU to allocate towards the Deployment's Scheduler(s). The default is`5`.     | Integer between `0` and `30`                                             |
 | `-a`,`--worker-au`          | The number of AU to allocate towards the Deployment's worker(s). The default is `10`.      | Integer between `0` and `175`                                            |
 | `-r`,`--scheduler-replicas` | The number of Scheduler replicas for the Deployment. The default is `1`. | Integer between `0` and `4`                                              |
@@ -32,10 +32,10 @@ astrocloud deployment create
 ```sh
 $ astrocloud deployment create
 # CLI prompts you for a Deployment name and Cluster
-$ astrocloud deployment create -d="My Deployment Description" --name="My Deployment Name" --cluster-id="dev-us-west"
-# Create Deployment without CLI prompts
+$ astrocloud deployment create -d="My Deployment Description" --name="My Deployment Name" --cluster-id="ckwqkz36200140ror6axh8p19"
+# Create a Deployment with all required information specified. The CLI will not prompt you for more information
 $ astrocloud deployment create -a=50
-# Specify 50 AU for the Deployment's workers. CLI still prompts you for required Deployment information
+# Specify 50 AU for the Deployment's workers. The Astro CLI prompts you for required information
 ```
 
 ## Related Commands

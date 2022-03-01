@@ -7,9 +7,16 @@ description: Reference documentation for astrocloud dev pytest.
 
 ## Description
 
-Run pytests from the `tests` folder of your locally hosted Astro project. When you run this command, the Astro CLI provisions a local Python environment that includes your DAG code, dependencies, and Astro Runtime image. The CLI then runs all pytests in your `tests` directory and shows you the results of these tests in your terminal.
+Run unit tests for your data pipelines on Astro with `pytest`, a testing framework for Python. When you run this command, the Astro CLI creates a local Python environment that includes your DAG code, dependencies, and Astro Runtime Docker image. The CLI then runs any pytests in the `tests` directory of your Astro project and shows you the results of those tests in your terminal.
 
-Note that this command requires using Runtime version `4.1.0+` in your project.
+For more information on this functionality, see [Test and Troubleshoot Locally](test-and-troubleshoot-locally.md).
+
+
+:::info
+
+This command requires Astro Runtime version `4.1.0`+. For more information, see [Astro Runtime Release Notes](https://docs.astronomer.io/astro/runtime-release-notes#astro-runtime-410).
+
+:::
 
 ## Usage
 

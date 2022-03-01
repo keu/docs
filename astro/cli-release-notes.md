@@ -17,9 +17,9 @@ Release date: February 25, 2022
 
 ### View Logs from Astro Deployments with a New Astro CLI Command
 
-If you prefer to monitor your Deployments from a CLI terminal, you can now use the `astrocloud deployment logs` command to view the same Scheduler logs that appear in the **Logs** tab of the Cloud UI.
+If you prefer to troubleshoot DAGs and monitor your Deployments from the command line, you can now run `astrocloud deployment logs`, a new Astro CLI command that allows you to view the same Scheduler logs that appear in the **Logs** tab of the Cloud UI.
 
-When you run this command, all Scheduler logs emitted by a Deployment over the last 24 hours appear in your terminal. Similarly to the Cloud UI, you can filter logs by log level using command flags. For more information about this command, see the [CLI Reference Guide](cli-reference/astrocloud-deployment-logs.md).
+When you run this command, all Scheduler logs emitted by a Deployment over the last 24 hours appear in your terminal. Similarly to the Cloud UI, you can filter logs by log level using command flags. For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-deployment-logs.md).
 
 ### Create and Delete Deployments on Astro with New Astro CLI Commands
 
@@ -34,25 +34,31 @@ These commands are functionally identical to the [Deployment configuration](conf
 
 You can now use [Deployment API keys](api-keys.md) to run `astrocloud deploy` either from the CLI directly or via a CI/CD script. This update simplifies deploying code to Astro via CI/CD.
 
-With an existing Deployment API key, you can now set `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` as OS-level environment variables. From there, you can run a CI script that does the following:
+With an existing Deployment API key, you can set `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` as OS-level environment variables. From there, you can now configure a CI/CD pipeline that does the following:
 
-- Specifies Deployment ID
 - Installs the Astro CLI
 - Runs `astrocloud deploy`
 
 When `astrocloud deploy` is run, the CLI will now automatically look for and use the Deployment API key credentials that were set as environment variables to authorize and complete a code push.
 
-If your existing CI/CD pipelines utilize `cURL` requests to the Cloud API, we recommend replacing those commands with an Astro CLI-based workflow.
+Previously, any script that automated code pushes to Astro had to include a series of `cURL` requests to the Cloud API and could not use Deployment API keys to run an Astro CLI command. If your existing CI/CD pipelines still utilize this method, we recommend replacing those commands with an Astro CLI-based workflow. For more information and guiding examples, see [CI/CD](ci-cd.md).
 
 ### Test DAGs and Custom Python Code Before Deployment with `astrocloud dev pytest`
 
-You can now run custom pytests from your Astro project with a new command: `astrocloud dev pytest`.
+You can now run custom unit tests for all DAGs in your Astro project with `astrocloud dev pytest`, a new Astro CLI command that uses [pytest](https://docs.pytest.org/en/7.0.x/index.html), a common testing framework for Python. As part of this change, new Astro projects created via `astrocloud dev init` now include a `tests` directory, which includes one example pytest built by Astronomer.
 
-To use this command, you can store one or more `pytest` files in a new `tests` directory within your Astro project. When you run `astrocloud dev pytest`, the CLI spins up a Python environment that includes your DAG code, dependencies, and Astro Runtime Docker image. The CLI then runs all pytests in your `tests` directory and shows you the results of these tests in your terminal.
+When you run this command, the Astro CLI creates a local Python environment that includes your DAG code, dependencies, and Astro Runtime Docker image. The CLI then runs any pytests in the `tests` directory and shows you the results of those tests in your terminal. You can add as many custom tests to this directory as you'd like.
 
-These tests don't require that all Airflow components be running in order to execute, which makes this Astro CLI command the fastest way to test DAGs for both syntax and dependency errors.
+For example, you can use this command to run tests that check for:
 
-As part of this change, new Astro projects created via `astrocloud dev init` now include a `tests` directory with example pytests. Additionally, you can run pytests before deploying code to a Deployment on Astro by specifying the `--pytest` flag with `astrocloud deploy`. This ensures that your code push fails if a pytest does not pass.
+- Python and Airflow syntax errors.
+- Import errors.
+- Dependency conflicts.
+- Unique DAG IDs.
+
+These tests don't require a fully functional Airflow environment in order to execute, which makes this Astro CLI command the fastest and easiest way to test DAGs locally.
+
+In addition to running tests locally, you can also run pytest as part of the Astro deploy process. To do so, specify the `--pytest` flag when running `astrocloud deploy`. This ensures that your code push to Astro automatically fails if any DAGs do not pass all pytests specified in the `tests` directory of your Astro project.
 
 ## v1.1.0
 
