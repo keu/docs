@@ -1,7 +1,7 @@
 ---
-title: 'Configure Pre-Created Kubernetes Namespaces for Astronomer Software'
-sidebar_label: 'Pre-Create Namespaces'
-id: pre-create-namespaces
+title: 'Configure Kubernetes Namespace Pools for Astronomer Software'
+sidebar_label: 'Namespace Pools'
+id: namespace-pools
 description: Manually create Kubernetes namespaces for new Deployments.
 ---
 
