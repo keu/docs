@@ -43,7 +43,7 @@ When `astrocloud deploy` is run, the CLI will now automatically look for and use
 
 Previously, any script that automated code pushes to Astro had to include a series of `cURL` requests to the Cloud API and could not use Deployment API keys to run an Astro CLI command. If your existing CI/CD pipelines still utilize this method, we recommend replacing those commands with an Astro CLI-based workflow. For more information and guiding examples, see [CI/CD](ci-cd.md).
 
-### Test DAGs and Custom Python Code Before Deployment with `astrocloud dev pytest`
+### Run DAG Unit Tests Locally with new Astro CLI Command
 
 You can now run custom unit tests for all DAGs in your Astro project with `astrocloud dev pytest`, a new Astro CLI command that uses [pytest](https://docs.pytest.org/en/7.0.x/index.html), a common testing framework for Python. As part of this change, new Astro projects created via `astrocloud dev init` now include a `tests` directory, which includes one example pytest built by Astronomer.
 

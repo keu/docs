@@ -11,7 +11,6 @@ Run unit tests for your data pipelines on Astro with `pytest`, a testing framewo
 
 For more information on this functionality, see [Test and Troubleshoot Locally](test-and-troubleshoot-locally.md).
 
-
 :::info
 
 This command requires Astro Runtime version `4.1.0`+. For more information, see [Astro Runtime Release Notes](https://docs.astronomer.io/astro/runtime-release-notes#astro-runtime-410).
