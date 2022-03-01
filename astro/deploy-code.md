@@ -9,15 +9,9 @@ import {siteVariables} from '@site/src/versions';
 
 ## Overview
 
-Astro makes it easy for your team to test Airflow DAGs locally and push them to a Deployment in a Production or Development environment. The following diagram shows how your Astro project can be packaged and deployed to Astro via the Astro CLI.
-
-:::info
-
-The process for deploying an Astro project via CI/CD varies slightly from this diagram. For more information, refer to [CI/CD: Workflow Overview](ci-cd.md#workflow-overview).
-
-:::
-
 This guide explains how to deploy DAGs to a Deployment on Astro.
+
+Astro makes it easy for your team to test Airflow DAGs locally and push them to a Deployment in a Production or Development environment. The following diagram shows how your Astro project can be packaged and deployed to Astro via the Astro CLI.
 
 ## Prerequisites
 
@@ -38,6 +32,12 @@ astrocloud auth login
 
 After running this command, you will be prompted to open your web browser and log in via the Cloud UI. Once you complete this login, you will be automatically authenticated to the CLI.
 
+:::tip
+
+If you have [Deployment API key](api-key.md) credentials set as OS-level environment variables on your local machine, you can deploy directly to Astro without needing to manually authenticate. This setup is required for automating code deploys via [CI/CD](ci-cd.md).
+
+:::
+
 ## Step 2: Push DAGs to an Astro Deployment
 
 To deploy your DAGs, run:
@@ -47,6 +47,14 @@ astrocloud deploy
 ```
 
 This command returns a list of Airflow Deployments available in your Workspace and prompts you to pick one. Once this command is executed, all files in your Astro project directory are built into a new Docker image and pushed to Astro.
+
+:::tip
+
+To validate your code before deploying it to Astro, you can run `astrocloud deploy --pytest`. The `--pytest` flag runs all pytests in your project's `tests` directory. If any of these tests fail, your code deploy will also fail.
+
+For more information about running Pytests, see [Test and Troubleshoot](test-and-troubleshoot.md#test-dags-locally-with-pytest).
+
+:::
 
 ## Step 3: Validate Your Changes
 
