@@ -56,7 +56,7 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
 2. Add the following to a new file in `.github/workflows`, making sure to replace `<organization-id>` and `<deployment-id>` with the values for your Deployment:
 
     ```yaml
-    name: CI/CD
+    name: Astronomer CI - Deploy Code
 
     on:
       push:

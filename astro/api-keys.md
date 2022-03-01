@@ -12,7 +12,7 @@ This guide provides instructions for how to create API keys for Deployments on A
 A Deployment API key has the following properties:
 
 - It can deploy code to Astro (customizable permissions coming soon).
-- Its key ID and secret are valid indefinitely and can be used to access Deployments without additional authentication.
+- Its key ID and secret are valid indefinitely and can be used to access Deployments without manual authentication.
 - It is deleted permanently if its corresponding Deployment is deleted.
 
 This guide provides steps for creating and deleting Deployment API keys.

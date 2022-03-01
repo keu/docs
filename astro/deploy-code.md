@@ -58,7 +58,7 @@ This command returns a list of Airflow Deployments available in your Workspace a
 
 :::tip
 
-To validate your code before deploying it to Astro, you can run `astrocloud deploy --pytest`. The `--pytest` flag runs all pytests in your project's `tests` directory. If any of these tests fail, your code deploy will also fail.
+To validate your code before deploying it to Astro, you can run `astrocloud deploy --pytest`. Adding the `--pytest` flag makes the CLI run all pytests in your project's `tests` directory. If any of these tests fail, your code deploy will also fail.
 
 For more information about running Pytests, see [Test and Troubleshoot](test-and-troubleshoot.md#test-dags-locally-with-pytest).
 
