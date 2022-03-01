@@ -432,7 +432,7 @@ Once you've confirmed that the integration with AWS Secrets Manager works locall
 2. In your Astro project, delete the environment variables from your `Dockerfile`.
 3. [Deploy your changes](https://docs.astronomer.io/astro/deploy-code) to Astro.
 
-You now should be able to see your secret information being pulled from Secrets Manager on Astro. From here, you can store any Airflow variables or connections as secrets on Secrets Manager and use them in your project.
+You now should be able to see your secret information being pulled from AWS Secrets Manager on Astro. From here, you can store any Airflow variables or connections as secrets on AWS Secrets Manager and use them in your project.
 
 </TabItem>
 
