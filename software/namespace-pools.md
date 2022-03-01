@@ -1,5 +1,5 @@
 ---
-title: 'Configure Kubernetes Namespace Pools for Astronomer Software'
+title: 'Configure a Kubernetes Namespace Pool for Astronomer Software'
 sidebar_label: 'Namespace Pools'
 id: namespace-pools
 description: Manually create Kubernetes namespaces for new Deployments.
