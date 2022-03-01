@@ -25,15 +25,29 @@ All Airflow API calls require the following two values:
 - An access token
 - A Deployment URL
 
-To retrieve an access token, [create a Deployment API key](api-keys.md#create-an-api-key) on Astro and follow the instructions in [Request Access Token](api-keys.md#request-access-token). Note that you need to refresh that token every time you make a request to the Airflow API. To avoid manually doing so, we strongly recommend adding a step that fetches a new access token to any CI/CD pipeline that calls the Airflow API. That way, your access token is automatically refreshed every time your CI/CD pipeline needs it. For examples of this implementation, see [CI/CD Templates](ci-cd.md#cicd-templates).
+To retrieve an access token, [create a Deployment API key](api-keys.md#create-an-api-key) on Astro and run the following API request:
+
+```sh
+curl --location --request POST "https://auth.astronomer.io/oauth/token" \
+        --header "content-type: application/json" \
+        --data-raw "{
+            \"client_id\": \"<api-key-id>\",
+            \"client_secret\": \"<api-key-secret>\",
+            \"audience\": \"astronomer-ee\",
+            \"grant_type\": \"client_credentials\"}" | jq -r '.access_token'
+```
+
+Note that this token is valid only for 24 hours. You need to refresh this token every time you make a request to the Airflow API.
+
+To avoid manually refreshing tokens, we recommend adding a step that retrieves a new access token to any CI/CD pipeline that calls the Airflow API. That way, your access token is automatically refreshed every time your CI/CD pipeline needs it.
 
 :::info
 
-If you need to call the Airflow API only once, you can retrieve a temporary access token (24 hours) at `https://cloud.astronomer.io/token`. If you retrieve a token here, you can skip the instructions in [Request Access Token](api-keys.md#request-access-token).
+If you need to call the Airflow API only once, you can retrieve a temporary access token (24 hours) at `https://cloud.astronomer.io/token`.
 
 :::
 
-To retrieve your Deployment URL, open your Deployment in the Cloud UI and click **Open Airflow**. The URL for the Airflow UI is your Deployment URL. It includes the name of your Organization and a short Deployment ID. For example, your Deployment URL will look similar to `https://mycompany.astronomer.run/dhbhijp0`.
+To retrieve your Deployment URL, open your Deployment in the Cloud UI and click Open Airflow. The URL for the Airflow UI is your Deployment URL. It includes the name of your Organization and a short Deployment ID. For example, your Deployment URL will look similar to `https://mycompany.astronomer.run/dhbhijp0`.
 
 ## Step 2: Make an Airflow API Request
 
