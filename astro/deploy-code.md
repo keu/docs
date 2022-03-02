@@ -13,7 +13,7 @@ This guide explains how to deploy DAGs to a Deployment on Astro.
 
 Astro makes it easy for your team to test Airflow DAGs locally and push them to a Deployment in a Production or Development environment. The following diagram shows how your Astro project can be packaged and deployed to Astro via the Astro CLI:
 
-![Deployment architecture diagram](img/docs/deployment-architecture.png)
+![Deployment architecture diagram](img/docs/deploy-architecture.png)
 
 :::info
 
@@ -42,7 +42,7 @@ After running this command, you will be prompted to open your web browser and lo
 
 :::tip
 
-If you have [Deployment API key](api-key.md) credentials set as OS-level environment variables on your local machine, you can deploy directly to Astro without needing to manually authenticate. This setup is required for automating code deploys via [CI/CD](ci-cd.md).
+If you have [Deployment API key](api-keys.md) credentials set as OS-level environment variables on your local machine, you can deploy directly to Astro without needing to manually authenticate. This setup is required for automating code deploys via [CI/CD](ci-cd.md).
 
 :::
 
@@ -60,7 +60,7 @@ This command returns a list of Airflow Deployments available in your Workspace a
 
 To validate your code before deploying it to Astro, you can run `astrocloud deploy --pytest`. Adding the `--pytest` flag makes the CLI run all pytests in your project's `tests` directory. If any of these tests fail, your code deploy will also fail.
 
-For more information about running Pytests, see [Test and Troubleshoot](test-and-troubleshoot.md#test-dags-locally-with-pytest).
+For more information about running Pytests, see [Test and Troubleshoot](test-and-troubleshoot-locally.md#test-dags-locally-with-pytest).
 
 :::
 
