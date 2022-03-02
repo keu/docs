@@ -437,6 +437,7 @@ You now should be able to see your secret information being pulled from AWS Secr
 </TabItem>
 
 <TabItem value="gcp">
+
 This topic provides setup steps for configuring [Google Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astro.
 
 #### Prerequisites
