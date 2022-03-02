@@ -103,10 +103,10 @@
   --ifm-color-warning-contrast-foreground: var(--orange-900);
   --ifm-color-warning-dark: var(--orange-500);
 
-  --ifm-color-danger: var(--orange-400);
+  /* --ifm-color-danger: var(--orange-400);
   --ifm-color-danger-contrast-background: var(--orange-100);
   --ifm-color-danger-contrast-foreground: var(--orange-900);
-  --ifm-color-danger-dark: var(--orange-500);
+  --ifm-color-danger-dark: var(--orange-500); */
 
   --ifm-color-secondary: var(--gray-2);
   --ifm-color-secondary-contrast-background: var(--gray-100);
