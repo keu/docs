@@ -22,8 +22,20 @@ To create an Astro project, you need:
 
 ## Step 1: Create an Astro project
 
-To create a new Astro project folder, open the directory where you installed the CLI and run:
-Astro
+To create a new Astro project, you must first create an empty directory on your machine. With the desired name of your Astro project, run:
+
+```
+mkdir <your-astro-project>
+```
+
+Then, navigate to that directory.
+
+```
+cd <your-astro-project>
+```
+
+Now, initialize an Astro project within that empty directory. To do so, run:
+
 ```sh
 astrocloud dev init
 ```
@@ -114,4 +126,7 @@ After logging in, you should see the DAGs from your `dags` directory in the Airf
 
 ## Next Steps
 
-Running your project locally is the best way to test your DAGs before pushing them to Astro. For more information on running a local Airflow environment, read [Test and Troubleshoot](test-and-troubleshoot-locally.md#run-a-project-locally).
+Running your project locally is the best way to test your DAGs before pushing them to Astro. For more information on running a local Airflow environment, read:
+
+- [Develop your Astro Project](develop-project.md)
+- [Test and Troubleshoot Locally](test-and-troubleshoot-locally.md#run-a-project-locally)
