@@ -20,7 +20,7 @@ This guide provides setup steps for configuring a CI/CD pipeline to deploy DAGs 
 To set up CI/CD for a given Deployment, you need:
 
 - A [Deployment API key ID and secret](api-keys.md)
-- A Deployment ID. To find this, open your Deployment in the Cloud UI and copy the unique string at the end of the URL (e.g. `cktogz2eg847343yzo9pru1b0d` is the ID in `https://cloud.astronomer.io/<workspaceId>/deployments/cktogz2eg847343yzo9pru1b0d`). You can also find this value by running `astrocloud deployment list`.
+- A Deployment ID. To find this, open your Deployment in the Cloud UI and copy the unique string at the end of the URL (e.g. `cktogz2eg847343yzo9pru1b0d` is the ID in `https://cloud.astronomer.io/<workspaceId>/deployments/cktogz2eg847343yzo9pru1b0d`). You can also find this value by running `astrocloud deployment list` via the Astro CLI.
 - A CI/CD management tool, such as [GitHub Actions](https://docs.github.com/en/actions).
 - An Astro project directory that was [initialized via the Astro CLI](deploy-code.md) and is hosted in a place that your CI/CD tool can access.
 
@@ -30,19 +30,27 @@ The following section provides basic templates for configuring individual CI pip
 
 At a high level, these CI/CD pipelines will:
 
-1. Access your Deployment using API key credentials. These credentials must be set as OS-level environment variables called `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
-2. Build your Astro project into a Docker image and push the image to your Deployment.
+1. Access Deployment API key credentials. These credentials must be set as OS-level environment variables called `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`. This can be done on your local machine or within your CI/CD tool of choice.
+2. Install the Astro CLI
+3. Build your Astro project into a Docker image, authenticate to Astro using your Deployment API key, and push the image to your Deployment.
 
 This workflow is equivalent to the following bash script:
 
 ```sh
-# Set environment variables
+# Set Deployment API key credentials as environment variables
 $ export ASTRONOMER_KEY_ID="<your-api-key-id>"
 $ export ASTRONOMER_KEY_SECRET="<your-api-key-secret>"
-# Build image and push to Deployment
-$ cd <your-astronomer-project>
+
+# Install the Astro CLI
+$ brew install astronomer/cloud/astrocloud@1.2.0
+
+# Build your Astro project into a Docker image and push the image to your Deployment
 $ astrocloud deploy <your-deployment-id>
 ```
+
+## CI/CD Templates
+
+The following section provides basic templates for configuring individual CI pipelines using popular CI/CD tools. Each template can be implemented as-is to produce a simple CI/CD pipeline, but we recommend reconfiguring the templates to work with your own directory structures, workflows, and best practices. More templates are coming soon.
 
 ### GitHub Actions
 
@@ -64,7 +72,7 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
           - main
 
     env:
-      ## Sets environment variable
+      ## Sets Deployment API key credentials as environment variables
       ASTRONOMER_KEY_ID: ${{ secrets.ASTRONOMER_KEY_ID }}
       ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRONOMER_KEY_SECRET }}
 

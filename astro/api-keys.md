@@ -11,11 +11,10 @@ This guide provides instructions for how to create API keys for Deployments on A
 
 A Deployment API key has the following properties:
 
-- It can deploy code to Astro (customizable permissions coming soon).
+- It can be used to deploy code to Astro via [CI/CD](ci-cd.md).
 - Its key ID and secret are valid indefinitely and can be used to access Deployments without manual authentication.
 - It is deleted permanently if its corresponding Deployment is deleted.
-
-This guide provides steps for creating and deleting Deployment API keys.
+- It can be used to fetch a short-lived access token that assumes the permissions of the Deployment API key. This access token can be used to make requests to the [Airflow REST API](airflow-api.md).
 
 ## Create an API Key
 
@@ -46,9 +45,9 @@ If you just need to make a single API call, you can use a temporary user authent
 
 API keys are primarily used for automating code deploys via CI/CD. They allow you to bypass the login step of the Astro CLI deploy workflow, meaning that you can deploy code without any manual CLI inputs.
 
-When you run `astrocloud deploy <deployment-id>`, the Astro CLI looks for your API key in the form of OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`. If these variables are set, the CLI can automatically push code to a Deployment by using your API key to authenticate.
+When you run `astrocloud deploy <deployment-id>`, the Astro CLI looks for your API key in the form of OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`. If the CLI can access these variables, then it can automatically push code to a Deployment by using your API key to authenticate. For examples of how to use Deployment API keys in CI/CD pipelines, see [CI/CD Templates](ci-cd.md#cicd-templates).
 
-For examples of how to use Deployment API keys in CI/CD pipelines, see [CI/CD Templates](ci-cd.md#cicd-templates).
+You can also use Deployment API keys programmatically update Airflow using Airflow's stable REST API. For more information, see [Airflow API](airflow-api.md). 
 
 ## Delete an API Key
 

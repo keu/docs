@@ -43,7 +43,7 @@ To avoid manually refreshing tokens, we recommend adding a step that retrieves a
 
 :::info
 
-If you need to call the Airflow API only once, you can retrieve a temporary access token (24 hours) at `https://cloud.astronomer.io/token`.
+If you need to call the Airflow API only once, you can retrieve a single 24-hour access token at `https://cloud.astronomer.io/token`.
 
 :::
 
