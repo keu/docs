@@ -48,7 +48,7 @@ astrocloud deploy
 
 This command returns a list of Airflow Deployments available in your Workspace and prompts you to pick one.
 
-After selecting a Deployment, the CLI runs several unit tests to ensure that your DAGs don't contain basic errors. If any of these test fail, the deploy also fails.  
+After selecting a Deployment, the CLI runs several unit tests to ensure that your DAGs don't contain basic errors. If any of these tests fail, the deploy also fails.  
 
 If your code passes the unit tests, the CLI builds your Astro project directory into a new Docker image pushes this image to Astro.
 

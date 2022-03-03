@@ -81,9 +81,9 @@ To enhance the testing experience for data pipelines, Astro enables users to run
 
 ### Run Tests with Pytest
 
-`astrocloud dev pytest` runs tests with [pytest](https://docs.pytest.org/en/7.0.x/index.html#), a testing framework for Python. These tests can be run locally against all DAGs in your Astro project and are optimized to catch code-level errors that may not be easily detectable otherwise.
+`astrocloud dev pytest` runs all tests in your project's `tests` directory with [pytest](https://docs.pytest.org/en/7.0.x/index.html#), a testing framework for Python. These tests can be run locally against all DAGs in your Astro project and are optimized to catch code-level errors that may not be easily detectable otherwise.
 
-By default, all Astro projects include a `tests` directory where you can store custom pytests. All projects include a default DAG integrity test called `test_dag_integrity.py`. This test checks that:
+By default, the `tests` includes a default DAG integrity test called `test_dag_integrity.py`. This test checks that:
 
 - All Airflow tasks have required arguments.
 - DAG IDs are unique across the Astro project.
