@@ -22,9 +22,9 @@ To create an Astro project, you need:
 
 ## Step 1: Create an Astro project
 
-To create a new Astro project:
+To create a new Astro project, follow the steps below.
 
-1. Create a new directory to store your Astro project:
+1. Create a new directory for your Astro project:
 
     ```sh
     mkdir <your-astro-project-name>
@@ -33,10 +33,10 @@ To create a new Astro project:
 2. Open the directory:
 
     ```sh
-    cd <your-astro-project>
+    cd <your-astro-project-name>
     ```
 
-3. Run the following command to initialize an Astro project in the directory:
+3. Run the following Astro CLI command to initialize an Astro project in the directory:
 
     ```sh
     astrocloud dev init
