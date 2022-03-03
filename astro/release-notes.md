@@ -20,7 +20,7 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ### Updated Experience for New Users Without Workspace Access
 
-If a new user joins your Organization without having first been invited to a Workspace, their first login to the Cloud UI will now bring them to the default Organization view. From here, they can start creating new Workspaces:
+If a new user joins your Organization without having first been invited to a Workspace, their first login to the Cloud UI will now bring them to the default Organization view. From here, they can start creating new Workspaces as an Organization Member:
 
 ![Cloud UI screen for a new user without Workspace access](/img/release-notes/new-org-user.png)
 

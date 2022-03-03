@@ -19,12 +19,11 @@ Release date: March 3, 2022
 
 You can now use `astrocloud dev parse` to catch errors caused by missing OS Variables, Airflow Connections, and Airflow Variables in your DAGs,
 
-When you run this command, the CLI runs several quick tests to ensure that your DAG code doesn't call any missing values. This includes calling all OS-level variables, Airflow Connections, and Airflow Variables to check whether each of those objects has a value. Additionally, this command runs prebuilt unit test using Pytest. This test is the same one that's included by default in your project as described in [Test DAGs Locally with Pytest](test-and-troubleshoot-locally.md#test-dags-locally-with-pytest).
+When you run this command, the CLI runs several quick tests to ensure that your DAG code doesn't call any missing values. This includes calling all OS-level variables, Airflow Connections, and Airflow Variables to check whether each of those objects has a value. Additionally, this command runs prebuilt unit tests on your Astro project using Pytest. These unit tests are the same ones that are included by default with your project as described in [Test DAGs Locally with Pytest](test-and-troubleshoot-locally.md#test-dags-locally-with-pytest).
 
-Generally speaking, `astrocloud dev parse` is a more robust but less customizable testing command than `astro dev pytest`. If don't have any specific test files that you want to run on your DAGs, then we recommend using `astrocloud dev parse` as your primary testing tool. 
+Generally speaking, `astrocloud dev parse` is a more robust but less customizable version of `astro dev pytest`. If don't have any specific test files that you want to run on your DAGs, then we recommend using `astrocloud dev parse` as your primary testing tool. 
 
 ### `astrocloud deploy` Parses DAGs by Default
-
 
 :::danger Breaking Change
 
@@ -46,7 +45,7 @@ You can now use `astrocloud deployment update` to update a Deployment's core con
 - Scheduler replicas
 - Worker resources
 
-These are the same configurations that you can set via the **Edit Configuration** page in the Cloud UI. For more information about these configurations, see [Configure a Deployment](configure-deployment.md).
+These are the same configurations that you can set via the **Edit Configuration** button in the Cloud UI. For more information about these configurations, see [Configure a Deployment](configure-deployment.md).
 
 ## v1.2.0
 
