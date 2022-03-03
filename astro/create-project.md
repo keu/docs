@@ -22,40 +22,42 @@ To create an Astro project, you need:
 
 ## Step 1: Create an Astro project
 
-To create a new Astro project, you must first create an empty directory on your machine. With the desired name of your Astro project, run:
+To create a new Astro project:
 
-```
-mkdir <your-astro-project>
-```
+1. Create a new directory to store your Astro project:
 
-Then, navigate to that directory.
+    ```sh
+    mkdir <your-astro-project-name>
+    ```
 
-```
-cd <your-astro-project>
-```
+2. Open the directory:
 
-Now, initialize an Astro project within that empty directory. To do so, run:
+    ```sh
+    cd <your-astro-project>
+    ```
 
-```sh
-astrocloud dev init
-```
+3. Run the following command to initialize an Astro project in the directory:
 
-This command generates the following files in the directory:
+    ```sh
+    astrocloud dev init
+    ```
 
-```
-.
-├── dags # Where your DAGs go
-│   └── example-dag.py # An example DAG that comes with the initialized project
-├── Dockerfile # For the Astro Runtime Docker image, environment variables, and overrides
-├── include # For any other files you'd like to include
-├── plugins # For any custom or community Airflow plugins
-├── tests # For any DAG unit test files to be run with pytest
-├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
-├── packages.txt # For OS-level packages
-└── requirements.txt # For Python packages
-```
+    This command generates the following files in the directory:
 
-This set of files will build into a Docker image that you can both run on your local machine and deploy to Astro.
+    ```
+    .
+    ├── dags # Where your DAGs go
+    │   └── example-dag.py # An example DAG that comes with the initialized project
+    ├── Dockerfile # For the Astro Runtime Docker image, environment variables, and overrides
+    ├── include # For any other files you'd like to include
+    ├── plugins # For any custom or community Airflow plugins
+    ├── tests # For any DAG unit test files to be run with pytest
+    ├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
+    ├── packages.txt # For OS-level packages
+    └── requirements.txt # For Python packages
+    ```
+
+    This set of files will build into a Docker image that you can both run on your local machine and deploy to Astro.
 
 ### Astro Runtime
 
