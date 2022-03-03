@@ -12,6 +12,14 @@ If you're looking to upgrade to Astronomer v0.25, refer to [Upgrade to Astronome
 
 We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
+## 0.25.13
+
+Release date: February 23, 2021
+
+### Additional improvements
+
+- Fixed several CVEs
+
 ## 0.25.12
 
 Release date: December 11, 2021
