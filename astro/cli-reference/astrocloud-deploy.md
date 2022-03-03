@@ -11,7 +11,7 @@ description: Reference documentation for astrocloud deploy.
 
 When you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also get the Deployment's ID by running `astrocloud deployment list`.
 
-Starting with version 1.3.0, this command runs several tests on your code before pushing it to your Deployment. If any of the tests fail, the deployment will fail. These tests are the same tests which run during `astrocloud dev parse`.
+This command runs several tests on your project before deploying it. If any of the tests fail, the deploy will fail. These tests are the same tests which run during `astrocloud dev parse`.
 
 For teams operating at scale, this command can be automated via a [CI/CD pipeline](ci-cd.md) by using [Deployment API keys](api-keys.md) in the request. When `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` are specified as OS-level environment variables on your local machine or in a CI tool, `astrocloud deploy` can be run without requiring user authentication.
 
