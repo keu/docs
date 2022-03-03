@@ -26,9 +26,14 @@ If a new user joins your Organization without having first been invited to a Wor
 
 For more information about adding new users to your Organization, see [Add a User](add-user.md).
 
+### Additional Improvements
+
+- The usage threshold for bars in the **Worker CPU** and **Worker Memory** charts to appear red has been reduced from 95% to 90%.
+
 ### Bug Fixes
 
 - Fixed an issue where malformed URLs prevented users from accessing the Airflow UI for Deployments
+- Fixed an issue where Astro Runtime 4.0.11 wasn't a selectable Runtime version in the Cloud UI
 
 ## February 24, 2022
 
