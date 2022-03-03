@@ -22,7 +22,7 @@ To create an Astro project, you need:
 
 ## Step 1: Create an Astro project
 
-To create a new Astro project, follow the steps below.
+To create a new Astro project:
 
 1. Create a new directory for your Astro project:
 
