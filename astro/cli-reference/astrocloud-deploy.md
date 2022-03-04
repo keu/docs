@@ -27,7 +27,7 @@ astrocloud deploy <options>
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | `<deployment-id>`         | Specify the Deployment to deploy to, bypass Deployment selection prompt                                                                             | Any valid Deployment ID           |
 | `-e`,`--env`              | Location of the file containing environment variables for Pytests. By default, this is `.env`.                                 | Any valid filepath to an `.env` file     |
-| `-f`,`--force`            | Force the deploy even if your Astro project contains uncommitted changes or fails tests                                                                | ``                                       |
+| `-f`,`--force`            | Force deploy even if your project contains errors or uncommitted changes                                                               | ``                                       |
 | `p`,`--prompt`            | Force the Deployment selection prompt even if a Deployment ID is specified                           | ``                                       |
 | `--pytest`                | Deploy code to Astro only if the specified Pytests are passed                                                     | ``                                       |
 | `s`,`--save`              | Save the current Deployment and working directory combination for future deploys                                              | ``                                       |
