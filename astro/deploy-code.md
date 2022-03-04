@@ -46,16 +46,15 @@ To deploy your DAGs, run:
 astrocloud deploy
 ```
 
-This command returns a list of Airflow Deployments available in your Workspace and prompts you to pick one.
+This command returns a list of Deployments available in your Workspace and prompts you to pick one.
 
-After selecting a Deployment, the CLI runs several unit tests to ensure that your DAGs don't contain basic errors. If any of these test fail, the deploy also fails.  
+After you select a Deployment, the CLI parses your DAGs to ensure that they don't contain basic syntax and import errors. These tests are equivalent to those that run on `astro dev parse` in a local Airflow environment. If any of your DAGs fail this parse, the deploy to Astro will also fail.
 
-If your code passes the unit tests, the CLI builds your Astro project directory into a new Docker image pushes this image to Astro.
+If your code passes the parse, the CLI builds your Astro project directory into a new Docker image pushes this image to Astro.
 
 :::tip
 
-To force a deploy even if your project fails unit tests, you can run `astrocloud deploy --force`.
-
+To force a deploy even if your project has DAG errors, you can run `astrocloud deploy --force`.
 :::
 
 ## Step 3: Validate Your Changes

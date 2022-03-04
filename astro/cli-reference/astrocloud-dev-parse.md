@@ -7,9 +7,7 @@ description: Reference documentation for astrocloud dev parse.
 
 ## Description
 
-Run several tests on your project code. These tests call all declared OS-level variables, Airflow Connections, and Airflow Variables to check whether each of those objects has a value.
-
-Additionally, this command runs prebuilt unit tests on your Astro project using Pytest. These unit tests are the same ones that are included by default with your project as described in [Run Tests with Pytest](test-and-troubleshoot-locally.md#run-tests-with-pytest).
+Parse the DAGs in a locally hosted Astro project. For more information on testing DAGs locally, read [Run Tests with the Astro CLI](test-and-troubleshoot-locally.md#run-tests-with-the-astro-cli).
 
 ## Usage
 
@@ -21,7 +19,7 @@ astrocloud dev parse
 
 | Option              | Description                                                                                   | Possible Values                                 |
 | ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `-e`, `--env`       | The filepath to your environment variables. The default is `.env`)                            | Any valid filepath within your Astro project    |
+| `-e`, `--env`       | The filepath to your environment variables. (The default is `.env`)                            | Any valid filepath within your Astro project    |
 
 ## Examples
 

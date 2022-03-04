@@ -7,12 +7,12 @@ description: Reference documentation for astrocloud deployment update.
 
 ## Description
 
-Update the configuration for a Deployment on Astro. This command is functionally identical to using the **Edit Configuration** button in the Cloud UI.
+Update the configuration for a Deployment on Astro. This command is functionally identical to modifying a Deployment in the Cloud UI via the **Edit Configuration** button.
 
 ## Usage
 
 ```sh
-astrocloud deployment <deployment-id> <flags>
+astrocloud deployment update <deployment-id> <flags>
 ```
 
 ## Options

@@ -7,13 +7,13 @@ description: Reference documentation for astrocloud deploy.
 
 ## Description
 
-[Deploy your Astro project](deploy-code.md).
+[Deploy code](deploy-code.md) to a Deployment on Astro.
 
-When you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also get the Deployment's ID by running `astrocloud deployment list`.
+This command bundles all files in your Astro project and pushes them to Astro. Before completing the process, it runs several tests against all DAGs in your Astro project. If any of the tests fail, the deploy to Astro will also fail. These are the same tests which run locally with `astrocloud dev parse`.
 
-This command runs several tests on your project before deploying it. If any of the tests fail, the deploy will fail. These tests are the same tests which run during `astrocloud dev parse`.
+When you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. To bypass this prompt, you can also specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find a Deployment's ID by running `astrocloud deployment list`.
 
-For teams operating at scale, this command can be automated via a [CI/CD pipeline](ci-cd.md) by using [Deployment API keys](api-keys.md) in the request. When `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` are specified as OS-level environment variables on your local machine or in a CI tool, `astrocloud deploy` can be run without requiring user authentication.
+For teams operating at scale, this command can be automated via a [CI/CD pipeline](ci-cd.md) by using [Deployment API keys](api-keys.md) in the request. When `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` are specified as OS-level environment variables on your local machine or in a CI tool, `astrocloud deploy <deployment-id>` can be run without requiring user authentication.
 
 ## Usage
 
@@ -25,7 +25,7 @@ astrocloud deploy <options>
 
 | Option                    | Description                                                                                                       | Possible Values                          |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| `<deployment-id>`         | Specify the Deployment to deploy to                                                                              | Any valid Deployment ID           |
+| `<deployment-id>`         | Specify the Deployment to deploy to, bypass Deployment selection prompt                                                                             | Any valid Deployment ID           |
 | `-e`,`--env`              | Location of the file containing environment variables for Pytests. By default, this is `.env`.                                 | Any valid filepath to an `.env` file     |
 | `-f`,`--force`            | Force the deploy even if your Astro project contains uncommitted changes or fails tests                                                                | ``                                       |
 | `p`,`--prompt`            | Force the Deployment selection prompt even if a Deployment ID is specified                           | ``                                       |
