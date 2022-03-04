@@ -14,7 +14,18 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest Runtime Version**: 4.1.0 ([Release notes](runtime-release-notes.md))
 
-**Latest CLI Version**: 1.2.0 ([Release notes](cli-release-notes.md))
+**Latest CLI Version**: 1.3.0 ([Release notes](cli-release-notes.md))
+
+## March 3, 2022
+
+### Additional Improvements
+
+- The usage threshold for bars in the **Worker CPU** and **Worker Memory** charts to appear red has been reduced from 95% to 90%. This is to make sure that you get an earlier warning if your Workers are close to hitting their resource limits.
+
+### Bug Fixes
+
+- Fixed an issue where malformed URLs prevented users from accessing the Airflow UI for Deployments
+- Fixed an issue where Astro Runtime 4.0.11 wasn't a selectable Runtime version in the Cloud UI
 
 ## February 24, 2022
 

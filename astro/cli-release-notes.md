@@ -11,6 +11,43 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
+## v1.3.0
+
+Release date: March 3, 2022
+
+### New Command to Parse DAGs for Errors
+
+`astrocloud dev parse` is a new Astro CLI command that allows you to run a basic test against your Astro project to ensure that essential aspects of your code are properly formatted.
+
+This includes the DAG integrity test that is run with `astro dev pytest` which checks that your DAGs will run on the Airflow Webserver.
+
+We recommend using `astrocloud dev parse` to quickly test your DAGs for basic errors before running `astrocloud dev start`. For more complex or custom testing, we recommend using `astrocloud dev pytest`.
+
+### `astrocloud deploy` Parses DAGs by Default
+
+
+To better protect your Deployments from unexpected errors, `astrocloud deploy` now automatically applies tests from `astrocloud dev parse` to your Astro project before completing the deploy process. If any of these tests fail, the CLI will not push your code to Astro.
+
+:::danger Breaking Change
+
+`astrocloud deploy` will no longer push code Deployments running Astro Runtime 4.1.0+ if your DAGs contain basic errors. If any of your Astro projects contain these errors, then certain deploys might stop working after you upgrade the CLI to 1.3.0.
+
+To maintain the CLI's original behavior, use `astrocloud deploy --force` to force a deploy even if your Astro project might contain errors.
+
+:::
+
+### New Command to Update Deployment Configurations
+
+You can now use `astrocloud deployment update` to update certain configurations for an existing Deployment on Astro directly from the Astro CLI. The configurations that you can update include:
+
+- Deployment name
+- Deployment description
+- Scheduler resources
+- Scheduler replicas
+- Worker resources
+
+This is the same set of configurations that you can modify via the **Edit Configuration** view in the Cloud UI. For more information on modifying a Deployment, see [Configure a Deployment](configure-deployment.md). For more information on this command, see [CLI Command Reference](cli-reference.md).
+
 ## v1.2.0
 
 Release date: February 25, 2022
@@ -45,7 +82,7 @@ These tests don't require a fully functional Airflow environment in order to exe
 
 In addition to running tests locally, you can also run pytest as part of the Astro deploy process. To do so, specify the `--pytest` flag when running `astrocloud deploy`. This ensures that your code push to Astro automatically fails if any DAGs do not pass all pytests specified in the `tests` directory of your Astro project. For more information, see [Test DAGs Locally with pytest](test-and-troubleshoot-locally.md#test-dags-locally-with-pytest).
 
-### New Command to view Deployment Scheduler Logs
+### New Command to View Deployment Scheduler Logs
 
 If you prefer to troubleshoot DAGs and monitor your Deployments from the command line, you can now run `astrocloud deployment logs`, a new Astro CLI command that allows you to view the same Scheduler logs that appear in the **Logs** tab of the Cloud UI.
 
