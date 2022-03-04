@@ -17,9 +17,9 @@ Release date: March 3, 2022
 
 ### New Command to Parse DAGs for Errors
 
-`astrocloud dev parse` is a new Astro CLI command that allows you to run a set of basic tests against your Astro project to ensure that essential aspects of your code are properly formatted.
+`astrocloud dev parse` is a new Astro CLI command that allows you to run a basic test against your Astro project to ensure that essential aspects of your code are properly formatted.
 
-This includes the DAG integrity test that is run with `astro dev pytest`, as well as checks to ensure that your DAGs will run on the Airflow Webserver.
+This includes the DAG integrity test that is run with `astro dev pytest` which checks that your DAGs will run on the Airflow Webserver.
 
 We recommend using `astrocloud dev parse` to quickly test your DAGs for basic errors before running `astrocloud dev start`. For more complex or custom testing, we recommend using `astrocloud dev pytest`.
 
