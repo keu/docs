@@ -52,6 +52,10 @@ $ astrocloud deploy <your-deployment-id>
 
 The following section provides basic templates for configuring individual CI pipelines using popular CI/CD tools. Each template can be implemented as-is to produce a simple CI/CD pipeline, but we recommend reconfiguring the templates to work with your own directory structures, workflows, and best practices. More templates are coming soon.
 
+:::info
+
+The following pipeline templates assume that you always want to use the latest version of the Astro CLI for deploying your code. If you want to
+
 ### GitHub Actions
 
 To automate code deploys to a Deployment using [GitHub Actions](https://github.com/features/actions), complete the following setup in a Git-based repository that hosts an Astro project:
@@ -93,7 +97,14 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
 
 To automate code deploys to a single Deployment using [Jenkins](https://www.jenkins.io/), complete the following setup in a Git-based repository hosting an Astronomer project:
 
-1. At the root of your Git repository, add a [Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) that includes the following script:
+1. In your Git repository, configure the following environment variables:
+
+    - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
+    - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret
+
+    Be sure to set the values for your API credentials as secret.
+
+2. At the root of your Git repository, add a [Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) that includes the following script, making sure to replace `<deployment-id>` with your own Deployment ID:
 
     ```
     pipeline {
@@ -107,8 +118,8 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
            }
            steps {
              script {
-               sh "chmod +x -R ${env.WORKSPACE}"
-               sh('./build.sh')
+               brew install astronomer/cloud/astrocloud
+               astrocloud deploy <deployment-id>
              }
            }
          }
@@ -122,20 +133,3 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
     ```
 
     This Jenkinsfile triggers a code push to Astro every time a commit or pull request is merged to the `main` branch of your repository.
-
-2. In your Git repository, configure the following environment variables:
-
-    - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
-    - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret
-    - `DEPLOYMENT_ID`: Your Deployment ID
-
-    Be sure to set the values for your API credentials as secret.
-
-3. At the root of your Git repository, create a file called `build.sh` and add the following to it:
-
-    ```sh
-    # Install the latest version of the Astro CLI
-    brew install astronomer/cloud/astrocloud
-    # Deploy to Astro
-    astrocloud deploy <deployment-id>
-    ```
