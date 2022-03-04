@@ -33,7 +33,7 @@ To run your Astro project locally, run the following command:
 astrocloud dev start
 ```
 
-This command builds your project and spins up 3 Docker containers on your machine, each for a different Airflow component:
+This command builds your project and spins up 4 Docker containers on your machine, each for a different Airflow component:
 
 - **Postgres:** Airflow's metadata database
 - **Webserver:** The Airflow component responsible for rendering the Airflow UI
@@ -324,7 +324,11 @@ env
 
 This should output all Environment Variables that are running locally, some of which are set by you and some of which are set by Astronomer by default.
 
-> **Note:** You can also run `cat airflow.cfg` to output _all_ contents in that file.
+:::tip
+
+You can also run `cat airflow.cfg` to output _all_ contents in that file.
+
+:::
 
 ### Use multiple .env files
 

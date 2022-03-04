@@ -22,28 +22,42 @@ To create an Astro project, you need:
 
 ## Step 1: Create an Astro project
 
-To create a new Astro project folder, open the directory where you installed the CLI and run:
-Astro
-```sh
-astrocloud dev init
-```
+To create a new Astro project:
 
-This command generates the following files in the directory:
+1. Create a new directory for your Astro project:
 
-```
-.
-├── dags # Where your DAGs go
-│   └── example-dag.py # An example DAG that comes with the initialized project
-├── Dockerfile # For the Astro Runtime Docker image, environment variables, and overrides
-├── include # For any other files you'd like to include
-├── plugins # For any custom or community Airflow plugins
-├── tests # For any DAG unit test files to be run with pytest
-├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
-├── packages.txt # For OS-level packages
-└── requirements.txt # For Python packages
-```
+    ```sh
+    mkdir <your-astro-project-name>
+    ```
 
-This set of files will build into a Docker image that you can both run on your local machine and deploy to Astro.
+2. Open the directory:
+
+    ```sh
+    cd <your-astro-project-name>
+    ```
+
+3. Run the following Astro CLI command to initialize an Astro project in the directory:
+
+    ```sh
+    astrocloud dev init
+    ```
+
+    This command generates the following files in the directory:
+
+    ```
+    .
+    ├── dags # Where your DAGs go
+    │   └── example-dag.py # An example DAG that comes with the initialized project
+    ├── Dockerfile # For the Astro Runtime Docker image, environment variables, and overrides
+    ├── include # For any other files you'd like to include
+    ├── plugins # For any custom or community Airflow plugins
+    ├── tests # For any DAG unit test files to be run with pytest
+    ├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
+    ├── packages.txt # For OS-level packages
+    └── requirements.txt # For Python packages
+    ```
+
+    This set of files will build into a Docker image that you can both run on your local machine and deploy to Astro.
 
 ### Astro Runtime
 
@@ -114,4 +128,7 @@ After logging in, you should see the DAGs from your `dags` directory in the Airf
 
 ## Next Steps
 
-Running your project locally is the best way to test your DAGs before pushing them to Astro. For more information on running a local Airflow environment, read [Test and Troubleshoot](test-and-troubleshoot-locally.md#run-a-project-locally).
+Running your project locally is the best way to test your DAGs before pushing them to Astro. For more information on running a local Airflow environment, read:
+
+- [Develop your Astro Project](develop-project.md)
+- [Test and Troubleshoot Locally](test-and-troubleshoot-locally.md#run-a-project-locally)

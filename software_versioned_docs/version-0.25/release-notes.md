@@ -19,6 +19,7 @@ Release date: February 23, 2021
 ### Additional improvements
 
 - Fixed several CVEs
+- Updated documentation links in the UI to point to Software documentation
 
 ## 0.25.12
 
