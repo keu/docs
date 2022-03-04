@@ -52,10 +52,6 @@ $ astrocloud deploy <your-deployment-id>
 
 The following section provides basic templates for configuring individual CI pipelines using popular CI/CD tools. Each template can be implemented as-is to produce a simple CI/CD pipeline, but we recommend reconfiguring the templates to work with your own directory structures, workflows, and best practices. More templates are coming soon.
 
-:::info
-
-The following pipeline templates assume that you always want to use the latest version of the Astro CLI for deploying your code. If you want to
-
 ### GitHub Actions
 
 To automate code deploys to a Deployment using [GitHub Actions](https://github.com/features/actions), complete the following setup in a Git-based repository that hosts an Astro project:
