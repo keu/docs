@@ -20,7 +20,7 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ### Additional Improvements
 
-- The usage threshold for bars in the **Worker CPU** and **Worker Memory** charts to appear red has been reduced from 95% to 90%.
+- The usage threshold for bars in the **Worker CPU** and **Worker Memory** charts to appear red has been reduced from 95% to 90%. This is to make sure that you get an earlier warning if your Workers are close to hitting their resource limits.
 
 ### Bug Fixes
 
