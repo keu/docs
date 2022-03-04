@@ -72,7 +72,7 @@ Depending on the change you're making to your Astro project, you might have to r
 
 ### DAG Code Changes
 
-All changes made to the following files will be live in your local Airflow environment as soon as you save them to your code editor:
+All changes made to files in the following directories will be live in your local Airflow environment as soon as you save them to your code editor:
 
 - `dags`
 - `plugins`
