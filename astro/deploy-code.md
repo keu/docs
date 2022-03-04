@@ -48,7 +48,7 @@ astrocloud deploy
 
 This command returns a list of Deployments available in your Workspace and prompts you to pick one.
 
-After you select a Deployment, the CLI parses your DAGs to ensure that they don't contain basic syntax and import errors. These tests are equivalent to those that run on `astro dev parse` in a local Airflow environment. If any of your DAGs fail this parse, the deploy to Astro will also fail.
+After you select a Deployment, the CLI parses your DAGs to ensure that they don't contain basic syntax and import errors. This test is equivalent to the one that runs during `astrocloud dev parse` in a local Airflow environment. If any of your DAGs fail this parse, the deploy to Astro will also fail.
 
 If your code passes the parse, the CLI builds your Astro project directory into a new Docker image pushes this image to Astro.
 

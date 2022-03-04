@@ -9,7 +9,7 @@ description: Reference documentation for astrocloud deploy.
 
 [Deploy code](deploy-code.md) to a Deployment on Astro.
 
-This command bundles all files in your Astro project and pushes them to Astro. Before completing the process, it runs several tests against all DAGs in your Astro project. If any of the tests fail, the deploy to Astro will also fail. These are the same tests which run locally with `astrocloud dev parse`.
+This command bundles all files in your Astro project and pushes them to Astro. Before completing the process, it tests your DAGs in your Astro project for errors. If this test fails, the deploy to Astro will also fail. This is the same test which runs locally with `astrocloud dev parse`.
 
 When you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. To bypass this prompt, you can also specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find a Deployment's ID by running `astrocloud deployment list`.
 

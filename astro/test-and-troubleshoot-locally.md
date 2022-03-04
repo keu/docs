@@ -99,7 +99,7 @@ To perform unit tests on your Astro project, you can run:
 astrocloud dev pytest
 ```
 
-This command runs all tests in your project's `tests` directory with [pytest](https://docs.pytest.org/en/7.0.x/index.html#). These tests are run locally against all DAGs in your Astro project and are optimized to catch code-level errors that may not be easily detectable otherwise.
+This command runs all tests in your project's `tests` directory with [pytest](https://docs.pytest.org/en/7.0.x/index.html#). With pytest, you can test custom Python code and operators locally without having to start a local Airflow environment.
 
 By default, the `tests` directory in your Astro project includes a default DAG integrity test called `test_dag_integrity.py`. This test checks that:
 
