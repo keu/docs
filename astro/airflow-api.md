@@ -1,8 +1,8 @@
 ---
-title: 'Make Requests to the Apache Airflow API'
-sidebar_label: 'Airflow API'
+title: 'Make Requests to the Airflow REST API'
+sidebar_label: 'Airflow REST API'
 id: airflow-api
-description: Make requests to Apache Airflow's REST API with Deployment API Keys on Astro.
+description: Make requests to the Airflow REST API with Astro Deployment API Keys.
 ---
 
 ## Overview
@@ -15,17 +15,18 @@ If you're looking to externally trigger DAG runs without needing to access your 
 
 To make an Airflow API request, you need:
 
-- A Deployment on Astro
-- [cURL](https://curl.se/)
+- A [Deployment API key](api-keys.md).
+- A Deployment on Astro.
+- [cURL](https://curl.se/).
 
 ## Step 1: Retrieve an Access Token and Deployment URL
 
-All Airflow API calls require the following two values:
+All Airflow API calls require:
 
-- An access token
-- A Deployment URL
+- An Astro access token.
+- A Deployment URL.
 
-To retrieve an access token, [create a Deployment API key](api-keys.md#create-an-api-key) on Astro and run the following API request:
+To retrieve an Astro access token, run the following API request with your Deployment API key ID and secret:
 
 ```sh
 curl --location --request POST "https://auth.astronomer.io/oauth/token" \
@@ -43,7 +44,7 @@ To avoid manually refreshing tokens, we recommend adding a step that retrieves a
 
 :::info
 
-If you need to call the Airflow API only once, you can retrieve a single 24-hour access token at `https://cloud.astronomer.io/token`.
+If you need to call the Airflow API only once, you can retrieve a single 24-hour access token at `https://cloud.astronomer.io/token` in the Cloud UI.
 
 :::
 

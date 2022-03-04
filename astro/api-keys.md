@@ -43,11 +43,11 @@ If you just need to make a single API call, you can use a temporary user authent
 
 ## Using Deployment API Keys
 
-API keys are primarily used for automating code deploys via CI/CD. They allow you to bypass the login step of the Astro CLI deploy workflow, meaning that you can deploy code without any manual CLI inputs.
+Deployment API keys are primarily used to automate actions that otherwise require manual inputs. They allow you to:
 
-When you run `astrocloud deploy <deployment-id>`, the Astro CLI looks for your API key in the form of OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`. If the CLI can access these variables, then it can automatically push code to a Deployment by using your API key to authenticate. For examples of how to use Deployment API keys in CI/CD pipelines, see [CI/CD Templates](ci-cd.md#cicd-templates).
-
-You can also use Deployment API keys programmatically update Airflow using Airflow's stable REST API. For more information, see [Airflow API](airflow-api.md). 
+- Deploy code to Astro [via CI/CD](ci-cd.md) with tools such as GitHub Actions or Jenkins.
+- Deploy code to Astro [via the Astro CLI](deploy-code.md) without user authentication.
+- Automate requests to the [Airflow REST API](airflow-api.md).
 
 ## Delete an API Key
 
@@ -65,3 +65,12 @@ To delete a Deployment API Key:
     <div class="text--center">
       <img src="/img/docs/delete-api-key.png" alt="Delete API Key button" />
     </div>
+
+
+## Next Steps
+
+For more information about how to use API keys, see:
+
+- [CI/CD](ci-cd.md)
+- [Deploy Code](deploy-code.md)
+- [Airflow API](airflow-api.md)

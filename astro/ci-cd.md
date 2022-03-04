@@ -20,9 +20,9 @@ This guide provides setup steps for configuring a CI/CD pipeline to deploy DAGs 
 To set up CI/CD for a given Deployment, you need:
 
 - A [Deployment API key ID and secret](api-keys.md)
-- A Deployment ID. To find this, open your Deployment in the Cloud UI and copy the unique string at the end of the URL (e.g. `cktogz2eg847343yzo9pru1b0d` is the ID in `https://cloud.astronomer.io/<workspaceId>/deployments/cktogz2eg847343yzo9pru1b0d`). You can also find this value by running `astrocloud deployment list` via the Astro CLI.
+- A Deployment ID. To find this, open your Deployment in the Cloud UI and copy the unique string at the end of the URL. For example, `cktogz2eg847343yzo9pru1b0d` is the Deployment ID in `https://cloud.astronomer.io/<workspace-ID>/deployments/cktogz2eg847343yzo9pru1b0d`. You can also find this value by running `astrocloud deployment list` via the Astro CLI.
 - A CI/CD management tool, such as [GitHub Actions](https://docs.github.com/en/actions).
-- An Astro project directory that was [initialized via the Astro CLI](deploy-code.md) and is hosted in a place that your CI/CD tool can access.
+- An [Astro project](create-project.md) that is hosted in a place that your CI/CD tool can access.
 
 ## CI/CD Templates
 
@@ -30,9 +30,9 @@ The following section provides basic templates for configuring individual CI pip
 
 At a high level, these CI/CD pipelines will:
 
-1. Access Deployment API key credentials. These credentials must be set as OS-level environment variables called `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`. This can be done on your local machine or within your CI/CD tool of choice.
-2. Install the Astro CLI
-3. Build your Astro project into a Docker image, authenticate to Astro using your Deployment API key, and push the image to your Deployment.
+1. Access Deployment API key credentials. These credentials must be set as OS-level environment variables called `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
+2. Install the latest version of the Astro CLI.
+3. Run `astrocloud deploy`. This builds your Astro project into a Docker image, authenticates to Astro using your Deployment API key, and pushes the image to your Deployment.
 
 This workflow is equivalent to the following bash script:
 
@@ -84,7 +84,7 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
         uses: actions/checkout@v2.3.4
         - name: Deploy to Astro
         run: |
-          brew install astronomer/cloud/astrocloud@1.2.0
+          brew install astronomer/cloud/astrocloud
           astrocloud deploy <deployment-id>
     ```
 
@@ -127,7 +127,6 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
 
     - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
     - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret
-    - `ORGANIZATION_ID`: Your Organization ID
     - `DEPLOYMENT_ID`: Your Deployment ID
 
     Be sure to set the values for your API credentials as secret.
@@ -135,10 +134,8 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
 3. At the root of your Git repository, create a file called `build.sh` and add the following to it:
 
     ```sh
-    # Create time stamp
-    TAG=deploy-`date "+%Y-%m-%d-%HT%M-%S"`
-    # Install the Astro CLI
-    brew install astronomer/cloud/astrocloud@1.2.0
+    # Install the latest version of the Astro CLI
+    brew install astronomer/cloud/astrocloud
     # Deploy to Astro
     astrocloud deploy <deployment-id>
     ```
