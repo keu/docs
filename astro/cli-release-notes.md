@@ -15,29 +15,30 @@ If you have any questions or a bug to report, don't hesitate to reach out to us 
 
 Release date: March 3, 2022
 
-### New Command to Quickly Parse DAGs Before Deployment
+### New Command to Parse DAGs for Errors
 
-You can now use `astrocloud dev parse` to catch errors caused by missing OS Variables, Airflow Connections, and Airflow Variables in your DAGs,
+`astrocloud dev parse` is a new Astro CLI command that allows you to run a set of basic tests against your Astro project to ensure that essential aspects of your code are properly formatted.
 
-When you run this command, the CLI runs several quick tests to ensure that your DAG code doesn't call any missing values. This includes calling all OS-level variables, Airflow Connections, and Airflow Variables to check whether each of those objects has a value. Additionally, this command runs prebuilt unit tests on your Astro project using Pytest. These unit tests are the same ones that are included by default with your project as described in [Test DAGs Locally with Pytest](test-and-troubleshoot-locally.md#test-dags-locally-with-pytest).
+This includes the DAG integrity test that is run with `astro dev pytest`, as well as checks to ensure that your DAGs will run on the Airflow Webserver.
 
-Generally speaking, `astrocloud dev parse` is a more robust but less customizable version of `astro dev pytest`. If don't have any specific test files that you want to run on your DAGs, then we recommend using `astrocloud dev parse` as your primary testing tool. 
+We recommend using `astrocloud dev parse` to quickly test your DAGs for basic errors before running `astrocloud dev start`. For more complex or custom testing, we recommend using `astrocloud dev pytest`.
 
 ### `astrocloud deploy` Parses DAGs by Default
 
+
+To better protect your Deployments from unexpected errors, `astrocloud deploy` now automatically applies tests from `astrocloud dev parse` to your Astro project before completing the deploy process. If any of these tests fail, the CLI will not push your code to Astro.
+
 :::danger Breaking Change
 
-`astrocloud deploy` no longer pushes code to your Deployment if the CLI detects basic errors in your DAGs. If any of your projects contain these errors, then certain deploys might stop working after you upgrade the CLI.
+`astrocloud deploy` will no longer push code Deployments running Astro Runtime 4.1.0+ if your DAGs contain basic errors. If any of your Astro projects contain these errors, then certain deploys might stop working after you upgrade the CLI to 1.3.0.
 
-To maintain the CLI's original behavior, use `astrocloud deploy --force` to force a deploy even if your project might contain errors.
+To maintain the CLI's original behavior, use `astrocloud deploy --force` to force a deploy even if your Astro project might contain errors.
 
 :::
 
-To better protect your Deployments from unexpected errors, `astrocloud deploy` now automatically applies tests from `astrocloud dev parse` to your Astro project before pushing new code to a Deployment. If any of these tests fail, the CLI will not push your code to Astro.
-
 ### New Command to Update Deployment Configurations
 
-You can now use `astrocloud deployment update` to update a Deployment's core configuration from your CLI terminal. The configurations that you can update include:
+You can now use `astrocloud deployment update` to update certain configurations for an existing Deployment on Astro directly from the Astro CLI. The configurations that you can update include:
 
 - Deployment name
 - Deployment description
@@ -45,7 +46,7 @@ You can now use `astrocloud deployment update` to update a Deployment's core con
 - Scheduler replicas
 - Worker resources
 
-These are the same configurations that you can set via the **Edit Configuration** button in the Cloud UI. For more information about these configurations, see [Configure a Deployment](configure-deployment.md).
+This is the same set of configurations that you can modify via the **Edit Configuration** view in the Cloud UI. For more information on modifying a Deployment, see [Configure a Deployment](configure-deployment.md). For more information on this command, see [CLI Command Reference](cli-reference.md).
 
 ## v1.2.0
 
