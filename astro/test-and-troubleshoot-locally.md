@@ -72,24 +72,43 @@ astrocloud dev run <airflow-cli-command>
 
 For example, the Apache Airflow command for viewing your entire configuration is `airflow config list`. To run this command with the Astro CLI, you would run `astrocloud dev run config list` instead.
 
-## Test DAGs Locally with Pytest
+## Run Tests with the Astro CLI
 
-To enhance the testing experience for data pipelines, Astro enables users to run DAG unit tests with [pytest](https://docs.pytest.org/en/7.0.x/index.html#), a testing framework for Python. These tests can be run locally against all DAGs in your Astro project and are optimized to catch code-level errors that may not be easily detectable otherwise.
+To enhance the testing experience for data pipelines, Astro enables users to run DAG unit tests with two different Astro CLI commands:
 
-By default, all Astro projects include a `tests` directory in which you can store custom tests. To start, all projects include one DAG integrity test called `test_dag_integrity.py` that was built by Astronomer. This test checks that:
+- `astrocloud dev parse`
+- `astrocloud dev pytest`
+
+### Parse DAGs
+
+To quickly parse your DAGs, you can run:
+
+```sh
+astrocloud dev parse
+```
+
+This command parses your DAGs to ensure that they don't contain any basic syntax or import errors and that they can successfully render in an Airflow Webserver.
+
+Generally speaking, `astrocloud dev parse` is a more convenient but less customizable version of `astro dev pytest`. If you don't have any specific test files that you want to run on your DAGs, then we recommend using `astrocloud dev parse` as your primary testing tool. For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-dev-parse.md).
+
+### Run Tests with Pytest
+
+To perform unit tests on your Astro project, you can run:
+
+```sh
+astrocloud dev pytest
+```
+
+This command runs all tests in your project's `tests` directory with [pytest](https://docs.pytest.org/en/7.0.x/index.html#). With pytest, you can test custom Python code and operators locally without having to start a local Airflow environment.
+
+By default, the `tests` directory in your Astro project includes a default DAG integrity test called `test_dag_integrity.py`. This test checks that:
 
 - All Airflow tasks have required arguments.
 - DAG IDs are unique across the Astro project.
 - DAGs have no cycles.
 - There are no general import or syntax errors.
 
-To run this default test and any others in your `tests` directory, run the following Astro CLI command:
-
-```sh
-astrocloud dev pytest
-```
-
-For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-dev-pytest.md).
+`astrocloud dev pytest` runs this default test alongside any other custom tests that you add to the `tests` directory. For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-dev-pytest.md).
 
 ## Hard Reset Your Local Environment
 
