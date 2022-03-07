@@ -48,10 +48,6 @@ $ brew install astronomer/cloud/astrocloud@1.2.0
 $ astrocloud deploy <your-deployment-id>
 ```
 
-## CI/CD Templates
-
-The following section provides basic templates for configuring individual CI pipelines using popular CI/CD tools. Each template can be implemented as-is to produce a simple CI/CD pipeline, but we recommend reconfiguring the templates to work with your own directory structures, workflows, and best practices. More templates are coming soon.
-
 :::info
 
 The following templates use `brew install` to install the latest version of the Astro CLI for every deploy. For a more stable CI/CD pipeline, you can install only a specific version of the CLI by tagging a specific version in the command: 
