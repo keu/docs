@@ -158,6 +158,7 @@ To do this:
     ├── helper_functions
     │   └── helper.py
     ├── include
+    ├── tests
     ├── packages.txt
     ├── plugins
     │   └── example-plugin.py
