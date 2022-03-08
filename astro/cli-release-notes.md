@@ -17,11 +17,11 @@ Release date: March 3, 2022
 
 ### New Command to Parse DAGs for Errors
 
-`astrocloud dev parse` is a new Astro CLI command that allows you to run a basic test against your Astro project to ensure that essential aspects of your code are properly formatted. This includes the DAG integrity test that is run with `astro dev pytest`, which checks that your DAGs are written properly enough to render in the Airflow UI.
+`astrocloud dev parse` is a new Astro CLI command that allows you to run a basic test against your Astro project to ensure that essential aspects of your code are properly formatted. This includes the DAG integrity test that is run with `astrocloud dev pytest`, which checks that your DAGs are able to to render in the Airflow UI.
 
-This command was built to replace the need to constantly run `astrocloud dev restart` during troubleshooting to see if your DAGs render in the Airflow UI. Now, you can quickly run `astro dev parse` and see import and syntax errors directly in your terminal without having to restart all Airflow services locally. For more complex testing, we still recommend using `astrocloud dev pytest`, which allows you to run other custom tests in your project.
+This command was built to replace the need to constantly run `astrocloud dev restart` during troubleshooting to see if your DAGs render in the Airflow UI. Now, you can quickly run `astrocloud dev parse` and see import and syntax errors directly in your terminal without having to restart all Airflow services locally. For more complex testing, we still recommend using `astrocloud dev pytest`, which allows you to run other custom tests in your project.
 
-For more information about `astro dev parse`, see the [CLI Command Reference](cli-reference/astrocloud-dev-parse.md). For more guidance on testing DAGs locally, see [Test DAGs Locally](test-and-troubleshoot-locally.md#test-dags-locally).
+For more information about `astrocloud dev parse`, see the [CLI Command Reference](cli-reference/astrocloud-dev-parse.md). For more guidance on testing DAGs locally, see [Test DAGs Locally](test-and-troubleshoot-locally.md#test-dags-locally).
 
 ### `astrocloud deploy` Parses DAGs by Default
 

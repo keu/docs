@@ -30,7 +30,7 @@ astrocloud dev parse
 
 This command parses your DAGs to ensure that they don't contain any basic syntax or import errors and that they can successfully render in the Airflow UI.
 
-Generally speaking, `astrocloud dev parse` is a more convenient but less customizable version of `astro dev pytest`. If you don't have any specific test files that you want to run on your DAGs, then we recommend using `astrocloud dev parse` as your primary testing tool. For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-dev-parse.md).
+Generally speaking, `astrocloud dev parse` is a more convenient but less customizable version of `astrocloud dev pytest`. If you don't have any specific test files that you want to run on your DAGs, then we recommend using `astrocloud dev parse` as your primary testing tool. For more information about this command, see the [CLI Command Reference](cli-reference/astrocloud-dev-parse.md).
 
 ### Run Tests with Pytest
 
