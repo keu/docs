@@ -11,16 +11,43 @@ The Python SDK simplifies the experience of using SQL for Python engineers worki
 
 ## Prerequisites
 
-To use the Python SDK, you must:
+To use the Python SDK, you must first install the Astro SDK as described in [Setup the Astro SDK](install-astro-sdk).
 
-- Install the Astro SDK as described in [Setup the Astro SDK](install-astro-sdk).
+To run the demo code in this guide on your own machine, you need:
+
+- The [Astro CLI](install-cli.md).
+- An [Astro project](create-project.md).
+- [Docker](https://www.docker.com/).
+
+### Demo Setup  
+
+The example DAGs in this project are based on a Postgres instance that is populated with the [pagila](https://dataedo.com/samples/html/Pagila/doc/Pagila_10/home.html) dataset. This is a standard open dataset provided by Postgres that has a number of movies, actors, and directors.
+
+To set up the pagila dataset on your local machine:
+
+1. Run the following Docker command:
+
+   ```sh
+   docker run --rm -it -p 5433:5432 pagila-test &
+   ```
+
+2. In your Astro project, create an Airflow connection to the dataset using the following command:
+
+    ```sh
+    astrocloud dev run airflow connections add 'postgres_conn_2' \
+        --conn-type 'postgresql' \
+        --conn-login 'postgres' \
+        --conn-password 'postgres' \
+        --conn-host 'localhost' \
+        --conn-port '5433'
+    ```
 
 ## Input and Output Tables
 
 Before you can complete any data transformations, you need to define input and output tables for Airflow. You can do this in either of the following ways:
 
 - Using an existing table, define `input_table` and `output_table` with `Table` or `TempTable` objects in the parameters of your DAG instantiations.
-- Load data from storage into a new table.
+- Load data from a storage system into a new table.
 
 ### The Table class
 
@@ -32,10 +59,12 @@ In the following example, your SQL table is defined in the DAG instantiation. In
 from astro import sql as aql
 from astro.sql.table import Table
 
+# Context is passed from the DAG instantiation
 @aql.transform
 def my_first_sql_transformation(input_table: Table):
     return "SELECT * FROM {{input_table}}"
 
+# Context is passed automatically via astro
 @aql.transform
 def my_second_sql_transformation(input_table_2: Table):
     return "SELECT * FROM {{input_table_2}}"
@@ -44,12 +73,12 @@ with dag:
     my_table = my_first_sql_transformation(
         input_table=Table(table_name="foo", database="bar", conn_id="postgres_conn")
     )
-    my_second_sql_transformation(my_table)
+    my_second_sql_transformation(input_table_2=my_table)
 ```
 
 ### The TempTable Class
 
-If you want to ensure that the output of your task is a table that can be deleted at any time for garbage collection, you can declare it as a nameless `TempTable`. This places the output into your `temp` schema, which can be later bulk deleted. By default, all `aql.transform` functions will output to TempTables unless a `Table` object is used in the `output_table` argument.
+If you want to ensure that the output of your task is a table that can be deleted at any time for garbage collection, you can declare it as a nameless `TempTable`. This places the output into your `temp` schema, which can be later bulk deleted. By default, all `aql.transform` functions will output to a `TempTable` unless a `Table` object is used in the `output_table` argument.
 
 The following example DAG sets the `output_table` to a nameless `TempTable`, meaning that any output from this DAG will be deleted once the DAG completes. If you wanted to keep your output, you would simply update the parameter to instantiate a `Table` instead.
 
@@ -58,10 +87,12 @@ The following example DAG sets the `output_table` to a nameless `TempTable`, mea
 from astro import sql as aql
 from astro.sql.table import Table, TempTable
 
+# Context is passed from the DAG instantiation
 @aql.transform
 def my_first_sql_transformation(input_table: Table):
     return "SELECT * FROM {{input_table}}"
 
+# Context is passed automatically via astro
 @aql.transform
 def my_second_sql_transformation(input_table_2: Table):
     return "SELECT * FROM {{input_table_2}}"
@@ -73,7 +104,7 @@ with dag:
         # TempTable will not persist after DAG finishes
         output_table=TempTable(database="bar", conn_id="postgres_conn"),
     )
-    my_second_sql_transformation(my_table)
+    my_second_sql_transformation(input_table_2=my_table)
 ```
 
 ### Loading Data from Storage as a Table
@@ -87,7 +118,7 @@ from astro import sql as aql
 from astro.sql.table import Table
 
 with dag:
-
+    # Load a CSV directly into a new Table
     raw_orders = aql.load_file(
         path="s3://my/s3/path.csv",
         file_conn_id="my_s3_conn",
@@ -108,7 +139,6 @@ The `transform` function of the SQL decorator serves as the "T" of the ELT syste
 The following example DAG shows how you can quickly pass tables between tasks when completing a data transformation:
 
 ```python
-#
 @aql.transform
 def get_orders():
     ...
@@ -138,19 +168,22 @@ For security, users must explicitly identify tables in the function parameters b
 
 ### Transform File
 
-Instead of defining your SQL queries in your DAG code, you can use the `transform_file` function to pass an external SQL file to your DAG.
+Instead of defining your SQL queries in your DAG code, you can use the `transform_file` function to pass an external SQL file to your DAG. In the following example, we d
 
 ```python
 with self.dag:
     f = aql.transform_file(
-        sql=str(cwd) + "/my_sql_function.sql",
+        # Define input table
         conn_id="postgres_conn",
         database="pagila",
+        # Apply SQL query from a file to the input table
+        sql=str(cwd) + "/my_sql_function.sql",
         parameters={
             "actor": Table("actor"),
             "film_actor_join": Table("film_actor"),
             "unsafe_parameter": "G%%",
         },
+        # Load results into output table
         output_table=Table("my_table_from_file"),
     )
 ```
