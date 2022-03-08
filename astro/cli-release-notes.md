@@ -17,28 +17,29 @@ Release date: March 3, 2022
 
 ### New Command to Parse DAGs for Errors
 
-`astrocloud dev parse` is a new Astro CLI command that allows you to run a basic test against your Astro project to ensure that essential aspects of your code are properly formatted.
+`astrocloud dev parse` is a new Astro CLI command that allows you to run a basic test against your Astro project to ensure that essential aspects of your code are properly formatted. This includes the DAG integrity test that is run with `astrocloud dev pytest`, which checks that your DAGs are able to to render in the Airflow UI.
 
-This includes the DAG integrity test that is run with `astro dev pytest` which checks that your DAGs will run on the Airflow Webserver.
+This command was built to replace the need to constantly run `astrocloud dev restart` during troubleshooting to see if your DAGs render in the Airflow UI. Now, you can quickly run `astrocloud dev parse` and see import and syntax errors directly in your terminal without having to restart all Airflow services locally. For more complex testing, we still recommend using `astrocloud dev pytest`, which allows you to run other custom tests in your project.
 
-We recommend using `astrocloud dev parse` to quickly test your DAGs for basic errors before running `astrocloud dev start`. For more complex or custom testing, we recommend using `astrocloud dev pytest`.
+For more information about `astrocloud dev parse`, see the [CLI Command Reference](cli-reference/astrocloud-dev-parse.md). For more guidance on testing DAGs locally, see [Test DAGs Locally](test-and-troubleshoot-locally.md#test-dags-locally).
 
 ### `astrocloud deploy` Parses DAGs by Default
 
-
 To better protect your Deployments from unexpected errors, `astrocloud deploy` now automatically applies tests from `astrocloud dev parse` to your Astro project before completing the deploy process. If any of these tests fail, the CLI will not push your code to Astro.
+
+For more information about `astrocloud deploy`, see [CLI Command Reference](cli-reference/astrocloud-deploy.md).
 
 :::danger Breaking Change
 
-`astrocloud deploy` will no longer push code Deployments running Astro Runtime 4.1.0+ if your DAGs contain basic errors. If any of your Astro projects contain these errors, then certain deploys might stop working after you upgrade the CLI to 1.3.0.
+For Deployments running Astro Runtime 4.1.0+, `astrocloud deploy` will no longer complete the code push to your Deployment if your DAGs contain basic errors. If any files in your Astro project contain these errors, then certain deploys might stop working after you upgrade the Astro CLI to v1.3.0.
 
-To maintain the CLI's original behavior, use `astrocloud deploy --force` to force a deploy even if your Astro project might contain errors.
+To maintain the CLI's original behavior, use `astrocloud deploy --force`. This command forces a deploy even if errors are detected in your DAGs.
 
 :::
 
 ### New Command to Update Deployment Configurations
 
-You can now use `astrocloud deployment update` to update certain configurations for an existing Deployment on Astro directly from the Astro CLI. The configurations that you can update include:
+You can now use `astrocloud deployment update` to update certain configurations for an existing Astro Deployment directly from the Astro CLI. The configurations that you can update are:
 
 - Deployment name
 - Deployment description
@@ -46,7 +47,7 @@ You can now use `astrocloud deployment update` to update certain configurations 
 - Scheduler replicas
 - Worker resources
 
-This is the same set of configurations that you can modify via the **Edit Configuration** view in the Cloud UI. For more information on modifying a Deployment, see [Configure a Deployment](configure-deployment.md). For more information on this command, see [CLI Command Reference](cli-reference.md).
+This is the same set of configurations that you can modify via the **Edit Configuration** view in the Cloud UI. For more information on modifying a Deployment, see [Configure a Deployment](configure-deployment.md). For more information on this command, see [CLI Command Reference](cli-reference/astrocloud-deployment-update.md).
 
 ## v1.2.0
 
@@ -56,10 +57,10 @@ Release date: February 25, 2022
 
 You can now use [Deployment API keys](api-keys.md) to run `astrocloud deploy` either from the CLI directly or via a CI/CD script. This update simplifies deploying code to Astro via CI/CD.
 
-With an existing Deployment API key, you can set `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` as OS-level environment variables. From there, you can now configure a CI/CD pipeline that does the following:
+With an existing Deployment API key, you can set `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` as OS-level environment variables. From there, you can now configure a CI/CD pipeline that:
 
-- Installs the Astro CLI
-- Runs `astrocloud deploy`
+- Installs the Astro CLI.
+- Runs `astrocloud deploy`.
 
 When `astrocloud deploy` is run, the CLI will now automatically look for and use the Deployment API key credentials that were set as environment variables to authorize and complete a code push.
 
