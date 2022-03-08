@@ -153,11 +153,14 @@ To do this:
     .
     ├── airflow_settings.yaml
     ├── dags
-    │   └── example-dag.py
+    │   └── example-dag-basic.py
+    │   └── example-dag-advanced.py
     ├── Dockerfile
     ├── helper_functions
     │   └── helper.py
     ├── include
+    ├── tests
+     │   └── test_dag_integrity.py
     ├── packages.txt
     ├── plugins
     │   └── example-plugin.py

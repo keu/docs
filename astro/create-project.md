@@ -47,11 +47,14 @@ To create a new Astro project:
     ```
     .
     ├── dags # Where your DAGs go
-    │   └── example-dag.py # An example DAG that comes with the initialized project
+    │   └── example-dag-basic.py # Example DAG that showcases a simple ETL data pipeline
+    |   └── example-dag-advanced.py # Example DAG that showcases more advanced Airflow features, such as the TaskFlow API
     ├── Dockerfile # For the Astro Runtime Docker image, environment variables, and overrides
     ├── include # For any other files you'd like to include
     ├── plugins # For any custom or community Airflow plugins
+    |   └── example-plugin.py
     ├── tests # For any DAG unit test files to be run with pytest
+    |   └── test_dag_integrity.py # Test that checks for basic errors in your DAGs
     ├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
     ├── packages.txt # For OS-level packages
     └── requirements.txt # For Python packages
@@ -81,7 +84,7 @@ This command builds your project and spins up 3 Docker containers on your machin
 - **Postgres:** Airflow's metadata database
 - **Webserver:** The Airflow component responsible for rendering the Airflow UI
 - **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
-- **Triggerer:** The Airflow component responsible for running Triggers and signaling tasks to resume when their conditions have been met. The Triggerer is used exclusively for tasks that are run with [deferrable operators](deferrable-operators.md).
+- **Triggerer:** The Airflow component responsible for running Triggers and signaling tasks to resume when their conditions have been met. The Triggerer is used exclusively for tasks that are run with [deferrable operators](deferrable-operators.md)
 
 As your project builds locally, you should see the following output:
 
@@ -99,12 +102,14 @@ Step 1/1 : FROM quay.io/astronomer/astro-runtime:${siteVariables.runtimeVersion}
 ---> 5160cfd00623
 Successfully built 5160cfd00623
 Successfully tagged astro-trial_705330/airflow:latest
-INFO[0000] [0/3] [postgres]: Starting
-INFO[0002] [1/3] [postgres]: Started
-INFO[0002] [1/3] [scheduler]: Starting
-INFO[0003] [2/3] [scheduler]: Started
-INFO[0003] [2/3] [webserver]: Starting
-INFO[0004] [3/3] [webserver]: Started
+INFO[0000] [0/4] [postgres]: Starting
+INFO[0002] [1/4] [postgres]: Started
+INFO[0002] [1/4] [scheduler]: Starting
+INFO[0003] [2/4] [scheduler]: Started
+INFO[0003] [2/4] [webserver]: Starting
+INFO[0004] [3/4] [webserver]: Started
+INFO[0003] [3/4] [triggerer]: Starting
+INFO[0004] [4/4] [triggerer]: Started
 Airflow Webserver: http://localhost:8080
 Postgres Database: localhost:5432/postgres
 The default credentials are admin:admin
