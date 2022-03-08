@@ -106,5 +106,4 @@ The following tables contain the exact lifecycle for each published version of A
 | 0.23             | January 20, 2021 | January 2022            |
 | 0.25             | May 11, 2021     | December 2022*          |
 
-
 > *Given the wide usage of Astronomer Software v0.25, Astronomer has extended the maintenance period for this version through December 2022.
