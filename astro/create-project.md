@@ -54,7 +54,7 @@ To create a new Astro project:
     ├── plugins # For any custom or community Airflow plugins
     |   └── example-plugin.py
     ├── tests # For any DAG unit test files to be run with pytest
-    |   └── test_dag_integrity.py
+    |   └── test_dag_integrity.py # Test that checks for basic errors in your DAGs
     ├── airflow_settings.yaml # For your Airflow Connections, Variables and Pools (local only)
     ├── packages.txt # For OS-level packages
     └── requirements.txt # For Python packages
