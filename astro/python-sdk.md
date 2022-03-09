@@ -174,8 +174,8 @@ with dag:
 
 The functions in this example use a templating system that's specific to the Python SDK:
 
-- Wrapping a value in single brackets (like `{customer_table}`) indicates the value needs to be rendered as a SQL table.
-- Wrapping a value in double brackets (like `{{ execution_date }}`) indicates that the value needs to be rendered as an Airflow jinja templates.
+- Wrapping a value in single brackets (like `{customer_table}`) indicates the value will be rendered as a SQL table.
+- Wrapping a value in double brackets (like `{{ execution_date }}`) indicates that the value will be rendered as an Airflow jinja template.
 
 Please note that the SQL expression should not be an F-string. F-strings in SQL formatting risk security breaches via SQL injections.
 
