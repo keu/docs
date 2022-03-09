@@ -33,6 +33,14 @@ module.exports = {
         'airflow-alerts',
         'kubernetespodoperator',
         'deferrable-operators',
+        {
+          type: 'category',
+          label: 'Astro SDK',
+          items: [
+            'install-astro-sdk',
+            'python-sdk',
+          ],
+        },
         'test-and-troubleshoot-locally',
       ],
     },

@@ -29,3 +29,7 @@ To begin using the Astro SDK:
     ```
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
     ```
+
+## Next Steps
+
+Once your environment is fully configured to use the Astro library, you can start writing DAGs using the [Python SDK](python-sdk.md).
