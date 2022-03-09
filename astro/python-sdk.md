@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'SQL SDK'
-title: 'Using the Astro SQL SDK'
+sidebar_label: 'Python SDK'
+title: 'Using the Astro Python SDK'
 id: python-sdk
 description: Learn how to use the Astro Python SDK.
 ---
