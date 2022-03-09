@@ -59,7 +59,7 @@ To instantiate a table or bring in a table from a database into the `astro` ecos
 
 In the following example, your SQL table is defined in the DAG instantiation. In each subsequent task, you only pass in an input table argument because `astro` automatically passes in the additional context from your original `input_table` parameter.
 
-```python
+```python {10-12}
 from astro import sql as aql
 from astro.sql.table import Table
 
@@ -81,7 +81,7 @@ If you want to ensure that the output of your task is a table that can be delete
 The following example DAG sets `output_table` to a nameless `TempTable`, meaning that any output from this DAG will be deleted once the DAG completes. If you wanted to keep your output, you would simply update the parameter to instantiate a `Table` instead.
 
 
-```python
+```python {18}
 from astro import sql as aql
 from astro.sql.table import Table, TempTable
 
@@ -110,7 +110,7 @@ You can load CSV or parquet data from either local, S3, or GCS storage into a SQ
 
 In the following example, data is loaded from S3 by specifying the path and connection ID for an S3 database using `aql.load_file`. The result of this load is stored in a `Table` that can be used as an input table in later transformations:
 
-```python
+```python {10-14}
 from astro import sql as aql
 from astro.sql.table import Table
 
@@ -199,7 +199,7 @@ To create a dataframe, you can pass a SQL table into the `adf` function. This fu
 
 In the following example, the `actor` SQL table is automatically passed  to `adf` as a dataframe:
 
-```python
+```python {14-16,22}
 import os
 from datetime import datetime, timedelta
 
@@ -265,7 +265,7 @@ In this example, your DAG should run the `test_astro` query first, followed by `
 
 To define a database context in a `.sql` file, you can use the `conn_id` and `database` frontmatter options. For example, the following frontmatter defines the database context for `test_astro.sql`:
 
-```SQL
+```SQL title="/dags/models/test_astro.sql" {1-4}
 ---
 conn_id: postgres_conn
 database: pagila
@@ -277,7 +277,7 @@ This context will be automatically passed to any downstream queries.
 
 To define a downstream query, specify the upstream table in the downstream query's frontmatter as an object in the `template_vars` frontmatter. For example, the following frontmatter would define the input table for `test_inheritance.sql` as the results of `test_astro.sql`:
 
-```sql
+```SQL title="/dags/models/test_inheritance.sql" {1-4}
 ---
 template_vars:
    my_astro_table: test_astro
@@ -287,7 +287,7 @@ SELECT * FROM my_astro_table;
 
 Because all database contexts and dependencies are defined in your `.sql` files, you only need to run `aql.render` once to execute your queries as successive Airflow tasks.
 
-```Python
+```Python title="/dags/astro_dag.py" {15}
 import os
 from datetime import datetime, timedelta
 
