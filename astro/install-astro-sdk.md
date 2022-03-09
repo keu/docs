@@ -17,7 +17,7 @@ While not an explicit requirement for using the Astro SDK, we recommend download
 
 ## Setup
 
-To begin using the Astro SDK:
+To start using the Astro SDK:
 
 1. Install the library in one of the following ways:
 
