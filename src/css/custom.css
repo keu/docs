@@ -349,7 +349,7 @@ html[data-theme="dark"] .DocSearch {
 
 .navbar-sidebar__brand {
   background-image: linear-gradient(
-    to right,
+    to left,
     var(--black),
     #2e1f51 80%
   );
