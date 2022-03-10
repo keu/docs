@@ -24,11 +24,23 @@ To start using the Astro SDK:
     - Run `pip install astro-projects`.
     - Add `astro-projects` to the `requirements.txt` file of an Astro project.
 
-2. Set the following environment variable either in the `.env` of your Astro project or in a Deployment on Astro:  
+2. Set the following environment variable in a way that's accessible to your project:  
 
     ```
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
     ```
+
+### Set a Temporary Schema
+
+When processing SQL-based DAGs, Astro creates temporary tables so that SQL table outputs can be inherited by other tasks and inspected for data quality.
+
+To better manage the cleanup of these tables, Astro stores all of these tables in a temporary schema that a database admin can delete with a single command. By default, the name of the temporary schema is “tmp_astro”.
+
+You can change the name of this schema to match the needs of your Airflow application. To do so, set the following environment variable:
+
+```text
+AIRFLOW__ASTRO__SQL_SCHEMA="<schema-name>"
+```
 
 ## Next Steps
 
