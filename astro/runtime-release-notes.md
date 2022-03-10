@@ -11,6 +11,21 @@ Astro Runtime is a Docker image built and published by Astronomer that extends t
 
 For instructions on how to upgrade, read [Upgrade Astro Runtime](upgrade-runtime.md). For general product release notes, go to [Astro Release Notes](release-notes.md). If you have any questions or a bug to report, reach out to [Astronomer Support](https://support.astronomer.io).
 
+## Astro Runtime 4.2.0
+
+- Release date: March 10, 2022
+- Airflow version: 2.2.4
+
+### New Astronomer Providers Package
+
+The `astronomer-providers` package is now installed on Astro Runtime by default. This package is an open source collection of Airflow providers and modules that is maintained by Astronomer. It includes deferrable versions of popular operators such as `ExternalTaskSensor`, `DatabricksRunNowOperator`, and `SnowflakeOperator`.
+
+For more information, see [Deferrable Operators](deferrable-operators.md). To access the source code of this package, see the [Astronomer Providers GitHub Repo](https://github.com/astronomer/astronomer-providers).
+
+### Additional Improvements
+
+- Bump the [`openlineage-airflow` provider package](https://openlineage.io/integration/apache-airflow/) to `v0.6.1`
+
 ## Astro Runtime 4.1.0
 
 - Release date: February 22, 2022
