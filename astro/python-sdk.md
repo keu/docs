@@ -106,7 +106,7 @@ with dag:
 
 ### Loading Data from Storage as a Table
 
-You can load CSV or parquet data from either local, S3, or GCS storage into a SQL database with the `load_file` function. The result of this function can be used as an input table in your DAG.
+You can a variety of data sources from either local, S3, or GCS storage into a SQL database with the `load_file` function. The result of this function can be used as an input table in your DAG. For a full list of supported file locations and file types, see the [Astro README](https://github.com/astro-projects/astro#supported-technologies).
 
 In the following example, data is loaded from S3 by specifying the path and connection ID for an S3 database using `aql.load_file`. The result of this load is stored in a `Table` that can be used as an input table in later transformations:
 
@@ -195,9 +195,9 @@ def drop_table(table_to_drop):
 
 ## Creating Dataframes
 
-To create a dataframe, you can pass a SQL table into the `adf` function. This function converts SQL tables into dataframes without any additional configuration, meaning that you can automatically finish your data processing in a Pythonic context.
+To create a dataframe, you can pass a SQL table into the `aql.dataframe` function. This function converts SQL tables into dataframes without any additional configuration, meaning that you can automatically finish your data processing in a Pythonic context.
 
-In the following example, the `actor` SQL table is automatically passed  to `adf` as a dataframe:
+In the following example, the `actor` SQL table is automatically passed  to `aql.dataframe` as a dataframe:
 
 ```python {14-16,22}
 import os
@@ -206,14 +206,14 @@ from datetime import datetime, timedelta
 from airflow.models import DAG
 
 from astro import sql as aql
-from astro.dataframe import dataframe as adf
+from astro.dataframe import dataframe
 import pandas as pd
 
 dag = DAG(
    ...
 )
 
-@adf
+@aql.dataframe
 def my_dataframe_func(df: pd.DataFrame):
    print(df.to_string)
 
