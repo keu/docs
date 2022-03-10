@@ -62,38 +62,38 @@ helm upgrade <platform-release-name> -f config.yaml --version=<platform-version>
 
 Be sure to specify the platform namespace, not an Airflow namespace.
 
-### Platform Infrastructure Estimates
+### Infrastructure Cost Estimates
 
-To ensure plenty of room to run Airflow environments and hefty jobs, these estimates are going to be for a cluster with around 24CPUs in the US-East region.
+To ensure reliability with a starting set of Airflow Deployments, these estimates apply to our general recommendation for an Astronomer Software installation in a US East region.
 
 #### AWS
 
-| Component         | Item                                                       | Hourly Cost (Annual Upfront Pricing) |
-| ----------------- | ---------------------------------------------------------- | ------------------------------------ |
-| Compute           | 6 m5.xlarge or 3 m5.2xlarge (24 vCPU 96 GiB)               | \$0.68                               |
-| EKS Control Plane | \$0.20 _ 24 _ 365                                          | \$0.20                               |
-| Database          | db.t2.medium Postgres, Multi-AZ at \$0.29/hr \*24hr \* 365 | \$0.05                               |
-| Total             |                                                            | \$0.93                               |
+| Component         | Item                                                       | Hourly Cost (Annual Upfront Pricing)|
+| ----------------- | ---------------------------------------------------------- | ------------------------------------|
+| Compute           | 6 m5.xlarge or 3 m5.2xlarge (24 vCPU 96 GiB)               | $0.68                               |
+| EKS Control Plane | $0.20/hr x 24hr x 365                                      | $0.20                               |
+| Database          | db.t2.medium Postgres, Multi-AZ at $0.29/hr x 24hr x 365   | $0.05                               |
+| Total             |                                                            | $0.93                               |
 
 #### GCP
 
-| Component | Item                                                           | Hourly Cost (Annual Upfront Pricing) |
-| --------- | -------------------------------------------------------------- | ------------------------------------ |
-| Compute   | 6 n2-standard-8 at \$0.311/hr                                  | \$0.31                               |
-| Database  | Cloud SQL for PostgresSQL with 2 cores and 14.4GB at \$0.29/hr | \$0.29                               |
-| Total     |                                                                | \$0.60                               |
+| Component | Item                                                           | Hourly Cost (Annual Upfront Pricing)|
+| --------- | -------------------------------------------------------------- | ------------------------------------|
+| Compute   | 6 n2-standard-8 at $0.311/hr                                   | $0.31                               |
+| Database  | Cloud SQL for PostgresSQL with 2 cores and 14.4GB at $0.29/hr  | $0.29                               |
+| Total     |                                                                | $0.60                               |
 
-For added customization, check out the [GCP Pricing Calculator](https://cloud.google.com/products/calculator/#id=f899c077-6b8b-4ccd-8f8c-974e04cbe872).
+For more information, reference the [GCP Pricing Calculator](https://cloud.google.com/products/calculator/#id=f899c077-6b8b-4ccd-8f8c-974e04cbe872).
 
 #### Azure
 
 | Component | Item                                              | Hourly Cost (Annual Upfront Pricing) |
 | --------- | ------------------------------------------------- | ------------------------------------ |
-| Compute   | 3 x D8s v3 (8 vCPU(s), 32 GiB)                    | \$0.95                               |
-| Database  | 1 x Gen 5 (2 vCore), 25 GB Storage,LRS redundancy | \$0.18                               |
-| Total     |                                                   | \$1.13                               |
+| Compute   | 3 x D8s v3 (8 vCPU(s), 32 GiB)                    | $0.95                               |
+| Database  | 1 x Gen 5 (2 vCore), 25 GB Storage, LRS redundancy| $0.18                               |
+| Total     |                                                   | $1.13                               |
 
-The [Azure Price Calculator](https://azure.microsoft.com/en-us/pricing/calculator/?service=kubernetes-service) can be used to get an estimate for further customization.
+For more information, reference the [Azure Price Calculator](https://azure.microsoft.com/en-us/pricing/calculator/?service=kubernetes-service).
 
 ## Configuring Deployment Resources
 
