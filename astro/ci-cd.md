@@ -68,8 +68,9 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
 
    - `ASTRONOMER_KEY_ID` = `<your-key-id>`
    - `ASTRONOMER_KEY_SECRET` = `<your-key-secret>`
+   - `ASTRONOMER_DEPLOYMENT_ID` = `<your-astro-deployment-id>`
 
-2. Add the following to a new file in `.github/workflows`, making sure to replace `<organization-id>` and `<deployment-id>` with the values for your Deployment:
+2. Create a new YAML file in `.github/workflows` that includes the following configuration:
 
     ```yaml
     name: Astronomer CI - Deploy Code
@@ -89,11 +90,11 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
         runs-on: ubuntu-latest
         steps:
         - name: checkout repo
-        uses: actions/checkout@v2.3.4
+          uses: actions/checkout@v2.3.4
         - name: Deploy to Astro
-        run: |
-          brew install astronomer/cloud/astrocloud
-          astrocloud deploy <deployment-id>
+          run: |
+            brew install astronomer/cloud/astrocloud
+            astrocloud deploy ${{ secrets.ASTRONOMER_DEPLOYMENT_ID }}
     ```
 
 
