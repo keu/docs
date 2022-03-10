@@ -5,6 +5,8 @@ id: ci-cd
 description: Create a CI/CD pipeline that triggers a deploy to Astro based on changes to your Airflow DAGs.
 ---
 
+import {siteVariables} from '@site/src/versions';
+
 ## Overview
 
 There are many benefits to deploying DAGs and other changes to Airflow via a CI/CD workflow. Specifically, you can:
@@ -50,7 +52,7 @@ $ astrocloud deploy <your-deployment-id>
 
 :::info
 
-The following templates use `brew install` to install the latest version of the Astro CLI for every deploy. For a more stable CI/CD pipeline, you can install only a specific version of the CLI by tagging a specific version in the command: 
+The following templates use `brew install` to install the latest version of the Astro CLI for every deploy. For a more stable CI/CD pipeline, you can install only a specific version of the CLI by tagging a specific version in the command:
 
 ```sh
 brew install astronomer/cloud/astrocloud@<version-number>
@@ -99,8 +101,9 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
 
 To automate code deploys to a single Deployment using [Jenkins](https://www.jenkins.io/), complete the following setup in a Git-based repository hosting an Astronomer project:
 
-1. In your Git repository, configure the following environment variables:
+1. In your Jenkins pipeline configuration, add the following environment variables:
 
+    - `DEPLOYMENT_ID`: Your Astro Deployment ID
     - `ASTRONOMER_KEY_ID`: Your Deployment API key ID
     - `ASTRONOMER_KEY_SECRET`: Your Deployment API key secret
 
@@ -108,11 +111,10 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
 
 2. At the root of your Git repository, add a [Jenkinsfile](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) that includes the following script, making sure to replace `<deployment-id>` with your own Deployment ID:
 
-    ```text
-    pipeline {
-     agent any
-       stages {
-         stage('Deploy to Astronomer') {
+    <pre><code parentName="pre">{`pipeline {
+      agent any
+        stages {
+          stage('Deploy to Astronomer') {
            when {
             expression {
               return env.GIT_BRANCH == "origin/main"
@@ -120,8 +122,9 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
            }
            steps {
              script {
-               brew install astronomer/cloud/astrocloud
-               astrocloud deploy <deployment-id>
+               sh 'curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Linux_x86_64.tar.gz -o astrocloudcli.tar.gz'
+                   sh 'tar xzf astrocloudcli.tar.gz'
+                   sh "./astrocloud deploy ${siteVariables.deploymentid} -f"
              }
            }
          }
@@ -130,8 +133,8 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
        always {
          cleanWs()
        }
-     }
+      }
     }
-    ```
+    `}</code></pre>
 
     This Jenkinsfile triggers a code push to Astro every time a commit or pull request is merged to the `main` branch of your repository.
