@@ -96,7 +96,7 @@ By default, running `astrocloud dev logs` shows logs for all Airflow components.
 
 - `--scheduler`
 - `--webserver`
-- `--postgres`
+- `--triggerer`
 
 To continue monitoring logs, run `astrocloud dev logs --follow`. The `--follow` flag ensures that the latest logs continue to appear in your terminal window. For more information about this command, see [CLI Command Reference](cli-reference/astrocloud-dev-logs.md)
 
