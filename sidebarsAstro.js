@@ -16,24 +16,36 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Get Started',
       items: [
-        'install-aws',
         'install-cli',
+        'create-project',
       ],
     },
     {
       type: 'category',
       label: 'Develop',
       items: [
-        'create-project',
         'develop-project',
-        'deploy-code',
+        {
+          type: 'category',
+          label: 'Write DAGs',
+          items: [
+            'deferrable-operators',
+            'kubernetespodoperator',
+          ],
+        },
+        'upgrade-runtime',
         'airflow-api',
-        'airflow-alerts',
-        'kubernetespodoperator',
-        'deferrable-operators',
         'test-and-troubleshoot-locally',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Deploy',
+      items: [
+        'deploy-code',
+        'ci-cd',
       ],
     },
     {
@@ -42,31 +54,51 @@ module.exports = {
       items: [
         'configure-deployment',
         'api-keys',
-        'ci-cd',
-        'deployment-metrics',
-        'scheduler-logs',
         'environment-variables',
         'secrets-backend',
       ],
     },
     {
       type: 'category',
-      label: 'Administration',
+      label: 'Observability',
       items: [
-        'create-cluster',
-        'configure-idp',
-        'manage-workspaces',
-        'add-user',
-        'user-permissions',
-        'modify-cluster',
+        'deployment-metrics',
+        'scheduler-logs',
+        'airflow-alerts',
       ],
     },
     {
       type: 'category',
-      label: 'Astronomer Runtime',
+      label: 'Administration',
       items: [
-        'upgrade-runtime',
-        'runtime-version-lifecycle-policy',
+        'install-aws',
+        'manage-workspaces',
+        {
+          type: 'category',
+          label: 'User Access',
+          items: [
+            'add-user',
+            'user-permissions',
+            'configure-idp',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Manage Clusters',
+          items: [
+            'create-cluster',
+            'modify-cluster',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Release Notes',
+      items: [
+        'release-notes',
+        'cli-release-notes',
+        'runtime-release-notes',
       ],
     },
     {
@@ -75,17 +107,8 @@ module.exports = {
       items: [
         {
           type: 'category',
-          label: 'Release Notes',
-          items: [
-            'release-notes',
-            'cli-release-notes',
-            'runtime-release-notes',
-          ],
-        },
-        {
-          type: 'category',
           label: 'CLI Command Reference',
-          link: {type: 'doc', id: 'cli-reference'},
+          link: { type: 'doc', id: 'cli-reference' },
           items: [
             'cli-reference/astrocloud-auth-login',
             'cli-reference/astrocloud-auth-logout',
@@ -108,21 +131,22 @@ module.exports = {
             'cli-reference/astrocloud-dev-restart',
             'cli-reference/astrocloud-version',
             'cli-reference/astrocloud-workspace-list',
-            'cli-reference/astrocloud-workspace-switch',          ],
+            'cli-reference/astrocloud-workspace-switch',],
         },
         'known-limitations',
+        'runtime-version-lifecycle-policy',
         'resource-reference-aws',
         'platform-variables',
         {
           type: 'category',
           label: 'Security',
-          link: {type: 'doc', id: 'security'},
+          link: { type: 'doc', id: 'security' },
           items: [
             'shared-responsibility-model',
             'resilience',
             'disaster-recovery',
             'data-protection',
-            'secrets-management',  ],
+            'secrets-management',],
         },
       ],
     },
