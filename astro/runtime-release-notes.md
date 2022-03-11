@@ -60,6 +60,10 @@ Astro Runtime now also includes the following operators:
 
 These are all [deferrable operators](deferrable-operators.md) built by Astronomer and available exclusively on Astro Runtime. They are pre-installed into the Astro Runtime Docker image and ready to use.
 
+### Additional improvements
+
+- The Airflow UI now shows the Deployment's Docker image tag in the footer of all pages. For more information, see [Astro Release Notes for March 10, 2022](release-notes.md#march-10-2022).
+
 ### Additional Improvements
 
 - To support an enhanced logging experience on Astro, the `apache-airflow-providers-elasticsearch` provider package is now installed by default.
