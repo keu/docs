@@ -30,6 +30,12 @@ To start using the Astro SDK:
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
     ```
 
+:::tip
+
+Astro SDK uses XComs behind the scenes to transfer database metadata between tasks. If you intend to use the Astro SDK to work with large dataframes, we recommend implementing a custom XCom backend that can manage your additional data. For more information about this setup, read the [Custom XCom Backends Airflow Guide](https://www.astronomer.io/guides/custom-xcom-backends).
+
+:::
+
 ### Set a Temporary Schema
 
 When processing SQL-based DAGs, Astro creates temporary tables so that SQL table outputs can be inherited by other tasks and inspected for data quality.

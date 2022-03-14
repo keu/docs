@@ -48,7 +48,7 @@ To set up the pagila dataset on your local machine:
 
 Before you can complete any data transformations, you need to define input and output tables for Airflow. You can do this in either of the following ways:
 
-- Define input and output tables as arguments when you call an `aql.transform` function.
+- Pass input tables as arguments when you call an `aql.transform` function.
 - Load data from a storage system into a new table.
 
 Regardless of how you load in your table, all database contexts must first be defined as [Airflow connections](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html).
@@ -98,7 +98,7 @@ with dag:
     my_table = my_first_sql_transformation(
         # Table will persist after DAG finishes
         input_table=Table(table_name="actor", database="pagila", conn_id="postgres_conn"),
-        # TempTable will not persist after DAG finishes
+        # TempTable will not persist after DBA cleans temp schema
         output_table=TempTable(database="pagila", conn_id="postgres_conn"),
     )
     my_second_sql_transformation(input_table_2=my_table)
@@ -106,7 +106,7 @@ with dag:
 
 ### Loading Data from Storage as a Table
 
-You can a variety of data sources from either local, S3, or GCS storage into a SQL database with the `load_file` function. The result of this function can be used as an input table in your DAG. For a full list of supported file locations and file types, see the [Astro README](https://github.com/astro-projects/astro#supported-technologies).
+You can import data from a variety of data sources with the `load_file` function. The result of this function can be used as an input table in your DAG. For a full list of supported file locations and file types, see the [Astro README](https://github.com/astro-projects/astro#supported-technologies).
 
 In the following example, data is loaded from S3 by specifying the path and connection ID for an S3 database using `aql.load_file`. The result of this load is stored in a `Table` that can be used as an input table in later transformations:
 
@@ -130,13 +130,13 @@ with dag:
 
 :::info
 
-To interact with S3, you must first set an S3 Airflow connection in the `AIRFLOW__ASTRO__CONN_AWS_DEFAULT` environment variable.
+To interact with any external storage services, you need to first configure them as Airflow connections. For example, to interact with S3, you must first set the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables in your project.
 
 :::
 
 ## Transforming Data
 
-After loading tables into your DAG, you can transform them. The `aql.transform` function serves as the "T" of the ETL system. Each step of the transform pipeline creates a new table from the `SELECT` statement. Tasks can pass these tables as if they were native Python objects.
+After loading tables into your DAG, you can transform them. The `aql.transform` function serves as the "T" of the ETL system. Each use of the function creates a new output table from the `SELECT` statement. Tasks can pass these tables as if they were native Python objects.
 
 The following example DAG shows how you can quickly pass tables between tasks when completing a data transformation:
 
