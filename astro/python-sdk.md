@@ -172,10 +172,7 @@ with dag:
     join_orders_and_customers(orders, customers)
 ```
 
-The functions in this example use a templating system that's specific to the Python SDK:
-
-- Wrapping a value in single brackets (like `{customer_table}`) indicates the value will be rendered as a SQL table.
-- Wrapping a value in double brackets (like `{{ execution_date }}`) indicates that the value will be rendered as an Airflow jinja template.
+The functions in this example use a templating system that's specific to the Python SDK. Wrapping a value in double brackets (like `{{ execution_date }}`) indicates that the value will be rendered as a SQL table or an Airflow jinja template.
 
 Please note that the SQL expression should not be an F-string. F-strings in SQL formatting risk security breaches via SQL injections.
 
@@ -185,7 +182,7 @@ For security, users must explicitly identify tables in the function parameters b
 
 Most ETL use cases can be addressed by cross-sharing task outputs, as shown with the example of `@aql.transform`.
 
-If you need to perform a SQL operation that doesn't return a table but might require a table as an argument, you can use `@aql.run_raw_sql`.
+If you need to perform a SQL operation that doesn't return a table but might require a table as an argument, such as dropping or altering a table, you can use `@aql.run_raw_sql`.
 
 ```python
 @aql.run_raw_sql
@@ -195,9 +192,11 @@ def drop_table(table_to_drop):
 
 ## Creating Dataframes
 
-To create a dataframe, you can pass a SQL table into the `aql.dataframe` function. This function converts SQL tables into dataframes without any additional configuration, meaning that you can automatically finish your data processing in a Pythonic context.
+To create a dataframe, you can pass a SQL table into the `astro.dataframe` function. This function converts SQL tables into dataframes without any additional configuration, meaning that you can automatically finish your data processing in a Pythonic context.
 
-In the following example, the `actor` SQL table is automatically passed  to `aql.dataframe` as a dataframe:
+You can also convert a dataframe back into a SQL table by passing this function a `Table` or `TempTable` in the `output_table` argument.
+
+In the following example, the `actor` SQL table is automatically passed to `astro.dataframe` as a dataframe. The contents of the datafram are printed, and then the dataframe is converted back into a SQL table using the `output_table` argument:
 
 ```python {14-16,22}
 import os
@@ -213,7 +212,7 @@ dag = DAG(
    ...
 )
 
-@aql.dataframe
+@dataframe
 def my_dataframe_func(df: pd.DataFrame):
    print(df.to_string)
 
@@ -221,7 +220,7 @@ def my_dataframe_func(df: pd.DataFrame):
 dir_path = os.path.dirname(os.path.realpath(__file__))
 with dag:
    input_table=Table(table_name="actor", database="pagila", conn_id="postgres_conn")
-   my_dataframe_func(df=actor)
+   my_dataframe_func(df=actor, output_table=TempTable(conn_id="my_snowflake_conn"))
 ```
 
 ## Rendering Tables
@@ -275,17 +274,13 @@ SELECT * FROM actor;
 
 This context will be automatically passed to any downstream queries.
 
-To define a downstream query, specify the upstream table in the downstream query's frontmatter as an object in the `template_vars` frontmatter. For example, the following frontmatter would define the input table for `test_inheritance.sql` as the results of `test_astro.sql`:
+To define a downstream query, specify the upstream table in the downstream query using a jinja template. For example, the following query will run only after `test_astro.sql` has completed:
 
 ```SQL title="/dags/models/test_inheritance.sql" {1-4}
----
-template_vars:
-   my_astro_table: test_astro
----
-SELECT * FROM my_astro_table;
+SELECT * FROM {{test_astro}};
 ```
 
-Because all database contexts and dependencies are defined in your `.sql` files, you only need to run `aql.render` once to execute your queries as successive Airflow tasks.
+Because all database contexts and dependencies are defined in your `.sql` files, you only need to run `aql.render` once to execute your queries as Airflow tasks with set dependencies.
 
 ```Python title="/dags/astro_dag.py" {15}
 import os
