@@ -79,7 +79,7 @@ Permissions are defined on Astronomer as `scope.entity.action`, where:
 - `entity`: The object or role being operated on
 - `action`: The verb describing the operation being performed on the `entity`
 
-For example, the `deployment.serviceAccounts.create` permission translates to the ability for a user to create a Deployment-level Service Account. To view all available platform permissions and default role configurations, see [Reference: Platform Permissions](manage-platform-users.md#reference-platform-permissions).
+For example, the `deployment.serviceAccounts.create` permission translates to the ability for a user to create a Deployment-level Service Account. To view all available platform permissions and default role configurations, see [Reference: System Permissions](manage-platform-users.md#reference-system-permissions).
 
 To customize permissions, follow the steps below.
 
