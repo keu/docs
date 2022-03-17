@@ -9,7 +9,7 @@ description: Add and customize user permissions on Astronomer Software.
 
 In addition to Workspace-level [role-based access control (RBAC) functionality](workspace-permissions.md) core to our platform, Astronomer Software allows teams to customize *how* they want users to create accounts on Astronomer and what they're able to do on the platform - both on Astronomer and Airflow.
 
-Read below for a high-level overview of user management and guidelines around public signups, role customization and adding System Admins. For a list of each role's specific permissions, read [Reference: Platform Permissions](manage-platform-users.md#reference-platform-permissions).
+Read below for a high-level overview of user management and guidelines around public signups, role customization and adding System Admins. For a list of each role's specific permissions, read [Reference: System Permissions](manage-platform-users.md#reference-system-permissions).
 
 ## Add Users to Astronomer
 
