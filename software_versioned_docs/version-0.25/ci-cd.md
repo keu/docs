@@ -190,7 +190,7 @@ The following setup is an example implementation of CI/CD using GitHub Actions. 
     name: CI
     on:
       push:
-        branch: [dev, main]
+        branches: [dev, main]
     jobs:
       dev-push:
         runs-on: ubuntu-latest
