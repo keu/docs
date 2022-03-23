@@ -565,7 +565,7 @@ You now should be able to see your secret information being pulled from Secret M
 
 <TabItem value="azure">
 
-This topic provides setup steps for configuring [Azure Key Vault](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astro.
+This topic provides setup steps for configuring [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/#getting-started) as a secrets backend on Astro.
 
 #### Prerequisites
 
