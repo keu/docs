@@ -18,10 +18,6 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ## March 25, 2022
 
-### Monitor Deployments with a Dedicated Analytics Page
-
-The Astro UI now includes an **Analytics** page that contains a suite of metrics for your Deployments. These metrics are collected in real time and can provide insight into how your data pipelines are performing over time. For more information about accessing the **Analytics** page and the available metrics, see [Deployment Analytics](deployment-metrics.md#deployment-analytics).
-
 ### Modify the Max Node Count for Clusters
 
 By default, Clusters have a max node count of 20. To help scale your Clusters for their specific use cases, you can now change the max node count of a new or existing Cluster to any value from 2 to 100. To update this setting for a Cluster, reach out to [Astronomer support](https://support.astronomer.io) and provide the name of your cluster and the desired max node count.
