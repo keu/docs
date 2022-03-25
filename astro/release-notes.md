@@ -10,11 +10,25 @@ description: A real-time reference of the latest features and bug fixes in Astro
 
 Astronomer is committed to continuous delivery of both features and bug fixes to Astro. To keep your team up to date on what's new, this document will provide a regular summary of all changes officially released to Astro.
 
-If you have any questions or a bug to report, don't hesitate to reach out to [Astronomer Support](https://support.astronomer.io).
+If you have any questions or a bug to report, don't hesitate to reach out to [Astronomer support](https://support.astronomer.io).
 
 **Latest Runtime Version**: 4.2.0 ([Release notes](runtime-release-notes.md))
 
 **Latest CLI Version**: 1.3.0 ([Release notes](cli-release-notes.md))
+
+## March 25, 2022
+
+### Monitor Deployments with a Dedicated Analytics Page
+
+The Astro UI now includes an **Analytics** page that contains a suite of metrics for your Deployments. These metrics are collected in real time and can provide insight into how your data pipelines are performing over time. For more information about accessing the **Analytics** page and the available metrics, see [Deployment Analytics](deployment-metrics.md#deployment-analytics).
+
+### Modify the Max Node Count for Clusters
+
+By default, Clusters have a max node count of 20. To help scale your Clusters for their specific use cases, you can now change the max node count of a new or existing Cluster to any value from 2 to 100. To update this setting for a Cluster, reach out to [Astronomer support](https://support.astronomer.io) and provide the name of your cluster and the desired max node count.
+
+### Additional Improvements
+
+- In **Resource Settings**, the maximum allowed value for **Worker Resources** has been increased to 400 AU.
 
 ## March 17, 2022
 
@@ -167,7 +181,7 @@ This change serves as a foundation for future SSO and authentication features. I
 
 ### Additional Improvements
 
-- Significant improvements to the load times of various Cloud UI pages and and elements.
+- Significant improvements to the load times of various Cloud UI pages and elements.
 - In the Cloud UI, the tooltips in the **Resource Settings** section of a Deployment's page now show the definition of 1 AU. This should make it easier to translate AU to CPU and Memory.
 - Scheduler logs in the Cloud UI no longer show `DEBUG`-level logs.
 - To ensure that all Workers have enough resources to run basic workloads, you can no longer allocate less than 10 AU to **Worker Resources**.
@@ -271,7 +285,7 @@ For a full list of AWS regions supported on Astro, see [AWS Resource Reference](
 
 - Amazon EBS volumes have been upgraded from gp2 to [gp3](https://aws.amazon.com/about-aws/whats-new/2020/12/introducing-new-amazon-ebs-general-purpose-volumes-gp3/) for improved scale and performance.
 - EBS volumes and S3 buckets are now encrypted by default.
-- The ability to enable public access to any Amazon S3 bucket on an Astro data plane is now blocked per a new AWS account policy. Previously, public access was disabled by default but could be overridden by a user creating a new S3 bucket with public access enabled. This AWS account policy could be overriden by AWS account owners, but Astronomer strongly recommends against doing so.
+- The ability to enable public access to any Amazon S3 bucket on an Astro data plane is now blocked per a new AWS account policy. Previously, public access was disabled by default but could be overridden by a user creating a new S3 bucket with public access enabled. This AWS account policy could be overridden by AWS account owners, but Astronomer strongly recommends against doing so.
 
 ## November 19, 2021
 
