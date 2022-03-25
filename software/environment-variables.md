@@ -55,7 +55,9 @@ AIRFLOW__CORE__DAG_CONCURRENCY=5
 
 #### Confirm your Environment Variables were Applied
 
-To confirm that the Environment Variables you just set were applied to your Airflow Deployment locally, first run:
+By default, Airflow environment variables are hidden in the Airflow UI for local environments. To confirm your environment variables in the Airflow UI for a local environment, set `AIRFLOW__WEBSERVER__EXPOSE_CONFIG=True` in either your Dockerfile or `.env` file (local only).
+
+Alternatively, you can run:
 
 ```
 docker ps
