@@ -57,7 +57,7 @@ Astro supports a variety of AWS EC2 instance types. Instance types comprise of v
 
 For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/ec2/instance-types/). If you're interested in a node type that is not on this list, reach out to [Astronomer Support](https://support.astronomer.io). Not all instance types are supported in all AWS regions.
 
-**m5**
+#### m5
 
 - m5.xlarge (_default_)
 - m5.2xlarge
@@ -68,7 +68,7 @@ For detailed information on each instance type, reference [AWS documentation](ht
 - m5.24xlarge
 - m5.metal
 
-**m5d**
+#### m5d
 
 - m5d.large
 - m5d.xlarge
@@ -80,11 +80,11 @@ For detailed information on each instance type, reference [AWS documentation](ht
 - m5d.24xlarge
 - m5d.metal
 
-**t2**
+#### t2
 
 - t2.xlarge
 
-**t3**
+#### t3
 
 - t3.large
 - t3.2xlarge
