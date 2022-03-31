@@ -11,6 +11,22 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
+## v1.3.3
+
+Release date: March 31, 2022
+
+### Additional Improvements
+
+- The `astrocloud dev start` command should now be ~30 seconds faster
+- When `astrocloud dev parse` results in an error, the error messages now specify which DAGs they apply to
+- If your DAGs don't pass the basic unit test that's included in your Astro project (`test_dag_integrity.py` ), running them with `astrocloud dev pytest` will now provide more information about which part of your code caused an error
+
+### Bug Fixes
+
+- Fixed an issue where running `astrocloud dev parse/pytest` would occasionally result in an "orphaned containers" warning
+- Fixed an issue where `astrocloud dev parse/pytest` would crash when parsing projects with a large number of DAGs
+- Fixed an issue were some `docker-compose.override.yml` files would cause `astrocloud dev parse/pytest` to stop working
+
 ## v1.3.2
 
 Release date: March 17, 2022
