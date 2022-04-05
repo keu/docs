@@ -26,6 +26,7 @@ astrocloud deployment create
 | `-s`,`--scheduler-au`       | The number of AU to allocate towards the Deployment's Scheduler(s). The default is`5`.     | Integer between `0` and `30`                                             |
 | `-a`,`--worker-au`          | The number of AU to allocate towards the Deployment's worker(s). The default is `10`.      | Integer between `0` and `175`                                            |
 | `-r`,`--scheduler-replicas` | The number of Scheduler replicas for the Deployment. The default is `1`. | Integer between `0` and `4`                                              |
+| `--workspace-id` | Specify a Workspace to create a Deployment outside of your current Workspace| Any valid Workspace ID                                            |
 
 ## Examples
 
