@@ -25,9 +25,9 @@ Astro Runtime 4.2.2 includes support for Apache Airflow 2.2.5, which exclusively
 - Release date: March 28, 2022
 - Airflow version: 2.2.4
 
-### Additional Improvements
+### New Deferrable Operators
 
-- Upgraded the `astronomer-providers` package to v1.1.0 ([CHANGELOG](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#110-2022-03-23)). In addition to bug fixes and performance improvements, this release includes 7 new deferrable operators:
+Astro Runtime 4.2.1 upgrades the `astronomer-providers` package to v1.1.0 ([CHANGELOG](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#110-2022-03-23)). In addition to bug fixes and performance improvements, this release includes 7 new deferrable operators:
 
     - `S3KeySizeSensorAsync`
     - `S3KeysUnchangedSensorAsync`
@@ -37,7 +37,11 @@ Astro Runtime 4.2.2 includes support for Apache Airflow 2.2.5, which exclusively
     - `GCSUploadSessionCompleteSensorAsync`
     - `BigQueryTableExistenceSensorAsync`
 
-- Upgraded `openlineage-airflow` to v0.6.2.
+For more information about deferrable operators and how to use them, see [Deferrable Operators](deferrable-operators.md). To access the source code of this package, see the [Astronomer Providers GitHub repository](https://github.com/astronomer/astronomer-providers).
+
+### Additional Improvements
+
+- Bump the [`openlineage-airflow` provider package](https://openlineage.io/integration/apache-airflow/) to `v0.6.2`
 
 ## Astro Runtime 4.2.0
 
@@ -46,9 +50,9 @@ Astro Runtime 4.2.2 includes support for Apache Airflow 2.2.5, which exclusively
 
 ### New Astronomer Providers Package
 
-The `astronomer-providers` package is now installed on Astro Runtime by default. This package is an open source collection of Airflow providers and modules that is maintained by Astronomer. It includes deferrable versions of popular operators such as `ExternalTaskSensor`, `DatabricksRunNowOperator`, and `SnowflakeOperator`.
+The `astronomer-providers` package is now installed on Astro Runtime by default. This package is an open source collection of Apache Airflow providers and modules that is maintained by Astronomer. It includes deferrable versions of popular operators such as `ExternalTaskSensor`, `DatabricksRunNowOperator`, and `SnowflakeOperator`.
 
-For more information, see [Deferrable Operators](deferrable-operators.md). To access the source code of this package, see the [Astronomer Providers GitHub Repo](https://github.com/astronomer/astronomer-providers).
+For more information, see [Deferrable Operators](deferrable-operators.md). To access the source code of this package, see the [Astronomer Providers GitHub repository](https://github.com/astronomer/astronomer-providers).
 
 ### Additional Improvements
 
