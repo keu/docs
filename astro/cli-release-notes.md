@@ -11,6 +11,15 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, don't hesitate to reach out to us via Slack or Intercom. We're here to help.
 
+## v1.3.4
+
+Release date: April 11, 2022
+
+### Additional Improvements
+
+- Improved the performance of `astrocloud dev start`
+- When you successfully push code to a Deployment via `astrocloud deploy`, the CLI now provides URLs for accessing the Deployment's Cloud UI and Airflow UI pages.
+
 ## v1.3.3
 
 Release date: March 31, 2022
