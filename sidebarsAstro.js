@@ -88,6 +88,7 @@ module.exports = {
           items: [
             'create-cluster',
             'modify-cluster',
+            'connect-external-services',
           ],
         },
       ],
