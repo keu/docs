@@ -7,12 +7,12 @@ description: Learn how to connect your Astro Data Plane to different types of ex
 
 ## Overview
 
-Before you can run pipelines on Astro with real data, you first need to make your data services accessible to Deployments in your Data Plane. This guide explains how to securely connect Astro to external data services using the following methods:
+Before you can run pipelines on Astro with real data, you first need to make your data services accessible to your Data Plane and the Deployments running within it. This guide explains how to securely connect Astro to external data services using the following methods:
 
 - Public Endpoints
 - VPC Peering
 
-If you need to connect to a different type of data service that requires a connectivity method that is not documented here, reach out to [Astronomer support](https://support.astronomer.io).
+If you need to connect to a type of data service that requires a connectivity method that is not documented here, reach out to [Astronomer support](https://support.astronomer.io).
 
 ## Public Endpoints
 
@@ -29,7 +29,7 @@ Public connection traffic moves directly between your Data Plane and the externa
 
 Some data services, including Snowflake and Databricks, provide an additional layer of security by requiring you to allowlist a specific IP address before you can access the service.
 
-On Astro, each Cluster has a pair of unique external IP address that will persist throughout the lifetime of the Cluster. These IP addresses are assigned for network address translation, which means that they are responsible for all outbound traffic from your Astro Cluster to the internet. To retrieve an IP for a given Cluster, open a ticket with [Astronomer support](https://support.astronomer.io) and request it. If you have more than one Cluster, you will need to allowlist each Cluster individually on your data service provider.
+On Astro, each Cluster has a pair of unique external IP address that will persist throughout the lifetime of the Cluster. These IP addresses are assigned for network address translation, which means that they are responsible for all outbound traffic from your Astro Cluster to the internet. To retrieve the IP addresses for a given Cluster, open a ticket with [Astronomer support](https://support.astronomer.io) and request it. If you have more than one Cluster, you will need to allowlist each Cluster individually on your data service provider.
 
 ## VPC Peering
 
@@ -37,9 +37,9 @@ Each Cluster on Astro runs in a dedicated VPC. To set up private connectivity be
 
 To create a VPC peering connection between an Astro Cluster's VPC and a target VPC, reach out to [Astronomer support](https://support.astronomer.io) and provide the following information:
 
-- Name of your Cluster
-- AWS Account ID for the target VPC
-- AWS Region for the target VPC
+- Astro Cluster ID and Name
+- AWS Account ID of the target VPC
+- AWS Region of the target VPC
 - VPC ID of the target VPC
 - CIDR of the target VPC
 
