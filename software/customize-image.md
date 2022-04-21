@@ -83,7 +83,6 @@ In the example below, we'll add a folder of `helper_functions` with a file (or s
 ### Add the folder into your project directory
 
 ```bash
-virajparekh@orbiter:~/cli_tutorial$ tree
 .
 ├── airflow_settings.yaml
 ├── dags
@@ -125,15 +124,19 @@ When you first initialize a new Airflow project on Astronomer, a file titled `ai
 
 For security reasons, the `airflow_settings.yaml` file is currently _only_ for local development and should not be used for pushing up code to Astronomer via `$ astro deploy`. For the same reason, we'd recommend adding this file to your `.gitignore`.
 
-> **Note:** If you're interested in programmatically managing Airflow Connections, Variables or Environment Variables, we'd recommend integrating a ["Secret Backend"](secrets-backend.md) to help you do so.
+:::tip
+
+If you're interested in programmatically managing Airflow Connections, Variables or Environment Variables on Astronomer Software, we recommend integrating a [Secret Backend](secrets-backend.md).
+
+:::
 
 ### Add Airflow Connections, Pools, Variables
 
-By default, the `airflow_settings.yaml` file will be structured as following:
+By default, the `airflow_settings.yaml` file includes the following template:
 
 ```yaml
 airflow:
-  connections:
+  connections: ## conn_id and conn_type are required
     - conn_id: my_new_connection
       conn_type: postgres
       conn_host: 123.0.0.4
@@ -142,14 +145,16 @@ airflow:
       conn_password: pw
       conn_port: 5432
       conn_extra:
-  pools:
+  pools: ## pool_name, pool_slot, and pool_description are required
     - pool_name: my_new_pool
       pool_slot: 5
       pool_description:
-  variables:
+  variables: ## variable_name and variable_value are required
     - variable_name: my_variable
       variable_value: my_value
 ```
+      
+Make sure to specify all required fields that correspond to the objects you create. If you don't specify them, you will see a build error on `$ astro dev start`.
 
 ### Additional Entries
 
