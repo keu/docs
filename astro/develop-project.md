@@ -127,8 +127,8 @@ Once you've saved these packages in your project files, [restart your local envi
 
 If you added `pymongo` to your `requirements.txt` file, for example, you can confirm that it was properly installed by running a `docker exec` command into your Scheduler:
 
-1. Run `docker ps` to identify the 3 running docker containers on your machine
-2. Copy the container ID of your Scheduler container
+1. Run `docker ps` to identify the docker containers running on your machine
+2. Copy the container ID of the Scheduler container
 3. Run the following:
 
 ```
@@ -188,10 +188,12 @@ To confirm that your helper functions were successfully installed:
 
 When you first initialize a new Astro project, a file called `airflow_settings.yaml` is automatically generated. With this file, you can configure and programmatically generate Airflow [Connections](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html), [Pools](https://airflow.apache.org/docs/apache-airflow/stable/concepts/pools.html), and [Variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) so that you don't have to manually redefine these values in the Airflow UI every time you restart your project.
 
-As a security measure, `airflow_settings.yaml` works only in local environments. Once you deploy your project to a Deployment on Astro, the values in this file will not be included. To more easily manage Airflow secrets on Astro, we recommend [configuring a secrets backend](https://docs.astronomer.io/astro/secrets-backend).
+As a security measure, `airflow_settings.yaml` works only in local environments. Once you deploy your project to a Deployment on Astro, the values in this file will not be included. To more easily manage Airflow secrets on Astro, we recommend [configuring a secrets backend](secrets-backend.md).
 
 :::caution
+
 If you are storing your project in a public directory or version control tool, we recommend adding this file to your `.gitignore` or equivalent secret management service.
+
 :::
 
 ### Add Airflow Connections, Pools, and Variables
@@ -200,7 +202,7 @@ By default, the `airflow_settings.yaml` file includes the following template:
 
 ```yaml
 airflow:
-  connections:
+  connections: ## conn_id and conn_type are required
     - conn_id: my_new_connection
       conn_type: postgres
       conn_host: 123.0.0.4
@@ -209,36 +211,38 @@ airflow:
       conn_password: pw
       conn_port: 5432
       conn_extra:
-  pools:
+  pools: ## pool_name and pool_slot are required
     - pool_name: my_new_pool
       pool_slot: 5
       pool_description:
-  variables:
+  variables: ## variable_name and variable_value are required
     - variable_name: my_variable
       variable_value: my_value
 ```
 
-This template includes all possible configuration values. If you want to add another Connection, Pool, or Variable, you can copy the existing fields for the given resource and replace the default values with your own. For instance, to create another Variable, you can add its values under the existing default Variable like so:
+This template includes default values for all possible configurations. Make sure to replace these default values with your own and specify those that are required to avoid errors at build time. To add another Connection, Pool, or Variable, append it to this file within its corresponding section. To create another Variable, for example, add it under the existing `variables` section of the same file:
 
 ```yaml
 variables:
-  - variable_name: my_variable
-    variable_value: my_value
-  - variable_name: my_second_variable
-    variable_value: value987
+  - variable_name: <my-variable-1>
+    variable_value: <my-variable-value>
+  - variable_name: <my-variable-2>
+    variable_value: <my-variable-value-2>
 ```
 
-Once you've saved these values in your `airflow_settings.yaml`, [restart your local environment](develop-project.md#restart-your-local-environment). When you access the Airflow UI for your project at `localhost:8080`, you should see these values in the **Connections**, **Pools**, and **Variables** tabs.
+Once you save these values in your `airflow_settings.yaml`, [restart your local environment](develop-project.md#restart-your-local-environment). When you access the Airflow UI locally, you should see these values in the **Connections**, **Pools**, and **Variables** tabs.
 
 ## Run Commands on Build
 
-To run extra system commands when your Airflow image builds, add them to your `Dockerfile` as a `RUN` command. These commands run as the last step in the image build process.
+To run additional commands as your Astro project is built into a Docker image, add them to your `Dockerfile` as `RUN` commands. These commands run as the last step in the image build process.
 
 For example, if you want to run `ls` when your image builds, your `Dockerfile` would look like this:
 
 <pre><code parentName="pre">{`FROM quay.io/astronomer/astro-runtime:${siteVariables.runtimeVersion}
 RUN ls
 `}</code></pre>
+
+This is supported both on Astro and in the context of local development.
 
 ## Override the CLI's Docker Compose File (Local Development Only)
 
