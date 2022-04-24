@@ -142,7 +142,7 @@
 /enterprise/overview /software/ 301
 /enterprise/platform-alerts /software/platform-alerts/ 301
 /enterprise/pre-create-namespaces /software/namespace-pools/ 301
-/enterprise/quickstart /software/quickstart/ 301
+/enterprise/quickstart /software/cli-quickstart/ 301
 /enterprise/registry-backend /software/registry-backend/ 301
 /enterprise/release-lifecycle-policy /software/release-lifecycle-policy/ 301
 /enterprise/release-notes /software/release-notes/ 301
