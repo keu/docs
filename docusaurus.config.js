@@ -3,7 +3,7 @@
 module.exports = {
   title: 'Astronomer Documentation',
   tagline: 'Learn how to use Astro, the next-generation data orchestration platform.',
-  url: 'https://docs.astronomer.io/',
+  url: 'https://docs.astronomer.io',
   baseUrl: '/',
   noIndex: false,
   onBrokenLinks: 'error',
