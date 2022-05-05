@@ -63,6 +63,7 @@ module.exports = {
       label: 'Observability',
       items: [
         'deployment-metrics',
+        'data-lineage',
         'scheduler-logs',
         'airflow-alerts',
       ],
