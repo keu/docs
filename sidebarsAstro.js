@@ -142,8 +142,9 @@ module.exports = {
         'runtime-version-lifecycle-policy',
         'resource-reference-aws',
         'platform-variables',
-        'data-plane-activation',
         'data-lineage-support-and-compatibility',
+        'data-lineage-concepts',
+        'data-plane-activation',
         {
           type: 'category',
           label: 'Security',
