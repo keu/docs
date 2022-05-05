@@ -9,7 +9,7 @@ description: Get started on Astro by creating your first Astro Cluster on Google
 
 This guide provides steps for getting started with Astro on Google Cloud Platform (GCP). Below, you'll find instructions for how to complete the Astro install process, including prerequisites and the steps required for our team to provision resources in your network.
 
-At a high-level, we'll ask that you come prepared with a new AWS account. From there, you can expect to:
+At a high-level, we'll ask that you come prepared with a new GCP account. From there, you can expect to:
 
 - Create an account on Astro.
 - Create a cross-account IAM role that Astro can assume within your new GCP project.
