@@ -29,7 +29,7 @@ By default, the Astronomer account has no access to your data services. We’ll 
 <Tabs
     defaultValue="aws"
     values={[
-        {label: 'AWS, value: 'aws'},
+        {label: 'AWS', value: 'aws'},
         {label: 'GCP', value: 'gcp'},
     ]}>
 <TabItem value="aws">

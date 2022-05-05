@@ -29,7 +29,7 @@ To create an Astro Cluster, you need to have:
 <Tabs
     defaultValue="aws"
     values={[
-        {label: 'AWS, value: 'aws'},
+        {label: 'AWS', value: 'aws'},
         {label: 'GCP', value: 'gcp'},
     ]}>
 <TabItem value="aws">
