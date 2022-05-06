@@ -16,6 +16,47 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest CLI Version**: 1.5.0 ([Release notes](cli-release-notes.md))
 
+## May 5, 2022
+
+### Data Lineage Is Now Available on Astro
+
+We are excited to introduce data lineage to Astro. You now have access to a new **Lineage** view in the Cloud UI that visualizes data movement across datasets in your Organization based on integrations with Airflow, Apache Spark, dbt, Great Expectations, and more.
+
+Built around the [OpenLineage](https://openlineage.io/) open source standard, the data lineage graphs and metadata in the Cloud UI can help you better understand your ecosystem and diagnose issues that may otherwise be difficult to identify.
+
+![Lineage graph example](/img/release-notes/lineage-example.png)
+
+For example, if an Airflow task failed because the schema of a database changed, you might go to the Lineage page on Astro to determine which job caused that change and which downstream tasks failed because of it.
+
+To learn more about data lineage and how you can configure it on Astro, see:
+
+- [Data Lineage Concepts](data-lineage-concepts.md)
+- [Enable Data Lineage for External Services](set-up-data-lineage.md)
+- [Data Lineage on Astro](data-lineage.md)
+- [Data Lineage Support and Compatibility](data-lineage-support-and-compatibility.md)
+
+:::info
+
+This functionality is still early access and under active development. If you have any questions or feedback about this feature, reach out to [Astronomer Support](https://support.astronomer.io).
+
+:::
+
+### Support for Astro on Google Cloud Platform (GCP)
+
+Astro now officially supports Astro Clusters on Google Cloud Platform (GCP). This includes support for an initial set of GCP regions as well as [Workload Identity](https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers) for secure connection to other GCP data services in your ecosystem.
+
+For more information about the installation process and supported configurations, see [Install Astro on GCP](install-gcp.md) and [Resource Reference GCP](resource-reference-gcp.md).
+
+### Support for Organization-Level User Invites
+
+You can now [invite users to an Astro Organization](add-user.md#add-a-user-to-an-organization) without having to first invite them to a specific Workspace. Users invited to an Organization will receive an activation email which brings them directly to the Organization view of the Cloud UI.
+
+### Additional Improvements
+
+- Improved the templated emails sent out for user invites with clear instructions for how to get started on Astro
+- Improved error messaging behavior on the **DAGs** and **Usage** pages of the Cloud UI
+- New user accounts must now be verified via email before they can access Astro
+
 ## April 28, 2022
 
 ### New AWS Node Instance Types Available
