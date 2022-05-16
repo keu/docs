@@ -45,9 +45,22 @@ module.exports = {
       },
       items: [
         {
-          to: 'astro',
+          type: 'dropdown',
+          to: '/astro/',
           label: 'Astro',
+          activeBaseRegex: 'astro',
           position: 'left',
+          activeClassName: 'navbar__link--active',
+          items: [
+            {
+              label: 'Cloud',
+              to: '/astro/',
+            },
+            {
+              label: 'Astro CLI',
+              to: '/astro/cli/overview.md/',
+            },
+          ],
         },
         {
           type: 'dropdown',

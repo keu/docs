@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud workspace list"
-title: "astrocloud workspace list"
-id: astrocloud-workspace-list
-description: Reference documentation for astrocloud workspace list.
+sidebar_label: "astro workspace list"
+title: "astro workspace list"
+id: astro-workspace-list
+description: Reference documentation for astro workspace list.
 ---
 
 ## Description
@@ -12,10 +12,10 @@ Show the names and IDs of all Workspaces in your Organization that you have acce
 ## Usage
 
 ```sh
-astrocloud workspace list
+astro workspace list
 ```
 
 ## Related Commands
 
-- [`astrocloud auth login`](cli-reference/astrocloud-auth-login.md)
-- [`astrocloud workspace switch`](cli-reference/astrocloud-workspace-switch.md)
+- [`astro auth login`](cli-reference/astro-auth-login.md)
+- [`astro workspace switch`](cli-reference/astro-workspace-switch.md)
