@@ -231,7 +231,6 @@ module.exports = {
     [
       '@docusaurus/plugin-sitemap',
       {
-        id: 'default',
         changefreq: 'daily',
         priority: 0.7,
       },
