@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'astrocloud auth login'
-title: 'astrocloud auth login'
-id: astrocloud-auth-login
-description: Reference documentation for astrocloud auth login.
+sidebar_label: 'astro auth login'
+title: 'astro auth login'
+id: astro-auth-login
+description: Reference documentation for astro auth login.
 ---
 
 ## Description
@@ -12,10 +12,10 @@ Authenticate to Astro. After you run this command, the CLI prompts you for your 
 ## Usage
 
 ```sh
-astrocloud auth login
+astro auth login
 ```
 
 ## Related Commands
 
-- [`astrocloud auth logout`](cli-reference/astrocloud-auth-logout.md)
-- [`astrocloud deploy`](cli-reference/astrocloud-deploy.md)
+- [`astro auth logout`](cli-reference/astro-auth-logout.md)
+- [`astro deploy`](cli-reference/astro-deploy.md)

@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev restart"
-title: "astrocloud dev restart"
-id: astrocloud-dev-restart
-description: Reference documentation for astrocloud dev restart.
+sidebar_label: "astro dev restart"
+title: "astro dev restart"
+id: astro-dev-restart
+description: Reference documentation for astro dev restart.
 ---
 
 ## Description
@@ -14,7 +14,7 @@ This command can be used to rebuild an Astronomer project and run it locally. Fo
 ## Usage
 
 ```sh
-astrocloud dev restart
+astro dev restart
 ```
 
 ## Options
@@ -27,14 +27,14 @@ astrocloud dev restart
 ## Examples
 
 ```sh
-$ astrocloud dev restart --env=/users/username/documents/myfile.env
+$ astro dev restart --env=/users/username/documents/myfile.env
 ```
 
 ## Related Commands
 
-- [`astrocloud dev start`](cli-reference/astrocloud-dev-start.md)
-- [`astrocloud dev stop`](cli-reference/astrocloud-dev-stop.md)
-- [`astrocloud dev kill`](cli-reference/astrocloud-dev-kill.md)
-- [`astrocloud dev init`](cli-reference/astrocloud-dev-init.md)
-- [`astrocloud dev run`](cli-reference/astrocloud-dev-run.md)
-- [`astrocloud dev logs`](cli-reference/astrocloud-dev-logs.md)
+- [`astro dev start`](cli-reference/astro-dev-start.md)
+- [`astro dev stop`](cli-reference/astro-dev-stop.md)
+- [`astro dev kill`](cli-reference/astro-dev-kill.md)
+- [`astro dev init`](cli-reference/astro-dev-init.md)
+- [`astro dev run`](cli-reference/astro-dev-run.md)
+- [`astro dev logs`](cli-reference/astro-dev-logs.md)

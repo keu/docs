@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev logs"
-title: "astrocloud dev logs"
-id: astrocloud-dev-logs
-description: Reference documentation for astrocloud dev logs.
+sidebar_label: "astro dev logs"
+title: "astro dev logs"
+id: astro-dev-logs
+description: Reference documentation for astro dev logs.
 ---
 
 ## Description
@@ -12,7 +12,7 @@ Show Webserver, Scheduler, and Celery worker logs from your local Airflow enviro
 ## Usage
 
 ```sh
-astrocloud dev logs
+astro dev logs
 ```
 
 ## Options
@@ -28,15 +28,15 @@ astrocloud dev logs
 ## Examples
 
 ```sh
-$ astrocloud dev logs
+$ astro dev logs
 # Show the most recent logs from both the Airflow Webserver and Scheduler
-$ astrocloud dev logs --follow
+$ astro dev logs --follow
 # Stream all new Webserver and Scheduler logs to the terminal
-$ astrocloud dev logs --follow --scheduler
+$ astro dev logs --follow --scheduler
 # Stream only new Scheduler logs to the terminal
 ```
 
 ## Related Commands
 
-- [`astrocloud dev ps`](cli-reference/astrocloud-dev-ps.md)
-- [`astrocloud dev run`](cli-reference/astrocloud-dev-run.md)
+- [`astro dev ps`](cli-reference/astro-dev-ps.md)
+- [`astro dev run`](cli-reference/astro-dev-run.md)

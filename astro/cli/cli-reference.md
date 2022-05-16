@@ -23,11 +23,11 @@ All reference documentation is based on the latest available version of the Astr
 
 We expect that you'll use these commands most often when managing your Astro projects and Deployments:
 
-- [`astrocloud auth login`](cli-reference/astrocloud-auth-login.md)
-- [`astrocloud dev init`](cli-reference/astrocloud-dev-init.md)
-- [`astrocloud dev start`](cli-reference/astrocloud-dev-start.md)
-- [`astrocloud dev stop`](cli-reference/astrocloud-dev-stop.md)
-- [`astrocloud deploy`](cli-reference/astrocloud-deploy.md)
+- [`astro auth login`](cli-reference/astro-auth-login.md)
+- [`astro dev init`](cli-reference/astro-dev-init.md)
+- [`astro dev start`](cli-reference/astro-dev-start.md)
+- [`astro dev stop`](cli-reference/astro-dev-stop.md)
+- [`astro deploy`](cli-reference/astro-deploy.md)
 
 Each of these commands has a dedicated documentation page with additional notes and examples. As we expand functionality for the Astro CLI, new commands will be listed here.
 

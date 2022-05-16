@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'astrocloud auth logout'
-title: 'astrocloud auth logout'
-id: astrocloud-auth-logout
-description: Reference documentation for astrocloud auth logout.
+sidebar_label: 'astro auth logout'
+title: 'astro auth logout'
+id: astro-auth-logout
+description: Reference documentation for astro auth logout.
 ---
 
 ## Description
@@ -12,9 +12,9 @@ Unauthenticate from the Astro CLI. Note that this command does not affect your c
 ## Usage
 
 ```sh
-astrocloud auth logout
+astro auth logout
 ```
 
 ## Related Commands
 
-- [`astrocloud auth login`](cli-reference/astrocloud-auth-login.md)
+- [`astro auth login`](cli-reference/astro-auth-login.md)

@@ -1,22 +1,22 @@
 ---
-sidebar_label: "astrocloud completion"
-title: "astrocloud completion"
-id: astrocloud-completion
-description: Reference documentation for astrocloud completion.
+sidebar_label: "astro completion"
+title: "astro completion"
+id: astro-completion
+description: Reference documentation for astro completion.
 ---
 
 ## Description
 
 Generate completion scripts for Astro CLI commands. You can modify the generated scripts and add them to the appropriate directory to customize your command line autocompletion behavior.
 
-For example, you could set automation such that typing `astrocloud au` autocompletes to `astrocloud auth` if you press **TAB** on your keyboard and `astrocloud auth login` or `astrocloud auth logout` if you press **TAB** again.
+For example, you could set automation such that typing `astro au` autocompletes to `astro auth` if you press **TAB** on your keyboard and `astro auth login` or `astro auth logout` if you press **TAB** again.
 
 This command is helpful for users interacting with the CLI on a regular basis.
 
 ## Usage
 
 ```sh
-astrocloud completion <shell>
+astro completion <shell>
 ```
 
 ## Options
@@ -30,7 +30,7 @@ astrocloud completion <shell>
 To generate a shell completion script for zsh, for example, you can run:
 
 ```sh
-$ astrocloud completion zsh > /usr/local/share/zsh/site-functions/_astrocloud
+$ astro completion zsh > /usr/local/share/zsh/site-functions/_astro
 # Completion script saved in your local directory
 ```
 

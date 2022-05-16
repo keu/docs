@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud deployment variable create"
-title: "astrocloud deployment variable create"
-id: astrocloud-deployment-variable-create
-description: Reference documentation for astrocloud deployment variable create.
+sidebar_label: "astro deployment variable create"
+title: "astro deployment variable create"
+id: astro-deployment-variable-create
+description: Reference documentation for astro deployment variable create.
 ---
 
 ## Description
@@ -13,14 +13,14 @@ If you choose to specify `--key` and `--value` instead of loading a file, you ca
 
 :::tip
 
-This command has an `--update` flag that allows you to change the `value` of an existing environment variable at any time. For a better user experience, we recommend using the [`astrocloud deployment variable update` command](cli-reference/astrocloud-deployment-variable-update.md) to update environment variables instead.
+This command has an `--update` flag that allows you to change the `value` of an existing environment variable at any time. For a better user experience, we recommend using the [`astro deployment variable update` command](cli-reference/astro-deployment-variable-update.md) to update environment variables instead.
 
 :::
 
 ## Usage
 
 ```sh
-astrocloud deployment variable create
+astro deployment variable create
 ```
 
 ## Options
@@ -40,16 +40,16 @@ astrocloud deployment variable create
 
 ```sh
 # Create a new secret environment variable
-$ astrocloud deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --key AIRFLOW__SECRETS__BACKEND_KWARGS --value <my-secret-value> --secret
+$ astro deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --key AIRFLOW__SECRETS__BACKEND_KWARGS --value <my-secret-value> --secret
 
 # Create multiple environment variables for a Deployment at once by loading them from a .env file
-$ astrocloud deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --load --env .env.dev
+$ astro deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --load --env .env.dev
 
 # Update the value of an existing environment variable
-$ astrocloud deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --update --key AIRFLOW__CORE__PARALLELISM --value <my-new-value>
+$ astro deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --update --key AIRFLOW__CORE__PARALLELISM --value <my-new-value>
 ```
 
 ## Related Commands
 
-- [`astrocloud deployment variable list`](cli-reference/astrocloud-deployment-variable-list.md)
-- [`astrocloud deployment variable update`](cli-reference/astrocloud-deployment-variable-update.md)
+- [`astro deployment variable list`](cli-reference/astro-deployment-variable-list.md)
+- [`astro deployment variable update`](cli-reference/astro-deployment-variable-update.md)

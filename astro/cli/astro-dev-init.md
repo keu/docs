@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev init"
-title: "astrocloud dev init"
-id: astrocloud-dev-init
-description: Reference documentation for astrocloud dev init.
+sidebar_label: "astro dev init"
+title: "astro dev init"
+id: astro-dev-init
+description: Reference documentation for astro dev init.
 ---
 
 ## Description
@@ -12,7 +12,7 @@ Initialize an [Astro project](create-project.md) in an empty local directory. An
 ## Usage
 
 ```sh
-astrocloud dev init
+astro dev init
 ```
 
 ## Options
@@ -25,18 +25,18 @@ astrocloud dev init
 ## Examples
 
 ```sh
-$ astrocloud dev init
+$ astro dev init
 # Initialized default project
-$ astrocloud dev init --name=MyProject
+$ astro dev init --name=MyProject
 # Generated `config.yaml` file with `name=MyProject`
-$ astrocloud dev init --runtime-version=4.0.7
+$ astro dev init --runtime-version=4.0.7
 ## Initialized project with Runtime 4.0.7
 ```
 
 ## Related Commands
 
-- [`astrocloud dev start`](cli-reference/astrocloud-dev-start.md)
-- [`astrocloud dev stop`](cli-reference/astrocloud-dev-stop.md)
-- [`astrocloud dev init`](cli-reference/astrocloud-dev-init.md)
-- [`astrocloud dev run`](cli-reference/astrocloud-dev-run.md)
-- [`astrocloud dev logs`](cli-reference/astrocloud-dev-logs.md)
+- [`astro dev start`](cli-reference/astro-dev-start.md)
+- [`astro dev stop`](cli-reference/astro-dev-stop.md)
+- [`astro dev init`](cli-reference/astro-dev-init.md)
+- [`astro dev run`](cli-reference/astro-dev-run.md)
+- [`astro dev logs`](cli-reference/astro-dev-logs.md)

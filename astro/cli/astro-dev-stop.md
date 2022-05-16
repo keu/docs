@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev stop"
-title: "astrocloud dev stop"
-id: astrocloud-dev-stop
-description: Reference documentation for astrocloud dev stop.
+sidebar_label: "astro dev stop"
+title: "astro dev stop"
+id: astro-dev-stop
+description: Reference documentation for astro dev stop.
 ---
 
 ## Description
@@ -14,10 +14,10 @@ This command can be used regularly with `astro dev start` to apply changes to yo
 ## Usage
 
 ```sh
-astrocloud dev stop
+astro dev stop
 ```
 
 ## Related Commands
 
-- [`astrocloud dev start`](cli-reference/astrocloud-dev-start.md)
-- [`astrocloud dev kill`](cli-reference/astrocloud-dev-kill.md)
+- [`astro dev start`](cli-reference/astro-dev-start.md)
+- [`astro dev kill`](cli-reference/astro-dev-kill.md)

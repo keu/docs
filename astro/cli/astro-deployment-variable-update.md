@@ -1,13 +1,13 @@
 ---
-sidebar_label: "astrocloud deployment variable update"
-title: "astrocloud deployment variable update"
-id: astrocloud-deployment-variable-update
-description: Reference documentation for astrocloud deployment variable update.
+sidebar_label: "astro deployment variable update"
+title: "astro deployment variable update"
+id: astro-deployment-variable-update
+description: Reference documentation for astro deployment variable update.
 ---
 
 ## Description
 
-For a given Deployment on Astro, use `astrocloud deployment variable update` to update the value of an existing environment variable via the Astro CLI. To do so, you can either:
+For a given Deployment on Astro, use `astro deployment variable update` to update the value of an existing environment variable via the Astro CLI. To do so, you can either:
 
 - Manually enter a new `--value` in your command line for a given `--key`, or
 - Modify the value of one or more environment variables in a `.env` file and load that file with `--load`.
@@ -19,7 +19,7 @@ This command is functionally identical to editing and saving the `value` of an e
 ## Usage
 
 ```sh
-astrocloud deployment variable update
+astro deployment variable update
 ```
 
 ## Options
@@ -38,13 +38,13 @@ astrocloud deployment variable update
 
 ```sh
 # Update an existing environment variable and set as secret
-$ astrocloud deployment variable update --deployment-id cl03oiq7d80402nwn7fsl3dmv --key AIRFLOW__SECRETS__BACKEND_KWARGS --value <my-new-secret-value> --secret
+$ astro deployment variable update --deployment-id cl03oiq7d80402nwn7fsl3dmv --key AIRFLOW__SECRETS__BACKEND_KWARGS --value <my-new-secret-value> --secret
 
 # Update multiple environment variables for a Deployment at once by loading them from a .env file
-$ astrocloud deployment variable update --deployment-id cl03oiq7d80402nwn7fsl3dmv --load --env .env.dev
+$ astro deployment variable update --deployment-id cl03oiq7d80402nwn7fsl3dmv --load --env .env.dev
 ```
 
 ## Related Commands
 
-- [`astrocloud deployment variable create`](cli-reference/astrocloud-deployment-variable-create.md)
-- [`astrocloud deployment variable list`](cli-reference/astrocloud-deployment-variable-list.md)
+- [`astro deployment variable create`](cli-reference/astro-deployment-variable-create.md)
+- [`astro deployment variable list`](cli-reference/astro-deployment-variable-list.md)

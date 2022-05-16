@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud version"
-title: "astrocloud version"
-id: astrocloud-version
-description: Reference documentation for astrocloud version.
+sidebar_label: "astro version"
+title: "astro version"
+id: astro-version
+description: Reference documentation for astro version.
 ---
 
 ## Description
@@ -12,5 +12,5 @@ Show the running version of the Astro CLI. Note that this command does not show 
 ## Usage
 
 ```sh
-astrocloud version
+astro version
 ```

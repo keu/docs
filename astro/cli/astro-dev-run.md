@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev run"
-title: "astrocloud dev run"
-id: astrocloud-dev-run
-description: Reference documentation for astrocloud dev run.
+sidebar_label: "astro dev run"
+title: "astro dev run"
+id: astro-dev-run
+description: Reference documentation for astro dev run.
 ---
 
 ## Description
@@ -12,17 +12,17 @@ Run [Airflow CLI commands](https://airflow.apache.org/docs/apache-airflow/stable
 ## Usage
 
 ```sh
-astrocloud dev run <airflow-command>
+astro dev run <airflow-command>
 ```
 
 ## Examples
 
 ```sh
-$ astrocloud dev run create_user -r Admin -u admin -e admin@example.com -f admin -l user -p admin
+$ astro dev run create_user -r Admin -u admin -e admin@example.com -f admin -l user -p admin
 # Run the Airflow CLI's `create_user` command in your local Airflow environment
 ```
 
 ## Related Commands
 
-- [`astrocloud dev logs`](cli-reference/astrocloud-dev-logs.md)
-- [`astrocloud dev ps`](cli-reference/astrocloud-dev-ps.md)
+- [`astro dev logs`](cli-reference/astro-dev-logs.md)
+- [`astro dev ps`](cli-reference/astro-dev-ps.md)

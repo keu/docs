@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev ps"
-title: "astrocloud dev ps"
-id: astrocloud-dev-ps
-description: Reference documentation for astrocloud dev ps.
+sidebar_label: "astro dev ps"
+title: "astro dev ps"
+id: astro-dev-ps
+description: Reference documentation for astro dev ps.
 ---
 
 ## Description
@@ -14,10 +14,10 @@ This command works similarly to [`docker ps`](https://docs.docker.com/engine/ref
 ## Usage
 
 ```sh
-astrocloud dev ps
+astro dev ps
 ```
 
 ## Related Commands
 
-- [`astrocloud dev logs`](cli-reference/astrocloud-dev-logs.md)
-- [`astrocloud dev run`](cli-reference/astrocloud-dev-run.md)
+- [`astro dev logs`](cli-reference/astro-dev-logs.md)
+- [`astro dev run`](cli-reference/astro-dev-run.md)

@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud deployment create"
-title: "astrocloud deployment create"
-id: astrocloud-deployment-create
-description: Reference documentation for astrocloud deployment create.
+sidebar_label: "astro deployment create"
+title: "astro deployment create"
+id: astro-deployment-create
+description: Reference documentation for astro deployment create.
 ---
 
 ## Description
@@ -12,7 +12,7 @@ Create a Deployment on Astro. This command is functionally identical to [creatin
 ## Usage
 
 ```sh
-astrocloud deployment create
+astro deployment create
 ```
 
 ## Options
@@ -31,17 +31,17 @@ astrocloud deployment create
 ## Examples
 
 ```sh
-$ astrocloud deployment create
+$ astro deployment create
 # CLI prompts you for a Deployment name and Cluster
 
-$ astrocloud deployment create -d="My Deployment Description" --name="My Deployment Name" --cluster-id="ckwqkz36200140ror6axh8p19"
+$ astro deployment create -d="My Deployment Description" --name="My Deployment Name" --cluster-id="ckwqkz36200140ror6axh8p19"
 # Create a Deployment with all required information specified. The CLI will not prompt you for more information
 
-$ astrocloud deployment create -a=50
+$ astro deployment create -a=50
 # Specify 50 AU for the Deployment's workers. The Astro CLI prompts you for required information
 ```
 
 ## Related Commands
 
-- [`astrocloud deployment delete`](cli-reference/astrocloud-deployment-delete.md)
-- [`astrocloud deployment list`](cli-reference/astrocloud-deployment-list.md)
+- [`astro deployment delete`](cli-reference/astro-deployment-delete.md)
+- [`astro deployment list`](cli-reference/astro-deployment-list.md)

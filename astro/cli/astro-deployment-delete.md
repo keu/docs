@@ -1,15 +1,15 @@
 ---
-sidebar_label: "astrocloud deployment delete"
-title: "astrocloud deployment delete"
-id: astrocloud-deployment-delete
-description: Reference documentation for astrocloud deployment delete.
+sidebar_label: "astro deployment delete"
+title: "astro deployment delete"
+id: astro-deployment-delete
+description: Reference documentation for astro deployment delete.
 ---
 
 ## Description
 
 Delete a Deployment on Astro. This command is functionally identical to deleting a Deployment via the Cloud UI.
 
-When you run `astrocloud deployment delete`, you'll be prompted to select from a list of Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find Deployment ID by running `astrocloud deployment list`.
+When you run `astro deployment delete`, you'll be prompted to select from a list of Deployments that you have access to across Workspaces. Alternatively, you can bypass this prompt and specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find Deployment ID by running `astro deployment list`.
 
 :::info
 
@@ -20,7 +20,7 @@ To complete this action, [Workspace Admin](user-permissions.md#workspace-roles) 
 ## Usage
 
 ```sh
-astrocloud deployment delete
+astro deployment delete
 ```
 
 ## Options
@@ -34,13 +34,13 @@ astrocloud deployment delete
 ## Examples
 
 ```sh
-$ astrocloud deployment delete
+$ astro deployment delete
 # CLI prompts you for a Deployment to delete
-$ astrocloud deployment delete ckvvfp9tf509941drl4vela81n -f
+$ astro deployment delete ckvvfp9tf509941drl4vela81n -f
 # Force delete a Deployment without a confirmation prompt
 ```
 
 ## Related Commands
 
-- [`astrocloud deployment create`](cli-reference/astrocloud-deployment-create.md)
-- [`astrocloud deployment list`](cli-reference/astrocloud-deployment-list.md)
+- [`astro deployment create`](cli-reference/astro-deployment-create.md)
+- [`astro deployment list`](cli-reference/astro-deployment-list.md)

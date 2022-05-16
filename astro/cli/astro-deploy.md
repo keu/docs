@@ -1,24 +1,24 @@
 ---
-sidebar_label: "astrocloud deploy"
-title: "astrocloud deploy"
-id: astrocloud-deploy
-description: Reference documentation for astrocloud deploy.
+sidebar_label: "astro deploy"
+title: "astro deploy"
+id: astro-deploy
+description: Reference documentation for astro deploy.
 ---
 
 ## Description
 
 [Deploy code](deploy-code.md) to a Deployment on Astro.
 
-This command bundles all files in your Astro project and pushes them to Astro. Before completing the process, it tests your DAGs in your Astro project for errors. If this test fails, the deploy to Astro will also fail. This is the same test which runs locally with `astrocloud dev parse`.
+This command bundles all files in your Astro project and pushes them to Astro. Before completing the process, it tests your DAGs in your Astro project for errors. If this test fails, the deploy to Astro will also fail. This is the same test which runs locally with `astro dev parse`.
 
-When you run `astrocloud deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. To bypass this prompt, you can also specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find a Deployment's ID by running `astrocloud deployment list`.
+When you run `astro deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. To bypass this prompt, you can also specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find a Deployment's ID by running `astro deployment list`.
 
-For teams operating at scale, this command can be automated via a [CI/CD pipeline](ci-cd.md) by using [Deployment API keys](api-keys.md) in the request. When `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` are specified as OS-level environment variables on your local machine or in a CI tool, `astrocloud deploy <deployment-id>` can be run without requiring user authentication.
+For teams operating at scale, this command can be automated via a [CI/CD pipeline](ci-cd.md) by using [Deployment API keys](api-keys.md) in the request. When `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET` are specified as OS-level environment variables on your local machine or in a CI tool, `astro deploy <deployment-id>` can be run without requiring user authentication.
 
 ## Usage
 
 ```sh
-astrocloud deploy <options>
+astro deploy <options>
 ```
 
 ## Options
@@ -38,17 +38,17 @@ astrocloud deploy <options>
 
 ```sh
 # List of Deployments appears
-$ astrocloud deploy
+$ astro deploy
 
 # Deploy directly to a specific Deployment
-$ astrocloud deploy ckvvfp9tf509941drl4vela81n
+$ astro deploy ckvvfp9tf509941drl4vela81n
 
-# Running `astrocloud deploy` will now automatically select this Deployment for your Astro project
-$ astrocloud deploy ckvvfp9tf509941drl4vela81n --save
+# Running `astro deploy` will now automatically select this Deployment for your Astro project
+$ astro deploy ckvvfp9tf509941drl4vela81n --save
 ```
 
 ## Related Commands
 
-- [`astrocloud auth login`](cli-reference/astrocloud-auth-login.md)
-- [`astrocloud deployment list`](cli-reference/astrocloud-deployment-list.md)
-- [`astrocloud dev parse`](cli-reference/astrocloud-dev-parse.md)
+- [`astro auth login`](cli-reference/astro-auth-login.md)
+- [`astro deployment list`](cli-reference/astro-deployment-list.md)
+- [`astro dev parse`](cli-reference/astro-dev-parse.md)

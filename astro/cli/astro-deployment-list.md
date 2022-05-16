@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud deployment list"
-title: "astrocloud deployment list"
-id: astrocloud-deployment-list
-description: Reference documentation for astrocloud deployment list.
+sidebar_label: "astro deployment list"
+title: "astro deployment list"
+id: astro-deployment-list
+description: Reference documentation for astro deployment list.
 ---
 
 ## Description
@@ -12,7 +12,7 @@ List all Deployments within your current Workspace.
 ## Usage
 
 ```sh
-astrocloud deployment list
+astro deployment list
 ```
 
 ## Options
@@ -25,11 +25,11 @@ astrocloud deployment list
 ## Examples
 
 ```sh
-$ astrocloud deployment list --all
+$ astro deployment list --all
 # Shows Deployments from all Workspaces that you're authenticated to
 ```
 
 ## Related Commands
 
-- [`astrocloud auth login`](cli-reference/astrocloud-auth-login.md)
-- [`astrocloud deploy`](cli-reference/astrocloud-deploy.md)
+- [`astro auth login`](cli-reference/astro-auth-login.md)
+- [`astro deploy`](cli-reference/astro-deploy.md)

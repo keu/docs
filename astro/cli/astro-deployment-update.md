@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud deployment update"
-title: "astrocloud deployment update"
-id: astrocloud-deployment-update
-description: Reference documentation for astrocloud deployment update.
+sidebar_label: "astro deployment update"
+title: "astro deployment update"
+id: astro-deployment-update
+description: Reference documentation for astro deployment update.
 ---
 
 ## Description
@@ -12,7 +12,7 @@ Update the configuration for a Deployment on Astro. This command is functionally
 ## Usage
 
 ```sh
-astrocloud deployment update <deployment-id> <flags>
+astro deployment update <deployment-id> <flags>
 ```
 
 ## Options
@@ -32,13 +32,13 @@ astrocloud deployment update <deployment-id> <flags>
 
 ```sh
 # Update a Deployment's name and description
-$ astrocloud deployment update cl03oiq7d80402nwn7fsl3dmv -d="My Deployment Description" --name="My Deployment Name"
+$ astro deployment update cl03oiq7d80402nwn7fsl3dmv -d="My Deployment Description" --name="My Deployment Name"
 
 # Force update a Deployment
-$ astrocloud deployment update cl03oiq7d80402nwn7fsl3dmv -d="My Deployment Description" --force
+$ astro deployment update cl03oiq7d80402nwn7fsl3dmv -d="My Deployment Description" --force
 ```
 
 ## Related Commands
 
-- [`astrocloud deployment delete`](cli-reference/astrocloud-deployment-delete.md)
-- [`astrocloud deployment list`](cli-reference/astrocloud-deployment-list.md)
+- [`astro deployment delete`](cli-reference/astro-deployment-delete.md)
+- [`astro deployment list`](cli-reference/astro-deployment-list.md)

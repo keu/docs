@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev parse"
-title: "astrocloud dev parse"
-id: astrocloud-dev-parse
-description: Reference documentation for astrocloud dev parse.
+sidebar_label: "astro dev parse"
+title: "astro dev parse"
+id: astro-dev-parse
+description: Reference documentation for astro dev parse.
 ---
 
 ## Description
@@ -12,7 +12,7 @@ Parse the DAGs in a locally hosted Astro project to quickly check them for error
 ## Usage
 
 ```sh
-astrocloud dev parse
+astro dev parse
 ```
 
 ## Options
@@ -25,14 +25,14 @@ astrocloud dev parse
 
 ```sh
 # Parse DAGs
-astrocloud dev parse
+astro dev parse
 
 # Specify alternative environment variables
-astrocloud dev parse --env=myAlternativeEnvFile.env
+astro dev parse --env=myAlternativeEnvFile.env
 ```
 
 ## Related Commands
 
-- [`astrocloud dev pytest`](cli-reference/astrocloud-dev-pytest.md)
-- [`astrocloud dev start`](cli-reference/astrocloud-dev-start.md)
-- [`astrocloud deploy`](cli-reference/astrocloud-deploy.md)
+- [`astro dev pytest`](cli-reference/astro-dev-pytest.md)
+- [`astro dev start`](cli-reference/astro-dev-start.md)
+- [`astro deploy`](cli-reference/astro-deploy.md)

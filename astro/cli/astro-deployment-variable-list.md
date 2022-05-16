@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud deployment variable list"
-title: "astrocloud deployment variable list"
-id: astrocloud-deployment-variable-list
-description: Reference documentation for astrocloud deployment variable list.
+sidebar_label: "astro deployment variable list"
+title: "astro deployment variable list"
+id: astro-deployment-variable-list
+description: Reference documentation for astro deployment variable list.
 ---
 
 ## Description
@@ -16,7 +16,7 @@ If an environment variable value is set as secret, the CLI will list only its ke
 ## Usage
 
 ```sh
-astrocloud deployment variable list
+astro deployment variable list
 ```
 
 ## Options
@@ -33,14 +33,14 @@ astrocloud deployment variable list
 
 ```sh
 # Save all environment variables currently running on an Astro Deployment to the `.env` file in your current directory
-$ astrocloud deployment variable list --deployment-id cl03oiq7d80402nwn7fsl3dmv --save
+$ astro deployment variable list --deployment-id cl03oiq7d80402nwn7fsl3dmv --save
 
 # Save only a single environment variable from a Deployment on Astro to a `.env` file that is outside of your current directory
-$ astrocloud deployment variable list --deployment-id cl03oiq7d80402nwn7fsl3dmv --key AIRFLOW__CORE__PARALLELISM --save --env /users/documents/my-astro-project/.env
+$ astro deployment variable list --deployment-id cl03oiq7d80402nwn7fsl3dmv --key AIRFLOW__CORE__PARALLELISM --save --env /users/documents/my-astro-project/.env
 ```
 
 ## Related Commands
 
-- [`astrocloud deployment variable create`](cli-reference/astrocloud-deployment-variable-create.md)
-- [`astrocloud deployment variable update`](cli-reference/astrocloud-deployment-variable-update.md)
+- [`astro deployment variable create`](cli-reference/astro-deployment-variable-create.md)
+- [`astro deployment variable update`](cli-reference/astro-deployment-variable-update.md)
 

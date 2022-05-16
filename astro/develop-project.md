@@ -30,7 +30,7 @@ To develop an Astro project and test it locally, you need:
 To run your Astro project locally, run the following command:
 
 ```sh
-astrocloud dev start
+astro dev start
 ```
 
 This command builds your project and spins up 4 Docker containers on your machine, each for a different Airflow component:
@@ -44,7 +44,7 @@ Once the project builds, you can access the Airflow UI by going to `http://local
 
 :::info
 
-The Astro CLI is a wrapper around [Docker Compose](https://docs.docker.com/compose/), a tool for defining and running multi-container Docker applications. If you're familiar with Docker Compose, you'll recognize that the `astrocloud dev start` command, for example, is functionally equivalent to `docker compose start`.
+The Astro CLI is a wrapper around [Docker Compose](https://docs.docker.com/compose/), a tool for defining and running multi-container Docker applications. If you're familiar with Docker Compose, you'll recognize that the `astro dev start` command, for example, is functionally equivalent to `docker compose start`.
 
 :::
 
@@ -59,10 +59,10 @@ If you see `Error: cannot start, project already running` when you run this comm
 To restart your local Airflow environment, run the following command:
 
 ```sh
-astrocloud dev restart
+astro dev restart
 ```
 
-These commands rebuild your image and restart the Docker containers running on your local machine with that new image. Alternatively, you can run just `astrocloud dev stop` to stop your Docker containers without restarting or rebuilding your project.
+These commands rebuild your image and restart the Docker containers running on your local machine with that new image. Alternatively, you can run just `astro dev stop` to stop your Docker containers without restarting or rebuilding your project.
 
 ## Make Changes to Your Project
 
@@ -246,7 +246,7 @@ This is supported both on Astro and in the context of local development.
 
 ## Override the CLI's Docker Compose File (Local Development Only)
 
-The Astro CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. You can override the CLI's Docker Compose configurations by adding a `docker-compose.override.yml` file to your Astro project. Any values in this file override the CLI's default settings whenever you run `astrocloud dev start`.
+The Astro CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. You can override the CLI's Docker Compose configurations by adding a `docker-compose.override.yml` file to your Astro project. Any values in this file override the CLI's default settings whenever you run `astro dev start`.
 
 To see what values you can override, reference the CLI's [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go). The linked file is for the original Astro CLI, but the values here are identical to those used in the Astro CLI. Common use cases for Docker Compose overrides include:
 
@@ -285,7 +285,7 @@ To add Environment Variables locally:
 
 1. Open the `.env` file in your Astro project directory.
 2. Add your environment variables to the `.env` file.
-3. Rebuild your image by running `astrocloud dev start --env .env`.
+3. Rebuild your image by running `astro dev start --env .env`.
 
 When setting environment variables in your `.env` file, use the following format:
 
@@ -456,14 +456,14 @@ This example assumes that the name of each of your Python packages is identical 
   :::tip
 
   This example `Dockerfile.build` assumes Python 3.9, but some versions of Astro Runtime may be based on a different version of Python. If your image is based on a version of Python that is not 3.9, replace `python 3.9` in the **COPY** commands listed under the `## Copy requirements directory` section of your `Dockerfile.build` with the correct Python version.
-  
+
   To identify the Python version in your Astro Runtime image, run:
-  
+
      ```
      docker run quay.io/astronomer/astro-runtime:<runtime-version>-base python --version
      ```
-  
-  Make sure to replace `<runtime-version>` with your own. 
+
+  Make sure to replace `<runtime-version>` with your own.
 
   :::
 

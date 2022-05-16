@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev pytest"
-title: "astrocloud dev pytest"
-id: astrocloud-dev-pytest
-description: Reference documentation for astrocloud dev pytest.
+sidebar_label: "astro dev pytest"
+title: "astro dev pytest"
+id: astro-dev-pytest
+description: Reference documentation for astro dev pytest.
 ---
 
 ## Description
@@ -20,7 +20,7 @@ This command requires Astro Runtime version `4.1.0`+. For more information, see 
 ## Usage
 
 ```sh
-astrocloud dev pytest
+astro dev pytest
 ```
 
 ## Options
@@ -33,12 +33,12 @@ astrocloud dev pytest
 ## Examples
 
 ```sh
-$ astrocloud dev pytest --env=myAlternativeEnvFile.env
+$ astro dev pytest --env=myAlternativeEnvFile.env
 # Specify env file at root of Astro project
 ```
 
 ## Related Commands
 
-- [`astrocloud dev init`](cli-reference/astrocloud-dev-init.md)
-- [`astrocloud dev start`](cli-reference/astrocloud-dev-start.md)
-- [`astrocloud deploy`](cli-reference/astrocloud-deploy.md)
+- [`astro dev init`](cli-reference/astro-dev-init.md)
+- [`astro dev start`](cli-reference/astro-dev-start.md)
+- [`astro deploy`](cli-reference/astro-deploy.md)

@@ -1,8 +1,8 @@
 ---
-sidebar_label: "astrocloud dev start"
-title: "astrocloud dev start"
-id: astrocloud-dev-start
-description: Reference documentation for astrocloud dev start.
+sidebar_label: "astro dev start"
+title: "astro dev start"
+id: astro-dev-start
+description: Reference documentation for astro dev start.
 ---
 
 ## Description
@@ -14,7 +14,7 @@ This command can be used to rebuild an Astro project and run it locally. For mor
 ## Usage
 
 ```sh
-astrocloud dev start
+astro dev start
 ```
 
 ## Options
@@ -27,13 +27,13 @@ astrocloud dev start
 ## Examples
 
 ```sh
-$ astrocloud dev start --env=/users/username/documents/myfile.env
+$ astro dev start --env=/users/username/documents/myfile.env
 ```
 
 ## Related Commands
 
-- [`astrocloud dev stop`](cli-reference/astrocloud-dev-stop.md)
-- [`astrocloud dev kill`](cli-reference/astrocloud-dev-kill.md)
-- [`astrocloud dev init`](cli-reference/astrocloud-dev-init.md)
-- [`astrocloud dev run`](cli-reference/astrocloud-dev-run.md)
-- [`astrocloud dev logs`](cli-reference/astrocloud-dev-logs.md)
+- [`astro dev stop`](cli-reference/astro-dev-stop.md)
+- [`astro dev kill`](cli-reference/astro-dev-kill.md)
+- [`astro dev init`](cli-reference/astro-dev-init.md)
+- [`astro dev run`](cli-reference/astro-dev-run.md)
+- [`astro dev logs`](cli-reference/astro-dev-logs.md)
