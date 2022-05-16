@@ -19,5 +19,5 @@ astro dev stop
 
 ## Related Commands
 
-- [`astro dev start`](cli-reference/astro-dev-start.md)
-- [`astro dev kill`](cli-reference/astro-dev-kill.md)
+- [`astro dev start`](cli/astro-dev-start.md)
+- [`astro dev kill`](cli/astro-dev-kill.md)

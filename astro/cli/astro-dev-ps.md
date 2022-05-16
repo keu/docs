@@ -19,5 +19,5 @@ astro dev ps
 
 ## Related Commands
 
-- [`astro dev logs`](cli-reference/astro-dev-logs.md)
-- [`astro dev run`](cli-reference/astro-dev-run.md)
+- [`astro dev logs`](cli/astro-dev-logs.md)
+- [`astro dev run`](cli/astro-dev-run.md)

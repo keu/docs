@@ -41,6 +41,6 @@ $ astro deployment variable list --deployment-id cl03oiq7d80402nwn7fsl3dmv --key
 
 ## Related Commands
 
-- [`astro deployment variable create`](cli-reference/astro-deployment-variable-create.md)
-- [`astro deployment variable update`](cli-reference/astro-deployment-variable-update.md)
+- [`astro deployment variable create`](cli/astro-deployment-variable-create.md)
+- [`astro deployment variable update`](cli/astro-deployment-variable-update.md)
 

@@ -30,7 +30,7 @@ astro dev parse
 
 This command parses your DAGs to ensure that they don't contain any basic syntax or import errors and that they can successfully render in the Airflow UI.
 
-Generally speaking, `astro dev parse` is a more convenient but less customizable version of `astro dev pytest`. If you don't have any specific test files that you want to run on your DAGs, then we recommend using `astro dev parse` as your primary testing tool. For more information about this command, see the [CLI Command Reference](cli-reference/astro-dev-parse.md).
+Generally speaking, `astro dev parse` is a more convenient but less customizable version of `astro dev pytest`. If you don't have any specific test files that you want to run on your DAGs, then we recommend using `astro dev parse` as your primary testing tool. For more information about this command, see the [CLI Command Reference](cli/astro-dev-parse.md).
 
 ### Run Tests with Pytest
 
@@ -49,7 +49,7 @@ By default, the `tests` directory in your Astro project includes a default DAG i
 - DAGs have no cycles.
 - There are no general import or syntax errors.
 
-`astro dev pytest` runs this default test alongside any other custom tests that you add to the `tests` directory. For more information about this command, see the [CLI Command Reference](cli-reference/astro-dev-pytest.md).
+`astro dev pytest` runs this default test alongside any other custom tests that you add to the `tests` directory. For more information about this command, see the [CLI Command Reference](cli/astro-dev-pytest.md).
 
 ## View Airflow Task Logs
 
@@ -98,7 +98,7 @@ By default, running `astro dev logs` shows logs for all Airflow components. If y
 - `--webserver`
 - `--triggerer`
 
-To continue monitoring logs, run `astro dev logs --follow`. The `--follow` flag ensures that the latest logs continue to appear in your terminal window. For more information about this command, see [CLI Command Reference](cli-reference/astro-dev-logs.md)
+To continue monitoring logs, run `astro dev logs --follow`. The `--follow` flag ensures that the latest logs continue to appear in your terminal window. For more information about this command, see [CLI Command Reference](cli/astro-dev-logs.md)
 
 ## Run Airflow CLI Commands
 

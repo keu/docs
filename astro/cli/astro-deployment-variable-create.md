@@ -13,7 +13,7 @@ If you choose to specify `--key` and `--value` instead of loading a file, you ca
 
 :::tip
 
-This command has an `--update` flag that allows you to change the `value` of an existing environment variable at any time. For a better user experience, we recommend using the [`astro deployment variable update` command](cli-reference/astro-deployment-variable-update.md) to update environment variables instead.
+This command has an `--update` flag that allows you to change the `value` of an existing environment variable at any time. For a better user experience, we recommend using the [`astro deployment variable update` command](cli/astro-deployment-variable-update.md) to update environment variables instead.
 
 :::
 
@@ -51,5 +51,5 @@ $ astro deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --u
 
 ## Related Commands
 
-- [`astro deployment variable list`](cli-reference/astro-deployment-variable-list.md)
-- [`astro deployment variable update`](cli-reference/astro-deployment-variable-update.md)
+- [`astro deployment variable list`](cli/astro-deployment-variable-list.md)
+- [`astro deployment variable update`](cli/astro-deployment-variable-update.md)

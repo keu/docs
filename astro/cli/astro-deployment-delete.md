@@ -42,5 +42,5 @@ $ astro deployment delete ckvvfp9tf509941drl4vela81n -f
 
 ## Related Commands
 
-- [`astro deployment create`](cli-reference/astro-deployment-create.md)
-- [`astro deployment list`](cli-reference/astro-deployment-list.md)
+- [`astro deployment create`](cli/astro-deployment-create.md)
+- [`astro deployment list`](cli/astro-deployment-list.md)

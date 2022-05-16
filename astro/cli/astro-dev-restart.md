@@ -32,9 +32,9 @@ $ astro dev restart --env=/users/username/documents/myfile.env
 
 ## Related Commands
 
-- [`astro dev start`](cli-reference/astro-dev-start.md)
-- [`astro dev stop`](cli-reference/astro-dev-stop.md)
-- [`astro dev kill`](cli-reference/astro-dev-kill.md)
-- [`astro dev init`](cli-reference/astro-dev-init.md)
-- [`astro dev run`](cli-reference/astro-dev-run.md)
-- [`astro dev logs`](cli-reference/astro-dev-logs.md)
+- [`astro dev start`](cli/astro-dev-start.md)
+- [`astro dev stop`](cli/astro-dev-stop.md)
+- [`astro dev kill`](cli/astro-dev-kill.md)
+- [`astro dev init`](cli/astro-dev-init.md)
+- [`astro dev run`](cli/astro-dev-run.md)
+- [`astro dev logs`](cli/astro-dev-logs.md)

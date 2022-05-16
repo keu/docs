@@ -48,17 +48,18 @@ module.exports = {
           type: 'dropdown',
           to: '/astro/',
           label: 'Astro',
-          activeBaseRegex: 'astro',
           position: 'left',
           activeClassName: 'navbar__link--active',
           items: [
             {
               label: 'Cloud',
               to: '/astro/',
+              activeBaseRegex: 'astro/(?!cli)',
             },
             {
               label: 'Astro CLI',
-              to: '/astro/cli/overview.md/',
+              to: 'astro/cli/overview',
+              activeBaseRegex: 'astro/cli',
             },
           ],
         },
@@ -73,6 +74,7 @@ module.exports = {
             {
               label: '0.28 (Latest)',
               to: '/software/',
+              activeBaseRegex: 'software/(?!(0.27|0.26|0.25|0.23|0.16))',
             },
             {
               label: '0.27',

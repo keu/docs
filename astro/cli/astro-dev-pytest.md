@@ -39,6 +39,6 @@ $ astro dev pytest --env=myAlternativeEnvFile.env
 
 ## Related Commands
 
-- [`astro dev init`](cli-reference/astro-dev-init.md)
-- [`astro dev start`](cli-reference/astro-dev-start.md)
-- [`astro deploy`](cli-reference/astro-deploy.md)
+- [`astro dev init`](cli/astro-dev-init.md)
+- [`astro dev start`](cli/astro-dev-start.md)
+- [`astro deploy`](cli/astro-deploy.md)

@@ -31,5 +31,5 @@ $ astro deployment list --all
 
 ## Related Commands
 
-- [`astro auth login`](cli-reference/astro-auth-login.md)
-- [`astro deploy`](cli-reference/astro-deploy.md)
+- [`astro auth login`](cli/astro-auth-login.md)
+- [`astro deploy`](cli/astro-deploy.md)

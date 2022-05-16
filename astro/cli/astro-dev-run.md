@@ -24,5 +24,5 @@ $ astro dev run create_user -r Admin -u admin -e admin@example.com -f admin -l u
 
 ## Related Commands
 
-- [`astro dev logs`](cli-reference/astro-dev-logs.md)
-- [`astro dev ps`](cli-reference/astro-dev-ps.md)
+- [`astro dev logs`](cli/astro-dev-logs.md)
+- [`astro dev ps`](cli/astro-dev-ps.md)

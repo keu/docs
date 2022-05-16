@@ -38,5 +38,5 @@ $ astro dev logs --follow --scheduler
 
 ## Related Commands
 
-- [`astro dev ps`](cli-reference/astro-dev-ps.md)
-- [`astro dev run`](cli-reference/astro-dev-run.md)
+- [`astro dev ps`](cli/astro-dev-ps.md)
+- [`astro dev run`](cli/astro-dev-run.md)

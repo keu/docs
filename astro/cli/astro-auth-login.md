@@ -17,5 +17,5 @@ astro auth login
 
 ## Related Commands
 
-- [`astro auth logout`](cli-reference/astro-auth-logout.md)
-- [`astro deploy`](cli-reference/astro-deploy.md)
+- [`astro auth logout`](cli/astro-auth-logout.md)
+- [`astro deploy`](cli/astro-deploy.md)

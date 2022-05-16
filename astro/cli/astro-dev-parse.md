@@ -33,6 +33,6 @@ astro dev parse --env=myAlternativeEnvFile.env
 
 ## Related Commands
 
-- [`astro dev pytest`](cli-reference/astro-dev-pytest.md)
-- [`astro dev start`](cli-reference/astro-dev-start.md)
-- [`astro deploy`](cli-reference/astro-deploy.md)
+- [`astro dev pytest`](cli/astro-dev-pytest.md)
+- [`astro dev start`](cli/astro-dev-start.md)
+- [`astro deploy`](cli/astro-deploy.md)

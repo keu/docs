@@ -19,7 +19,7 @@ Release date: April 28, 2022
 
 A new `astro deployment variable update` command allows you to more easily update an existing environment variable by typing a new value directly into your command line or adding the updated variable to a `.env` file.
 
-This command replaces the `—update` flag that was previously released with the `astro deployment variable create` command. For more information, see the [Astro CLI Command Reference](cli-reference/astro-deployment-variable-create.md).
+This command replaces the `—update` flag that was previously released with the `astro deployment variable create` command. For more information, see the [Astro CLI Command Reference](cli/astro-deployment-variable-create.md).
 
 ### Additional Improvements
 
@@ -40,13 +40,13 @@ Release date: April 14, 2022
 
 `astro deployment variable create` is a new Astro CLI command that allows you to create and update [environment variables](environment-variables.md) for a Deployment on Astro. New environment variables can be loaded from a file (e.g. `.env`) or specified as inputs to the CLI command itself. If you already set environment variables [via a `.env` file locally](develop-project.md#set-environment-variables-via-env-local-development-only), this command allows you to set environment variables on Astro from that file as well. More generally, this command makes it easy to automate creating or modifying environment variables instead of setting them manually via the Cloud UI.
 
-For more information about this command and its options, see the [Astro CLI Command Reference](cli-reference/astro-deployment-variable-create.md).
+For more information about this command and its options, see the [Astro CLI Command Reference](cli/astro-deployment-variable-create.md).
 
 ### New Command to List and Save Deployment Environment Variables
 
 You can now list existing environment variables for a given Deployment and save them to a local `.env` file with a new `astro deployment variable list` command. This command makes it easy to export existing environment variables for a given Deployment on Astro and test DAGs with them in a local Airflow environment.
 
-For more information about this command and its options, see the [Astro CLI Command Reference](cli-reference/astro-deployment-variable-list.md).
+For more information about this command and its options, see the [Astro CLI Command Reference](cli/astro-deployment-variable-list.md).
 
 ### Additional Improvements
 
@@ -111,13 +111,13 @@ Release date: March 3, 2022
 
 This command was built to replace the need to constantly run `astro dev restart` during troubleshooting to see if your DAGs render in the Airflow UI. Now, you can quickly run `astro dev parse` and see import and syntax errors directly in your terminal without having to restart all Airflow services locally. For more complex testing, we still recommend using `astro dev pytest`, which allows you to run other custom tests in your project.
 
-For more information about `astro dev parse`, see the [CLI Command Reference](cli-reference/astro-dev-parse.md). For more guidance on testing DAGs locally, see [Test DAGs Locally](test-and-troubleshoot-locally.md#test-dags-locally).
+For more information about `astro dev parse`, see the [CLI Command Reference](cli/astro-dev-parse.md). For more guidance on testing DAGs locally, see [Test DAGs Locally](test-and-troubleshoot-locally.md#test-dags-locally).
 
 ### `astro deploy` Parses DAGs by Default
 
 To better protect your Deployments from unexpected errors, `astro deploy` now automatically applies tests from `astro dev parse` to your Astro project before completing the deploy process. If any of these tests fail, the CLI will not push your code to Astro.
 
-For more information about `astro deploy`, see [CLI Command Reference](cli-reference/astro-deploy.md).
+For more information about `astro deploy`, see [CLI Command Reference](cli/astro-deploy.md).
 
 :::danger Breaking Change
 
@@ -137,7 +137,7 @@ You can now use `astro deployment update` to update certain configurations for a
 - Scheduler replicas
 - Worker resources
 
-This is the same set of configurations that you can modify via the **Edit Configuration** view in the Cloud UI. For more information on modifying a Deployment, see [Configure a Deployment](configure-deployment.md). For more information on this command, see [CLI Command Reference](cli-reference/astro-deployment-update.md).
+This is the same set of configurations that you can modify via the **Edit Configuration** view in the Cloud UI. For more information on modifying a Deployment, see [Configure a Deployment](configure-deployment.md). For more information on this command, see [CLI Command Reference](cli/astro-deployment-update.md).
 
 ## v1.2.0
 
@@ -177,7 +177,7 @@ In addition to running tests locally, you can also run pytest as part of the Ast
 
 If you prefer to troubleshoot DAGs and monitor your Deployments from the command line, you can now run `astro deployment logs`, a new Astro CLI command that allows you to view the same Scheduler logs that appear in the **Logs** tab of the Cloud UI.
 
-When you run this command, all Scheduler logs emitted by a Deployment over the last 24 hours appear in your terminal. Similarly to the Cloud UI, you can filter logs by log level using command flags. For more information about this command, see the [CLI Command Reference](cli-reference/astro-deployment-logs.md).
+When you run this command, all Scheduler logs emitted by a Deployment over the last 24 hours appear in your terminal. Similarly to the Cloud UI, you can filter logs by log level using command flags. For more information about this command, see the [CLI Command Reference](cli/astro-deployment-logs.md).
 
 ### New Commands to Create and Delete Deployments on Astro
 
@@ -186,7 +186,7 @@ You can now use the Astro CLI to create and delete Deployments on Astro with two
 - `astro deployment create`
 - `astro deployment delete`
 
-These commands are functionally identical to the [Deployment configuration](configure-deployment.md) and deletion process in the Cloud UI. For more information, see the [CLI Command Reference](cli-reference/astro-deployment-create.md).
+These commands are functionally identical to the [Deployment configuration](configure-deployment.md) and deletion process in the Cloud UI. For more information, see the [CLI Command Reference](cli/astro-deployment-create.md).
 
 ## v1.1.0
 

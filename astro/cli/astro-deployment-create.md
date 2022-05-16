@@ -43,5 +43,5 @@ $ astro deployment create -a=50
 
 ## Related Commands
 
-- [`astro deployment delete`](cli-reference/astro-deployment-delete.md)
-- [`astro deployment list`](cli-reference/astro-deployment-list.md)
+- [`astro deployment delete`](cli/astro-deployment-delete.md)
+- [`astro deployment list`](cli/astro-deployment-list.md)

@@ -39,6 +39,6 @@ $ astro deployment logs cl03oiq7d80402nwn7fsl3dmv --error --log-count=25
 
 ## Related Commands
 
-- [`astro dev logs`](cli-reference/astro-dev-logs.md)
-- [`astro dev run`](cli-reference/astro-dev-run.md)
-- [`astro dev ps`](cli-reference/astro-dev-ps.md)
+- [`astro dev logs`](cli/astro-dev-logs.md)
+- [`astro dev run`](cli/astro-dev-run.md)
+- [`astro dev ps`](cli/astro-dev-ps.md)

@@ -40,5 +40,5 @@ $ astro deployment update cl03oiq7d80402nwn7fsl3dmv -d="My Deployment Descriptio
 
 ## Related Commands
 
-- [`astro deployment delete`](cli-reference/astro-deployment-delete.md)
-- [`astro deployment list`](cli-reference/astro-deployment-list.md)
+- [`astro deployment delete`](cli/astro-deployment-delete.md)
+- [`astro deployment list`](cli/astro-deployment-list.md)

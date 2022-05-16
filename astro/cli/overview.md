@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'CLI Command Reference'
-title: 'Astro CLI Command Reference'
+sidebar_label: 'Overview'
+title: 'Astro CLI'
 id: overview
 description: Learn about every command that you can run with the Astro CLI.
 ---
@@ -23,11 +23,11 @@ All reference documentation is based on the latest available version of the Astr
 
 We expect that you'll use these commands most often when managing your Astro projects and Deployments:
 
-- [`astro auth login`](cli-reference/astro-auth-login.md)
-- [`astro dev init`](cli-reference/astro-dev-init.md)
-- [`astro dev start`](cli-reference/astro-dev-start.md)
-- [`astro dev stop`](cli-reference/astro-dev-stop.md)
-- [`astro deploy`](cli-reference/astro-deploy.md)
+- [`astro auth login`](cli/astro-auth-login.md)
+- [`astro dev init`](cli/astro-dev-init.md)
+- [`astro dev start`](cli/astro-dev-start.md)
+- [`astro dev stop`](cli/astro-dev-stop.md)
+- [`astro deploy`](cli/astro-deploy.md)
 
 Each of these commands has a dedicated documentation page with additional notes and examples. As we expand functionality for the Astro CLI, new commands will be listed here.
 
