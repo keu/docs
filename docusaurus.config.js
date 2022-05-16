@@ -36,7 +36,6 @@ module.exports = {
       disableSwitch: false,
     },
     sitemap: {
-      id: 'default',
       changefreq: 'daily',
       priority: 0.7,
     },
@@ -223,14 +222,6 @@ module.exports = {
           banner: 'none',
          },
        },
-      },
-    ],
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        id: 'software',
-        changefreq: 'daily',
-        priority: 0.3,
       },
     ],
   ],
