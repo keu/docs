@@ -35,6 +35,11 @@ module.exports = {
     colorMode: {
       disableSwitch: false,
     },
+    sitemap: {
+      id: 'default',
+      changefreq: 'daily',
+      priority: 0.7,
+    },
     navbar: {
       title: 'Docs',
       logo: {
@@ -226,13 +231,6 @@ module.exports = {
         id: 'software',
         changefreq: 'daily',
         priority: 0.3,
-      },
-    ],
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        changefreq: 'daily',
-        priority: 0.7,
       },
     ],
   ],
