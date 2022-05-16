@@ -107,7 +107,6 @@ module.exports = {
       label: 'Release Notes',
       items: [
         'release-notes',
-        'cli-release-notes',
         'runtime-release-notes',
       ],
     },
