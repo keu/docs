@@ -145,15 +145,15 @@ For our platform's full collection of Docker Images, reference [Astronomer on Qu
 
 > **Note:** In November of 2020, Astronomer migrated its Docker Registry from [Docker Hub](https://hub.docker.com/r/astronomerinc/ap-airflow) to [Quay.io](https://quay.io/repository/astronomer/ap-airflow?tab=tags) due to a [change](https://www.docker.com/blog/what-you-need-to-know-about-upcoming-docker-hub-rate-limiting/) in Docker Hub's rate limit policy. If you're using a legacy `astronomerinc/ap-airflow` image, replace it with a corresponding `quay.io/astronomer/ap-airflow` image to avoid rate limiting errors from DockerHub when you deploy to Astronomer (e.g. `toomanyrequests: You have reached your pull rate limit`).
 
-### 3. Test Your Upgrade (_Optional_)
+### 3. Test Your Upgrade Locally (_Optional_)
 
-To test your upgrade on your local machine, make sure to save your changes and run the following from your command line:
+To test a new version of Astronomer Certified on your local machine, save all changes to your `Dockerfile` and run:
 
 ```sh
 $ astro dev stop
 ```
 
-This will stop all 3 running Docker containers for each of the necessary Airflow components (Webserver, Scheduler, Postgres). From here, you can apply your changes and deploy them locally by running the following:
+This will stop all 3 running Docker containers for each of the necessary Airflow components (Webserver, Scheduler, Postgres). Then, apply your changes locally by running:
 
 ```sh
 $ astro dev start
@@ -161,7 +161,7 @@ $ astro dev start
 
 ### 4. Deploy to Astronomer
 
-To push your upgrade to your Deployment, run:
+To push your upgrade to a Deployment on Astronomer Software, run:
 
 ```sh
 astro deploy
@@ -169,7 +169,9 @@ astro deploy
 
 :::caution
 
-Upgrading a Software Deployment to [AC 2.3.0](https://github.com/astronomer/ap-airflow/blob/master/2.3.0/CHANGELOG.md) can take significantly longer than normal, with some upgrades taking anywhere from 10 minutes to an hour. If you need to minimize the upgrade time for a given Deployment, reach out to [Astronomer Support](https://support.astornomer.io) and request for Astronomer to remove unnecessary records from your metadata DB.
+Due to a schema change in the Airflow metadata database, upgrading a Software Deployment to [AC 2.3.0](https://github.com/astronomer/ap-airflow/blob/master/2.3.0/CHANGELOG.md) can take significantly longer than usual. Depending on the size of your metadata database, upgrades can take anywhere from 10 minutes to an hour. During this time, scheduled tasks will continue to execute but new tasks will not be scheduled.
+
+If you need to minimize the upgrade time for a given Deployment, reach out to [Astronomer Support](https://support.astornomer.io) and request for Astronomer to remove unnecessary records from your metadata DB.
 
 :::
 
