@@ -145,7 +145,7 @@ For our platform's full collection of Docker Images, reference [Astronomer on Qu
 
 > **Note:** In November of 2020, Astronomer migrated its Docker Registry from [Docker Hub](https://hub.docker.com/r/astronomerinc/ap-airflow) to [Quay.io](https://quay.io/repository/astronomer/ap-airflow?tab=tags) due to a [change](https://www.docker.com/blog/what-you-need-to-know-about-upcoming-docker-hub-rate-limiting/) in Docker Hub's rate limit policy. If you're using a legacy `astronomerinc/ap-airflow` image, replace it with a corresponding `quay.io/astronomer/ap-airflow` image to avoid rate limiting errors from DockerHub when you deploy to Astronomer (e.g. `toomanyrequests: You have reached your pull rate limit`).
 
-### Step 3: Test Your Upgrade (_Optional_)
+### 3. Test Your Upgrade (_Optional_)
 
 To test your upgrade on your local machine, make sure to save your changes and run the following from your command line:
 
@@ -159,7 +159,7 @@ This will stop all 3 running Docker containers for each of the necessary Airflow
 $ astro dev start
 ```
 
-### Step 4: Deploy to Astronomer
+### 4. Deploy to Astronomer
 
 To push your upgrade to your Deployment, run:
 
@@ -173,7 +173,7 @@ Upgrading a Software Deployment to [AC 2.3.0](https://github.com/astronomer/ap-a
 
 :::
 
-### Step 4: Confirm your version in the Airflow UI
+### 5. Confirm your version in the Airflow UI
 
 Once you've issued that command, navigate to your Airflow UI to confirm that you're now running the correct Airflow version.
 
