@@ -161,7 +161,7 @@ $ astro dev start
 
 ### Step 4: Deploy to Astronomer
 
-To push your upgrade to your Astronomer Nebula Deployment, run:
+To push your upgrade to your Deployment, run:
 
 ```sh
 astro deploy
@@ -169,7 +169,7 @@ astro deploy
 
 :::caution
 
-Upgrading a Nebula Deployment to [AC 2.3.0](https://github.com/astronomer/ap-airflow/blob/master/2.3.0/CHANGELOG.md) can take significantly longer than normal, with some upgrades taking anywhere from 10 minutes to an hour. If you need to minimize the upgrade time for a given Deployment, reach out to [Astronomer Support](https://support.astornomer.io) and request for Astronomer to remove unnecessary records from your metadata DB.
+Upgrading a Software Deployment to [AC 2.3.0](https://github.com/astronomer/ap-airflow/blob/master/2.3.0/CHANGELOG.md) can take significantly longer than normal, with some upgrades taking anywhere from 10 minutes to an hour. If you need to minimize the upgrade time for a given Deployment, reach out to [Astronomer Support](https://support.astornomer.io) and request for Astronomer to remove unnecessary records from your metadata DB.
 
 :::
 
