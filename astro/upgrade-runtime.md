@@ -37,3 +37,11 @@ To push your upgrade to Astro, run `astrocloud deploy` and select the Deployment
 3. In the Airflow UI, scroll to the bottom of any page. You should see your new Runtime version in the footer:
 
     ![Runtime Version banner](/img/docs/image-tag-airflow-ui.png)
+
+## Upgrade Considerations
+
+The following topic contains information about upgrading to specific versions of Runtime, including breaking changes and other upgrade considerations.
+
+### Runtime 5.0.0 (Airflow 2.3.0)
+
+When a Deployment has a large amount of data stored in its metadata database, upgrading it to Runtime 5.0.0 can take significantly longer than average. If you need to minimize the upgrade time for a given Deployment, reach out to [Astronomer Support](https://support.astornomer.io) and request for Astronomer to remove unnecessary records from your metadata DB.
