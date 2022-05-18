@@ -19,7 +19,13 @@ Before installing Astro CLI vXX, complete all of the following steps:
 - Update any CI/CD pipelines or other automated processes that use Astro CLI commands to ensure that these commands do not break after upgrade.
 - Review any custom shortcuts in your local CLI terminal to ensure that your shortcuts do not run any deprecated or broken CLI commands.
 
+After you complete these steps, install Astro CLI vXX by following the steps in [Install the CLI](install-cli.md).
+
 ## Breaking Changes
+
+This topic contains all information related to breaking changes included in Astro CLI vXX
+
+Note that this topic does not include information about new non-breaking features and changes. For a summary of these changes, see the [CLI Release Notes](cli-release-notes.md).
 
 ### `astro auth login/logout` Is Now `astro login/logout`
 
