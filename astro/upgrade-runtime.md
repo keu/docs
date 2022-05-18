@@ -46,7 +46,7 @@ This topic contains information about upgrading to specific versions of Astro Ru
 
 Astro Runtime 5.0 includes changes to the schema of the Airflow metadata database. When you first upgrade to Runtime 5, consider that:
 
-- If a Deployment on Astro has a large amount of historical data stored in its metadata database, upgrading to Runtime 5.0 can take 10 to 30 minutes or more. During this time, scheduled tasks will continue to execute but new tasks will not be scheduled.
+- Upgrading to Runtime 5.0 can take 10 to 30 minutes or more depending on the number of task instances that have been recorded in the deployment's metadata database. During this time, scheduled tasks will continue to execute but new tasks will not be scheduled.
 - Once you upgrade successfully to Runtime 5.0, you might see errors in the Airflow UI that warn you of incompatible data in certain tables of the database. For example:
 
     ```Airflow found incompatible data in the `dangling_rendered_task_instance_fields` table in your metadata database, and moved...`.
