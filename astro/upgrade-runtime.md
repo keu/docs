@@ -49,7 +49,8 @@ Astro Runtime 5.0.0 includes changes to the schema of the Airflow metadata datab
 - Upgrading to Runtime 5.0 can take 10 to 30 minutes or more depending on the number of task instances that have been recorded in the metadata database throughout the lifetime of your Deployment. During the upgrade, scheduled tasks will continue to execute but new tasks will not be scheduled.
 - Once you upgrade successfully to Runtime 5.0, you might see errors in the Airflow UI that warn you of incompatible data in certain tables of the database. For example:
 
-    ```Airflow found incompatible data in the `dangling_rendered_task_instance_fields` table in your metadata database, and moved...`
+    ```
+    Airflow found incompatible data in the `dangling_rendered_task_instance_fields` table in your metadata database, and moved...
     ```
 
     These warnings have no impact on your tasks or DAGs and can be ignored. If you want to remove these warning messages from the Airflow UI, reach out to [Astronomer Support](https://support.astronomer.io). If requested, Astronomer can drop incompatible tables from your metadata database.
