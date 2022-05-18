@@ -169,7 +169,7 @@ astro deploy
 
 :::caution
 
-Due to a schema change in the Airflow metadata database, upgrading a Software Deployment to [AC 2.3.0](https://github.com/astronomer/ap-airflow/blob/master/2.3.0/CHANGELOG.md) can take significantly longer than usual. Depending on the size of your metadata database, upgrades can take anywhere from 10 minutes to an hour or longer depending on the number of task instances that have been recorded in the Airflow metadata database. During this time, scheduled tasks will continue to execute but new tasks will not be scheduled.
+Due to a schema change in the Airflow metadata database, upgrading a Deployment on Astronomer to [AC 2.3.0](https://github.com/astronomer/ap-airflow/blob/master/2.3.0/CHANGELOG.md) can take significantly longer than usual. Depending on the number of task instances that have been recorded in the Airflow metadata database, upgrades can take anywhere from 10 minutes to one hour or longer. During this time, scheduled tasks will continue to execute but new tasks will not be scheduled.
 
 If you need to minimize the upgrade time for a given Deployment, reach out to [Astronomer Support](https://support.astornomer.io).
 :::
