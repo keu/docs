@@ -7,32 +7,22 @@ description: Learn about every command that you can run with the Astro CLI.
 
 import {siteVariables} from '@site/src/versions';
 
-## Overview
+## Build, Run, and Observe Airflow Locally
 
-The Astro CLI is the easiest way to run Apache Airflow on your local machine. From the CLI, you can run a local Apache Airflow environment with a dedicated Webserver, Scheduler and Postgres Database. If you're an Astro user, you can also create and manage users, Workspaces, Deployments, and more.
+The open source Astro CLI makes it easy to develop an Airflow project and run it on your local machine. It automatically manages Airflow resources and components so that you can focus on development, not configuration.
 
-This document contains information about all commands and settings available in the Astro CLI, including examples and flags. To install the Astro CLI, see [Install the CLI](install-cli.md).
+## Manage Astro From Your Terminal
 
-:::info
+The Astro CLI also functions as a core tool for deploying Airflow at scale with [Astro](https://www.astronomer.io/product/). Using the Astro CLI, you can:
 
-All reference documentation is based on the latest available version of the Astro CLI. To see the differences across various CLI versions, see the [Astro CLI Release Notes](cli-release-notes.md).
+- Manage user permissions in Astro Workspaces and Deployments.
+- Automatically deploy code to Astro via CI/CD.
+- Access logs for Airflow components running in your cloud.
 
-:::
+## Quickstart
 
-## Core Commands
+Follow the [Astro CLI Quickstart](cli-quickstart.md) to install the CLI and run your first locally hosted Airflow project.
 
-We expect that you'll use these commands most often when managing your Astro projects and Deployments:
+## CLI Reference
 
-- [`astro auth login`](cli/astro-auth-login.md)
-- [`astro dev init`](cli/astro-dev-init.md)
-- [`astro dev start`](cli/astro-dev-start.md)
-- [`astro dev stop`](cli/astro-dev-stop.md)
-- [`astro deploy`](cli/astro-deploy.md)
-
-Each of these commands has a dedicated documentation page with additional notes and examples. As we expand functionality for the Astro CLI, new commands will be listed here.
-
-## Global Options
-
-The Astro CLI has one global flag that can be used with any command:
-
-- `-h`, `--help`: Output more information about a given command to the CLI.
+For a full list of available CLI commands, see the [CLI Command Reference](cli-reference.md).
