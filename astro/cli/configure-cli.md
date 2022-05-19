@@ -20,10 +20,16 @@ import {siteVariables} from '@site/src/versions';
     ]}>
 <TabItem value="mac">
 
-Install the Astro CLI by running the following command:
+To install the latest version of the Astro CLI, run the following command:
 
 ```sh
 brew install astronomer/cloud/astro
+```
+
+To install a specific version of the Astro CLI, specify the version you want to install at the end of the command:
+
+```sh
+brew install astronomer/cloud/astro@0.XX
 ```
 
 </TabItem>
@@ -45,6 +51,8 @@ brew install astronomer/cloud/astro
     - ARM64:
 
         <pre><code parentName="pre">{`Invoke-WebRequest -Uri https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Windows_arm64.tar.gz -OutFile astrocli.tar.gz`}</code></pre>
+
+    To install a different version of the CLI, change the version number in the command to your desired CLI version.
 
 3. Run the following command to unzip the executable:
 
@@ -74,6 +82,8 @@ brew install astronomer/cloud/astro
 
         <pre><code parentName="pre">{`curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Linux_arm64.tar.gz -o astrocli.tar.gz`}</code></pre>
 
+    To install a different version of the CLI, change the version number in the command to your desired CLI version.
+
 3. Run the following command to unzip the executable:
 
     ```sh
@@ -88,3 +98,67 @@ brew install astronomer/cloud/astro
 
 
 ## Upgrade the CLI
+
+<Tabs
+    defaultValue="mac"
+    values={[
+        {label: 'Mac', value: 'mac'},
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+    ]}>
+<TabItem value="mac">
+
+To upgrade the Astro CLI, you can run the same command as you did to install the CLI for the first time:
+
+```sh
+brew install astronomer/cloud/astro
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+[Upgrade steps for Windows]
+
+</TabItem>
+
+<TabItem value="linux">
+
+[Upgrade steps for Linux]
+
+</TabItem>
+
+</Tabs>
+
+## Uninstall the CLI
+
+<Tabs
+    defaultValue="mac"
+    values={[
+        {label: 'Mac', value: 'mac'},
+        {label: 'Windows', value: 'windows'},
+        {label: 'Linux', value: 'linux'},
+    ]}>
+<TabItem value="mac">
+
+To uninstall the Astro CLI, run the following command:
+
+```sh
+brew uninstall astronomer/cloud/astro
+```
+
+</TabItem>
+
+<TabItem value="windows">
+
+[Upgrade steps for Windows]
+
+</TabItem>
+
+<TabItem value="linux">
+
+[Upgrade steps for Linux]
+
+</TabItem>
+
+</Tabs>
