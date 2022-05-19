@@ -8,7 +8,10 @@ description: Reference documentation for astro config set.
 ## Description
 
 Update configurations for a locally hosted Astro project.
+
 ## Usage
+
+Within your Astro project directory, run:
 
 ```sh
 astro config set <option> <value>
@@ -16,27 +19,27 @@ astro config set <option> <value>
 
 ## Options
 
-| Option             | Description | Possible Values |
-| ------------------ | ----------- | --------------- |
-| `CloudAPIProtocol` | TBD         | TBD             |
-| `CloudAPIPort`     | TBD         | TBD             |
-| `CloudWSProtocol`  | TBD         | TBD             |
-| `CloudAPIToken`    | TBD         | TBD             |
-| `Context`          | TBD         | TBD             |
-| `Contexts`         | TBD         | TBD             |
-| `LocalEnabled`     | TBD         | TBD             |
-| `LocalAstro`       | TBD         | TBD             |
-| `LocalPublicAstro`       | TBD         | TBD             |
-| `LocalRegistry`       | TBD         | TBD             |
-| `PostgresUser`       | TBD         | TBD             |
-| `PostgresPassword`       | TBD         | TBD             |
-| `PostgresHost`       | TBD         | TBD             |
-| `PostgresPort`       | TBD         | TBD             |
+| Option              | Description | Possible Values |
+| ------------------- | ----------- | --------------- |
+| `CloudAPIProtocol`  | TBD         | TBD             |
+| `CloudAPIPort`      | TBD         | TBD             |
+| `CloudWSProtocol`   | TBD         | TBD             |
+| `CloudAPIToken`     | TBD         | TBD             |
+| `Context`           | TBD         | TBD             |
+| `Contexts`          | TBD         | TBD             |
+| `LocalEnabled`      | TBD         | TBD             |
+| `LocalAstro`        | TBD         | TBD             |
+| `LocalPublicAstro`  | TBD         | TBD             |
+| `LocalRegistry`     | TBD         | TBD             |
+| `PostgresUser`      | TBD         | TBD             |
+| `PostgresPassword`  | TBD         | TBD             |
+| `PostgresHost`      | TBD         | TBD             |
+| `PostgresPort`      | TBD         | TBD             |
 | `ProjectName`       | TBD         | TBD             |
-| `ProjectDeployment`       | TBD         | TBD             |
-| `ProjectWorkspace`       | TBD         | TBD             |
-| `WebserverPort`       | TBD         | TBD             |
-| `ShowWarnings`       | TBD         | TBD             |
+| `ProjectDeployment` | TBD         | TBD             |
+| `ProjectWorkspace`  | TBD         | TBD             |
+| `WebserverPort`     | TBD         | TBD             |
+| `ShowWarnings`      | TBD         | TBD             |
 
 ## Examples
 
@@ -44,3 +47,7 @@ astro config set <option> <value>
 ## Set a username for your project's postgres user
 $ astro config set PostgresUser postgres
 ```
+
+## Related Commands
+
+- [astro config get](cli/astro-config-get.md)
