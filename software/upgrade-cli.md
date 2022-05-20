@@ -19,7 +19,7 @@ Before installing Astro CLI v1.0+, complete all of the following steps:
 - Update any CI/CD pipelines or other automated processes that use Astro CLI commands to ensure that these commands do not break After upgrade.
 - Review any custom shortcuts in your local CLI terminal to ensure that your shortcuts do not run any deprecated or broken CLI commands.
 
-After you complete these steps, install Astro CLI v1.0+ by following the steps in [Install the CLI](install-cli.md).
+After you complete these steps, upgrade to Astro CLI v1.0+ by following the steps in [Install the CLI](install-cli.md).
 
 ## Breaking Changes
 
