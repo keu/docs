@@ -1,7 +1,7 @@
 ---
 title: "Install the Astro CLI"
 sidebar_label: "Install the CLI"
-id: cli-quickstart
+id: install-cli
 description: Establish a local testing environment and deploy to Astronomer Software from the CLI.
 ---
 
