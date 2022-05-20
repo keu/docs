@@ -11,17 +11,15 @@ import {siteVariables} from '@site/src/versions';
 
 ## Overview
 
-The Astro CLI is the easiest way to run Apache Airflow on your machine.
+This guide provides instructions for how to install the Astro CLI.
 
-From the CLI, you can run a local Apache Airflow environment with a dedicated Webserver, Scheduler and Postgres Database. Once you create an Astro project, you can easily customize it (e.g. add Python or OS-level packages, plugins etc.) and test it on your local machine.
+The Astro CLI is the easiest way to run Apache Airflow on your machine. From the CLI, you can run a local Apache Airflow environment with a dedicated Webserver, Scheduler and Postgres Database. Once you create an Astronomer Software project, you can easily customize it (e.g. add Python or OS-level packages, plugins etc.) and test it on your local machine.
 
 You can also use the CLI to:
 
-- Authenticate to Astro.
+- Authenticate to Astronomer Software.
 - List the Astro Workspace and Deployments you have access to.
-- Deploy a project to Astro.
-
-This guide provides instructions for how to install the Astro CLI.
+- Deploy a project to Software.
 
 ## Prerequisites
 
@@ -30,9 +28,13 @@ To install and use the Astro CLI on Mac, you must have:
 - [Homebrew](https://brew.sh/)
 - [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
 
-To install and use the Astro CLI on Windows or Linux, you must have:
+To install and use the Astro CLI on Linux, you must have:
 
 - [Docker Engine](https://docs.docker.com/engine/install/) (v0.13.1 or higher).
+
+To install and use the Astro CLI on Windows, you must have:
+
+- [Docker Desktop WSL 2 backend](https://docs.docker.com/desktop/windows/wsl/) (v0.13.1 or higher).
 
 ## Install the Astro CLI
 
@@ -58,7 +60,7 @@ brew install astronomer/cloud/astro
 1. In a PowerShell terminal, create a new directory for your Astro project and set it as your current directory:
 
     ```powershell
-    mkdir my-project && cd my-project
+    mkdir my-project ; cd my-project
     ```
 
 2. Based on your CPU, run one of the following commands to download the Astro CLI executable into your project directory.
