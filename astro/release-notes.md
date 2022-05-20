@@ -79,7 +79,9 @@ For a full list of node instance types that are supported on Astro, see [AWS Res
 
 The Cloud UI now renders an error if you try to modify the **Worker Resources**  to a combination of CPU and memory that is not supported by the node instance type of the Cluster that the Deployment is hosted on. This validation ensures that the worker size you request is supported by the infrastructure available in your Astro Cluster, and minimizes silent task failures that might have occurred due to invalid resource requests.
 
-If your Astro Cluster is configured with the `m5.xlarge` node type, for example, the Cloud UI will show an error if you try to set **Worker Resources** to 100 AU. This is because the maximum worker size an `m5.xlarge` node can support is 27 AU.
+If your Astro Cluster is configured with the `m5d.8xlarge` node type, for example, the Cloud UI will show an error if you try to set **Worker Resources** to 350 AU. This is because the maximum worker size an `m5d.8xlarge` node can support is 307 AU.
+
+![Worker size error](/img/release-notes/worker-size-error.png)
 
 For a reference of all node instance types Astro supports and their corresponding worker size limits, see [AWS Resource Reference](resource-reference-aws.md#node-instance-type).
 
