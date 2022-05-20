@@ -7,7 +7,7 @@ description: A list of all breaking changes and upgrade steps related to the maj
 
 ## Overview
 
-Astro CLI v1.0 delivers several new features and establishes a shared framework between Astro and Software users.
+Astro CLI v1.0 delivers several new features to Astronomer Software and establishes a shared CLI framework between Astro and Software users.
 
 As part of this release, several commands and their flags have been updated, resulting in breaking changes for Software users. Use this document to learn about these breaking changes and prepare for your upgrade to Astro CLI v1.0.
 
