@@ -445,7 +445,7 @@ This example assumes that the name of each of your Python packages is identical 
     LABEL io.astronomer.docker=true
     LABEL io.astronomer.docker.build.number=$BUILD_NUMBER
     LABEL io.astronomer.docker.airflow.onbuild=true
-    # Install Python and OS-Level Packages
+    # Install OS-Level Packages
     COPY packages.txt .
     RUN apt-get update && cat packages.txt | xargs apt-get install -y
 
@@ -523,28 +523,30 @@ Your Astro project can now utilize Python packages from your private GitHub repo
 
 #### Install Python Packages from a Private PyPI Index
 
-This topic provides instructions for building your Astro project using Python packages from a private PyPI index. In some organizations, python packages are prebuilt and pushed to a hosted private pip server (such as pypiserver or Nexus Repository) or managed service (such as PackageCloud or Gitlab). At a high level, this setup requires specifying your private packages in `requirements.txt`, creating a custom Docker image that changes where pip looks for packages, and building your project with this Docker image.
+This topic provides instructions for installing Python packages on Astro from a private PyPI index. This is required for organizations that deploy a [private PyPI server (`private-pypi`)](https://pypi.org/project/private-pypi/) as a secure layer between pip and a Python package storage backend, such as GitHub, AWS, or a local file system.
+
+At a high level, this setup requires specifying your privately hosted Python packages in `requirements.txt`, creating a custom Docker image that changes where pip looks for packages, and building your Astro project with this Docker image.
 
 #### Prerequisites
 
-To build from a private repository, you need:
+To install Python packages on Astro from a private PyPI index, you need:
 
 - An [Astro project](create-project.md).
-- A private PyPI index with username and password authentication.
+- A private PyPI index with a corresponding username and password.
 
-#### Step 1: Add privately hosted packages to requirements.txt
+#### Step 1: Add the Private Python Packages to your Astro Project
 
-Privately hosted packages should already be built and pushed to the private repository. Depending on the repository used, it should be possible to browse and find the necessary package and version required. The package name and (optional) version can be added to requirements.txt in the same syntax as for publicly listed packages on [PyPI](https://pypi.org). The requirements.txt can contain a mixture of both publicly accessible and private packages.
+To install a Python package from a private PyPI index, add the package name to the `requirements.txt` file of your Astro project. Packages can be specified with the same syntax as publicly available Python packages, and your `requirements.txt` file can contain a mix of private and publicly available Python packages.
 
 :::caution
 
-Ensure that the name of the package on the private repository does not clash with any existing python packages. The order that pip will search indices might produce unexpected results.
+Make sure that the name of the privately hosted Python package does not conflict with the name of other Python packages in your Astro project. The order in which pip searches indices might produce unexpected results.
 
 :::
 
 #### Step 2: Create Dockerfile.build
 
-1. In your Astro project, create a duplicate of your `Dockerfile` named `Dockerfile.build`.
+1. In your Astro project, create a copy of your `Dockerfile` named `Dockerfile.build`.
 
 2. In `Dockerfile.build`, add `AS stage` to the `FROM` line which specifies your Runtime image. For example, if you use Runtime 5.0.0, your `FROM` line would be:
 
@@ -558,7 +560,7 @@ Ensure that the name of the package on the private repository does not clash wit
 
    :::
 
-3. In `Dockerfile.build` after the `FROM` line specifying your Runtime image, add the following configuration. Make sure to replace `<url-to-packages>` with the URL leading to the directory with your Python packages:
+3. In `Dockerfile.build` after the `FROM` line specifying your Runtime image, add the following configuration:
 
     ```docker
     LABEL maintainer="Astronomer <humans@astronomer.io>"
@@ -566,7 +568,7 @@ Ensure that the name of the package on the private repository does not clash wit
     LABEL io.astronomer.docker=true
     LABEL io.astronomer.docker.build.number=$BUILD_NUMBER
     LABEL io.astronomer.docker.airflow.onbuild=true
-    # Install Python and OS-Level Packages
+    # Install OS-Level Packages
     COPY packages.txt .
     RUN apt-get update && cat packages.txt | xargs apt-get install -y
 
@@ -585,13 +587,13 @@ Ensure that the name of the package on the private repository does not clash wit
 
     In order, these commands:
 
-    - Complete the standard installation of OS-level packages in `packages.txt`.
-    - Add the environment variable `PIP_EXTRA_INDEX_URL` to instruct pip on where to look for non-public packages.
+    - Install any OS-level packages specified in `packages.txt`.
+    - Add `PIP_EXTRA_INDEX_URL` as an environment variable that contains authentication information for your private PyPI index.
     - Install public and private Python-level packages from your `requirements.txt` file.
 
 #### Step 3: Build a Custom Docker Image
 
-1. Run the following command to create a new Docker image from your `Dockerfile.build` file, making sure to substitute in the pip repository and associated credentials:
+1. Run the following command to create a new Docker image from your `Dockerfile.build` file, making sure to substitute your pip repository information and credentials:
 
     ```sh
     DOCKER_BUILDKIT=1 docker build -f Dockerfile.build --progress=plain --build-arg PIP_EXTRA_INDEX_URL=https://${<repo-username>}:${<repo-password>}@<private-pypi-repo-domain-name> -t custom-<airflow-image> .
