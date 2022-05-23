@@ -44,7 +44,7 @@ $ export ASTRONOMER_KEY_ID="<your-api-key-id>"
 $ export ASTRONOMER_KEY_SECRET="<your-api-key-secret>"
 
 # Install the Astro CLI
-$ brew install astronomer/cloud/astro@1.2.0
+$ brew install astronomer/tap/astro@1.2.0
 
 # Build your Astro project into a Docker image and push the image to your Deployment
 $ astro deploy <your-deployment-id>
@@ -55,7 +55,7 @@ $ astro deploy <your-deployment-id>
 The following templates use `brew install` to install the latest version of the Astro CLI for every deploy. For a more stable CI/CD pipeline, you can install only a specific version of the CLI by tagging a specific version in the command:
 
 ```sh
-brew install astronomer/cloud/astro@<version-number>
+brew install astronomer/tap/astro@<version-number>
 ```
 
 :::
@@ -93,7 +93,7 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
           uses: actions/checkout@v2.3.4
         - name: Deploy to Astro
           run: |
-            brew install astronomer/cloud/astro
+            brew install astronomer/tap/astro
             astro deploy ${{ secrets.ASTRONOMER_DEPLOYMENT_ID }}
     ```
 
@@ -144,7 +144,7 @@ This setup assumes the following prerequisites:
           uses: actions/checkout@v2.3.4
         - name: Deploy to Astro
           run: |
-            brew install astronomer/cloud/astro
+            brew install astronomer/tap/astro
             astro deploy ${{ secrets.DEV_ASTRONOMER_DEPLOYMENT_ID }}
       prod-push:
         if: github.event.action == 'closed' && github.event.pull_request.merged == true
@@ -158,7 +158,7 @@ This setup assumes the following prerequisites:
           uses: actions/checkout@v2.3.4
         - name: Deploy to Astro
           run: |
-            brew install astronomer/cloud/astro
+            brew install astronomer/tap/astro
             astro deploy ${{ secrets.PROD_ASTRONOMER_DEPLOYMENT_ID }}
     ```
 
