@@ -106,9 +106,17 @@
 /astro/cli-reference/astrocloud-completion /astro/cli-reference/astro-completion 301
 /astro/cli-reference/astrocloud-deploy /astro/cli-reference/astro-deploy 301
 /astro/cli-reference/astrocloud-deployment-list /astro/cli-reference/astro-deployment-list 301
+/astro/cli-reference/astrocloud-deployment-logs /astro/cli-reference/astro-deployment-logs 301
+/astro/cli-reference/astrocloud-deployment-update /astro/cli-reference/astro-deployment-update 301
+/astro/cli-reference/astrocloud-deployment-variable-create /astro/cli-reference/astro-deployment-variable-create 301
+/astro/cli-reference/astrocloud-deployment-variable-list /astro/cli-reference/astro-deployment-variable-list 301
+/astro/cli-reference/astrocloud-deployment-variable-update /astro/cli-reference/astro-deployment-variable-update 301
 /astro/cli-reference/astrocloud-dev-init /astro/cli-reference/astro-dev-init 301
 /astro/cli-reference/astrocloud-dev-kill /astro/cli-reference/astro-dev-kill 301
 /astro/cli-reference/astrocloud-dev-logs /astro/cli-reference/astro-dev-logs 301
+/astro/cli-reference/astrocloud-dev-parse /astro/cli-reference/astro-dev-parse 301
+/astro/cli-reference/astrocloud-dev-ps /astro/cli-reference/astro-dev-ps 301
+/astro/cli-reference/astrocloud-dev-pytest /astro/cli-reference/astro-dev-pytest 301
 /astro/cli-reference/astrocloud-dev-run /astro/cli-reference/astro-dev-run 301
 /astro/cli-reference/astrocloud-dev-start /astro/cli-reference/astro-dev-start 301
 /astro/cli-reference/astrocloud-dev-stop /astro/cli-reference/astro-dev-stop 301
