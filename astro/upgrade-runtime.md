@@ -7,7 +7,7 @@ description: Upgrade your Deployment's version of Astro Runtime.
 
 ## Overview
 
-New versions of Astro Runtime are released regularly to support new features from both Astro and Apache Airflow. To take advantage of new functionality, as well as bug and security fixes, we recommend regularly upgrading Astro Runtime as new versions are released.
+New versions of Astro Runtime are released regularly to support new functionality from both Astro and the Apache Airflow open source project. To take advantage of new features as well as bug and security fixes, we recommend regularly upgrading Astro Runtime as new versions are released.
 
 Follow this guide to upgrade Astro Runtime locally or for a Deployment on Astro. You can use these steps to upgrade to any major, minor, or patch version of Astro Runtime.
 
@@ -40,8 +40,6 @@ If you're only upgrading a local Airflow environment, you do not need an Astro D
 
     To upgrade to Astro Runtime 5.0.1, for example, change the `FROM` statement in your Dockerfile to:
 
-
-
     ```
     FROM quay.io/astronomer/astro-runtime:5.0.1
     ```
@@ -50,9 +48,7 @@ If you're only upgrading a local Airflow environment, you do not need an Astro D
 
 ## Step 2: Test Astro Runtime Locally
 
-We strongly recommend testing new versions of Astro Runtime locally before upgrading a Deployment on Astro. 
-
-To test your upgrade locally:
+We strongly recommend testing new versions of Astro Runtime locally before upgrading a Deployment on Astro.  To test your upgrade locally:
 
 1. Save the changes to your `Dockerfile`.
 2. Open your project directory in your terminal and run `astrocloud dev restart`. This restarts the Docker containers for the Airflow Webserver, Scheduler, Triggerer, and Postgres metadata database.
