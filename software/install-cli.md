@@ -21,21 +21,6 @@ You can also use the CLI to:
 - List the Astro Workspace and Deployments you have access to.
 - Deploy a project to Software.
 
-## Prerequisites
-
-To install and use the Astro CLI on Mac, you must have:
-
-- [Homebrew](https://brew.sh/)
-- [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
-
-To install and use the Astro CLI on Linux, you must have:
-
-- [Docker Engine](https://docs.docker.com/engine/install/) (v0.13.1 or higher).
-
-To install and use the Astro CLI on Windows, you must have:
-
-- [Docker Desktop WSL 2 backend](https://docs.docker.com/desktop/windows/wsl/) (v0.13.1 or higher).
-
 ## Install the Astro CLI
 
 <Tabs
@@ -54,6 +39,8 @@ To use the Astro CLI on Mac, you must have:
 - [Homebrew](https://brew.sh/)
 - [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
 
+#### Installation
+
 To install the latest version of the Astro CLI, run the following command:
 
 ```sh
@@ -63,8 +50,10 @@ brew install astronomer/tap/astro
 To install a specific version of the Astro CLI, specify the version you want to install at the end of the command:
 
 ```sh
-brew install astronomer/tap/astro@0.XX
+brew install astronomer/tap/astro@<major.minor.patch-version>
 ```
+
+If you specify only a major version, this command will install the latest minor/patch version available for that major version.
 
 </TabItem>
 
@@ -74,17 +63,16 @@ brew install astronomer/tap/astro@0.XX
 
 To use the Astro CLI on Windows, you must have:
 
-- [Docker Desktop](https://docs.docker.com/desktop/windows/install/) for windows.
+- [Docker Desktop](https://docs.docker.com/desktop/windows/install/) for Windows.
 - [Docker Engine](https://docs.docker.com/engine/install/) (v0.13.1 or higher).
 - [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) enabled on your local machine.
 -  Windows 10 or Windows 11.
 
 #### Installation
 
+1. Go to the [**Releases** page of the Astro CLI GitHub repository](https://github.com/astro-projects/astro-cli/releases). Based on your desired CLI version and the CPU architecture of your machine, download one of the `.zip` files available on this page.
 
-1. Go to the [**Releases** page of the Astro CLI GitHub](https://github.com/astro-projects/astro-cli/releases). Based on your desired CLI version and CPU architecture, download one of the `.zip` files available on this page.
-
-    For example, if you wanted to install v1.0.0 of the Astro CLI on a Windows Machine with an AMD 64 architecture, you would download `astro_1.0.0-converged_windows_amd64.zip`.
+    For example, to install v1.0.0 of the Astro CLI on a Windows Machine with an AMD 64 architecture, download `astro_1.0.0-converged_windows_amd64.zip`.
 
 2. Run the following command to unzip the executable:
 
@@ -92,7 +80,9 @@ To use the Astro CLI on Windows, you must have:
     tar -xvzf .\astrocli.tar.gz
     ```
 
-3. Save `astro.exe` in a secure location on your machine and add its filepath in the Windows PATH environment variable. For more information about configuring the PATH environment variable, read [Java documentation](https://www.java.com/en/download/help/path.html).
+3. Add the filepath for the directory containing `astro.exe` as a PATH environment variable. For example, if `astro.exe` was stored in `C:\Users\username\astrocloud.exe`, you would add `C:\Users\username` as your PATH environment variable. To learn more about configuring the PATH environment variable, see [Java documentation](https://www.java.com/en/download/help/path.html).
+
+4. Restart your machine.
 
 </TabItem>
 
@@ -102,7 +92,7 @@ To use the Astro CLI on Windows, you must have:
 
 To use the Astro CLI on Linux, you must have:
 
-- [Docker Engine](https://docs.docker.com/engine/install/) (v0.13.1 or higher).
+- [Docker Engine](https://docs.docker.com/engine/install/) (v0.18.9 or higher).
 
 #### Installation
 
@@ -117,6 +107,8 @@ To install a specific version of the CLI, specify the version number as a flag a
 ```sh
 curl -sSL install.astronomer.io | sudo bash -s -- v1.0.0
 ```
+
+If you specify only a major version, this command will install the latest minor/patch version available for that major version.
 
 </TabItem>
 
