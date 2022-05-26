@@ -184,7 +184,7 @@ To automate code deploys to a single Deployment using [Jenkins](https://www.jenk
            steps {
              script {
                    sh 'curl -sSL install.astronomer.io | sudo bash -s'
-                   sh './astro deploy ${siteVariables.deploymentid} -f'
+                   sh 'astro deploy ${siteVariables.deploymentid} -f'
              }
            }
          }
@@ -241,7 +241,7 @@ To automate code deploys to a Deployment using [CircleCI](https://circleci.com/)
               name: "Deploy to Astro"
               command: |
                 curl -sSL install.astronomer.io | sudo bash -s
-                ./astro deploy ${siteVariables.deploymentid} -f
+                astro deploy ${siteVariables.deploymentid} -f
 
     # Invoke jobs via workflows
     # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -304,7 +304,7 @@ This pipeline configuration requires:
         - name: dockersock
           path: /var/run
         commands:
-        - ./astro deploy ${siteVariables.deploymentiddrone} -f
+        - astro deploy ${siteVariables.deploymentiddrone} -f
         depends on:
         - wait
 
@@ -361,7 +361,7 @@ To automate code deploys to a Deployment using [GitLab](https://gitlab.com/), co
       script:
        - curl https://goreleaserdev.blob.core.windows.net/goreleaser-test-container/releases/v${siteVariables.cliVersion}/cloud-cli_${siteVariables.cliVersion}_Linux_x86_64.tar.gz -o astrocli.tar.gz
        - tar xzf astrocli.tar.gz
-       - ./astro deploy $ASTRONOMER_DEPLOYMENT_ID -f
+       - astro deploy $ASTRONOMER_DEPLOYMENT_ID -f
       only:
        - main
    `}</code></pre>
@@ -400,7 +400,7 @@ When you create environment variables that will be used in multiple branches, yo
           - apk add --update curl && rm -rf /var/cache/apk/*
         script:
           - curl -sSL install.astronomer.io | sudo bash -s
-          - ./astro deploy $DEV_ASTRONOMER_DEPLOYMENT_ID -f
+          - astro deploy $DEV_ASTRONOMER_DEPLOYMENT_ID -f
         only:
           - dev
 
@@ -416,7 +416,7 @@ When you create environment variables that will be used in multiple branches, yo
           - apk add --update curl && rm -rf /var/cache/apk/*
         script:
           - curl -sSL install.astronomer.io | sudo bash -s
-          - ./astro deploy $PROD_ASTRONOMER_DEPLOYMENT_ID -f
+          - astro deploy $PROD_ASTRONOMER_DEPLOYMENT_ID -f
         only:
           - main
    `}</code></pre>
