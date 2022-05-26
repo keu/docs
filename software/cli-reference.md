@@ -13,7 +13,7 @@ This document contains information about all commands and settings available in 
 
 ## Installation
 
-To insall the CLI, see [Install the CLI](install-cli.md)
+To install the CLI, see [Install the CLI](install-cli.md)
 
 ### Prerequisites
 
