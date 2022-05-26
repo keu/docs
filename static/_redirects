@@ -100,7 +100,8 @@
 /astro/install-cli /astro/cli/quickstart 301
 /astro/cli-reference /astro/cli/reference 301
 /astro/cli-release-notes /astro/cli/release-notes 301
-
+/software/cli-quickstart /software/install-cli 301
+/software/cli-install-windows-10 /software/install-cli 301
 /astro/cli-reference/astrocloud-auth-login /astro/cli/astro-login 301
 /astro/cli-reference/astrocloud-auth-logout /astro/cli-reference/astro-logout 301
 /astro/cli-reference/astrocloud-completion /astro/cli-reference/astro-completion 301
