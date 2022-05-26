@@ -44,7 +44,7 @@ $ export ASTRONOMER_KEY_ID="<your-api-key-id>"
 $ export ASTRONOMER_KEY_SECRET="<your-api-key-secret>"
 
 # Install the Astro CLI
-$ brew install astronomer/tap/astro@1.2.0
+$ brew install astronomer/tap/astro@1.0.0
 
 # Build your Astro project into a Docker image and push the image to your Deployment
 $ astro deploy <your-deployment-id>
@@ -52,11 +52,7 @@ $ astro deploy <your-deployment-id>
 
 :::info
 
-The following templates use `brew install` to install the latest version of the Astro CLI for every deploy. For a more stable CI/CD pipeline, you can install only a specific version of the CLI by tagging a specific version in the command:
-
-```sh
-brew install astronomer/tap/astro@<version-number>
-```
+The following templates use [Astro CLI v1.0.0+](cli/cli-release-notes.md) to deploy via CI/CD. These templates will not work if you use a pre-1.0.0 version of the CLI.
 
 :::
 
