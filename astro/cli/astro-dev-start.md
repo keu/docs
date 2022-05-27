@@ -32,6 +32,7 @@ $ astro dev start --env=/users/username/documents/myfile.env
 
 ## Related Commands
 
+- [`astro dev restart`](cli/astro-dev-restart.md)
 - [`astro dev stop`](cli/astro-dev-stop.md)
 - [`astro dev kill`](cli/astro-dev-kill.md)
 - [`astro dev init`](cli/astro-dev-init.md)
