@@ -22,6 +22,7 @@ Astro Runtime 5.0.2 includes same-day support for Airflow 2.3.1, a release that 
 
 Fixes include:
 
+- Faster database migrations to Airflow 2.3
 - Automatically reschedule stalled queued tasks in Celery Executor ([#23690](https://github.com/apache/airflow/pull/23690))
 - Fix secrets rendered in Airflow UI when task is not executed ([#22754](https://github.com/apache/airflow/pull/22754))
 
