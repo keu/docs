@@ -5,7 +5,7 @@ module.exports = {
   tagline: 'Learn how to use Astro, the next-generation data orchestration platform.',
   url: 'https://docs.astronomer.io',
   baseUrl: '/',
-  trailingSlash: true,
+  trailingSlash: false,
   noIndex: false,
   onBrokenLinks: 'error',
   onBrokenMarkdownLinks: 'error',
@@ -34,6 +34,10 @@ module.exports = {
     },
     colorMode: {
       disableSwitch: false,
+    },
+    sitemap: {
+      changefreq: 'daily',
+      priority: 0.7,
     },
     navbar: {
       title: 'Docs',
@@ -211,10 +215,6 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-        sitemap: {
-          changefreq: 'daily',
-          priority: 0.7,
-        },
       },
     ],
   ],
@@ -237,14 +237,6 @@ module.exports = {
           banner: 'none',
          },
        },
-      },
-    ],
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        id: 'software',
-        changefreq: 'daily',
-        priority: 0.3,
       },
     ],
   ],
