@@ -16,6 +16,20 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest CLI Version**: 1.5.0 ([Release notes](cli-release-notes.md))
 
+## May 26, 2022
+
+### New Datasets Page in the Cloud UI
+
+You can now use the new **Datasets** page in the **Lineage** tab to view a table of datasets that your DAGs have read or written to. This information can help you quickly identify dataset dependencies and data pipeline access requirements.
+
+![Datasets page](/img/release-notes/datasets-page.png)
+
+Click on the name of a dataset to show its lineage graph. For more information, see [Data Lineage on Astro](data-lineage.md).
+
+### Bug Fixes
+
+- Fixed an issue where the **Astro Runtime** field of the Cloud UI listed the running version as **Unknown**  for Deployments using an unsupported version of Astro Runtime
+
 ## May 5, 2022
 
 ### Data Lineage Is Now Available on Astro
