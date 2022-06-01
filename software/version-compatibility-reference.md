@@ -17,7 +17,6 @@ While the tables below reference the minimum compatible versions, we typically r
 
 | Astronomer Platform | Kubernetes                   | Helm | Terraform | Postgres | Python                                    | Astronomer CLI | Astronomer Certified |
 | ------------------- | ---------------------------- | ---- | --------- | -------- | ----------------------------------------- | -------------- | -------------------- |
-| v0.23               | 1.16, 1.17, 1.18             | 3    | 0.13.5    | 9.6+     | 3.6, 3.7, 3.8                             | 0.23.x         | All                  |
 | v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 3.6  | 0.13.5    | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.25.x         | All                  |
 | v0.26               | 1.17, 1.18, 1.19, 1.20, 1.21 | 3.6  | 0.13.5    | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.26.x         | All                  |
 | v0.27               | 1.18, 1.19, 1.20, 1.21       | 3.6  | 0.13.5    | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.27.x         | All                  |
