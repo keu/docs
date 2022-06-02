@@ -64,6 +64,7 @@ module.exports = {
             {
               label: '0.29 (Latest)',
               to: '/software/',
+              activeBaseRegex: 'software/(?!(0.28|0.27|0.26|0.25))',
             },
             {
               label: '0.28',
