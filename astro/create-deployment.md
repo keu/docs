@@ -23,7 +23,10 @@ If you prefer, you can run the `astrocloud deployment create` command in the Ast
 2. Click **Deployment**.
 3. Complete the following fields:
     - **Name**: Enter a name for your Deployment.
-    - **Astro Runtime**: Select the Astro Runtime version. The latest version of Astro Runtime is selected by default.
+    - **Astro Runtime**: By default, the latest version of Astro Runtime is selected. The Astro Runtime versions provided in the Cloud UI are limited to patches for the most recent major and minor releases. Deprecated versions of Astro Runtime aren't available.
+    
+        To upgrade the Astro Runtime version for your Deployment, you’ll need to update your Docker image in your Astro project directory. For more information about upgrading Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md).
+
     - **Description**: Optional. Enter a description for your Deployment. 
     - **Cluster**: Select the Astro Cluster in which you want to create this Deployment.
 4. Optional. Edit the Deployment resource settings. See [Configure Deployment Resources](configure-deployment-resources.md). 
