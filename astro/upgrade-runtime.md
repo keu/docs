@@ -29,7 +29,7 @@ To upgrade to a new version of Astro Runtime, you must have:
 
 :::info
 
-If you're only upgrading a local Airflow environment, you do not need an Astro Deployment and can skip steps 3-4 of this guide. 
+If you're only upgrading a local Airflow environment, you do not need an Astro Deployment and can skip steps 3-4 of this guide.
 
 :::
 
