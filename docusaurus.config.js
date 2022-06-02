@@ -68,7 +68,7 @@ module.exports = {
             },
             {
               label: '0.28',
-              to: '/software/',
+              to: '/software/0.28/overview',
             },
             {
               label: '0.27',
