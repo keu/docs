@@ -582,7 +582,7 @@ Run `astro dev logs [flags]` to start tracking logs for your Scheduler, Webserve
 
 ## astro dev parse
 
-Parse the DAGs in a locally hosted Astro project to quickly check them for errors. For more information about testing DAGs locally, see [Run Tests with the Astro CLI](test-and-troubleshoot-locally.md#run-tests-with-the-astro-cli).
+Parse the DAGs in a locally hosted Astro project to quickly check them for errors.
 
 ### Usage
 
@@ -606,8 +606,6 @@ Lists all running Docker containers for your local Airflow environment. This com
 
 Run unit tests for your data pipelines with `pytest`, a testing framework for Python. When you run this command, the Astro CLI creates a local Python environment that includes your DAG code, dependencies, and Astronomer Certified Docker image. The CLI then runs any pytests in the `tests` directory of your Astro project and shows you the results of those tests in your terminal.
 
-For more information on this functionality, see [Test and Troubleshoot Locally](test-and-troubleshoot-locally.md).
-
 ### Usage
 
 `astro dev pytest` to run specfic Pytests on your DAGs. Use `astro dev pytest <pytest-filepath>` to specify a specific test.
@@ -623,7 +621,7 @@ For more information on this functionality, see [Test and Troubleshoot Locally](
 
 Stop your Airflow environment, rebuild your Astro project into a Docker image, and restart your Airflow environment with the new Docker image.
 
-You can use this command to rebuild an Astro project and run it locally. See [Develop and Run a Project Locally](develop-project.md#build-and-run-a-project-locally).
+You can use this command to rebuild an Astro project and run it locally. 
 
 ### Usage
 
