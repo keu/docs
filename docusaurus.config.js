@@ -153,6 +153,11 @@ module.exports = {
               label: 'Privacy Policy',
               to: 'https://www.astronomer.io/privacy/',
             },
+            {
+              label: 'Cookie Preferences',
+              to: '#',
+              id: 'cookiePref',
+            },
           ],
         },
         {
@@ -190,14 +195,6 @@ module.exports = {
           admonitions: {
           },
         },
-        gtag: {
-          trackingID: 'G-DKTB1B78FV',
-          anonymizeIP: true,
-        },
-        googleAnalytics: {
-          trackingID: 'UA-54102728-4',
-          anonymizeIP: true,
-        },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -225,5 +222,18 @@ module.exports = {
        },
       },
     ],
+  ],
+  scripts: [
+    {
+      src: './scripts/segment.js',
+      defer: true,
+    },
+    {
+      src: './scripts/consent-manager.js',
+      defer: true,
+    },
+    {
+      src: './scripts/consent-manager-config.js',
+    },
   ],
 };
