@@ -102,7 +102,7 @@ This topic contains information about upgrading to specific versions of Astronom
 
 ### Upgrading from Earlier Minor Versions to 0.29
 
-As part of the 0.29 release, Astronomer has deprecated its usage of [kubed](https://appscode.com/products/kubed/) for performance and security reasons. Kubed was responsible for syncing Astronomer's signing certificate to Deployment namespaces and is now replaced by an in-house utility. While this change does not directly affect users, you need to run a one-time command during upgrade in order to can sync Astronomer's signing certificate.
+As part of the 0.29 release, Astronomer has deprecated its usage of [kubed](https://appscode.com/products/kubed/) for performance and security reasons. Kubed was responsible for syncing Astronomer's signing certificate to Deployment namespaces and is now replaced by an in-house utility. While this change does not directly affect users, you need to run a one-time command during upgrade in order to sync Astronomer's signing certificate.
 
 When upgrading to v0.29 from any earlier minor version, complete the following additional setup between Steps 2 and 3 in the standard procedure:
 
