@@ -44,8 +44,8 @@ If you prefer, you can run the `astrocloud deployment create` command in the Ast
 
 ## Next Steps
 
-[Configure Deployment Resources](configure-deployment-resources.md).
+- [Configure Deployment Resources](configure-deployment-resources.md).
 
-[Set Environment Variables on Astro](environment-variables.md).
+- [Set Environment Variables on Astro](environment-variables.md).
 
-[Manage Deployment API Keys](api-keys.md).
+- [Manage Deployment API Keys](api-keys.md).
