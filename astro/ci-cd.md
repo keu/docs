@@ -358,8 +358,9 @@ To automate code deploys to a Deployment using [GitLab](https://gitlab.com/), co
          ASTRONOMER_KEY_SECRET: $ASTRONOMER_KEY_SECRET
       before_script:
        - apk add --update curl && rm -rf /var/cache/apk/*
+       - apk add bash
       script:
-       - curl -sSL install.astronomer.io | sudo bash -s
+       - curl -sSL install.astronomer.io | bash -s
        - astro deploy $ASTRONOMER_DEPLOYMENT_ID -f
       only:
        - main
@@ -397,8 +398,9 @@ When you create environment variables that will be used in multiple branches, yo
             ASTRONOMER_KEY_SECRET: $DEV_ASTRONOMER_KEY_SECRET
         before_script:
           - apk add --update curl && rm -rf /var/cache/apk/*
+          - apk add bash
         script:
-          - curl -sSL install.astronomer.io | sudo bash -s
+          - curl -sSL install.astronomer.io | bash -s
           - astro deploy $DEV_ASTRONOMER_DEPLOYMENT_ID -f
         only:
           - dev
@@ -413,8 +415,9 @@ When you create environment variables that will be used in multiple branches, yo
             ASTRONOMER_KEY_SECRET: $PROD_ASTRONOMER_KEY_SECRET
         before_script:
           - apk add --update curl && rm -rf /var/cache/apk/*
+          - apk add bash
         script:
-          - curl -sSL install.astronomer.io | sudo bash -s
+          - curl -sSL install.astronomer.io | bash -s
           - astro deploy $PROD_ASTRONOMER_DEPLOYMENT_ID -f
         only:
           - main
