@@ -99,27 +99,13 @@ From here, our team will provision an Astro Cluster according to the specificati
 
 ## Step 3: Create a Cross-Account IAM Role for Astro
 
-After your Astro Cluster is created, Astronomer provides you with an [External ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) that allows Astronomer to connect to your AWS account. Save the External ID as a secret or in an otherwise secure format for use in the AWS CLI.
-
-<Tabs
-    defaultValue="management console"
-    values={[
-        {label: 'AWS Management Console', value: 'management console'},
-        {label: 'AWS Command Line', value: 'command line'},
-    ]}>
-<TabItem value="management console">
+Once your Astro Cluster has been created, an Astronomer team member will provide you with an [External ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html) that will allow Astronomer to connect to your AWS account. Save the External ID as a secret or in an otherwise secure format for use in the AWS CLI.
 
 Then, click the link below to create an [cross-account admin IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html#getting-started_create-admin-group-console) for Astro in your new AWS account:
 
 - [Create cross-account IAM Role](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?templateURL=https://astro-cross-account-role-template.s3.us-east-2.amazonaws.com/customer-account.yaml&stackName=AstroCrossAccountIAMRole&param_AstroAccountId=406882777402)
 
-Using this CloudFormation link is the recommended way to create an IAM role for Astro. 
-
-</TabItem>
-
-<TabItem value="command line">
-
-Run the following AWS CLI commands to create a cross-account IAM Role:
+Using this CloudFormation link is the recommended way to create an IAM role for Astro. Alternatively, you can create a cross-account IAM Role by running the following AWS CLI commands:
 
 ```bash
 $ aws iam create-role --role-name astronomer-remote-management --assume-role-policy-document "{
@@ -184,9 +170,6 @@ Some AWS regions that Astronomer supports are disabled by default on AWS, includ
 If you're setting up your first Cluster in any of these regions, you need to complete the additional setup as described in [Create a Cluster](create-cluster.md#additional-setup-for-aws-regions-that-are-disabled-by-default).
 
 :::
-
-</TabItem>
-</Tabs>
 
 ## Step 4: Let Astronomer Complete the Install
 
