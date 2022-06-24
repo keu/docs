@@ -23,6 +23,8 @@ Release date: June 23, 2022
 
 - Fixed several high level CVEs
 - User auth tokens for the Software UI are now stored in httpOnly cookies
+- Fixed an issue where Grafana dashboards were not accessible
+- Fixed an issue where a user could not log in through Azure AD SSO if the user belonged to a group without a `displayName`
 
 ## v0.28.4
 
