@@ -191,7 +191,7 @@ To provision additional Clusters after completing your initial installation, see
 
 :::caution
 
-Some AWS regions that Astronomer supports are disabled by default on AWS, includ
+Some AWS regions that Astronomer supports are disabled by default on AWS, including:
 - `ap-east-1` - Asia Pacific (Hong Kong)
 - `me-south-1` - Middle East (Bahrain)
 
