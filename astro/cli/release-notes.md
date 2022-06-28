@@ -11,6 +11,14 @@ This document provides a summary of all changes made to the [Astro CLI](cli/get-
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
+## Astro CLI v1.2.0
+
+Release date: June 28, 2022
+
+### Bug Fixes
+
+- Fixed an issue where `astro deploy` would kill a running project
+
 ## Astro CLI v1.1.0
 
 Release date: June 13, 2022
