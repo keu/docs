@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Astro CLI'
-title: 'Astro CLI Release Notes'
+title: 'Astro CLI release notes'
 id: cli-release-notes
 description: Release notes for the Astro CLI.
 ---
@@ -9,13 +9,13 @@ description: Release notes for the Astro CLI.
 
 This document provides a summary of all changes made to the [Astro CLI](install-cli.md) for the v0.29.x series of Astronomer Software. For general product release notes, see [Astronomer Software Release Notes](release-notes.md).
 
-If you have any questions or a bug to report, reach out to us via [Astronomer Support](https://support.astronomer.io).
+If you have any questions or a bug to report, reach out to us via [Astronomer support](https://support.astronomer.io).
 
 ## Astro CLI v0.29
 
 Release date: June 1, 2022
 
-### Create New Projects With Astro Runtime Images
+### Create New Projects With Astro Runtime images
 
 `astro dev init` now initializes Astro projects with the latest Astro Runtime image by default. To use a specific Runtime version, run:
 
@@ -59,6 +59,6 @@ astro deployment runtime upgrade --deployment-id=<deployment-id> --desired-runti
 
 For more information, see the [CLI Reference Guide](cli-reference.md#astro-deployment-runtime-upgrade).
 
-### Additional Improvements
+### Additional improvements
 
 - When running `astro dev start`, the containers running Airflow components now include your project directory in their names.
