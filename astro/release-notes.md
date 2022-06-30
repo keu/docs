@@ -43,7 +43,7 @@ For a list of all Google Cloud Platform (GCP) regions that Astro supports, see [
 
 ## June 23, 2022
 
-### New GCP regions available
+### New Google Cloud Platform regions
 
 You can now [create an Astro cluster on GCP](create-cluster.md) in the following regions:
 
