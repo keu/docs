@@ -122,6 +122,7 @@ module.exports = {
       label: 'Reference',
       items: [
         'known-limitations',
+        'runtime-image-architecture',
         'runtime-version-lifecycle-policy',
         'astro-support',
         {

@@ -163,6 +163,7 @@ module.exports = {
       'support',
       'cli-reference',
       'version-compatibility-reference',
+      'runtime-image-architecture',
       'release-lifecycle-policy',
       'documentation-archive',
       ],
