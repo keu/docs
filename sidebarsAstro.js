@@ -32,8 +32,8 @@ module.exports = {
           label: 'Write DAGs',
           items: [
             'deferrable-operators',
-            'kubernetespodoperator',
             'kubepodoperator-local',
+            'kubernetespodoperator',
           ],
         },
         'upgrade-runtime',
