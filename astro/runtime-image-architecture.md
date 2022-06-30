@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Astro Runtime Architecture'
+sidebar_label: 'Astro Runtime architecture'
 title: 'Astro Runtime architecture'
 id: runtime-image-architecture
 description: Reference documentation for Astro Runtime, a differentiated distribution of Apache Airflow.
@@ -12,12 +12,12 @@ Deploying Astro Runtime is a requirement if your organization is using Astro. As
 - Timely support for new patch, minor, and major versions of Apache Airflow. This includes bug fixes that have not been released by the open source project but are backported to Astro Runtime and available to users earlier.
 - Exclusive features to enrich the task execution experience, including smart task concurrency defaults and high availability configurations.
 - The `astronomer-providers` package. This package is an open source collection of Apache Airflow providers and modules maintained by Astronomer. It includes deferrable versions of popular operators such as `ExternalTaskSensor`, `DatabricksRunNowOperator`, and `SnowflakeOperator`. See [Astronomer deferrable operators](deferrable-operators.md#astronomer-deferrable-operators).
-- The `openlineage-airflow` package. [OpenLineage](https://openlineage.io/) standardizes the definition of data lineage, the metadata that forms lineage data, and how data lineage data is collected from external systems. This package enables data lineage on Astro. See [OpenLineage and Airflow](data-lineage-concepts.md#openlineage-and-airflow).
+- The `openlineage-airflow` package. [OpenLineage](https://openlineage.io/) standardizes the definition of data lineage, the metadata that forms lineage data, and how data lineage data is collected from external systems. This package enables data lineage on Astro. See [OpenLineage and Airflow](https://www.astronomer.io/guides/airflow-openlineage/).
 - A custom logging module that ensures Airflow task logs are reliably available to the Astro data plane.
 - A custom security manager that enforces user roles and permissions as defined by Astro. See [User permissions](user-permissions.md).
 - A custom Airflow UI that includes links to Astronomer resources and exposes the currently running Docker image tag in the footer of all UI pages.
 
-For more information about the features that are available in Astro Runtime releases, see the [Astro Runtime release notes](runtime-release-notes.md). To install or upgrade Astro Runtime, see [Upgrade Runtime](upgrade-runtime.md).
+For more information about the features that are available in Astro Runtime releases, see the [Astro Runtime release notes](runtime-release-notes.md).
 
 ## Runtime versioning
 
@@ -30,8 +30,6 @@ Astro Runtime versions are released regularly and use [semantic versioning](http
 Every version of Astro Runtime correlates to an Apache Airflow version. All Deployments on Astro must run only one version of Astro Runtime, but you can run different versions of Astro Runtime on different Deployments within a given cluster or Workspace. See [Create a Deployment](create-deployment.md#create-a-deployment).
 
 For a list of supported Astro Runtime versions and more information on the Astro Runtime maintenance policy, see [Astro Runtime versioning and lifecycle policy](runtime-version-lifecycle-policy.md).
-
-To install or upgrade Astro Runtime, see [Upgrade Runtime](https://docs.astronomer.io/astro/upgrade-runtime).
 
 ### Astro Runtime and Apache Airflow parity
 
@@ -72,7 +70,7 @@ To determine the version of any provider package installed in your current Astro
 ```
 docker run --rm {image} pip freeze | grep <provider>
 ```
-### Python versioning
+## Python versioning
 
 Astro Runtime supports Python 3.9. This is the only version of Python that Astro Runtime supports. If your data pipelines require an unsupported Python version, Astronomer recommends that you use the KuberentesPodOperator. See [Run the KubernetesPodOperator on Astro](kubernetespodoperator.md).
 
@@ -101,5 +99,6 @@ Astro Runtime images are based on Debian 11.3 (bullseye).
 
 ## Related documentation
 
-- [Astro Runtime versioning and lifecycle policy](runtime-version-lifecycle-policy.md)
 - [Astro Runtime release notes](runtime-release-notes.md)
+- [Upgrade Runtime](https://docs.astronomer.io/astro/upgrade-runtime)
+- [Astro Runtime versioning and lifecycle policy](runtime-version-lifecycle-policy.md)
