@@ -7,7 +7,7 @@ description: Reference documentation for Astronomer Certified, Astronomer Softwa
 
 The Astronomer Certified Docker image for Apache Airflow extends the community-developed Airflow image in a way that makes running Airflow more secure, reliable, and extensible. It is the default image for Airflow Deployments on Astronomer.
 
-This guide provides reference information for the building blocks of Astronomer Certified, as well as information on its release and distribution.
+This guide provides reference information for the building blocks of Astronomer Certified, as well as information on its release and distribution. For reference information on Astro Runtime, see [Runtime image architecture](runtime-image-architecture.md).
 
 ## Distribution
 
@@ -33,22 +33,6 @@ Every supported version of the Astronomer Certified Python wheel is available at
 - [Airflow 2.2.5](https://github.com/astronomer/ap-airflow/blob/master/2.2.5/bullseye/Dockerfile)
 - [Airflow 2.1.4](https://github.com/astronomer/ap-airflow/blob/master/2.1.4/buster/Dockerfile)
 - [Airflow 1.10.15](https://github.com/astronomer/ap-airflow/blob/master/1.10.15/buster/Dockerfile)
-
-### Differences between Astro Runtime and Astronomer Certified
-
-Starting with Software version 0.29, you can use Astro Runtime images in your Software Deployments. Functionally, Runtime images are similar to Certified images. They both include:
-
-- Same-day support for Apache Airflow releases.
-- Extended support lifecycles.
-- Regularly backported bug and security fixes.
-
-Astro Runtime includes additional features which are not available in Astronomer Certified images, including:
-
-- The `astronomer-providers` package, which includes a set of deferrable operators build and maintained by Astronomer.
-- Airflow UI improvements, such as the showing your Deployment's Docker image tag in the footer of all UI pages.
-- Future Runtime-exclusive features, such as new Airflow components and improvements to the DAG development experience.
-
-For more information on using Runtime in your Deployments, see [Upgrade Runtime](https://docs.astronomer.io/astro/upgrade-runtime).
 
 ## Image requirements
 
