@@ -16,7 +16,9 @@ For instructions on how to upgrade, read [Upgrade Airflow on Astronomer Software
 - Release date: July 11, 2022
 - Airflow version: 2.3.3
 
-Astro Runtime 5.0.6 includes Airflow 2.3.3, which includes bug fixes and UI improvements. For a complete list of commits, see the [Apache Airflow 2.3.3 milestone on GitHub](https://github.com/apache/airflow/milestone/57?closed=1).
+### Support for Airflow 2.3.3
+
+Astro Runtime 5.0.6 includes Airflow 2.3.3, which includes bug fixes and UI improvements. For a complete list of commits, see the [Apache Airflow 2.3.3 release on GitHub](https://github.com/apache/airflow/releases/).
 
 ### Additional improvements
 
