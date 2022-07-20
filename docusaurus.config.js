@@ -232,6 +232,18 @@ module.exports = {
       },
     ],
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'guides',
+        routeBasePath: 'guides',
+        editUrl: ({ docPath }) =>
+          `https://github.com/astronomer/docs/blob/main/guides/${docPath}`,
+        editCurrentVersion: true,
+        sidebarPath: require.resolve('./sidebarsGuides.js'),
+        path: 'guides',
+      },
+    ],
+    [
       '@docusaurus/plugin-sitemap',
       {
        id: 'software',
