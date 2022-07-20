@@ -89,6 +89,14 @@ module.exports = {
             },
           ],
         },
+        {
+          type: 'dropdown',
+          to: '/guides/',
+          label: 'Guides',
+          position: 'left',
+          activeClassName: 'navbar__link--active',
+          ],
+        },
       ],
     },
     footer: {
