@@ -14,5 +14,26 @@ module.exports = {
       id: 'overview',
       label: 'Overview',
     },
+    {
+      type: 'category',
+      label: 'Concepts',
+      items: [
+        'overview',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorials',
+      items: [
+        'overview',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Integrations',
+      items: [
+        'overview',
+      ],
+    },
   ],
 };

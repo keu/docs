@@ -90,7 +90,6 @@ module.exports = {
           ],
         },
         {
-          type: 'dropdown',
           to: '/guides/',
           label: 'Guides',
           position: 'left',
