@@ -95,7 +95,6 @@ module.exports = {
           label: 'Guides',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          ],
         },
       ],
     },
