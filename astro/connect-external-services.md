@@ -28,9 +28,9 @@ Public connection traffic moves directly between your data plane and the externa
 
 ### Allowlist Astro IPs
 
-Some data services, including Snowflake and Databricks, require that you identify and allowlist any IP addresses reponsible for outbound traffic before you can access their services from an external network. This provides an additional layer of security.
+Some data services, including Snowflake and Databricks, require that you identify and allowlist any IP addresses responsible for outbound traffic before you can access their services from an external network. This provides an additional layer of security.
 
-On Astro, each cluster has two unique external IP address that persist throughout the lifetime of the cluster. These IP addresses are assigned for network address translation, which means that they are responsible for all outbound traffic from your Astro cluster to the internet.
+On Astro, each cluster has two unique external IP addresses that persist throughout the lifetime of the cluster. These IP addresses are assigned for network address translation, which means that they are responsible for all outbound traffic from your Astro cluster to the internet.
 
 To retrieve the IP addresses of an Astro cluster, contact [Astronomer support](https://support.astronomer.io) and request them. Then, allowlist these IP addresses in your data service provider. If you have more than one cluster, you will need to allowlist each cluster individually.
 
