@@ -5,6 +5,12 @@ id: ac-cve
 description: "Common Vulnerabilities and Exposures identified within our Astronomer Certified images."
 ---
 
+:::caution
+
+Astronomer will no longer release new versions of AC starting with the release of Apache Airflow 2.4. Astronomer recommends creating all new Deployments with Astro Runtime, as well as migrating existing Deployments from AC to Astro Runtime as soon as your team is ready. See [Migrate to Runtime](migrate-to-runtime.md) and [Runtime image architecture](runtime-image-architecture.md).
+
+:::
+
 This page is the source of truth for any Common Vulnerabilities and Exposures (CVEs) identified within any of our supported Astronomer Certified images for Apache Airflow.
 
 Currently, all supported Astronomer Certified images are listed in two places:
