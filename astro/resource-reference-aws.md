@@ -14,7 +14,8 @@ Read the following document for a reference of our default resources as well as 
 | Resource                                  | Description                                                                                                                   | Quantity / Default Size |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [EKS Cluster](https://aws.amazon.com/eks) | An EKS cluster is required to run the Astro Data Plane, which hosts the resources and data required to execute Airflow tasks. | 1x                      |
-| [EC2 Instances](https://aws.amazon.com/ec2/instance-types/) | EC2 instances (nodes) power all system and Airflow components on Astro, including workers and schedulers. EC2 instances auto-scale based on the demand for nodes in your cluster. | 2x m5.xlarge |
+| [Worker node pool](https://aws.amazon.com/ec2/instance-types/) | EC2 instances (nodes) power all Airflow workers. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. | 1x pool of m5.xlarge nodes |
+| [Scheduler node pool](https://aws.amazon.com/ec2/instance-types/) | EC2 instances (nodes) power the Airflow scheduler. | 1x pool of m5.xlarge nodes |
 | [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/) | The RDS instance is the primary database of the Astro Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster. | 1x db.r5.large |
 | [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) | Elastic IPs are required for connectivity with the Control Plane, and other public services. | 2x |
 | [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) | Subnets are provisioned in 2 different [Availability Zones (AZs)](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for redundancy, with 1 public and 1 private subnet per AZ. Public subnets are required for the NAT and Internet gateways, while private subnets are required for EC2 nodes. | 2x /26 (public) and 1x /20 + 1x /21 (private) |
@@ -88,83 +89,11 @@ Astro supports a variety of AWS RDS instance types. Instance types comprise of v
 - db.m5.16xlarge
 - db.m5.24xlarge
 
-### Node Instance Type
+### Worker node pools
 
-Astro supports a variety of AWS EC2 instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. While the resources allocated to system and Airflow components are managed by Astronomer, the node instance type you select for your cluster powers the workers of all Deployments within that cluster.
+Node pools are a scalable collection of worker Pods with the same instance type. Node pools determine which instance types are available when configuring [worker queues](configure-deployment-resources.md#worker-queues.md) in a Deployment on your cluster.
 
 For detailed information on each instance type, refer to [AWS documentation](https://aws.amazon.com/ec2/instance-types/). If you're interested in a node type that is not on this list, reach out to [Astronomer support](https://support.astronomer.io). Not all instance types are supported in all AWS regions.
-
-#### c6i
-
-- c6i.xlarge
-- c6i.2xlarge
-- c6i.4xlarge
-- c6i.8xlarge
-- c6i.12xlarge
-- c6i.16xlarge
-- c6i.24xlarge
-- c6i.32xlarge
-- c6i.metal
-
-#### m5
-
-- m5.xlarge (_default_)
-- m5.2xlarge
-- m5.4xlarge
-- m5.8xlarge
-- m5.12xlarge
-- m5.16xlarge
-- m5.24xlarge
-- m5.metal
-
-#### m5d
-
-- m5d.xlarge
-- m5d.2xlarge
-- m5d.4xlarge
-- m5d.8xlarge
-- m5d.12xlarge
-- m5d.16xlarge
-- m5d.24xlarge
-- m5d.metal
-
-#### m6i
-
-- m6i.xlarge
-- m6i.2xlarge
-- m6i.4xlarge
-- m6i.8xlarge
-- m6i.12xlarge
-- m6i.16xlarge
-- m6i.24xlarge
-- m6i.32xlarge
-- m6i.metal
-
-#### r6i
-
-- r6i.xlarge
-- r6i.2xlarge
-- r6i.4xlarge
-- r6i.8xlarge
-- r6i.12xlarge
-- r6i.16xlarge
-- r6i.24xlarge
-- r6i.32xlarge
-- r6i.metal
-
-#### t2
-
-- t2.xlarge
-
-#### t3
-
-- t3.2xlarge
-
-:::info
-
-A single cluster on Astro cannot currently be configured with more than one node instance type. In the first half of 2022, we expect to introduce support for worker Queues, which will allow you to run workers of varying node types and sizes within a single Deployment. If this is something that your team is interested in, reach out to us. We'd love to hear from you.
-
-:::
 
 ### Maximum node count
 
@@ -174,11 +103,11 @@ The default maximum node count for all nodes across your cluster is 20. A cluste
 
 If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
 
-### Deployment Worker Size Limits
+### Worker instance size resource reference
 
 Worker Pod size can be configured at a Deployment level using the **Worker Resources** setting in the Cloud UI. This setting determines how much CPU and memory is allocated a worker Pod within a node.
 
-The following table lists the maximum worker Pod size that is supported on Astro for each worker node instance type. As the system requirements of Astro change, these values can increase or decrease. If you try to set **Worker Resources** to a size that exceeds the maximum for your cluster's worker node instance type, an error message appears in the Cloud UI.
+The following table lists all available instance types for worker nodes, as well as the Pod size that is supported on Astro for each instance type. As the system requirements of Astro change, these values can increase or decrease. If you try to set **Worker Resources** to a size that exceeds the maximum for your cluster's worker node instance type, an error message appears in the Cloud UI.
 
 | Node Instance Type | Maximum AU | CPU       | Memory       |
 |--------------------|------------|-----------|--------------|
