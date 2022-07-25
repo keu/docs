@@ -29,7 +29,11 @@ If you prefer, you can run the `astro deployment create` command in the Astro CL
 
     - **Description**: Optional. Enter a description for your Deployment.
     - **Cluster**: Select the Astro cluster in which you want to create this Deployment.
-4. Optional. Edit the Deployment resource settings. See [Configure Deployment resources](configure-deployment-resources.md).
+4. Optional. Edit the Deployment resource settings. See [Configure Deployment resources](configure-deployment-resources.md). If you don't change any Deployment resources settings, your Deployment is provisioned with:
+
+    - A `default` worker queue running a maximum of 10 workers. Each of these workers can run a maximum of 16 tasks can run at once.
+    - A single scheduler with 0.5 CPUs and 1.88 GiB of memory.
+
 5. Click **Create Deployment**.
 
     The initial status of all new Deployments is `UNHEALTHY`. This indicates that the webserver and scheduler for the Deployment are being created in your Astro cluster. In a few minutes, the status changes to `HEALTHY`.
