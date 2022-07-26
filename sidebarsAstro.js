@@ -84,6 +84,11 @@ module.exports = {
         {
           type: 'category',
           label: 'Install Astro',
+          link: {
+            type:'generated-index',
+            title: 'Install Astro',
+            description: 'Install the Astro platform on your cloud.'
+          },
           items: [
             'install-aws',
             'install-gcp',
@@ -131,8 +136,10 @@ module.exports = {
           label: 'Cloud configuration reference',
           link: {
             type:'generated-index',
-            
-          }
+            title: 'Cloud configuration reference',
+            description: 'Learn about all default and supported Astro cloud configurations.'
+
+          },
           items: [
             'resource-reference-aws',
             'resource-reference-gcp',
