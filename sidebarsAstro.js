@@ -129,6 +129,10 @@ module.exports = {
         {
           type: 'category',
           label: 'Cloud configuration reference',
+          link: {
+            type:'generated-index',
+            
+          }
           items: [
             'resource-reference-aws',
             'resource-reference-gcp',
