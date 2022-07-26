@@ -21,7 +21,9 @@ Read the following document for a reference of our default resources as well as 
 | [Workload Identity Pool](https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers) | Astro uses the fixed Workload Identity Pool for your project. One is created if it does not exist | The default pool (`PROJECT_ID.svc.id.goog`) is used |
 | [Cloud SQL for PostgreSQL](https://cloud.google.com/sql/docs/postgres) | The Cloud SQL instance is the primary database for the Astro data plane. It hosts the metadata database for each Airflow Deployment hosted on the GKE cluster | 1x regional instance with 4 vCPUs, 16GB memory |
 | Google Cloud Storage (GCS) Bucket | GCS bucket to store Airflow task logs | 1 bucket with name `airflow-logs-<clusterid>` |
-| Nodes | Nodes power all system and Airflow components on Astro, including workers and schedulers. | 3x `n2-medium-4` for the system nodes. Worker nodes default to `e2-medium-4` and auto-scale based on workload, up to the Maximum Node Count.  |
+| Worker node pools | Node pools run all Airflow workers. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different instance types| 1x pool of m5.xlarge nodes |
+| Astro node pool | A node pool runs all proprietary Astronomer components. This node pool is fully managed by Astronomer| 1x pool of m5.xlarge nodes |
+| Airflow node pool | An node pool runs all core Airflow components such as the scheduler and webserver. This node pool is fully managed by Astronomer | 1x pool of m5.xlarge nodes |
 | Maximum Node Count | The maximum number of nodes that your Astro cluster can support. When this limit is reached, your Astro cluster can't auto-scale and worker Pods may fail to schedule. | 20 |
 
 
@@ -59,28 +61,17 @@ Astro supports the following Google Cloud Platform (GCP) regions:
 
 Modifying the region of an existing Astro cluster isn't supported. If you're interested in a GCP region that isn't on this list, contact [Astronomer support](https://support.astronomer.io).
 
-### Node instance type
+### Worker node pools
 
-Astro supports different GCP machine types. Machine types comprise of varying combinations of CPU, memory, storage, and networking capacity. All system and Airflow components within a single cluster are powered by the nodes specified during the cluster creation or modification process.
+Node pools are a scalable collection of worker nodes with the same instance type. These nodes are responsible for running the Pods that execute Airflow tasks. If your cluster has a node pool for a specific instance type, you can configure tasks to run on those instance types using [worker queues](configure-deployment-resources.md#worker-queues.md). To make an instance type available in a cluster, reach out to [Astronomer support](https://support.astronomer.io) with a request to create a new node pool for the specific instance type. Note that not all machine types are supported in all GCP regions.
 
-- e2-standard-4
-- e2-standard-8
+Astronomer monitors your usage and number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer might reach out with recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
-For detailed information on each instance type, see [GCP documentation](https://cloud.google.com/compute/docs/machine-types). If you're interested in a machine type that is not on this list, reach out to [Astronomer support](https://support.astronomer.io/). Not all machine types are supported in all GCP regions.
+### Worker node size resource reference
 
-### Maximum node count
+Each worker node in a pool runs a single worker Pod. A worker Pod's actual available size is equivalent to the total capacity of the instance type minus Astro’s system overhead.
 
-Each Astro cluster has a limit on how many nodes it can run at once. This maximum includes worker nodes as well as system nodes managed by Astronomer.
-
-The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
-
-If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
-
-### Deployment Worker Size Limits
-
-Worker Pod size can be configured at a Deployment level using the **Worker Resources** setting in the Cloud UI. This setting determines how much CPU and memory is allocated a worker Pod within a node.
-
-The following table lists the maximum worker size that is supported on Astro for each worker node instance type. As the system requirements of Astro change, these values can increase or decrease. If you try to set **Worker Resources** to a size that exceeds the maximum for your cluster's worker node instance type, an error message appears in the Cloud UI.
+The following table lists all available instance types for worker node pools, as well as the Pod size that is supported for each instance type. As the system requirements of Astro change, these values can increase or decrease.
 
 | Node Instance Type | Maximum AU | CPU       | Memory       |
 |--------------------|------------|-----------|--------------|
@@ -96,3 +87,11 @@ The size limits defined here currently also apply to **Scheduler Resources**, wh
 For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
 
 :::
+
+### Maximum node count
+
+Each Astro cluster has a limit on how many nodes it can run at once. This maximum includes worker nodes as well as system nodes managed by Astronomer.
+
+The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
+
+If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).

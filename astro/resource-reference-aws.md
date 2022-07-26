@@ -14,8 +14,9 @@ Read the following document for a reference of our default resources as well as 
 | Resource                                  | Description                                                                                                                   | Quantity / Default Size |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [EKS Cluster](https://aws.amazon.com/eks) | An EKS cluster is required to run the Astro Data Plane, which hosts the resources and data required to execute Airflow tasks. | 1x                      |
-| [Worker node pool](https://aws.amazon.com/ec2/instance-types/) | EC2 instances (nodes) power all Airflow workers. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. | 1x pool of m5.xlarge nodes |
-| [Scheduler node pool](https://aws.amazon.com/ec2/instance-types/) | EC2 instances (nodes) power the Airflow scheduler. | 1x pool of m5.xlarge nodes |
+| Worker node pools | Node pools of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) run all Airflow workers. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different instance types| 1x pool of m5.xlarge nodes |
+| Astro node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) runs all proprietary Astronomer components. This node pool is fully managed by Astronomer| 1x pool of m5.xlarge nodes |
+| Airflow node pool | An node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) runs all core Airflow components such as the scheduler and webserver. This node pool is fully managed by Astronomer | 1x pool of m5.xlarge nodes |
 | [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/) | The RDS instance is the primary database of the Astro Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster. | 1x db.r5.large |
 | [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) | Elastic IPs are required for connectivity with the Control Plane, and other public services. | 2x |
 | [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) | Subnets are provisioned in 2 different [Availability Zones (AZs)](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for redundancy, with 1 public and 1 private subnet per AZ. Public subnets are required for the NAT and Internet gateways, while private subnets are required for EC2 nodes. | 2x /26 (public) and 1x /20 + 1x /21 (private) |
@@ -91,23 +92,17 @@ Astro supports a variety of AWS RDS instance types. Instance types comprise of v
 
 ### Worker node pools
 
-Node pools are a scalable collection of worker Pods with the same instance type. Node pools determine which instance types are available when configuring [worker queues](configure-deployment-resources.md#worker-queues.md) in a Deployment on your cluster.
+Node pools are a scalable collection of worker nodes with the same instance type. These nodes are responsible for running the Pods that execute Airflow tasks. If your cluster has a node pool for a specific instance type, you can configure tasks to run on those instance types using [worker queues](configure-deployment-resources.md#worker-queues.md). To make an instance type available in a cluster, reach out to [Astronomer support](https://support.astronomer.io) with a request to create a new node pool for the specific instance type. Note that not all instance types are supported in all AWS regions.
 
-For detailed information on each instance type, refer to [AWS documentation](https://aws.amazon.com/ec2/instance-types/). If you're interested in a node type that is not on this list, reach out to [Astronomer support](https://support.astronomer.io). Not all instance types are supported in all AWS regions.
+Astronomer monitors your usage and number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer might reach out with recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
-### Maximum node count
+For detailed information on each instance type, refer to [AWS documentation](https://aws.amazon.com/ec2/instance-types/).
 
-Each Astro cluster has a limit on how many nodes it can run at once. This maximum includes worker nodes as well as system nodes managed by Astronomer.
+### Worker node size resource reference
 
-The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
+Each worker node in a pool runs a single worker Pod. A worker Pod's actual available size is equivalent to the total capacity of the instance type minus Astro’s system overhead.
 
-If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
-
-### Worker instance size resource reference
-
-Worker Pod size can be configured at a Deployment level using the **Worker Resources** setting in the Cloud UI. This setting determines how much CPU and memory is allocated a worker Pod within a node.
-
-The following table lists all available instance types for worker nodes, as well as the Pod size that is supported on Astro for each instance type. As the system requirements of Astro change, these values can increase or decrease. If you try to set **Worker Resources** to a size that exceeds the maximum for your cluster's worker node instance type, an error message appears in the Cloud UI.
+The following table lists all available instance types for worker node pools, as well as the Pod size that is supported for each instance type. As the system requirements of Astro change, these values can increase or decrease.
 
 | Node Instance Type | Maximum AU | CPU       | Memory       |
 |--------------------|------------|-----------|--------------|
@@ -174,3 +169,11 @@ Astronomer plans to support optional ephemeral storage for all node instance typ
 If you need to pass significant data between Airflow tasks, Astronomer recommends using an [XCom backend](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) such as [AWS S3](https://aws.amazon.com/s3/) or [Google Cloud Storage (GCS)](https://cloud.google.com/storage). For more information and best practices, see the Airflow Guide on [Passing Data Between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks).
 
 :::
+
+### Maximum node count
+
+Each Astro cluster has a limit on how many nodes it can run at once. This maximum includes worker nodes as well as system nodes managed by Astronomer.
+
+The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
+
+If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
