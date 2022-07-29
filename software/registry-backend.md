@@ -138,7 +138,7 @@ To use AWS S3 as a registry backend solution, you'll need:
 
 3. Select one of the following options:
 
-  - To add your AWS credentials to the `config.yaml` file, add this entry:
+  - To authenticate to AWS with your registry credentials, add this entry to the `config.yaml` file:
 
   ```yaml
     astronomer:
@@ -151,7 +151,7 @@ To use AWS S3 as a registry backend solution, you'll need:
           regionendpoint: <your-region-endpoint>
           bucket: <your-bucket-name>
     ```
-  - To add your AWS credentials to the `config.yaml` file without providing your AWS credentials, add this entry:
+  - To authenticate to AWS without providing your registry credentials, add this entry to the `config.yaml` file:
 
   ```yaml
     astronomer:
