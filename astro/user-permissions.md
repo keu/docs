@@ -15,13 +15,14 @@ To better protect your data pipelines and cloud infrastructure, Astro offers rol
 
 An Organization role grants a user some level of access to an Astro Organization, including all of the Workspaces within that Organization. All users have an Organization role regardless of whether they belong to a Workspace. The following Organization roles are available:
 
-| Permission                                          | **Organization Member** | **Organization Billing Admin** | **Organization Owner** |
-| --------------------------------------------------- | ----------------------- | ------------------------------ | ---------------------- |
-| Create a new Workspace                              | ✔️                      | ✔️                             | ✔️                     |
-| View Organization details and user membership       | ✔️                      | ✔️                             | ✔️                     |
-| Update Organization billing information and settings          |                         | ✔️                             | ✔️                     |
-| Update Organization user membership |                         |                                | ✔️                     |
-| Workspace Admin permissions to all Workspaces       |                       |                              | ✔️                     |
+| Permission                                           | **Organization Member** | **Organization Billing Admin** | **Organization Owner** |
+| ---------------------------------------------------- | ----------------------- | ------------------------------ | ---------------------- |
+| View Organization details and user membership        | ✔️                      | ✔️                             | ✔️                     |
+| Update Organization billing information and settings |                         | ✔️                             | ✔️                     |
+| View usage across all Workspaces                     |                         | ✔️                             | ✔️                     |
+| Create a new Workspace                               |                         |                                | ✔️                     |
+| Update Organization user membership                  |                         |                                | ✔️                     |
+| Workspace Admin permissions to all Workspaces        |                         |                                | ✔️                     |
 
 :::info Default Roles in New Organizations
 
