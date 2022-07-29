@@ -1,67 +1,62 @@
 ---
-sidebar_label: 'Add a User'
-title: 'Add a User to a Workspace'
+sidebar_label: 'Add and remove users'
+title: 'Add and remove Astro users'
 id: add-user
-description: Add a user to a Workspace on Astro.
+description: Add or remove users in the Cloud UI.
 ---
 
-## Overview
-
-As a Workspace Admin, you can add team members to your Astro Workspace. From here, you can grant them user roles with permissions for specific actions across the Workspace and the Deployments within it.
-
-This guide provides steps for adding a user to an Astro Workspace.
+As a Workspace Admin or Organization Owner, you can add new team members to Astro and grant them user roles with permissions for specific actions across your Organization. Workspace Admins can remove users from a Workspace, and Organization Owners can remove users from an Organization.
 
 ## Prerequisites
 
-To add a user to a Workspace, you must have:
+- To add or remove Organization users, you need Organization Owner permissions.
+- To add or remove Workspace users, you need Workspace Admin permissions for that Workspace. The user must also already be a part of the Organization that hosts the Workspace.
+- To remove a user from an Organization, one or more Organization Owners must be assigned to the Organization. If you're the only Organization Owner for your Organization, you'll need to assign another Organization Owner before removing yourself from the Organization. 
 
-- An [Organization on Astro](install-aws.md).
-- Workspace Admin permissions.
+For more information on user roles, see [Manage user permissions on Astro](user-permissions.md).
+## Add a user to an Organization
 
-## Step 1: Invite the User to Astro
+1. In the Cloud UI's Organization view, open the **People** tab.
+2. Click **Invite member**:
 
-:::info
+    ![Organization user invite button](/img/docs/invite-org-user.png)
 
-If your organization integrated an [external Identity Provider (IdP)](configure-idp.md) such as Okta or Azure AD, skip this step and instead invite your user to Astro via your IDP's own user management system.
-
-:::
-
-If the user you want to add doesn't already have an account on Astro, tell them to go to https://cloud.astronomer.io and sign up. Once they create an account, they will see the following screen:
-
-<div class="text--center">
-  <img src="/img/docs/welcome-user.png" alt="Successful account creation screen" />
-</div>
-
-Make note of the user's account email for the next step.
-
-## Step 2: Add the User
-
-To add a user with an Astro account to your Workspace:
-
-1. In the Cloud UI, open your Workspace and go to the **Access** tab.
-2. Click **Add member**:
-
-    <div class="text--center">
-      <img src="/img/docs/add-user.png" alt="Add member button in the access menu" />
-    </div>
-
-3. Enter the user's email from Step 1.
-4. Set a Workspace role for the user. For a list of available roles and their permissions, see [Workspace Roles](user-permissions.md#workspace-roles)
+3. Enter the user's email.
+4. Set an Organization role for the user.
 5. Click **Add member**.
 
-Once you add the user, their information will appear in the **Access** tab as a new entry in the **Members** table.
+    After you add the user, their information appears in the **Access** tab as a new entry in the **Members** table. To access the Organization, the user needs to accept the invitation sent by email and then create an Astro account or log in.
 
-:::caution
+## Add a user to a Workspace
 
-If you attempt to invite a user that does not have an account on Astro, you will see an error in the Cloud UI that reads:
+1. In the Cloud UI, select a Workspace.
+2. Click **Access** in the left menu.
+3. Click **Add member**.
 
-```
-An error has occurred
-<user-email-address> is not a platform user.
-```
+    ![Workspace user invite button](/img/docs/add-user.png)
 
-If you see this error:
-- Complete Step 1 above. Ask the user to sign up at https://cloud.astronomer.io. Once their account is created, add the user to your Workspace.
-- Make sure that the user's email address is consistent with the email address you're using to add them to your Workspace. The emails must match.
+4. Enter the user's email.
+5. Set a Workspace role for the user. For a list of available roles and their permissions, see [Workspace roles](user-permissions.md#workspace-roles)
+6. Click **Add member**.
 
-:::
+    After you add the user, their information appears in the **Access** tab as a new entry in the **Members** table. To access the Workspace, the user needs to accept the invitation sent by email and log in.
+
+## Remove users from a Workspace
+
+1. In the Cloud UI, select a Workspace.
+2. Click **Access** in the left menu.
+
+   ![Access tab](/img/docs/access-tab.png)
+
+3. Click **Edit** next to the user you want to remove.
+4. Click **Remove member**.
+5. Click **Yes, Continue** to confirm the removal.
+
+## Remove users from an Organization
+
+When you remove a user from an Organization, they are automatically removed from all of the Workspaces they had access to within the Organization.
+
+1. In the Cloud UI, click the **People** tab.
+2. Click **Edit** next to the user you want to remove.
+3. Click **Remove member**.
+4. Click **Yes, Continue** to confirm the removal.

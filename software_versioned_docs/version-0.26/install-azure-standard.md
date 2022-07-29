@@ -156,21 +156,21 @@ This command will generate a report. If the `X509v3 Subject Alternative Name` se
 
 Depending on your organization, you may receive either a globally trusted certificate or a certificate from a private CA. The certificate from your private CA may include a domain certificate, a root certificate, and/or intermediate certificates, all of which need to be in proper certificate order. To verify certificate order, follow the guidelines below.
 
-#### Verify certificate order (private CA only)
+#### Confirm certificate chain order
 
-To confirm that your certificate has the proper certificate order, first run the following command using the `openssl` CLI:
+If your organization is using a private certificate authority, you'll need to confirm that your certificate chain is ordered correctly. To determine your certificate chain order, run the following command using the `openssl` CLI:
 
 ```sh
 openssl crl2pkcs7 -nocrl -certfile <your-certificate-filepath> | openssl pkcs7 -print_certs -noout
 ```
 
-This command will generate a report of all certificates included. Verify that the order of these certificates is as follows:
+The command generates a report of all certificates. Verify the order of the certificates is as follows:
 
-1. Domain
-2. Intermediate (optional)
-3. Root
+- Domain
+- Intermediate (optional)
+- Root
 
-If the order of all certificates is correct, proceed to the next step.
+If the certificate order is correct, proceed to step 5.
 
 ## Step 5: Create a Kubernetes TLS Secret
 
@@ -407,7 +407,6 @@ astronomer-nginx-746589b744-h6r5n                          1/1     Running      
 astronomer-nginx-746589b744-hscb9                          1/1     Running             0          24m
 astronomer-nginx-default-backend-8cb66c54-4vjmz            1/1     Running             0          24m
 astronomer-nginx-default-backend-8cb66c54-7m86w            1/1     Running             0          24m
-astronomer-prisma-57d5bf6c64-zcmsh                         1/1     Running             0          24m
 astronomer-prometheus-0                                    1/1     Running             0          24m
 astronomer-prometheus-blackbox-exporter-65f6c5f456-865h2   1/1     Running             0          24m
 astronomer-prometheus-blackbox-exporter-65f6c5f456-szr4s   1/1     Running             0          24m
@@ -442,7 +441,6 @@ astronomer-nginx                              LoadBalancer   10.0.146.24    20.1
 astronomer-nginx-default-backend              ClusterIP      10.0.132.182   <none>          8080/TCP                                     6m48s
 astronomer-postgresql                         ClusterIP      10.0.0.252     <none>          5432/TCP                                     6m48s
 astronomer-postgresql-headless                ClusterIP      None           <none>          5432/TCP                                     6m48s
-astronomer-prisma                             ClusterIP      10.0.30.160    <none>          4466/TCP                                     6m48s
 astronomer-prometheus                         ClusterIP      10.0.128.170   <none>          9090/TCP                                     6m48s
 astronomer-prometheus-blackbox-exporter       ClusterIP      10.0.125.142   <none>          9115/TCP                                     6m48s
 astronomer-prometheus-node-exporter           ClusterIP      10.0.2.116     <none>          9100/TCP                                     6m48s

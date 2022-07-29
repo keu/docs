@@ -1,50 +1,49 @@
 ---
-sidebar_label: 'Deferrable Operators'
-title: 'Deferrable Operators'
+sidebar_label: "Deferrable operators"
+title: "Deferrable operators"
 id: deferrable-operators
-description: Run Airflow's deferrable operators on Astro for improved performance and cost savings.
+description: Run deferrable operators on Astro for improved performance and cost savings.
 ---
 
-## Overview
+[Apache Airflow 2.2](https://airflow.apache.org/blog/airflow-2.2.0/) introduced [**deferrable operators**](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html), a powerful type of Airflow operator that's optimized for lower resource costs and improved performance. In Airflow, it's common to use [sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/sensors.html) and some [operators](https://airflow.apache.org/docs/apache-airflow/stable/concepts/operators.html) to configure tasks that wait for some external condition to be met before executing or triggering another task. While tasks using standard operators and sensors take up a worker slot when checking if an external condition has been met, deferrable operators suspend themselves during that process. This releases the worker to take on other tasks.
 
-[Apache Airflow 2.2](https://airflow.apache.org/blog/airflow-2.2.0/) introduces [**deferrable operators**](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html), a powerful type of Airflow operator that promises lower resource costs and improved performance.
+Deferrable operators are supported both on Astro and in local Airflow environments running with the Astro CLI.
+## Benefits of deferrable operators
 
-In Airflow, it's common to use [sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/sensors.html) and some [operators](https://airflow.apache.org/docs/apache-airflow/stable/concepts/operators.html) to configure tasks that wait for some external condition to be met before executing or triggering another task. While tasks using standard operators and sensors take up a Worker or Scheduler slot when checking if an external condition has been met, deferrable operators suspend themselves during that process. This releases the Worker to take on other tasks. Using the deferrable versions of operators or sensors that typically spend a long time waiting for a condition to be met, such as the `S3Sensor`, the `HTTPSensor`, or the `DatabricksSubmitRunOperator`, can result in significant per-task cost savings and performance improvements.
+ Deferrable operators provide the following benefits:
 
-Deferrable operators rely on a new Airflow component called the Triggerer. The Triggerer is highly available and entirely managed on Astro, meaning that you can start using deferrable operators in your DAGs as long as you're running Astro Runtime 4.0+. As an Astronomer customer, you additionally have exclusive access to several deferrable versions of open source operators.
+- Reduced resource consumption. Depending on your resources and workload, deferrable operators can lower the number of workers needed to run tasks during periods of high concurrency. Less workers can lower your infrastructure cost per Deployment.
+- Resiliency against restarts. When you push code to a Deployment on Astro, the triggerer process that deferrable operators rely on is gracefully restarted and does not fail.
 
-This guide explains how deferrable operators work and how to implement them in your DAGs.
+In general, Astronomer recommends using deferrable versions of operators or sensors that typically spend a long time waiting for a condition to be met. This includes the `S3Sensor`, the `HTTPSensor`, the `DatabricksSubmitRunOperator`, and more.
 
-### How It Works
+### How it works
 
-Airflow 2.2 introduces two new concepts to support deferrable operators: the Trigger and the Triggerer.
+Airflow 2.2 introduces two new concepts to support deferrable operators: the trigger and the triggerer.
 
-A **Trigger** is a small, asynchronous Python function that quickly and continuously evaluates a given condition. Because of its design, thousands of Triggers can be run at once in a single process. In order for an operator to be deferrable, it must have its own Trigger code that determines when and how operator tasks are deferred.
+A **trigger** is a small, asynchronous Python function that quickly and continuously evaluates a given condition. Because of its design, thousands of Triggers can be run at once in a single process. In order for an operator to be deferrable, it must have its own Trigger code that determines when and how operator tasks are deferred.
 
-The **Triggerer** is responsible for running Triggers and signaling tasks to resume when their conditions have been met. Like the Scheduler, it is designed to be highly-available. If a machine running Triggers shuts down unexpectedly, Triggers can be recovered and moved to another machine also running a Triggerer.
+The **triggerer** is responsible for running Triggers and signaling tasks to resume when their conditions have been met. Like the scheduler, it is designed to be highly-available. If a machine running Triggers shuts down unexpectedly, Triggers can be recovered and moved to another machine also running a triggerer.
 
 The process for running a task using a deferrable operator is as follows:
 
-1. The task is picked up by a Worker, which executes an initial piece of code that initializes the task. During this time, the task is in a "running" state and takes up a Worker slot.
-2. The task defines a Trigger and defers the function of checking on some condition to the Triggerer. Because all of the deferring work happens in the Triggerer, the task instance can now enter a "deferred" state. This frees the Worker slot to take on other tasks.
-3. The Triggerer runs the task's Trigger periodically to check whether the condition has been met.
-4. Once the Trigger condition succeeds, the task is again queued by the Scheduler. This time, when the task is picked up by a Worker, it begins to complete its main function.
+- The task is picked up by a worker, which executes an initial piece of code that initializes the task. During this time, the task is in a "running" state and takes up a worker slot.
+- The task defines a trigger and defers the function of checking on some condition to the triggerer. Because all of the deferring work happens in the triggerer, the task instance can now enter a "deferred" state. This frees the worker slot to take on other tasks.
+- The triggerer runs the task's trigger periodically to check whether the condition has been met.
+- Once the trigger condition succeeds, the task is again queued by the scheduler. This time, when the task is picked up by a worker, it begins to complete its main function.
 
-For implementation details on deferrable operators, read the [Apache Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html).
+For more information on how deferrable operators work and how to use them, read our [Airflow Guide for deferrable operators](https://www.astronomer.io/guides/deferrable-operators) or the [Apache Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html).
 
 ## Prerequisites
 
-To use deferrable operators on Astro, you must deploy your code to a Deployment running [Astro Runtime 4.0+](runtime-release-notes.md#astro-runtime-400). For more information on upgrading your Deployment's Runtime version, read [Upgrade Runtime](upgrade-runtime.md).
+To use deferrable operators both in a local Airflow environment and on Astro, you must have:
 
-To use deferrable operators available exclusively on Astro Runtime, you must additionally add the `astronomer-operator-wrappers` package to the `packages.txt` file of your Astro project.
+- An [Astro project](create-project.md) running [Astro Runtime 4.2.0+](runtime-release-notes.md#astro-runtime-420).
+- The [Astro CLI v1.1.0+](https://docs.astronomer.io/astro/cli-release-notes#v110) installed.
 
-:::info
+All versions of Astro Runtime 4.2.0+ support the triggerer and have the `astronomer-providers` package installed. For more information, read [Astro Runtime release notes](runtime-release-notes.md) or [Upgrade Astro Runtime](upgrade-runtime.md).
 
-Support for the Triggerer in local Airflow environments running via the Astro CLI is coming soon. In the meantime, this means that you cannot test deferrable operator functionally locally. If you run a DAG locally that imports a deferrable operator, the DAG falls back to using the non-deferrable version of that operator.
-
-:::
-
-## Using Deferrable Operators
+## Using deferrable operators
 
 To use a deferrable version of an existing operator in your DAG, you only need to replace the import statement for the existing operator.
 
@@ -59,46 +58,15 @@ from airflow.sensors.time_sensor import TimeSensorAsync as TimeSensor
 
 Some additional notes about using deferrable operators:
 
-- For open source operators, we recommend importing the deferrable operator class as its non-deferrable class name. If you don't include this part of the import statement, you need to replace all instances of non-deferrable operators in your DAGs. In the above example, that would require replacing all instances of `TimeSensor` with `TimeSensorAsync`.
+- If you want to replace non-deferrable operators in an existing project with deferrable operators, we recommend importing the deferrable operator class as its non-deferrable class name. If you don't include this part of the import statement, you need to replace all instances of non-deferrable operators in your DAGs. In the above example, that would require replacing all instances of `TimeSensor` with `TimeSensorAsync`.
 - Currently, not all operators have a deferrable version. There are a few open source deferrable operators, plus additional operators designed and maintained by Astronomer.
-- If you're interested in the deferrable version of an operator that is not generally available, you can write your own and contribute these to the open source project. If you need help with writing a custom deferrable operator, reach out to your Astronomer representative.
+- If you're interested in the deferrable version of an operator that is not generally available, you can write your own and contribute these to the open source project. If you need help with writing a custom deferrable operator, reach out to [Astronomer support](https://support.astronomer.io).
 - There are some use cases where it can be more appropriate to use a traditional sensor instead of a deferrable operator. For example, if your task needs to wait only a few seconds for a condition to be met, we recommend using a Sensor in [`reschedule` mode](https://github.com/apache/airflow/blob/1.10.2/airflow/sensors/base_sensor_operator.py#L46-L56) to avoid unnecessary resource overhead.
 
-## Astronomer's Deferrable Operators
+## Astronomer deferrable operators
 
-Astronomer maintains a collection of deferrable operators that are available exclusively on Astro Runtime. These operators are drop-in replacements for non-Deferrable operators, meaning that you only have to change the import statements in your DAGs to begin using them.
+In addition to the deferrable operators that are published by the Apache Airflow open source project, Astronomer maintains [`astronomer-providers`](https://astronomer-providers.readthedocs.io/en/stable/), an open source collection of deferrable operators bundled as a provider package.
 
-This section contains information and example import statements for all deferrable operators written by Astronomer.
+This package is installed on Astro Runtime by default and includes deferrable versions of commonly used operators, including the `ExternalTaskSensor`, `DatabricksRunNowOperator`, and `SnowflakeOperator`.
 
-> **Note:** When you use deferrable operators in the `astronomer-operator-wrappers` package outside of an Astro Runtime environment, the package falls back to using the open source, non-deferrable versions of each operator.
-
-### Databricks operators
-
-Astro Runtime includes the following Databricks operators:
-
-- `DatabricksSubmitRunOperator`
-- `DatabricksRunNowOperator`
-
-Tasks using these operators remain in a deferred state while waiting for their respective Databricks job to complete.
-
-#### Import statement
-
-To run Astronomer's Databricks operators, use the following import statement:
-
-```python
-from astronomer.operators import DatabricksSubmitRunOperator, DatabricksRunNowOperator
-```
-
-### ExternalTaskSensor
-
-This is a drop-in replacement for [Airflow's `ExternalTaskSensor`](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/sensors/external_task/index.html#module-airflow.sensors.external_task). It defers itself while waiting for a given task or DAG to complete.
-
-> **Note:** There is a difference between the deferrable ExternalTaskSensor and the non-deferrable ExternalTaskSensor. If the Sensor is checking a task or DAG that fails, the deferrable Sensor also fails, whereas the non-deferrable Sensor freezes indefinitely.
-
-#### Import statement
-
-To run Astronomer's deferrable version of the ExternalTaskSensor, use the following import statement:
-
-```python
-from astronomer.operators import ExternalTaskSensor
-```
+For a complete list of available deferrable operators in `astronomer-providers` , see the [`astronomer-providers` CHANGELOG](https://astronomer-providers.readthedocs.io/en/stable/changelog.html). This page includes both import statements and example DAGs for each available operator.

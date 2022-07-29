@@ -1,39 +1,36 @@
 ---
-title: 'Manage Deployment API Keys'
-sidebar_label: 'Deployment API Keys'
+title: 'Manage Deployment API keys'
+sidebar_label: 'Deployment API keys'
 id: api-keys
 description: Create Deployment API keys to make requests to Airflow's REST API and set up a CI/CD pipeline.
 ---
 
-## Overview
+You can use API keys to programmatically deploy DAGs to a Deployment on Astro.
 
-This guide provides instructions for how to create API keys for Deployments on Astro. You can use API keys to programmatically deploy DAGs to a Deployment on Astro.
+You can use a Deployment API key to:
 
-A Deployment API key has the following properties:
+- Deploy code to Astro in a [CI/CD pipeline](ci-cd.md).
+- Programmatically update [Deployment configurations](configure-deployment-resources.md) and [environment variables](environment-variables.md).
+- Fetch a short-lived access token that assumes the permissions of the Deployment API key. This access token can be used to make requests to the [Airflow REST API](airflow-api.md).
 
-- It can deploy code to Astro (customizable permissions coming soon).
-- Its key ID and secret are valid indefinitely and can be used to fetch a short-lived access token that assumes the permissions of the Deployment API key. This access token is required by the Astro API to complete the deploy code process. For more information on using this token, read [Refresh Access Token](api-keys#refresh-access-token).
-- It is deleted permanently if its corresponding Deployment is deleted.
+When using Deployment API keys, keep in mind the following:
 
-This guide provides steps for creating and deleting Deployment API keys.
+- A Deployment API key ID and secret are valid indefinitely and can be used to access Deployments without manual authentication.
+- Deployment API keys are deleted permanently if their corresponding Deployment is deleted.
 
-## Create an API Key
+## Create an API key
 
 To create an API key for a Deployment:
 
 1. In the Cloud UI, open your Deployment.
-2. In the **API Keys** menu, click **Add API Key**:
+2. In the **API keys** menu, click **Add API Key**:
 
-    <div class="text--center">
-      <img src="/img/docs/add-api-key.png" alt="Add API Key button" />
-    </div>
+    ![Add API key button](/img/docs/add-api-key.png)
 
 3. Give the key a name and description, then click **Create API Key**:
 
-    <div class="text--center">
-      <img src="/img/docs/create-api-key.png" alt="Create API Key button" />
-    </div>
-
+    ![Create API key button](/img/docs/create-api-key.png)
+    
 From here, you can copy the API key ID and secret for use in API calls and CI/CD pipelines. Make sure to save the key secret securely, as this is the only time you will have access to see it in plain text.
 
 :::tip
@@ -42,37 +39,43 @@ If you just need to make a single API call, you can use a temporary user authent
 
 :::
 
-## Request Access Token
+## Using Deployment API keys
 
-In order to deploy code on Astro with a Deployment API key, you need to use the API key ID and secret to request an access token. This access token is required by the Astro API to trigger the deploy code process. It is valid only for 24 hours. To fetch a token with an existing API key ID and secret, run the following API request:
+Deployment API keys are primarily used to automate actions that otherwise require manual inputs. They allow you to:
 
-```curl
-curl --location --request POST "https://auth.astronomer.io/oauth/token" \
-        --header "content-type: application/json" \
-        --data-raw "{
-            \"client_id\": \"<api-key-id>\",
-            \"client_secret\": \"<api-key-secret>\",
-            \"audience\": \"astronomer-ee\",
-            \"grant_type\": \"client_credentials\"}" | jq -r '.access_token'
+- Deploy code to Astro [using CI/CD](ci-cd.md) with tools such as GitHub Actions or Jenkins.
+- Deploy code and configuration changes to Astro [using the Astro CLI](deploy-code.md) without user authentication.
+- Automate requests to the [Airflow REST API](airflow-api.md).
+
+To use API keys with the Astro CLI, you must make your Deployment API key ID and secret accessible to the CLI by setting the following OS-level environment variables:
+
+- `ASTRONOMER_KEY_ID`
+- `ASTRONOMER_KEY_SECRET`
+
+For example, to update a given Deployment using the Astro CLI on a Mac machine, set temporary OS-level environment variables with the following commands:
+
+```sh
+export ASTRONOMER_KEY_ID=<your-key-id>
+export ASTRONOMER_KEY_SECRET=<your-key-secret>
 ```
 
-Make sure to replace `api-key-id` and `api-key-secret` in this request with values that correspond to your own API key.
+After setting the variables, running `astro deployment update` works for the Deployment and you don't need to manually authenticate to Astronomer. Astronomer recommends storing `ASTRONOMER_KEY_SECRET` as a secret before using it to programmatically update production-level Deployments.
 
-To avoid manually fetching this token, we strongly recommend adding this API request to any CI/CD pipeline that uses Deployment API keys. That way, your access token is automatically refreshed every time your CI/CD pipeline needs it to complete the deploy code process. For examples of this implementation, see [CI/CD Templates](ci-cd.md#cicd-templates).
+## Delete an API key
 
-## Delete an API Key
-
-To delete a Deployment API Key:
-
-1. In the Cloud UI, open your Deployment.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
 2. In the menu for the API key you want to delete, click **Edit**:
 
-    <div class="text--center">
-      <img src="/img/docs/edit-api-key.png" alt="Edit API Key button" />
-    </div>
+    ![Edit API key button](/img/docs/edit-api-key.png)
 
-3. Click **Delete API Key**, then follow the onscreen prompt to finalize the deletion:
+3. Click **Delete API Key**, and then follow the onscreen prompt to finalize the deletion:
 
-    <div class="text--center">
-      <img src="/img/docs/delete-api-key.png" alt="Delete API Key button" />
-    </div>
+    [Delete API key button](/img/docs/delete-api-key.png)
+    
+
+
+## Related documentation
+
+- [CI/CD](ci-cd.md)
+- [Deploy code](deploy-code.md)
+- [Airflow API](airflow-api.md)
