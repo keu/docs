@@ -148,6 +148,7 @@ To use AWS S3 as a registry backend solution, you'll need:
           accesskey: my-access-key
           secretkey: my-secret-key
           region: us-east-1
+          regionendpoint: <your-region-endpoint>
           bucket: <your-bucket-name>
     ```
   - To add your AWS credentials to the `config.yaml` file without providing your AWS credentials, add this entry:
@@ -158,6 +159,7 @@ To use AWS S3 as a registry backend solution, you'll need:
         s3:
           enabled: true
           region: us-east-1
+          regionendpoint: <your-region-endpoint>
           bucket: <your-bucket-name>
     ```
 
