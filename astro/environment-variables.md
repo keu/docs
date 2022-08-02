@@ -148,3 +148,7 @@ On Astro, environment variables are applied and overridden in the following orde
 - Default Airflow values
 
 For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud UI and you set the same environment variable with another value in your `Dockerfile`, the value set in the Cloud UI takes precedence.
+
+## Access environment variables in a specific environment
+
+When you access an environment variable with `Variable.get('...')`, a call is made to the secrets backend and the metadata database and this consumes valuable computing resources. To avoid this issue, you can run `os.getenv('ENV', '<environment>')` to access a specific environment variable in a specific environment. Replace `ENV` with the name of the environment variable you want to access, and  replace `environment` with one of the following: `staging`, `dev`, `local`, or `prod`.
