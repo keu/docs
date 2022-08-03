@@ -95,7 +95,7 @@ If Astronomer creates a new transit gateway in your AWS account for Astro, keep 
 
 ## AWS PrivateLink
 
-Use AWS PrivateLink to connect one or more Astro clusters to services hosted by AWS and supported AWS solutions.
+Use AWS PrivateLink to connect one or more Astro clusters to supported AWS services and solutions.
 
 ## AWS IAM roles
 
