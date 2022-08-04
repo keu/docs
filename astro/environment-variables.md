@@ -96,7 +96,6 @@ Environment variables applied in the Cloud UI only become available once the Doc
 
 :::
 >
-> Environment variables applied in the Cloud UI only become available once the Docker build process has been completed.
 
 ## Add Airflow connections and variables using environment variables
 
