@@ -12,7 +12,11 @@ You can use environment variables to set Airflow configurations and custom value
 - Store Airflow connections and variables.
 - Customize your default DAG view in the Airflow UI (Tree, Graph, Gantt, and so on)
 
-> **Note:** Some environment variables on Astro are set globally and cannot be overridden for individual Deployments. For more information on these environment variables, see [Global environment variables](platform-variables.md).
+:::caution
+
+Some environment variables on Astro are set globally and cannot be overridden for individual Deployments. For more information on these environment variables, see [Global environment variables](platform-variables.md).
+
+:::
 
 ## Set environment variables in the Cloud UI
 
