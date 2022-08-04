@@ -10,7 +10,6 @@ Before you can run pipelines on Astro with real data, you first need to make you
 - Public endpoints
 - Virtual Private Cloud (VPC) peering
 - Amazon Web Services (AWS) Transit Gateway
-- AWS PrivateLink
 - AWS IAM roles
 - Workload Identity (_Google Cloud Platform (GCP) only_)
 
@@ -92,10 +91,6 @@ If Astronomer creates a new transit gateway in your AWS account for Astro, keep 
 5. Create a static route from your CIDR block to the transit gateway. See [Add a route to the transit gateway route table](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-peering.html#tgw-peering-add-route).
 6. Contact [Astronomer support](https://support.astronomer.io) to confirm that you have created the static route. Astronomer support will update the Astro VPC routing table to send traffic from your CIDR block through the transit gateway.
 7. Optional. Repeat the steps for each Astro cluster that you want to connect to your transit gateway.
-
-## AWS PrivateLink
-
-Use AWS PrivateLink to connect one or more Astro clusters to supported AWS services and solutions.
 
 ## AWS IAM roles
 
