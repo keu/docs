@@ -124,7 +124,7 @@ Here, the full environment variable would read:
 ENV AIRFLOW_CONN_MY_PROD_DB=my-conn-type://login:password@host:5432/schema
 ```
 
-You can set this environment variable with an `.env` file locally, with your Dockerfile, or with the Cloud UI. For more information on how to generate your Connection URI, see the [Apache Airflow documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
+For more information on how to generate a Connection URI, see the [Apache Airflow documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
 
 > **Note:** Airflow connections set with environment variables do not appear in the Airflow UI and cannot be modified there.
 
