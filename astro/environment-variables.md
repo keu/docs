@@ -101,7 +101,7 @@ Environment variables applied in the Cloud UI only become available once the Doc
 
 If you regularly use [Airflow connections](https://airflow.apache.org/docs/apache-airflow/stable/concepts/connections.html) and [variables](https://airflow.apache.org/docs/apache-airflow/stable/concepts/variables.html), Astronomer recommends storing and fetching them with environment variables instead of adding them to the Airflow UI.
 
-As mentioned above, Airflow connections and variables are stored in Airflow's metadata database. Adding them outside of task definitions and operators requires an additional connection to Airflow's Postgres Database, which is called every time the scheduler parses a DAG (as defined by `process_poll_interval`, which is set to 1 second by default).
+As mentioned above, Airflow connections and variables are stored in Airflow's metadata database. Adding them outside of task definitions and operators requires an additional connection to Airflow's metadata database, which is called every time the scheduler parses a DAG. This parsing process is defined by the `process_poll_interval` environment variable, which is set to 1 second by default.
 
 By adding connections and variables as environment variables, you can refer to them more easily in your code and lower the amount of open connections, thus preventing a strain on your Database and resources.
 
