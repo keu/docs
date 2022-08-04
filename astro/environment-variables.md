@@ -126,7 +126,11 @@ ENV AIRFLOW_CONN_MY_PROD_DB=my-conn-type://login:password@host:5432/schema
 
 For more information on how to generate a Connection URI, see the [Apache Airflow documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
 
-> **Note:** Airflow connections set with environment variables do not appear in the Airflow UI and cannot be modified there.
+::: info
+
+Airflow connections set with environment variables do not appear in the Airflow UI and cannot be modified there.
+
+:::
 
 ### Airflow variables
 
