@@ -8,9 +8,9 @@ description: Set environment variables on Astro to specify Airflow configuration
 You can use environment variables to set Airflow configurations and custom values for Deployments on Astro. For example, you can use environment variables to:
 
 - Set up an SMTP service.
-- Identify a production Deployment versus a development Deployment
+- Identify a production Deployment versus a development Deployment.
 - Store Airflow connections and variables.
-- Customize your default DAG view in the Airflow UI (Tree, Graph, Gantt, and so on)
+- Customize your default DAG view in the Airflow UI (Tree, Graph, Gantt, and so on).
 
 :::caution
 
@@ -164,6 +164,6 @@ For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud
 
 ## Access environment variables in a specific environment
 
-When a task requires an environment variable and you access it in your DAG with `Variable.get('<environment-variable>')`, a call is made to your secrets backend and the Airflow metadata database. This can consume valuable computing resources and negatively affect performance of the Airflow metadata database.
+When a task requires an environment variable and you access it in your DAG with `Variable.get('<environment-variable>')`, a call is made to your secrets backend and the Airflow metadata database. This can consume valuable computing resources and negatively affect the performance of the Airflow metadata database.
 
-To avoid this issue, you can run `os.getenv('ENV', '<environment>')` to access a specific environment variable in a specific environment. Replace `ENV` with the name of the environment variable you want to access, and  replace `environment` with one of the following: `staging`, `dev`, `local`, or `prod`.
+To avoid this issue, you can run `os.getenv('ENV', '<environment>')` to access a specific environment variable in a specific environment. Replace `ENV` with the name of the environment variable you want to access, and  replace `environment` with the default value.
