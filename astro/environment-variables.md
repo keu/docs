@@ -88,7 +88,13 @@ Once your environment variables are added:
 1. Run `astro dev restart` to rebuild your image and apply your changes locally OR
 2. Run `astro deploy` to apply your changes to your running Deployment on Astronomer
 
-> **Note:** Environment variables injected with the `Dockerfile` are mounted at build time and can be referenced in any other processes run during the Docker build process that immediately follows `astro deploy` or `astro dev start`.
+::: info
+
+Environment variables added to the `Dockerfile` of an Astro project are mounted at build time and can be referenced in any other processes run during the Docker build process that immediately follows `astro deploy` or `astro dev start`.
+
+Environment variables applied in the Cloud UI only become available once the Docker build process is completed.
+
+:::
 >
 > Environment variables applied in the Cloud UI only become available once the Docker build process has been completed.
 
