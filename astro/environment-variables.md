@@ -164,4 +164,6 @@ For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud
 
 ## Access environment variables in a specific environment
 
-When you access an environment variable with `Variable.get('...')`, a call is made to the secrets backend and the metadata database and this consumes valuable computing resources. To avoid this issue, you can run `os.getenv('ENV', '<environment>')` to access a specific environment variable in a specific environment. Replace `ENV` with the name of the environment variable you want to access, and  replace `environment` with one of the following: `staging`, `dev`, `local`, or `prod`.
+When a task requires an environment variable and you access it in your DAG with `Variable.get('<environment-variable>')`, a call is made to your secrets backend and the Airflow metadata database. This can consume valuable computing resources and negatively affect performance of the Airflow metadata database.
+
+To avoid this issue, you can run `os.getenv('ENV', '<environment>')` to access a specific environment variable in a specific environment. Replace `ENV` with the name of the environment variable you want to access, and  replace `environment` with one of the following: `staging`, `dev`, `local`, or `prod`.
