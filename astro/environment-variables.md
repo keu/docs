@@ -70,7 +70,7 @@ If you want to store environment variables using an external version control too
 
 :::caution
 
-Given that this file will be committed to your version control tool and to Astronomer, Astronomer recommends either storing sensitive environment variables with the Cloud UI or using a third party secrets backend.
+Given that this file will be committed to your version control tool and to Astro, Astronomer recommends either storing sensitive environment variables with the Cloud UI or using a third party secrets backend. For more information, see [Configure a secrets backend](secrets-backend.md).
 
 :::
 
