@@ -38,7 +38,7 @@ With these points in mind, Astronomer recommends using ACI with the `AzureContai
 
 ## Example
 
-Using Airflow to create and run ACI is straightforward: You first identify the Azure resource group you want to create the Azure Container Instance in (or create a new one), then ensure your Azure instance has a service principal with write access over that resource group. For more information on setting this up, see [Use the portal to create an Azure AD application and service principal that can access resources](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).
+Using Airflow to create and run ACI is straightforward: You first identify the Azure resource group you want to create the Azure Container Instance in (or create a new one), then ensure your Azure instance has a service principal with write access over that resource group. For more information, see [Use the portal to create an Azure AD application and service principal that can access resources](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).
 
 > **Note**: In Airflow 2.0, provider packages are separate from the core of Airflow. If you are running 2.0 with Astronomer, the [Microsoft Provider](https://registry.astronomer.io/providers/microsoft-azure) package is already included in our Astronomer Certified Image; if you are not using Astronomer you may need to install this package separately to use the hooks, operators, and connections described here. To learn more, read [Airflow Docs on Provider Packages](https://airflow.apache.org/docs/apache-airflow-providers/index.html).
 
