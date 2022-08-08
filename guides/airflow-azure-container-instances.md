@@ -44,7 +44,7 @@ Using Airflow to create and run ACI is straightforward: You first identify the A
 
 Next, create an Airflow connection with the type ACI. Specify your Client ID in the **Login** field, Client Secret in the **Password** field, and Tenant and Subscription IDs in the **Extras** field as json. It should look something like this:
 
-![ACI Connection](img/guides/aci_connection.png)
+![ACI Connection](/img/guides/aci_connection.png)
 
 Lastly, define a DAG using the `AzureContainerInstancesOperator`:
 
@@ -102,6 +102,6 @@ You can also provide the operator with other parameters such as environment vari
 
 If we run this DAG, an ACI will spin up, run the container with the Hello World image, and spin down. If we look at the Airflow task log, we see the printout from the container has propagated to the logs:
 
-![ACI Task Log](img/guides/aci_task_log.png)
+![ACI Task Log](/img/guides/aci_task_log.png)
 
 From here we can build out our DAG as needed with any other dependent or independent tasks.
