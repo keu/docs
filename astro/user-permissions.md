@@ -9,11 +9,7 @@ To better protect your data pipelines and cloud infrastructure, Astro offers rol
 
 ## Organization roles
 
-An Organization role grants a user some level of access to an Astro Organization, including all of the Workspaces within that Organization. All users have an Organization role regardless of whether they belong to a Workspace. The following table lists the available Organization roles:
-
-## Organization Roles
-
-An Organization role grants a user some level of access to an Astro Organization, including all of the Workspaces within that Organization. All users have an Organization role regardless of whether they belong to a Workspace. The following Organization roles are available:
+An Organization role grants a user some level of access to an Astro Organization, including the Workspaces within that Organization. All users have an Organization role regardless of whether they belong to a Workspace. The following Organization roles are available:
 
 | Permission                                                  | **Organization Member** | **Organization Billing Admin** | **Organization Owner** |
 | ----------------------------------------------------------- | ----------------------- | ------------------------------ | ---------------------- |
