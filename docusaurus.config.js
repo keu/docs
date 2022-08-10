@@ -189,7 +189,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: '© Astronomer',
+      copyright: '© Astronomer 2022',
     },
   },
   presets: [
