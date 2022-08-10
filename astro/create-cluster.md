@@ -115,7 +115,7 @@ Astronomer support sends you a notification when your cluster is created. After 
 
 #### Step 1: Submit a request to Astronomer support
 
-To create a new Astro cluster on Azure for your Organization, contact your Astronomer representative. For each new cluster that you want to provision, provide our team with the following information:
+To create a new Astro cluster on Azure for your Organization, submit a [support request](astro-support.md). In your support request, provide the following information for every new cluster that you want to provision:
 
 - Your preferred Astro cluster name.
 - The Azure region that you want to host your cluster in.
@@ -136,7 +136,7 @@ Astronomer support sends you a notification when your cluster is created. After 
 
 #### Step 1: Submit a request to Astronomer support
 
-To create a new Astro cluster on GCP for your Organization, you must first reach out to your Astronomer representative. For each new cluster that you want to provision, provide our team with the following information:
+To create a new Astro cluster on GCP for your Organization, submit a [support request](astro-support.md). In your support request, provide the following information for every new cluster that you want to provision:
 
 - Your preferred Astro cluster name.
 - The GCP region that you want to host your cluster in.
