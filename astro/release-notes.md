@@ -15,6 +15,12 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 **Latest CLI Version**: 1.3.0 ([Release notes](cli/release-notes.md))
 
+## August 2, 2022
+
+### Bug fixes
+
+- Fixed an issue where pending invites would appear for active users in the Cloud UI
+
 ## July 27, 2022
 
 ### New Deployment optimizations for high availability (HA)
