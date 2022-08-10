@@ -25,7 +25,7 @@ Some user roles have received new and modified permissions:
 - Organization Billing Admins can now view [usage](deployment-metrics.md#astro-usage) for all Workspaces in their Organization regardless of their Workspace permissions.
 - Workspace Editors can now delete any Deployments in their Workspace.
 
-### Automatic role assignment for new users authenticating with and identity provider
+### Automatic role assignment for new users authenticating with an identity provider
 
 If your organization has [implemented an identity provider (IdP)](configure-idp.md), any new user who authenticates to Astro through your IdP is now automatically assigned the Organization Member role. This means that users authenticating through your IdP do not need to be invited by email before joining your Organization.
 
