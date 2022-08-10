@@ -126,7 +126,7 @@ If you don't specify configuration preferences, Astronomer support creates a clu
 
 For information on all supported regions and configurations, see [Resources required for Astro on Azure](resource-reference-azure.md).  
 
-#### Step 2: Confirm with Astronomer
+#### Step 2: Confirm with Astronomer support
 
 Astronomer support sends you a notification when your cluster is created. After your cluster is created, you can create a new Deployment in the cluster and start deploying pipelines. See [Create a Deployment](create-deployment.md).
 
@@ -134,7 +134,7 @@ Astronomer support sends you a notification when your cluster is created. After 
 
 <TabItem value="gcp">
 
-#### Step 1: Submit a request to Astronomer
+#### Step 1: Submit a request to Astronomer support
 
 To create a new Astro cluster on GCP for your Organization, you must first reach out to your Astronomer representative. For each new cluster that you want to provision, provide our team with the following information:
 
@@ -148,7 +148,7 @@ If you don't specify configuration preferences, Astronomer support creates a clu
 
 For information on all supported regions and configurations, see [Resources required for Astro on GCP](resource-reference-gcp.md).  
 
-#### Step 2: Confirm with Astronomer
+#### Step 2: Confirm with Astronomer support
 
 Astronomer support sends you a notification when your cluster is created. After your cluster is created, you can create a new Deployment in the cluster and start deploying pipelines. See [Create a Deployment](create-deployment.md).
 
