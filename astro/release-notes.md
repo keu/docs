@@ -19,7 +19,7 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ### Bug fixes
 
-- Fixed an issue where pending invites would appear for active users in the Cloud UI
+- Pending invites no longer appear for active users in the Cloud UI.
 
 ## July 27, 2022
 
