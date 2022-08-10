@@ -122,7 +122,7 @@ To create a new Astro cluster on Azure for your Organization, submit a [support 
 - Your preferred node instance type.
 - Your preferred maximum node count.
 
-If you don't specify configuration preferences, Astronomer support creates a cluster with `Standard_D4d_v5 nodes`, one Postgres Flexible Server instance (D4ds_v4), and a maximum node count of 20 in `CentralUS`.
+If you don't specify configuration preferences, Astronomer support creates a cluster with `Standard_D4d_v5 nodes`, one Postgres Flexible Server instance (`D4ds_v4`), and a maximum node count of 20 in `CentralUS`.
 
 For information on all supported regions and configurations, see [Resources required for Astro on Azure](resource-reference-azure.md).  
 
