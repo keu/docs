@@ -87,6 +87,46 @@ astro dev kill
 
 This command forces your running containers to stop and deletes all data associated with your local Postgres metadata database, including Airflow connections, logs, and task history.
 
+## Troubleshoot dependency errors
+
+When dependency errors occur, the error message that is returned often doesn't contain enough information to help you resolve the error. To retrieve additional error information, you can review individual operating system or python package dependencies inside your local Docker containers.
+
+For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, or libsas12-dev packages and you receive build errors after running `astro dev start`, you can enter the container and install the packages manually to review additional information about the errors.
+
+1. Open the `requirements.txt` and `packages.txt` files for your project and remove the references to the packages that are returning error messages. 
+
+2. Run the following command to build your Astro project into a Docker image and start a local Docker container for each Airflow component:
+
+    ```sh
+    astro dev start
+    ```
+
+3. Run the following command to retrieve the container IDs for your Airflow components:
+
+    ```sh
+    docker ps
+    ```
+4. Run the following command to open a bash terminal in a running container:
+
+    ```sh
+    docker exec -it -u 0 <container_id> /bin/bash
+    ```
+    Replace `container_id` with one of the IDs you retrieved in step 3.
+
+5. In the bash terminal for each container, run the following command to install a package and review any error messages that are returned:
+
+    ```bash
+    apt-get install <package-name>
+    ```
+    For example, to install the GNU Compiler Collection (GCC) compiler, you would run:
+
+    ```bash
+    apt-get install gcc
+    ```
+
+6. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
+
+
 ## Troubleshoot common issues
 
 Use the information provided here to resolve common issues with running an Astro project in a local environment.
