@@ -126,7 +126,6 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
 
 6. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
 
-
 ## Troubleshoot common issues
 
 Use the information provided here to resolve common issues with running an Astro project in a local environment.
@@ -185,3 +184,38 @@ These logs should help you understand why your webserver or scheduler is unhealt
 - A failed Airflow or Astro Runtime version upgrade.
 - Misconfigured Dockerfile or Docker override file.
 - Misconfigured Airflow settings.
+
+### Port allocation issues
+
+By default, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database in a local Airflow environment. If these ports are already in use on your local computer, an error message similar to the following appears:
+
+`Error: error building, (re)creating or starting project containers: Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:5432 → 0.0.0.0:0: listen tcp 0.0.0.0:5432: bind: address already in use`
+
+To resolve a port availability error, you have the following options:
+
+- Stop all running Docker containers and restart your local environment.
+- Change the default ports for these components
+
+#### Stop all running Docker containers
+
+1. Run `docker ps` to identify the Docker containers running on your computer.
+2. Copy the values in the **CONTAINER ID** column.
+3. Select one of the following options:
+    
+    - Run `docker stop <container_id>` to stop a specific Docker container. Replace `<container_id>` with one of the values you copied in step 2.
+    - Run `docker stop $(docker ps -q)` to stop all running Docker containers.
+
+#### Change the default port assignment
+
+1. In your Astro project directory, open `.astro/config.yaml`. This file might be hidden in graphical file browsers. You can show hidden files using `⌘ + Shift + .` on Mac or by selecting **View** > **Hidden items** in Windows file explorer.
+2. Specify alternative ports for your webserver and/or metadata database in `config.yaml`. For example, to use `8081` for your webserver port and `5435` for your database port, you would specify the following:
+
+    ```yaml
+    project:
+      name: <your-directory-name>
+    webserver:
+      port: 8081
+    postgres:
+      port: 5435
+    ```
+3. Run `astro dev restart` to rebuild and rerun your project.

@@ -9,18 +9,14 @@ import {siteVariables} from '@site/src/versions';
 
 To run Airflow pipelines on Astro, you first need to create an Astro project. An Astro project contains the set of files necessary to run Airflow, including dedicated folders for your DAG files, plugins, and dependencies. Once you've tested these files locally, the Astro project structure makes it easy to deploy your pipelines to Astro.
 
-This guide provides instructions for creating a new Astro project, as well as information about the default Astro project structure.
-
 ## Prerequisites
-
-To create an Astro project, you need:
 
 - [The Astro CLI](cli/configure-cli.md#install-the-cli)
 - [Docker](https://www.docker.com/products/docker-desktop)
 
 ## Step 1: Create an Astro project
 
-To create a new Astro project:
+When you create an Astro project, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database by default. If these ports are already in use on your local computer, an error message might appear. To resolve this error message, see [Test and troubleshoot locally](test-and-troubleshoot-locally.md#port-allocation-issues).
 
 1. Create a new directory for your Astro project:
 
@@ -112,26 +108,6 @@ Airflow Webserver: http://localhost:8080
 Postgres Database: localhost:5432/postgres
 The default credentials are admin:admin
 `}</code></pre>
-
-:::info
-
-By default, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database. If these ports are already in use on your local machine, you can change the default ports for these components by following these steps:
-
-1. In your Astro project directory, open `.astro/config.yaml`. This file might be hidden in graphical file browsers. You can show hidden files using `⌘ + Shift + .` on Mac or by selecting **View** > **Hidden items** in Windows file explorer.
-2. Specify alternative ports for your webserver and/or metadata database in `config.yaml`. For example, to use `8081` for your webserver port and `5435` for your database port, you would specify the following:
-
-    ```yaml
-    project:
-      name: <your-directory-name>
-    webserver:
-      port: 8081
-    postgres:
-      port: 5435
-    ```
-
-3. Run `astro dev restart` to rebuild and rerun your project.
-
-:::
 
 ## Step 3: Access the Airflow UI
 
