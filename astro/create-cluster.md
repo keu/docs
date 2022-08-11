@@ -43,7 +43,7 @@ To create a new Astro cluster on AWS for your Organization, submit a [support re
 - Your preferred node instance type
 - Your preferred max node count
 
-If you don't specify configuration preferences, Astronomer support creates a cluster with two `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. For information on all supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
+If you don't specify configuration preferences, Astronomer support creates a cluster with two `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. If you're using Virtual Private Cloud (VPC) peering, a CIDR block (RFC 1918 IP Space) with the default CIDR range `172.20.0.0/19` is implemented. For information on all supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
 
 #### Additional setup for AWS regions that are disabled by default
 
@@ -122,7 +122,7 @@ To create a new Astro cluster on Azure for your Organization, submit a [support 
 - Your preferred node instance type.
 - Your preferred maximum node count.
 
-If you don't specify configuration preferences, Astronomer support creates a cluster with `Standard_D4d_v5 nodes`, one Postgres Flexible Server instance (`D4ds_v4`), and a maximum node count of 20 in `CentralUS`.
+If you don't specify configuration preferences, Astronomer support creates a cluster with `Standard_D4d_v5 nodes`, one Postgres Flexible Server instance (`D4ds_v4`), and a maximum node count of 20 in `CentralUS`. If you're using Virtual Private Cloud (VPC) peering, a CIDR block (RFC 1918 IP Space) with the default CIDR range `172.20.0.0/19` is implemented.
 
 For information on all supported regions and configurations, see [Resources required for Astro on Azure](resource-reference-azure.md).  
 
@@ -144,9 +144,7 @@ To create a new Astro cluster on GCP for your Organization, submit a [support re
 - Your preferred CloudSQL instance type.
 - Your preferred maximum node count.
 
-If you don't specify configuration preferences, Astronomer support creates a cluster with `e2-medium-4 nodes`, one Medium General Purpose CloudSQL instance (4vCPU, 16GB), and a maximum node count of 20 in `us-central1`.
-
-For information on all supported regions and configurations, see [Resources required for Astro on GCP](resource-reference-gcp.md).  
+If you don't specify configuration preferences, Astronomer support creates a cluster with `e2-medium-4 nodes`, one Medium General Purpose CloudSQL instance (4vCPU, 16GB), and a maximum node count of 20 in `us-central1`. If you're using Virtual Private Cloud (VPC) peering, the default Subnet CIDR `172.20.0.0/19` is implemented. For information on all supported regions and configurations, see [Resources required for Astro on GCP](resource-reference-gcp.md).  
 
 #### Step 2: Confirm with Astronomer support
 
