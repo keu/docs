@@ -7,9 +7,9 @@ description: A real-time reference of the latest features and bug fixes in Astro
 
 <!--- Version-specific -->
 
-Astronomer is committed to continuous delivery of both features and bug fixes to Astro. To keep your team up to date on what's new, this document will provide a regular summary of all changes officially released to Astro.
+Astronomer is committed to continuous delivery of both features and bug fixes to Astro. To keep your team up to date on what's new, this document will provide a regular summary of all changes released to Astro.
 
-If you have any questions or a bug to report, don't hesitate to reach out to [Astronomer support](https://support.astronomer.io).
+If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
 **Latest Astro Runtime Version**: 5.0.6 ([Release notes](runtime-release-notes.md))
 
@@ -32,6 +32,12 @@ If your organization has [implemented an identity provider (IdP)](configure-idp.
 ### Additional improvements
 
 - Added a security measure that ensures Workspace roles can only be assigned to users who have an Organization role in the Organization in which the Workspace is hosted. This ensures that a user who does not belong to your Organization cannot be assigned a Workspace role within it.
+
+## August 2, 2022
+
+### Bug fixes
+
+- Pending invites no longer appear for active users in the Cloud UI.
 
 ## July 27, 2022
 
