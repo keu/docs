@@ -16,8 +16,6 @@ To run Airflow pipelines on Astro, you first need to create an Astro project. An
 
 ## Step 1: Create an Astro project
 
-When you create an Astro project, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database by default. If these ports are already in use on your local computer, an error message might appear. To resolve this error message, see [Test and troubleshoot locally](test-and-troubleshoot-locally.md#port-allocation-issues).
-
 1. Create a new directory for your Astro project:
 
     ```sh
@@ -108,6 +106,8 @@ Airflow Webserver: http://localhost:8080
 Postgres Database: localhost:5432/postgres
 The default credentials are admin:admin
 `}</code></pre>
+
+When you create an Astro project, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database by default. If these ports are already in use on your local computer, an error message might appear. To resolve this error message, see [Test and troubleshoot locally](test-and-troubleshoot-locally.md#port-allocation-issues).
 
 ## Step 3: Access the Airflow UI
 
