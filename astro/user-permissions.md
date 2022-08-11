@@ -19,10 +19,10 @@ An Organization role grants a user some level of access to an Astro Organization
 | ----------------------------------------------------------- | ----------------------- | ------------------------------ | ---------------------- |
 | View Organization details and user membership               | ✔️                      | ✔️                             | ✔️                     |
 | View lineage data in the **Lineage** tab                    | ✔️                      | ✔️                             | ✔️                     |
+| Create a new Workspace                                      | ✔️                       | ✔️                              | ✔️                     |
 | Update Organization billing information and settings        |                         | ✔️                             | ✔️                     |
 | View usage for all Workspaces in the **Usage** tab          |                         | ✔️                             | ✔️                     |
 | Workspace Admin permissions to all Workspaces               |                         |                                | ✔️                     |
-| Create a new Workspace                                      |                         |                                | ✔️                     |
 | Update roles and permissions of existing Organization users |                         |                                | ✔️                     |
 | Invite a new user to an Organization                        |                         |                                | ✔️                     |
 | Remove a user from an Organization                          |                         |                                | ✔️                     |
@@ -46,6 +46,8 @@ A Workspace role grants a user some level of access to a specific Workspace. The
 | Manually trigger DAG and task runs       |                      | ✔️                   | ✔️                  |
 | Push code to Deployments                 |                      | ✔️                   | ✔️                  |
 | Create and Delete Deployments            |                      | ✔️                   | ✔️                  |
+| Create, Update and Delete Environment Variables       |                      | ✔️                     | ✔️                  |
+| Create, Update and Delete API Keys       |                      |                      | ✔️                  |
 | View Airflow connections and Variables   |                      |                      | ✔️                  |
 | Update user roles and permissions        |                      |                      | ✔️                  |
 | Update Airflow connections and Variables |                      |                      | ✔️                  |
