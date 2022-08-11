@@ -50,6 +50,13 @@ Astronomer uses refresh tokens to make sure that you don’t need to log in to t
 
     Confirmation messages appear in the Cloud UI and in the Astro CLI indicating that your login was successful and that your computer is now connected. The name of your default Workspace in the Astro CLI also appears. To switch Workspace contexts after you log in, see [astro workspace switch](https://docs.astronomer.io/astro/cli/astro-workspace-switch).
 
+## Browserless authentication
+
+The following options are available if you're unable to use a browser for authnentication:
+
+- Run astro `login -l` in the Astro CLI to manually access the Cloud UI, copy the returned URL, and then run `curl -u <username>:<password> <returned URL>`. Replace `<username>` and `<password>` with your username and password, and `<returned URL>` with the value displayed after running `login -l`.
+- [Use a Deployment API key](api-keys.md#using-deployment-api-keys).
+
 ## Access a different base domain
 
 When you need to access Astro and Astronomer Software with the Astro CLI at the same time, you need to authenticate to each product individually by specifying a base domain for each Astronomer installation.
