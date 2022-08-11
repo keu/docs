@@ -17,13 +17,13 @@ If you have any questions or a bug to report, don't hesitate to reach out to [As
 
 ## August 10, 2022
 
-### Updated Organization and Workspace role permissions
+### Updated user permissions for Organization and Workspace roles
 
-Some user roles have received new and modified permissions:
+The following user roles have new and modified permissions:
 
-- Organization Owners now have Workspace Admin permissions for all Workspaces in their Organization. This role now provides complete access to Workspaces, Deployments, and usage across your Organization.
+- Organization Owners now have Workspace Admin permissions for all Workspaces in their Organization. This role can now access Organization Workspaces, Deployments, and usage data.
 - Organization Billing Admins can now view [usage](deployment-metrics.md#astro-usage) for all Workspaces in their Organization regardless of their Workspace permissions.
-- Workspace Editors can now delete any Deployments in their Workspace.
+- Workspace Editors can now delete any Deployment in their Workspace.
 
 ### Automatic role assignment for new users authenticating with an identity provider
 
@@ -31,7 +31,7 @@ If your organization has [implemented an identity provider (IdP)](configure-idp.
 
 ### Additional improvements
 
-- Added guardrails so that you can have a Workspace role only if you have an Organization role in the Organization where the Workspace is located.
+- Added a security measure that ensures Workspace roles can only be assigned to users who have an Organization role in the Organization in which the Workspace is hosted. This ensures that a user who does not belong to your Organization cannot be assigned a Workspace role within it.
 
 ## July 27, 2022
 
