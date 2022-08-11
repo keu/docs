@@ -9,9 +9,7 @@ tags: ["Integrations", "Azure", "DAGs"]
 
 > **Note:** All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-container-instance).
 
-## Orchestrating ACI with Airflow
-
-### The ACI Operator
+## The ACI Operator
 
 The easiest way to orchestrate ACI with Airflow is to use the [AzureContainerInstancesOperator](https://registry.astronomer.io/providers/microsoft-azure/modules/azurecontainerinstancesoperator). This operator starts a container on ACI, runs the container, and terminates the container when all processes are completed.
 
@@ -23,7 +21,7 @@ The only prerequisites for using this operator are:
 
 This operator can also be used to run existing container instances and make certain updates, including the docker image, environment variables, or commands. Some updates to existing container groups are not possible with the operator, including CPU, memory, and GPU; those updates require deleting the existing container group and recreating it, which can be accomplished using the [AzureContainerInstanceHook](https://registry.astronomer.io/providers/microsoft-azure/modules/azurecontainerinstancehook).
 
-### When to use ACI
+## When to use ACI
 
 There are multiple ways to manage containers with Airflow on Azure. The most flexible and scalable method is to use the [KubernetesPodOperator](https://registry.astronomer.io/providers/kubernetes/modules/kubernetespodoperator). This lets you run any container as a Kubernetes pod, which means you can pass in resource requests and other native Kubernetes parameters. Using this operator requires an [AKS](https://azure.microsoft.com/en-us/services/kubernetes-service/) cluster (or a hand-rolled Kubernetes cluster).
 
