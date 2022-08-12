@@ -1,5 +1,6 @@
 ---
 title: "Executing Azure Data Factory Pipelines with Airflow"
+sidebar_label: "Executing Azure Data Factory Pipelines with Airflow"
 description: "Triggering remote jobs in Azure Data Factory from your Apache Airflow DAGs."
 id: airflow-azure-data-factory-integration
 tags: ["Integrations", "Azure"]
