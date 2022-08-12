@@ -87,7 +87,7 @@ The following table lists the maximum worker size that is supported on Astro for
 | e2-standard-4      | 20         | 2 CPUs    | 7.5  GiB MEM |
 | e2-standard-8      | 60         | 6 CPUs    | 22.5 GiB MEM |
 
-If your Organization is interested in using an instance type that supports a worker size limit higher than 62 AU, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md#worker-resources).
+If your Organization is interested in using an instance type that supports a worker size limit higher than 60 AU, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md#worker-resources).
 
 :::info
 
