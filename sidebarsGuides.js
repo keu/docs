@@ -34,7 +34,3 @@ module.exports = {
       items: [
         'overview',
         'airflow-azure-container-instances',
-      ],
-    },
-  ],
-};
