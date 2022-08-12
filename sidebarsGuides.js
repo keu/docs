@@ -20,21 +20,3 @@ module.exports = {
       items: [
         'overview',
         'airflow-branch-operator',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Tutorials',
-      items: [
-        'overview',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Integrations',
-      items: [
-        'overview',
-      ],
-    },
-  ],
-};
