@@ -167,7 +167,7 @@ For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud
 When you set an Airflow variable as an environment variable on Astro, there are two ways you can call that variable in your DAGs:
 
 - `Variable.get('<environment-variable-key>')`
-- `os.getenv('environment-variable-key', 'default_value')`
+- `os.getenv('<environment-variable-key>', '<default_value>')`
 
 If your variable or environment variable contains a secret value, Astronomer recommends using `Variable.get` to ensure that secret values are not present as plain text in your DAG code. However, with this method, requests to the Airflow metadata database can occur every time your DAGs are parsed. Typically, requests occur every 1 to 5 seconds and a significant number of requests could negatively affect database performance. For more information about retrieving Airflow variables using this method, see [Variables](https://airflow.apache.org/docs/apache-airflow/stable/concepts/variables.html).
 
