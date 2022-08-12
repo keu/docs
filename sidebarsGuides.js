@@ -33,3 +33,8 @@ module.exports = {
       label: 'Integrations',
       items: [
         'overview',
+        'airflow-azure-data-explorer',
+      ],
+    },
+  ],
+};
