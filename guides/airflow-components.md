@@ -11,7 +11,7 @@ In this guide, we'll describe the core components of Airflow and managing Airflo
 
 ## Core components
 
-Apache Airflow has four core components that are running at all times: 
+The following Apache Airflow core components are running at all times: 
 
 - **Webserver:** A Flask server running with Gunicorn that serves the [Airflow UI](https://www.astronomer.io/guides/airflow-ui/).
 - **[Scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html):** A Daemon responsible for scheduling jobs. This is a multi-threaded Python process that determines what tasks need to be run, when they need to be run, and where they are run.
