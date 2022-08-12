@@ -37,13 +37,12 @@ To create an Astro cluster, you need to have:
 
 To create a new Astro cluster on AWS for your Organization, submit a [support request](astro-support.md). In your support request, provide the following information for every new cluster that you want to provision:
 
-- Your AWS Account ID
-- Your preferred Astro cluster name
-- The AWS region that you want to host your cluster in
-- Your preferred node instance type
-- Your preferred max node count
-- Your preferred VPC CIDR
-- Your preferred region
+- Your AWS Account ID.
+- Your preferred Astro cluster name.
+- The AWS region that you want to host your cluster in.
+- Your preferred node instance type.
+- Your preferred max node count.
+- Your preferred VPC CIDR.
 
 If you don't specify configuration preferences, Astronomer support creates a cluster with a VPC CIDR of 172.20.0.0/19,`m5.xlarge` nodes, and a maximum node count of 20 in `us-east-1`. For information about supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
 
@@ -145,6 +144,7 @@ To create a new Astro cluster on GCP for your Organization, submit a [support re
 - Your preferred node instance type.
 - Your preferred CloudSQL instance type.
 - Your preferred maximum node count.
+- Your preferred VPC CIDR.
 
 If you don't specify configuration preferences, Astronomer support creates a cluster with `e2-medium-4 nodes`, one Medium General Purpose CloudSQL instance (4vCPU, 16GB), and a maximum node count of 20 in `us-central1`. If you're using Virtual Private Cloud (VPC) peering, the default Subnet CIDR `172.20.0.0/19` is implemented. For information on all supported regions and configurations, see [Resources required for Astro on GCP](resource-reference-gcp.md).  
 
