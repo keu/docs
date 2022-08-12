@@ -412,7 +412,7 @@ To automate code deploys to a single Deployment using [AWS CodeBuild](https://aw
 
 2. At the root of your Git repository, add a [buildspec.yml](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-example) file that includes the following script:
 
-   <pre><code parentName="pre">{`
+   ```yaml
    
    version: 0.2
 
