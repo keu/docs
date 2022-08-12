@@ -45,7 +45,7 @@ To create a new Astro cluster on AWS for your Organization, submit a [support re
 - Your preferred VPC CIDR
 - Your preferred region
 
-If you don't specify configuration preferences, Astronomer support creates a cluster with two `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. If you're using Virtual Private Cloud (VPC) peering, a CIDR block (RFC 1918 IP Space) with the default CIDR range `172.20.0.0/19` is implemented. For information on all supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
+If you don't specify configuration preferences, Astronomer support creates a cluster with a VPC CIDR of 172.20.0.0/19,`m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. For information on all supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
 
 #### Additional setup for AWS regions that are disabled by default
 
