@@ -53,7 +53,7 @@ The default Astro project includes the following files and folders:
 - `/tests` : A directory for unit tests that you can run with `astro dev pytest`. The default Astro project includes a few basic unit tests.
 - `.dockerignore`: A list of folders and files and folders that Docker ignores when building your Airflow environment.
 - `.gitignore`: A list of folders and files that [git](https://git-scm.com/) ignores when parsing the project. Using git is not required for this tutorial.
-- `airflow_settings.yaml`: A file for configuring Airflow [connections](https://www.astronomer.io/guides/connections/), [pools](https://www.astronomer.io/guides/airflow-pools/) and [variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) in YAML.
+- `airflow_settings.yaml`: A file for configuring Airflow [connections](https://www.astronomer.io/guides/connections/), [pools](https://www.astronomer.io/guides/airflow-pools/) and [variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) in YAML. It's also possible to configure these values in the Airflow UI, which is the method we use in this tutorial.
 - `Dockerfile`: A list of commands that Docker runs when building containers for your Airflow environment.
 - `packages.txt`: A list of OS-level packages that Docker installs when building your Airflow environment.
 - `README.md`: The overview of your project contents.
