@@ -429,7 +429,7 @@ To automate code deploys to a single Deployment using [AWS CodeBuild](https://aw
          - curl -sSL install.astronomer.io | sudo bash -s
          - astro deploy "${ASTRONOMER_DEPLOYMENT_ID}" -f
    
-
+    ```
     When configuring the AWS CodeBuild project, create a webhook source event using the source provider where your Astro project is hosted (i.e. Bitbucket, GitHub, etc.). After doing so, configure the Primary source webhook events to trigger for event type `PUSH`. After setting those configurations, this buildspec.yml triggers a code push to an Astro Deployment every time a commit or pull request is merged to the `main` branch of your repository.
 </TabItem>
 
@@ -473,7 +473,7 @@ To automate code deploys across multiple Deployments using [AWS CodeBuild](https
              curl -sSL install.astronomer.io | sudo bash -s
              astro deploy "${DEV_DEPLOYMENT_ID}" -f
            fi
-   
+    ```
 
    When configuring the AWS CodeBuild project, create a webhook source event using the source provider where your Astro project is hosted (i.e. Bitbucket, GitHub, etc.). After doing so, configure the Primary source webhook events to trigger for event type `PUSH`. After setting those configurations, this buildspec.yml triggers a code push to an Astro Deployment every time a commit or pull request is merged to the `dev` and `main` branches of your repository.
 
