@@ -155,7 +155,7 @@ Follow the standard installation guide to upgrade to Software 0.28, then repeat 
 
 There is an [unresolved Kubernetes bug](https://github.com/kubernetes/kubernetes/issues/65106) that occurs when upgrading Helm charts that include duplicate keys in an `env` array. If you have a Helm chart with duplicate keys and upgrade to Astronomer Software 0.29.3, all key-value pairs with the duplicate key are removed from your environment.
 
-To preserve duplicate keys in your Helm chart, you can either reapply the values after upgrade or ensure that you use the `--reset-values` flag when running the upgrade script in Step 7.
+To preserve duplicate keys in your Helm chart, you can either reapply the values after upgrading, or you can use the `--reset-values` flag when running the upgrade script in Step 7.
 
 #### Resync Astronomer's signing certificate  
 
