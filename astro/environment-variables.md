@@ -162,13 +162,13 @@ On Astro, environment variables are applied and overridden in the following orde
 
 For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud UI and you set the same environment variable with another value in your `Dockerfile`, the value set in the Cloud UI takes precedence.
 
-## Query an environment variables in a DAG
+## Query environment variables in a DAG
 
 When you set an Airflow variable as an environment variable on Astro, there are two ways you can call that variable in your DAGs:
 
 - `Variable.get('<environment-variable-key>')`
 - `os.getenv('environment-variable-key', 'default_value')`
 
-If your variable or environment variable contains a secret value, Astronomer recommends `Variable.get`. This method requires a request to Airflow’s metadata database every time your DAGs are parsed, which can be every 1-5 seconds, but it ensures that secret values are not present in your DAG code in plain text. For more information about retrieving Airflow variables, see [Variables](https://airflow.apache.org/docs/apache-airflow/stable/concepts/variables.html).
+If your variable or environment variable contains a secret value, Astronomer recommends using `Variable.get` to ensure that secret values are not present as plain text in your DAG code. With this method, requests to the Airflow metadata database can occur every time your DAGs are parsed and this can negatively affect the performance of the database. For more information about retrieving Airflow variables, see [Variables](https://airflow.apache.org/docs/apache-airflow/stable/concepts/variables.html).
 
-To avoid the strain on your database for non-secret values, Astronomer recommends `os.getenv('key', 'default_value')`, where `key` is the key for your environment variable on Astro and `default_value` is the default value for that key. Typically, `default_value` is equivalent to the actual value of your environment variable as defined on Astro in the Cloud UI. In the event that your DAG queries an environment variable that does not exist, `default_value` will be used.
+Astronomer recommends using `os.getenv('<key>', '<default_value>')` for non-secret values to reduce the number of Airflow metadata database requests.  Replace `key` with the key for your environment variable on Astro and `default_value` with the default value for that key. Typically, `default_value` is the value you defined for the environment variable in the Cloud UI. When your DAG queries an environment variable that doesn't exist, `default_value` is used.
