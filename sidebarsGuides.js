@@ -7,7 +7,7 @@
  Create as many sidebars as you want.
  */
 
- module.exports = {
+module.exports = {
   guides: [
     {
       type: 'doc',
