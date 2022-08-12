@@ -1,5 +1,6 @@
 ---
 title: "Orchestrating Azure Container Instances with Airflow"
+sidebar_label: "Orchestrate Azure Container Instances"
 description: "Orchestrating containers with Azure Container Instances from your Apache Airflow DAGs."
 id: airflow-azure-container-instances
 tags: ["Integrations", "Azure", "DAGs"]
