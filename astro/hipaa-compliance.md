@@ -45,7 +45,7 @@ This document references the Astro control and data planes, which are core par
 - Do not output PHI to [scheduler](view-logs.md#view-airflow-scheduler-logs) and/or [task](view-logs.md#view-airflow-task-logs) logs, especially in clear text.
 - Do not store PHI as part of your DAG image or code.
 - Do not store unencrypted PHI in [XComs](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html). Ensure encrypted PHI stored in XComs for task execution is purged following task execution.
-- Ensure your [lineage metadata](https://docs.astronomer.io/astro/set-up-data-lineage) does not contain any PHI.
+- Ensure your [lineage metadata](set-up-data-lineage.md) does not contain any PHI.
 - Do not add, delete or modify data plane infrastructure that is provisioned and managed by Astronomer as that may be a violation of HIPAA. For example, disabling encryption of the S3 bucket (AWS), Cloud Storage (GCP), or Storage Account (Azure).
 
 ### Cloud provider responsibilities:
