@@ -19,11 +19,11 @@ You can now easily exec into any airflow container started with the Astro CLI an
 
 ## New Command `astro user invite`
 
-You can automate invting new users with the `astro user invite` command. You can give the new user the ORGANIZATION_MEMBER, ORGANIZATION_BILLING_ADMIN, or ORGANIZATION_OWNER with the `--role` string.
+You can automate inviting new users with the `astro user invite` command. You can give the new user the ORGANIZATION_MEMBER, ORGANIZATION_BILLING_ADMIN, or ORGANIZATION_OWNER with the `--role` string.
 
 ## Create Multiple Variables with `deployment variable create` and `update`
 
-Users can now pass a list of variables to `deployment variable create` and `update` to create multple varaibles at once without a file. For example `deployment variable create KEY1=VAL1 KEY2=VAL2` will create the variables `KEY1` and `KEY2`.
+Users can now pass a list of variables to `deployment variable create` and `update` to create multiple variables at once without a file. For example `deployment variable create KEY1=VAL1 KEY2=VAL2` will create the variables `KEY1` and `KEY2`.
 
 ## Automatic Docker Startup
 
@@ -31,7 +31,7 @@ Docker will now automatically start up if it is not already running when a user 
 
 ## Automatic Airflow Webserver Popup
 
-The Airflow Webserver will now automatically popup once it is availble. Now users don't have to continually check the terminal to see if the webserver is available.
+The Airflow Webserver will now automatically popup once it is available. Now users don't have to continually check the terminal to see if the webserver is available.
 
 ## Astro CLI v1.3.0
 
