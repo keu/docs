@@ -145,6 +145,12 @@ This topic contains information about upgrading to specific versions of Astronom
 
 To avoid extended service disruptions, Astronomer recommends upgrading Astronomer Software to a compatible version before you upgrade Kubernetes. To view Astronomer Software and Kubernetes compatibility information, see [Version compatibility reference for Astronomer Software](version-compatibility-reference.md#astronomer-software).
 
+### Upgrading to 0.30 when using Azure Database for PostgreSQL
+
+A change in 0.30 enabled the `trgm` extension for PosgreSQL. If you use Azure Database for PostgreSQL as your database backend, you need to enable the `pg_trgm` extension before upgrading to Software 0.30 using either Azure portal or the Azure CLI. See [Azure documentation](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions) for configuration steps.
+
+If you don't complete this setup before your upgrade, the upgrade will fail.
+
 ### Upgrading to 0.29
 
 :::caution
