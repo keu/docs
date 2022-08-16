@@ -18,7 +18,7 @@ We're committed to testing all Astronomer Software versions for scale, reliabili
 
 :::danger Breaking Change for Azure Database for PostgreSQL
 
-A change in 0.30 enabled the `trgm` extension for PosgreSQL. If you use Azure Database for PostgreSQL as your database backend, you need to enable the `pg_trgm` extension before upgrading to Software 0.30 using either Azure portal or the Azure CLI. See [Azure documentation](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions) for configuration steps.
+A change in 0.30 enabled the `trgm` extension for PostgreSQL. If you use Azure Database for PostgreSQL as your database backend, you need to enable the `pg_trgm` extension before upgrading to Software 0.30 using either Azure portal or the Azure CLI. See [Azure documentation](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions) for configuration steps.
 
 If you don't complete this setup before your upgrade, the upgrade will fail.
 
