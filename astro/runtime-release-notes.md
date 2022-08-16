@@ -18,9 +18,9 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 ### Backported fixes from Apache Airflow
 
-Astro Runtime 5.0.5 includes several bug fixes and performance improvements that were backported from future Apache Airflow releases. Fixes include:
+Astro Runtime 5.0.7 includes several bug fixes that were backported from future Apache Airflow releases. Fixes include:
 
-- Fixed an issue where you could not import plugins as Python packages ([#25296](https://github.com/apache/airflow/pull/25296))
+- Fixed an issue where webserver would crash loading plugins ([#25296](https://github.com/apache/airflow/pull/25296))
 - Fixed the cleanup for zombie tasks from DAGs with parsing errors ([#25550](https://github.com/apache/airflow/pull/25550))
 - Fixed an issue where clearing a deferred task instance would not clear its `next_method` field ([#23929](https://github.com/apache/airflow/pull/23929))
 
