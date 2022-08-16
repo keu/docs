@@ -28,7 +28,7 @@ Astro Runtime 5.0.7 includes several bug fixes that were backported from future 
 
 - Upgraded `openlineage-airflow` to `0.12.0`, which includes support for Spark 3.3.0 and Apache Flink. For a list of all changes, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
 - Upgraded `astronomer-providers` to `1.7.1`, which includes new deferrable operators and improvements to documentation. For more information, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.7.1/CHANGELOG.rst).
-- Upgraded `apache-airflow-providers-amazon` to `4.1.0`.
+- Upgraded `apache-airflow-providers-amazon` to `4.1.0`, which includes a bug fix for integrating with AWS Secrets Manager.
 
 ## Astro Runtime 5.0.6
 
