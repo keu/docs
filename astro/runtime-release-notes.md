@@ -24,7 +24,7 @@ Astro Runtime 5.0.7 includes the following bug fixes:
 - Fixed an issue where zombie tasks were not properly cleaned up from DAGs with parse errors [#25550](https://github.com/apache/airflow/pull/25550))
 - Fixed an issue where clearing a deferred task instance would not clear its `next_method` field ([#23929](https://github.com/apache/airflow/pull/23929))
 
-These changes were backported from an Apache Airflow release that is not yet generally available. The bug fixes were also backported to Astro Runtime 5.0.5.
+These changes were backported from Apache Airflow 2.3.4, which is not yet generally available. The bug fixes were also backported to Astro Runtime 5.0.5.
 
 ### Additional improvements
 
