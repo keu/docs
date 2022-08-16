@@ -55,7 +55,7 @@ Astro Runtime 5.0.6 includes Airflow 2.3.3, which includes bug fixes and UI impr
 - Release date: July 1, 2022
 - Airflow version: 2.3.2
 
-### Backported fixes from Airflow 2.3.3
+### Backported fixes from Apache Airflow
 
 Astro Runtime 5.0.5 includes several bug fixes and performance improvements that were backported from Airflow 2.3.3. Fixes include:
 
