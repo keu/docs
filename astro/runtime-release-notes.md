@@ -5,9 +5,30 @@ id: runtime-release-notes
 description: Release notes for Astro Runtime, the differentiated Apache Airflow experience and execution framework.
 ---
 
+<!--version-specific-->
+
 Astro Runtime is a Docker image built and published by Astronomer that extends the Apache Airflow project to provide a differentiated data orchestration experience. This document provides a summary of changes made to each available version of Astro Runtime. Note that some changes to Runtime might be omitted based on their availability in Astro.
 
 To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For general product release notes, see [Astro Release Notes](release-notes.md). If you have any questions or a bug to report, contact [Astronomer support](https://support.astronomer.io).
+
+## Astro Runtime 5.0.7
+
+- Release date: August 16, 2022
+- Airflow version: 2.3.3
+
+### Backported fixes from Apache Airflow
+
+Astro Runtime 5.0.5 includes several bug fixes and performance improvements that were backported from future Apache Airflow releases. Fixes include:
+
+- Fixed an issue where you could not import plugins as Python packages ([#25296](https://github.com/apache/airflow/pull/25296))
+- Fixed the cleanup for zombie tasks from DAGs with parsing errors ([#25550](https://github.com/apache/airflow/pull/25550))
+- Fixed an issue where clearing a deferred task instance would not clear its `next_method` field ([#23929](https://github.com/apache/airflow/pull/23929))
+
+### Additional improvements
+
+- Upgraded `openlineage-airflow` to `0.12.0`, which includes support for Spark 3.3.0 and Apache Flink. For a list of all changes, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
+- Upgraded `astronomer-providers` to `1.7.1`, which includes new deferrable operators and improvements to documentation. For more information, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.7.1/CHANGELOG.rst).
+- Upgraded `apache-airflow-providers-amazon` to `4.1.0`.
 
 ## Astro Runtime 5.0.6
 
@@ -32,9 +53,9 @@ Astro Runtime 5.0.6 includes Airflow 2.3.3, which includes bug fixes and UI impr
 - Release date: July 1, 2022
 - Airflow version: 2.3.2
 
-### Backported fixes from Airflow 2.3.3
+### Backported fixes from Apache Airflow
 
-Astro Runtime 5.0.5 includes several bug fixes and performance improvements that were backported from Airflow 2.3.3, which is not yet generally available. Fixes include:
+Astro Runtime 5.0.5 includes several bug fixes and performance improvements that were backported from future Apache Airflow releases. Fixes include:
 
 - Fixed an issue where part of the **Grid** view of the Airflow UI would crash or become unavailable if a `GET` request to the Airflow REST API failed ([#24152](https://github.com/apache/airflow/pull/24152))
 - Improved the performance of the **Grid** view ([#24083](https://github.com/apache/airflow/pull/24083))
