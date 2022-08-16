@@ -35,6 +35,12 @@ If your organization has [implemented an identity provider (IdP)](configure-idp.
 
 ## August 2, 2022
 
+### Support for Astro on Azure Kubernetes Service (AKS)
+
+Astro now officially supports Astro clusters on AKS. This includes support for an initial set of AKS regions.
+
+For more information about the installation process and supported configurations, see [Install Astro on Azure](install-azure.md) and [Resource Reference Azure](resource-reference-azure.md).
+
 ### Bug fixes
 
 - Pending invites no longer appear for active users in the Cloud UI.
