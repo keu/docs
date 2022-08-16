@@ -37,7 +37,7 @@ This document references the Astro control and data planes, which are core par
 ### Customer obligations
 
 - Execute a Business Associate Agreement (BAA) with your public cloud provider to process PHI on cloud infrastructure.
-- [Configure an Identity Provider](https://docs.astronomer.io/astro/configure-idp) (IdP) for single sign on to your Astro Organization.
+- [Configure an identity provider](configure-idp.md) (IdP) for single sign-on to your Astro Organization.
 - Use a [supported](https://docs.astronomer.io/astro/runtime-version-lifecycle-policy#astro-runtime-lifecycle-schedule) (preferably latest patch) version of [Astro Runtime](https://docs.astronomer.io/astro/runtime-image-architecture), to take advantage of the most recent security features and fixes.
 - Use [supported and compatible versions](https://github.com/apache/airflow/blob/main/README.md#release-process-for-providers) of Airflow [Providers](https://registry.astronomer.io/providers/?page=1), to take advantage of the most recent security features and fixes.
 - Create a [secrets backend](https://docs.astronomer.io/astro/secrets-backend) to access sensitive information and secrets from your data pipelines that will be used to access PHI. If you do not have a secrets backend, you must [store your environment variables as secrets](https://docs.astronomer.io/astro/environment-variables#set-environment-variables-via-the-cloud-ui).
