@@ -32,7 +32,7 @@ This document references the Astro control and data planes, which are core par
 - Encrypt data at rest in control and data plane.
 - Monitor control and data planes for but not limited to unauthorized access, malicious activity, intrusions and threats at runtime, and unauthorized configuration changes.
 - Deprovision compute and data resources when they are no longer required for task execution, so that the cloud provider can permanently remove the compute and data resources.
-- Execute data plane cluster deletion when instructed by customer, so that the cloud provider can permanently remove the compute and data resources.
+- Execute data plane cluster deletion when instructed by the customer, so that the cloud provider can permanently remove the compute and data resources.
 
 ### Customer obligations
 
