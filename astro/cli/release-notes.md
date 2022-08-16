@@ -9,6 +9,30 @@ This document provides a summary of all changes made to the [Astro CLI](cli/get-
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
+## Astro CLI v1.4.0
+
+Release date: August 18, 2022
+
+## New Command `astro dev bash`
+
+You can now easily exec into any airflow container started with the Astro CLI and run bash commands. Use the flags `--scheduler`, `--webserver`, `--postgres`, or `--triggerer` to exec into the container of your choice.
+
+## New Command `astro user invite`
+
+You can automate invting new users with the `astro user invite` command. You can give the new user the ORGANIZATION_MEMBER, ORGANIZATION_BILLING_ADMIN, or ORGANIZATION_OWNER with the `--role` string.
+
+## Create Multiple Variables with `deployment variable create` and `update`
+
+Users can now pass a list of variables to `deployment variable create` and `update` to create multple varaibles at once without a file. For example `deployment variable create KEY1=VAL1 KEY2=VAL2` will create the variables `KEY1` and `KEY2`.
+
+## Automatic Docker Startup
+
+Docker will now automatically start up if it is not already running when a user runs `astro dev start`. This feature only works on Mac OS.
+
+## Automatic Airflow Webserver Popup
+
+The Airflow Webserver will now automatically popup once it is availble. Now users don't have to continually check the terminal to see if the webserver is available.
+
 ## Astro CLI v1.3.0
 
 Release date: July 19, 2022
