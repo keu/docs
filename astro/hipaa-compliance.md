@@ -17,7 +17,7 @@ Upon signing of a HIPAA [Business Associate Agreement (BAA)](https://www.hhs.gov
 
 ## Shared Responsibility Model for HIPAA compliance
 
-Astro operates on a model of shared responsibility, which means that Astronomer employees and Astronomer customers are equally responsible for ensuring platform security and compliance. This document expands on the general [shared responsibility model](https://docs.astronomer.io/astro/shared-responsibility-model) to include specific responsibilities for HIPAA compliance. Maintaining HIPAA compliance is a joint effort that is shared by the public cloud providers, Astronomer, and the customer. Each party must fufill their individual obligations to ensure HIPAA compliance.
+Astro operates on a model of shared responsibility, which means that Astronomer employees and Astronomer customers are equally responsible for ensuring platform security and compliance. This document expands on the general [shared responsibility model](shared-responsibility-model.md) to include specific responsibilities for HIPAA compliance. Maintaining HIPAA compliance is a joint effort that is shared by the public cloud providers, Astronomer, and the customer. Each party must fulfill their individual obligations to ensure HIPAA compliance.
 
 This document references the Astro control and data planes, which are core parts of the Astronomer hybrid deployment model:
 
