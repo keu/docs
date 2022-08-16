@@ -20,11 +20,12 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 Astro Runtime 5.0.7 includes the following bug fixes:
 
-- Fixed an issue where webserver would crash loading plugins ([#25296](https://github.com/apache/airflow/pull/25296))
-- Fixed the cleanup for zombie tasks from DAGs with parsing errors ([#25550](https://github.com/apache/airflow/pull/25550))
+- Fixed an issue where [plugins specified as a python package](https://airflow.apache.org/docs/apache-airflow/stable/plugins.html#plugins-as-python-packages) in an `entry_points` argument were incorrectly loaded twice by Airflow and resulted in an error in the Airflow UI. This bug was introduced in Airflow 2.3.3 ([#25296](https://github.com/apache/airflow/pull/25296))
+- Fixed an issue where zombie tasks were not properly cleaned up from DAGs with parse errors [#25550](https://github.com/apache/airflow/pull/25550))
 - Fixed an issue where clearing a deferred task instance would not clear its `next_method` field ([#23929](https://github.com/apache/airflow/pull/23929))
 
-For the benefit of Astro users, theses change were backported from an Apache Airflow release that is not yet generally available. They are also available in Astro Runtime 5.0.5.
+These changes were backported from an Apache Airflow release that is not yet generally available. The bug fixes were also backported to Astro Runtime 5.0.5.
+
 ### Additional improvements
 
 - Upgraded `openlineage-airflow` to version `0.12.0`, which includes support for Spark 3.3.0 and Apache Flink. For a list of all changes, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
