@@ -292,12 +292,18 @@ small {
 }
 
 .navbar__items--right button.clean-btn {
-  color: white;
+  color: var(--white);
 }
-
+/* Revert always ignores other styling and unstyles */
 .navbar__items--right:hover button.clean-btn {
   color: revert;
 }
+
+
+div.footer__bottom.text--center {
+text-align: center;
+}
+
 
 html
 .navbar__items--right div:first-of-type div:first-of-type div:last-of-type {
