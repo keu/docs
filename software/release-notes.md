@@ -14,6 +14,26 @@ This document includes all release notes for Astronomer Software version 0.29.
 
 We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
+## v0.29.3
+
+Release date: August 5, 2022
+
+:::danger Breaking change
+
+There is an [unresolved Kubernetes bug](https://github.com/kubernetes/kubernetes/issues/65106) that occurs when upgrading Helm charts that include duplicate keys in an `env` array. If you have a Helm chart with duplicate keys and upgrade to Astronomer Software 0.29.3, all key-value pairs with the duplicate key are removed from your environment.
+
+To preserve duplicate keys in your Helm chart, you can either reapply the values after upgrading, or you can use the `--reset-values` flag when running the upgrade script as described in [Upgrade Astronomer](upgrade-astronomer.md).
+
+:::
+
+### Additional improvements
+
+- Resolved several high and critical CVEs.
+
+### Bug fixes
+
+- API requests to query the AUs allocated to **Extra Capacity** are now returning results for all Deployments in a Workspace. Previously, queries were only returning partial results.
+
 ## v0.29.2
 
 Release date: July 18, 2022
