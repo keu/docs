@@ -30,8 +30,10 @@ To create an API key for a Deployment:
 3. Give the key a name and description, then click **Create API Key**:
 
     ![Create API key button](/img/docs/create-api-key.png)
-    
+
 From here, you can copy the API key ID and secret for use in API calls and CI/CD pipelines. Make sure to save the key secret securely, as this is the only time you will have access to see it in plain text.
+
+Any user or service with access to the API key and secret can access your Deployment. The only way to delete this access is to [delete the API key](api-keys.md#delete-an-api-key) or [delete the Deployment](configure-deployment-resources.md#delete-a-deployment).
 
 :::tip
 
@@ -71,8 +73,6 @@ After setting the variables, running `astro deployment update` works for the Dep
 3. Click **Delete API Key**, and then follow the onscreen prompt to finalize the deletion:
 
     [Delete API key button](/img/docs/delete-api-key.png)
-    
-
 
 ## Related documentation
 
