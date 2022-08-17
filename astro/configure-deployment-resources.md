@@ -13,7 +13,7 @@ A worker is responsible for executing tasks, which are first scheduled and queue
 
 The resources and concurrency behavior of a worker are defined in its worker queue, which is a set of configurations that apply to a group of workers. All tasks run in at least one default worker queue, but you can assign tasks to different worker queues that you configure. To change the configuration of a worker, including its instance type, you can either update the worker's current worker queue or create a new worker queue with the desired configuration.
 
-See the following sections for more details on configuring worker queues. For a list of supported worker node instance types and their corresponding worker size limits, see the [AWS](resource-reference-aws.md#deployment-worker-size-limits) and [GCP](resource-reference-gcp.md#deployment-worker-size-limits) resource references. To request make a supported instance type available to use in your cluster's worker queues, reach out to [Astronomer support](https://support.astronomer.io).
+See the following sections for more details on configuring worker queues. For a list of supported worker node instance types and their corresponding worker size limits, see the [AWS](resource-reference-aws.md#deployment-worker-size-limits), [GCP](resource-reference-gcp.md#deployment-worker-size-limits), and [Azure](resource-reference-azure.md#deployment-worker-size-limits) resource references. To request make a supported instance type available to use in your cluster's worker queues, reach out to [Astronomer support](https://support.astronomer.io).
 
 ### Worker queues
 
@@ -32,17 +32,17 @@ You can assign Task A to a worker queue of `r6i.xlarge` instances that’s optim
 Worker queues support the following settings:
 
 - **Name:** The name of your worker queue. Use this name to assign tasks to the worker queue in your DAG code.
-- **Worker Type:** The instance type of workers in the worker queue. A worker’s total available CPU, memory, storage, and GPU is defined by the instance type that it runs on. Actual worker size is equivalent to the total capacity of the instance type minus Astro’s system overhead. For a list of total available worker resources for each instance type, see Cloud configuration references (AWS, GCP, Azure).
-- **Concurrency:** The maximum number of tasks that can run at once per worker. If the number of queued and running tasks exceeds this number, a new worker spins up to run the remaining tasks. This is equivalent to [worker concurrency](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) in Airflow.
+- **Worker Type:** The instance type of workers in the worker queue. A worker’s total available CPU, memory, storage, and GPU is defined by the instance type that it runs on. Actual worker size is equivalent to the total capacity of the instance type minus Astro’s system overhead. For a list of total available worker resources for each instance type, see see the [AWS](resource-reference-aws.md#deployment-worker-size-limits) and [GCP](resource-reference-gcp.md#deployment-worker-size-limits), and , and [Azure](resource-reference-azure.md#deployment-worker-size-limits) resource references.
+- **Concurrency:** The maximum number of tasks that a worker can run at a time. If the number of queued and running tasks exceeds this number, a new worker spins up to run the remaining tasks. This is equivalent to [worker concurrency](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) in Airflow.
 - **Min/max** worker: The minimum and maximum number of workers that can run in the pool.  The number of running workers changes regularly based on Maximum Tasks per Worker and the current number of queued and running tasks.
 
 #### Default worker queue
 
 Each Deployment requires a default worker queue to run tasks. If you don’t change any settings in the default worker queue:
 
-- All tasks in the Deployment run in the `default` worker queue, which uses [how does it determine a default worker type?]
+- All tasks in the Deployment run in the `default` worker queue.
 - A maximum of 16 tasks can run at once per worker. If more than 16 tasks are queued or running at once, then a new worker spins up to run the remaining tasks.
-- A maximum of 10 workers can run at once, meaning that your Deployment can handle 160 queued or running tasks at once. Any queued or running tasks beyond 160 can cause scheduling or execution errors.
+- A maximum of 10 workers can run at once, meaning that your Deployment can process 160 queued or running tasks at a time. Any queued or running tasks beyond 160 can cause scheduling or execution errors.
 
 You can change all settings of the default worker queue except for its name.
 
@@ -50,17 +50,17 @@ You can change all settings of the default worker queue except for its name.
 
 Running multiple worker queues improves resource usage efficiency and enables dependent tasks with different computational requirements to coexist on the same Deployment.
 
-To create a new worker queue:
-
-1. Click **Create Worker Queue**
-2. Configure the worker queue’s settings.
-3. Click **Update Queue**.
+1. Log in to the Cloud UI.
+2. Select a Deployment.
+3. Click **Create Worker Queue**
+4. Configure the worker queue’s settings.
+5. Click **Update Queue**.
 
 #### Assign tasks to a worker queue
 
 By default, all tasks run in the default worker queue. To run tasks on a different worker queue, assign the task to the worker queue in your DAG code.
 
-To assign a task to a queue, define `queue` in the task’s operator’s settings. For example, all instances of the following task will run in the `short-running-tasks` queue.
+To assign a task to a queue, define `queue` in the task’s operator’s settings. In the following example, all instances of the task run in the `short-running-tasks` queue:
 
 ```python
 feature_engineering = DatabricksSubmitRunOperator(
@@ -76,7 +76,7 @@ feature_engineering = DatabricksSubmitRunOperator(
 
 While your worker queue settings affect the amount of computing power allocated to each worker, the number of workers running on your Deployment at a given time is based on the number of tasks in a queued or running state.
 
-The maximum number of tasks that a single worker can execute at once is 16. This value is known in Airflow as **worker concurrency**. Worker concurrency is currently a [system-wide setting on Astro](platform-variables.md) that cannot be changed. As soon as there are more than 16 tasks queued or running at any given time, one or more new workers is spun up to execute the additional tasks. The number of workers running on a Deployment at any given time can be calculated by the following expression, where worker Concurrency is 16:
+The maximum number of tasks that a single worker can execute at once is 16. This value is known in Airflow as **worker concurrency**. Worker concurrency is currently a [system-wide setting on Astro](platform-variables.md) that cannot be changed. When there are more than 16 tasks queued or running at a time, one or more new workers is spun up to execute the additional tasks. The number of workers running on a Deployment at a time can be calculated by the following expression, where worker Concurrency is 16:
 
 `[Number of workers]= ([Queued tasks]+[Running tasks])/(Worker concurrency)`
 
