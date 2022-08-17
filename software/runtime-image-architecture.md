@@ -5,7 +5,7 @@ id: runtime-image-architecture
 description: Reference documentation for Astro Runtime, a differentiated distribution of Apache Airflow.
 ---
 
-Astro Runtime is a production ready, data orchestration tool based on Apache Airflow that is distributed as a Docker image and is required by all Astronomer products. It is intended to provide organizations with improved functionality, reliability, efficiency, and performance.
+Astro Runtime is a production ready data orchestration tool based on Apache Airflow that is distributed as a Docker image and is required by all Astronomer products. It is intended to provide organizations with improved functionality, reliability, efficiency, and performance.
 
 Deploying Astro Runtime is a requirement if your organization is using Astro. Astro Runtime includes the following features:
 
@@ -75,7 +75,7 @@ docker run --rm {image} pip freeze | grep <provider>
 
 ## Python versioning
 
-Astro Runtime supports Python 3.9. This is the only version of Python that Astro Runtime supports. If your data pipelines require an unsupported Python version, Astronomer recommends that you use the KuberentesPodOperator. See [Run the KubernetesPodOperator on Astronomer Software](kubepodoperator.md).
+Astro Runtime supports Python 3.9. This is the only version of Python that Astro Runtime supports. If your data pipelines require an unsupported Python version, Astronomer recommends that you use the KubernetesPodOperator. See [Run the KubernetesPodOperator on Astronomer Software](kubepodoperator.md).
 
 ## Executors
 

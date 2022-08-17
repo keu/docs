@@ -5,6 +5,12 @@ id: upgrade-ac
 description: Upgrade your Apache Airflow environment by installing the latest version of Astronomer Certified.
 ---
 
+:::caution
+
+Astronomer will no longer release new versions of AC starting with the release of Apache Airflow 2.4. Astronomer recommends creating all new Deployments with Astro Runtime, as well as migrating existing Deployments from AC to Astro Runtime as soon as your organization is ready. See [Migrate to Runtime](migrate-to-runtime.md) and [Runtime image architecture](runtime-image-architecture.md).
+
+:::
+
 New versions of Astronomer Certified (AC) are released regularly to support new major, minor, or patch versions of Apache Airflow. To take advantage of both features as well as bug and security fixes, we recommend regularly upgrading to the latest version of AC.
 
 Follow this guide to upgrade your Airflow environment either on a virtual machine with the AC Python Wheel or on Docker with the AC Docker image.
@@ -17,7 +23,7 @@ Follow this guide to upgrade your Airflow environment either on a virtual machin
 
 If you're upgrading an Astronomer Certified environment running on Docker, all you need to do is update your Dockerfile to reference a new Astronomer Certified Docker image.
 
-1. Choose a new Astronomer Certified image based on the Airflow version you want to upgrade to. For a list of supported Astronomer Certified images, see [Downloads](https://www.astronomer.io/downloads/) or our [Quay.io repository](https://quay.io/repository/astronomer/ap-airflow?tab=tags).
+1. Choose a new Astronomer Certified image based on the Airflow version you want to upgrade to. For a list of supported Astronomer Certified images, see [Astronomer Certified Lifecycle Schedule](ac-support-policy.md#astronomer-certified-lifecycle-schedule) or our [Quay.io repository](https://quay.io/repository/astronomer/ap-airflow?tab=tags).
 
 2. Open the `Dockerfile` in your Astro project directory.
 

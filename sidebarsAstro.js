@@ -86,6 +86,7 @@ module.exports = {
           label: 'Install Astro',
           items: [
             'install-aws',
+            'install-azure',
             'install-gcp',
           ],
         },
@@ -132,6 +133,7 @@ module.exports = {
           label: 'Cloud configuration reference',
           items: [
             'resource-reference-aws',
+            'resource-reference-azure',
             'resource-reference-gcp',
           ],
         },
@@ -154,6 +156,7 @@ module.exports = {
             'disaster-recovery',
             'data-protection',
             'gdpr-compliance',
+            'hipaa-compliance',
             'secrets-management',],
         },
       ],

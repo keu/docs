@@ -92,6 +92,12 @@ module.exports = {
       ],
     },
     footer: {
+      logo: {
+        alt: "Astronomer logo",
+        src: "img/monogram-light.png",
+        href: "https://astronomer.io",
+        width: 48,
+      },
       links: [
         {
           title: 'Astro',
@@ -183,7 +189,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: '© Astronomer',
+      copyright: '© Astronomer 2022',
     },
   },
   presets: [
@@ -197,6 +203,16 @@ module.exports = {
           editLocalizedFiles: true,
           routeBasePath: 'astro',
           path: 'astro',
+          admonitions: {
+            tag: ':::',
+            keywords: [
+              'caution',
+              'warning',
+              'info',
+              'tip',
+              'cli',
+            ],
+          },
         },
         sitemap: {
         id: 'default',
