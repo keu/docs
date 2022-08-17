@@ -7,13 +7,13 @@ description: "Common Vulnerabilities and Exposures identified within our Astrono
 
 :::caution
 
-Astronomer will no longer release new versions of AC starting with the release of Apache Airflow 2.4. Astronomer recommends creating all new Deployments with Astro Runtime, as well as migrating existing Deployments from AC to Astro Runtime as soon as your team is ready. See [Migrate to Runtime](migrate-to-runtime.md) and [Runtime image architecture](runtime-image-architecture.md).
+Astronomer will no longer release new versions of AC starting with the release of Apache Airflow 2.4. Astronomer recommends creating all new Deployments with Astro Runtime, as well as migrating existing Deployments from AC to Astro Runtime as soon as your organization is ready. See [Migrate to Runtime](migrate-to-runtime.md) and [Runtime image architecture](runtime-image-architecture.md).
 
 :::
 
 This page is the source of truth for any Common Vulnerabilities and Exposures (CVEs) identified within any of our supported Astronomer Certified images for Apache Airflow.
 
-Currently, all supported Astronomer Certified images are listed in two places:
+You can find information about supported Astronomer Certified images in the following locations:
 
 - [Astronomer Downloads](https://astronomer.io/downloads)
 - [Astronomer's Docker registry (Quay.io)](https://quay.io/repository/astronomer/ap-airflow?tab=tags)

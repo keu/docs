@@ -314,7 +314,7 @@ This example assumes that the name of each of your Python packages is identical 
 
   :::caution
 
-  Make sure to use the `-base` version the Astro Runtime image that you want to customize. This image tag is built to be customizable and does not include default build logic. For more information, see [Distributions](runtime-image-architecture.md#distribution).
+  Make sure to use the `-base` version of the Astro Runtime image that you want to customize. This image tag is  customizable and does not include default build logic. For more information, see [Distributions](runtime-image-architecture.md#distribution).
 
   :::
 
@@ -427,7 +427,7 @@ Ensure that the name of the package on the private repository does not clash wit
 
    :::caution
 
-   Make sure to use the `-base` version the Astro Runtime image that you want to customize. This image tag is built to be customizable and does not include default build logic. For more information, see [Distributions](runtime-image-architecture.md#distribution).
+    Make sure to use the `-base` version of the Astro Runtime image that you want to customize. This image tag is  customizable and does not include default build logic. For more information, see [Distributions](runtime-image-architecture.md#distribution).
 
    :::
 
