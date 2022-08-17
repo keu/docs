@@ -1,0 +1,33 @@
+---
+sidebar_label: 'astro user invite'
+title: 'astro user invite'
+id: astro-user-invite
+description: Reference documentation for astro user invite.
+---
+
+Invite a new user to the Organization you're currently authenticated to. You must be have Organization Owner to run this command.  
+
+## Usage
+
+```sh
+astro user invite <user-email> <flags>
+```
+
+## Options
+
+| Option              | Description                                                                                   | Possible Values                                 |
+| ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `--r`, `--role` | Force the user to manually access the Cloud UI to log in instead of opening the browser automatically from the CLI.           | `ORGANIZATION_MEMBER`, `ORGANIZATION_BILLING_ADMIN`, `ORGANIZATION_OWNER`|
+
+## Examples
+
+```sh
+$ astro user invite
+# CLI prompts you for a user's email and assigns them the `ORGANIZATION_MEMBER` role by default
+$ astro user invite user@company.com ORGANIZATION_BILLING_ADMIN
+# Invite a user as an Organization Billing Admin
+```
+
+## Related Commands
+
+- [`astro login`](cli/astro-login.md)

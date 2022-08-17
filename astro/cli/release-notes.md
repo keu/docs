@@ -13,21 +13,18 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 Release date: August 18, 2022
 
-## New Command `astro dev bash`
+### New command to run commands in local Airflow containers
 
-You can now easily exec into any airflow container started with the Astro CLI and run bash commands. Use the flags `--scheduler`, `--webserver`, `--postgres`, or `--triggerer` to exec into the container of your choice.
+You can now run bash commands in any locally running Airflow container using `astro dev bash`. For more information, see the [CLI command reference](cli/astro-dev-bash.md).
 
-## New Command `astro user invite`
+### New command to invite a user to an Astro Organization
 
-You can automate inviting new users with the `astro user invite` command. You can give the new user the ORGANIZATION_MEMBER, ORGANIZATION_BILLING_ADMIN, or ORGANIZATION_OWNER with the `--role` string.
+You can invite new users to an Astro Organization with the `astro user invite` command. For more information, see the [CLI command reference](cli/astro-user-invite.md).
 
-## Create Multiple Variables with `deployment variable create` and `update`
+### Additional improvements
 
-Users can now pass a list of variables to `deployment variable create` and `update` to create multiple variables at once without a file. For example `deployment variable create KEY1=VAL1 KEY2=VAL2` will create the variables `KEY1` and `KEY2`.
-
-## Automatic Docker Startup
-
-Docker will now automatically start up if it is not already running when a user runs `astro dev start`. This feature only works on Mac OS.
+- You can now pass a list of variables to `astro deployment variable create` and `update` to create multiple variables at once without a file. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`.
+- If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
 
 ## Automatic Airflow Webserver Popup
 
