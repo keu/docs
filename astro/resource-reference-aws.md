@@ -92,11 +92,11 @@ Astro supports a variety of AWS RDS instance types. Instance types comprise of v
 
 ### Worker node pools
 
-Node pools are a scalable collection of worker nodes with the same instance type. These nodes are responsible for running the Pods that execute Airflow tasks. If your cluster has a node pool for a specific instance type, you can configure tasks to run on those instance types using [worker queues](configure-deployment-resources.md#worker-queues.md). To make an instance type available in a cluster, reach out to [Astronomer support](https://support.astronomer.io) with a request to create a new node pool for the specific instance type. Note that not all instance types are supported in all AWS regions.
+Node pools are a scalable collection of worker nodes with the same instance type. These nodes are responsible for running the Pods that execute Airflow tasks. If your cluster has a node pool for a specific instance type, you can configure tasks to run on those instance types using [worker queues](configure-deployment-resources.md#worker-queues.md). To make an instance type available in a cluster, contact [Astronomer support](https://support.astronomer.io) with a request to create a new node pool for the specific instance type. Not all instance types are supported in all AWS regions.
 
-Astronomer monitors your usage and number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer might reach out with recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
+Astronomer monitors your usage and the number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer support might contact you and provide recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
-For detailed information on each instance type, refer to [AWS documentation](https://aws.amazon.com/ec2/instance-types/).
+For information about each instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/).
 
 ### Worker node size resource reference
 
