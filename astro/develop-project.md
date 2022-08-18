@@ -262,7 +262,7 @@ Make sure to specify `version: "3.1"` and follow the format of the source code f
 To see your override file live in your local Airflow environment, run the following command to see the file in your scheduler container:
 
 ```sh
-astro dev bash --scheduler ls -al
+astro dev bash --scheduler "ls -al"
 ```
 
 :::info
