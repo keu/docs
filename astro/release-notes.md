@@ -21,7 +21,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 Worker queues are a new way to size your workers on Astro and configure your Deployment to best fit the needs of your tasks. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Within a worker queue, you can configure worker type and size as well as autoscaling behavior.
 
-In the Cloud UI, you can now size workers more simply and create multiple worker queues.
+In the Cloud UI, you can now scale workers more efficiently by creating multiple worker queues.
 
 ![Worker queue configurations in the Cloud UI](/img/release-notes/worker-queues.png)
 
