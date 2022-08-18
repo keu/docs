@@ -13,19 +13,27 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 Release date: August 18, 2022
 
-### New command to run commands in local Airflow containers
+### New command to bash into local Airflow containers
 
-You can now run bash commands in any locally running Airflow container using `astro dev bash`. For more information, see the [CLI command reference](cli/astro-dev-bash.md).
+You can now run bash commands in any locally running Airflow container using `astro dev bash`. You can run this command to:
+
+- Verify the packages installed in your Airflow environment
+- Run python commands and test python functions in your Airflow environment
+- Explore the local Airflow metadata database with a simple `postgres` command
+
+For more information, see the [CLI command reference](cli/astro-dev-bash.md).
 
 ### New command to invite a user to an Astro Organization
 
-You can invite new users to an Astro Organization with the `astro user invite` command. For more information, see the [CLI command reference](cli/astro-user-invite.md).
+You can invite new users to an Astro Organization with the new `astro user invite` command. Previously, you could only invite users to Astro with the Cloud UI.
+
+For more information, see the [CLI command reference](cli/astro-user-invite.md).
 
 ### Additional improvements
 
-- You can now pass a list of variables to `astro deployment variable create` and `update` to create multiple variables at once without a file. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`.
-- If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
-- The Airflow webserver now automatically opens in your default web browser after you run `astro dev start`.
+- Create multiple environment variables more easily by passing a list of variables to `astro deployment variable create` and `astro deployment variable update`. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`. You can still create environment variables from a file with `astro deployment variable create --load`.
+- If Docker Desktop isn't already running on your machine, the CLI automatically starts it when you run `astro dev start`. Previously, the CLI showed an error and forced users to manually start Docker. Note that this feature only works on Mac OS.
+- The Airflow UI now automatically opens in your default web browser after you run `astro dev start` as soon as the Airflow webserver is ready. Previously, you had to wait for the webserver to be ready and manually open or refresh your web browswer.
 
 ## Astro CLI v1.3.0
 
