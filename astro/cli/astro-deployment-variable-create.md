@@ -10,17 +10,17 @@ For a given Deployment on Astro, create environment variables via the Astro CLI 
 ## Usage
 
 ```sh
-astro deployment variable create
+astro deployment variable create <key>=<value>
 ```
 
 :::tip
 
-To run this command in an automated process such as a [CI/CD pipeline](ci-cd.md), set the following OS-level environment variables in a way that the Astro CLI can access them:
+To create environment variables in an automated process such as a [CI/CD pipeline](ci-cd.md), set the following OS-level environment variables in a way that the Astro CLI can access them:
 
 - `ASTRONOMER_KEY_ID`
 - `ASTRONOMER_KEY_SECRET`
 
-After setting the variables, this command works for a Deployment and you don't need to manually authenticate to Astronomer. Astronomer recommends storing `ASTRONOMER_KEY_SECRET` as a secret before using it to programmatically update production-level Deployments.
+After setting these variables, `astro deployment variable create` works for your Deployment on Astro and you don't need to manually authenticate to Astronomer. Astronomer recommends storing `ASTRONOMER_KEY_SECRET` as a secret before using it to programmatically update production-level Deployments.
 
 :::
 
