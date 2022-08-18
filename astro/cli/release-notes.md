@@ -15,11 +15,11 @@ Release date: August 18, 2022
 
 ### New command to bash into local Airflow containers
 
-You can now run bash commands in any locally running Airflow container using `astro dev bash`. You can run this command to:
+You can now run bash commands in any locally running Airflow container using `astro dev bash`. You can use this to:
 
-- Verify the packages installed in your Airflow environment
-- Run python commands and test python functions in your Airflow environment
-- Explore the local Airflow metadata database with a simple `postgres` command
+- Verify the packages installed in your Airflow environment.
+- Run python commands and test python functions in your Airflow environment.
+- Explore the local Airflow metadata database with a simple `postgres` command.
 
 For more information, see the [CLI command reference](cli/astro-dev-bash.md).
 
