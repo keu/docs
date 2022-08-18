@@ -11,9 +11,9 @@ After you create an Astro Deployment, you can modify its resource settings to ma
 
 A worker is responsible for executing tasks, which are first scheduled and queued by the scheduler. On Astro, task execution is powered by the [Celery executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html) with [KEDA](https://www.astronomer.io/blog/the-keda-autoscaler). Each worker is a Kubernetes Pod that is hosted within a Kubernetes node in your Astro cluster.
 
-Not all tasks have the same requirements. On Astro, you can create optimized execution environments for different types of tasks by using worker queues. Worker queues are a set of configurations that apply to a group of workers in your Deployment. For a given worker queue, you can configure the type and size of its workers, which determines how much CPU and memory your tasks can consume. You can also configure settings related to worker autoscaling behavior.
+Not all tasks have the same requirements. On Astro, you can create optimized execution environments for different types of tasks using worker queues. Worker queues are a set of configurations that apply to a group of workers in your Deployment. For a given worker queue, you can configure the type and size of its workers to determine how much CPU and memory your tasks can consume. You can also configure settings related to worker autoscaling behavior.
 
-By default, all tasks run in a default worker queue that does not require any specification in your code. To enable configurations for a different group of tasks, you can create additional worker queues in the Cloud UI and assign tasks to queues in your DAG code.
+By default, all tasks run in a default worker queue that does not require any additional configuration or code. To enable configurations for a different group of tasks, you can create additional worker queues in the Cloud UI and assign tasks to queues in your DAG code.
 
 See the following sections for more details on configuring worker queues.
 
@@ -25,7 +25,7 @@ By configuring multiple worker queues and assigning tasks to these queues based 
 - Task A and Task B are dependent on each other, so they need to run in the same Deployment.
 - Task A is a long-running task that uses a lot of CPU and little memory, while Task B is a short-running task that uses minimal amounts of CPU and memory.
 
-You can assign Task A to a worker queue that is configured to use the `c6i.4xlarge` worker type on AWS](https://aws.amazon.com/ec2/instance-types/c6i/) that's optimized for compute. Then, you can assign Task B to a worker queue that is configured to use the `m5.xlarge` worker type on AWS that is smaller and optimized for general usage.
+You can assign Task A to a worker queue that is configured to use the [`c6i.4xlarge`](https://aws.amazon.com/ec2/instance-types/c6i/) worker type that's optimized for compute. Then, you can assign Task B to a worker queue that is configured to use the [`m5.xlarge`](https://aws.amazon.com/ec2/instance-types/m5) worker type that is smaller and optimized for general usage.
 
 ### Worker queue settings
 
