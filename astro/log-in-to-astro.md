@@ -80,7 +80,7 @@ You can belong to more than one Astro Organization. To switch to another Organiz
 
 1. Log in to the Cloud UI. By default, the Cloud UI opens the first Organization that you joined.
 2. In the top navigation bar, click the name of your current Organization.
-3. Click **Change Org**.
+3. Click **Switch Organization**.
 4. Select the Organization that you want to switch to.
 
 Note that having a role in an Organization does not guarantee that you can access the Organization through the Cloud UI. To access another Organization, you need to be able to authenticate through at least one of their enabled authentication methods.

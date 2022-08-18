@@ -29,7 +29,7 @@ To learn more about configuring worker queues, see [Configure Deployment resourc
 
 ### Support for multiple Organizations
 
-A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Change Org**.
+A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Switch Organization**.
 
 Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
 
@@ -49,10 +49,6 @@ You can now [create an Astro cluster on GCP](create-cluster.md) in the following
 - `southamerica-west1` (Santiago)
 - `us-east5` (Columbus)
 - `us-south1` (Dallas)
-
-### Additional improvements
-
-- All Organization roles can now create Workspaces
 
 ### Bug fixes
 
