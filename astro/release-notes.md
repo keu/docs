@@ -19,7 +19,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Save on Deployment resource usage with worker queues
 
-Worker queues present a new way to fine-tune how your Deployment runs tasks on your data plane. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Worker queues include configurations for instance type, task parallelism, and worker parallelism.
+Worker queues are a new way to fine-tune how your tasks run. Generally speaking, a worker queue is a set of configurations that apply to a group of workers in your Deployment. Worker queues include configurations for instance type, task parallelism, and worker parallelism.
 
 You can assign individual tasks to a worker queue to have those tasks run with the queue's configurations. For example, if you have a task that requires significantly more memory than CPU power, you can send it to a queue with workers optimized for memory usage. By configuring multiple worker queues for running different types of tasks, your Deployment can run on minimal resources and save on resource costs.
 
@@ -29,7 +29,7 @@ To learn more about configuring worker queues, see [Configure Deployment resourc
 
 A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Change Org**.
 
-Note that switching Organizations with the Astro CLI is not yet supported.
+Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
 
 ### New Google Cloud Platform regions
 
