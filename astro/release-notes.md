@@ -17,13 +17,15 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## August 18, 2022
 
-### Save on Deployment resource usage with worker queues
+### Worker queues
 
-Worker queues are a new way to fine-tune how your tasks run. Generally speaking, a worker queue is a set of configurations that apply to a group of workers in your Deployment. Worker queues include configurations for instance type, task parallelism, and worker parallelism.
+Worker queues are a new way to size your workers on Astro and configure your Deployment to best fit the needs of your tasks. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Within a worker queue, you can configure worker type and size as well as autoscaling behavior.
+
+In the Cloud UI, you can now size workers more simply and create multiple worker queues.
 
 ![Worker queue configurations in the Cloud UI](/img/release-notes/worker-queues.png)
 
-You can assign individual tasks to a worker queue to have those tasks run with the queue's configurations. For example, if you have a task that requires significantly more memory than CPU power, you can send it to a queue with workers optimized for memory usage. By configuring multiple worker queues for running different types of tasks, your Deployment can run on minimal resources and save on resource costs.
+You can assign individual tasks to a worker queue to have those tasks run with the queue's configurations. For example, if you have a task that requires significantly more memory than CPU power, you can assign it to a queue that's configured with workers that are optimized for memory usage. By configuring multiple worker queues for running different types of tasks, you can better optimize for the performance, reliability, and throughput of your Deployment.
 
 To learn more about configuring worker queues, see [Configure Deployment resources](configure-deployment-resources.md#worker-queues).
 
