@@ -103,17 +103,24 @@ If you haven't created a Deployment, see [Create a Deployment](create-deployment
 
 1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
 2. Select a Deployment.
-3. Click **Edit Configuration**.
+3. Based on what resource setting you want to change, click one of the following buttons:
+
+    ![Location of all Deployment resource setting buttons](/img/docs/deployment-settings.png)
+
+		- To create a new worker queue, click **Add Worker Queue**.
+		- To change an existing worker queue, click the **Edit** button in the worker queue's table entry.
+		- To change scheduler resources, click the **Edit** button in the **Scheduler Settings** section.
+
 4. Edit the Deployment resource settings. For more information about these settings, review the content in this topic.
 5. Click **Update Deployment**.
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
-    
+
 ::: caution
 
-If you change the worker type of an existing worker queue, your workers will enter a terminating state. This may interrupt running pipelines and lead to [zombie tasks](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks).
+If you change the worker type of a worker queue that's currently running tasks, you might interrupt your pipelines and generate [zombie tasks](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks).
 
-Astronomer recommends changing the worker type of an existing worker queue at a time that is not critical to production pipelines. Astronomer also recommends waiting up to 5 minutes after changing worker type before pushing code to your Deployment.
+Astronomer recommends changing the worker type of an existing worker queue only at times which are not critical to production pipelines. Astronomer also recommends waiting up to 5 minutes after changing worker type before pushing new code to your Deployment.
 
 :::
 

@@ -73,16 +73,16 @@ Each worker node in a pool runs a single worker Pod. A worker Pod's actual avail
 
 The following table lists all available instance types for worker node pools, as well as the Pod size that is supported for each instance type. As the system requirements of Astro change, these values can increase or decrease.
 
-| Node Instance Type | Maximum AU | CPU       | Memory       |
-|--------------------|------------|-----------|--------------|
-| e2-standard-4      | 20         | 2 CPUs    | 7.5  GiB MEM |
-| e2-standard-8      | 60         | 6 CPUs    | 22.5 GiB MEM |
+| Node Instance Type | CPU       | Memory       |
+|--------------------|-----------|--------------|
+| e2-standard-4      | 2 CPUs    | 7.5  GiB MEM |
+| e2-standard-8      | 6 CPUs    | 22.5 GiB MEM |
 
-If your Organization is interested in using an instance type that supports a worker size limit higher than 60 AU, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md#worker-resources).
+If your Organization is interested in using an instance type that supports a larger worker size, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md#worker-resources).
 
 :::info
 
-The size limits defined here currently also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment. The maximum scheduler size on Astro is 24 AU, which means there are some node instance types for which that maximum size is not supported.
+The size limits defined here currently also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment.
 
 For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
 

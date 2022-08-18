@@ -104,57 +104,56 @@ Each worker node in a pool runs a single worker Pod. A worker Pod's actual avail
 
 The following table lists all available instance types for worker node pools, as well as the Pod size that is supported for each instance type. As the system requirements of Astro change, these values can increase or decrease.
 
-| Node Instance Type | Maximum AU | CPU       | Memory       |
-|--------------------|------------|-----------|--------------|
-| m5.xlarge          | 20         | 2 CPUs    | 7.5 GiB MEM  |
-| m5.2xlarge         | 60         | 6 CPUs    | 22.5 GiB MEM |
-| m5.4xlarge         | 140        | 14 CPUs   | 52.5 GiB MEM |
-| m5.8xlarge         | 300        | 30 CPUs   | 112.5 GiB MEM|
-| m5.12xlarge        | 460*       | 46 CPUs   | 172.5 GiB MEM|
-| m5.16xlarge        | 620*       | 62 CPUs   | 232.5 GiB MEM|
-| m5.24xlarge        | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| m5.metal           | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| m5d.xlarge         | 20         | 2 CPUs    | 7.5 GiB MEM  |
-| m5d.2xlarge        | 60         | 6 CPUs    | 22.5 GiB MEM |
-| m5d.4xlarge        | 140        | 14 CPUs   | 52.5 GiB MEM |
-| m5d.8xlarge        | 300        | 30 CPUs   | 112.5 GiB MEM|
-| m5d.12xlarge       | 460*       | 46 CPUs   | 172.5 GiB MEM|
-| m5d.16xlarge       | 620*       | 62 CPUs   | 232.5 GiB MEM|
-| m5d.24xlarge       | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| m5d.metal          | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| m6i.xlarge         | 20         | 2 CPUs    | 7.5 GiB MEM  |
-| m61.2xlarge        | 60         | 6 CPUs    | 22.5 GiB MEM |
-| m6i.4xlarge        | 140        | 14 CPUs   | 52.5 GiB MEM |
-| m6i.8xlarge        | 300        | 30 CPUs   | 112.5 GiB MEM|
-| m6i.12xlarge       | 460*       | 46 CPUs   | 172.5 GiB MEM|
-| m6i.16xlarge       | 620*       | 62 CPUs   | 232.5 GiB MEM|
-| m6i.24xlarge       | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| m6i.metal          | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| r6i.xlarge         | 20         | 2 CPUs    | 7.5 GiB MEM  |
-| r61.2xlarge        | 60         | 6 CPUs    | 22.5 GiB MEM |
-| r6i.4xlarge        | 140        | 14 CPUs   | 52.5 GiB MEM |
-| r6i.8xlarge        | 300        | 30 CPUs   | 112.5 GiB MEM|
-| r6i.12xlarge       | 460*       | 46 CPUs   | 172.5 GiB MEM|
-| r6i.16xlarge       | 620*       | 62 CPUs   | 232.5 GiB MEM|
-| r6i.24xlarge       | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| r6i.metal          | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| c6i.xlarge         | 20         | 2 CPUs    | 7.5 GiB MEM  |
-| c61.2xlarge        | 60         | 6 CPUs    | 22.5 GiB MEM |
-| c6i.4xlarge        | 140        | 14 CPUs   | 52.5 GiB MEM |
-| c6i.8xlarge        | 300        | 30 CPUs   | 112.5 GiB MEM|
-| c6i.12xlarge       | 460*       | 46 CPUs   | 172.5 GiB MEM|
-| c6i.16xlarge       | 620*       | 62 CPUs   | 232.5 GiB MEM|
-| c6i.24xlarge       | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| c6i.metal          | 940*       | 94 CPUs   | 352.5 Gib MEM|
-| c6i.xlarge         | 20         | 2 CPUs    | 7.5 GiB MEM  |
-| t3.xlarge          | 20         | 2 CPUs    | 7.5 GiB MEM  |
-| t3.2xlarge         | 60         | 6 CPUs    | 22.5 GiB MEM |
+| Node Instance Type | CPU       | Memory       |
+|--------------------|-----------|--------------|
+| m5.xlarge          | 2 CPUs    | 7.5 GiB MEM  |
+| m5.2xlarge         | 6 CPUs    | 22.5 GiB MEM |
+| m5.4xlarge         | 14 CPUs   | 52.5 GiB MEM |
+| m5.8xlarge         | 30 CPUs   | 112.5 GiB MEM|
+| m5.12xlarge        | 46 CPUs   | 172.5 GiB MEM|
+| m5.16xlarge        | 62 CPUs   | 232.5 GiB MEM|
+| m5.24xlarge        | 94 CPUs   | 352.5 Gib MEM|
+| m5.metal           | 94 CPUs   | 352.5 Gib MEM|
+| m5d.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| m5d.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| m5d.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| m5d.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| m5d.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| m5d.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| m5d.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| m5d.metal          | 94 CPUs   | 352.5 Gib MEM|
+| m6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| m61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| m6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| m6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| m6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| m6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| m6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| m6i.metal          | 94 CPUs   | 352.5 Gib MEM|
+| r6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| r61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| r6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| r6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| r6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| r6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| r6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| r6i.metal          | 94 CPUs   | 352.5 Gib MEM|
+| c6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| c61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| c6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| c6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| c6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| c6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| c6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| c6i.metal          | 94 CPUs   | 352.5 Gib MEM|
+| c6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| t3.xlarge          | 2 CPUs    | 7.5 GiB MEM  |
+| t3.2xlarge         | 6 CPUs    | 22.5 GiB MEM |
 
-Because the maximum value for **Worker Resources** is 400 AU, a cluster might not be able to use all of the available CPU and memory capacity for some node instance types. In the table, these node instance types are marked with an asterisk. If your Organization is interested in using an instance type that supports a worker size limit higher than 400 AU, contact [Astronomer Support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md#worker-resources).
 
 :::info
 
-The size limits defined here currently also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment. The maximum scheduler size on Astro is 24 AU, which means there are some node instance types for which that maximum size is not supported.
+The size limits defined here currently also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment.
 
 For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
 
