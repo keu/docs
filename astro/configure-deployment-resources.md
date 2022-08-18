@@ -13,13 +13,13 @@ A worker is responsible for executing tasks, which are first scheduled and queue
 
 Not all tasks have the same requirements. On Astro, you can create optimized execution environments for different types of tasks using worker queues. Worker queues are a set of configurations that apply to a group of workers in your Deployment. For a given worker queue, you can configure the size and type of its workers to determine how much CPU and memory your tasks can consume. You can also use worker queues to configure settings related to worker autoscaling behavior.
 
-By default, all tasks run in a default worker queue that does not require any additional configuration or code. To enable additional worker types or configurations for different group of tasks, you can create additional worker queues in the Cloud UI and assign tasks to queues in your DAG code.
+By default, all tasks run in a default worker queue that does not require any additional configuration or code. To enable additional worker types or configurations for different groups of tasks, you can create additional worker queues in the Cloud UI and assign tasks to queues in your DAG code.
 
 See the following sections for more details on configuring worker queues.
 
-### Example use case
+### Example
 
-By configuring multiple worker queues and assigning tasks to these queues based on the requirements of the tasks, you can enhance the performance and throughput of your Deployment. For example, consider the following scenario:
+By configuring multiple worker queues and assigning tasks to these queues based on the requirements of the tasks, you can enhance the performance, reliability, and throughput of your Deployment. For example, consider the following scenario:
 
 - You are running Task A and Task B in a Deployment on an AWS cluster.
 - Task A and Task B are dependent on each other, so they need to run in the same Deployment.
@@ -49,7 +49,7 @@ If you don’t change any settings in the default worker queue:
 
 You can change all settings of the default worker queue except for its name.
 
-#### Create a Worker Queue
+#### Create a worker queue
 
 Running multiple worker queues improves resource usage efficiency and enables dependent tasks with different computational requirements to coexist on the same Deployment.
 
@@ -63,7 +63,7 @@ Running multiple worker queues improves resource usage efficiency and enables de
 
 By default, all tasks run in the default worker queue. To run tasks on a different worker queue, assign the task to the worker queue in your DAG code.
 
-To assign a task to a queue, define `queue` in the task’s operator’s settings. In the following example, all instances of the task run in the `short-running-tasks` queue:
+To assign a task to a queue, add a `queue` argument to definition of the task in your DAG with the name of the worker queue as set in the Cloud UI. In the following example, all instances of the task run in the `short-running-tasks` queue:
 
 ```python
 feature_engineering = DatabricksSubmitRunOperator(
@@ -71,21 +71,30 @@ feature_engineering = DatabricksSubmitRunOperator(
 	notebook_task={
 		'notebook_path': "/Users/{{ var.value.databricks_user }}/feature-eng_census-pred"
 	},
-	queue=short-running-tasks,
+	queue='short-running-tasks',
 )
 ```
 
+:::caution
+
+If a task is assigned to a queue that does not exist or is not referenced properly, the task might get stuck in a `queued` state and fail to execute. Make sure that the name of the queue in your DAG code matches that name of the queue in the Cloud UI.
+
+:::
+
 ### Worker autoscaling logic
 
-While your worker queue settings affect the amount of computing power allocated to each worker, the number of workers running on your Deployment at a given time is based on the number of tasks in a queued or running state.
+The number of workers running per worker queue on your Deployment at a given time is based on two things:
 
-The maximum number of tasks that a single worker can execute at once is 16. This value is known in Airflow as **worker concurrency**. Worker concurrency is currently a [system-wide setting on Astro](platform-variables.md) that cannot be changed. When there are more than 16 tasks queued or running at a time, one or more new workers is spun up to execute the additional tasks. The number of workers running on a Deployment at a time can be calculated by the following expression, where worker Concurrency is 16:
+- The total number of tasks in a `queued` or `running` state
+- The worker queue value for **Maximum Tasks per Worker**
 
-`[Number of workers]= ([Queued tasks]+[Running tasks])/(Worker concurrency)`
+The calculation is made based on the following expression:
 
-The number of workers subsequently determines the Deployment's [parallelism](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#parallelism), which is the maximum number of tasks which can run concurrently within a single Deployment. To ensure that you can always run as many tasks as your workers allow, parallelism is calculated with the following expression:
+`[Number of workers]= ([Queued tasks]+[Running tasks])/(Maximum tasks per worker)`
 
-`[Parallelism]= [Number of workers] * [Worker concurrency]`
+The number of workers subsequently determines the Deployment's [parallelism](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#parallelism), which is the maximum number of tasks which can run concurrently within a single Deployment and across worker queues. To ensure that you can always run as many tasks as your workers allow, parallelism is calculated with the following expression:
+
+`[Parallelism]= ([Total number of running workers for all worker queues] * [The sum of all **Maximum tasks per worker*** values for all worker queues])`.
 
 These calculations are computed by KEDA every 10 seconds. For more information on how workers are affected by changes to a Deployment, read [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
