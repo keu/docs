@@ -17,17 +17,52 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## August 18, 2022
 
-### Worker queues
+### Create multiple worker queues
 
-Worker queues are a new way to size your workers on Astro and configure your Deployment to best fit the needs of your tasks. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Within a worker queue, you can configure worker type and size as well as autoscaling behavior.
+Worker queues are a new way to configure your Deployment to best fit the needs of your tasks. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Within a worker queue, you can configure worker type and size as well as autoscaling behavior. By configuring multiple worker queues for different types of tasks, you can better optimize for the performance, reliability, and throughput of your Deployment.
 
-In the Cloud UI, you can now scale workers more efficiently by creating multiple worker queues.
+In the Cloud UI, you can now create multiple worker queues. Once you create a worker queue, you can assign a task to that worker queue by adding a simple `queue='<worker-queue-name>'` argument in your DAG code.
 
 ![Worker queue configurations in the Cloud UI](/img/release-notes/worker-queues.png)
 
-You can assign individual tasks to a worker queue to have those tasks run with the queue's configurations. For example, if you have a task that requires significantly more memory than CPU power, you can assign it to a queue that's configured with workers that are optimized for memory usage. By configuring multiple worker queues for running different types of tasks, you can better optimize for the performance, reliability, and throughput of your Deployment.
+This feature enables the ability to:
+
+- Use more than one worker type within a single Deployment and cluster. Previously, a single cluster on Astro supported only one worker type.
+- Isolate long-running tasks from short-running tasks to avoid errors related to competing resource requests.
+- Fine-tune autoscaling behavior for different groups of tasks within a single Deployment.
+
+For example, if you have a task that requires significantly more CPU than memory, you can assign it to a queue that's configured with workers that are optimized for compute usage.
 
 To learn more about configuring worker queues, see [Configure Deployment resources](configure-deployment-resources.md#worker-queues).
+
+### New worker sizing
+
+This Astro release introduces a new, simple way to allocate resources to the workers in your Deployment. Instead of choosing a varying combination of CPU and memory, you can now select a worker type in the Cloud UI as long as it's enabled in your cluster. For example, `m5.2xlarge` or `c6i.8xlarge` on AWS. Once you select a worker type, Astronomer will create the biggest worker that that worker type can support to ensure that your tasks have enough resources to execute successfully.
+
+Astro's worker sizing enables a few benefits:
+
+- You can no longer configure a worker that is too large or otherwise not supported by your underlying cluster. Previously, misconfiguring worker size often resulted in task failures.
+- A more efficient use of infrastructure. Astronomer has found that a lower number of larger workers is more efficient than a higher number of smaller workers.
+- A higher level of reliability. This worker sizing model results in less volatility and a lower frequency of cluster autoscaling events, which lowers the frequency of errors such as zombie tasks and missing task logs.
+- The legacy **AU** unit is no longer applicable in the context of the worker. You only have to think about CPU, memory, and worker type.
+
+Worker sizing on Astro is now defined in the context of worker queues. For more information about worker sizing, see [Configure Deployment resources](configure-deployment-resources.md#worker-queues). For a list of supported worker types, see the [AWS](resource-reference-aws.md#worker-node-types), [GCP](resource-reference-gcp.md#worker-node-types), and [Azure](resource-reference-azure.md#worker-node-types) resource references.
+
+### New Maximum Tasks per Worker setting
+
+A new **Maximum Tasks per Worker** configuration is now available in the Deployment view of the Cloud UI. Maximum tasks per worker determines the maximum number of tasks that a single worker can process at a time and is the basis of worker autoscaling behavior. It is equivalent to [worker concurrency](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) in Apache Airflow.
+
+Previously, maximum tasks per worker was permanently set to 16 and was not configurable on Astro. Now, you can set maximum tasks per worker anywhere between 1 and 64 based on the needs of your tasks. It can be set per worker queue on a Deployment.
+
+To learn more, see [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
+
+### New Worker Count (Min-Max) setting
+
+A new **Worker Count (Min-Max)** configuration is now available in the Deployment view of the Cloud UI. This value defines the minimum and maximum number of workers that can run at a time.
+
+Use this setting to fine-tune worker autoscaling behavior in your Deployment. By default, the minimum number of workers is 1 and the maximum is 10.
+
+To learn more, see [Worker queue settings](configure-deployment-resources.md#worker-queue-settings).
 
 ### Support for multiple Organizations
 
