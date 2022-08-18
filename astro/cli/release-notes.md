@@ -31,7 +31,7 @@ For more information, see the [CLI command reference](cli/astro-user-invite.md).
 
 ### Additional improvements
 
-- Create multiple environment variables more easily by passing a list of variables to `astro deployment variable create` and `astro deployment variable update`. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`. You can still create environment variables from a file with `astro deployment variable create --load`.
+- Create multiple environment variables more easily by passing a list of key and value pairs to `astro deployment variable create` and `astro deployment variable update`. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`. You can still create environment variables from a file with the `--load` flag.
 - If Docker Desktop isn't already running on your machine, the CLI automatically starts it when you run `astro dev start`. Previously, the CLI showed an error and forced users to manually start Docker. Note that this feature only works on Mac OS.
 - The Airflow UI now automatically opens in your default web browser after you run `astro dev start` as soon as the Airflow webserver is ready. Previously, you had to wait for the webserver to be ready and manually open or refresh your web browswer.
 
