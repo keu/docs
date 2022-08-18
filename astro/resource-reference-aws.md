@@ -161,7 +161,7 @@ For more information about the scheduler, see [Configure a Deployment](configure
 
 :::
 
-:::tip
+:::info
 
 With the exception of `m5d` nodes, all supported node types have a maximum of 20GB of storage per node for system use only. If you need locally attached storage for task execution, Astronomer recommends modifying your cluster to run `m5d` nodes, which Astronomer provisions with NVMe SSD volumes.
 
