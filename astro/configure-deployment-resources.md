@@ -89,10 +89,10 @@ If a task is assigned to a queue that does not exist or is not referenced proper
 
 ### Worker autoscaling logic
 
-The number of workers running per worker queue on your Deployment at a given time is based on two things:
+The number of workers running per worker queue on your Deployment at a given time is based on two values:
 
 - The total number of tasks in a `queued` or `running` state
-- The worker queue value for **Maximum Tasks per Worker**
+- The worker queue's setting for **Maximum Tasks per Worker**
 
 The calculation is made based on the following expression:
 
