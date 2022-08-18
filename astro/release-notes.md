@@ -15,6 +15,47 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.3.0 ([Release notes](cli/release-notes.md))
 
+## August 18, 2022
+
+### Worker queues
+
+Worker queues are a new way to size your workers on Astro and configure your Deployment to best fit the needs of your tasks. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Within a worker queue, you can configure worker type and size as well as autoscaling behavior.
+
+In the Cloud UI, you can now scale workers more efficiently by creating multiple worker queues.
+
+![Worker queue configurations in the Cloud UI](/img/release-notes/worker-queues.png)
+
+You can assign individual tasks to a worker queue to have those tasks run with the queue's configurations. For example, if you have a task that requires significantly more memory than CPU power, you can assign it to a queue that's configured with workers that are optimized for memory usage. By configuring multiple worker queues for running different types of tasks, you can better optimize for the performance, reliability, and throughput of your Deployment.
+
+To learn more about configuring worker queues, see [Configure Deployment resources](configure-deployment-resources.md#worker-queues).
+
+### Support for multiple Organizations
+
+A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Switch Organization**.
+
+Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
+
+### New Google Cloud Platform regions
+
+You can now [create an Astro cluster on GCP](create-cluster.md) in the following regions:
+
+- `australia-southeast2` (Melbourne)
+- `asia-east1` (Taiwan)
+- `asia-south2` (Delhi)
+- `asia-southeast2` - (Jakarta)
+- `europe-north1` (Finland)
+- `europe-southwest1` (Madrid)
+- `europe-west8` (Milan)
+- `europe-west9` (Paris)
+- `northamerica-northeast2` (Toronto)
+- `southamerica-west1` (Santiago)
+- `us-east5` (Columbus)
+- `us-south1` (Dallas)
+
+### Bug fixes
+
+- Fixed an issue where the Cloud UI's **Resource Settings** page wasn't showing units for CPU and Memory values.
+
 ## August 10, 2022
 
 ### Updated user permissions for Organization and Workspace roles
