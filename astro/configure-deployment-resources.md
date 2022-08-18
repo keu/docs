@@ -7,42 +7,45 @@ description: Learn how to create and configure Astro Deployment resources.
 
 After you create an Astro Deployment, you can modify its resource settings to make sure that your tasks have the CPU and memory required to complete successfully.
 
-## Worker resources
+## Worker queues
 
 A worker is responsible for executing tasks, which are first scheduled and queued by the scheduler. On Astro, task execution is powered by the [Celery executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html) with [KEDA](https://www.astronomer.io/blog/the-keda-autoscaler). Each worker is a Kubernetes Pod that is hosted within a Kubernetes node in your Astro cluster.
 
-Not all tasks have the same requirements. On Astro, you can create optimized execution environments for different types of tasks by using worker queues. Worker queues are a set of configurations that apply to a group of workers in your Deployment. For a given worker queue, you can configure the type and size of its workers, which determines how much CPU and memory your tasks have available. By default, all tasks run in a default worker queue that does not require configuration in your code. To enable a new set of configurations for a different group of tasks, you can create additional worker queues in the Cloud UI at anytime.
+Not all tasks have the same requirements. On Astro, you can create optimized execution environments for different types of tasks by using worker queues. Worker queues are a set of configurations that apply to a group of workers in your Deployment. For a given worker queue, you can configure the type and size of its workers, which determines how much CPU and memory your tasks can consume. You can also configure settings related to worker autoscaling behavior.
+
+By default, all tasks run in a default worker queue that does not require any specification in your code. To enable configurations for a different group of tasks, you can create additional worker queues in the Cloud UI and assign tasks to queues in your DAG code.
 
 See the following sections for more details on configuring worker queues.
 
-### Worker queues
+### Example use case
 
-A worker queue is a set of configurations that apply to a group of workers in your Deployment. They allow you to create optimized execution environments for different tasks. You can assign tasks to worker queues in your DAG code or run all tasks on a default worker queue.
-
-By configuring multiple worker queues and assigning tasks to these queues based on the requirements of the tasks, you can enhance the performance and throughput of your overall Deployment. For example, consider the following scenario:
+By configuring multiple worker queues and assigning tasks to these queues based on the requirements of the tasks, you can enhance the performance and throughput of your Deployment. For example, consider the following scenario:
 
 - You are running Task A and Task B in a Deployment on an AWS cluster.
 - Task A and Task B are dependent on each other, so they need to run in the same Deployment.
-- Task A is a long-running task that uses a lot of memory and very little CPU, while Task B is a short-running task that uses minimal amounts of CPU and memory.
+- Task A is a long-running task that uses a lot of CPU and little memory, while Task B is a short-running task that uses minimal amounts of CPU and memory.
 
-You can assign Task A to a worker queue that is configured to use the `r6i.4xlarge` worker type on AWS that's optimized for memory usage. Then, you can assign Task B to a worker queue that is configured to use the `m5.xlarge` worker type on AWS that is smaller and optimized for general usage.
+You can assign Task A to a worker queue that is configured to use the `c6i.4xlarge` worker type on AWS](https://aws.amazon.com/ec2/instance-types/c6i/) that's optimized for compute. Then, you can assign Task B to a worker queue that is configured to use the `m5.xlarge` worker type on AWS that is smaller and optimized for general usage.
 
-#### Worker queue settings
+### Worker queue settings
 
 Worker queues support the following settings:
 
 - **Name:** The name of your worker queue. Use this name to assign tasks to the worker queue in your DAG code. Worker queue names must consist only of lowercase letters and hyphens. For example, `machine-learning-tasks` or `short-running-tasks`.
-- **Worker Type:** The node instance type of workers in the worker queue. A worker’s total available CPU, memory, storage, and GPU is defined by the instance type that it runs on. Actual worker size is equivalent to the total capacity of the instance type minus Astro’s system overhead. For a list of supported worker types, see the [AWS](resource-reference-aws.md#deployment-worker-size-limits) and [GCP](resource-reference-gcp.md#deployment-worker-size-limits), and [Azure](resource-reference-azure.md#deployment-worker-size-limits) resource references.
-- **Concurrency:** The maximum number of tasks that a worker can run at a time. If the number of queued and running tasks exceeds this number, a new worker spins up to run the remaining tasks. This is equivalent to [worker concurrency](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) in Airflow.
-- **Min/max** worker: The minimum and maximum number of workers that can run in the pool.  The number of running workers changes regularly based on Maximum Tasks per Worker and the current number of queued and running tasks.
+- **Worker Type:** The node instance type of workers in the worker queue, as defined by the cloud provider of your cluster. For example, `m5.2xlarge` or `c6i.4xlarge` for Deployment running on an AWS cluster. A worker’s total available CPU, memory, storage, and GPU is defined by the instance type that it runs on. Actual worker size is equivalent to the total capacity of the instance type minus Astro’s system overhead. For a list of supported worker types, see the [AWS](resource-reference-aws.md#node-instance-type), [GCP](resource-reference-gcp.md#node-instance-type), and [Azure](resource-reference-azure.md#node-instance-type) resource references.
+- **Max Tasks per Worker:** The maximum number of tasks that a single worker can run at a time. If the number of queued and running tasks exceeds this number, a new worker is added to run the remaining tasks. This value is equivalent to [worker concurrency](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) in Airflow. By default, this value is 16.
+- **Worker Count**: The minimum and maximum number of workers that can run at a time.  The number of running workers changes regularly based on Max Tasks per Worker and the current number of queued and running tasks. By default, the minimum number of workers is 1 and the maximum is 10.
+
+These settings must be set per worker queue.
 
 #### Default worker queue
 
-Each Deployment requires a default worker queue to run tasks. If you don’t change any settings in the default worker queue:
+Each Deployment requires a `default` worker queue to run tasks. Task that are not assigned to a worker queue in your DAG code are executed by workers in the default worker queue. You do not have to assign tasks to the default worker queue in your DAG code.
 
-- All tasks in the Deployment run in the `default` worker queue.
-- A maximum of 16 tasks can run at once per worker. If more than 16 tasks are queued or running at once, then a new worker spins up to run the remaining tasks.
-- A maximum of 10 workers can run at once, meaning that your Deployment can process 160 queued or running tasks at a time. Any queued or running tasks beyond 160 can cause scheduling or execution errors.
+If you don’t change any settings in the default worker queue:
+
+- A maximum of 16 tasks can run at one time per worker. If more than 16 tasks are queued or running at once, a new worker is added to run the remaining tasks.
+- A maximum of 10 workers can run at once, meaning that a maximum of 160 tasks can be in a `running` state at a time. Remaining tasks will stay in a `queued` or `scheduled` state until running tasks complete.
 
 You can change all settings of the default worker queue except for its name.
 
