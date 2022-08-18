@@ -25,10 +25,7 @@ You can invite new users to an Astro Organization with the `astro user invite` c
 
 - You can now pass a list of variables to `astro deployment variable create` and `update` to create multiple variables at once without a file. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`.
 - If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
-
-## Automatic Airflow Webserver Popup
-
-The Airflow Webserver will now automatically popup once it is available. Now users don't have to continually check the terminal to see if the webserver is available.
+- The Airflow webserver now automatically opens in your default web browser after you run `astro dev start`.
 
 ## Astro CLI v1.3.0
 
