@@ -156,6 +156,7 @@ module.exports = {
             'disaster-recovery',
             'data-protection',
             'gdpr-compliance',
+            'hipaa-compliance',
             'secrets-management',],
         },
       ],

@@ -22,7 +22,7 @@ mkdir <your-new-directory> && cd <your-new-directory>
 From this directory, run the following Astro CLI command:
 
 ```sh
-astro dev init --use-astronomer-certified
+astro dev init
 ```
 
 This generates the following files:
@@ -31,7 +31,7 @@ This generates the following files:
 .
 ├── dags # Where your DAGs go
 │   └── example-dag.py # An example DAG that comes with the initialized project
-├── Dockerfile # For Astronomer's Docker image and runtime overrides
+├── Dockerfile # For the Astronomer Runtime Docker image and runtime overrides
 ├── include # For any other files you'd like to include
 ├── plugins # For any custom or community Airflow plugins
 ├── airflow_settings.yaml # For your Airflow connections, variables and pools (local only)
@@ -43,23 +43,19 @@ A few of these files are essential for deploying your Airflow image for the firs
 
 ### Dockerfile
 
-Your Dockerfile includes a reference to an Astronomer Certified Docker image. Astronomer Certified (AC) is a Debian-based, production-ready distribution of Apache Airflow that mirrors the open source project and undergoes additional levels of rigorous testing conducted by our team.
+Your Dockerfile will include reference to an Astro Runtime Docker image. [Astro Runtime](runtime-image-architecture.md) is a production ready data orchestration tool based on Apache Airflow that includes additional features and undergoes additional levels of rigorous testing conducted by Astronomer.
 
-This Docker image is hosted on [Astronomer's Docker registry](https://quay.io/repository/astronomer/ap-airflow?tab=tags) and allows you to run Airflow on Astronomer. Additionally, the image you include in your Dockerfile dictates the version of Airflow you'd like to run both when you're developing locally and pushing up to Astro.
+This Docker image is hosted on [Astronomer's Quay.io registry](https://quay.io/repository/astronomer/runtime?tab=tags) and allows you to run Airflow on Astronomer. Additionally, the image you include in your Dockerfile dictates the version of Airflow you'd like to run both when you're developing locally and pushing up to Astro.
 
-The Docker image you'll find in your Dockerfile by default is:
+Because Astro Runtime releases more frequently than Apache Airflow, a Runtime image's version number will be different than the Apache Airflow version it supports. See [Astro Runtime and Apache Airflow parity](runtime-image-architecture.md#Astro-Runtime-and-Apache-Airflow-parity).
+
+By default, the Docker image in your Dockerfile is:
 
 ```
-FROM quay.io/astronomer/ap-airflow:latest-onbuild
+FROM quay.io/astronomer/runtime:<latest-runtime-version>
 ```
 
-This will install a Debian-based AC image for the latest version of Airflow we support. To specify a particular Airflow version, read [Upgrade Airflow](manage-airflow-versions.md) and the _Customize your Image_ topic below.
-
-:::tip
-
-To use an Astro Runtime image with your new project, remove `--use-astronomer-certified` from your command. Note that projects using Astro Runtime can only be deployed to Astronomer Software installations on version 0.29 and above.
-
-:::
+This command installs a Debian-based Astro Runtime image that supports the latest version of Airflow. To use a specific Airflow version, read [Upgrade Airflow](manage-airflow-versions.md).
 
 ### Example DAG
 

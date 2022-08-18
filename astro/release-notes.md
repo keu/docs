@@ -11,9 +11,50 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
-**Latest Astro Runtime Version**: 5.0.6 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 5.0.7 ([Release notes](runtime-release-notes.md))
 
 **Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
+
+## August 18, 2022
+
+### Worker queues
+
+Worker queues are a new way to size your workers on Astro and configure your Deployment to best fit the needs of your tasks. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Within a worker queue, you can configure worker type and size as well as autoscaling behavior.
+
+In the Cloud UI, you can now scale workers more efficiently by creating multiple worker queues.
+
+![Worker queue configurations in the Cloud UI](/img/release-notes/worker-queues.png)
+
+You can assign individual tasks to a worker queue to have those tasks run with the queue's configurations. For example, if you have a task that requires significantly more memory than CPU power, you can assign it to a queue that's configured with workers that are optimized for memory usage. By configuring multiple worker queues for running different types of tasks, you can better optimize for the performance, reliability, and throughput of your Deployment.
+
+To learn more about configuring worker queues, see [Configure Deployment resources](configure-deployment-resources.md#worker-queues).
+
+### Support for multiple Organizations
+
+A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Switch Organization**.
+
+Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
+
+### New Google Cloud Platform regions
+
+You can now [create an Astro cluster on GCP](create-cluster.md) in the following regions:
+
+- `australia-southeast2` (Melbourne)
+- `asia-east1` (Taiwan)
+- `asia-south2` (Delhi)
+- `asia-southeast2` - (Jakarta)
+- `europe-north1` (Finland)
+- `europe-southwest1` (Madrid)
+- `europe-west8` (Milan)
+- `europe-west9` (Paris)
+- `northamerica-northeast2` (Toronto)
+- `southamerica-west1` (Santiago)
+- `us-east5` (Columbus)
+- `us-south1` (Dallas)
+
+### Bug fixes
+
+- Fixed an issue where the Cloud UI's **Resource Settings** page wasn't showing units for CPU and Memory values.
 
 ## August 10, 2022
 
@@ -34,6 +75,12 @@ If your organization has [implemented an identity provider (IdP)](configure-idp.
 - Added a security measure that ensures Workspace roles can only be assigned to users who have an Organization role in the Organization in which the Workspace is hosted. This ensures that a user who does not belong to your Organization cannot be assigned a Workspace role within it.
 
 ## August 2, 2022
+
+### Support for Astro on Azure Kubernetes Service (AKS)
+
+Astro now officially supports Astro clusters on AKS. This includes support for an initial set of AKS regions.
+
+For more information about the installation process and supported configurations, see [Install Astro on Azure](install-azure.md) and [Resource Reference Azure](resource-reference-azure.md).
 
 ### Bug fixes
 
