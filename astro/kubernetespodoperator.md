@@ -23,6 +23,7 @@ On Astro, the Kubernetes infrastructure required to run the KubernetesPodOperato
 
 - Cross-account service accounts are not supported on pods launched in the Astro cluster.
 - PersistentVolumes (PVs) are not supported on pods launched in the Astro cluster.
+- You can't use the KubernetesPodOperator to launch a Pod in any worker queue other than the one running the KubernetesPodOperator's parent task. To run a launch a Pod in a different instance type you must launch it in a Kubernetes cluster outside of the Astro data plane.
 
 ## Prerequisites
 
