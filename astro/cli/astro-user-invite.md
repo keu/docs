@@ -5,7 +5,7 @@ id: astro-user-invite
 description: Reference documentation for astro user invite.
 ---
 
-Invite a new user to the Organization you're currently authenticated to. You must be have Organization Owner to run this command.  
+Invite a new user to the Organization you're currently authenticated to. You must have Organization Owner to run this command.  
 
 ## Usage
 
@@ -24,7 +24,7 @@ astro user invite <user-email> <flags>
 ```sh
 $ astro user invite
 # CLI prompts you for a user's email and assigns them the `ORGANIZATION_MEMBER` role by default
-$ astro user invite user@company.com ORGANIZATION_BILLING_ADMIN
+$ astro user invite user@company.com --role ORGANIZATION_BILLING_ADMIN
 # Invite a user as an Organization Billing Admin
 ```
 

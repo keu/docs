@@ -41,7 +41,7 @@ After setting the variables, this command works for a Deployment and you don't n
 $ astro deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv AIRFLOW__SECRETS__BACKEND_KWARGS=<my-secret-value> --secret
 
 # Create multiple environment variables for a Deployment at once by specifying multiple keys
-$ astro deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv AIRFLOW__CORE__PARALLELISM=32 MAX_ACTIVE_TASKS_PER_DAG=16
+$ astro deployment variable create AIRFLOW__CORE__PARALLELISM=32 MAX_ACTIVE_TASKS_PER_DAG=16 --deployment-id cl03oiq7d80402nwn7fsl3dmv
 
 # Create multiple environment variables for a Deployment at once by loading them from a .env file
 $ astro deployment variable create --deployment-id cl03oiq7d80402nwn7fsl3dmv --load --env .env.dev
