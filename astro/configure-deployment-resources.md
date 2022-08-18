@@ -122,16 +122,16 @@ If you haven't created a Deployment, see [Create a Deployment](create-deployment
 
     ![Location of all Deployment resource setting buttons](/img/docs/deployment-settings.png)
 
-		- To create a new worker queue, click **Add Worker Queue**.
-		- To change an existing worker queue, click the **Edit** button next to that worker queue's entry in the table in the **Worker Queues** section.
-		- To change scheduler resources, click the **Edit** button in the **Scheduler Settings** section.
+    - To create a new worker queue, click **Add Worker Queue**.
+    - To change an existing worker queue, click the **Edit** button next to that worker queue's entry in the table in the **Worker Queues** section.
+    - To change scheduler resources, click the **Edit** button in the **Scheduler Settings** section.
 
 4. Edit the Deployment resource settings. For more information about these settings, review the content in this topic.
 5. Click **Update Deployment**.
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
-::: caution
+:::caution
 
 If you change the worker type of a worker queue that's currently running tasks, you might interrupt your pipelines and generate [zombie tasks](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks).
 
