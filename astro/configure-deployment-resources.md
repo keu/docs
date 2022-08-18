@@ -11,30 +11,28 @@ After you create an Astro Deployment, you can modify its resource settings to ma
 
 A worker is responsible for executing tasks, which are first scheduled and queued by the scheduler. On Astro, task execution is powered by the [Celery executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html) with [KEDA](https://www.astronomer.io/blog/the-keda-autoscaler). Each worker is a Kubernetes Pod that is hosted within a Kubernetes node in your Astro cluster.
 
-The resources and concurrency behavior of a worker are defined in its worker queue, which is a set of configurations that apply to a group of workers. All tasks run in at least one default worker queue, but you can assign tasks to different worker queues that you configure. To change the configuration of a worker, including its instance type, you can either update the worker's current worker queue or create a new worker queue with the desired configuration.
+Not all tasks have the same requirements. On Astro, you can create optimized execution environments for different types of tasks by using worker queues. Worker queues are a set of configurations that apply to a group of workers in your Deployment. For a given worker queue, you can configure the type and size of its workers, which determines how much CPU and memory your tasks have available. By default, all tasks run in a default worker queue that does not require configuration in your code. To enable a new set of configurations for a different group of tasks, you can create additional worker queues in the Cloud UI at anytime.
 
-To ensure reliability, the minimum worker size supported is 10 AU. Beyond that, the maximum worker size you can set depends on the node instance type that is configured for the cluster in which your Deployment is hosted. If you attempt to provision a worker size that is not supported by your cluster's instance type, you will see an error in the Cloud UI. For example, if the node instance type for a given cluster is set to `m5.xlarge`, the maximum worker size supported for any Deployment within that cluster is 20 AU (2 CPUs, 7.5 GiB memory). This limit accounts for overhead that is required for system components.
-
-See the following sections for more details on configuring worker queues. For a list of supported worker node instance types and their corresponding worker size limits, see the [AWS](resource-reference-aws.md#deployment-worker-size-limits), [GCP](resource-reference-gcp.md#deployment-worker-size-limits), and [Azure](resource-reference-azure.md#deployment-worker-size-limits) resource references. To request make a supported instance type available to use in your cluster's worker queues, reach out to [Astronomer support](https://support.astronomer.io).
+See the following sections for more details on configuring worker queues.
 
 ### Worker queues
 
 A worker queue is a set of configurations that apply to a group of workers in your Deployment. They allow you to create optimized execution environments for different tasks. You can assign tasks to worker queues in your DAG code or run all tasks on a default worker queue.
 
-By configuring multiple worker queues and assigning tasks to these queues based on the work they’re completing, you can fine-tune your Deployment to run tasks without wasting resources. For example, consider the following scenario:
+By configuring multiple worker queues and assigning tasks to these queues based on the requirements of the tasks, you can enhance the performance and throughput of your overall Deployment. For example, consider the following scenario:
 
-- You are running Task A and Task B in a Deployment on AWS.
+- You are running Task A and Task B in a Deployment on an AWS cluster.
 - Task A and Task B are dependent on each other, so they need to run in the same Deployment.
-- Task A uses a lot of memory and very little CPU, while Task B uses equal amounts of CPU and memory.
+- Task A is a long-running task that uses a lot of memory and very little CPU, while Task B is a short-running task that uses minimal amounts of CPU and memory.
 
-You can assign Task A to a worker queue of `r6i.xlarge` instances that’s optimized for memory usage, and you can assign Task B to a worker queue of `m5.large` instances that’s optimized for general usage.
+You can assign Task A to a worker queue that is configured to use the `r6i.4xlarge` worker type on AWS that's optimized for memory usage. Then, you can assign Task B to a worker queue that is configured to use the `m5.xlarge` worker type on AWS that is smaller and optimized for general usage.
 
 #### Worker queue settings
 
 Worker queues support the following settings:
 
-- **Name:** The name of your worker queue. Use this name to assign tasks to the worker queue in your DAG code.
-- **Worker Type:** The instance type of workers in the worker queue. A worker’s total available CPU, memory, storage, and GPU is defined by the instance type that it runs on. Actual worker size is equivalent to the total capacity of the instance type minus Astro’s system overhead. For a list of total available worker resources for each instance type, see see the [AWS](resource-reference-aws.md#deployment-worker-size-limits) and [GCP](resource-reference-gcp.md#deployment-worker-size-limits), and , and [Azure](resource-reference-azure.md#deployment-worker-size-limits) resource references.
+- **Name:** The name of your worker queue. Use this name to assign tasks to the worker queue in your DAG code. Worker queue names must consist only of lowercase letters and hyphens. For example, `machine-learning-tasks` or `short-running-tasks`.
+- **Worker Type:** The node instance type of workers in the worker queue. A worker’s total available CPU, memory, storage, and GPU is defined by the instance type that it runs on. Actual worker size is equivalent to the total capacity of the instance type minus Astro’s system overhead. For a list of supported worker types, see the [AWS](resource-reference-aws.md#deployment-worker-size-limits) and [GCP](resource-reference-gcp.md#deployment-worker-size-limits), and [Azure](resource-reference-azure.md#deployment-worker-size-limits) resource references.
 - **Concurrency:** The maximum number of tasks that a worker can run at a time. If the number of queued and running tasks exceeds this number, a new worker spins up to run the remaining tasks. This is equivalent to [worker concurrency](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) in Airflow.
 - **Min/max** worker: The minimum and maximum number of workers that can run in the pool.  The number of running workers changes regularly based on Maximum Tasks per Worker and the current number of queued and running tasks.
 
