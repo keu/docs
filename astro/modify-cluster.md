@@ -24,10 +24,9 @@ Some cluster and Deployment-level modifications require Astronomer support and c
 
 - [Create a new cluster](create-cluster.md).
 - Delete a cluster.
-- Create or update a cluster's worker node pool. See cloud resource references ([AWS](resource-reference-aws.md#worker-node-pools), [GCP](resource-reference-gcp.md#deployment-worker-node-pools), [Azure](resource-reference-azure.md#deployment-worker-node-pools)).
-- Update the maximum node count of an existing cluster.
+- Create a new node pool. This enables a new worker type for all Deployments in the cluster. See cloud resource references ([AWS](resource-reference-aws.md#worker-node-pools), [GCP](resource-reference-gcp.md#deployment-worker-node-pools), [Azure](resource-reference-azure.md#deployment-worker-node-pools)).
+- Update an existing worker node pool, including its node instance type or maximum node count.
 - [Create a VPC connection](connect-external-services.md#vpc-peering) or a [transit gateway connection](connect-external-services.md#workload-identity-gcp-only) between a cluster and a target VPC.
-- Run Docker images from a private registry with the [KubernetesPodOperator](kubernetespodoperator#run-images-from-a-private-registry).
 
 ## Step 1: Submit a request to Astronomer
 

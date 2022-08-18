@@ -32,9 +32,9 @@ If you prefer, you can also run the `astro deployment create` command in the Ast
     - **Description**: Optional. Enter a description for your Deployment.
     - **Cluster**: Select the Astro cluster in which you want to create this Deployment.
     - **Worker Type**: Select the worker type for your default worker queue. See [Worker queues](configure-deployment-resources.md#worker-queues).
-4. Optional. Edit additional Deployment resource settings. See [Configure Deployment resources](configure-deployment-resources.md). If you don't change any Deployment resources settings, your Deployment is provisioned with:
+4. Optional. Edit additional Deployment resource settings. See [Configure Deployment resources](configure-deployment-resources.md). If you don't change any Deployment resource settings, your Deployment is created with:
 
-    - A `default` worker queue running a maximum of 10 workers. Each of these workers can run a maximum of 16 tasks can run at once.
+    - A worker queue named `default` that runs a maximum of 10 workers. Each of these workers can run a maximum of 16 tasks can run at a time.
     - A single scheduler with 0.5 CPUs and 1.88 GiB of memory.
 
 5. Click **Create Deployment**.
