@@ -9,6 +9,25 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, contact [Astronomer Support](https://support.astronomer.io).
 
+## Astro CLI v1.4.0
+
+Release date: August 18, 2022
+
+### New command to run commands in local Airflow containers
+
+You can now run bash commands in any locally running Airflow container using `astro dev bash`. For more information, see the [CLI command reference](cli/astro-dev-bash.md).
+
+### New command to invite a user to an Astro Organization
+
+You can invite new users to an Astro Organization with the `astro user invite` command. For more information, see the [CLI command reference](cli/astro-user-invite.md).
+
+### Additional improvements
+
+- You can now run `astro config set interactive true` and `astro config set page_size <integer>` to enable pagination for `astro workspace user list` and `astro workspace list`.
+- You can now pass a list of variables to `astro deployment variable create` and `update` to create multiple variables at once without a file. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`.
+- If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
+- The Airflow webserver now automatically opens in your default web browser after you run `astro dev start`.
+
 ## Astro CLI v1.3.0
 
 Release date: July 19, 2022

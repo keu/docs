@@ -26,19 +26,18 @@ If you don't complete this setup before your upgrade, the upgrade will fail.
 
 ### Improved token refreshing for IdP integrations
 
-The Astro UI no longer automatically refreshes your JSON web token (JWT) if you have a valid authentication token from your IdP. This means that as long as you stay logged in to your IdP, you no longer have to refresh the Software UI to continue accessing the Software UI, Astro CLI, and Houston API.
+The Software UI now refreshes your JSON web token (JWT) based on the validity of your authentication token from your IdP. This means that as long as you stay logged in to your IdP, you no longer have to refresh the Software UI to continue accessing the Software UI, Astro CLI, and Houston API.
 
-Additionally, if you change a user's access to Astronomer from your IdP, they will be immediately logged out from Astronomer instead of after 24 hours.
+Additionally, if you change a user's access to Astronomer from your IdP, their permissions will be automatically updated in Astronomer after their current IdP token expires. If you remove a user completely from Astronomer, they are automatically logged out of the Software UI and CLI after their current IdP token expires.
 
 As part of this change, you can now configure `jwt.authDuration` in your [Houston Helm configuration](https://github.com/astronomer/docs/blob/main/software_configs/0.30/default.yaml). If a user is logged on longer than `authDuration`, they will be immediately logged out regardless of the status of their JWT or authentication token.
 
 ### Additional improvements
 
-- Workspaces are now paginated in the Software UI.
+- Workspace users are now paginated in the Software UI.
 - You can now configure credentials for a private image registry by specifying a secret you create instead of a username and password. The secret is attached to any Pods that need to access the registry.
 - You can now specify `authUrlParams` for your identity provider (IdP) in `config.yaml`.
 - System Editors can no longer manage Teams or users in a Workspace. These permissions are now available only at the System Admin level.
-- Improved performance when authenticating an account that has access to many Deployments with the Astro CLI.
 
 ### Bug fixes
 
