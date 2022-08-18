@@ -5,7 +5,7 @@ id: astro-user-invite
 description: Reference documentation for astro user invite.
 ---
 
-Invite a new user to the Organization you're currently authenticated to. You must have Organization Owner to run this command.  
+Invite a new user to the Organization you're currently authenticated to. You must have Organization Owner permissions to run this command.  
 
 ## Usage
 
