@@ -21,7 +21,7 @@ By default, the command execs into the scheduler container and prompts you to ru
 
 | Option              | Description                                           | Possible Values |
 | ------------------- | ----------------------------------------------------- | --------------- |
-| `-p`, `postgres`    | Run a bash command in the metadata database container | ``              |
+| `-p`, `--postgres`    | Run a bash command in the metadata database container | ``              |
 | `-s`,`--scheduler`  | Run a bash command in the scheduler container         | ``              |
 | `-t`, `--triggerer` | Run a bash command in the triggerer container         | ``              |
 | `-w`, `--webserver` | Run a bash command in the webserver container         | ``              |
