@@ -9,6 +9,14 @@ Getting started with Apache Airflow locally is made easy thanks to the Astro CLI
 
 This tutorial guides you through the process of using the Astro CLI to create an Astro project, run your project in a local Airflow environment, and write DAGs. We will also cover how to use the Astronomer Registry to discover example DAGs and Airflow providers.
 
+After completing this tutorial, you should know how to:
+
+- Run a local Airflow environment using the Astro CLI.
+- Manage the Astro project directory.
+- Write a DAG from scratch.
+- Navigate the Airflow UI.
+- Use code from the Astronomer registry.
+
 ## Time to complete
 
 This tutorial can be completed in 1 hour or less.
@@ -88,7 +96,7 @@ To access the Airflow UI, open `http://localhost:8080/` in a browser and log in 
 
 The default page in the Airflow UI is the **DAGs** page, which shows an overview of all DAGs in your Airflow environment:
 
-![DAGView.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ec24bc62-a4fb-4aa2-a1d0-fa0f9521d296/DAGView.png)
+![View of starter DAGs in the Airflow UI](/img/docs/tutorial-airflow-ui.png)
 
 Each DAG is listed with its tags, owner, previous runs, schedule, timestamp of the last and next run, and the states of recent tasks. Because you haven't run any DAGs yet, the **Runs** and **Recent Tasks** sections are empty. Let's fix that!
 
@@ -96,11 +104,17 @@ Each DAG is listed with its tags, owner, previous runs, schedule, timestamp of t
 
 Let's run the `example-dag-basic` DAG that was generated with your Astro project.
 
-1. Before you can run a DAG, you have to unpause it. To unpause `example-dag-basic`, click on the slider button next to its name. Once you unpause it, the DAG will start to run on the schedule defined in its code.
+1. Before you can run a DAG, you have to unpause it. To unpause `example-dag-basic`, click on the slider button next to its name. Once you unpause it, the DAG will start to run on the schedule defined in its code:
+
+    ![Pause DAG slider in the Airflow UI](/img/docs/tutorial-unpause-dag.png)
 
 2. While all DAGs can run on a schedule defined in their code, you can manually trigger a DAG run at any time from the Airflow UI. Manually trigger `example-dag-basic` by clicking the play button under the **Actions** column. During development, manually triggering DAG runs can be helpful with debugging.
 
-After you press play, the **Runs** and **Recent Tasks** sections for the DAG start to populate with information. These are only high level summaries of your runs. Next, let's explore the other ways to view DAGs in Airflow.
+After you press play, the **Runs** and **Recent Tasks** sections for the DAG start to populate with information in each circle.
+
+![DAG running in the Airflow UI](/img/docs/tutorial-run-dag.png)
+
+These circles represent different [states](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#task-instances) that your DAG and task runs can be in. However, these are only high level summaries of your runs that won't make much sense until you learn more about how Airflow works. To get a better picture of how our DAG is running, let's explore some other views in Airflow.
 
 ## Step 5: Explore the Airflow UI
 
@@ -110,9 +124,19 @@ For now, let's explore the available views in the **DAGs** page. To access diffe
 
 1. Click on the name of the DAG.
 
-    The default DAG view is the **Grid** view, which shows the state of completed and currently running tasks. Each column in the grid represents a complete DAG run, and each block in the column represents a specific task instance. Clicking on a square will open additional information about the related task instance on the righthand side of the UI. The task instance view includes tabs that include additional information for the task instance, such as its logs and historic runs. This is one of many available views that show details about your DAG. For now, let's explore two more views.
-2. In the tab with **Grid** highlighted, click **Graph**. This view shows the dependencies between your tasks and is useful for troubleshooting issues that stem from dependencies.
+    The default DAG view is the **Grid** view, which shows the state of completed and currently running tasks. Each column in the grid represents a complete DAG run, and each block in the column represents a specific task instance.
+
+    ![Grid view](/img/docs/tutorial-grid-view.png)
+
+    Clicking on a square will open additional information about the related task instance on the righthand side of the UI. The task instance view includes tabs that include additional information for the task instance, such as its logs and historic runs. This is one of many available views that show details about your DAG. For now, let's explore two more views.
+
+2. In the tab with **Grid** highlighted, click **Graph**. This view shows the dependencies between your tasks and is useful for troubleshooting issues that stem from dependencies. You can determine the state of your current task runs by checking the colors of the borders around teach task.
+
+    ![Graph view](/img/docs/tutorial-graph-view.png)
+
 3. In the tab with **Graph** highlighted, click **Code**. This view shows the source code for your DAG.
+
+    ![Code view](/img/docs/tutorial-code-view.png)
 
   :::info
 
@@ -226,8 +250,6 @@ Once your new DAG appears in the Airflow UI, we can run it:
 1. Unpause the new DAG and trigger a run like you did in Step 4.
 2. Click the name of your new DAG and open **Graph** view. After your DAG runs, there should be a dark green border around the tasks in the graph showing that your run was successful.
 
-![GraphView.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/95aadf3a-ded5-402f-84ff-bbe62099e0fb/GraphView.png)
-
 ## Step 8: View task logs
 
 When we tell Airflow to print something to the terminal, the output appears in Airflow's logs. To see the output of our tasks:
@@ -283,17 +305,7 @@ extract_bitcoin_price >> process_data >> store_data
 
 If this style of writing DAGs feels more intuitive to you, read more about it in the [Airflow Decorators guide](https://www.astronomer.io/guides/airflow-decorators/).
 
-## Conclusion
-
-After completing this tutorial, you should know how to:
-
-- Run a local Airflow environment using the Astro CLI.
-- Manage the Astro project directory.
-- Write a DAG from scratch.
-- Navigate the Airflow UI.
-- Use code from the Astronomer registry.
-
-### Next steps
+## Next steps
 
 Astronomer offers a variety of resources like this tutorial to learn more about how to use Airflow.
 
@@ -305,7 +317,5 @@ Astronomer offers a variety of resources like this tutorial to learn more about 
 Don't know where to start? For beginners, the next resources we recommend are:
 
 - [Managing connections in Airflow](https://www.astronomer.io/guides/connections/): Learn how to connect Airflow to third party products and services.
-- [Branching in Airflow](https://www.astronomer.io/guides/airflow-branch-operator): Learn how to use conditional logic in Airflow.
 - [Develop a project](develop-project.md): Learn about all of the ways you can configure your Astro project and local Airflow environment.
-- [Passing Data between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks): Learn how you can pass values resulting from a task execution to a downstream task.
 - [DAG Writing Best Practices](https://www.astronomer.io/guides/dag-best-practices?search=best): Learn how to write efficient, secure, and scalable DAGs.
