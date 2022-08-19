@@ -17,10 +17,6 @@ Release date: August 18, 2022
 
 You can now run bash commands in any locally running Airflow container using `astro dev bash`. For more information, see the [CLI command reference](cli/astro-dev-bash.md).
 
-### New command to invite a user to an Astro Organization
-
-You can invite new users to an Astro Organization with the `astro user invite` command. For more information, see the [CLI command reference](cli/astro-user-invite.md).
-
 ### Additional improvements
 
 - You can now run `astro config set interactive true` and `astro config set page_size <integer>` to enable pagination for `astro workspace user list` and `astro workspace list`.
