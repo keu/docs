@@ -21,10 +21,32 @@ You can now run bash commands in any locally running Airflow container using `as
 
 You can invite new users to an Astro Organization with the `astro user invite` command. For more information, see the [CLI command reference](cli/astro-user-invite.md).
 
+### New commands to manage Teams
+
+Several new commands have been introduced to help you manage Teams on Astronomer Software.
+
+#### Manage teams across a Software installation:
+
+- `astro team get`: Get the information for an existing Team
+- `astro team list`: View all Teams across an installation
+- `astro team update`: Update a Team's permissions
+
+#### Manage teams across a Workspace
+
+- `astro workspace team add`: Add a Team to a given Workspace
+- `astro workspace team remove`: Remove a Team from a given Workspace
+- `astro workspace team update`: Update a Team's permissions for a given Workspace
+- `astro workspace team list`: List all Teams in a given Workspace
+
+#### Manage teams across a Deployment
+
+- `astro deployment team add --deployment-id=<deployment-id> --team-id=<team-id> --role=<deployment_level_role>`: Add a Team to a given Deployment
+- `astro deployment team remove <team-id> --deployment-id=<deployment-id>`: Remove a Team from a given Deployment
+- `astro deployment team update <team-id> --deployment-id=<deployment-id> --role=<deployment_level_role>`: Update a Team's permissions for a given Deployment
+- `astro deployment team list --deployment-id=<deployment-id>`: List all Teams in a Workspace
+
 ### Additional improvements
 
-- You can now run `astro config set interactive true` and `astro config set page_size <integer>` to enable pagination for `astro workspace user list` and `astro workspace list`.
-- You can now pass a list of variables to `astro deployment variable create` and `update` to create multiple variables at once without a file. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`.
 - If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
 - The Airflow webserver now automatically opens in your default web browser after you run `astro dev start`.
 
