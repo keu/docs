@@ -53,21 +53,19 @@ Astronomer will not interrupt service for Deployments running Astro Runtime vers
 
 Maintenance is discontinued the last day of the month for a given version. For example, if the maintenance window for a version of Astro Runtime is January - June of a given year, that version will be maintained by Astronomer until the last day of June.
 
-## Backport policy for bug and security fixes
+## Security Fixes
 
-When Astronomer identifies a significant bug in Astro Runtime, a fix is backported to all Long Term Support (LTS) versions and the latest stable version. To avoid the impact of previously identified bugs, Astronomer recommends that you upgrade Astro Runtime if you are not using the latest stable version.
+Astronomer continuously monitors available security fixes for software used in Astro runtime. This includes scanning language dependencies, container images, and open source threat intelligence sources. When a security fix is available, our security team evaluates potential risks for organizations using Astro Runtime and determines deployment priority. Low priority fixes will be deployed following the regular maintenance policy described above. If a vulnerability is not yet addressed in the upstream project and no official fix is available, we will address the vulnerability or at least its impact via our environmental mitigations. Whenever possible, we will also collaborate with the upstream project to support a timely delivery of the offical fix. This process also covers images publicly available on [Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags) and provides context for their vulnerability scanning results. 
 
-When Astronomer identifies a significant security vulnerability in Astro Runtime, a fix is backported and made available as a patch version for all stable and LTS versions in maintenance. A significant security issue is defined as an issue with significant impact and exploitability.
+If you spot any vulnerabilities resulting in relevant risk for your organization, contact [Astronomer Security](mailto:security@astronomer.io). 
+
+### Backport policy for bug and security fixes
+
+*Functional Bugs:* When Astronomer identifies a significant bug in Astro Runtime, a fix is backported to all Long Term Support (LTS) versions and the latest stable version. To avoid the impact of previously identified bugs, Astronomer recommends that you upgrade Astro Runtime if you are not using the latest stable version.
+
+*Security Bugs:* When Astronomer identifies a significant security vulnerability in Astro Runtime, a fix is backported and made available as a patch version for all stable and LTS versions in maintenance. A significant security issue is defined as an issue with significant impact and exploitability.
 
 Occasionally, Astronomer might deviate from the defined response policy and backport a bug or security fix to releases other than the latest stable and LTS versions. To request a fix for a specific bug, contact your customer success manager.
-
-### Security scan results on Quay.io
-
-Astronomer is aware of the **Security Scan Report** results that are provided by [Project Quay](https://www.projectquay.io/) for each Astro Runtime image and are publicly available on [Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags).
-
-Astronomer monitors the security scan results regularly to determine if any of the vulnerabilities pose a risk to organizations using Astro Runtime. Typically, vulnerabilities found in Astro Runtime are in third-party packages that are installed in Astro Runtime but are not maintained by Astronomer. When a vulnerability is determined to have a high exploitability risk, Astronomer works with vendors to correct it and incorporate a fix into stable and LTS releases of Astro Runtime.
-
-If there is a critical vulnerability in the Security Scan results that causes concern for your organization, contact [Astronomer Support](https://support.astronomer.io/).
 
 ## Astro Runtime lifecycle schedule
 

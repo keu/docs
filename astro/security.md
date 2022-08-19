@@ -46,3 +46,11 @@ Astro uses both encryption in transit and encryption at rest to protect data acr
 ## Secrets management
 
 Astro is designed to secure sensitive information about your external systems. Sensitive information shared with Astronomer is securely stored and transmitted for consumption by your data pipelines. For more information, see [Secrets management](secrets-management.md).
+
+## Patch Management
+
+Astronomer continuously monitors available security fixes for software used in Astro runtime. This includes scanning language dependencies, container images, and open source threat intelligence sources. When a security fix is available, our security team evaluates potential risks for organizations using Astro Runtime and determines deployment priority. Low priority fixes will be deployed following the regular maintenance policy described above. If a vulnerability is not yet addressed in the upstream project and no official fix is available, we will address the vulnerability or at least its impact via our environmental mitigations. Whenever possible, we will also collaborate with the upstream project to support a timely delivery of the offical fix. This process also covers images publicly available on [Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags) and provides context for their vulnerability scanning results. 
+
+## Reporting security issues
+
+Please report any security issues to [Astronomer Security](mailto:security@astronomer.io)
