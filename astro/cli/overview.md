@@ -13,7 +13,13 @@ The Astro CLI is open source and built for data practitioners everywhere. The bi
 
 ## Install the CLI
 
-Follow [Install the Astro CLI](configure-cli.md#install-the-astro-cli) to install the CLI and run your first Astro project locally.
+To install with Homebrew, run:
+
+```sh
+brew install astro
+```
+
+For alternative installation steps, see [Configure the Astro CLI](configure-cli.md#install-the-astro-cli).
 
 ## Get started
 
