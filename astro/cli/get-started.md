@@ -7,7 +7,8 @@ description: Install Apache Airflow and deploy your first local project with the
 
 Getting started with Apache Airflow locally is easy with the Astro CLI.
 
-This tutorial guides you through the process of using the Astro CLI to create an Astro project, run your project in a local Airflow environment, and write DAGs. You'll also learn how to use the Astronomer Registry to discover example DAGs and Airflow providers.
+This tutorial guides you through the process of using the Astro CLI to create an Astro project, run your project in a local Airflow environment,
+and write DAGs. You'll also learn how to use the Astronomer Registry to discover example DAGs and Airflow providers.
 
 After you complete this tutorial, you'll be able to:
 
@@ -34,6 +35,7 @@ To complete this tutorial, you'll need to know:
 - [Python 3](https://www.python.org/downloads/).
 - [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
 - The [Astro CLI](cli/configure-cli.md).
+- An integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
 
 Astronomer also recommends having an integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
 
@@ -64,17 +66,17 @@ The Astro project is built to run Airflow with Docker. [Docker](https://docs.doc
 The default Astro project structure includes a collection of folders and files that you can use to run and customize Airflow. For this tutorial, you only need to know the following files and folders:
 
 - `/dags`: A directory of DAG files. Each Astro project includes two example DAGs: `example-dag-basic` and `example-dag-advanced`. For more information on DAGs, see [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
-- `Dockerfile`: This is where you specify your Astro Runtime, which a runtime environment that includes Apache Airflow and is built by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
+- `Dockerfile`: This is where you specify your version of Astro Runtime, which is a runtime environment that includes Apache Airflow and is built by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
 
 ## Step 2: Start Airflow
 
-Now that you have an Astro project ready, the next step is to actually start Airflow on your machine. In your terminal, open your Astro project directory and run the following command to start Airflow:
+Now that you have an Astro project ready, the next step is to actually start Airflow on your machine. In your terminal, open your Astro project directory and run the following command:
 
 ```sh
 astro dev start
 ```
 
-Starting Airflow for the first time can take 2 to 5 minutes. Once your local environment is ready the CLI automatically opens your default web browser to the Airflow UI at `https://localhost:8080`.
+Starting Airflow for the first time can take 2 to 5 minutes. Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
 
 :::info
 
@@ -89,7 +91,7 @@ astro config set postgres.port <available-port>
 
 ## Step 3: Log in to the Airflow UI
 
-The [Airflow UI](https://www.astronomer.io/guides/airflow-ui/) is essential for managing Airflow. It contains information about your current DAG runs and configuration menus for Airflow connections, variables, and pools.
+The [Airflow UI](https://www.astronomer.io/guides/airflow-ui/) is essential for managing Airflow. It contains information about your current DAG runs and is the best place to create and update Airflow connections to third-party data services.
 
 To access the Airflow UI, open `http://localhost:8080/` in a browser and log in with `admin` for both your username and password.
 
@@ -97,11 +99,13 @@ The default page in the Airflow UI is the **DAGs** page, which shows an overview
 
 ![View of starter DAGs in the Airflow UI](/img/docs/tutorial-airflow-ui.png)
 
-Each DAG is listed with its tags, owner, previous runs, schedule, timestamp of the last and next run, and the states of recent tasks. Because you haven't run any DAGs yet, the **Runs** and **Recent Tasks** sections are empty. Let's fix that!
+Each DAG is listed with a few of its properties, including tags, owner, previous runs, schedule, timestamp of the last and next run, and the states of recent tasks. Because you haven't run any DAGs yet, the **Runs** and **Recent Tasks** sections are empty. Let's fix that!
 
 ## Step 4: Trigger a DAG run
 
-Let's run the `example-dag-basic` DAG that was generated with your Astro project. To provide a very basic demonstration of an ETL pipeline, this DAG creates an example JSON string, calculates a value based on the string, and prints the results of the calculation to the Airflow logs.
+A **DAG run** is an instance of a DAG running on a specific date. Let's trigger a run of the `example-dag-basic` DAG that was generated with your Astro project.
+
+To provide a basic demonstration of an ETL pipeline, this DAG creates an example JSON string, calculates a value based on the string, and prints the results of the calculation to the Airflow logs.
 
 1. Before you can run any DAG in Airflow, you have to unpause it. To unpause `example-dag-basic`, click the slider button next to its name. Once you unpause it, the DAG starts to run on the schedule defined in its code.
 
@@ -113,7 +117,7 @@ After you press **Play**, the **Runs** and **Recent Tasks** sections for the DAG
 
 ![DAG running in the Airflow UI](/img/docs/tutorial-run-dag.png)
 
-These circles represent different [states](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#task-instances) that your DAG and task runs can be in. However, these are only high level summaries of your runs that won't make much sense until you learn more about how Airflow works. To get a better picture of how your DAG is running, let's explore some other views in Airflow.
+These circles represent different [states](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#task-instances) that your DAG and task runs can be in. However, these are only high-level summaries of your runs that won't make much sense until you learn more about how Airflow works. To get a better picture of how your DAG is running, let's explore some other views in Airflow.
 
 ## Step 5: Explore the Airflow UI
 
@@ -133,7 +137,7 @@ Let's explore the available views in the **DAGs** page. To access different DAG 
 
     ![Graph view](/img/docs/tutorial-graph-view.png)
 
-3. In the **Graph** tab, click **Code** to display your DAG source code.
+3. In the **Graph** tab, click **Code** to display your DAG source code. Viewing code in the Airflow UI helps you confirm which version of your code is currently running on Airflow.
 
     ![Code view](/img/docs/tutorial-code-view.png)
 
@@ -197,7 +201,7 @@ Now that we can run DAGs and navigate the UI, let's write our own DAG and run it
     - `dag_id` (Required): The name of the DAG that appears in the Airflow UI. Each DAG must have unique name, and Astronomer recommends using the same name for the DAG file and the `dag_id`.
     - `start_date` (Required): The date and time when the DAG is scheduled to start running, given as a datetime object. In this example, the DAG is triggered on its schedule as long as the current time is 0:00 UTC on July 28th, 2022 or later.
     - `schedule_interval`: The frequency the DAG runs. You can define this as a timedelta object, a [CRON expression](https://crontab.guru/), or as a macro such as "@daily". If you don't set this value, the DAG runs every 24 hours after the `start_date`.
-    - `catchup`: Determines whether the DAG reruns all DAG runs that were scheduled before today's date. The default value is `True`, but it's best practice to set this argument to `False` unless you are explicitly running your DAG to backfill runs.
+    - `catchup`: Defines whether the DAG reruns all DAG runs that were scheduled before today's date. The default value is `True`, but it is recommended that you set this argument to `False` unless you are explicitly running your DAG to backfill runs.
     - `tags`: Defines the **Tags** that appear in the **DAGs** page of the Airflow UI. These can help you organize DAGs in more complex projects.
     - `default_args`: A list of configurations for the DAG's behavior. In this DAG, these arguments change the owner of the DAG, give the DAG a maximum of two retries in case of failure, and tell the DAG to wait five minutes before retrying. Many more arguments can be passed to a DAG at instantiation. See [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/dag/index.html) for a complete list.
 
@@ -250,7 +254,7 @@ When your new DAG appears in the Airflow UI, you can run it to test it.
 
 ## Step 8: View task logs
 
-When you tell Airflow to print something to the terminal, the output appears in Airflow's logs. This is an important feature for unit testing or otherwise troubleshooting DAGs locally.
+When you tell Airflow to print something to the terminal, the output appears in Airflow task logs. Task logs are an important feature for unit testing or otherwise troubleshooting DAGs. If a task in your DAG fails, task logs are the best place to investigate why.
 
 1. In the Airflow UI, open either the **Grid** or the **Graph** view.  
 2. Click the `say_my_name` task to make the task instance view appear.
@@ -279,7 +283,7 @@ Repeat steps 1-3 for the `multiply_my_number_by_23` task. The task logs should i
 
 The example DAG you wrote used two different core Airflow operators, but there are many more operators available outside of core Airflow. The best place to explore and search for operators is the [Astronomer Registry](https://registry.astronomer.io/).
 
-The Astronomer Registry is also home to a growing set of [example DAGs](https://registry.astronomer.io/dags) that demonstrate more complex use cases and integrations. Let's try adding an example DAG to our Astro project:
+You can find [example DAGs](https://registry.astronomer.io/dags) in the Astronomer Registry that demonstrate more complex use cases and integrations. Now you'll add an example DAG to the Astro project:
 
 1. Go to the [Astronomer Registry](https://registry.astronomer.io/).
 2. Click **Browse DAGs**.
@@ -289,7 +293,7 @@ The Astronomer Registry is also home to a growing set of [example DAGs](https://
 6. Paste the code into a new `.py` in the `dags` folder of your Astro project.
 7. Run the DAG from the Airflow UI.
 
-This DAG demonstrates how you can define task dependencies using the TaskFlow API, which is a popular, more Pythonic method of writing DAGs. Instead of defining dependencies with bitshift operators, we can do so with direct calls to functions that have been decorated as tasks. In the example DAG, the following line:
+This DAG demonstrates how you can define task dependencies using the TaskFlow API, which is a popular, more Pythonic method of writing DAGs. Instead of defining dependencies with bitshift operators, you can use direct calls to functions that have been decorated as tasks. In the example DAG, the following line:
 
 ```python
 store_data(process_data(extract_bitcoin_price()))
