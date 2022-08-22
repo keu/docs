@@ -88,14 +88,14 @@ Once your environment variables are added:
 1. Run `astro dev restart` to rebuild your image and apply your changes locally OR
 2. Run `astro deploy` to apply your changes to your running Deployment on Astronomer
 
-::: info
+:::info
 
 Environment variables added to the `Dockerfile` of an Astro project are mounted at build time and can be referenced in any other processes run during the Docker build process that immediately follows `astro deploy` or `astro dev start`.
 
 Environment variables applied in the Cloud UI only become available once the Docker build process is completed.
 
 :::
->
+
 
 ## Add Airflow connections and variables using environment variables
 
@@ -126,7 +126,7 @@ ENV AIRFLOW_CONN_MY_PROD_DB=my-conn-type://login:password@host:5432/schema
 
 For more information on how to generate a Connection URI, see the [Apache Airflow documentation](https://airflow.apache.org/docs/stable/howto/connection/index.html#generating-connection-uri).
 
-::: info
+:::info
 
 Airflow connections set with environment variables do not appear in the Airflow UI and cannot be modified there.
 
