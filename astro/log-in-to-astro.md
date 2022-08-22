@@ -11,7 +11,7 @@ You can use the Cloud UI and the Astro CLI to view and modify your Workspaces, D
 
 - An Astronomer account.
 - The [Astro CLI](cli/get-started.md).
-- An email address with a domain that matches the domain configured for your Organization. 
+- An email address with a domain that matches the domain configured for your Organization.
 
 ## Log in to the Cloud UI
 
@@ -73,3 +73,14 @@ For Astro users, the base domain is `cloud.astronomer.io`. For Astronomer Softwa
     ```
     astro context switch <basedomain>
     ```
+
+## Switch Organizations
+
+You can belong to more than one Astro Organization. To switch to another Organization that you have access to:
+
+1. Log in to the Cloud UI. By default, the Cloud UI opens the first Organization that you joined.
+2. In the top navigation bar, click the name of your current Organization.
+3. Click **Switch Organization**.
+4. Select the Organization that you want to switch to.
+
+Note that having a role in an Organization does not guarantee that you can access the Organization through the Cloud UI. To access another Organization, you need to be able to authenticate through at least one of their enabled authentication methods.
