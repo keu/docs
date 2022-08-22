@@ -32,6 +32,7 @@ module.exports = {
           type: 'category',
           label: 'Write DAGs',
           items: [
+            'astro-python-sdk',
             'deferrable-operators',
             'kubepodoperator-local',
             'kubernetespodoperator',
