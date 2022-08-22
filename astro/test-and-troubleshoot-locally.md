@@ -207,15 +207,16 @@ To resolve a port availability error, you have the following options:
 
 #### Change the default port assignment
 
-1. In your Astro project directory, open `.astro/config.yaml`. This file might be hidden in graphical file browsers. You can show hidden files using `⌘ + Shift + .` on Mac or by selecting **View** > **Hidden items** in Windows file explorer.
-2. Specify alternative ports for your webserver and/or metadata database in `config.yaml`. For example, to use `8081` for your webserver port and `5435` for your database port, you would specify the following:
+If port 8080 or 5432 are in use on your machine by other services, Airflow's webserver and metadata database won't be able to start. To run these components on different ports, run the following commands in your Astro project:
 
-    ```yaml
-    project:
-      name: <your-directory-name>
-    webserver:
-      port: 8081
-    postgres:
-      port: 5435
+    ```sh
+    astro config set webserver.port <available-port>
+    astro config set postgres.port <available-port>
     ```
-3. Run `astro dev restart` to rebuild and rerun your project.
+
+For example, to use `8081` for your webserver port and `5435` for your database port, you would run the following:
+
+    ```sh
+    astro config set webserver.port 8081
+    astro config set postgres.port 5435
+    ```
