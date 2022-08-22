@@ -29,4 +29,4 @@ In the Cloud UI, click the **Clusters** tab to view information about the cluste
 | Updated            | The date and time the cluster's settings were last updated                                                |
 | Created            | The date and time at which the cluster was created                                                                   |
 
- All users in your Organization have access to this view. For more information about each value, see [AWS resource reference](https://docs.astronomer.io/astro/resource-reference-aws) and [GCP resource reference](https://docs.astronomer.io/astro/resource-reference-gcp)
+ All users in your Organization have access to this view. For more information about each value, see [Resources required for Astro on AWS](https://docs.astronomer.io/astro/resource-reference-aws), [Resources required for Astro on Azure](https://docs.astronomer.io/astro/resource-reference-azure), or [Resources required for Astro on GCP](https://docs.astronomer.io/astro/resource-reference-gcp)

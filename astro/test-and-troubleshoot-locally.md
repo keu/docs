@@ -120,7 +120,6 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
 
 5. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
 
-
 ## Troubleshoot common issues
 
 Use the information provided here to resolve common issues with running an Astro project in a local environment.
@@ -156,9 +155,9 @@ If you see this error, increase the CPU and memory allocated to Docker. If you'r
 
 ### Astro project won't load after `astro dev start`
 
-If you're running the Astro CLI on a Mac computer that's built with the Apple M1 chip, your Astro project might take more than 5 mins to start after running `astro dev start`. This is a current limitation of Astro Runtime and the Astro CLI that's expected to be addressed soon.
+If you're running the Astro CLI on a Mac computer that's built with the Apple M1 chip, your Astro project might take more than 5 mins to start after running `astro dev start`. This is a current limitation of Astro Runtime and the Astro CLI.
 
-If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers. To do so:
+If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers. 
 
 1. After running `astro dev start`, retrieve a list of running containers by running `astro dev ps`.
 2. If the webserver and scheduler containers exist but are unhealthy, check their logs by running:
@@ -179,3 +178,40 @@ These logs should help you understand why your webserver or scheduler is unhealt
 - A failed Airflow or Astro Runtime version upgrade.
 - Misconfigured Dockerfile or Docker override file.
 - Misconfigured Airflow settings.
+
+### Port allocation issues
+
+By default, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database in a local Airflow environment. If these ports are already in use on your local computer, an error message similar to the following appears:
+
+```text
+Error: error building, (re)creating or starting project containers: Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:5432 → 0.0.0.0:0: listen tcp 0.0.0.0:5432: bind: address already in use
+
+To resolve a port availability error, you have the following options:
+
+- Stop all running Docker containers and restart your local environment.
+- Change the default ports for these components.
+
+#### Stop all running Docker containers
+
+1. Run `docker ps` to identify the Docker containers running on your computer.
+2. Copy the values in the `CONTAINER ID` column.
+3. Select one of the following options:
+    
+    - Run `docker stop <container_id>` to stop a specific Docker container. Replace `<container_id>` with one of the values you copied in step 2.
+    - Run `docker stop $(docker ps -q)` to stop all running Docker containers.
+
+#### Change the default port assignment
+
+If port 8080 or 5432 are in use on your machine by other services, the Airflow webserver and metadata database won't be able to start. To run these components on different ports, run the following commands in your Astro project:
+
+    ```sh
+    astro config set webserver.port <available-port>
+    astro config set postgres.port <available-port>
+    ```
+
+For example, to use `8081` for your webserver port and `5435` for your database port, you would run the following commands:
+
+    ```sh
+    astro config set webserver.port 8081
+    astro config set postgres.port 5435
+    ```
