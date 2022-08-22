@@ -131,7 +131,7 @@ Let's explore the available views in the **DAGs** page. To access different DAG 
 
     ![Grid view](/img/docs/tutorial-grid-view.png)
 
-    Click on a square to display additional information about the related task instance on the right side of the Airflow UI. The task instance view includes tabs with additional information for the task instance, such as its logs and historic runs. This is one of many available views that show details about your DAG. Let's explore two more views.
+    Click on a green square to display additional information about the related task instance on the right side of the Airflow UI. The task instance view includes tabs with additional information for the task instance, such as its logs and historic runs. This is one of many available views that show details about your DAG. Let's explore two more views.
 
 2. In the **Grid** tab, click **Graph**. This view shows task dependencies and relationships and can help you troubleshoot dependency issues. The border colors of each task indicate the task run state.
 
