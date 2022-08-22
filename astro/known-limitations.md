@@ -20,9 +20,6 @@ If you have questions or feedback about any item below, reach out to your Custom
 
 ## Coming soon
 
-- Improved Workspace roles and permissions.
 - Workspace API keys that are accepted by the Astro CLI and can be used to automate the creation and deletion of Deployments.
-- Worker Queues, which will allow you to configure tasks within a single Deployment to run on various combinations of infrastructure and configuration.
 - A new executor built by Astronomer that will offer intelligent worker packing, task-level resource requests, an improved logging system, and Kubernetes-like task isolation.
 - The ability for Organization Owners to create a cluster without Astronomer's assistance.
-- Support for Astro clusters on Microsoft Azure.

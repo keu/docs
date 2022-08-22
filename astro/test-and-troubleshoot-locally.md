@@ -93,7 +93,7 @@ When dependency errors occur, the error message that is returned often doesn't c
 
 For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, or libsas12-dev packages and you receive build errors after running `astro dev start`, you can enter the container and install the packages manually to review additional information about the errors.
 
-1. Open the `requirements.txt` and `packages.txt` files for your project and remove the references to the packages that are returning error messages. 
+1. Open the `requirements.txt` and `packages.txt` files for your project and remove the references to the packages that are returning error messages.
 
 2. Run the following command to build your Astro project into a Docker image and start a local Docker container for each Airflow component:
 
@@ -101,19 +101,13 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
     astro dev start
     ```
 
-3. Run the following command to retrieve the container IDs for your Airflow components:
+3. Run the following command to open a bash terminal in your scheduler container:
 
     ```sh
-    docker ps
+    astro dev bash --scheduler
     ```
-4. Run the following command to open a bash terminal in a running container:
 
-    ```sh
-    docker exec -it -u 0 <container_id> /bin/bash
-    ```
-    Replace `container_id` with one of the IDs you retrieved in step 3.
-
-5. In the bash terminal for each container, run the following command to install a package and review any error messages that are returned:
+4. In the bash terminal for your container, run the following command to install a package and review any error messages that are returned:
 
     ```bash
     apt-get install <package-name>
@@ -124,7 +118,7 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
     apt-get install gcc
     ```
 
-6. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
+5. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
 
 ## Troubleshoot common issues
 

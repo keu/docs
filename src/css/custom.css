@@ -98,10 +98,10 @@
   --ifm-color-info-contrast-foreground: var(--blue-900);
   --ifm-color-info-dark: var(--blue-500);
 
-  --ifm-color-warning: var(--orange-400);
-  --ifm-color-warning-contrast-background: var(--orange-100);
-  --ifm-color-warning-contrast-foreground: var(--orange-900);
-  --ifm-color-warning-dark: var(--orange-500);
+  --ifm-color-warning: #E6A700;
+  --ifm-color-warning-contrast-background: #FFF9E7;
+  --ifm-color-warning-contrast-foreground: #4D3800;
+  --ifm-color-warning-dark: #E6A700;
 
   --ifm-color-danger: var(--orange-400);
   --ifm-color-danger-contrast-background: var(--orange-100);
@@ -292,12 +292,18 @@ small {
 }
 
 .navbar__items--right button.clean-btn {
-  color: white;
+  color: var(--white);
 }
-
+/* Revert always ignores other styling and unstyles */
 .navbar__items--right:hover button.clean-btn {
   color: revert;
 }
+
+
+div.footer__bottom.text--center {
+text-align: center;
+}
+
 
 html
 .navbar__items--right div:first-of-type div:first-of-type div:last-of-type {
