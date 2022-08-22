@@ -28,21 +28,23 @@ To create an Astro cluster, you need to have:
     defaultValue="aws"
     values={[
         {label: 'AWS', value: 'aws'},
+        {label: 'Azure', value: 'azure'},
         {label: 'GCP', value: 'gcp'},
     ]}>
 <TabItem value="aws">
 
-#### Step 1: Submit a request to Astronomer
+#### Step 1: Submit a request to Astronomer support
 
 To create a new Astro cluster on AWS for your Organization, submit a [support request](astro-support.md). In your support request, provide the following information for every new cluster that you want to provision:
 
-- Your AWS Account ID
-- Your preferred Astro cluster name
-- The AWS region that you want to host your cluster in
-- Your preferred node instance type
-- Your preferred max node count
+- Your AWS Account ID.
+- Your preferred Astro cluster name.
+- The AWS region that you want to host your cluster in.
+- Your preferred node instance type.
+- Your preferred max node count.
+- Your preferred VPC CIDR.
 
-If you don't specify configuration preferences, Astronomer creates a cluster with two `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. For information on all supported regions, configurations, and defaults, see [AWS resource reference](resource-reference-aws.md).
+If you don't specify configuration preferences, Astronomer support creates a cluster with a VPC CIDR of 172.20.0.0/19,`m5.xlarge` nodes, and a maximum node count of 20 in `us-east-1`. For information about supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
 
 #### Additional setup for AWS regions that are disabled by default
 
@@ -104,7 +106,28 @@ To create a cluster in one of these regions, complete the following additional s
     aws iam set-security-token-service-preferences --global-endpoint-token-version v2Token
     ```
 
-#### Step 2: Confirm with Astronomer
+#### Step 2: Confirm with Astronomer support
+
+Astronomer support sends you a notification when your cluster is created. After your cluster is created, you can create a new Deployment in the cluster and start deploying pipelines. See [Create a Deployment](create-deployment.md).
+
+</TabItem>
+
+<TabItem value="azure">
+
+#### Step 1: Submit a request to Astronomer support
+
+To create a new Astro cluster on Azure for your Organization, submit a [support request](astro-support.md). In your support request, provide the following information for every new cluster that you want to provision:
+
+- Your preferred Astro cluster name.
+- The Azure region that you want to host your cluster in.
+- Your preferred node instance type.
+- Your preferred maximum node count.
+
+If you don't specify configuration preferences, Astronomer support creates a cluster with `Standard_D4d_v5 nodes`, one Postgres Flexible Server instance (`D4ds_v4`), and a maximum node count of 20 in `CentralUS`. If you're using Virtual Private Cloud (VPC) peering, a CIDR block (RFC 1918 IP Space) with the default CIDR range `172.20.0.0/19` is implemented.
+
+For information on all supported regions and configurations, see [Resources required for Astro on Azure](resource-reference-azure.md).  
+
+#### Step 2: Confirm with Astronomer support
 
 Astronomer support sends you a notification when your cluster is created. After your cluster is created, you can create a new Deployment in the cluster and start deploying pipelines. See [Create a Deployment](create-deployment.md).
 
@@ -112,23 +135,22 @@ Astronomer support sends you a notification when your cluster is created. After 
 
 <TabItem value="gcp">
 
-#### Step 1: Submit a request to Astronomer
+#### Step 1: Submit a request to Astronomer support
 
-To create a new Astro cluster on GCP for your Organization, you must first reach out to your Astronomer representative. For each new cluster that you want to provision, provide our team with the following information:
+To create a new Astro cluster on GCP for your Organization, submit a [support request](astro-support.md). In your support request, provide the following information for every new cluster that you want to provision:
 
 - Your preferred Astro cluster name.
 - The GCP region that you want to host your cluster in.
 - Your preferred node instance type.
 - Your preferred CloudSQL instance type.
 - Your preferred maximum node count.
+- Your preferred VPC CIDR.
 
-If not specified, Astronomer will create a cluster with `e2-medium-4 nodes`, one Medium General Purpose CloudSQL instance (4vCPU, 16GB), and a maximum node count of 20 in `us-central1`.
+If you don't specify configuration preferences, Astronomer support creates a cluster with a VPC CIDR of 172.20.0.0/19, `e2-medium-4 nodes`, one Medium General Purpose CloudSQL instance (4vCPU, 16GB), and a maximum node count of 20 in `us-central1`.  For information on all supported regions and configurations, see [Resources required for Astro on GCP](resource-reference-gcp.md).  
 
-For information on all supported regions and configurations, see [GCP resource reference](resource-reference-gcp.md).  
+#### Step 2: Confirm with Astronomer support
 
-#### Step 2: Confirm with Astronomer
-
-A notification is sent from Astronomer when your cluster is created. After your cluster is created, you can create a new Deployment in the cluster. See [Create a Deployment](create-deployment.md).
+Astronomer support sends you a notification when your cluster is created. After your cluster is created, you can create a new Deployment in the cluster and start deploying pipelines. See [Create a Deployment](create-deployment.md).
 
 </TabItem>
 </Tabs>
