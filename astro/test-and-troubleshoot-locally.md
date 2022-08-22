@@ -185,6 +185,7 @@ By default, the Astro CLI uses port `8080` for the Airflow webserver and port `5
 
 ```text
 Error: error building, (re)creating or starting project containers: Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:5432 → 0.0.0.0:0: listen tcp 0.0.0.0:5432: bind: address already in use
+```
 
 To resolve a port availability error, you have the following options:
 
