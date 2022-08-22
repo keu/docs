@@ -1,111 +1,45 @@
 ---
 sidebar_label: 'Get started'
-title: 'Get started with the Astro CLI'
+title: 'Get started with Apache Airflow '
 id: get-started
-description: Install the Astro CLI, the best way to run Apache Airflow and test data pipelines on your local machine.
+description: Install Apache Airflow and deploy your first local project with the Astro CLI.
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import {siteVariables} from '@site/src/versions';
+Getting started with Apache Airflow locally is easy with the Astro CLI.
 
-The Astro CLI is an open source command line for modern data orchestration. It is the easiest way to run Apache Airflow on your machine. By the end of this quickstart, you'll have an Airflow environment running locally with just a few commands. From there, you can start building your project with your own DAGs, dependencies, and tests.
+This tutorial guides you through the process of using the Astro CLI to create an Astro project, run your project in a local Airflow environment,
+and write DAGs. You'll also learn how to use the Astronomer Registry to discover example DAGs and Airflow providers.
 
-## Step 1: Install the Astro CLI
+After you complete this tutorial, you'll be able to:
 
-<Tabs
-    defaultValue="mac"
-    values={[
-        {label: 'Mac', value: 'mac'},
-        {label: 'Windows', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-    ]}>
-<TabItem value="mac">
+- Run a local Airflow environment using the Astro CLI.
+- Manage the Astro project directory.
+- Write a new DAG.
+- Navigate the Airflow UI.
+- Use code from the Astronomer Registry.
 
-#### Prerequisites
+## Time to complete
 
-To use the Astro CLI on Mac, you must have:
+This tutorial takes approximately 1 hour to complete.
 
-- [Homebrew](https://brew.sh/)
+## Assumed knowledge
+
+To complete this tutorial, you'll need to know:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).
+
+## Prerequisites
+
+- A terminal that accepts bash commands. This is pre-installed on most operating systems.
+- [Python 3](https://www.python.org/downloads/).
 - [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
+- The [Astro CLI](cli/configure-cli.md).
+- An integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
 
-#### Installation
+## Step 1: Create an Astro project
 
-To install the latest version of the Astro CLI, run the following command:
-
-```sh
-brew install astro
-```
-
-</TabItem>
-
-<TabItem value="windows">
-
-#### Prerequisites
-
-To use the Astro CLI on Windows, you must have:
-
-- [Docker Desktop](https://docs.docker.com/desktop/windows/install/) for Windows.
-- [Docker Engine](https://docs.docker.com/engine/install/) (v1.13.1 or higher).
-- [WSL](https://docs.microsoft.com/en-us/windows/wsl/install) enabled on your local machine.
--  Windows 10 or Windows 11.
-
-#### Installation
-
-1. Go to the [**Releases** page of the Astro CLI GitHub repository](https://github.com/astronomer/astro-cli/releases). Based on your desired CLI version and the CPU architecture of your machine, download one of the `.zip` files available on this page.
-
-    For example, to install v1.0.0 of the Astro CLI on a Windows machine with an AMD 64 architecture, download `astro_1.0.0-converged_windows_amd64.zip`.
-
-2. If the `.zip` file does not automatically unzip, run the following command to unzip the executable:
-
-    ```sh
-    tar -xvzf .\astrocli.tar.gz
-    ```
-
-3. Add the filepath for the directory containing `astro.exe` as a PATH environment variable. For example, if `astro.exe` was stored in `C:\Users\username\astro.exe`, you would add `C:\Users\username` as your PATH environment variable. To learn more about configuring the PATH environment variable, see [Java documentation](https://www.java.com/en/download/help/path.html).
-
-4. Restart your machine.
-
-</TabItem>
-
-<TabItem value="linux">
-
-#### Prerequisites
-
-To use the Astro CLI on Linux, you must have:
-
-- [Docker Engine](https://docs.docker.com/engine/install/) (v1.13.1 or higher).
-
-#### Installation
-
-Run the following command to install the latest version of the Astro CLI directly to `PATH`:
-
-```sh
-curl -sSL install.astronomer.io | sudo bash -s
-```
-
-</TabItem>
-
-</Tabs>
-
-## Step 2: Confirm the install
-
-To confirm the CLI was installed properly, run the following CLI command:
-
-```sh
-astro version
-```
-
-If the installation was successful, you should see the following output:
-
-<pre><code parentName="pre">{`% astro version
-Astro CLI Version: ${siteVariables.cliVersion}`}</code></pre>
-
-## Step 3: Create an Astro project
-
-To start developing locally, you first need to create an Astro project, which contains all of the files you need to run Apache Airflow locally.
-
-To create a new Astro project:
+To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally.
 
 1. Create a new directory for your Astro project:
 
@@ -119,44 +53,269 @@ To create a new Astro project:
     cd <your-astro-project-name>
     ```
 
-3. Initialize an Astro project in the directory:
+3. Run the following Astro CLI command to initialize an Astro project in the directory:
 
     ```sh
     astro dev init
     ```
 
-    This Astro CLI command generates all of the necessary files to run Airflow locally in your new directory. This includes dedicated folders for your DAG files, plugins, and dependencies.
+The Astro project is built to run Airflow with Docker. [Docker](https://docs.docker.com/) is a service to run software in virtualized containers within a machine. When you run Airflow on your machine with the Astro CLI, Docker creates a container for each Airflow component that is required to run DAGs. For this tutorial, you don't need an in-depth knowledge of Docker. All you need to know is that Airflow runs on the compute resources of your machine, and that all necessary files for running Airflow are included in your Astro project.
 
-## Step 4: Run Airflow locally
+The default Astro project structure includes a collection of folders and files that you can use to run and customize Airflow. For this tutorial, you only need to know the following files and folders:
 
-To confirm that you successfully initialized an Astro project, run the following command from your project directory:
+- `/dags`: A directory of DAG files. Each Astro project includes two example DAGs: `example-dag-basic` and `example-dag-advanced`. For more information on DAGs, see [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+- `Dockerfile`: This is where you specify your version of Astro Runtime, which is a runtime environment that includes Apache Airflow and is built by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
+
+## Step 2: Start Airflow
+
+Now that you have an Astro project ready, the next step is to actually start Airflow on your machine. In your terminal, open your Astro project directory and run the following command:
 
 ```sh
 astro dev start
 ```
 
-This command builds your project and spins up 4 Docker containers on your machine, each for a different Airflow component:
+Starting Airflow for the first time can take 2 to 5 minutes. Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
 
-- **Postgres:** Airflow's metadata database
-- **Webserver:** The Airflow component responsible for rendering the Airflow UI
-- **Scheduler:** The Airflow component responsible for monitoring and triggering tasks
-- **Triggerer:** The Airflow component responsible for running Triggers and signaling tasks to resume when their conditions have been met. The triggerer is used exclusively for tasks that are run with [deferrable operators](deferrable-operators.md)
+:::info
 
-## Step 5: Access the Airflow UI
+If port 8080 or 5432 are in use on your machine, Airflow won't be able to start. To run Airflow on alternative ports, run:
 
-Once your project builds successfully, you can access the Airflow UI by going to `http://localhost:8080/` and logging in with `admin` for both your username and password.
+```sh
+astro config set webserver.port <available-port>
+astro config set postgres.port <available-port>
+```
 
-After logging in, you should see two example DAGs in the Airflow UI that correspond to two files in the `dags` directory of your Astro project. These example DAGs are maintained by Astronomer and showcase Airflow features and best practices.
+:::
 
-![Example DAG in the Airflow UI](/img/docs/sample-dag.png)
+## Step 3: Log in to the Airflow UI
 
-That's all it takes to run Airflow locally using the Astro CLI! From here, you can add new DAGs to your Astro project and start developing.
+The [Airflow UI](https://www.astronomer.io/guides/airflow-ui/) is essential for managing Airflow. It contains information about your current DAG runs and is the best place to create and update Airflow connections to third-party data services.
+
+To access the Airflow UI, open `http://localhost:8080/` in a browser and log in with `admin` for both your username and password.
+
+The default page in the Airflow UI is the **DAGs** page, which shows an overview of all DAGs in your Airflow environment:
+
+![View of starter DAGs in the Airflow UI](/img/docs/tutorial-airflow-ui.png)
+
+Each DAG is listed with a few of its properties, including tags, owner, previous runs, schedule, timestamp of the last and next run, and the states of recent tasks. Because you haven't run any DAGs yet, the **Runs** and **Recent Tasks** sections are empty. Let's fix that!
+
+## Step 4: Trigger a DAG run
+
+A **DAG run** is an instance of a DAG running on a specific date. Let's trigger a run of the `example-dag-basic` DAG that was generated with your Astro project.
+
+To provide a basic demonstration of an ETL pipeline, this DAG creates an example JSON string, calculates a value based on the string, and prints the results of the calculation to the Airflow logs.
+
+1. Before you can run any DAG in Airflow, you have to unpause it. To unpause `example-dag-basic`, click the slider button next to its name. Once you unpause it, the DAG starts to run on the schedule defined in its code.
+
+    ![Pause DAG slider in the Airflow UI](/img/docs/tutorial-unpause-dag.png)
+
+2. While all DAGs can run on a schedule defined in their code, you can manually trigger a DAG run at any time from the Airflow UI. Manually trigger `example-dag-basic` by clicking the play button under the **Actions** column. During development, running DAGs on demand can help you identify and resolve issues.
+
+After you press **Play**, the **Runs** and **Recent Tasks** sections for the DAG start to populate with data.
+
+![DAG running in the Airflow UI](/img/docs/tutorial-run-dag.png)
+
+These circles represent different [states](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#task-instances) that your DAG and task runs can be in. However, these are only high-level summaries of your runs that won't make much sense until you learn more about how Airflow works. To get a better picture of how your DAG is running, let's explore some other views in Airflow.
+
+## Step 5: Explore the Airflow UI
+
+The navigation bar in the Airflow UI contains 5 tabs, each with different information about your Airflow environment. For more information about what you can find in each tab, see [The Airflow UI](https://www.astronomer.io/guides/airflow-ui/).
+
+Let's explore the available views in the **DAGs** page. To access different DAG views for `example-dag-basic`:
+
+1. Click the name of the DAG.
+
+    The default DAG view is the **Grid** view, which shows the state of completed and currently running tasks. Each column in the grid represents a complete DAG run, and each block in the column represents a specific task instance. This view is useful for seeing DAG runs over time and troubleshooting previously failed  task instances.
+
+    ![Grid view](/img/docs/tutorial-grid-view.png)
+
+    Click on a green square to display additional information about the related task instance on the right side of the Airflow UI. The task instance view includes tabs with additional information for the task instance, such as its logs and historic runs. This is one of many available views that show details about your DAG. Let's explore two more views.
+
+2. In the **Grid** tab, click **Graph**. This view shows task dependencies and relationships and can help you troubleshoot dependency issues. The border colors of each task indicate the task run state.
+
+    ![Graph view](/img/docs/tutorial-graph-view.png)
+
+3. In the **Graph** tab, click **Code** to display your DAG source code. Viewing code in the Airflow UI helps you confirm which version of your code is currently running on Airflow.
+
+    ![Code view](/img/docs/tutorial-code-view.png)
+
+  :::info
+
+  While you can view DAG code within the Airflow UI, code edits must be completed in the Python file within the `/dags` folder. The displayed code updates every 30 seconds.
+
+  :::
+
+## Step 6: Write a new DAG
+
+Now that we can run DAGs and navigate the UI, let's write our own DAG and run it. In this step, you'll write a DAG that multiplies an input by 23. You'll copy most of the code, trigger the DAG, and then confirm the expected output is returned.
+
+1. Create a new Python file in the `/dags` folder named `my-dag.py`.
+2. Open `my-dag.py` in your IDE. Add the required imports for Python packages:
+
+    ```python
+    from airflow import DAG
+    from airflow.operators.python import PythonOperator
+    from airflow.operators.bash import BashOperator
+
+    from datetime import datetime, timedelta
+
+    ```
+
+    The first line imports the `DAG` class, the second and third lines import two Airflow operators that are used in this example, and the last line imports two objects from the [datetime package](https://docs.python.org/3/library/datetime.html), which are required to define the schedule of a DAG.
+
+3. In the same file, add two static variables and a simple Python function that multiplies an input by 23. The DAG will use an Airflow operator to call this code.
+
+    ```python
+    # constants
+    MY_NAME = "MY_NAME"
+    MY_NUMBER = 19
+
+    def multiply_by_23(number):
+        """Multiplies a number by 23 and prints the results to Airflow logs."""
+        result = number * 23
+        print(result)
+
+    ```
+
+4. Add a `dag` object, which is an instance of the `DAG` class:
+
+    ```python
+    with DAG(
+        dag_id="my_first_dag",
+        start_date=datetime(2022,7,28),
+        schedule_interval=timedelta(minutes=30),
+        catchup=False,
+        tags= ["tutorial"],
+        default_args={
+            "owner": MY_NAME,
+            "retries": 2,
+            "retry_delay": timedelta(minutes=5)
+        }
+    ) as dag:
+    ```
+
+    `with DAG(...) as dag:` instantiates a DAG context in which tasks can be defined and given dependencies. The instantiation includes several important arguments:
+
+    - `dag_id` (Required): The name of the DAG that appears in the Airflow UI. Each DAG must have a unique name, and Astronomer recommends using the same name for the DAG file and the `dag_id`.
+    - `start_date` (Required): The date and time when the DAG is scheduled to start running, given as a datetime object. In this example, the DAG is triggered on its schedule as long as the current time is 0:00 UTC on July 28th, 2022 or later.
+    - `schedule_interval`: The frequency the DAG runs. You can define this as a timedelta object, a [CRON expression](https://crontab.guru/), or as a macro such as "@daily". If you don't set this value, the DAG runs every 24 hours after the `start_date`.
+    - `catchup`: Defines whether the DAG reruns all DAG runs that were scheduled before today's date. The default value is `True`, but it is recommended that you set this argument to `False` unless you are explicitly running your DAG to backfill runs.
+    - `tags`: Defines the **Tags** that appear in the **DAGs** page of the Airflow UI. These can help you organize DAGs in more complex projects.
+    - `default_args`: A list of configurations for the DAG's behavior. In this DAG, these arguments change the owner of the DAG, give the DAG a maximum of two retries in case of failure, and tell the DAG to wait five minutes before retrying. Many more arguments can be passed to a DAG at instantiation. See [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/dag/index.html) for a complete list.
+
+4. Add an operator to your DAG:
+
+    ```python
+    t1 = BashOperator(
+        task_id="say_my_name",
+        bash_command=f"echo {MY_NAME}"
+    )
+
+    ```
+
+    An operator is a Python class containing the logic to define the work to be completed by a single task. The first task (`t1`) uses the [BashOperator](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator) to run a bash command that prints the `MY_NAME` variable to the terminal. The second task  (`task_id`) defines the name of the task that appears in the Airflow UI. Each task requires a unique `task_id`.
+
+5. Add a second operator to your DAG:
+
+    ```python
+    t2 = PythonOperator(
+        task_id="multiply_my_number_by_23",
+        python_callable=multiply_by_23,
+        op_kwargs={"number": MY_NUMBER}
+    )
+    ```
+
+    The [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator) can run any Python script that's accessible by our DAG. Our second task (`t2`) uses the PythonOperator to call the `multiply_by_23` function that we defined earlier. We can then pass arguments to the Python function by defining a dictionary of key value pairs in the `op_kwargs` parameter.
+
+    This is one of the features that makes Airflow so powerful: Any action that can be defined in Python, no matter how complex, can be orchestrated using Airflow.
+
+6. Define the dependencies between the two tasks using bitshift operators:
+
+    ```python
+    t1 >> t2
+    ```
+
+    This notation is unique to Airflow. It both defines and visualizes the dependencies between tasks. `t1` is **upstream** of `t2`. meaning that `t1` must finish before `t2` can start.
+
+    There are multiple ways to define dependencies in Airflow, but this is one of the simplest. For more options on how to define task dependencies, see [Managing Dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies).
+
+7. Save your code.
+
+## Step 7: Run the new DAG
+
+To view your new DAG in the Airflow UI, enter `http://localhost:8080/` in your browser. As long as Airflow is running, it automatically picks up any new changes in your `/dags` directory. Existing files are parsed for changes every 30 seconds, while new files can be detected every 5 minutes.
+
+When your new DAG appears in the Airflow UI, you can run it to test it.
+
+1. Start the new DAG and trigger a run like you did in [Step 4](getting-started.md#step-4-trigger-a-dag-run).
+2. Click the name of your new DAG and open the **Graph** view. After your DAG runs, there should be a dark green border around the tasks in the graph showing that your run was successful.
+
+## Step 8: View task logs
+
+When you tell Airflow to print something to the terminal, the output appears in Airflow task logs. Task logs are an important feature for unit testing or otherwise troubleshooting DAGs. If a task in your DAG fails, task logs are the best place to investigate why.
+
+1. In the Airflow UI, open either the **Grid** or the **Graph** view.  
+2. Click the `say_my_name` task to make the task instance view appear.
+3. Click **Log**.
+
+In the log output, you should see the string you set for the `MY_NAME` constant:
+
+```text
+[2022-07-29, 15:17:19 UTC] {subprocess.py:74} INFO - Running command: ['bash', '-c', 'echo MY_NAME']
+[2022-07-29, 15:17:19 UTC] {subprocess.py:85} INFO - Output:
+[2022-07-29, 15:17:19 UTC] {subprocess.py:92} INFO - MY_NAME
+[2022-07-29, 15:17:19 UTC] {subprocess.py:96} INFO - Command exited with return code 0
+[2022-07-29, 15:17:19 UTC] {taskinstance.py:1415} INFO - Marking task as SUCCESS. dag_id=my_first_dag, task_id=say_my_name, execution_date=20220729T144715, start_date=20220729T151718, end_date=20220729T151719
+
+```
+
+Repeat steps 1-3 for the `multiply_my_number_by_23` task. The task logs should include the results of our multiplication operation.
+
+```text
+[2022-07-29, 15:17:22 UTC] {logging_mixin.py:115} INFO - 437
+[2022-07-29, 15:17:22 UTC] {python.py:173} INFO - Done. Returned value was: None
+[2022-07-29, 15:17:22 UTC] {taskinstance.py:1415} INFO - Marking task as SUCCESS. dag_id=my_first_dag, task_id=multiply_my_number_by_23, execution_date=20220729T144715, start_date=20220729T151721, end_date=20220729T151722
+```
+
+## Step 9: Use the Astronomer Registry
+
+The example DAG you wrote used two different core Airflow operators, but there are many more operators available outside of core Airflow. The best place to explore and search for operators is the [Astronomer Registry](https://registry.astronomer.io/).
+
+You can find [example DAGs](https://registry.astronomer.io/dags) in the Astronomer Registry that demonstrate more complex use cases and integrations. Now you'll add an example DAG to the Astro project:
+
+1. Go to the [Astronomer Registry](https://registry.astronomer.io/).
+2. Click **Browse DAGs**.
+3. In the search bar, search for `TaskFlow API`.
+4. Open the **TaskFlow API ETL Example** DAG.
+5. In the DAG's information page, click the **Code** tab and copy the contents of the DAG code.
+6. Paste the code into a new `.py` in the `dags` folder of your Astro project.
+7. Run the DAG from the Airflow UI.
+
+This DAG demonstrates how you can define task dependencies using the TaskFlow API, which is a popular, more Pythonic method of writing DAGs. Instead of defining dependencies with bitshift operators, you can use direct calls to functions that have been decorated as tasks. In the example DAG, the following line:
+
+```python
+store_data(process_data(extract_bitcoin_price()))
+```
+
+has the same dependency structure as:
+
+```
+extract_bitcoin_price >> process_data >> store_data
+```
+
+If this style of writing DAGs feels more intuitive to you, read more about it in the [Airflow Decorators guide](https://www.astronomer.io/guides/airflow-decorators/).
 
 ## Next steps
 
-Once you install the CLI and have an Astro project running locally, there are a few different paths you can take:
+Astronomer offers a variety of resources like this tutorial to learn more about how to use Airflow.
 
-- To write and test your own DAGs locally and configure your local Airflow environment, see [Develop Project](develop-project.md).
-- To view logs, set up unit tests for your DAGs, or troubleshoot your local Airflow environment, see [Test and troubleshoot locally](test-and-troubleshoot-locally.md).
-- To deploy DAGs to an environment managed by Astronomer, see [Deploy code](deploy-code.md). If you're not a customer but might be interested in Astro, [reach out to us](https://www.astronomer.io/get-started).
-- To learn more about the available commands in the CLI, see the [CLI command reference](cli/reference.md) or run `astro help`.
+- [Astronomer Webinars](https://www.astronomer.io/events/webinars/) cover concepts and use cases in-depth and offer the possibility to ask us questions live on air.
+- [Live with Astronomer](https://www.astronomer.io/events/live/) are hands-on and code focussed live walkthroughs of specific Airflow features.
+- [Astronomer Guides](https://www.astronomer.io/guides/) cover both entry and expert level concepts in Airflow.
+- [Astronomer Academy](https://academy.astronomer.io/) offers many video tutorials and the option to purchase full length Airflow courses and to take exams to get certified.
+
+Don't know where to start? For beginners, the next resources we recommend are:
+
+- [Managing connections in Airflow](https://www.astronomer.io/guides/connections/): Learn how to connect Airflow to third party products and services.
+- [Develop a project](develop-project.md): Learn about all of the ways you can configure your Astro project and local Airflow environment.
+- [DAG Writing Best Practices](https://www.astronomer.io/guides/dag-best-practices?search=best): Learn how to write efficient, secure, and scalable DAGs.
