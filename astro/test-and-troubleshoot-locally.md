@@ -195,7 +195,7 @@ Error: error building, (re)creating or starting project containers: Error respon
 To resolve a port availability error, you have the following options:
 
 - Stop all running Docker containers and restart your local environment.
-- Change the default ports for these components
+- Change the default ports for these components.
 
 #### Stop all running Docker containers
 
