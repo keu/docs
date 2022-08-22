@@ -200,7 +200,7 @@ To resolve a port availability error, you have the following options:
 #### Stop all running Docker containers
 
 1. Run `docker ps` to identify the Docker containers running on your computer.
-2. Copy the values in the **CONTAINER ID** column.
+2. Copy the values in the `CONTAINER ID` column.
 3. Select one of the following options:
     
     - Run `docker stop <container_id>` to stop a specific Docker container. Replace `<container_id>` with one of the values you copied in step 2.
