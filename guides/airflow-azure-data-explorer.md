@@ -16,7 +16,7 @@ You can use the ADX [Hook](https://registry.astronomer.io/providers/microsoft-az
 
 To get the most out of this guide, you should have knowledge of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 - Running an ADX cluster. See [Quickstart: Create an Azure Data Explorer cluster and database](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal).
 
 ## Configuring ADX to Work with Airflow
