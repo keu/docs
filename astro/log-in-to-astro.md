@@ -54,7 +54,7 @@ Astronomer uses refresh tokens to make sure that you don’t need to log in to t
 
 The following options are available if you're unable to use a browser for authnentication:
 
-- Run `astro login -l` to retrieve a URL for logging in using the Cloud UI. Copy this URL. In a separate terminal session, run `curl -u <user-email>:<password> <returned-url>. Note that this option does not work for accounts that are authenticated through an identity provider (IdP).
+- Run `astro login -l` to retrieve a Cloud UI log in URL and then copy the URL. In a separate terminal session, run `curl -u <user-email>:<password> <returned-url>. This option doesn't work if you're using an identity provider (IdP) for account authentication.
 - [Use a Deployment API key](api-keys.md#using-deployment-api-keys).
 
 ## Access a different base domain
