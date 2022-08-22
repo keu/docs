@@ -316,7 +316,7 @@ To widen our support for various use cases and levels of scale, we've expanded t
 - [Compute Optimized C6i instances](https://aws.amazon.com/ec2/instance-types/c6i/)
 - [Memory Optimized R6i instances](https://aws.amazon.com/ec2/instance-types/r6i/)
 
-For a full list of node instance types that are supported on Astro, see [AWS Resource Reference](resource-reference-aws.md#node-instance-type). To modify an existing Astro cluster to use any of these instance types, see [Modify a Cluster](modify-cluster.md).
+For a full list of node instance types that are supported on Astro, see [Resources required for Astro on AWS](resource-reference-aws.md#node-instance-type). To modify an existing Astro cluster to use any of these instance types, see [Modify a Cluster](modify-cluster.md).
 
 ### Additional improvements
 
@@ -326,13 +326,13 @@ For a full list of node instance types that are supported on Astro, see [AWS Res
 
 ### Feedback in Cloud UI on worker size limits
 
-The Cloud UI now renders an error if you try to modify the **Worker Resources**  to a combination of CPU and memory that is not supported by the node instance type of the cluster that the Deployment is hosted on. This validation ensures that the worker size you request is supported by the infrastructure available in your Astro cluster, and minimizes silent task failures that might have occurred due to invalid resource requests.
+The Cloud UI now renders an error if you try to modify the **Worker Resources** to a combination of CPU and memory that is not supported by the node instance type of the cluster that the Deployment is hosted on. This validation ensures that the worker size you request is supported by the infrastructure available in your Astro cluster, and minimizes silent task failures that might have occurred due to invalid resource requests.
 
 If your Astro cluster is configured with the `m5d.8xlarge` node type, for example, the Cloud UI will show an error if you try to set **Worker Resources** to 350 AU. This is because the maximum worker size an `m5d.8xlarge` node can support is 307 AU.
 
 ![Worker size error](/img/release-notes/worker-size-error.png)
 
-For a reference of all node instance types Astro supports and their corresponding worker size limits, see [AWS Resource Reference](resource-reference-aws.md#node-instance-type).
+For a reference of all node instance types Astro supports and their corresponding worker size limits, see [Resources required for Astro on AWS](resource-reference-aws.md#node-instance-type), [Resources required for Astro on Azure](resource-reference-azure.md#node-instance-type), or  [Resources required for Astro on GCP](resource-reference-gcp.md#node-instance-type).
 
 ## April 14, 2022
 
@@ -383,7 +383,7 @@ You can now [create new Clusters](create-cluster.md) in:
 - `ap-northeast-3` (Osaka)  
 - `me-south-1` (Bahrain)
 
-For a full list of AWS regions supported on Astro, see [AWS Resource Reference](resource-reference-aws.md#aws-region).
+For a full list of AWS regions supported on Astro, see [Resources required for Astro on AWS](resource-reference-aws.md#aws-region).
 
 ### Additional improvements
 
@@ -640,7 +640,7 @@ You can now create new clusters in:
 - `us-west-1`
 - `us-west-2`
 
-For a full list of AWS regions supported on Astro, see [AWS Resource Reference](https://docs.astronomer.io/resource-reference-aws.md#aws-region).
+For a full list of AWS regions supported on Astro, see [Resources required for Astro on AWS](https://docs.astronomer.io/resource-reference-aws.md#aws-region).
 
 ### Additional improvements
 
