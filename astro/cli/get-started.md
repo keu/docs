@@ -5,17 +5,17 @@ id: get-started
 description: Install Apache Airflow and deploy your first local project with the Astro CLI.
 ---
 
-Getting started with Apache Airflow locally is made easy thanks to the Astro CLI.
+Getting started with Apache Airflow locally is easy with the Astro CLI.
 
 This tutorial guides you through the process of using the Astro CLI to create an Astro project, run your project in a local Airflow environment, and write DAGs. We will also cover how to use the Astronomer Registry to discover example DAGs and Airflow providers.
 
-After completing this tutorial, you should know how to:
+After completing this tutorial, you will know how to:
 
 - Run a local Airflow environment using the Astro CLI.
 - Manage the Astro project directory.
-- Write a DAG from scratch.
+- Write a new DAG.
 - Navigate the Airflow UI.
-- Use code from the Astronomer registry.
+- Use code from the Astronomer Registry.
 
 ## Time to complete
 
