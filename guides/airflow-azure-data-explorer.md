@@ -23,7 +23,7 @@ To get the most out of this guide, you should have knowledge of:
 
 To allow Airflow to communicate with your ADX database, you need to configure service principal authentication. To do this, you create and register an Azure AD service principal, then give that principal permission to access your ADX database. See [Create an Azure Active Directory application registration in Azure Data Explorer](https://docs.microsoft.com/en-us/azure/data-explorer/provision-azure-ad-app).
 
-## Running an ADX Query with Airflow
+## Running an ADX query with Airflow
 
 Once you have your ADX cluster running and service principal authentication configured, you can get started querying a database with Airflow.
 
