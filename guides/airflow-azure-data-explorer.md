@@ -35,10 +35,10 @@ First, set up an Airflow connection to your ADX cluster. If you do this using th
 
 The required pieces for the connection are:
 
-- **Host:** your cluster URL
-- **Login:** your client ID
-- **Password:** your client secret
-- **Extra:** should include at least "tenant" with your tenant ID, and "auth_method" with your chosen authentication method. Based on the auth method, you may also need to specify "certificate" and/or "thumbprint" parameters.
+- **Host:** Your cluster URL
+- **Login:** Your client ID
+- **Password:** Your client secret
+- **Extra:** Should include at least "tenant" with your tenant ID, and "auth_method" with your chosen authentication method. Based on the auth method, you may also need to specify "certificate" and/or "thumbprint" parameters.
 
 For more information on setting up this connection, including available authentication methods, see the [ADX hook documentation](https://registry.astronomer.io/providers/microsoft-azure/modules/azuredataexplorerhook).
 
