@@ -155,9 +155,9 @@ If you see this error, increase the CPU and memory allocated to Docker. If you'r
 
 ### Astro project won't load after `astro dev start`
 
-If you're running the Astro CLI on a Mac computer that's built with the Apple M1 chip, your Astro project might take more than 5 mins to start after running `astro dev start`. This is a current limitation of Astro Runtime and the Astro CLI that's expected to be addressed soon.
+If you're running the Astro CLI on a Mac computer that's built with the Apple M1 chip, your Astro project might take more than 5 mins to start after running `astro dev start`. This is a current limitation of Astro Runtime and the Astro CLI.
 
-If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers. To do so:
+If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers. 
 
 1. After running `astro dev start`, retrieve a list of running containers by running `astro dev ps`.
 2. If the webserver and scheduler containers exist but are unhealthy, check their logs by running:
