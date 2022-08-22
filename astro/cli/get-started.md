@@ -37,8 +37,6 @@ To complete this tutorial, you'll need to know:
 - The [Astro CLI](cli/configure-cli.md).
 - An integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
 
-Astronomer also recommends having an integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
-
 ## Step 1: Create an Astro project
 
 To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally.
