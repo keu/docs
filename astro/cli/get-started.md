@@ -196,9 +196,9 @@ Now that we can run DAGs and navigate the UI, let's write our own DAG and run it
     ) as dag:
     ```
 
-    `with DAG(...) as dag:` instantiates a DAG context in which tasks can be defined and given depenencies. The instantiation includes several important arguments:
+    `with DAG(...) as dag:` instantiates a DAG context in which tasks can be defined and given dependencies. The instantiation includes several important arguments:
 
-    - `dag_id` (Required): The name of the DAG that appears in the Airflow UI. Each DAG must have unique name, and Astronomer recommends using the same name for the DAG file and the `dag_id`.
+    - `dag_id` (Required): The name of the DAG that appears in the Airflow UI. Each DAG must have a unique name, and Astronomer recommends using the same name for the DAG file and the `dag_id`.
     - `start_date` (Required): The date and time when the DAG is scheduled to start running, given as a datetime object. In this example, the DAG is triggered on its schedule as long as the current time is 0:00 UTC on July 28th, 2022 or later.
     - `schedule_interval`: The frequency the DAG runs. You can define this as a timedelta object, a [CRON expression](https://crontab.guru/), or as a macro such as "@daily". If you don't set this value, the DAG runs every 24 hours after the `start_date`.
     - `catchup`: Defines whether the DAG reruns all DAG runs that were scheduled before today's date. The default value is `True`, but it is recommended that you set this argument to `False` unless you are explicitly running your DAG to backfill runs.
