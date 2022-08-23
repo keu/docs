@@ -73,6 +73,31 @@ You can only use `astro dev run` in a local Airflow environment. To automate Air
 
 :::
 
+## Make requests to the Airflow REST API
+
+To make requests to the [Apache Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/cli-and-env-variables-ref.html) locally, you can use HTTP Basic Authentication with the credentials output by the `astro dev start` command:
+
+#### cURL
+```cURL
+curl -X GET localhost:8080/api/v1/<endpoint> --user "admin:admin"
+```
+
+#### Python
+```python
+import requests
+
+response = requests.get(
+   url="localhost:8080/api/v1/<endpoint>",
+   auth=("admin", "admin")
+)
+```
+
+:::info
+
+For more information on making requests to Airflow REST API and common examples, please see our [guide](https://docs.astronomer.io/astro/airflow-api) on this topic.
+
+:::
+
 ## Troubleshoot KubernetesPodOperator issues
 
 View local Kubernetes logs to troubleshoot issues with Pods that are created by the operator. See [Test and Troubleshoot the KubernetesPodOperator Locally](kubepodoperator-local.md#step-4-view-kubernetes-logs).
