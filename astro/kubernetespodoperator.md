@@ -146,7 +146,7 @@ KubernetesPodOperator(
     get_logs=True,
 )
 ```
-### Step 3: Create an Amazon Elastic Container Registry repository permissions policy (Optional)
+### Step 3: Create an Amazon ECR repository permissions policy (Optional)
 
 If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) repository, you need to add a permissions policy to the repository to allow the KubernetesPodOperator to execute it.
 
