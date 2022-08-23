@@ -7,9 +7,6 @@ description: Install Apache Airflow and deploy your first local project with the
 
 Getting started with Apache Airflow locally is easy with the Astro CLI.
 
-This tutorial guides you through the process of using the Astro CLI to create an Astro project, run your project in a local Airflow environment,
-and write DAGs. You'll also learn how to use the Astronomer Registry to discover example DAGs and Airflow providers.
-
 After you complete this tutorial, you'll be able to:
 
 - Run a local Airflow environment using the Astro CLI.
@@ -64,7 +61,7 @@ The Astro project is built to run Airflow with Docker. [Docker](https://docs.doc
 The default Astro project structure includes a collection of folders and files that you can use to run and customize Airflow. For this tutorial, you only need to know the following files and folders:
 
 - `/dags`: A directory of DAG files. Each Astro project includes two example DAGs: `example-dag-basic` and `example-dag-advanced`. For more information on DAGs, see [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
-- `Dockerfile`: This is where you specify your version of Astro Runtime, which is a runtime environment that includes Apache Airflow and is built by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
+- `Dockerfile`: This is where you specify your version of Astro Runtime, which is a runtime environment for Airflow that is built and maintained by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Apache Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
 
 ## Step 2: Start Airflow
 
@@ -129,7 +126,7 @@ Let's explore the available views in the **DAGs** page. To access different DAG 
 
     ![Grid view](/img/docs/tutorial-grid-view.png)
 
-    Click on a green square to display additional information about the related task instance on the right side of the Airflow UI. The task instance view includes tabs with additional information for the task instance, such as its logs and historic runs. This is one of many available views that show details about your DAG. Let's explore two more views.
+    Click on a green square to display additional information about the related task instance on the right side of the Airflow UI. The task instance view includes tabs with additional information for the task instance, such as its logs and historic runs. This is one of many available views that show details about your DAG.
 
 2. In the **Grid** tab, click **Graph**. This view shows task dependencies and relationships and can help you troubleshoot dependency issues. The border colors of each task indicate the task run state.
 
@@ -161,7 +158,7 @@ Now that we can run DAGs and navigate the UI, let's write our own DAG and run it
 
     ```
 
-    The first line imports the `DAG` class, the second and third lines import two Airflow operators that are used in this example, and the last line imports two objects from the [datetime package](https://docs.python.org/3/library/datetime.html), which are required to define the schedule of a DAG.
+    The first line imports the `DAG` class, the second and third lines import Airflow operators that are used in this example, and the last line imports two objects from the [datetime package](https://docs.python.org/3/library/datetime.html), which are required to define the schedule of a DAG.
 
 3. In the same file, add two static variables and a simple Python function that multiplies an input by 23. The DAG will use an Airflow operator to call this code.
 
@@ -284,12 +281,11 @@ The example DAG you wrote used two different core Airflow operators, but there a
 You can find [example DAGs](https://registry.astronomer.io/dags) in the Astronomer Registry that demonstrate more complex use cases and integrations. Now you'll add an example DAG to the Astro project:
 
 1. Go to the [Astronomer Registry](https://registry.astronomer.io/).
-2. Click **Browse DAGs**.
-3. In the search bar, search for `TaskFlow API`.
-4. Open the **TaskFlow API ETL Example** DAG.
-5. In the DAG's information page, click the **Code** tab and copy the contents of the DAG code.
-6. Paste the code into a new `.py` in the `dags` folder of your Astro project.
-7. Run the DAG from the Airflow UI.
+2. In the search bar, search for `TaskFlow API`.
+3. Go to the **DAGs** tab and open the **TaskFlow API ETL Example** DAG.
+4. In the DAG's information page, click the **Code** tab and copy the contents of the DAG code.
+5. Paste the code into a new `.py` in the `dags` folder of your Astro project.
+6. Run the DAG from the Airflow UI.
 
 This DAG demonstrates how you can define task dependencies using the TaskFlow API, which is a popular, more Pythonic method of writing DAGs. Instead of defining dependencies with bitshift operators, you can use direct calls to functions that have been decorated as tasks. In the example DAG, the following line:
 
@@ -303,7 +299,7 @@ has the same dependency structure as:
 extract_bitcoin_price >> process_data >> store_data
 ```
 
-If this style of writing DAGs feels more intuitive to you, read more about it in the [Airflow Decorators guide](https://www.astronomer.io/guides/airflow-decorators/).
+If this style of DAG writing feels more intuitive to you, read more about it in the [Airflow Decorators guide](https://www.astronomer.io/guides/airflow-decorators/).
 
 ## Next steps
 
