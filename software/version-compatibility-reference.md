@@ -13,12 +13,12 @@ While the tables below reference the minimum compatible versions, we typically r
 
 <!--- Version-specific -->
 
-| Astronomer Platform | Kubernetes                   |  Postgres | Python                                    | Astro CLI | Astronomer Certified / Runtime | Helm|
-| ------------------- | ---------------------------- |  -------- | ----------------------------------------- | -------------- | -------------------- |---|
-| v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.25.x         | All Certified versions                  |3.6|
-| v0.28               | 1.19, 1.20, 1.21             |  9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 1.0.x, 1.1.x        | All Certified versions                  |3.6|
-| v0.29               | 1.19, 1.20, 1.21, 1.22, 1.23        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 1.3.x         | All Certified and Runtime versions    | 3.6|
-| v0.30               | 1.19, 1.20, 1.21, 1.22, 1.23        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 1.4.x         | All Certified and Runtime versions    | 3.6|
+| Astronomer Platform | Kubernetes                   | Astro CLI    | Postgres | Python                                    | Astronomer Certified / Runtime     | Helm |
+| ------------------- | ---------------------------- | ------------ | -------- | ----------------------------------------- | ---------------------------------- | ---- |
+| v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 0.25.x       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified versions             | 3.6  |
+| v0.28               | 1.19, 1.20, 1.21             | 1.0.x, 1.1.x | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified versions             | 3.6  |
+| v0.29               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.3.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified and Runtime versions | 3.6  |
+| v0.30               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.4.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified and Runtime versions | 3.6  |
 
 For more detail on changes between Software versions, see [Astronomer Software Release Notes](release-notes.md).
 
