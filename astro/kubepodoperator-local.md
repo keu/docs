@@ -61,18 +61,18 @@ The latest versions of Docker for Windows and Mac let you run a single node Kube
         - cluster:
             certificate-authority-data: <certificate-authority-data>
             server: https://kubernetes.docker.internal:6443/
-        name: docker-desktop
+          name: docker-desktop
         contexts:
         - context:
             cluster: docker-desktop
             user: docker-desktop
-        name: docker-desktop
+          name: docker-desktop
         current-context: docker-desktop
         kind: Config
         preferences: {}
         users:
         - name: docker-desktop
-        user:
+          user:
             client-certificate-data: <client-certificate-data>
             client-key-data: <client-key-data>
      
