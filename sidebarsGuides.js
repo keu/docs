@@ -35,6 +35,7 @@ module.exports = {
         'overview',
         'airflow-azure-container-instances',
         'airflow-azure-data-explorer',
+        'airflow-databricks',
       ],
     },
   ],
