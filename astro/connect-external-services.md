@@ -144,7 +144,7 @@ To grant an Astro cluster access to a service that is running in an AWS account 
 ```
 :::info
 
-By default, Astronomer creates the `AirflowLogsS3-<clusterid>` role in the data plane account.  Every Airflow deployment in a cluster runs under this role.
+Astronomer creates the `AirflowLogsS3-<clusterid>` role in the data plane account.  Every Airflow deployment in a cluster runs under this role.
 
 :::
 
