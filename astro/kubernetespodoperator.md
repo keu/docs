@@ -103,14 +103,6 @@ Applying the code above ensures that when this DAG runs, it will launch a Kubern
 
 By default, the KubernetesPodOperator expects to pull a Docker image that's hosted publicly on Docker Hub. If you want to execute a Docker image that's hosted in a private registry, complete the setup below.
 
-:::caution
-
-Running Docker images that are hosted on [Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/) isn't supported on Astro. ECR authentication tokens expire after 12 hours and can't be recreated. As a result, KubernetesPodOperator tasks don't have access to the credentials necessary to pull and run Docker images hosted on ECR.
-
-If you're using ECR and are interested in exploring other solutions, contact [Astronomer support](https://support.astronomer.io).
-
-:::
-
 ### Prerequisites
 
 To complete this setup, you need:
@@ -154,6 +146,42 @@ KubernetesPodOperator(
     get_logs=True,
 )
 ```
+### Step 3: Create an Amazon Elastic Container Registry repository permissions policy (Optional)
+
+If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) repository, you need to add a permissions policy to the repository to allow the KubernetesPodOperator to execute it.
+
+1. Log in to the Amazon ECR Dashboard and then select **Menu** > **Repositories**.
+
+2. Click the **Private** or **Public** tabs and then click the name of the repository that hosts the Docker image. 
+
+3. Click **Permissions** in the left menu.
+
+4. Click **Edit policy JSON**.
+
+5. Copy and paste the following policy into the **Edit JSON** pane:
+
+    ```JSON   
+    {
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+        "Sid": "AllowImagePullAstro",
+        "Effect": "Allow",
+        "Principal": {
+            "AWS": "arn:aws:iam::<AWSAccountID>:root"
+        },
+        "Action": [
+            "ecr:GetDownloadUrlForLayer",
+            "ecr:BatchGetImage"
+        ]
+        }
+    ]
+    }
+    ```
+6. Replace `<AWSAccountID>` with your AWS account ID. Make sure you remove the hyphens from the ID, or an error message will appear when you attempt to save the new policy. 
+
+7. Click **Save** to create a new permissions policy named **AllowPullAstro**. 
+
 ## Related documentation
 
 - [How to use cluster ConfigMaps, Secrets, and Volumes with Pods](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html#how-to-use-cluster-configmaps-secrets-and-volumes-with-pod)
