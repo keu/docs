@@ -172,7 +172,7 @@ If you would like to see a more complete working example please visit our [full 
 
 ### Running Unit Tests
 
-If you would like to include unit tests in your CI/CD pipeline, you can run `pytest` after the image has been built. This is a best practice to ensure breaking changes are not being deployed. Simply execute a `docker run` using the image that was build in the previous step to execute tests before pushing the image to the registry.
+If you would like to include unit tests in your CI/CD pipeline, you can run `pytest` after the image has been built. This is a best practice to ensure breaking changes are not being deployed. Simply execute a `docker run` using the image that was built in the previous step to execute tests before pushing the image to the registry.
 
 Example:
 
