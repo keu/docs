@@ -1,11 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
-import {findFirstCategoryLink, useDocById} from '@docusaurus/theme-common';
+import {
+  findFirstCategoryLink,
+  useDocById,
+} from '@docusaurus/theme-common/internal';
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import {translate} from '@docusaurus/Translate';
 import styles from './styles.module.css';
-import awsLogo from './aws.svg';
+import Aws from './aws.svg';
 
 function CardContainer({href, children}) {
   return (
@@ -55,23 +58,20 @@ function CardCategory({item}) {
     />
   );
 }
-
-function isAws({item}){
-  return {item.label}.includes("AWS");
-}
-
 function CardLink({item}) {
-  if (isAws({item})) {
-    const icon = awsLogo;
+  const Icon = () => {
+  return (
+    <div className="Icon">
+      <img src={Aws} alt="React Logo" />
+    </div>
+  );
   }
-  else {
-    const icon = isInternalUrl(item.href) ? '📄️' : '🔗';
-  }
+  const icon = <img src={Aws} alt="AWS"/>
   const doc = useDocById(item.docId ?? undefined);
   return (
     <CardLayout
       href={item.href}
-      icon={icon}
+      icon={Icon}
       title={item.label}
       description={doc?.description}
     />
