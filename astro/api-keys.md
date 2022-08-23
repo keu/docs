@@ -61,11 +61,9 @@ export ASTRONOMER_KEY_ID=<your-key-id>
 export ASTRONOMER_KEY_SECRET=<your-key-secret>
 ```
 
-After setting the variables, running `astro deployment update` works for the Deployment and you don't need to manually authenticate to Astronomer. Astronomer recommends storing `ASTRONOMER_KEY_SECRET` as a secret before using it to programmatically update a production Deployment.
+After setting the variables, running `astro deployment update` works for the Deployment and you don't need to manually authenticate to Astronomer. Astronomer recommends storing `ASTRONOMER_KEY_SECRET` as a secret before using it to programmatically update a Deployment.
 
 ## Delete an API key
-
-Once deleted, an API key and secret cannot be recovered. If you accidentally delete an API key, you must create a new one.
 
 1. In the Cloud UI, select a Workspace and then select a Deployment.
 2. In the menu for the API key you want to delete, click **Edit**:
@@ -75,6 +73,8 @@ Once deleted, an API key and secret cannot be recovered. If you accidentally del
 3. Click **Delete API Key**, and then follow the onscreen prompt to finalize the deletion:
 
     [Delete API key button](/img/docs/delete-api-key.png)
+
+If you delete an API key, make sure that no existing CI/CD pipelines are using it. Once deleted, an API key and secret cannot be recovered. If you unintentionally delete an API key, create a new one and update any CI/CD workflows that used the deleted API key.
 
 ## Related documentation
 
