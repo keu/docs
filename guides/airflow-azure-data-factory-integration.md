@@ -10,7 +10,7 @@ Azure Data Factory (ADF) is a commonly used service for constructing data pipeli
 
 > **Note:** All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-data-factory-dag).
 
-## Why Use Airflow with ADF
+## Why use Airflow with ADF
 
 ADF is an easy to learn tool that allows you to quickly create jobs without writing code. It integrates seamlessly with on-premises data sources and other Azure services. However, it has some disadvantages when used alone - namely:
 
