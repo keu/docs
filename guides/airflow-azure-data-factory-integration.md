@@ -21,7 +21,7 @@ ADF is an easy to learn tool that allows you to quickly create jobs without writ
 
 That's where Airflow comes in. ADF jobs can be run using an Airflow DAG, giving the full capabilities of Airflow orchestration beyond using ADF alone. This allows users that are comfortable with ADF to write their job there, while Airflow acts as the control plane for orchestration.
 
-## ADF Modules in Airflow
+## ADF modules in Airflow
 
 The [Microsoft Azure provider](https://registry.astronomer.io/providers/microsoft-azure) has multiple modules for orchestrating ADF pipelines with Airflow.
 
