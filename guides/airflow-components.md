@@ -54,7 +54,7 @@ The following resources can help you manage Airflow components:
 - OSS [Official Helm Chart](https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html#using-official-airflow-helm-chart)
 - Managed Airflow on [Astro](https://www.astronomer.io/product/)
 
-Scalability is also an important consideration when setting up your production Airflow environment. SEe [Scaling Out Airflow guide](https://www.astronomer.io/guides/airflow-scaling-workers/).
+Scalability is also an important consideration when setting up your production Airflow environment. See [Scaling out Airflow](airflow-scaling-workers.md).
 
 ## High availability
 
