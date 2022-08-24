@@ -70,6 +70,10 @@ A single user account can now belong to multiple Organizations. A user with mult
 
 Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
 
+### New Azure region
+
+You can now [create an Astro cluster on Azure](create-cluster.md) in Australia East (New South Wales).
+
 ### New Google Cloud Platform regions
 
 You can now [create an Astro cluster on GCP](create-cluster.md) in the following regions:

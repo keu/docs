@@ -34,11 +34,12 @@ To create a new cluster on Astro with a specified configuration, see [Install As
 
 Astro supports the following Azure regions:
 
+- Australia East
+- Canada Central
 - Central US
 - East US
-- West US 3
-- Canada Central
 - West Europe
+- West US 3
 
 Modifying the region of an existing Astro cluster isn't supported. If you're interested in a region that isn't on this list, contact [Astronomer support](https://support.astronomer.io).
 
