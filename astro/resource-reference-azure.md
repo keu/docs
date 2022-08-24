@@ -3,6 +3,7 @@ sidebar_label: "Azure"
 title: "Resources required for Astro on Azure"
 id: resource-reference-azure
 description: Reference information for new Astro on Azure clusters.
+sidebar_custom_props: { icon: 'img/azure.png' }
 ---
 
 Unless otherwise specified, new clusters on Microsoft Azure are created with a set of default resources that are considered appropriate for most use cases.
