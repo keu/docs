@@ -44,7 +44,7 @@ You can use preconfigured Airflow executors, or you can create a [custom executo
 
 The [CeleryKubernetes Executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery_kubernetes.html) and the [Dask Executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/dask.html) are considered more experimental and are not as widely adopted as the other executors.
 
-## Managing the Airflow infrastructure
+## Managing Airflow infrastructure
 
 All Airflow components should be run on an infrastructure that is appropriate for the requirements of your organization. For example, using the [Astro CLI](https://docs.astronomer.io/astro/install-cli) to run Airflow on a local computer can be helpful when testing and for DAG development, but it is insufficient to support running DAGs in production. 
 
