@@ -72,7 +72,7 @@ Additional detail on requirements for interacting with Azure Data Factory using 
 
 ### Create a DAG to orchestrate ADF jobs
 
-Now that our ADF pipelines are runnable, we create a DAG that executes those pipelines using Azure provider modules. The DAG below executes two ADF pipelines in parallel (tasks `run_pipeline1` and `run_pipeline2`). It then uses an `AzureDataFactoryPipelineRunStatusSensor` to wait until "pipeline2" has completed before finishing the DAG.
+Now that our ADF pipelines are runnable, we create a DAG that executes those pipelines using Azure provider modules. The DAG below executes two ADF pipelines in parallel (tasks `run_pipeline1` and `run_pipeline2`). It then uses an `AzureDataFactoryPipelineRunStatusSensor` to wait until `pipeline2` has completed before finishing the DAG.
 
 ```python
 from datetime import datetime, timedelta
