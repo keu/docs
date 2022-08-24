@@ -139,7 +139,7 @@ module.exports = {
           link: {
             type:'generated-index',
             title: 'Cloud configuration reference',
-            description: 'Learn about all default and supported Astro cloud configurations.'
+            description: 'Learn about the default and supported Astro cloud configurations.'
 
           },
           items: [
