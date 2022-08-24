@@ -168,7 +168,7 @@ If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) rep
         "Sid": "AllowImagePullAstro",
         "Effect": "Allow",
         "Principal": {
-            "AWS": "arn:aws:iam::<AWSAccountID>:root"
+            "AWS": "arn:aws:iam::<AstroAccountID>:root"
         },
         "Action": [
             "ecr:GetDownloadUrlForLayer",
@@ -178,7 +178,7 @@ If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) rep
     ]
     }
     ```
-6. Replace `<AWSAccountID>` with your AWS account ID. Make sure you remove the hyphens from the ID, or an error message will appear when you attempt to save the new policy. 
+6. Replace `<AWSAccountID>` with your Astro account ID. 
 
 7. Click **Save** to create a new permissions policy named **AllowPullAstro**. 
 
