@@ -64,6 +64,7 @@ function CardLink({item}) {
   return (
     <CardLayout
       href={item.href}
+      // Custom handling for index icons. Specify custom icons using `sidebar_custom_props` in the doc's frontmatter
       icon={item?.customProps?.icon ? <img src={useBaseUrl(`${item.customProps.icon}`)} alt="icon" /> : icon}
       title={item.label}
       description={doc?.description}
