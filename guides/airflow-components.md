@@ -38,8 +38,8 @@ You can use preconfigured Airflow executors, or you can create a [custom executo
 - **[CeleryExecutor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html):** Uses a Celery backend (such as Redis, RabbitMq, or another message queue system) to coordinate tasks between preconfigured workers. This executor is ideal for high volumes of shorter running tasks or in environments with consistent task loads.
 - **[KubernetesExecutor](https://airflow.apache.org/docs/apache-airflow/stable/executor/kubernetes.html):** Calls the Kubernetes API to create a separate pod for each task to run, enabling users to pass in custom configurations for each of their tasks and use resources efficiently. This executor is ideal in the following scenarios: 
 
-    - You have long running tasks that you don't want to be interrupted by code deploys or Airflow updates
-    - Your tasks require very specific resource configurations
+    - You have long running tasks that you don't want to be interrupted by code deploys or Airflow updates.
+    - Your tasks require very specific resource configurations.
     - Your tasks run infrequently, and you don't want to incur worker resource costs when they aren't running.
 
 The [CeleryKubernetes Executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery_kubernetes.html) and the [Dask Executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/dask.html) are considered more experimental and are not as widely adopted as the other executors.
