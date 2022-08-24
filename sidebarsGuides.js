@@ -33,7 +33,7 @@ module.exports = {
       label: 'Integrations',
       items: [
         'overview',
-        'airflow-azure-container-instances',
+        'airflow-azure-data-factory-integration',
         'airflow-azure-data-explorer',
       ],
     },

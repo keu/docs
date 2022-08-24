@@ -55,27 +55,29 @@ The latest versions of Docker for Windows and Mac let you run a single node Kube
 <TabItem value="windows and mac">
 
 1. Go to the `$HOME/.kube` directory that was created when you enabled Kubernetes in Docker and copy the `config` file into the `/include/.kube/` folder in your Astro project. The `config` file contains all the information the KubernetesPodOperator uses to connect to your cluster. For example:
-    ```apiVersion: v1
-    clusters:
-    - cluster:
-        certificate-authority-data: <certificate-authority-data>
-        server: https://kubernetes.docker.internal:6443/
-    name: docker-desktop
-    contexts:
-    - context:
-        cluster: docker-desktop
-        user: docker-desktop
-    name: docker-desktop
-    current-context: docker-desktop
-    kind: Config
-    preferences: {}
-    users:
-    - name: docker-desktop
-    user:
-        client-certificate-data: <client-certificate-data>
-        client-key-data: <client-key-data>
-    ```
-    The cluster `name` should be searchable as `docker-desktop` in your local `$HOME/.kube``config` file. Do not add any additional data to the `config` file.
+     
+     ```apiVersion: v1
+        clusters:
+        - cluster:
+            certificate-authority-data: <certificate-authority-data>
+            server: https://kubernetes.docker.internal:6443/
+          name: docker-desktop
+        contexts:
+        - context:
+            cluster: docker-desktop
+            user: docker-desktop
+          name: docker-desktop
+        current-context: docker-desktop
+        kind: Config
+        preferences: {}
+        users:
+        - name: docker-desktop
+          user:
+            client-certificate-data: <client-certificate-data>
+            client-key-data: <client-key-data>
+     
+     ```
+    The cluster `name` should be searchable as `docker-desktop` in your local `$HOME/.kube/config` file. Do not add any additional data to the `config` file.
 
 2. Update the `<certificate-authority-data>`, `<client-authority-data>`, and `<client-key-data>` values in the `config` file with the values for your organization. 
 3. Under cluster, change `server: https://localhost:6445` to `server: https://kubernetes.docker.internal:6443` to identify the localhost running Kubernetes Pods. If this doesn't work, try `server: https://host.docker.internal:6445`.

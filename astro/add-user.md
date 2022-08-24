@@ -16,6 +16,8 @@ As a Workspace Admin or Organization Owner, you can add new team members to Astr
 For more information on user roles, see [Manage user permissions on Astro](user-permissions.md).
 ## Add a user to an Organization
 
+You can invite a user to an Organization only if their email address' domain is in your Organization's allowlist. To add a domain to your Organization's allowlist, contact [Astronomer support](https://support.astronomer.io).
+
 1. In the Cloud UI's Organization view, open the **People** tab.
 2. Click **Invite member**:
 
