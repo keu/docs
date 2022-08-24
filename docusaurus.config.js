@@ -98,6 +98,12 @@ module.exports = {
       ],
     },
     footer: {
+      logo: {
+        alt: "Astronomer logo",
+        src: "img/monogram-light.png",
+        href: "https://astronomer.io",
+        width: 48,
+      },
       links: [
         {
           title: 'Astro',
@@ -189,7 +195,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: '© Astronomer',
+      copyright: '© Astronomer 2022',
     },
   },
   presets: [

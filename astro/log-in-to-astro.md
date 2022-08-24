@@ -11,7 +11,7 @@ You can use the Cloud UI and the Astro CLI to view and modify your Workspaces, D
 
 - An Astronomer account.
 - The [Astro CLI](cli/get-started.md).
-- An email address with a domain that matches the domain configured for your Organization. 
+- An email address with a domain that matches the domain configured for your Organization.
 
 ## Log in to the Cloud UI
 
@@ -50,6 +50,14 @@ Astronomer uses refresh tokens to make sure that you don’t need to log in to t
 
     Confirmation messages appear in the Cloud UI and in the Astro CLI indicating that your login was successful and that your computer is now connected. The name of your default Workspace in the Astro CLI also appears. To switch Workspace contexts after you log in, see [astro workspace switch](https://docs.astronomer.io/astro/cli/astro-workspace-switch).
 
+## Browserless authentication
+
+The following options are available if you're unable to use a browser for authentication:
+
+- Run `astro login -t` to log in with an authentication token. To obtain an authentication token on a separate machine, go to `https://cloud.astronomer.io/token`.
+- Run `astro login -l` to retrieve a Cloud UI log in URL and then copy the URL. In a separate terminal session, run `curl -u <user-email>:<password> <returned-url>`. This option doesn't work if you're using an identity provider (IdP) for account authentication.
+- [Use a Deployment API key](api-keys.md#using-deployment-api-keys).
+
 ## Access a different base domain
 
 When you need to access Astro and Astronomer Software with the Astro CLI at the same time, you need to authenticate to each product individually by specifying a base domain for each Astronomer installation.
@@ -73,3 +81,14 @@ For Astro users, the base domain is `cloud.astronomer.io`. For Astronomer Softwa
     ```
     astro context switch <basedomain>
     ```
+
+## Switch Organizations
+
+You can belong to more than one Astro Organization. To switch to another Organization that you have access to:
+
+1. Log in to the Cloud UI. By default, the Cloud UI opens the first Organization that you joined.
+2. In the top navigation bar, click the name of your current Organization.
+3. Click **Switch Organization**.
+4. Select the Organization that you want to switch to.
+
+Note that having a role in an Organization does not guarantee that you can access the Organization through the Cloud UI. To access another Organization, you need to be able to authenticate through at least one of their enabled authentication methods.

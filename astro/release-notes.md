@@ -11,9 +11,85 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
-**Latest Astro Runtime Version**: 5.0.6 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 5.0.7 ([Release notes](runtime-release-notes.md))
 
-**Latest CLI Version**: 1.3.0 ([Release notes](cli/release-notes.md))
+**Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
+
+## August 18, 2022
+
+### Create multiple worker queues
+
+Worker queues are a new way to configure your Deployment to best fit the needs of your tasks. A worker queue is a set of configurations that apply to a group of workers in your Deployment. Within a worker queue, you can configure worker type and size as well as autoscaling behavior. By configuring multiple worker queues for different types of tasks, you can better optimize for the performance, reliability, and throughput of your Deployment.
+
+In the Cloud UI, you can now create multiple worker queues. Once you create a worker queue, you can assign a task to that worker queue by adding a simple `queue='<worker-queue-name>'` argument in your DAG code.
+
+![Worker queue configurations in the Cloud UI](/img/release-notes/worker-queues.png)
+
+This feature enables the ability to:
+
+- Use more than one worker type within a single Deployment and cluster. Previously, a single cluster on Astro supported only one worker type.
+- Isolate long-running tasks from short-running tasks to avoid errors related to competing resource requests.
+- Fine-tune autoscaling behavior for different groups of tasks within a single Deployment.
+
+For example, if you have a task that requires significantly more CPU than memory, you can assign it to a queue that's configured with workers that are optimized for compute usage.
+
+To learn more about configuring worker queues, see [Configure Deployment resources](configure-deployment-resources.md#worker-queues).
+
+### New worker sizing
+
+This Astro release introduces a new, simple way to allocate resources to the workers in your Deployment. Instead of choosing a varying combination of CPU and memory, you can now select a worker type in the Cloud UI as long as it's enabled in your cluster. For example, `m5.2xlarge` or `c6i.8xlarge` on AWS. Once you select a worker type, Astronomer will create the biggest worker that that worker type can support to ensure that your tasks have enough resources to execute successfully.
+
+Astro's worker sizing enables a few benefits:
+
+- You can no longer configure a worker that is too large or otherwise not supported by your underlying cluster. Previously, misconfiguring worker size often resulted in task failures.
+- A more efficient use of infrastructure. Astronomer has found that a lower number of larger workers is more efficient than a higher number of smaller workers.
+- A higher level of reliability. This worker sizing model results in less volatility and a lower frequency of cluster autoscaling events, which lowers the frequency of errors such as zombie tasks and missing task logs.
+- The legacy **AU** unit is no longer applicable in the context of the worker. You only have to think about CPU, memory, and worker type.
+
+Worker sizing on Astro is now defined in the context of worker queues. For more information about worker sizing, see [Configure Deployment resources](configure-deployment-resources.md#worker-queues). For a list of supported worker types, see the [AWS](resource-reference-aws.md#worker-node-types), [GCP](resource-reference-gcp.md#worker-node-types), and [Azure](resource-reference-azure.md#worker-node-types) resource references.
+
+### New Maximum Tasks per Worker setting
+
+A new **Maximum Tasks per Worker** configuration is now available in the Deployment view of the Cloud UI. Maximum tasks per worker determines the maximum number of tasks that a single worker can process at a time and is the basis of worker autoscaling behavior. It is equivalent to [worker concurrency](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) in Apache Airflow.
+
+Previously, maximum tasks per worker was permanently set to 16 and was not configurable on Astro. Now, you can set maximum tasks per worker anywhere between 1 and 64 based on the needs of your tasks. It can be set per worker queue on a Deployment.
+
+To learn more, see [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
+
+### New Worker Count (Min-Max) setting
+
+A new **Worker Count (Min-Max)** configuration is now available in the Deployment view of the Cloud UI. This value defines the minimum and maximum number of workers that can run at a time.
+
+Use this setting to fine-tune worker autoscaling behavior in your Deployment. By default, the minimum number of workers is 1 and the maximum is 10.
+
+To learn more, see [Worker queue settings](configure-deployment-resources.md#worker-queue-settings).
+
+### Support for multiple Organizations
+
+A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Switch Organization**.
+
+Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
+
+### New Google Cloud Platform regions
+
+You can now [create an Astro cluster on GCP](create-cluster.md) in the following regions:
+
+- `australia-southeast2` (Melbourne)
+- `asia-east1` (Taiwan)
+- `asia-south2` (Delhi)
+- `asia-southeast2` - (Jakarta)
+- `europe-north1` (Finland)
+- `europe-southwest1` (Madrid)
+- `europe-west8` (Milan)
+- `europe-west9` (Paris)
+- `northamerica-northeast2` (Toronto)
+- `southamerica-west1` (Santiago)
+- `us-east5` (Columbus)
+- `us-south1` (Dallas)
+
+### Bug fixes
+
+- Fixed an issue where the Cloud UI's **Resource Settings** page wasn't showing units for CPU and Memory values.
 
 ## August 10, 2022
 
@@ -34,6 +110,12 @@ If your organization has [implemented an identity provider (IdP)](configure-idp.
 - Added a security measure that ensures Workspace roles can only be assigned to users who have an Organization role in the Organization in which the Workspace is hosted. This ensures that a user who does not belong to your Organization cannot be assigned a Workspace role within it.
 
 ## August 2, 2022
+
+### Support for Astro on Azure Kubernetes Service (AKS)
+
+Astro now officially supports Astro clusters on AKS. This includes support for an initial set of AKS regions.
+
+For more information about the installation process and supported configurations, see [Install Astro on Azure](install-azure.md) and [Resource Reference Azure](resource-reference-azure.md).
 
 ### Bug fixes
 
@@ -234,7 +316,7 @@ To widen our support for various use cases and levels of scale, we've expanded t
 - [Compute Optimized C6i instances](https://aws.amazon.com/ec2/instance-types/c6i/)
 - [Memory Optimized R6i instances](https://aws.amazon.com/ec2/instance-types/r6i/)
 
-For a full list of node instance types that are supported on Astro, see [AWS Resource Reference](resource-reference-aws.md#node-instance-type). To modify an existing Astro cluster to use any of these instance types, see [Modify a Cluster](modify-cluster.md).
+For a full list of node instance types that are supported on Astro, see [Resources required for Astro on AWS](resource-reference-aws.md#node-instance-type). To modify an existing Astro cluster to use any of these instance types, see [Modify a Cluster](modify-cluster.md).
 
 ### Additional improvements
 
@@ -244,13 +326,13 @@ For a full list of node instance types that are supported on Astro, see [AWS Res
 
 ### Feedback in Cloud UI on worker size limits
 
-The Cloud UI now renders an error if you try to modify the **Worker Resources**  to a combination of CPU and memory that is not supported by the node instance type of the cluster that the Deployment is hosted on. This validation ensures that the worker size you request is supported by the infrastructure available in your Astro cluster, and minimizes silent task failures that might have occurred due to invalid resource requests.
+The Cloud UI now renders an error if you try to modify the **Worker Resources** to a combination of CPU and memory that is not supported by the node instance type of the cluster that the Deployment is hosted on. This validation ensures that the worker size you request is supported by the infrastructure available in your Astro cluster, and minimizes silent task failures that might have occurred due to invalid resource requests.
 
 If your Astro cluster is configured with the `m5d.8xlarge` node type, for example, the Cloud UI will show an error if you try to set **Worker Resources** to 350 AU. This is because the maximum worker size an `m5d.8xlarge` node can support is 307 AU.
 
 ![Worker size error](/img/release-notes/worker-size-error.png)
 
-For a reference of all node instance types Astro supports and their corresponding worker size limits, see [AWS Resource Reference](resource-reference-aws.md#node-instance-type).
+For a reference of all node instance types Astro supports and their corresponding worker size limits, see [Resources required for Astro on AWS](resource-reference-aws.md#node-instance-type), [Resources required for Astro on Azure](resource-reference-azure.md#node-instance-type), or  [Resources required for Astro on GCP](resource-reference-gcp.md#node-instance-type).
 
 ## April 14, 2022
 
@@ -301,7 +383,7 @@ You can now [create new Clusters](create-cluster.md) in:
 - `ap-northeast-3` (Osaka)  
 - `me-south-1` (Bahrain)
 
-For a full list of AWS regions supported on Astro, see [AWS Resource Reference](resource-reference-aws.md#aws-region).
+For a full list of AWS regions supported on Astro, see [Resources required for Astro on AWS](resource-reference-aws.md#aws-region).
 
 ### Additional improvements
 
@@ -558,7 +640,7 @@ You can now create new clusters in:
 - `us-west-1`
 - `us-west-2`
 
-For a full list of AWS regions supported on Astro, see [AWS Resource Reference](https://docs.astronomer.io/resource-reference-aws.md#aws-region).
+For a full list of AWS regions supported on Astro, see [Resources required for Astro on AWS](https://docs.astronomer.io/resource-reference-aws.md#aws-region).
 
 ### Additional improvements
 

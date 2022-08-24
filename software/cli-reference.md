@@ -101,9 +101,11 @@ Use `astro completion <subcommand>` to generate autocompletion scripts, which ca
 
 > **Note:** If you're running on MacOS, make sure to install [Bash Completion](https://github.com/scop/bash-completion) before creating autocompletion scripts. To do so via Homebrew, run:
 
-    ```sh
+   ```sh
+
     brew install bash-completion
-    ```
+    
+   ```
 
 ### Subcommands
 

@@ -32,6 +32,19 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
 
 For more information about the resources required to run Astro on Azure, see [Azure Resource Reference](resource-reference-azure.md).
 
+### VPC peering prerequisites (Optional)
+
+If any Azure resources are on a private network, you can choose one of the following options:
+
+- Use the public internet and allow-lists for communication.
+- Create a VPC Peering connection between the Astronomer VPC and your network VPCs.
+
+To implement the second option, you'll additionally need:
+
+- A CIDR block (RFC 1918 IP Space) no smaller than a `/19` range. You must ensure it does not overlap with the AWS VPC(s) that you will be peering with later. The default CIDR range is `172.20.0.0/19`.
+- VPC Name / ID for peering with Astronomer.
+- The IP addresses of your DNS servers.
+
 ## Step 1: Access Astro
 
 1. Go to https://cloud.astronomer.io/ and create an Astronomer account.

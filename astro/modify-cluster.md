@@ -16,7 +16,7 @@ To complete this setup, you need to have:
 - A cluster on Astro.
 - Permission from your team.
 
-If you don't have a cluster on Astro, see [Install Astro on AWS](install-aws.md) or [GCP](install-gcp.md). If you have an existing cluster and you want to create additional clusters, see [Create a cluster](create-cluster.md). To view your clusters' current configurations, see [Manage clusters](view-clusters.md).
+If you don't have a cluster on Astro, see [Install Astro on AWS](install-aws.md), [Install Astro on Azure](install-azure.md), or [GCP](install-gcp.md). If you have an existing cluster and you want to create additional clusters, see [Create a cluster](create-cluster.md). To view your clusters' current configurations, see [Manage clusters](view-clusters.md).
 
 ## Supported cluster modifications
 
@@ -24,10 +24,9 @@ Some cluster and Deployment-level modifications require Astronomer support and c
 
 - [Create a new cluster](create-cluster.md).
 - Delete a cluster.
-- Update a cluster's worker instance type. See cloud resource references ([AWS](resource-reference-aws.md#deployment-worker-size-limits), [GCP](resource-reference-gcp.md#deployment-worker-size-limits)).
-- Update the maximum node count of an existing cluster.
+- Create a new node pool. This enables a new worker type for all Deployments in the cluster. See resource references for [AWS](resource-reference-aws.md#worker-node-pools), [Azure](resource-reference-azure.md#deployment-worker-node-pools), and [GCP](resource-reference-gcp.md#deployment-worker-node-pools).
+- Update an existing worker node pool, including its node instance type or maximum node count.
 - [Create a VPC connection](connect-external-services.md#vpc-peering) or a [transit gateway connection](connect-external-services.md#workload-identity-gcp-only) between a cluster and a target VPC.
-- Run Docker images from a private registry with the [KubernetesPodOperator](kubernetespodoperator#run-images-from-a-private-registry).
 
 ## Step 1: Submit a request to Astronomer
 
