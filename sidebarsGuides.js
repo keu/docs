@@ -34,6 +34,7 @@ module.exports = {
       items: [
         'overview',
         'airflow-azure-data-factory-integration',
+        'airflow-azure-data-explorer',
       ],
     },
   ],
