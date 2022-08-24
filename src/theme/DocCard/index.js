@@ -8,7 +8,6 @@ import {
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import {translate} from '@docusaurus/Translate';
 import styles from './styles.module.css';
-import Aws from './aws.svg';
 
 function CardContainer({href, children}) {
   return (
@@ -19,11 +18,11 @@ function CardContainer({href, children}) {
     </Link>
   );
 }
-function CardLayout({href, icon, title, description}) {
+function CardLayout({item, href, icon, title, description}) {
   return (
     <CardContainer href={href}>
       <h2 className={clsx('text--truncate', styles.cardTitle)} title={title}>
-        {icon} {title}
+        {item?.customProps?.icon ? <img src={require(`/${item.customProps.icon}`)} alt="icon" /> : icon} {title}
       </h2>
       {description && (
         <p
@@ -59,19 +58,12 @@ function CardCategory({item}) {
   );
 }
 function CardLink({item}) {
-  const Icon = () => {
-  return (
-    <div className="Icon">
-      <img src={Aws} alt="React Logo" />
-    </div>
-  );
-  }
-  const icon = <img src={Aws} alt="AWS"/>
+  const icon = isInternalUrl(item.href) ? '📄️' : '🔗';
   const doc = useDocById(item.docId ?? undefined);
   return (
     <CardLayout
       href={item.href}
-      icon={Icon}
+      icon=<img src={require(`/${item.customProps.icon}`)} alt="icon" />
       title={item.label}
       description={doc?.description}
     />
