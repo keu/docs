@@ -58,6 +58,6 @@ Scalability is also an important consideration when setting up your production A
 
 ## High availability
 
-Airflow can be made highly available, which makes it suitable for large organizations with critical production workloads. Airflow 2 introduced a highly available Scheduler, meaning that you can run multiple Scheduler replicas in an active-active model. This makes the Scheduler more performant and resilient, eliminating a single point of failure within your Airflow environment. 
+Airflow can be made highly available, which makes it suitable for large organizations with critical production workloads. Airflow 2 introduced a highly available scheduler, meaning that you can run multiple Scheduler replicas in an active-active model. This makes the scheduler more performant and resilient, eliminating a single point of failure within your Airflow environment. 
 
-Running multiple Schedulers requires additional database configuration. See [Running More Than One Scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html#running-more-than-one-scheduler).
+Running multiple schedulers requires additional database configuration. See [Running More Than One Scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html#running-more-than-one-scheduler).
