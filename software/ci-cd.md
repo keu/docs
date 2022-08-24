@@ -170,11 +170,11 @@ docker build -t registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD
 
 If you would like to see a more complete working example please visit our [full example using Drone-CI](https://github.com/astronomer/airflow-example-dags/blob/main/.drone.yml).
 
-### Running Unit Tests
+### Run unit tests
 
-If you would like to include unit tests in your CI/CD pipeline, you can run `pytest` after the image has been built. This is a best practice to ensure breaking changes are not being deployed. Simply execute a `docker run` using the image that was built in the previous step to execute tests before pushing the image to the registry.
+Astronomer recommends adding a unit testing step to production pipelines after your build step to ensure that you don't push an image with breaking changes to your registry. To run basic unit tests, create a pipeline step to execute `docker run` and run `pytest tests` in a container based on your newly built image. Use the following format for the command:
 
-Example:
+For example, you can add the following command as a step in a [Drone](ci-cd.md#DroneCI) pipeline:
 
 ```bash
 docker run --rm registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD_NUMBER} /bin/bash -c "pytest tests"
