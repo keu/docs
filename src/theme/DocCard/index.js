@@ -8,6 +8,7 @@ import {
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import {translate} from '@docusaurus/Translate';
 import styles from './styles.module.css';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 function CardContainer({href, children}) {
   return (
@@ -22,7 +23,7 @@ function CardLayout({item, href, icon, title, description}) {
   return (
     <CardContainer href={href}>
       <h2 className={clsx('text--truncate', styles.cardTitle)} title={title}>
-        {item?.customProps?.icon ? <img src={require(`/${item.customProps.icon}`)} alt="icon" /> : icon} {title}
+        {icon} {title}
       </h2>
       {description && (
         <p
@@ -63,7 +64,7 @@ function CardLink({item}) {
   return (
     <CardLayout
       href={item.href}
-      icon=<img src={require(`/${item.customProps.icon}`)} alt="icon" />
+      icon={item?.customProps?.icon ? <img src={useBaseUrl(`${item.customProps.icon}`)} alt="icon" /> : icon}
       title={item.label}
       description={doc?.description}
     />
