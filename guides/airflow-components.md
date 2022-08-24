@@ -52,7 +52,7 @@ The following resources can help you manage Airflow components:
 
 - OSS [Production Docker Images](https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html#using-production-docker-images)
 - OSS [Official Helm Chart](https://airflow.apache.org/docs/apache-airflow/stable/installation/index.html#using-official-airflow-helm-chart)
-- [Astro Cloud](https://www.astronomer.io/product/) managed Airflow
+- Managed Airflow on [Astro](https://www.astronomer.io/product/)
 
 Scalability is also an important consideration when setting up your production Airflow environment. SEe [Scaling Out Airflow guide](https://www.astronomer.io/guides/airflow-scaling-workers/).
 
