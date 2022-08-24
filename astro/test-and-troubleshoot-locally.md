@@ -120,6 +120,39 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
 
 5. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
 
+## Override the CLI's Docker Compose file
+
+The Astro CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. To override the CLI's default Docker Compose configurations, add a `docker-compose.override.yml` file to your Astro project. These values are applied whenever you run `astro dev start` or `astro dev restart`.
+
+To see what values you can override, reference the CLI's [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go). Common use cases for Docker Compose overrides include:
+
+- Adding extra containers to mimic services that your Airflow environment needs to interact with locally, such as an SFTP server.
+- Change the volumes mounted to any of your local containers.
+
+For example, to add another volume mount for a directory named `custom_dependencies`, add the following to your `docker-compose.override.yml` file:
+
+```yaml
+version: "3.1"
+services:
+  scheduler:
+    volumes:
+      - /home/astronomer_project/custom_dependencies:/usr/local/airflow/custom_dependencies:ro
+```
+
+Make sure to specify `version: "3.1"` and follow the format of the source code file linked above.
+
+To see your override file live in your local Airflow environment, run the following command to see the file in your scheduler container:
+
+```sh
+astro dev bash --scheduler "ls -al"
+```
+
+:::info
+
+The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global environment variables](platform-variables.md). To learn more about environment variables, read [Environment variables](environment-variables.md).
+
+:::
+
 ## Troubleshoot common issues
 
 Use the information provided here to resolve common issues with running an Astro project in a local environment.
@@ -157,7 +190,7 @@ If you see this error, increase the CPU and memory allocated to Docker. If you'r
 
 If you're running the Astro CLI on a Mac computer that's built with the Apple M1 chip, your Astro project might take more than 5 mins to start after running `astro dev start`. This is a current limitation of Astro Runtime and the Astro CLI.
 
-If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers. 
+If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers.
 
 1. After running `astro dev start`, retrieve a list of running containers by running `astro dev ps`.
 2. If the webserver and scheduler containers exist but are unhealthy, check their logs by running:
@@ -197,7 +230,7 @@ To resolve a port availability error, you have the following options:
 1. Run `docker ps` to identify the Docker containers running on your computer.
 2. Copy the values in the `CONTAINER ID` column.
 3. Select one of the following options:
-    
+
     - Run `docker stop <container_id>` to stop a specific Docker container. Replace `<container_id>` with one of the values you copied in step 2.
     - Run `docker stop $(docker ps -q)` to stop all running Docker containers.
 
