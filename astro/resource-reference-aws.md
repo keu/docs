@@ -1,11 +1,11 @@
 ---
-sidebar_label: "AWS resource reference"
+sidebar_label: "AWS"
 title: "Resources required for Astro on AWS"
 id: resource-reference-aws
 description: Reference of all supported configurations for new clusters on Astro in AWS.
 ---
 
-Unless otherwise specified, new Clusters on Astro are created with a set of default AWS resources that our team has deemed appropriate for most use cases.
+Unless otherwise specified, new clusters on Astro are created with a set of default AWS resources that should be suitable for most use cases.
 
 Read the following document for a reference of our default resources as well as supported cluster configurations, including **AWS Region** and **Node Instance Type**.
 
@@ -14,7 +14,9 @@ Read the following document for a reference of our default resources as well as 
 | Resource                                  | Description                                                                                                                   | Quantity / Default Size |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [EKS Cluster](https://aws.amazon.com/eks) | An EKS cluster is required to run the Astro Data Plane, which hosts the resources and data required to execute Airflow tasks. | 1x                      |
-| [EC2 Instances](https://aws.amazon.com/ec2/instance-types/) | EC2 instances (nodes) power all system and Airflow components on Astro, including workers and schedulers. EC2 instances auto-scale based on the demand for nodes in your cluster. | 2x m5.xlarge |
+| Worker node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that run all workers across Deployments in the cluster. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different worker types. | 1x pool of m5.xlarge nodes |
+| Airflow system node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all core Airflow components, including the scheduler and webserver. This node pool is fully managed by Astronomer | 1x pool of m5.xlarge nodes |
+| Astro system node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all other system components required in Astro. This node pool is fully managed by Astronomer| 1x pool of m5.xlarge nodes |
 | [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/) | The RDS instance is the primary database of the Astro Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster. | 1x db.r5.large |
 | [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) | Elastic IPs are required for connectivity with the Control Plane, and other public services. | 2x |
 | [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) | Subnets are provisioned in 2 different [Availability Zones (AZs)](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for redundancy, with 1 public and 1 private subnet per AZ. Public subnets are required for the NAT and Internet gateways, while private subnets are required for EC2 nodes. | 2x /26 (public) and 1x /20 + 1x /21 (private) |
@@ -88,81 +90,84 @@ Astro supports a variety of AWS RDS instance types. Instance types comprise of v
 - db.m5.16xlarge
 - db.m5.24xlarge
 
-### Node Instance Type
+### Worker node pools
 
-Astro supports a variety of AWS EC2 instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. While the resources allocated to system and Airflow components are managed by Astronomer, the node instance type you select for your cluster powers the workers of all Deployments within that cluster.
+A node pool is a group of nodes within a cluster that all have the same configuration. On Astro, worker nodes are responsible for running the Pods that execute Airflow tasks. Each worker node pool can be configured with a node instance type and a maximum node count. All Astro clusters have one worker node pool by default, but you can configure additional node pools for advanced configurability. 
 
-For detailed information on each instance type, refer to [AWS documentation](https://aws.amazon.com/ec2/instance-types/). If you're interested in a node type that is not on this list, reach out to [Astronomer support](https://support.astronomer.io). Not all instance types are supported in all AWS regions.
+If your cluster has multiple worker node pools with different worker node instance types, users in your organization can configure tasks to run on those worker types using [worker queues](configure-deployment-resources.md#worker-queues.md). To enable a new worker type for your cluster, contact [Astronomer support](https://support.astronomer.io) with a request to create a new node pool or modify an existing node pool.
 
-#### c6i
+Astronomer monitors your usage and the number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer support might contact you and provide recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
-- c6i.xlarge
-- c6i.2xlarge
-- c6i.4xlarge
-- c6i.8xlarge
-- c6i.12xlarge
-- c6i.16xlarge
-- c6i.24xlarge
-- c6i.32xlarge
-- c6i.metal
+For information about each instance type, see [Amazon EC2 Instance Types](https://aws.amazon.com/ec2/instance-types/).
 
-#### m5
+### Worker node types
 
-- m5.xlarge (_default_)
-- m5.2xlarge
-- m5.4xlarge
-- m5.8xlarge
-- m5.12xlarge
-- m5.16xlarge
-- m5.24xlarge
-- m5.metal
+Each worker in a worker node pool runs a single worker Pod. A worker Pod's actual available size is equivalent to the total capacity of the instance type minus Astro’s system overhead.
 
-#### m5d
+The following table lists all available instance types for worker node pools, as well as the Pod size that is supported for each instance type. As the system requirements of Astro change, these values can increase or decrease.
 
-- m5d.xlarge
-- m5d.2xlarge
-- m5d.4xlarge
-- m5d.8xlarge
-- m5d.12xlarge
-- m5d.16xlarge
-- m5d.24xlarge
-- m5d.metal
+| Worker Node Type | CPU       | Memory       |
+|--------------------|-----------|--------------|
+| m5.xlarge          | 2 CPUs    | 7.5 GiB MEM  |
+| m5.2xlarge         | 6 CPUs    | 22.5 GiB MEM |
+| m5.4xlarge         | 14 CPUs   | 52.5 GiB MEM |
+| m5.8xlarge         | 30 CPUs   | 112.5 GiB MEM|
+| m5.12xlarge        | 46 CPUs   | 172.5 GiB MEM|
+| m5.16xlarge        | 62 CPUs   | 232.5 GiB MEM|
+| m5.24xlarge        | 94 CPUs   | 352.5 Gib MEM|
+| m5.metal           | 94 CPUs   | 352.5 Gib MEM|
+| m5d.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| m5d.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| m5d.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| m5d.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| m5d.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| m5d.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| m5d.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| m5d.metal          | 94 CPUs   | 352.5 Gib MEM|
+| m6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| m61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| m6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| m6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| m6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| m6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| m6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| m6i.metal          | 94 CPUs   | 352.5 Gib MEM|
+| r6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| r61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| r6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| r6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| r6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| r6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| r6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| r6i.metal          | 94 CPUs   | 352.5 Gib MEM|
+| c6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| c61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
+| c6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
+| c6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
+| c6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
+| c6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
+| c6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
+| c6i.metal          | 94 CPUs   | 352.5 Gib MEM|
+| c6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
+| t3.xlarge          | 2 CPUs    | 7.5 GiB MEM  |
+| t3.2xlarge         | 6 CPUs    | 22.5 GiB MEM |
 
-#### m6i
-
-- m6i.xlarge
-- m6i.2xlarge
-- m6i.4xlarge
-- m6i.8xlarge
-- m6i.12xlarge
-- m6i.16xlarge
-- m6i.24xlarge
-- m6i.32xlarge
-- m6i.metal
-
-#### r6i
-
-- r6i.xlarge
-- r6i.2xlarge
-- r6i.4xlarge
-- r6i.8xlarge
-- r6i.12xlarge
-- r6i.16xlarge
-- r6i.24xlarge
-- r6i.32xlarge
-- r6i.metal
-
-#### t2
-
-- t2.xlarge
-
-#### t3
-
-- t3.2xlarge
 
 :::info
 
-A single cluster on Astro cannot currently be configured with more than one node instance type. In the first half of 2022, we expect to introduce support for worker Queues, which will allow you to run workers of varying node types and sizes within a single Deployment. If this is something that your team is interested in, reach out to us. We'd love to hear from you.
+The size limits defined here currently also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment.
+
+For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
+
+:::
+
+:::info
+
+With the exception of `m5d` nodes, all supported node types have a maximum of 20GB of storage per node for system use only. If you need locally attached storage for task execution, Astronomer recommends modifying your cluster to run `m5d` nodes, which Astronomer provisions with NVMe SSD volumes.
+
+The ability to provision ephemeral storage for all node instance types is coming soon.
+
+If you need to pass significant data between Airflow tasks, Astronomer recommends using an [XCom backend](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) such as [AWS S3](https://aws.amazon.com/s3/) or [Google Cloud Storage (GCS)](https://cloud.google.com/storage). For more information and best practices, see the Airflow Guide on [Passing Data Between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks).
 
 :::
 
@@ -173,75 +178,3 @@ Each Astro cluster has a limit on how many nodes it can run at once. This maximu
 The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
 
 If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
-
-### Deployment Worker Size Limits
-
-Worker Pod size can be configured at a Deployment level using the **Worker Resources** setting in the Cloud UI. This setting determines how much CPU and memory is allocated a worker Pod within a node.
-
-The following table lists the maximum worker Pod size that is supported on Astro for each worker node instance type. As the system requirements of Astro change, these values can increase or decrease. If you try to set **Worker Resources** to a size that exceeds the maximum for your cluster's worker node instance type, an error message appears in the Cloud UI.
-
-| Node Instance Type | Maximum AU | CPU       | Memory       |
-|--------------------|------------|-----------|--------------|
-| m5.xlarge          | 26         | 2.6 CPUs  | 9.7  GiB MEM |
-| m5.2xlarge         | 66         | 6.6 CPUs  | 24.7 GiB MEM |
-| m5.4xlarge         | 146        | 14.6 CPUs | 54.7 GiB MEM |
-| m5.8xlarge         | 306        | 30.6 CPUs | 114.7 GiB MEM|
-| m5.12xlarge        | 466*       | 46.6 CPUs | 174.7 GiB MEM|
-| m5.16xlarge        | 626*       | 62.6 CPUs | 234.7 GiB MEM|
-| m5.24xlarge        | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| m5.metal           | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| m5d.xlarge         | 26         | 2.6 CPUs  | 9.7  GiB MEM |
-| m5d.2xlarge        | 66         | 6.6 CPUs  | 24.7 GiB MEM |
-| m5d.4xlarge        | 146        | 14.6 CPUs | 54.7 GiB MEM |
-| m5d.8xlarge        | 306        | 30.6 CPUs | 114.7 GiB MEM|
-| m5d.12xlarge       | 466*       | 46.6 CPUs | 174.7 GiB MEM|
-| m5d.16xlarge       | 626*       | 62.6 CPUs | 234.7 GiB MEM|
-| m5d.24xlarge       | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| m5d.metal          | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| m6i.xlarge         | 26         | 2.6 CPUs  | 9.7  GiB MEM |
-| m61.2xlarge        | 66         | 6.6 CPUs  | 24.7 GiB MEM |
-| m6i.4xlarge        | 146        | 14.6 CPUs | 54.7 GiB MEM |
-| m6i.8xlarge        | 306        | 30.6 CPUs | 114.7 GiB MEM|
-| m6i.12xlarge       | 466*       | 46.6 CPUs | 174.7 GiB MEM|
-| m6i.16xlarge       | 626*       | 62.6 CPUs | 234.7 GiB MEM|
-| m6i.24xlarge       | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| m6i.metal          | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| r6i.xlarge         | 26         | 2.6 CPUs  | 9.7  GiB MEM |
-| r61.2xlarge        | 66         | 6.6 CPUs  | 24.7 GiB MEM |
-| r6i.4xlarge        | 146        | 14.6 CPUs | 54.7 GiB MEM |
-| r6i.8xlarge        | 306        | 30.6 CPUs | 114.7 GiB MEM|
-| r6i.12xlarge       | 466*       | 46.6 CPUs | 174.7 GiB MEM|
-| r6i.16xlarge       | 626*       | 62.6 CPUs | 234.7 GiB MEM|
-| r6i.24xlarge       | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| r6i.metal          | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| c6i.xlarge         | 26         | 2.6 CPUs  | 9.7  GiB MEM |
-| c61.2xlarge        | 66         | 6.6 CPUs  | 24.7 GiB MEM |
-| c6i.4xlarge        | 146        | 14.6 CPUs | 54.7 GiB MEM |
-| c6i.8xlarge        | 306        | 30.6 CPUs | 114.7 GiB MEM|
-| c6i.12xlarge       | 466*       | 46.6 CPUs | 174.7 GiB MEM|
-| c6i.16xlarge       | 626*       | 62.6 CPUs | 234.7 GiB MEM|
-| c6i.24xlarge       | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| c6i.metal          | 946*       | 94.6 CPUs | 354.7 Gib MEM|
-| c6i.xlarge         | 26         | 2.6 CPUs  | 9.7  GiB MEM |
-| t3.xlarge          | 26         | 2.6 CPUs  | 9.7  GiB MEM |
-| t3.2xlarge         | 66         | 6.6 CPUs  | 24.7 GiB MEM |
-
-Because the maximum value for **Worker Resources** is 400 AU, a cluster might not be able to use all of the available CPU and memory capacity for some node instance types. In the table, these node instance types are marked with an asterisk. If your Organization is interested in using an instance type that supports a worker size limit higher than 400 AU, contact [Astronomer Support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md#worker-resources).
-
-:::info
-
-The size limits defined here currently also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment. The maximum scheduler size on Astro is 30 AU, which means there are some node instance types for which that maximum size is not supported.
-
-For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
-
-:::
-
-:::tip
-
-With the exception of `m5d` nodes, all supported node types have a maximum of 20GB of storage per node for system use only. If you need locally attached storage for task execution, Astronomer recommends modifying your cluster to run `m5d` nodes, which Astronomer provisions with NVMe SSD volumes.
-
-Astronomer plans to support optional ephemeral storage for all node instance types in the first half of 2022.
-
-If you need to pass significant data between Airflow tasks, Astronomer recommends using an [XCom backend](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) such as [AWS S3](https://aws.amazon.com/s3/) or [Google Cloud Storage (GCS)](https://cloud.google.com/storage). For more information and best practices, see the Airflow Guide on [Passing Data Between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks).
-
-:::

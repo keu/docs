@@ -17,6 +17,8 @@ When using Deployment API keys, keep in mind the following:
 
 - A Deployment API key ID and secret are valid indefinitely and can be used to access Deployments without manual authentication.
 - Deployment API keys are deleted permanently if their corresponding Deployment is deleted.
+- A Deployment API key is not tied to the user that creates it. If the user that creates the API key is removed from the Workspace or their permissions change, the API key does not lose access to the Deployment and is not affected.
+- Any user or service with access to an API key and secret can access the corresponding Deployment. The only way to delete this access is to [delete the API key](api-keys.md#delete-an-api-key) or [delete the Deployment](configure-deployment-resources.md#delete-a-deployment).
 
 ## Create an API key
 
@@ -25,15 +27,11 @@ To create an API key for a Deployment:
 1. In the Cloud UI, open your Deployment.
 2. In the **API keys** menu, click **Add API Key**:
 
-    <div class="text--center">
-      <img src="/img/docs/add-api-key.png" alt="Add API key button" />
-    </div>
+    ![Add API key button](/img/docs/add-api-key.png)
 
 3. Give the key a name and description, then click **Create API Key**:
 
-    <div class="text--center">
-      <img src="/img/docs/create-api-key.png" alt="Create API key button" />
-    </div>
+    ![Create API key button](/img/docs/create-api-key.png)
 
 From here, you can copy the API key ID and secret for use in API calls and CI/CD pipelines. Make sure to save the key secret securely, as this is the only time you will have access to see it in plain text.
 
@@ -56,36 +54,29 @@ To use API keys with the Astro CLI, you must make your Deployment API key ID and
 - `ASTRONOMER_KEY_ID`
 - `ASTRONOMER_KEY_SECRET`
 
-For example, to update a given Deployment using the Astro CLI on a Mac machine, set temporary OS-level environment variables with the following commands:
+For example, to update a Deployment using the Astro CLI on a Mac machine, set temporary OS-level environment variables with the following commands:
 
 ```sh
 export ASTRONOMER_KEY_ID=<your-key-id>
 export ASTRONOMER_KEY_SECRET=<your-key-secret>
 ```
 
-After setting the variables, running `astro deployment update` works for the Deployment and you don't need to manually authenticate to Astronomer. Astronomer recommends storing `ASTRONOMER_KEY_SECRET` as a secret before using it to programmatically update production-level Deployments.
+After setting the variables, running `astro deployment update` works for the Deployment and you don't need to manually authenticate to Astronomer. Astronomer recommends storing `ASTRONOMER_KEY_SECRET` as a secret before using it to programmatically update a Deployment.
 
 ## Delete an API key
 
-To delete a Deployment API key:
-
-1. In the Cloud UI, open your Deployment.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
 2. In the menu for the API key you want to delete, click **Edit**:
 
-    <div class="text--center">
-      <img src="/img/docs/edit-api-key.png" alt="Edit API key button" />
-    </div>
+    ![Edit API key button](/img/docs/edit-api-key.png)
 
-3. Click **Delete API Key**, then follow the onscreen prompt to finalize the deletion:
+3. Click **Delete API Key**, and then follow the onscreen prompt to finalize the deletion:
 
-    <div class="text--center">
-      <img src="/img/docs/delete-api-key.png" alt="Delete API key button" />
-    </div>
+    [Delete API key button](/img/docs/delete-api-key.png)
 
+If you delete an API key, make sure that no existing CI/CD pipelines are using it. Once deleted, an API key and secret cannot be recovered. If you unintentionally delete an API key, create a new one and update any CI/CD workflows that used the deleted API key.
 
-## Next steps
-
-For more information about how to use API keys, see:
+## Related documentation
 
 - [CI/CD](ci-cd.md)
 - [Deploy code](deploy-code.md)

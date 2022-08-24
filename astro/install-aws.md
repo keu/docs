@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Install Astro on AWS'
+sidebar_label: 'AWS'
 title: 'Install Astro on AWS'
 id: install-aws
 description: Get started on Astro by installing your first Astro cluster on AWS.
@@ -75,9 +75,7 @@ To begin the Astro install process, first create an account at https://cloud.ast
 
 When you first authenticate to Astro, you can sign in to the Cloud UI with a Google account, a GitHub account, or an email and password.
 
-<div class="text--center">
-  <img src="/img/docs/login.png" alt="Astro login screen" />
-</div>
+![Astro login screen](/img/docs/login.png)
 
 If you're the first person from your team to authenticate, the Astronomer team will add you as a Workspace Admin to a new Workspace named after your Organization. From there, you'll be able to add other team members to that Workspace without Astronomer's assistance.
 
@@ -197,7 +195,7 @@ After creating the AWS account, provide Astronomer support with the following in
 - Your preferred node instance type.
 - Your preferred maximum node count.
 
-If you do not specify configuration preferences, Astronomer will create a cluster with two `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. For information on all supported regions, configurations, and defaults, see [AWS resource reference](resource-reference-aws.md).
+If you do not specify configuration preferences, Astronomer will create a cluster with two `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. For information on all supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
 
 ## Step 5: Wait for Astronomer to complete the install
 
@@ -222,9 +220,7 @@ This process can take some time. Wait for confirmation that the installation was
 
 When Astronomer confirms that your Astro cluster has been created, you are ready to create a Deployment and start deploying DAGs. Log in to [the Cloud UI](https://cloud.astronomer.io) again and [create a new Deployment](create-deployment.md). If the installation is successful, your new Astro cluster is listed as an option below the **Cluster** menu:
 
-<div class="text--center">
-  <img src="/img/docs/create-new-deployment-select-cluster.png" alt="Cloud UI New Deployment screen" />
-</div>
+![Cloud UI New Deployment screen](/img/docs/create-new-deployment-select-cluster.png)
 
 ## Next steps
 

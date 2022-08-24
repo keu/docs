@@ -9,6 +9,32 @@ This document provides a summary of all changes made to the [Astro CLI](cli/get-
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
+## Astro CLI v1.4.0
+
+Release date: August 18, 2022
+
+### New command to bash into local Airflow containers
+
+You can now run bash commands in any locally running Airflow container using `astro dev bash`. You can use this to:
+
+- Verify the packages installed in your Airflow environment.
+- Run python commands and test python functions in your Airflow environment.
+- Explore the local Airflow metadata database with a simple `postgres` command.
+
+For more information, see the [CLI command reference](cli/astro-dev-bash.md).
+
+### New command to invite a user to an Astro Organization
+
+You can invite new users to an Astro Organization with the new `astro user invite` command. Previously, you could only invite users to Astro with the Cloud UI.
+
+For more information, see the [CLI command reference](cli/astro-user-invite.md).
+
+### Additional improvements
+
+- Create multiple environment variables more easily by passing a list of key and value pairs to `astro deployment variable create` and `astro deployment variable update`. For example, `astro deployment variable create KEY1=VAL1 KEY2=VAL2` creates variables for `KEY1` and `KEY2`. You can still create environment variables from a file with the `--load` flag.
+- If Docker Desktop isn't already running on your machine, the CLI automatically starts it when you run `astro dev start`. Previously, the CLI showed an error and forced users to manually start Docker. Note that this feature only works on Mac OS.
+- The Airflow UI now automatically opens in your default web browser after you run `astro dev start` as soon as the Airflow webserver is ready. Previously, you had to wait for the webserver to be ready and manually open or refresh your web browswer.
+
 ## Astro CLI v1.3.0
 
 Release date: July 19, 2022
@@ -51,6 +77,7 @@ For more information on parsing DAGs, see [Parse DAGs](test-and-troubleshoot-loc
 ### Bug fixes
 
 - Fixed an issue where parsing DAGs during a deploy would kill a local project
+- Fixed an issue where `astro dev parse` failed on DAGs using the `SnowflakeOperator`. If you use the `SnowflakeOperator`, delete `.astro/test_dag_integrity_default.py` from the `tests` directory of your Astro project and run `astro dev init` with the Astro CLI. This command will create a new file in your project that does not have this issue.
 
 ## Astro CLI v1.2.0
 

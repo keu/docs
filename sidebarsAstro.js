@@ -91,6 +91,7 @@ module.exports = {
           },
           items: [
             'install-aws',
+            'install-azure',
             'install-gcp',
           ],
         },
@@ -106,8 +107,9 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Manage clusters',
+          label: 'Manage Clusters',
           items: [
+            'view-clusters',
             'create-cluster',
             'modify-cluster',
             'connect-external-services',
@@ -142,6 +144,7 @@ module.exports = {
           },
           items: [
             'resource-reference-aws',
+            'resource-reference-azure',
             'resource-reference-gcp',
           ],
         },
@@ -164,6 +167,7 @@ module.exports = {
             'disaster-recovery',
             'data-protection',
             'gdpr-compliance',
+            'hipaa-compliance',
             'secrets-management',],
         },
       ],
