@@ -1,6 +1,6 @@
 ---
 title: "Airflow Components"
-sidebar_label: "Airflow Components"
+sidebar_label: "Core components"
 description: "Learn about the core components of Apache Airflow."
 tags: ["Components", "Executors", "Database", "Basics"]
 ---
