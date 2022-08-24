@@ -146,13 +146,13 @@ KubernetesPodOperator(
     get_logs=True,
 )
 ```
-### Step 3: Create an Amazon ECR repository permissions policy (Optional)
+### Use an Amazon ECR repository (Optional)
 
-If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) repository, you need to add a permissions policy to the repository to allow the KubernetesPodOperator to execute it.
+If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) repository, add a permissions policy to the repository to allow the KubernetesPodOperator to pull the image.
 
 1. Log in to the Amazon ECR Dashboard and then select **Menu** > **Repositories**.
 
-2. Click the **Private** or **Public** tabs and then click the name of the repository that hosts the Docker image. 
+2. Click the **Private** tab and then click the name of the repository that hosts the Docker image. 
 
 3. Click **Permissions** in the left menu.
 
@@ -178,9 +178,9 @@ If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) rep
     ]
     }
     ```
-6. Replace `<AWSAccountID>` with your Astro account ID. 
+6. Replace `<AstroAccountID>` with your Astro account ID. 
 
-7. Click **Save** to create a new permissions policy named **AllowPullAstro**. 
+7. Click **Save** to create a new permissions policy named **AllowImagePullAstro**. 
 
 ## Related documentation
 
