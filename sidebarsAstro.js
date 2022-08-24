@@ -87,7 +87,7 @@ module.exports = {
           link: {
             type:'generated-index',
             title: 'Install Astro',
-            description: 'Install the Astro platform on your cloud.'
+            description: 'Install the Astro platform in your cloud.'
           },
           items: [
             'install-aws',
