@@ -58,7 +58,7 @@ Setting Airflow connections with secrets requires knowledge of how to generate A
     ]}>
 <TabItem value="hashicorp">
 
-This topic provides steps for using [Hashicorp Vault](https://www.vaultproject.io/) as a secrets backend for both local development and on Astronomer Software. To do this, you will:
+In this section, you'll learn how to use [Hashicorp Vault](https://www.vaultproject.io/) as a secrets backend for both local development and on Astronomer Software. To do this, you will:
 
 - Create an AppRole in Vault which grants Astronomer minimal required permissions.
 - Write a test Airflow variable or connection as a secret to your Vault server.
@@ -315,7 +315,7 @@ Now, any Airflow variable or connection that you write to AWS SSM Parameter Stor
 
 <TabItem value="gcp">
 
-This topic provides setup steps for configuring [Google Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astronomer Software.
+In this section, you'll learn how to use [Google Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astronomer Software.
 
 ### Prerequisites
 
@@ -420,7 +420,7 @@ You now should be able to see your secret information being pulled from Secret M
 
 <TabItem value="azure">
 
-This topic provides setup steps for configuring [Azure Key Vault](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astronomer Software.
+In this section, you'll learn how to use [Azure Key Vault](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astronomer Software.
 
 ### Prerequisites
 
