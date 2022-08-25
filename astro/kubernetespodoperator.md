@@ -8,11 +8,11 @@ The [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-provi
 
 ## Benefits of the KubernetesPodOperator
 
-The KubernetesPodOperator enables you to:
+You can use the KubernetesPodOperator to:
 
 - Execute a custom Docker image per task with Python packages and dependencies that would otherwise conflict with the rest of your Deployment's dependencies. This includes Docker images in a private registry or repository.
-- Run tasks Kubernetes cluster outside of the Astro data plane. This allows you to run individual tasks on infrastructure that might not be supported on Astro yet, such as GPU nodes or on other third-party services.
-- Specify CPU and Memory as task-level limits or minimums to optimize for cost and performance.
+- Run tasks in a Kubernetes cluster outside of the Astro data plane. This can be helpful when you need to run individual tasks on infrastructure that isn't currently supported by Astro, such as GPU nodes or other third-party services.
+- Specify CPU and memory as task-level limits or minimums to optimize performance and reduce costs.
 - Write task logic in a language other than Python. This gives you flexibility and can enable new use cases across teams.
 - Scale task growth horizontally in a way that is cost-effective, dynamic, and minimally dependent on worker resources.
 - Set Kubernetes-native configurations in a YAML file, including volumes, secrets, and affinities.
@@ -21,9 +21,9 @@ On Astro, the Kubernetes infrastructure required to run the KubernetesPodOperato
 
 ## Known limitations
 
-- Cross-account service accounts are not supported on pods launched in the Astro cluster.
-- PersistentVolumes (PVs) are not supported on pods launched in the Astro cluster.
-- You can't use the KubernetesPodOperator to launch a Pod in any worker queue other than the one running the KubernetesPodOperator's parent task. To run a launch a Pod in a different instance type you must launch it in a Kubernetes cluster outside of the Astro data plane.
+- Cross-account service accounts are not supported on Pods launched in an Astro cluster.
+- PersistentVolumes (PVs) are not supported on Pods launched in an Astro cluster.
+- You cannot run a KubernetesPodOperator task in a worker queue or node pool that is different than the worker queue of its parent worker. For example, a KubernetesPodOperator task that is triggered by an `m5.4xlarge` worker on AWS will also be run on an `m5.4xlarge` node. To run a task on a different node instance type, you must launch it in a Kubernetes cluster outside of the Astro data plane.
 
 ## Prerequisites
 
@@ -59,16 +59,16 @@ For each instantiation of the KubernetesPodOperator, you must specify the follow
 
 - `namespace = conf.get("kubernetes", "NAMESPACE")`: Every Deployment runs on its own Kubernetes namespace within a cluster. Information about this namespace can be programmatically imported as long as you set this variable.
 - `image`: This is the Docker image that the operator will use to run its defined task, commands, and arguments. The value you specify is assumed to be an image tag that's publicly available on [Docker Hub](https://hub.docker.com/). To pull an image from a private registry, read [Pull images from a Private Registry](kubernetespodoperator.md#run-images-from-a-private-registry).
-- `in_cluster=True`: When this value is set, your task will run within the cluster from which it's instantiated on Astro. This ensures that the Kubernetes Pod running your task has the correct permissions within the cluster.
-- `is_delete_operator_pod=True`: This setting ensures that once a KubernetesPodOperator task is complete, the Kubernetes Pod that ran that task is terminated. This ensures that there are no unused pods in your cluster taking up resources.
+- `in_cluster=True`: When this value is set, your task will run within the cluster from which it's instantiated on Astro. This ensures that the Kubernetes Pod running your task has the correct permissions within the cluster. To run a KubernetesPodOperator task in a Kubernetes cluster outside of the Astro data plane, set `in_cluster=False`.
+- `is_delete_operator_pod=True`: This setting ensures that once a KubernetesPodOperator task is complete, the Kubernetes Pod that ran that task is terminated. This ensures that there are no unused Pods in your cluster taking up resources.
 
 This is the minimum configuration required to run tasks with the KubernetesPodOperator on Astro. To further customize the way your tasks are run, see the topics below.
 
 ## Configure Task-Level Pod Resources
 
-Astro automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not technically limited, meaning that the operator could theoretically use any CPU and memory that's available in your cluster to complete a task. Because of this, we recommend specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) per task.
+Astro automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not technically limited, meaning that the operator could theoretically use any CPU and memory that's available in your cluster to complete a task. Because of this, Astronomer recommends specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) per task.
 
-To do so, define a `kubernetes.client.models.V1ResourceRequirements` object and provide that to the `resources` argument of the KubernetesPodOperator:
+To do so, define a `kubernetes.client.models.V1ResourceRequirements` object and provide that to the `resources` argument of the KubernetesPodOperator. For example:
 
 ```python {20}
 from airflow.configuration import conf
@@ -122,20 +122,20 @@ To complete this setup, you need:
 
 ### Step 1: Create a Kubernetes Secret
 
-To run Docker images from a private registry on Astro, you first need to create a Kubernetes secret that contains credentials to your registry. Astronomer will then inject that secret into your Deployment's namespace, which will give your tasks access to Docker images within your registry. To do this, complete the following setup:
+To run Docker images from a private registry on Astro, a Kubernetes secret that contains credentials to your registry must be created. Injecting this secret into your Deployment's namespace will give your tasks access to Docker images within your private registry.
 
 1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
 2. In the Cloud UI, select a Workspace and then select the Deployment you want to use the KubernetesPodOperator with.
 3. Copy the value in the **NAMESPACE** field.
-4. Reach out to [Astronomer support](https://support.astronomer.io) and provide the namespace of the Deployment.
+4. Contact [Astronomer support](https://support.astronomer.io) and provide the namespace of the Deployment.
 
-Astronomer Support will give you instructions on how to securely send the output of your `/.docker/config.json` file. Do not send this file by email, as it contains sensitive credentials to your registry.
+Astronomer Support will give you instructions on how to securely send the output of your `/.docker/config.json` file. Do not send this file by email, as it contains sensitive credentials to your registry. Astronomer will use this file to create a Kubernetes secret and inject it into your Deployment's namespace.
 
 ### Step 2: Specify the Kubernetes Secret in your DAG
 
 Once Astronomer has added the Kubernetes secret to your Deployment, you will be notified and provided with the name of the secret.
 
-From here, you can run images from your private registry by importing `models` from `kubernetes.client` and configuring `image_pull_secrets` in your KubernetesPodOperator instantiation:
+After you receive the name of your Kubernetes secret from Astronomer, you can run images from your private registry by importing `models` from `kubernetes.client` and configuring `image_pull_secrets` in your KubernetesPodOperator instantiation:
 
 ```python {1,5}
 from kubernetes.client import models as k8s
