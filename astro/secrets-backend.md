@@ -10,7 +10,7 @@ import TabItem from '@theme/TabItem';
 
 Apache Airflow [variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) and [connections](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#) often contain sensitive information about your external systems that should be kept [secret](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/secrets/index.html) in a secure, centralized location that complies with your organization's security requirements. While secret values of Airflow variables and connections are encrypted in the Airflow metadata database of every Deployment, Astronomer recommends integrating with a secrets backend tool.
 
-## Secrets Backend Tool Integration Benefits
+## Secrets backend tool integration benefits
 
 Integrating a secrets backend tool with Astro allows you to:
 
@@ -19,7 +19,7 @@ Integrating a secrets backend tool with Astro allows you to:
 - Recover in the case of an incident.
 - Automatically pull Airflow variables and connections that are already stored in your secrets backend when you create a new Deployment instead of having to set them manually in the Airflow UI.
 
-Astro integrates with the following secret backend tools:
+Astro integrates with the following secrets backend tools:
 
 - Hashicorp Vault
 - AWS Systems Manager Parameter Store
@@ -33,13 +33,11 @@ Secrets backend integrations are configured individually with each Astro Deploym
 
 If you enable a secrets backend on Astro, you can continue to define Airflow variables and connections either [as environment variables](environment-variables.md#add-airflow-connections-and-variables-via-environment-variables) or in the Airflow UI as needed. If set via the Airflow UI, variables and connections are stored as encrypted values in Airflow's metadata database.
 
-When Airflow checks for the value of an Airflow variable or connection, it does so in the following order of precedence:
+Airflow checks for the value of an Airflow variable or connection in the following order:
 
 1. Secrets backend
 2. Environment variable
-3. Set via the Airflow UI
-
-:::
+3. The Airflow UI
 
 :::tip
 
@@ -60,17 +58,15 @@ Setting Airflow connections via secrets requires knowledge of how to generate Ai
     ]}>
 <TabItem value="hashicorp">
 
-This topic provides steps for how to use [Hashicorp Vault](https://www.vaultproject.io/) as a secrets backend for both local development and on Astro. To do this, you will:
+This topic provides steps for using [Hashicorp Vault](https://www.vaultproject.io/) as a secrets backend for both local development and on Astro. To do this, you will:
 
-1. Create an AppRole in Vault which grants Astro minimal required permissions.
-2. Write a test Airflow variable or connection as a secret to your Vault server.
-3. Configure your Astro project to pull the secret from Vault.
-4. Test the backend in a local environment.
-5. Deploy your changes to Astro.
+- Create an AppRole in Vault which grants Astro minimal required permissions.
+- Write a test Airflow variable or connection as a secret to your Vault server.
+- Configure your Astro project to pull the secret from Vault.
+- Test the backend in a local environment.
+- Deploy your changes to Astro.
 
 #### Prerequisites
-
-To use this feature, you need:
 
 - A [Deployment](create-deployment.md) on Astro.
 - [The Astro CLI](cli/get-started.md).
@@ -79,14 +75,14 @@ To use this feature, you need:
 - [The Vault CLI](https://www.vaultproject.io/docs/install).
 - Your Vault Server's URL. If you're using a local server, this should be `http://127.0.0.1:8200/`.
 
-If you do not already have a Vault server deployed but would like to test this feature, we recommend that you either:
+If you do not already have a Vault server deployed but would like to test this feature, Astronomer recommends that you either:
 
 - Sign up for a Vault trial on [Hashicorp Cloud Platform (HCP)](https://cloud.hashicorp.com/products/vault) or
-- Deploy a local Vault server via the instructions in [our Airflow Guide](https://www.astronomer.io/guides/airflow-and-hashicorp-vault).
+- Deploy a local Vault server using the instructions in the [Airflow Guide](https://www.astronomer.io/guides/airflow-and-hashicorp-vault).
 
 #### Step 1: Create a Policy and AppRole in Vault
 
-To use Vault as a secrets backend, we recommend configuring a Vault AppRole with a policy that grants only the minimum necessary permissions for Astro. To do this:
+To use Vault as a secrets backend, Astronomer recommends configuring a Vault AppRole with a policy that grants only the minimum necessary permissions for Astro. To do this:
 
 1. [Create a Vault policy](https://www.vaultproject.io/docs/concepts/policies) with the following permissions:
 
@@ -111,7 +107,7 @@ To use Vault as a secrets backend, we recommend configuring a Vault AppRole with
     Save these values for Step 3.
 
 
-#### Step 2: Create an Airflow Variable or Connection in Vault
+#### Step 2: Create an Airflow variable or connection in Vault
 
 To start, create an Airflow variable or connection in Vault that you want to store as a secret. It can be either a real or test value. You will use this secret to test your backend's functionality in Step 4.
 
@@ -156,17 +152,17 @@ This tells Airflow to look for variable and connection information at the `secre
 
 :::warning
 
-If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-approle-id>` and `<your-approle-secret>` securely. We recommend adding them to your project's [`.env` file](develop-project.md#set-environment-variables-via-env-local-development-only) and specifying this file in `.gitignore`.
+If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-approle-id>` and `<your-approle-secret>` securely. Astronomer recommends adding them to your project's [`.env` file](develop-project.md#set-environment-variables-via-env-local-development-only) and specifying this file in `.gitignore`.
 
-When you deploy to Astro in Step 4, you can set these values as secrets via the Cloud UI.
+When you deploy to Astro in Step 4, you can set these values as secrets in the Cloud UI.
 
 :::
 
 :::info
-By default, Airflow uses `"kv_engine_version": 2`, but we've written this secret using v1. You can change this to accommodate how you write and read your secrets.
+By default, Airflow uses `"kv_engine_version": 2`, but this secret was written using v1. You can change this to accommodate how you write and read your secrets.
 :::
 
-For more information on the Airflow provider for Hashicorp Vault and how to further customize your integration, read the [Apache Airflow documentation](https://airflow.apache.org/docs/apache-airflow-providers-hashicorp/stable/_api/airflow/providers/hashicorp/hooks/vault/index.html).
+For more information on the Airflow provider for Hashicorp Vault and how to further customize your integration, see the [Apache Airflow documentation](https://airflow.apache.org/docs/apache-airflow-providers-hashicorp/stable/_api/airflow/providers/hashicorp/hooks/vault/index.html).
 
 #### Step 4: Run an example DAG to test Vault locally
 
@@ -190,7 +186,7 @@ with DAG('example_secrets_dag', start_date=datetime(2022, 1, 1), schedule_interv
 
   test_task = PythonOperator(
       task_id='test-task',
-      python_callable=print_var
+      python_callable=print_var,
 )
 ```
 
@@ -220,11 +216,9 @@ Now, any Airflow variable or connection that you write to your Vault server can 
 
 <TabItem value="paramstore">
 
-In this section, we'll walk through how to use [AWS Systems Manager (SSM) Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) as a secrets backend on Astro.
+In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) as a secrets backend on Astro.
 
 #### Prerequisites
-
-To use this feature, you need:
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/get-started.md).
@@ -238,7 +232,7 @@ To use this feature, you need:
 
 To start, create an Airflow variable or connection in Parameter Store that you want to store as a secret. It can be either a real or test value. You will use this secret to test your backend's functionality in Step 3.
 
-For instructions, read AWS documentation on how to do so via the [AWS Systems Manager Console](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-create-console.html), the [AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-cli.html), or [Tools for Windows PowerShell](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-ps.html).
+For instructions, see the AWS documentation on how to do so using the [AWS Systems Manager Console](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-create-console.html), the [AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-cli.html), or [Tools for Windows PowerShell](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-ps.html).
 
 Variables and connections should live at `/airflow/variables` and `/airflow/connections`, respectively. For example, if you're setting a secret variable with the key `my_secret`, it should exist at `/airflow/connections/my_secret`.
 
@@ -267,7 +261,7 @@ In the next step, you'll test that this configuration is valid locally.
 
 :::warning
 
-If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-aws-key>` and `<your-aws-secret-key>` in a secure manner. When you deploy to Astro, you should set these values as secrets via the Cloud UI.
+If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-aws-key>` and `<your-aws-secret-key>` in a secure manner. When you deploy to Astro, use the Cloud UI to set these values as secrets.
 
 :::
 
@@ -303,7 +297,7 @@ with DAG('example_secrets_dag', start_date=datetime(2022, 1, 1), schedule_interv
 
   test_task = PythonOperator(
       task_id='test-task',
-      python_callable=print_var
+      python_callable=print_var,
 )
 ```
 
@@ -336,8 +330,6 @@ Now, any Airflow variable or connection that you write to AWS SSM Parameter Stor
 This topic provides setup steps for configuring [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) as a secrets backend on Astro.
 
 #### Prerequisites
-
-To use AWS Secrets Manager as your Airflow secrets backend, you need:
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/get-started.md).
@@ -466,8 +458,6 @@ This topic provides setup steps for configuring [Google Cloud Secret Manager](ht
 
 #### Prerequisites
 
-To use Google Cloud Secret Manager as your Airflow secrets backend, you need:
-
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/get-started.md).
 - An [Astro project](create-project.md).
@@ -517,7 +507,7 @@ Make sure to paste your entire JSON service account key in place of `<your-key-f
 
 :::warning
 
-If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-key-file>` securely. We recommend adding it to your project's [`.env` file](develop-project.md#set-environment-variables-via-env-local-development-only) and specifying this file in `.gitignore`. When you deploy to Astro, you should set these values as secrets via the Cloud UI.
+If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-key-file>` securely. Astronomer recommends adding it to your project's [`.env` file](develop-project.md#set-environment-variables-via-env-local-development-only) and specifying this file in `.gitignore`. When you deploy to Astro, you should set these values as secrets via the Cloud UI.
 
 :::
 
@@ -576,8 +566,6 @@ You now should be able to see your secret information being pulled from Secret M
 This topic provides setup steps for configuring [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/#getting-started) as a secrets backend on Astro.
 
 #### Prerequisites
-
-To use Azure Key Vault as a secrets backend, you need:
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/get-started.md).
