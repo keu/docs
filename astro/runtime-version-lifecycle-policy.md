@@ -53,17 +53,19 @@ Astronomer will not interrupt service for Deployments running Astro Runtime vers
 
 Maintenance is discontinued the last day of the month for a given version. For example, if the maintenance window for a version of Astro Runtime is January - June of a given year, that version will be maintained by Astronomer until the last day of June.
 
-## Security Fixes
+## Security fixes
 
-Astronomer continuously monitors available security fixes for software used in Astro runtime. This includes scanning language dependencies, container images, and open source threat intelligence sources. When a security fix is available, our security team evaluates potential risks for organizations using Astro Runtime and determines deployment priority. Low priority fixes will be deployed following the regular maintenance policy described above. If a vulnerability is not yet addressed in the upstream project and no official fix is available, we will address the vulnerability or at least its impact via our environmental mitigations. Whenever possible, we will also collaborate with the upstream project to support a timely delivery of the offical fix. This process also covers images publicly available on [Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags) and provides context for their vulnerability scanning results. 
+Astronomer continuously checks for available security fixes for software used in Astro Runtime. This process includes scanning language dependencies, container images, and open source threat intelligence sources. When a security fix is available, Astronomer evaluates potential risks for organizations using Astro Runtime and determines deployment priority. Low priority fixes are deployed following the regular maintenance policy as described in [Astro Runtime maintenance policy](runtime-version-lifecycle-policy.md#astro-runtime-maintenance-policy).
+
+If a vulnerability is not yet addressed in a third-party dependency and no official fix is available, Astronomer attempts to address the vulnerability or its impact with environmental mitigations. Whenever possible, Astronomer collaborates with the upstream project to support a timely delivery of the official fix. This process also covers images publicly available on [Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags) and provides context for their vulnerability scanning results.
 
 If you spot any vulnerabilities resulting in relevant risk for your organization, contact [Astronomer Security](mailto:security@astronomer.io). 
 
 ### Backport policy for bug and security fixes
 
-*Functional Bugs:* When Astronomer identifies a significant bug in Astro Runtime, a fix is backported to all Long Term Support (LTS) versions and the latest stable version. To avoid the impact of previously identified bugs, Astronomer recommends that you upgrade Astro Runtime if you are not using the latest stable version.
+- **Functional bugs:** When Astronomer identifies a significant functional bug in Astro Runtime, a fix is backported to all Long Term Support (LTS) versions and the latest stable version. To avoid the impact of previously identified bugs, Astronomer recommends that you consistently upgrade Astro Runtime to the latest stable version.
 
-*Security Bugs:* When Astronomer identifies a significant security vulnerability in Astro Runtime, a fix is backported and made available as a patch version for all stable and LTS versions in maintenance. A significant security issue is defined as an issue with significant impact and exploitability.
+- **Security vulnerabilities:** When Astronomer identifies a significant security vulnerability in Astro Runtime, a fix is backported and made available as a patch version for all stable and LTS versions in maintenance. A significant security issue is defined as an issue with significant impact and exploitability.
 
 Occasionally, Astronomer might deviate from the defined response policy and backport a bug or security fix to releases other than the latest stable and LTS versions. To request a fix for a specific bug, contact your customer success manager.
 
