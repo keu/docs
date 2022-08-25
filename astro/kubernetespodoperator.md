@@ -8,11 +8,11 @@ The [KubernetesPodOperator](https://airflow.apache.org/docs/apache-airflow-provi
 
 ## Benefits of the KubernetesPodOperator
 
-The KubernetesPodOperator enables you to:
+You can use the KubernetesPodOperator to:
 
 - Execute a custom Docker image per task with Python packages and dependencies that would otherwise conflict with the rest of your Deployment's dependencies. This includes Docker images in a private registry or repository.
-- Run tasks in a Kubernetes cluster outside of the Astro data plane. This allows you to run individual tasks on infrastructure that might not be supported on Astro yet, such as GPU nodes or on other third-party services.
-- Specify CPU and memory as task-level limits or minimums to optimize for cost and performance.
+- Run tasks in a Kubernetes cluster outside of the Astro data plane. This can be helpful when you need to run individual tasks on infrastructure that isn't currently supported by Astro, such as GPU nodes or other third-party services.
+- Specify CPU and memory as task-level limits or minimums to optimize performance and reduce costs.
 - Write task logic in a language other than Python. This gives you flexibility and can enable new use cases across teams.
 - Scale task growth horizontally in a way that is cost-effective, dynamic, and minimally dependent on worker resources.
 - Set Kubernetes-native configurations in a YAML file, including volumes, secrets, and affinities.
@@ -66,7 +66,7 @@ This is the minimum configuration required to run tasks with the KubernetesPodOp
 
 ## Configure Task-Level Pod Resources
 
-Astro automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not technically limited, meaning that the operator could theoretically use any CPU and memory that's available in your cluster to complete a task. Because of this, we recommend specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) per task.
+Astro automatically allocates resources to Pods created by the KubernetesPodOperator. Resources used by the KubernetesPodOperator are not technically limited, meaning that the operator could theoretically use any CPU and memory that's available in your cluster to complete a task. Because of this, Astronomer recommends specifying [compute resource requests and limits](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) per task.
 
 To do so, define a `kubernetes.client.models.V1ResourceRequirements` object and provide that to the `resources` argument of the KubernetesPodOperator. For example:
 
@@ -122,12 +122,12 @@ To complete this setup, you need:
 
 ### Step 1: Create a Kubernetes Secret
 
-To run Docker images from a private registry on Astro, a Kubernetes secret that contains credentials to your registry must be created. Injecting this secret into your Deployment's namespace will give your tasks access to Docker images within your private registry. To do this, complete the following setup:
+To run Docker images from a private registry on Astro, a Kubernetes secret that contains credentials to your registry must be created. Injecting this secret into your Deployment's namespace will give your tasks access to Docker images within your private registry.
 
 1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
 2. In the Cloud UI, select a Workspace and then select the Deployment you want to use the KubernetesPodOperator with.
 3. Copy the value in the **NAMESPACE** field.
-4. Reach out to [Astronomer support](https://support.astronomer.io) and provide the namespace of the Deployment.
+4. Contact [Astronomer support](https://support.astronomer.io) and provide the namespace of the Deployment.
 
 Astronomer Support will give you instructions on how to securely send the output of your `/.docker/config.json` file. Do not send this file by email, as it contains sensitive credentials to your registry. Astronomer will use this file to create a Kubernetes secret and inject it into your Deployment's namespace.
 
@@ -135,7 +135,7 @@ Astronomer Support will give you instructions on how to securely send the output
 
 Once Astronomer has added the Kubernetes secret to your Deployment, you will be notified and provided with the name of the secret.
 
-Then, you can run images from your private registry by importing `models` from `kubernetes.client` and configuring `image_pull_secrets` in your KubernetesPodOperator instantiation:
+After you receive the name of your Kubernetes secret from Astronomer, you can run images from your private registry by importing `models` from `kubernetes.client` and configuring `image_pull_secrets` in your KubernetesPodOperator instantiation:
 
 ```python {1,5}
 from kubernetes.client import models as k8s
