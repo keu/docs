@@ -82,7 +82,8 @@ To make requests to the [Apache Airflow REST API](https://airflow.apache.org/doc
 ```sh
 curl -X GET localhost:8080/api/v1/<endpoint> --user "admin:admin"
 
-#### Python
+### Python
+
 ```python
 import requests
 
