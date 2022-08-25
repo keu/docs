@@ -47,6 +47,6 @@ Astro uses both encryption in transit and encryption at rest to protect data acr
 
 Astro is designed to secure sensitive information about your external systems. Sensitive information shared with Astronomer is securely stored and transmitted for consumption by your data pipelines. For more information, see [Secrets management](secrets-management.md).
 
-## Patch management
+## Patch management in Astro Runtime
 
 Astronomer continuously checks for available security fixes for all software used in Astro Runtime and is committed to delivering these fixes in a timely manner. For more information, see [Security fixes](runtime-version-lifecycle-policy.md#security-fixes).
