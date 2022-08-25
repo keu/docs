@@ -1,6 +1,6 @@
 ---
 title: "Understanding the Airflow metadata database"
-sidebar_label: "Understanding the Airflow metadata database"
+sidebar_label: "Metadata database"
 description: "A walkthrough of the Apache Airflow metadata database, with a full ERD."
 id: airflow-database
 tags: ["Database", "SQL", "Components"]
