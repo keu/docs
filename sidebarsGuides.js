@@ -23,6 +23,7 @@ module.exports = {
         'airflow-database',
         'airflow-executors-explained',
         'airflow-components',
+        'airflow-branch-operator',
       ],
     },
     {
