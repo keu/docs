@@ -95,7 +95,7 @@ response = requests.get(
 
 :::info
 
-For more information on making requests to Airflow REST API and common examples, please see our [guide](https://docs.astronomer.io/astro/airflow-api) on this topic.
+To make requests to the Airflow REST API on an Astro Deployment, see [Airflow API](airflow-api.md).
 
 ## Troubleshoot KubernetesPodOperator issues
 
