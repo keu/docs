@@ -1,9 +1,9 @@
 ---
-title: "Pass data between Airflow tasks"
-sidebar_label: "Pass data between Airflow tasks"
-description: "An overview of the methods available for sharing metadata and information between tasks in your Apache Airflow DAGs, including XCom."
+title: "Passing data between Airflow tasks"
+sidebar_label: "Passing data between tasks"
+description: "Learn about methods available for sharing metadata and information between tasks in your Apache Airflow DAGs, including XCom."
 id: airflow-passing-data-between-tasks
-tags: ["DAGs", "XCom", "Tasks", "Dependencies"]
+tags: [DAGs, XCom, Tasks, Dependencies]
 ---
 
 > Note: All code in this guide can be found in [the Github repo](https://github.com/astronomer/airflow-guide-passing-data-between-tasks).
@@ -11,6 +11,8 @@ tags: ["DAGs", "XCom", "Tasks", "Dependencies"]
 Sharing data between tasks is a very common use case in Airflow. If you've been writing DAGs, you probably know that breaking them up into smaller tasks is a best practice for debugging and recovering quickly from failures. What do you do when one of your downstream tasks requires metadata about an upstream task, or processes the results of the task immediately before it?
 
 There are a few methods you can use to implement data sharing between your Airflow tasks. In this tutorial, you'll walk through the two most commonly used methods, learn when to use them, and use some example DAGs to understand how they can be implemented.
+
+## Best practices
 
 Before you dive into the specifics, there are a couple of important concepts to understand before you write DAGs that pass data between tasks.
 
@@ -30,7 +32,7 @@ The first method for passing data between Airflow tasks is to use XCom, which is
 
 ### What is XCom
 
-[XCom](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#concepts-xcom) (short for cross-communication) is a built-in Airflow feature. XComs allow tasks to exchange task metadata or small amounts of data. They are defined by a key, value, and timestamp.
+[XCom](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#concepts-xcom) is a built-in Airflow feature. XComs allow tasks to exchange task metadata or small amounts of data. They are defined by a key, value, and timestamp.
 
 XComs can be "pushed", meaning sent by a task, or "pulled", meaning received by a task. When an XCom is pushed, it is stored in the Airflow metadata database and made available to all other tasks. Any time a task returns a value (for example, when your Python callable for your [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator) has a return), that value is automatically pushed to XCom. Tasks can also be configured to push XComs by calling the `xcom_push()` method. Similarly, `xcom_pull()` can be used in a task to receive an XCom.
 
@@ -56,9 +58,9 @@ You can see that these limits aren't very big. And even if you think your data m
 
 [Custom XCom Backends](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#custom-xcom-backend) are a new feature available in Airflow 2.0 and greater. Using an XCom backend means you can push and pull XComs to and from an external system such as S3, GCS, or HDFS rather than the default of Airflow's metadata database. You can also implement your own serialization and deserialization methods to define how XComs are handled. This is a concept in its own right and you can learn more by reading [Custom XCom Backends](https://www.astronomer.io/guides/custom-xcom-backends).
 
-### Example DAGs
+### Example DAG using XComs
 
-In this section, you'll review two sample DAGs that use XCom to pass data between tasks. For this example, the increase in total number of Covid tests for the current day for a particular state are analyzed. To implement this use case, the first task makes a request to the [Covid Tracking API](https://covidtracking.com/data/api) and pulls the `totalTestResultsIncrease` parameter from the results. The second task takes the results from the first task and performs an analysis. This is a valid use case for XCom, because the data being passed between the tasks is a single integer.
+In this section, you'll review a DAG that uses XCom to pass data between tasks. The DAG uses XComs to analyze the increase in total number of Covid tests for the current day for a particular state. To implement this use case, the first task makes a request to the [Covid Tracking API](https://covidtracking.com/data/api) and pulls the `totalTestResultsIncrease` parameter from the results. The second task takes the results from the first task and performs an analysis. This is a valid use case for XCom, because the data being passed between the tasks is a single integer.
 
 ```python
 from airflow import DAG
@@ -133,19 +135,10 @@ In the logs for the `analyze_data` task, you can see the value from the prior ta
 
 ![Example XCom Log](/img/guides/example_xcom_log.png)
 
-<!-- markdownlint-disable MD033 -->
-<ul class="learn-more-list">
-    <p>You might also like:</p>
-    <li data-icon="→"><a href="/events/webinars/taskflow-api-airflow-2.0" onclick="analytics.track('Clicked Learn More List Link', { page: location.href, buttonText: 'TaskFlow API in Airflow 2.0 Webinar', spottedCompany: window.spottedCompany })">TaskFlow API in Airflow 2.0 Webinar</a></li>
-    <li data-icon="→"><a href="https://registry.astronomer.io/dags/xcom-gcs-ds" onclick="analytics.track('Clicked Learn More List Link', { page: location.href, buttonText: 'Data Science Modeling Using Google Cloud Storage XCom Backend', spottedCompany: window.spottedCompany })">Data Science Modeling Using Google Cloud Storage XCom Backend</a></li>
-    <li data-icon="→"><a href="/events/webinars/manage-dependencies-between-airflow-deployments-dags-tasks" onclick="analytics.track('Clicked Learn More List Link', { page: location.href, buttonText: 'Manage Dependencies Between Airflow Deployments, DAGs, and Tasks Webinar', spottedCompany: window.spottedCompany })">Manage Dependencies Between Airflow Deployments, DAGs, and Tasks Webinar</a></li>
-    <li data-icon="→"><a href="/blog/build-an-etl-process" onclick="analytics.track('Clicked Learn More List Link', { page: location.href, buttonText: 'How to Build an ETL Process?', spottedCompany: window.spottedCompany })">How to Build an ETL Process?</a></li>
-    <li data-icon="→"><a href="/guides/custom-xcom-backends" onclick="analytics.track('Clicked Learn More List Link', { page: location.href, buttonText: 'Custom XCom Backends', spottedCompany: window.spottedCompany })">Custom XCom Backends</a></li>
-</ul>
 
 ## TaskFlow API
 
-Another way to implement this use case is to use the [TaskFlow API](https://airflow.apache.org/docs/apache-airflow/stable/tutorial_taskflow_api.html) that was released with Airflow 2.0. With the TaskFlow API, returned values are pushed to XCom as usual, but XCom values can be pulled simply by adding the key as an input to the function as shown in the following DAG:
+Another way to implement the previous DAG is to use the [TaskFlow API](https://airflow.apache.org/docs/apache-airflow/stable/tutorial_taskflow_api.html) that was released with Airflow 2.0. With the TaskFlow API, returned values are pushed to XCom as usual, but XCom values can be pulled simply by adding the key as an input to the function as shown in the following DAG:
 
 ```python
 from airflow.decorators import dag, task
@@ -197,7 +190,7 @@ While this is a great way to pass data that is too large to be managed with XCom
 
 ### Example DAG
 
-Building on the previous Covid example, you are now interested in getting all of the daily Covid data for a state and processing it. This case would not be ideal for XCom, but since the data returned is a small dataframe, it can be processed with Airflow.
+Building on the previous COVID example, you are now interested in getting all of the daily COVID data for a state and processing it. This case would not be ideal for XCom, but since the data returned is a small dataframe, it can be processed with Airflow.
 
 ```python
 from airflow import DAG
