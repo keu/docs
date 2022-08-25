@@ -1,14 +1,14 @@
 ---
 title: "OpenLineage and Airflow"
-sidebar_label: "OpenLineage and Airflow"
+sidebar_label: "OpenLineage"
 description: "Using OpenLineage and Marquez to get lineage data from your Airflow DAGs."
 id: airflow-openlineage
-tags: ["Lineage"]
+tags: [Lineage]
 ---
 
 [Data lineage](https://en.wikipedia.org/wiki/Data_lineage) is the concept of tracking and visualizing data from its origin to wherever it flows and is consumed downstream. Its prominence in the data space is growing rapidly as companies have increasingly complex data ecosystems alongside increasing reliance on accurate data for making business decisions. Data lineage can help with everything from understanding your data sources, to troubleshooting job failures, to managing PII, to ensuring compliance with data regulations.
 
-It follows that data lineage is a natural integration with Apache Airflow. Airflow is often used as a one-stop-shop orchestrator for an organization’s data pipelines, and is an ideal place for integrating data lineage to understand the movement and interactions of your data.
+It follows that data lineage has a natural integration with Apache Airflow. Airflow is often used as a one-stop-shop orchestrator for an organization’s data pipelines, which makes it an ideal platform for integrating data lineage to understand the movement and interactions of your data.
 
 In this tutorial, you’ll define data lineage, review the OpenLineage standard and core lineage concepts, describe why you would want data lineage with Airflow, and implement an example local integration of Airflow and OpenLineage for tracking data movement in Postgres.
 
@@ -32,7 +32,7 @@ If you are using data lineage, you will likely have a lineage tool that collects
 
 ### OpenLineage
 
-[OpenLineage](https://openlineage.io/) is the open source industry standard framework for data lineage. Launched by Datakin, it standardizes the definition of data lineage, the metadata that makes up lineage data, and the approach for collecting lineage data from external systems. In other words, it defines a [formalized specification](https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.md) for all of the core concepts related to data lineage.
+[OpenLineage](https://openlineage.io/) is the open source industry standard framework for data lineage. It standardizes the definition of data lineage, the metadata that makes up lineage data, and the approach for collecting lineage data from external systems. In other words, it defines a [formalized specification](https://github.com/OpenLineage/OpenLineage/blob/main/spec/OpenLineage.md) for all of the core concepts related to data lineage.
 
 The purpose of a standard like OpenLineage is to create a more cohesive lineage experience across the industry and reduce duplicated work for stakeholders. It allows for a simpler, more consistent experience when integrating lineage with many different tools, similar to how Airflow providers reduce the work of DAG authoring by providing standardized modules for integrating Airflow with other tools.
 
