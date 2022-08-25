@@ -83,19 +83,19 @@ There are additional tables in the metadata database storing data ranging from D
 
 ## Airflow metadata database best practices
 
-1. When upgrading or downgrading Airflow, always follow the [recommended steps for changing Airflow versions](https://airflow.apache.org/docs/apache-airflow/stable/installation/upgrading.html?highlight=upgrade): back up the metadata database, check for deprecated features, pause all DAGs, and make sure no tasks are running.
+- When upgrading or downgrading Airflow, always follow the [recommended steps for changing Airflow versions](https://airflow.apache.org/docs/apache-airflow/stable/installation/upgrading.html?highlight=upgrade): back up the metadata database, check for deprecated features, pause all DAGs, and make sure no tasks are running.
 
-2. Use caution when [pruning old records](https://airflow.apache.org/docs/apache-airflow/stable/usage-cli.html#purge-history-from-metadata-database) from your database with `db clean`. For example, pruning records could affect future runs for tasks that use the `depends_on_past` argument. The `db clean` command allows you to delete records older than `--clean-before-timestamp` from all metadata database tables or a list of tables specified.
+- Use caution when [pruning old records](https://airflow.apache.org/docs/apache-airflow/stable/usage-cli.html#purge-history-from-metadata-database) from your database with `db clean`. For example, pruning records could affect future runs for tasks that use the `depends_on_past` argument. The `db clean` command allows you to delete records older than `--clean-before-timestamp` from all metadata database tables or a list of tables specified.
 
-3. Accessing the metadata database from within a DAG (for example by fetching a variable, pulling from XCom, or using a connection ID) requires compute resources. It is therefore best practice to keep these actions within tasks, which creates a connection to the database only for the run time of the task. If these connections are written as top level code, connections are created every time the scheduler parses the DAG file, which is every 30 seconds by default!
+- Accessing the metadata database from within a DAG (for example by fetching a variable, pulling from XCom, or using a connection ID) requires compute resources. It is therefore best practice to keep these actions within tasks, which creates a connection to the database only for the run time of the task. If these connections are written as top level code, connections are created every time the scheduler parses the DAG file, which is every 30 seconds by default!
 
-4. Memory in the Airflow metadata database can be limited depending on your setup, and running low on memory in your metadata database can cause performance issues in Airflow. This is one of the many reasons why Astronomer advises against moving large amounts of data with XCom, and recommends using a cleanup and archiving mechanism in any production deployments.
+- Memory in the Airflow metadata database can be limited depending on your setup, and running low on memory in your metadata database can cause performance issues in Airflow. This is one of the many reasons why Astronomer advises against moving large amounts of data with XCom, and recommends using a cleanup and archiving mechanism in any production deployments.
 
-5. Since the metadata database is critical for the scalability and resiliency of your Airflow deployment, it is best practice to use a managed database service for production environments, for example [AWS RDS](https://aws.amazon.com/rds/) or [Google Cloud SQL](https://cloud.google.com/sql).
+- Since the metadata database is critical for the scalability and resiliency of your Airflow deployment, it is best practice to use a managed database service for production environments, for example [AWS RDS](https://aws.amazon.com/rds/) or [Google Cloud SQL](https://cloud.google.com/sql).
 
-6. When configuring a database backend, make sure your version is fully supported by checking the [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html#choosing-database-backend).
+- When configuring a database backend, make sure your version is fully supported by checking the [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html#choosing-database-backend).
 
-7. Never directly modifying the metadata database except in extremely rare circumstances, as this can cause dependency issues and corrupt your Airflow instance.
+- Never directly modifying the metadata database except in extremely rare circumstances, as this can cause dependency issues and corrupt your Airflow instance.
 
 ## Examples for programmatically accessing the metadata database
 
