@@ -39,6 +39,7 @@ module.exports = {
         'airflow-azure-data-factory-integration',
         'airflow-azure-data-explorer',
         'airflow-openlineage',
+        'airflow-dbt',
       ],
     },
   ],
