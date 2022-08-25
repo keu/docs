@@ -53,7 +53,7 @@ Astronomer will not interrupt service for Deployments running Astro Runtime vers
 
 Maintenance is discontinued the last day of the month for a given version. For example, if the maintenance window for a version of Astro Runtime is January - June of a given year, that version will be maintained by Astronomer until the last day of June.
 
-## Security fixes
+## Security
 
 Astronomer continuously checks for available security fixes for software used in Astro Runtime. This process includes scanning language dependencies, container images, and open source threat intelligence sources. When a security fix is available, Astronomer evaluates potential risks for organizations using Astro Runtime and determines deployment priority. Low priority fixes are deployed following the regular maintenance policy as described in [Astro Runtime maintenance policy](runtime-version-lifecycle-policy.md#astro-runtime-maintenance-policy).
 
@@ -81,7 +81,7 @@ The following table contains the exact lifecycle for each published version of A
 | --------------------------------------------------- | ---------------------- | ----------------- | ----------------------- |
 | [4.1.x](runtime-release-notes.md#astro-runtime-410) | 2.2.4                  | February 22, 2022 | August 2022             |
 | [4.2.x](runtime-release-notes.md#astro-runtime-420) | 2.2.4-2.2.5            | March 10, 2022    | September 2022          |
-| [5.0.x](runtime-release-notes.md#astro-runtime-500) | 2.3.0-2.3.3            | April 30, 2022    | October 2022            |
+| [5.0.x](runtime-release-notes.md#astro-runtime-500) | 2.3.0-2.3.4            | April 30, 2022    | October 2022            |
 
 :::info
 Each Runtime version in a given minor series supports only a single version of Apache Airflow. For specific version compatibility information, see [Runtime release notes](runtime-release-notes.md).
