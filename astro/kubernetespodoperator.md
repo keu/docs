@@ -146,7 +146,7 @@ KubernetesPodOperator(
     get_logs=True,
 )
 ```
-### Docker images hosted in Amazon ECR repositories
+### Docker images hosted in private Amazon ECR repositories
 
 If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) repository, add a permissions policy to the repository to allow the KubernetesPodOperator to pull the Docker image. You don't need to create a Kubernetes secret, or specify the Kubernetes secret in your DAG.
 
@@ -174,7 +174,7 @@ If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) rep
     ]
     }
     ```
-6. Replace `<AstroAccountID>` with your Astro account ID. 
+6. Replace `<AstroAccountID>` with your Astro AWS account ID. 
 7. Click **Save** to create a new permissions policy named **AllowImagePullAstro**.
 8. [Set Up the KubernetesPodOperator](#set-up-the-kubernetespodoperator).
 9. Replace `<your-docker-image>` in the instantiation of the KubernetesPodOperator with the Amazon ECR repository URI that hosts the Docker image. To locate the URI:
