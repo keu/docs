@@ -15,6 +15,18 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
 
+## August 24, 2022
+
+### Additional improvements
+
+- When you configure worker queues in the Cloud UI, the total CPU and memory capacity of each worker instance type is now shown instead of the nominal available resources.
+- Improved error handling for creating new worker queues when soft-deleted worker queues might still exist on the data plane.
+
+### Bug fixes
+
+- Fixed an issue where running `astro deploy` with a Deployment API key could revert changes to a worker queue's size that were previously set in the Cloud UI.
+- Fixed an issue where the **Lineage** tab in the Cloud UI showed all job durations as having a length of 0.
+
 ## August 18, 2022
 
 ### Create multiple worker queues
