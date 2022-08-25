@@ -20,6 +20,7 @@ module.exports = {
       items: [
         'overview',
         'airflow-passing-data-between-tasks',
+        'airflow-database',
       ],
     },
     {
