@@ -14,8 +14,6 @@ You can use Airflow's [REST API](https://airflow.apache.org/docs/apache-airflow/
 
 To make an Airflow API request to the local instance of Airflow created with the Astro CLI, see this [section](https://docs.astronomer.io/astro/test-and-troubleshoot-locally#make-requests-to-the-airflow-rest-api) of our Test and troubleshoot locally docs.
 
-:::
-
 ## Prerequisites
 
 To make an Airflow API request, you need:
