@@ -176,7 +176,7 @@ For CI/CD pipelines that push code to a production Deployment, Astronomer recomm
 
 For example, you can add the following command as a step in a [Drone](ci-cd.md#DroneCI) pipeline:
 
-> **Note**: `BASE_DOMAIN` and `RELEASE_NAME` are pre-configured environment variables in the CI/CD tool, and `DRONE_BUILD_NUMBER` is an environment variable provided by the job execution in DroneCI.
+> **Note:** `BASE_DOMAIN` and `RELEASE_NAME` are pre-configured environment variables in the CI/CD tool, and `DRONE_BUILD_NUMBER` is an environment variable provided by the job execution in DroneCI.
 
 ```bash
 docker run --rm registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD_NUMBER} /bin/bash -c "pytest tests"
