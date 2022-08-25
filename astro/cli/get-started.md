@@ -61,7 +61,7 @@ The Astro project is built to run Airflow with Docker. [Docker](https://docs.doc
 The default Astro project structure includes a collection of folders and files that you can use to run and customize Airflow. For this tutorial, you only need to know the following files and folders:
 
 - `/dags`: A directory of DAG files. Each Astro project includes two example DAGs: `example-dag-basic` and `example-dag-advanced`. For more information on DAGs, see [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
-- `Dockerfile`: This is where you specify your version of Astro Runtime, which is a runtime environment for Airflow that is built and maintained by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Apache Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
+- `Dockerfile`: This is where you specify your version of Astro Runtime, which is a runtime software based on Apache Airflow that is built and maintained by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
 
 ## Step 2: Start Airflow
 
