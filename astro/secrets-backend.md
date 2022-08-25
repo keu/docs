@@ -39,6 +39,8 @@ Airflow checks for the value of an Airflow variable or connection in the followi
 2. Environment variable
 3. The Airflow UI
 
+:::
+
 :::tip
 
 Setting Airflow connections via secrets requires knowledge of how to generate Airflow connection URIs. If you plan to store Airflow connections on your secrets backend, read the [Apache Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#connection-uri-format) for guidance on how to generate a connection URI.
