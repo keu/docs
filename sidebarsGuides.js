@@ -21,6 +21,7 @@ module.exports = {
         'overview',
         'airflow-passing-data-between-tasks',
         'airflow-database',
+        'airflow-executors-explained',
       ],
     },
     {
