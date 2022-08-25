@@ -351,7 +351,7 @@ AUTH__OPENID_CONNECT__CUSTOM__DISPLAY_NAME="Custom OAuth" # Only used for custom
 To finalize your configuration, configure the following key values in your identity provider's settings:
 
 - **Grant Code:** Set to "Code" or "Auth Code" depending on your identity provider.
-- **Sign-in Redirect URI:** Set to `[https://houston.<BASE_DOMAIN>:8871/v1/oauth/callback/](https://houston.<BASE_DOMAIN>:8871/v1/oauth/callback/)`. Be sure to include the trailing `/`.
+- **Sign-in Redirect URI:** Set to `https://houston.<BASE_DOMAIN>/v1/oauth/callback/`. Be sure to include the trailing `/`.
 
 ### Step 3: Confirm Your Installation
 
