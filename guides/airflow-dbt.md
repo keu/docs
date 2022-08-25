@@ -1,9 +1,9 @@
 ---
 title: "Integrating Airflow and dbt"
 sidebar_label: "Integrating Airflow and dbt"
-description: "Running dbt models in your Airflow DAGs."
-id: airflow.dbt
-tags: ["DAGs", "Integrations"]
+description: "Run dbt models in your Airflow DAGs."
+id: airflow-dbt
+keywords: [DAGs, Integrations]
 ---
 
 [dbt](https://getdbt.com/) is an open-source library for analytics engineering that helps users build interdependent SQL models for in-warehouse data transformation. As ephemeral compute becomes more readily available in data warehouses thanks to tools like [Snowflake](https://snowflake.com/), dbt has become a key component of the modern data engineering workflow. Now, data engineers can use dbt to write, organize, and run in-warehouse transformations of raw data.
@@ -22,19 +22,19 @@ In this guide, you'll:
 
 ## dbt Cloud
 
-To orchestrate [dbt Cloud](https://www.getdbt.com/product/what-is-dbt/) jobs with Airflow, you can use the [dbt Cloud Provider](https://registry.astronomer.io/providers/dbt-cloud), which contains the following useful modules:
+To orchestrate [dbt Cloud](https://www.getdbt.com/product/what-is-dbt/) jobs with Airflow, you can use the [dbt Cloud provider](https://registry.astronomer.io/providers/dbt-cloud), which contains the following useful modules:
 
 - **`DbtCloudRunJobOperator`:** Executes a dbt Cloud job.
 - **`DbtCloudGetJobRunArtifactOperator`:** Downloads artifacts from a dbt Cloud job run.
 - **`DbtCloudJobRunSensor`:** Waits for a dbt Cloud job run to complete.
 - **`DbtCloudHook`:** Interacts with dbt Cloud using the V2 API.
 
-To use the dbt Cloud Provider in your DAGs, you'll need to complete the following steps:
+To use the dbt Cloud provider in your DAGs, you'll need to complete the following steps:
 
 1. Add the `apache-airflow-providers-dbt-cloud` package to your Airflow environment. If you are working in an Astro project, you can add the package to your `requirements.txt` file.
 2. Set up an [Airflow connection](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html) to your dbt Cloud instance. The connection type should be `dbt Cloud`, and it should include an API token from your dbt Cloud account. If you want your dbt Cloud Provider tasks to use a default account ID, you can add that to the connection, but it is not required.
 
-In the DAG below, you'll review a simple implementation of the dbt Cloud Provider. This example showcases how to run a dbt Cloud job from Airflow, while adding an operational check to ensure the dbt Cloud job is not running prior to triggering. The `DbtCloudHook` provides a `list_job_runs()` method which can be used to retrieve all runs for a given job. The operational check uses this method to retrieve the latest triggered run for a job and check its status. If the job is currently not in a state of 10 (Success), 20 (Error), or 30 (Canceled), the pipeline will not try to trigger another run.
+In the DAG below, you'll review a simple implementation of the dbt Cloud provider. This example showcases how to run a dbt Cloud job from Airflow, while adding an operational check to ensure the dbt Cloud job is not running prior to triggering. The `DbtCloudHook` provides a `list_job_runs()` method which can be used to retrieve all runs for a given job. The operational check uses this method to retrieve the latest triggered run for a job and check its status. If the job is currently not in a state of 10 (Success), 20 (Error), or 30 (Canceled), the pipeline will not try to trigger another run.
 
 ```python
 from pendulum import datetime
@@ -96,7 +96,7 @@ In the `DbtCloudRunJobOperator` you must provide the dbt connection ID as well a
 
 When orchestrating dbt Core with Airflow, a straightforward DAG design is to run dbt commands directly through the [`BashOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator). In this section you'll review two use cases that demonstrate how it's done.
 
-### Use Case 1: dbt Core and Airflow at the project level
+### Use case 1: dbt Core and Airflow at the project level
 
 For this example you'll use the `BashOperator`, which simply executes a shell command, because it lets us run specific dbt commands. The primary dbt interface is the command line, so the `BashOperator` is one of the best tools for managing dbt. You can execute `dbt run` or `dbt test` directly in Airflow as you would with any other shell.
 
@@ -138,7 +138,7 @@ Using the `BashOperator` to run `dbt run` and `dbt test` is a working solution f
 - Low observability into what execution state the project is in.
 - Failures are absolute and require the whole `dbt` group of models to be run again, which can be costly.
 
-### Use Case 2: dbt Core and Airflow at the model level
+### Use case 2: dbt Core and Airflow at the model level
 
 What if you need more visibility into the steps dbt is running in each task? Instead of running a group of dbt models on a single task, you can write a DAG that runs a task for each model. Using this method, our dbt workflow is more controllable because you can see the successes, failures, and retries of each dbt model in its corresponding Airflow task. If a model near the end of our dbt pipeline fails, you can fix the broken model and retry that individual task without having to rerun the entire workflow. Also, you no longer have to worry about defining Sensors to configure interdependency between Airflow DAGs because you've consolidated your work into a single DAG. Our friends at Updater came up with this solution.
 
@@ -432,8 +432,6 @@ with dag:
 
 Using the jaffleshop demo dbt project, the parser creates the following DAG including two task groups for the `dbt_run` and `dbt_test` tasks:
 
-<!-- markdownlint-disable MD033 -->
-<video class="mt-2 mb-2" width="100%" autoplay muted loop><source src="https://videos.ctfassets.net/bsbv786nih7n/31n2GTyVE9DhhNcAqlITQr/2ceb24022a324a11a05e2b5f41a8fc62/taskgroup.mp4" type="video/mp4"></video>
 
 One important fact to note here is that the `DbtDagParser` does not include a `dbt compile` step that updates the `manifest.json` file. Since the Airflow Scheduler parses the DAG file periodically, having a compile step as part of the DAG creation could incur some unnecessary load for the scheduler. Astronomer recommends adding a `dbt compile` step either as part of a CI/CD pipeline, or as part of a pipeline run in production before the Airflow DAG is run.
 
