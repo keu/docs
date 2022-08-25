@@ -19,12 +19,13 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Additional improvements
 
-- When configuring worker queues, the Cloud UI now shows the total available resources for each worker instance type instead of the nominal available resources.
+- When you configure worker queues in the Cloud UI, the total CPU and memory capacity of each worker instance type is now shown instead of the nominal available resources.
+- Improved error handling for creating new worker queues when soft-deleted worker queues might still exist on the data plane.
 
-### Big fixes
+### Bug fixes
 
-- Fixed an issue where the lineage UI showed all job durations as having a length of 0
-- Fixed an issue where running `astro deploy` while authenticated with an API key could revert worker queue settings
+- Fixed an issue where running `astro deploy` with a Deployment API key could revert changes to a worker queue's size that were previously set in the Cloud UI. 
+- Fixed an issue where the **Lineage** tab in the Cloud UI showed all job durations as having a length of 0.
 
 ## August 18, 2022
 
