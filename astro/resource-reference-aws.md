@@ -165,7 +165,7 @@ For more information about the scheduler, see [Configure a Deployment](configure
 
 With the exception of `m5d` nodes, all supported node types have a maximum of 20GB of storage per node for system use only. If you need locally attached storage for task execution, Astronomer recommends modifying your cluster to run `m5d` nodes, which Astronomer provisions with NVMe SSD volumes.
 
-Astronomer plans to support optional ephemeral storage for all node instance types in the first half of 2022.
+The ability to provision ephemeral storage for all node instance types is coming soon.
 
 If you need to pass significant data between Airflow tasks, Astronomer recommends using an [XCom backend](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) such as [AWS S3](https://aws.amazon.com/s3/) or [Google Cloud Storage (GCS)](https://cloud.google.com/storage). For more information and best practices, see the Airflow Guide on [Passing Data Between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks).
 

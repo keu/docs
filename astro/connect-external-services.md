@@ -70,11 +70,7 @@ AWS Transit Gateway is an alternative to VPC Peering on AWS. Instead of having t
 
 While it can be more costly, AWS Transit Gateway requires less configuration and is often recommended for organizations connecting a larger number of VPCs. For more information, see [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/).
 
-### Prerequisites
-
-- An Astro cluster
-- An existing transit gateway in the same region as your Astro cluster
-- Permission to share resources using AWS Resource Access Manager (RAM)
+AWS Transit Gateway doesn't provide built-in support for DNS resolution. If you need DNS integration, Astronomer recommends that you use the Route 53 Resolver service. For assistance integrating the Route 53 Resolver service with your Astronomer VPC, contact [Astronomer support](https://support.astronomer.io).
 
 :::info
 
@@ -83,6 +79,12 @@ If your transit gateway is in a different region than your Astro cluster, contac
 If Astronomer creates a new transit gateway in your AWS account for Astro, keep in mind that your organization will incur additional AWS charges for the new transit gateway as well as the inter-region transfer costs.
 
 :::
+
+### Prerequisites
+
+- An Astro cluster
+- An existing transit gateway in the same region as your Astro cluster
+- Permission to share resources using AWS Resource Access Manager (RAM)
 
 ### Setup
 

@@ -11,9 +11,19 @@ The Astro CLI is the command line interface for data orchestration. It's the eas
 
 The Astro CLI is open source and built for data practitioners everywhere. The binary is maintained in the public [Astro CLI GitHub repository](https://github.com/astronomer/astro-cli), where pull requests and GitHub issues are welcome.
 
+## Install the CLI
+
+To install with Homebrew, run:
+
+```sh
+brew install astro
+```
+
+For alternative installation steps, see [Configure the Astro CLI](configure-cli.md#install-the-astro-cli).
+
 ## Get started
 
-Follow [Get started](get-started.md) to install the CLI and run your first Astro project locally.
+Follow the [Get started](get-started.md) tutorial to run Airflow locally and write your first DAG.
 
 ## Features
 
