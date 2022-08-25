@@ -163,20 +163,24 @@ To build additional helper functions for DAGs into your Astro project, Astronome
 
 2. [Restart your local environment](develop-project.md#restart-your-local-environment).
 
-To confirm that your helper functions were successfully installed, run the following command:
+3. To confirm that your helper functions were successfully installed, run the following command:
 
-    ```sh
+   ```sh
+
     astro dev bash --scheduler "/bin/bash"
-    ```
+    
+   ```
 
     The command should output a list of files in the scheduler container including your helper functions:
 
-    ```bash
+   ```bash
+
     $ astro dev bash --scheduler "/bin/bash"
     bash-4.4$ ls
     Dockerfile  airflow_settings.yaml  helper_functions  logs  plugins  unittests.cfg
     airflow.cfg dags  include  packages.txt  requirements.txt
-    ```
+
+   ```
 
 ## Configure `airflow_settings.yaml` (Local development only)
 
