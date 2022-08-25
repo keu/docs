@@ -19,6 +19,7 @@ module.exports = {
       label: 'Concepts',
       items: [
         'overview',
+        'airflow-passing-data-between-tasks',
       ],
     },
     {
