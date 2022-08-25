@@ -40,6 +40,7 @@ module.exports = {
         'airflow-azure-data-explorer',
         'airflow-openlineage',
         'airflow-dbt',
+        'airflow-databricks',
       ],
     },
   ],
