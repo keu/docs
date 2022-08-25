@@ -7,6 +7,8 @@ description: Install Apache Airflow and deploy your first local project with the
 
 Getting started with Apache Airflow locally is easy with the Astro CLI.
 
+This tutorial is for people who are new to Apache Airflow and want to run it locally with open source tools.
+
 After you complete this tutorial, you'll be able to:
 
 - Run a local Airflow environment using the Astro CLI.
