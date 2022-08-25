@@ -19,6 +19,7 @@ module.exports = {
       label: 'Concepts',
       items: [
         'overview',
+        'airflow-passing-data-between-tasks',
         'airflow-database',
       ],
     },
@@ -36,6 +37,7 @@ module.exports = {
         'overview',
         'airflow-azure-data-factory-integration',
         'airflow-azure-data-explorer',
+        'airflow-openlineage',
       ],
     },
   ],
