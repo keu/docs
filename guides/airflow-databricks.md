@@ -1,9 +1,9 @@
 ---
-title: "Orchestrating Databricks Jobs with Airflow"
-sidebar_label: "Orchestrating Databricks Jobs with Airflow"
-description: "Orchestrating Databricks Jobs from your Apache Airflow DAGs."
+title: "Orchestrating Databricks jobs with Airflow"
+sidebar_label: "Orchestrating Databricks jobs with Airflow"
+description: "Orchestrating Databricks jobs from your Apache Airflow DAGs."
 id: airflow-databricks
-tags: ["Integrations", "DAGs"]
+tags: [Integrations, DAGs]
 ---
 
 [Databricks](https://databricks.com/) is a popular unified data and analytics platform built around [Apache Spark](https://spark.apache.org/) that provides users with fully managed Apache Spark clusters and interactive workspaces. Astronomer recommends using Airflow primarily as an orchestrator, and to use an execution framework like Apache Spark to do the heavy lifting of data processing. It follows that using Airflow to orchestrate Databricks jobs is a natural solution for many common use cases.
@@ -35,22 +35,21 @@ There are currently two operators in the Databricks provider package:
 
 The `DatabricksRunNowOperator` should be used when you have an existing job defined in your Databricks workspace that you want to trigger using Airflow. The `DatabricksSubmitRunOperator` should be used if you want to manage the definition of your Databricks job and its cluster configuration within Airflow. Both operators allow you to run the job on a Databricks General Purpose cluster you've already created or on a separate Job Cluster that is created for the job and terminated upon the job’s completion. 
 
-
-Documentation for both operators can be found [here](https://registry.astronomer.io/providers/databricks?type=operators).
+Documentation for both operators can be found on the [Astronomer Registry](https://registry.astronomer.io/providers/databricks?type=operators).
 
 ## Example - Using Airflow with Databricks
 
-Below, is an example DAG that makes use of both the `DatabricksSubmitRunOperator` and the `DatabricksRunNowOperator`. Before diving into the DAG itself, you'll review the prerequisites.
+You'll now learn how to write a DAG that makes use of both the `DatabricksSubmitRunOperator` and the `DatabricksRunNowOperator`. Before diving into the DAG itself, you need to set up your environment to run Databricks jobs.
 
 ### Create a Databricks connection
 
-In order to use any Databricks hooks or operators, you will first need to create an Airflow connection that will allow Airflow to talk to your Databricks account. In general, Databricks recommends using a Personal Access Token (PAT) to authenticate to the Databricks REST API. For more information on how to generate a PAT for your account, read the [Managing dependencies in data pipelines](https://docs.databricks.com/dev-tools/data-pipelines.html). 
+In order to use any Databricks hooks or operators, you first need to create an Airflow connection that allows Airflow to talk to your Databricks account. In general, Databricks recommends using a personal access token (PAT) to authenticate to the Databricks REST API. For more information on how to generate a PAT for your account, read the [Managing dependencies in data pipelines](https://docs.databricks.com/dev-tools/data-pipelines.html). 
 
 For this example, you'll use the PAT authentication method and set up a connection using the Airflow UI. It should look something like this:
 
 ![Databricks Connection](/img/guides/databricks_connection.png)
 
-The Host should be your Databricks workspace URL, and your PAT should be added as a JSON-formatted Extra.
+The **Host** should be your Databricks workspace URL, and your PAT should be added as a JSON block in **Extra**.
 
 Note that it is also possible to use your login credentials to authenticate, although this isn't Databricks' recommended method of authentication. To use this method, you would enter the username and password you use to sign in to your Databricks account in the Login and Password fields of the connection.
 
@@ -129,7 +128,7 @@ For the `DatabricksSubmitRunOperator`, you need to provide parameters for the cl
 - Number of workers
 - Node type ID 
 
-These can be defined more granularly as needed. For more information on what Spark version runtimes are available, see [REST API](https://docs.databricks.com/dev-tools/api/latest/index.html#runtime-version-strings).
+These can be defined more granularly as needed. For more information on what Spark version runtimes are available, see the [Databricks REST API documentation](https://docs.databricks.com/dev-tools/api/latest/index.html#runtime-version-strings).
 
 You also need to provide the task that will be run. In this example you use the `notebook_task`, which is the path to the Databricks notebook you want to run. This could also be a Spark JAR task, Spark Python task, or Spark submit task, which would be defined using the `spark_jar_task`, `spark_python_test`, or `spark_submit_task` parameters respectively. The operator will look for one of these four options to be defined.
 
@@ -145,7 +144,7 @@ If there is a failure in the job itself, like in one of the notebooks in this ex
 
 In the case above, you can click on the URL link to get to the Databricks log in order to debug the issue.
 
-## Where to go from here
+## Next steps
 
 This example DAG shows how little code is required to get started orchestrating Databricks jobs with Airflow. By using existing hooks and operators, you can easily manage your Databricks jobs from one place while also building your data pipelines. With just a few more tasks, you can turn the DAG above into a pipeline for orchestrating many different systems:
 
