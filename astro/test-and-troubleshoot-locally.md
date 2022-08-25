@@ -95,8 +95,6 @@ response = requests.get(
 )
 ```
 
-:::info
-
 To make requests to the Airflow REST API on an Astro Deployment, see [Airflow API](airflow-api.md).
 
 ## Troubleshoot KubernetesPodOperator issues
