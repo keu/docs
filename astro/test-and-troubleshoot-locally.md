@@ -97,8 +97,6 @@ response = requests.get(
 
 For more information on making requests to Airflow REST API and common examples, please see our [guide](https://docs.astronomer.io/astro/airflow-api) on this topic.
 
-:::
-
 ## Troubleshoot KubernetesPodOperator issues
 
 View local Kubernetes logs to troubleshoot issues with Pods that are created by the operator. See [Test and Troubleshoot the KubernetesPodOperator Locally](kubepodoperator-local.md#step-4-view-kubernetes-logs).
