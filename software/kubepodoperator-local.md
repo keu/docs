@@ -75,7 +75,7 @@ The latest versions of Docker for Windows and Mac let you run a single node Kube
         client-certificate-data: <client-certificate-data>
         client-key-data: <client-key-data>
     ```
-    The cluster `name` should be searchable as `docker-desktop` in your local `$HOME/.kube``config` file. Do not add any additional data to the `config` file.
+    The cluster `name` should be searchable as `docker-desktop` in your local `$HOME/.kube/config` file. Do not add any additional data to the `config` file.
 
 2. Update the `<certificate-authority-data>`, `<client-authority-data>`, and `<client-key-data>` values in the `config` file with the values for your organization. 
 3. Under cluster, change `server: https://localhost:6445` to `server: https://kubernetes.docker.internal:6443` to identify the localhost running Kubernetes Pods. If this doesn't work, try `server: https://host.docker.internal:6445`.

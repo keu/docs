@@ -175,7 +175,7 @@ If you're interested in running any extra commands when your Airflow image build
 For example, if you wanted to run `ls` when your image builds, your `Dockerfile` would look like this:
 
 ```
-FROM quay.io/astronomer/ap-airflow:1.10.12-buster-onbuild
+FROM quay.io/astronomer/runtime-5.0.6
 RUN ls
 ```
 
@@ -306,17 +306,15 @@ This example assumes that the name of each of your Python packages is identical 
 
 1. In your Astro project, create a duplicate of your `Dockerfile` and name it `Dockerfile.build`.
 
-2. In `Dockerfile.build`, add `AS stage` to the `FROM` line which specifies your Astronomer image. For example, if you use Astronomer Certified 2.2.5, your `FROM` line would be:
+2. In `Dockerfile.build`, add `AS stage` to the `FROM` line which specifies your Astronomer image. For example, if you use Astro Runtime 5.0.6, your `FROM` line would be:
 
    ```text
-   FROM quay.io/astronomer/ap-airflow:2.2.5 AS stage1
+   FROM quay.io/astronomer/runtime:5.0.6-base AS stage1
    ```
 
   :::caution
 
-  If you use the default distribution of an Astronomer Certified image, make sure to remove the `-onbuild` part of the image. The Astronomer Certified distribution that does not specify `-onbuild` is built to be customizable and does not include default build logic. For more information, see [Distributions](ac-support-policy.md#distribution).
-
-  Similarly, if you use an Astro Runtime image, ensure that the distribution you're using is the `-base` image.
+  Make sure to use the `-base` version of the Astro Runtime image that you want to customize. This image tag is  customizable and does not include default build logic. For more information, see [Distributions](runtime-image-architecture.md#distribution).
 
   :::
 
@@ -355,20 +353,6 @@ This example assumes that the name of each of your Python packages is identical 
     - Securely mount your GitHub SSH key at build time. This ensures that the key itself is not stored in the resulting Docker image filesystem or metadata.
     - Install all Python-level packages in `requirements.txt` file, including those from a private GitHub repository.
 
-  :::tip
-
-  This example `Dockerfile.build` assumes Python 3.9, but some versions of Astronomer images may be based on a different version of Python. If your image is based on a version of Python that is not 3.9, replace `python 3.9` in the **COPY** commands listed under the `## Copy requirements directory` section of your `Dockerfile.build` with the correct Python version.
-
-  To identify the Python version in your AC image, run:
-
-     ```
-     docker run quay.io/astronomer/<astronomer-image>:<astronomer-image-version> python --version
-     ```
-
-  Make sure to replace  `<astronomer-image>` `<astronomer-image-version>` with your own.
-
-  :::
-
   :::info
 
   If your repository is hosted somewhere other than GitHub, replace the domain in the `ssh-keyscan` command with the domain where the package is hosted.
@@ -383,10 +367,10 @@ This example assumes that the name of each of your Python packages is identical 
     DOCKER_BUILDKIT=1 docker build -f Dockerfile.build --progress=plain --ssh=github="$HOME/.ssh/<ssh-key>" -t custom-<your-image> .
     ```
 
-    For example, if you have `quay.io/astronomer/ap-airflow:2.2.5` in your `Dockerfile.build`, this command would be:
+    For example, if you have `quay.io/astronomer/runtime:5.0.6-base` in your `Dockerfile.build`, this command would be:
 
     ```sh
-    DOCKER_BUILDKIT=1 docker build -f Dockerfile.build --progress=plain --ssh=github="$HOME/.ssh/<authorized-key>" -t custom-ap-airflow:2.2.5 .
+    DOCKER_BUILDKIT=1 docker build -f Dockerfile.build --progress=plain --ssh=github="$HOME/.ssh/<authorized-key>" -t custom-runtime:5.0.6-base .
     ```
 
   :::info
@@ -401,10 +385,10 @@ This example assumes that the name of each of your Python packages is identical 
    FROM custom-<your-image>
    ```
 
-   For example, if your base image was `quay.io/astronomer/ap-airflow:2.2.5`, this line would be:
+   For example, if your base image was `quay.io/astronomer/runtime:5.0.6-base`, this line would be:
 
    ```
-   FROM custom-ap-airflow:2.2.5
+   FROM custom-runtime:5.0.6-base
    ```
 
 Your Software project can now utilize Python packages from your private GitHub repository.
@@ -438,17 +422,15 @@ Ensure that the name of the package on the private repository does not clash wit
 
 1. In your Astro project, create a duplicate of your `Dockerfile` named `Dockerfile.build`.
 
-2. In `Dockerfile.build`, add `AS stage` to the `FROM` line which specifies your Runtime image. For example, if you use Runtime 5.0.0, your `FROM` line would be:
+2. In `Dockerfile.build`, add `AS stage` to the `FROM` line which specifies your Runtime image. For example, if you use Runtime 5.0.6, your `FROM` line would be:
 
    ```text
-   quay.io/astronomer/astro-runtime:5.0.0-base AS stage1
+   quay.io/astronomer/astro-runtime:5.0.6-base AS stage1
    ```
 
    :::caution
 
-   If you use the default distribution of Astronomer Certified, make sure to remove the `-onbuild` part of the image. The Astronomer Certified distribution that does not specify `-onbuild` is built to be customizable and does not include default build logic. For more information, see [Distributions](ac-support-policy.md#distribution).
-
-   Similarly, if you use an Astro Runtime image, ensure that the distribution you're using is the `-base` image.
+    Make sure to use the `-base` version of the Astro Runtime image that you want to customize. This image tag is  customizable and does not include default build logic. For more information, see [Distributions](runtime-image-architecture.md#distribution).
 
    :::
 
@@ -494,10 +476,10 @@ Ensure that the name of the package on the private repository does not clash wit
     DOCKER_BUILDKIT=1 docker build -f Dockerfile.build --progress=plain --build-arg PIP_EXTRA_INDEX_URL=https://${<repo-username>}:${<repo-password>}@<private-pypi-repo-domain-name> -t custom-<airflow-image> .
     ```
 
-    For example, if you have `quay.io/astronomer/ap-airflow:2.2.5` in your `Dockerfile.build`, this command would be:
+    For example, if you have `quay.io/astronomer/runtime:5.0.6-base` in your `Dockerfile.build`, this command would be:
 
     ```sh
-    DOCKER_BUILDKIT=1 docker build -f Dockerfile.build --progress=plain --build-arg PIP_EXTRA_INDEX_URL=https://${<repo-username>}:${<repo-password>}@<private-pypi-repo-domain-name> -t custom-ap-airflow:2.2.5 .
+    DOCKER_BUILDKIT=1 docker build -f Dockerfile.build --progress=plain --build-arg PIP_EXTRA_INDEX_URL=https://${<repo-username>}:${<repo-password>}@<private-pypi-repo-domain-name> -t custom-runtime-5.0.6-base .
     ```
 
 
@@ -507,10 +489,10 @@ Ensure that the name of the package on the private repository does not clash wit
    FROM custom-<astronomer-image>
    ```
 
-   For example, if your base image was `quay.io/astronomer/ap-airflow:2.2.5`, this line would be:
+   For example, if your base image was `quay.io/astronomer/runtime:5.0.6-base`, this line would be:
 
    ```
-   FROM custom-ap-airflow:2.2.5
+   FROM custom-runtime-5.0.6-base
    ```
 
    Your Software project can now utilize Python packages from your private PyPi index.
@@ -519,6 +501,12 @@ Ensure that the name of the package on the private repository does not clash wit
 </Tabs>
 
 ## Build with a different Python version (_Astronomer Certified only_)
+
+:::info
+
+To use a different Python version with Astro Runtime, you have to run your tasks using the KubernetesPodOperator. See [Run the KubernetesPodOperator on Astronomer Software](kubepodoperator.md).
+
+:::
 
 While the Astronomer Certified (AC) Python Wheel supports Python versions 3.6, 3.7, and 3.8, AC Docker images have been tested and built only for Python 3.7.
 

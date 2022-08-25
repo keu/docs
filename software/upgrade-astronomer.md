@@ -147,13 +147,19 @@ To avoid extended service disruptions, Astronomer recommends upgrading Astronome
 
 ### Upgrading to 0.29
 
-:::warning
+:::caution
 
 If you are currently on Astronomer Software 0.25, 0.26, or 0.27, you must upgrade to version 0.28 before upgrading to 0.29. A direct upgrade to 0.29 from a version lower than 0.28 is not possible.
 
 Follow the standard installation guide to upgrade to Software 0.28, then repeat the process to upgrade to 0.29.
 
 :::
+
+#### Kubernetes duplicate key removal bug in 0.29.3
+
+There is an [unresolved Kubernetes bug](https://github.com/kubernetes/kubernetes/issues/65106) that occurs when upgrading Helm charts that include duplicate keys in an `env` array. If you have a Helm chart with duplicate keys and upgrade to Astronomer Software 0.29.3, all key-value pairs with the duplicate key are removed from your environment.
+
+To preserve duplicate keys in your Helm chart, you can either reapply the values after upgrade or ensure that you use the `--reset-values` flag when running the upgrade script in Step 7.
 
 #### Resync Astronomer's signing certificate  
 
