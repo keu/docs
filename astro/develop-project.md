@@ -123,17 +123,13 @@ Once you've saved these packages in your project files, [restart your local envi
 
 ### Confirm your package was installed
 
-If you added `pymongo` to your `requirements.txt` file, for example, you can confirm that it was properly installed by running a `docker exec` command into your Scheduler:
+If you added `pymongo` to your `requirements.txt` file, for example, you can confirm that it was properly installed by running:
 
-1. Run `docker ps` to identify the docker containers running on your machine
-2. Copy the container ID of the scheduler container
-3. Run the following:
-
+```sh
+astro dev bash --scheduler "pip freeze | grep pymongo"
 ```
-docker exec -it <scheduler-container-id> pip freeze | grep pymongo
 
-pymongo==3.7.2
-```
+This command outputs the version number of the package you specify after `grep`.
 
 ## Add DAGs
 
@@ -167,18 +163,24 @@ To build additional helper functions for DAGs into your Astro project, Astronome
 
 2. [Restart your local environment](develop-project.md#restart-your-local-environment).
 
-To confirm that your helper functions were successfully installed:
+3. To confirm that your helper functions were successfully installed, run the following command:
 
-1. Run `docker ps` to identify the 3 running docker containers on your machine
-2. Copy the container ID of your scheduler container
-3. Run the following command to see your new directory in the container:
+   ```sh
 
-    ```bash
-    $ docker exec -it <scheduler-container-id> /bin/bash
+    astro dev bash --scheduler "/bin/bash"
+    
+   ```
+
+    The command should output a list of files in the scheduler container including your helper functions:
+
+   ```bash
+
+    $ astro dev bash --scheduler "/bin/bash"
     bash-4.4$ ls
     Dockerfile  airflow_settings.yaml  helper_functions  logs  plugins  unittests.cfg
     airflow.cfg dags  include  packages.txt  requirements.txt
-    ```
+
+   ```
 
 ## Configure `airflow_settings.yaml` (Local development only)
 
@@ -261,10 +263,10 @@ services:
 
 Make sure to specify `version: "3.1"` and follow the format of the source code file linked above.
 
-To see your override file live in your local Airflow environment, run the following command for any container running Airflow:
+To see your override file live in your local Airflow environment, run the following command to see the file in your scheduler container:
 
 ```sh
-docker exec -it <container-name> ls -al
+astro dev bash --scheduler "ls -al"
 ```
 
 :::info
@@ -297,9 +299,8 @@ If your environment variables contain sensitive information or credentials that 
 
 Confirm that your environment variables were applied in a local environment by running the following commands:
 
-```
-$ docker exec -it <scheduler-container-name> /bin/bash
-$ env
+```sh
+astro dev bash --scheduler "/bin/bash && env"
 ```
 
 These commands output all environment variables that are running locally. This includes both environment variables set in `.env` and environment variables set on Astro Runtime by default.
@@ -311,8 +312,7 @@ For local environments, the Astro CLI generates an `airflow.cfg` file at runtime
 To view your local environment variables in the context of the generated Airflow configuration, run:
 
 ```
-$ docker exec -it <scheduler-container-name> /bin/bash
-$ cat airflow.cfg
+astro dev bash --scheduler "/bin/bash && cat airflow.cfg"
 ```
 
 These commands output the contents of the generated `airflow.cfg` file, which lists your environment variables as human-readable configurations with inline comments.
@@ -445,7 +445,7 @@ This example assumes that the name of each of your Python packages is identical 
     FROM stage1 AS stage3
     # Copy requirements directory
     COPY --from=stage2 /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin 
+    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin
     ENV PATH="/home/astro/.local/bin:$PATH"
 
     COPY . .
@@ -566,7 +566,7 @@ Ensure that the name of the package on the private repository does not clash wit
     FROM stage1 AS stage3
     # Copy requirements directory
     COPY --from=stage2 /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin 
+    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin
     ENV PATH="/home/astro/.local/bin:$PATH"
 
     COPY . .

@@ -19,6 +19,9 @@ module.exports = {
       label: 'Concepts',
       items: [
         'overview',
+        'airflow-passing-data-between-tasks',
+        'airflow-database',
+        'airflow-executors-explained',
         'airflow-components',
       ],
     },
@@ -34,7 +37,11 @@ module.exports = {
       label: 'Integrations',
       items: [
         'overview',
-        'airflow-azure-container-instances',
+        'airflow-azure-data-factory-integration',
+        'airflow-azure-data-explorer',
+        'airflow-openlineage',
+        'airflow-dbt',
+        'airflow-databricks',
       ],
     },
   ],
