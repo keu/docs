@@ -77,10 +77,10 @@ You can only use `astro dev run` in a local Airflow environment. To automate Air
 
 To make requests to the [Apache Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/cli-and-env-variables-ref.html) locally, you can use HTTP Basic Authentication with the credentials output by the `astro dev start` command:
 
-#### cURL
-```cURL
+### cURL
+
+```sh
 curl -X GET localhost:8080/api/v1/<endpoint> --user "admin:admin"
-```
 
 #### Python
 ```python
