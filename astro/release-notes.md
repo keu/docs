@@ -24,7 +24,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Bug fixes
 
-- Fixed an issue where running `astro deploy` with a Deployment API key could revert changes to a worker queue's size that were previously set in the Cloud UI. 
+- Fixed an issue where running `astro deploy` with a Deployment API key could revert changes to a worker queue's size that were previously set in the Cloud UI.
 - Fixed an issue where the **Lineage** tab in the Cloud UI showed all job durations as having a length of 0.
 
 ## August 18, 2022
