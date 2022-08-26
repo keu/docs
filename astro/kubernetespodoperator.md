@@ -176,7 +176,7 @@ If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) rep
     ```
 6. Replace `<AstroAccountID>` with your Astro AWS account ID. 
 7. Click **Save** to create a new permissions policy named **AllowImagePullAstro**.
-8. [Set Up the KubernetesPodOperator](#set-up-the-kubernetespodoperator).
+8. [Set up the KubernetesPodOperator](#set-up-the-kubernetespodoperator).
 9. Replace `<your-docker-image>` in the instantiation of the KubernetesPodOperator with the Amazon ECR repository URI that hosts the Docker image. To locate the URI:
 
     - In the Amazon ECR Dashboard, click **Repositories** in the left menu.
