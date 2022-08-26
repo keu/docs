@@ -1,7 +1,7 @@
 ---
 title: "Airflow pools"
 sidebar_label: "Airflow pools"
-description: "Use pools to control task parallelism in Airflow."
+description: "Use pools to control Airflow task parallelism."
 id: airflow-pools
 tags: [Parallelism, Tasks]
 ---
