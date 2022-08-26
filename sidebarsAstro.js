@@ -217,7 +217,7 @@ module.exports = {
       'cli/astro-deployment-variable-create',
       'cli/astro-deployment-variable-list',
       'cli/astro-deployment-variable-update',
-      'cli/astro-dev-bash'
+      'cli/astro-dev-bash',
       'cli/astro-dev-init',
       'cli/astro-dev-kill',
       'cli/astro-dev-logs',
