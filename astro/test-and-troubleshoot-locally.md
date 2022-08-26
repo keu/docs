@@ -122,12 +122,22 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
 
 ## Override the CLI's Docker Compose file
 
-The Astro CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. To override the CLI's default Docker Compose configurations, add a `docker-compose.override.yml` file to your Astro project. These values are applied whenever you run `astro dev start` or `astro dev restart`.
-
-To see what values you can override, reference the CLI's [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go). Common use cases for Docker Compose overrides include:
+The Astro CLI uses a default set of [Docker Compose](https://docs.docker.com/compose/) configurations to define and run local Airflow components. For advanced testing cases, you might need to override these default configurations. For example:
 
 - Adding extra containers to mimic services that your Airflow environment needs to interact with locally, such as an SFTP server.
 - Change the volumes mounted to any of your local containers.
+
+:::info
+
+The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global environment variables](platform-variables.md). To learn more about environment variables, read [Environment variables](environment-variables.md).
+
+:::
+
+To override default configurations:
+
+1. Reference the Astro CLI's default [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go) (`composeyml.go`) and determine one or more configurations to override.
+2. Add a `docker-compose.override.yml` file to your Astro project.
+3. Specify your new configuration values in `docker-compose.override.yml` file using the same format as in `composeyml.go`.
 
 For example, to add another volume mount for a directory named `custom_dependencies`, add the following to your `docker-compose.override.yml` file:
 
@@ -146,12 +156,6 @@ To see your override file live in your local Airflow environment, run the follow
 ```sh
 astro dev bash --scheduler "ls -al"
 ```
-
-:::info
-
-The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global environment variables](platform-variables.md). To learn more about environment variables, read [Environment variables](environment-variables.md).
-
-:::
 
 ## Troubleshoot common issues
 
