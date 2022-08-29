@@ -9,13 +9,13 @@ Since Airflow 2.0, decorators have been available for some functions as an alter
 
 In this guide, you'll learn about the benefits of decorators, the decorators available in Airflow, and decorators provided in the Astronomer open source `astro` library. You'll also review examples and learn when you should use decorators and how you can combine them with traditional operators in a DAG.
 
-## When and why to use decorators
+## When to use decorators
 
 The purpose of decorators in Airflow is to simplify the DAG authoring experience by eliminating the boilerplate code required by traditional operators. The result can be cleaner DAG files that are more concise and easier to read. Currently, decorators can be used for Python and SQL functions.
 
 In general, whether to use decorators is a matter of developer preference and style. Generally, a decorator and the corresponding traditional operator will have the same functionality. One exception to this is the `astro` library of decorators (more on these below), which do not have equivalent traditional operators. You can also easily mix decorators and traditional operators within your DAG if your use case requires that.
 
-## How to Use Airflow decorators
+## How to use Airflow decorators
 
 Airflow decorators were introduced as part of the TaskFlow API, which also handles passing data between tasks using XCom and inferring task dependencies automatically. To learn more about the TaskFlow API, check out this [Astronomer webinar](https://www.astronomer.io/events/webinars/taskflow-api-airflow-2.0) or this Apache Airflow [TaskFlow API tutorial](https://airflow.apache.org/docs/apache-airflow/stable/tutorial_taskflow_api.html#tutorial-on-the-taskflow-api). 
 
@@ -163,87 +163,130 @@ dag = taskflow()
 
 Note that when adding traditional operators, dependencies are still defined using bitshift operators.
 
-## Astro project decorators
+## Astro Python SDK decorators
 
-> **Note:** The `astro` project is currently in the alpha stage and is not yet ready for production. The API will likely change as it progresses. However, Astronomer is actively seeking alpha users to test functionality and provide feedback.
+The [Astro Python SDK](https://github.com/astronomer/astro-sdk) provides decorators and modules that allow data engineers to think in terms of data transformations rather than Airflow concepts when writing DAGs. The goal is to allow DAG writers to focus on defining *execution* logic without having to worry about orchestration logic.
 
-The [`astro` library](https://github.com/astro-projects/astro) provides decorators and modules that allow data engineers to think in terms of data transformations rather than Airflow concepts when writing DAGs. The goal is to allow DAG writers to focus on defining *execution* logic without having to worry about orchestration logic.
+The library contains SQL and dataframe decorators that greatly simplify your DAG code and allow you to directly define tasks without boilerplate operator code. It also allows you to transition seamlessly between SQL and Python for transformations without having to explicitly pass data between tasks or convert the results of queries to dataframes and vice versa. For a full description of functionality, check out the [repo Readme](https://github.com/astronomer/astro-sdk).
 
-The library contains SQL and dataframe decorators that greatly simplify your DAG code and allow you to directly define tasks without boilerplate operator code. It also allows you to transition seamlessly between SQL and Python for transformations without having to explicitly pass data between tasks or convert the results of queries to dataframes and vice versa. For a full description of functionality, check out the [repo Readme](https://github.com/astro-projects/astro).
+To use the Astro Python SDK, you need to install the `astro-sdk-python` package in your Airflow environment and enable pickling (`AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True`). 
 
-To use the `astro` library, you need to install the `astro-projects` package in your Airflow environment and enable pickling (`AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True`). 
-
-To show `astro` in action, you'll use a simple ETL example. In this example, you have data on adoptions from two different animal shelters that you need to aggregate, clean, transform, and append to a reporting table. Some of these tasks are better suited to SQL, and some to Python, but you can combine both using `astro` functions. The DAG looks like this:
+To show the Astro Python SDK in action, we'll use a simple ETL example. We have homes data in two different CSVs that we need to aggregate, clean, transform, and append to a reporting table. Some of these tasks are better suited to SQL, and some to Python, but we can easily combine both using `astro-sdk-python` functions. The DAG looks like this:
 
 ```python
-from airflow.decorators import dag
-from astro.sql import transform, append
-from astro.sql.table import Table
-from astro import dataframe
+import os
+from datetime import datetime
 
-from datetime import datetime, timedelta
 import pandas as pd
+from airflow.decorators import dag
 
-SNOWFLAKE_CONN = "snowflake"
-SCHEMA = "example_schema"
+from astro.files import File
+from astro.sql import (
+    append,
+    cleanup,
+    dataframe,
+    drop_table,
+    load_file,
+    run_raw_sql,
+    transform,
+)
+from astro.sql.table import Metadata, Table
 
-# Start by selecting data from two source tables in Snowflake
+SNOWFLAKE_CONN_ID = "snowflake_conn"
+FILE_PATH = "/usr/local/airflow/include/"
+
+# The first transformation combines data from the two source csv's
 @transform
-def combine_data(center_1: Table, center_2: Table):
+def extract_data(homes1: Table, homes2: Table):
     return """
-    SELECT * FROM {center_1}
+    SELECT *
+    FROM {{homes1}}
     UNION 
-    SELECT * FROM {center_2}
+    SELECT *
+    FROM {{homes2}}
     """
 
-# Clean data using SQL
-@transform
-def clean_data(input_table: Table):
-    return '''
-    SELECT * 
-    FROM {input_table} 
-    WHERE TYPE NOT LIKE 'Guinea Pig'
-    '''
-
-# Switch to Pandas for pivoting transformation
+# Switch to Python (Pandas) for melting transformation to get data into long format
 @dataframe
-def aggregate_data(df: pd.DataFrame):
-    adoption_reporting_dataframe = df.pivot_table(index='DATE', 
-                                                values='NAME', 
-                                                columns=['TYPE'], 
-                                                aggfunc='count').reset_index()
-    return adoption_reporting_dataframe
-
-@dag(start_date=datetime(2021, 1, 1),
-    max_active_runs=1,
-    schedule_interval='@daily', 
-    default_args={
-        'email_on_failure': False,
-        'retries': 0,
-        'retry_delay': timedelta(minutes=5)
-    },
-    catchup=False
+def transform_data(df: pd.DataFrame):
+    df.columns = df.columns.str.lower()
+    melted_df = df.melt(
+        id_vars=["sell", "list"], value_vars=["living", "rooms", "beds", "baths", "age"]
     )
-def animal_adoptions_etl():
-    # Define task dependencies
-    combined_data = combine_data(center_1=Table('ADOPTION_CENTER_1', conn_id=SNOWFLAKE_CONN, schema=SCHEMA),
-                                center_2=Table('ADOPTION_CENTER_2', conn_id=SNOWFLAKE_CONN, schema=SCHEMA))
 
-    cleaned_data = clean_data(combined_data)
-    aggregated_data = aggregate_data(
-        cleaned_data,
-        output_table=Table('aggregated_adoptions')
+    return melted_df
+
+
+# Back to SQL to filter data
+@transform
+def filter_data(homes_long: Table):
+    return """
+    SELECT * 
+    FROM {{homes_long}}
+    WHERE SELL > 200
+    """
+
+@run_raw_sql
+def create_table():
+    """Create the reporting data which will be the target of the append method"""
+    return """
+    CREATE TABLE IF NOT EXISTS homes_reporting (
+      sell number,
+      list number,
+      variable varchar,
+      value number
+    );
+    """
+
+@dag(start_date=datetime(2021, 12, 1), schedule_interval="@daily", catchup=False)
+def example_snowflake_partial_table_with_append():
+
+    # Initial load of homes data csv's into Snowflake
+    homes_data1 = load_file(
+        input_file=File(path=FILE_PATH + "homes.csv"),
+        output_table=Table(
+            name="HOMES",
+            conn_id=SNOWFLAKE_CONN_ID
+        ),
+    )
+
+    homes_data2 = load_file(
+        task_id="load_homes2",
+        input_file=File(path=FILE_PATH + "homes2.csv"),
+        output_table=Table(
+            name="HOMES2",
+            conn_id=SNOWFLAKE_CONN_ID
+        ),
+    )
+
+    # Define task dependencies
+    extracted_data = extract_data(
+        homes1=homes_data1,
+        homes2=homes_data2,
+        output_table=Table(name="combined_homes_data"),
+    )
+
+    transformed_data = transform_data(
+        df=extracted_data, output_table=Table(name="homes_data_long")
     )
     
-    # Append transformed data to reporting table
-    append(
-        conn_id=SNOWFLAKE_CONN,
-        append_table=aggregated_data,
-        columns=["DATE", "CAT", "DOG"],
-        main_table=Table("adoption_reporting", schema="SANDBOX_KENTEND"),
+    filtered_data = filter_data(
+        homes_long=transformed_data,
+        output_table=Table(name="expensive_homes_long"),
     )
 
-animal_adoptions_etl_dag = animal_adoptions_etl()
+    create_results_table = create_table(conn_id=SNOWFLAKE_CONN_ID)
+
+    # Append transformed & filtered data to reporting table
+    # Dependency is inferred by passing the previous `filtered_data` task to `append_table` param
+    record_results = append(
+        source_table=filtered_data,
+        target_table=Table(name="homes_reporting", conn_id=SNOWFLAKE_CONN_ID),
+        columns=["sell", "list", "variable", "value"],
+    )
+    record_results.set_upstream(create_results_table)
+
+example_snowflake_partial_table_dag = example_snowflake_partial_table_with_append()
 ```
 
 ![Astro ETL](/img/guides/astro_etl_graph.png)
@@ -261,7 +304,7 @@ By defining your task dependencies when calling the functions (for example, `cle
 
 There are a limited number of decorators available to use with Airflow, although more will be added in the future. This list provides a reference of what is currently available so you don't have to dig through source code:
 
-- `astro` project [SQL and dataframe decorators](https://github.com/astro-projects/astro)
+- Astro Python SDK [SQL and dataframe decorators](https://github.com/astronomer/astro-sdk)
 - DAG decorator (`@dag()`)
 - Task decorator (`@task()`), which creates a Python task
 - Python Virtual Env decorator (`@task.virtualenv()`), which runs your Python task in a virtual environment
