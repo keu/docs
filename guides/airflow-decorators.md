@@ -1,9 +1,8 @@
 ---
-title: "Introduction to Airflow Decorators"
-sidebar_label: "Introduction to Airflow Decorators"
+title: "Introduction to Airflow decorators"
+sidebar_label: "Task decorators"
 description: "An overview of Airflow decorators and how they can improve the DAG authoring experience."
 id: airflow-decorators
-tags: ["DAGs", "Basics", "Astro"]
 ---
 
 Since Airflow 2.0, decorators have been available for some functions as an alternative DAG authoring experience to traditional operators. In Python, [decorators](https://realpython.com/primer-on-python-decorators/) are functions that take another function as an argument and extend the behavior of that function. In the context of Airflow, decorators provide a simpler, cleaner way to define your tasks and DAG. 
