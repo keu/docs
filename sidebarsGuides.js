@@ -24,6 +24,7 @@ module.exports = {
         'airflow-executors-explained',
         'airflow-components',
         'airflow-branch-operator',
+        'airflow-pools',
       ],
     },
     {
@@ -43,6 +44,7 @@ module.exports = {
         'airflow-openlineage',
         'airflow-dbt',
         'airflow-databricks',
+        'airflow-sagemaker',
         'airflow-redshift',
       ],
     },
