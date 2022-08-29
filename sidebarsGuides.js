@@ -45,6 +45,7 @@ module.exports = {
         'airflow-dbt',
         'airflow-databricks',
         'airflow-sagemaker',
+        'airflow-redshift',
       ],
     },
   ],
