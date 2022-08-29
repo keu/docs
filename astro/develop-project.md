@@ -385,7 +385,7 @@ This example assumes that the name of each of your Python packages is identical 
 
   :::info
 
-  If you currently use the default distribution of Astro Runtime, replace your existing image with its corresponding `-base` image as demonstrated in the example above. The `-base` distribution is built to be customizable and does not include default build logic. For more information on Astro Runtime distributions, see [Distributions](runtime-version-lifecycle-policy.md#distribution).
+  If you currently use the default distribution of Astro Runtime, replace your existing image with its corresponding `-base` image as demonstrated in the example above. The `-base` distribution is built to be customizable and does not include default build logic. For more information on Astro Runtime distributions, see [Distributions](runtime-image-architecture.md#distribution).
 
   :::
 
