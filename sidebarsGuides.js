@@ -25,6 +25,7 @@ module.exports = {
         'airflow-components',
         'airflow-branch-operator',
         'airflow-pools',
+        'airflow-scaling-workers',
       ],
     },
     {
