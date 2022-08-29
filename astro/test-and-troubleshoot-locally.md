@@ -179,12 +179,13 @@ These logs should help you understand why your webserver or scheduler is unhealt
 - Misconfigured Dockerfile or Docker override file.
 - Misconfigured Airflow settings.
 
-### Port allocation issues
+### Ports are not available
 
 By default, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database in a local Airflow environment. If these ports are already in use on your local computer, an error message similar to the following appears:
 
 ```text
 Error: error building, (re)creating or starting project containers: Error response from daemon: Ports are not available: exposing port TCP 0.0.0.0:5432 → 0.0.0.0:0: listen tcp 0.0.0.0:5432: bind: address already in use
+```
 
 To resolve a port availability error, you have the following options:
 
