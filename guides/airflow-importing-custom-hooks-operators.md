@@ -3,7 +3,6 @@ title: "Import custom hooks and operators"
 sidebar_label: "Import custom hooks and operators"
 description: "How to correctly import custom hooks and operators."
 id: airflow-importing-custom-hooks-operators
-tags: ["Hooks", "Operators", "Plugins", "Basics"]
 ---
 
 One of the great benefits of Airflow is its vast network of provider packages that provide hooks, operators, and sensors for many common use cases. Another great benefit of Airflow is that it is highly customizable because everything is defined in Python code. If a hook, operator, or sensor you need doesn't exist in the open source, you can easily define your own. 
@@ -46,7 +45,7 @@ If your custom operator is modifying functionality of an existing operator, your
 
 After you've defined your custom operator, you need to make it available to your DAGs. Some legacy Airflow documentation or forums may reference registering your custom operator as an Airflow plugin, but this is not necessary. To import  a custom operator into your DAGs, the file containing your custom operator needs to be in a directory that is present in your `PYTHONPATH`.
 
-Airflow by default will add the `dags/` and `plugins/` directories in a project to the `PYTHONPATH`, so those are the most natural choices for storing custom operator files (check out the Apache Airflow [Module Management docs](https://airflow.apache.org/docs/apache-airflow/stable/modules_management.html) for more info). Your project structure may vary depending on your team and your use case. Astronomer uses the following structure, where custom operator files live in the `plugins/` directory with sub-folders for readability.
+By default, Airflow adds the `dags/` and `plugins/` directories in a project to the `PYTHONPATH`, so those are the most natural choices for storing custom operator files (check out the Apache Airflow [Module Management docs](https://airflow.apache.org/docs/apache-airflow/stable/modules_management.html) for more info). Your project structure may vary depending on your team and your use case. Astronomer uses the following structure, where custom operator files live in the `plugins/` directory with sub-folders for readability.
 
 ```bash
 .
@@ -67,7 +66,11 @@ Airflow by default will add the `dags/` and `plugins/` directories in a project 
 
 For more details on why Astronomer recommends this project structure, see the [Managing Airflow Code guide](https://www.astronomer.io/guides/managing-airflow-code).
 
-> Note: If you use an IDE and don't want to see import errors, add the `plugins` directory as a source root.
+:::tip
+
+If you use an IDE and don't want to see import errors, add the `plugins` directory as a source root.
+
+:::
 
 After you've added your custom operators to the project, you can import them into your DAG like you would any other Python package:
 
