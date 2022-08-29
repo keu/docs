@@ -163,20 +163,24 @@ To build additional helper functions for DAGs into your Astro project, Astronome
 
 2. [Restart your local environment](develop-project.md#restart-your-local-environment).
 
-To confirm that your helper functions were successfully installed, run the following command:
+3. To confirm that your helper functions were successfully installed, run the following command:
 
-    ```sh
+   ```sh
+
     astro dev bash --scheduler "/bin/bash"
-    ```
+
+   ```
 
     The command should output a list of files in the scheduler container including your helper functions:
 
-    ```bash
+   ```bash
+
     $ astro dev bash --scheduler "/bin/bash"
     bash-4.4$ ls
     Dockerfile  airflow_settings.yaml  helper_functions  logs  plugins  unittests.cfg
     airflow.cfg dags  include  packages.txt  requirements.txt
-    ```
+
+   ```
 
 ## Configure `airflow_settings.yaml` (Local development only)
 
@@ -237,39 +241,6 @@ RUN ls
 `}</code></pre>
 
 This is supported both on Astro and in the context of local development.
-
-## Override the CLI's Docker Compose file (Local development only)
-
-The Astro CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. To override CLI Docker Compose configurations, add a `docker-compose.override.yml` file to your Astro project. Any values in this file override the default CLI settings whenever you run `astro dev start`.
-
-To see what values you can override, reference the CLI's [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go). The linked file is for the original Astro CLI, but the values here are identical to those used in the Astro CLI. Common use cases for Docker Compose overrides include:
-
-- Adding extra containers to mimic services that your Airflow environment needs to interact with locally, such as an SFTP server.
-- Change the volumes mounted to any of your local containers.
-
-For example, to add another volume mount for a directory named `custom_dependencies`, add the following to your `docker-compose.override.yml` file:
-
-```yaml
-version: "3.1"
-services:
-  scheduler:
-    volumes:
-      - /home/astronomer_project/custom_dependencies:/usr/local/airflow/custom_dependencies:ro
-```
-
-Make sure to specify `version: "3.1"` and follow the format of the source code file linked above.
-
-To see your override file live in your local Airflow environment, run the following command to see the file in your scheduler container:
-
-```sh
-astro dev bash --scheduler "ls -al"
-```
-
-:::info
-
-The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global environment variables](platform-variables.md). To learn more about environment variables, read [Environment variables](environment-variables.md).
-
-:::
 
 ## Set environment variables locally
 

@@ -84,6 +84,11 @@ module.exports = {
         {
           type: 'category',
           label: 'Install Astro',
+          link: {
+            type:'generated-index',
+            title: 'Install Astro',
+            description: 'Install the Astro platform in your cloud.'
+          },
           items: [
             'install-aws',
             'install-azure',
@@ -131,6 +136,12 @@ module.exports = {
         {
           type: 'category',
           label: 'Cloud configuration reference',
+          link: {
+            type:'generated-index',
+            title: 'Cloud configuration reference',
+            description: 'Learn about the default and supported Astro cloud configurations.'
+
+          },
           items: [
             'resource-reference-aws',
             'resource-reference-azure',
@@ -206,6 +217,7 @@ module.exports = {
       'cli/astro-deployment-variable-create',
       'cli/astro-deployment-variable-list',
       'cli/astro-deployment-variable-update',
+      'cli/astro-dev-bash',
       'cli/astro-dev-init',
       'cli/astro-dev-kill',
       'cli/astro-dev-logs',
@@ -218,6 +230,7 @@ module.exports = {
       'cli/astro-dev-restart',
       'cli/astro-login',
       'cli/astro-logout',
+      'cli/astro-user-invite',
       'cli/astro-version',
       'cli/astro-workspace-list',
       'cli/astro-workspace-switch',],
