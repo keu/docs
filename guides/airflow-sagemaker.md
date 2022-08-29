@@ -1,9 +1,8 @@
 ---
 title: "Use Airflow with SageMaker"
-sidebar_label: "Airflow with SageMaker"
+sidebar_label: "SageMaker"
 description: "Orchestrate SageMaker machine learning pipelines with Airflow."
 id: airflow-sagemaker
-tags: [DAGs, Integrations, Machine Learning]
 ---
 
 [Amazon SageMaker](https://aws.amazon.com/sagemaker/) is a comprehensive AWS machine learning (ML) service that is frequently used by data scientists to develop and deploy ML models at scale. By nature, working with ML models in production requires automation and orchestration for repeated model training, testing, evaluation, and integration with other services to acquire and prepare data. 
@@ -20,21 +19,21 @@ There are multiple SageMaker operators and sensors available within the [AWS pro
 
 Each operator initiates a specific SageMaker job and each sensor waits for a specific job to complete. Specifically:
 
-- [`SageMakerEndpointOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakerendpointoperator): creates a SageMaker endpoint.
-- [`SageMakerEndpointConfigOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakerendpointconfigoperator): creates a SageMaker endpoint config.
-- [`SageMakerModelOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakermodeloperator): creates a SageMaker model.
-- [`SageMakerProcessingOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakerprocessingoperator): initiates a SageMaker processing job.
-- [`SageMakerTrainingOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakertrainingoperator): initiates a SageMaker training job.
-- [`SageMakerTransformOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakertransformoperator): initiates a SageMaker transform job.
-- [`SageMakerTuningOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakertuningoperator): initiates a SageMaker hyperparameter tuning job.
-- [`SageMakerEndpointSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakerendpointsensor): waits until the endpoint state is terminated.
-- [`SageMakerTransformSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertransformsensor): waits until the transform state is terminated.
-- [`SageMakerTuningSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertuningsensor): waits until the tuning state is terminated.
-- [`SageMakerTrainingSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertrainingsensor): waits until the training state is terminated.
+- [`SageMakerEndpointOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakerendpointoperator): Creates a SageMaker endpoint.
+- [`SageMakerEndpointConfigOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakerendpointconfigoperator): Creates a SageMaker endpoint config.
+- [`SageMakerModelOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakermodeloperator): Creates a SageMaker model.
+- [`SageMakerProcessingOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakerprocessingoperator): Initiates a SageMaker processing job.
+- [`SageMakerTrainingOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakertrainingoperator): Initiates a SageMaker training job.
+- [`SageMakerTransformOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakertransformoperator): Initiates a SageMaker transform job.
+- [`SageMakerTuningOperator`](https://registry.astronomer.io/providers/amazon/modules/sagemakertuningoperator): Initiates a SageMaker hyperparameter tuning job.
+- [`SageMakerEndpointSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakerendpointsensor): Waits until the endpoint state is terminated.
+- [`SageMakerTransformSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertransformsensor): Waits until the transform state is terminated.
+- [`SageMakerTuningSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertuningsensor): Waits until the tuning state is terminated.
+- [`SageMakerTrainingSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertrainingsensor): Waits until the training state is terminated.
 
 The following use cases demonstrate how to use some of these operators, but they generally all have similar requirements, such as an input configuration for the job being executed. Documentation on what should be included in each configuration can be found in the Actions section of the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations.html).
 
-## Use Case 1: Orchestrate an existing SageMaker model
+## Use case 1: Orchestrate an existing SageMaker model
 
 In this example, you'll use a DAG to acquire data, make predictions on the data with a SageMaker model, and then store the results in your data warehouse. This use case is relevant if you need to use your model to make predictions (run inferences) on a scheduled or ad-hoc basis. You can run the DAG on a schedule if you know new data is going to be available consistently, or use a sensor to trigger the DAG whenever new data becomes available.
 
@@ -176,7 +175,7 @@ Now, if you run this DAG and open your SageMaker dashboard, you should see the j
 
 The output of the transform job is uploaded to Redshift, where you can access the results. This is a simple use case, but you can easily extend this DAG to acquire data from an external system, clean or pre-process data, and complete the additional tasks necessary to publish the results after saving them to Redshift.
 
-## Use Case 2: Orchestrate a full ML pipeline
+## Use case 2: Orchestrate a full ML pipeline
 
 In this example, you'll use Airflow to acquire and pre-process data, train a model, create a model from the training results, and then evaluate the model on test data using a batch transform job. This use case is relevant if you want to automate the model training, testing, and deployment components of your ML pipeline.
 
