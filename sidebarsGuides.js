@@ -48,6 +48,7 @@ module.exports = {
         'airflow-databricks',
         'airflow-sagemaker',
         'airflow-redshift',
+        'airflow-great-expectations',
       ],
     },
   ],
