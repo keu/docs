@@ -44,6 +44,7 @@ module.exports = {
         'airflow-openlineage',
         'airflow-dbt',
         'airflow-databricks',
+        'airflow-sagemaker',
       ],
     },
   ],
