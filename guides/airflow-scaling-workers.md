@@ -10,9 +10,9 @@ One of the biggest strengths of Apache Airflow is its ability to scale to meet t
 
 Airflow exposes a number of parameters that are closely related to DAG and task-level performance. These include:
 
-- Environment-level settings
-- DAG-level settings
-- Task-level settings
+- Environment-level settings.
+- DAG-level settings.
+- Task-level settings.
 
 In this tutorial, you'll learn about the key parameters that you can use to modify Airflow performance. you'll also learn how your choice of executor can impact scaling and how best to respond to common scaling issues.
 
