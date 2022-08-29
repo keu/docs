@@ -142,11 +142,7 @@ To grant an Astro cluster access to a service that is running in an AWS account 
     ]
 }
 ```
-:::info
-
-Astronomer creates the `AirflowLogsS3-<clusterid>` role in the data plane account.  Every Airflow deployment in a cluster runs under this role.
-
-:::
+    Your Astro cluster's data plane account includes the `AirflowLogsS3-<clusterid>` role that you just specified. When you configure an Airflow connection for a Deployment, specify this role in an [AWS Airflow Connection](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/aws.html) to provide your Deployment access to your service.
 
 7. Click **Update policy**.
 8. In the Airflow UI or as an environment variable on Astro, create an Airflow connection to AWS for each Deployment that requires the resources you connected. See [Managing connections to Apache Airflow](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/aws.html).
