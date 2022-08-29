@@ -1,12 +1,15 @@
 ---
 title: "Integrating Airflow and Great Expectations"
-sidebar_label: "Integrating Airflow and Great Expectations"
-description: "Using the Great Expectations provider natively in your Airflow DAGs."
+sidebar_label: "Great Expectations"
+description: "Use the Great Expectations provider in your Airflow DAGs."
 id: airflow-great-expectations
-tags: ["DAGs", "Integrations"]
 ---
 
-> You can now find the [Great Expectations Provider](https://registry.astronomer.io/providers/great-expectations) on the [Astronomer Registry](https://registry.astronomer.io), the discovery and distribution hub for Apache Airflow integrations created to aggregate and curate the best bits of the ecosystem.
+:::info
+
+You can now find the [Great Expectations Provider](https://registry.astronomer.io/providers/great-expectations) on the [Astronomer Registry](https://registry.astronomer.io), the discovery and distribution hub for Apache Airflow integrations created to aggregate and curate the best bits of the ecosystem.
+
+:::
 
 [Great Expectations](https://greatexpectations.io) is an open source Python-based data validation framework. You can test your data by expressing what you “expect” from it as simple declarative statements in Python, then run validation using those “expectations” against datasets with [Checkpoints](https://docs.greatexpectations.io/docs/reference/checkpoints_and_actions). Great Expectations maintains an [Airflow provider](https://registry.astronomer.io/providers/great-expectations) that gives users a convenient method for running validation directly from their DAGs.
 
@@ -38,7 +41,7 @@ If you set up a project manually, you will see a `great_expectations` directory 
 
 > Note: The `GreatExpectationsOperator` requires Airflow 2.1 or later, and you will need to change the value of `enable_xcom_pickling` to `true` in your airflow.cfg. If you are using an Astronomer project structure, add `ENV AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True` to your Dockerfile. If you are working from the demo repository, this step has already been completed for you.
 
-## Use Case: Great Expectations Operator
+## Use Case: Great Expectations operator
 
 Now that your system is set up to work with Great Expectations, you can start exploring how to use it in your DAGs. The current Great Expectations provider version uses the [Great Expectations V3 API](https://docs.greatexpectations.io/docs/).
 
@@ -61,7 +64,7 @@ Our [demo repository](https://github.com/astronomer/airflow-data-quality-demo/) 
 
     It’s recommended that you specify a version when installing the package. To make use of the latest Great Expectations V3 API, you need to specify a version >= `0.1.0`.
 
-### Using the Great Expectations Operator
+### Using the Great Expectations operator
 
 1. Import the operator into your DAG file. You might also need to import the `DataContextConfig`, `CheckpointConfig`, or `BatchRequest` classes depending on how you're using the operator. To import the Great Expectations provider, configurations, and batch classes in a given DAG, add the following line to the top of the DAG file in your `dags` directory:
 
@@ -110,6 +113,6 @@ For more information about possible parameters and examples, see the [README in 
 
 The `GreatExpectationsOperator` can run a checkpoint on a dataset stored in any backend compatible with Great Expectations. For example, BigQuery, MSSQL, MySQL, PostgreSQL, Redshift, Snowflake, SQLite, Athena, and so on. All that’s needed to get the Operator to point at an external dataset is to set up an [Airflow Connection](https://www.astronomer.io/guides/connections) to the `datasource`, and add the connection to your Great Expectations project [using the CLI to add a Postgres backend](https://docs.greatexpectations.io/docs/guides/connecting_to_your_data/database/postgres). Then, if using a `DataContextConfig` or `CheckpointConfig`, ensure that the `"datasources"` field refers to your backend connection name.
 
-## Conclusion
+## Next steps
 
 In this guide, you learned about the purpose of Great Expectations and how to use the provider operator to create Great Expectations Airflow tasks. For more examples on how to use the `GreatExpectationsOperator` as part of an ELT pipeline, see the [Great Expectations Snowflake Example](https://registry.astronomer.io/dags/great-expectations-snowflake), [Great Expectations BigQuery Example](https://registry.astronomer.io/dags/great-expectations-bigquery), and [Great Expectations Redshift Example](https://registry.astronomer.io/dags/great-expectations-redshift) examples on the [Astronomer Registry](https://registry.astronomer.io/).
