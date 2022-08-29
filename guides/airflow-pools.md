@@ -1,9 +1,8 @@
 ---
 title: "Airflow pools"
-sidebar_label: "Airflow pools"
+sidebar_label: "Pools"
 description: "Use pools to control Airflow task parallelism."
 id: airflow-pools
-tags: [Parallelism, Tasks]
 ---
 
 One of the benefits of Apache Airflow is that it is built to scale. With the right supporting infrastructure, you can run many tasks in parallel seamlessly. Unfortunately, horizontal scalability also necessitates some guardrails. For example, you might have many tasks that interact with the same source system, such as an API or database, that you don't want to overwhelm with requests. Airflow [pools](https://airflow.apache.org/docs/apache-airflow/stable/concepts/pools.html) are designed for exactly this use case.
@@ -23,11 +22,10 @@ There are three ways you can create and manage pools in Airflow:
 - The Airflow CLI: Run the `airflow pools` command with the `set` subcommand to create a new pool. See the [Airflow CLI documentation](https://airflow.apache.org/docs/apache-airflow/stable/cli-and-env-variables-ref.html#pools) for the full list of pool commands. With the Airflow CLI, you can also import pools from a JSON file with the `import` subcommand. This can be useful if you have a large number of pools to define and doing so programmatically would be more efficient.
 - The Airflow REST API: This option is available with Airflow version 2.0 and later. To create a pool, submit a POST request with the name and number of slots as the payload. For more information on working with pools from the API, see the [API documentation](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html#operation/post_pool).
 
-You can also update the number of slots in the `default_pool` using any of the above methods.
 
 ## Assign tasks to a pool
 
-By default, all tasks in Airflow get assigned to the `default_pool` which has 128 slots. You can modify this value, but you can't remove the default pool. Tasks can be assigned to other pools by updating the `pool` parameter. This parameter is part of the `BaseOperator`, so it can be used with any operator.
+By default, all tasks in Airflow get assigned to the `default_pool` which has 128 slots. You can modify the number of slots, but you can't remove the default pool. Tasks can be assigned to other pools by updating the `pool` parameter. This parameter is part of the `BaseOperator`, so it can be used with any operator.
 
 ```python
 task_a = PythonOperator(
@@ -176,4 +174,3 @@ with DAG('pool_unimportant_dag',
     task_w >> [task_x, task_y] >> task_z
 ```
 
-Hopefully, you have been inspired to think about how you can use the pools feature to make Airflow a powerful orchestrator.
