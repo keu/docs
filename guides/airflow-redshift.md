@@ -1,6 +1,6 @@
 ---
 title: "Orchestrate Redshift operations in Airflow"
-sidebar_label: "Orchestrate Redshift operations in Airflow"
+sidebar_label: "Amazon Redshift"
 description: "Use Redshift modules to set up a Redshift connection."
 id: airflow-redshift
 tags: [Database, SQL, DAGs, Integrations, AWS]
@@ -10,7 +10,6 @@ Amazon Redshift is a fully-managed cloud data warehouse. It has become the most 
 
 Developing a dimensional data mart in Redshift requires automation and orchestration for repeated queries, data quality checks, and overall cluster operations. This makes Airflow the perfect orchestrator to pair with Redshift. With Airflow, you can orchestrate each step of your Redshift pipeline, integrate with services that clean your data, and store and publish your results using SQL and Python code.
 
-
 In this tutorial, you'll learn about the Redshift modules that are available in the [AWS Airflow provider package](https://registry.astronomer.io/providers/amazon). You'll also complete sample implementations that execute SQL in a Redshift cluster, pause and resume a Redshift cluster, and transfer data between Amazon S3 and a Redshift cluster.
 
 All code in this tutorial is located in the [GitHub repo](https://github.com/astronomer/cs-tutorial-redshift). 
@@ -19,7 +18,7 @@ All code in this tutorial is located in the [GitHub repo](https://github.com/ast
 
 To use Redshift operators in Airflow, you first need to install the Redshift provider package and create a connection to your Redshift cluster.
 
-1. If you are working with the [Astro CLI](https://docs.astronomer.io/astro/install-cli), add `apache-airflow-providers-amazon` to your `requirements.txt` file. Otherwise, run `pip install apache-airflow-providers-amazon`.
+1. If you are working with the [Astro CLI](https://docs.astronomer.io/astro/install-cli), add `apache-airflow-providers-amazon` to the `requirements.txt` file of your Astro project. Otherwise, run `pip install apache-airflow-providers-amazon`.
 
 2. Connect your Airflow instance to Redshift. The most common way of doing this is by configuring an Airflow connection. In the Airflow UI, go to **Admin** > **Connections** and add the following connections:
  
@@ -28,11 +27,11 @@ To use Redshift operators in Airflow, you first need to install the Redshift pro
      ```yaml
      Connection ID: redshift_default
      Connection Type: Amazon Redshift
-     Host: <YOUR-REDSHIFT-ENDPOINT> (for example, redshift-cluster-1.123456789.us-west-1.redshift.amazonaws.com)
-     Schema: <YOUR-REDSHIFT-DATABASE> (for example, dev, test, prod, etc.)
-     Login: <YOUR-REDSHIFT-USERNAME> (for example, awsuser)
-     Password: <YOUR-REDSHIFT-PASSWORD>
-     Port: <YOUR-REDSHIFT-PORT> (for example, 5439)
+     Host: <your-redshift-endpoint> (for example, redshift-cluster-1.123456789.us-west-1.redshift.amazonaws.com)
+     Schema: <your-redshift-database> (for example, dev, test, prod, etc.)
+     Login: <your-redshift-username> (for example, awsuser)
+     Password: <your-redshift-password>
+     Port: <your-redshift-port> (for example, 5439)
      ```
   
     - `aws_default`: The default connection that other Airflow AWS modules use. For the examples in this guide, you will need this connection for Airflow to communicate with Amazon S3. If you use a name other than `aws_default` for this connection, you'll need to specify it in the modules that require an AWS connection. Use the following parameters for your new connection (all other fields can be left blank):
