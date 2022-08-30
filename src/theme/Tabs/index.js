@@ -11,14 +11,10 @@ import styles from "./styles.module.css";
 // Custom function adapted from Temporal documentation
 // Copyright (c) 2022 Temporal Technologies Inc. All rights reserved.
 // Copyright (c) 2017 Uber Technologies, Inc.
-function updateTabLink(val) {
+function updateTabLink(val,topic) {
   const url = window.location.href;
   const parts = url.split("#");
-  if (parts.length > 1) {
-    history.replaceState({}, "", `?tab=${val}#${parts.pop()}`);
-  } else {
-    history.replaceState({}, "", `?tab=${val}`);
-  }
+  history.replaceState({}, "", `#${topic}?tab=${val}`);
 }
 //End customization
 
@@ -106,7 +102,7 @@ function TabsComponent(props) {
     const newTabIndex = tabRefs.indexOf(newTab);
     const newTabValue = values[newTabIndex].value;
 
-    updateTabLink(newTabValue);
+    updateTabLink(newTabValue, groupId);
 
     if (newTabValue !== selectedValue) {
       blockElementScrollPositionUntilNextRender(newTab);

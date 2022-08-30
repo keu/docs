@@ -59,7 +59,7 @@ The following templates use [Astro CLI v1.0+](cli/release-notes.md) to deploy vi
 
 <Tabs
     defaultValue="standard"
-    groupId= "tabs"
+    groupId= "github-actions"
     values={[
         {label: 'Standard', value: 'standard'},
         {label: 'Multi-branch', value: 'multibranch'},
