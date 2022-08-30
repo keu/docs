@@ -148,7 +148,7 @@ KubernetesPodOperator(
 ```
 ### Docker images hosted in private Amazon ECR repositories
 
-If your Docker image is hosted in an Amazon ECR repository, add a permissions policy to the repository to allow the KubernetesPodOperator to pull the Docker image. You don't need to create a Kubernetes secret, or specify the Kubernetes secret in your DAG.
+If your Docker image is hosted in an Amazon ECR repository, add a permissions policy to the repository to allow the KubernetesPodOperator to pull the Docker image. You don't need to create a Kubernetes secret, or specify the Kubernetes secret in your DAG. You can only pull images from an Amazon ECR repository from an AWS cluster.
 
 1. Log in to the Amazon ECR Dashboard and then select **Menu** > **Repositories**.
 2. Click the **Private** tab and then click the name of the repository that hosts the Docker image. 
