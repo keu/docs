@@ -364,15 +364,15 @@ Then, run:
 helm repo update
 ```
 
-This will ensure that you pull the latest from our Helm repository. Finally, run:
+This ensures that you pull the latest image from the Astronomer Helm repository. Now, run:
 
 ```sh
 helm install -f config.yaml --version=0.30 --namespace=astronomer <your-platform-release-name> astronomer/astronomer
 ```
 
-This command will install the latest available patch version of Astronomer Software v0.30. To override latest and specify a patch, add it to the `--version=` flag in the format of `0.30.x`. To install Astronomer Software v0.30.0, for example, specify `--version=0.30.0`. For information on all available patch versions, refer to [Software Release Notes](release-notes.md).
+This command installs the most recent patch version of Astronomer Software. To install a different patch version, add the `--version=` flag and use the format `0.30.x`.  For example, to install Astronomer Software v0.30.0, you specify `--version=0.30.0`. For more information about the available patch versions, see the [Software Release Notes](release-notes.md).
 
-Once you run the commands above, a set of Kubernetes pods will be generated in your namespace. These pods power the individual services required to run our platform, including the Software UI and Houston API.
+After you run the previous commands, a set of Kubernetes pods are generated in your namespace. These pods power the individual services required to run the Astronomer platform, including the Software UI and Houston API.
 
 ## Step 10: Verify that all Pods are up
 
