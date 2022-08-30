@@ -14,7 +14,7 @@ import styles from "./styles.module.css";
 function updateTabLink(val,topic) {
   const url = window.location.href;
   const parts = url.split("#");
-  if (topic == "undefined") {
+  if (topic == undefined) {
     history.replaceState({}, "", `?lang=${val}`);
   }
   else {
