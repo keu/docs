@@ -94,7 +94,7 @@ Add Airflow task logs from your Astronomer Deployment to an existing Elasticsear
         name	"instance-0000000000"
         cluster_name	"<cluster-name>"
         cluster_uuid	"<cluster-uuid>"
-        version	
+        version
         number	"8.3.2"
         build_type	"docker"
         build_hash	"8b0b1f23fbebecc3c88e4464319dea8989f374fd"
@@ -104,17 +104,18 @@ Add Airflow task logs from your Astronomer Deployment to an existing Elasticsear
         minimum_wire_compatibility_version	"7.17.0"
         minimum_index_compatibility_version	"7.0.0"
         tagline	"You Know, for Search"
-    ``` 
+    ```
 
 ### Save your Elastic Cloud deployment credentials
 
 After you've created an Elastic deployment and endpoint, you have two options to store your Elastic deployment credentials. You can store the credentials in your Astronomer Software helm values, or for greater security, as a secret in your Astronomer Software Kubernetes cluster. For additional information about adding an Astronomer Software configuration change, see [Apply a config change](apply-platform-config.md).
 
 <Tabs
-    defaultValue="config.yaml"
+    defaultValue="configyaml"
+    groupId= "save-your-elastic-cloud-deployment-credentials"
     values={[
-        {label: 'config.yaml', value: 'config.yaml'},
-        {label: 'Kubernetes secret', value: 'kubernetes secret'},
+        {label: 'config.yaml', value: 'configyaml'},
+        {label: 'Kubernetes secret', value: 'kubernetessecret'},
     ]}>
 <TabItem value="config.yaml">
 
@@ -184,7 +185,7 @@ After you've created an Elastic deployment and endpoint, you have two options to
   ```bash
   helm upgrade -f config.yaml --version=0.27 --namespace=<your-platform-namespace> <your-platform-release-name> astronomer/astronomer
  ```
-  
+
 </TabItem>
 </Tabs>
 

@@ -319,6 +319,7 @@ Deploying a custom Runtime image with a CI/CD pipeline requires additional confi
 
 <Tabs
     defaultValue="github"
+    groupId= "install-python-packages-from-private-sources"
     values={[
         {label: 'Private GitHub Repo', value: 'github'},
         {label: 'Private PyPi Index', value: 'pypi'},
