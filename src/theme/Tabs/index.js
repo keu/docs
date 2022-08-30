@@ -8,15 +8,15 @@ import {
 import clsx from "clsx";
 import styles from "./styles.module.css";
 
-// Custom function adapted from Temporal documentation
-// Copyright (c) 2022 Temporal Technologies Inc. All rights reserved.
-// Copyright (c) 2017 Uber Technologies, Inc.
 function updateTabLink(val) {
   const url = window.location.href;
   const parts = url.split("#");
-  history.replaceState({}, "", `?tab=${val}#${parts.pop()}`);
+  if (parts.length > 1) {
+    history.replaceState({}, "", `?tab=${val}#${parts.pop()}`);
+  } else {
+    history.replaceState({}, "", `?tab=${val}`);
+  }
 }
-//End customization
 
 function isTabItem(comp) {
   return typeof comp.props.value !== "undefined";
