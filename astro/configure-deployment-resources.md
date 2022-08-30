@@ -61,7 +61,7 @@ Running multiple worker queues improves resource usage efficiency and enables de
 
 1. Log in to the Cloud UI.
 2. Select a Deployment.
-3. Click **Create Worker Queue**
+3. Click **Create Worker Queue**.
 4. Configure the worker queue’s settings. Note that you cannot change the name of a worker queue once you create it.
 5. Click **Update Queue**.
 
