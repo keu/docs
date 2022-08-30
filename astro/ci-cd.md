@@ -280,6 +280,7 @@ To complete this setup, you need:
 
 <Tabs
     defaultValue="jenkinsstandard"
+    groupId= "jenkins"
     values={[
         {label: 'Standard', value: 'jenkinsstandard'},
         {label: 'Multi-branch', value: 'jenkinsmultibranch'},
@@ -395,7 +396,7 @@ To automate code deploys across multiple Deployments using [Jenkins](https://www
 
 <Tabs
     defaultValue="awscodebuildstandard"
-    groupId= "tabs"
+    groupId= "aws-codebuild"
     values={[
         {label: 'Standard', value: 'awscodebuildstandard'},
         {label: 'Multi-branch', value: 'awscodebuildmultibranch'},
@@ -624,6 +625,7 @@ This pipeline configuration requires:
 
 <Tabs
     defaultValue="gitlabstandard"
+    groupId= "gitlab"
     values={[
         {label: 'Standard', value: 'gitlabstandard'},
         {label: 'Multi-branch', value: 'gitlabmultibranch'},

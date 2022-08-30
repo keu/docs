@@ -15,6 +15,7 @@ This is where you'll find information about installing, upgrading, and uninstall
 
 <Tabs
     defaultValue="mac"
+    groupId= "install-the-astro-cli"
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},

@@ -14,7 +14,7 @@ import styles from "./styles.module.css";
 function updateTabLink(val,topic) {
   const url = window.location.href;
   const parts = url.split("#");
-  history.replaceState({}, "", `#${topic}?tab=${val}`);
+  history.replaceState({}, "", `?tab=${val}#${topic}`);
 }
 //End customization
 
