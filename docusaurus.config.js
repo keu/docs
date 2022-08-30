@@ -79,7 +79,7 @@ module.exports = {
             },
             {
               label: '0.29',
-              to: '/software/',
+              to: '/software/0.29/overview',
               activeBaseRegex: '(software\/0.29)+',
             },
             {
