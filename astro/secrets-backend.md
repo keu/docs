@@ -51,6 +51,7 @@ Setting Airflow connections via secrets requires knowledge of how to generate Ai
 
 <Tabs
     defaultValue="hashicorp"
+    groupId= "setup"
     values={[
         {label: 'Hashicorp Vault', value: 'hashicorp'},
         {label: 'AWS Parameter Store', value: 'paramstore'},
@@ -363,7 +364,7 @@ To use AWS Secrets Manager as your Airflow secrets backend, you need:
 #### Step 1: Create an Airflow Variable or Connection in AWS Secrets Manager
 
 To start, create an Airflow variable or connection in AWS Secrets Manager that you want to store as a secret. It can be either a real or test value. You will use this secret to test your backend's functionality in Step 3.
-    
+
 - When setting the secret type, choose `Other type of secret` and select the `Plaintext` option.
 - If creating a connection URI or a non-dict variable as a secret, remove the brackets and quotations that are pre-populated in the plaintext field.
 - The secret name is assigned after providing the plaintext value and clicking `Next`.
@@ -375,17 +376,17 @@ Secret names must correspond with the `connections_prefix` and `variables_prefix
     airflow/variables/<variable-key>
     ```
 
-- The `<variable-key>` is how you will retrieve that variable's value in a DAG. For example: 
+- The `<variable-key>` is how you will retrieve that variable's value in a DAG. For example:
     ```python
     my_var = Variable.get("variable-key>")
     ```
 
-- If you use `"connections_prefix": "airflow/connections"`, you must set Airflow connections as: 
+- If you use `"connections_prefix": "airflow/connections"`, you must set Airflow connections as:
     ```
     airflow/connections/<connection-id>
     ```
 
-- The `<connection-id>` is how you will retrieve that connection's URI in a DAG. For example: 
+- The `<connection-id>` is how you will retrieve that connection's URI in a DAG. For example:
     ```python
     conn = BaseHook.get_connection(conn_id="<connection-id>")
     ```
