@@ -22,9 +22,9 @@ Read the following document for a reference of our default resources as well as 
 | [Workload Identity Pool](https://cloud.google.com/iam/docs/manage-workload-identity-pools-providers) | Astro uses the fixed Workload Identity Pool for your project. One is created if it does not exist | The default pool (`PROJECT_ID.svc.id.goog`) is used |
 | [Cloud SQL for PostgreSQL](https://cloud.google.com/sql/docs/postgres) | The Cloud SQL instance is the primary database for the Astro data plane. It hosts the metadata database for each Airflow Deployment hosted on the GKE cluster | 1x regional instance with 4 vCPUs, 16GB memory |
 | Google Cloud Storage (GCS) Bucket | GCS bucket to store Airflow task logs | 1 bucket with name `airflow-logs-<clusterid>` |
-| Worker node pools | Node pools run all Airflow workers. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different instance types| 1x pool of m5.xlarge nodes |
-| Astro node pool | A node pool runs all proprietary Astronomer components. This node pool is fully managed by Astronomer| 1x pool of m5.xlarge nodes |
-| Airflow node pool | An node pool runs all core Airflow components such as the scheduler and webserver. This node pool is fully managed by Astronomer | 1x pool of m5.xlarge nodes |
+| Worker node pools | Node pools run all Airflow workers. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different instance types| 1x pool of e2-standard-4 nodes |
+| Astro node pool | A node pool runs all proprietary Astronomer components. This node pool is fully managed by Astronomer| 1x pool of e2-standard-4 nodes |
+| Airflow node pool | An node pool runs all core Airflow components such as the scheduler and webserver. This node pool is fully managed by Astronomer | 1x pool of e2-standard-4 nodes |
 | Maximum Node Count | The maximum number of nodes that your Astro cluster can support. When this limit is reached, your Astro cluster can't auto-scale and worker Pods may fail to schedule. | 20 |
 
 
