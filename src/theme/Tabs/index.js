@@ -14,7 +14,12 @@ import styles from "./styles.module.css";
 function updateTabLink(val,topic) {
   const url = window.location.href;
   const parts = url.split("#");
+  if (topic == "undefined") {
+    history.replaceState({}, "", `?lang=${val}`);
+  }
+  else {
   history.replaceState({}, "", `?tab=${val}#${topic}`);
+  }
 }
 //End customization
 
