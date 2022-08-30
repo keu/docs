@@ -5,28 +5,28 @@ id: ac-cve
 description: "Common Vulnerabilities and Exposures identified within our Astronomer Certified images."
 ---
 
-This page is the source of truth for any Common Vulnerabilities and Exposures (CVEs) identified within any of our supported Astronomer Certified images for Apache Airflow.
+This page is the source of truth for any Common Vulnerabilities and Exposures (CVEs) identified within any of the supported Astronomer Certified images for Apache Airflow.
 
-Currently, all supported Astronomer Certified images are listed in two places:
+All supported Astronomer Certified images are listed in the following locations:
 
 - [Astronomer Downloads](https://astronomer.io/downloads)
-- [Astronomer's Docker registry (Quay.io)](https://quay.io/repository/astronomer/ap-airflow?tab=tags)
+- [The Astronomer Docker registry (Quay.io)](https://quay.io/repository/astronomer/ap-airflow?tab=tags)
 
-Refer to [Upgrade Apache Airflow on Astronomer](manage-airflow-versions.md) for detailed guidelines on how to upgrade between Airflow versions on your Software instance.
+To upgrade Airflow versions on your Software instance, see [Upgrade Apache Airflow on Astronomer](manage-airflow-versions.md).
 
-## Reporting Vulnerabilities and Security Concerns
+## Report vulnerabilities and security concerns
 
-Vulnerability reports for Astronomer Certified should be sent to [security@astronomer.io](mailto:security@astronomer.io). All security concerns, questions and requests should be directed here.
+Send  Astronomer Certified vulnerability reports, security concerns, and questions to [security@astronomer.io](mailto:security@astronomer.io).
 
-When we receive a request, our dedicated security team will evaluate and validate it. If we confirm a vulnerability, we’ll allocate internal resources towards identifying and publishing a resolution in an updated image. The timeline within which vulnerabilities are addressed will depend on the severity level of the vulnerability and its impact.
+When the Astronomer security team receives a request, it is evaluated and validated. When a vulnerability is confirmed, a resolution is provided in an updated image. The severity level of the vulnerability and its impact determine how quickly the vulnerability is resolved.
 
-Once a resolution has been confirmed, we'll release it in the next major, minor, or patch Astronomer Certified image and publish details to this page in the section below.
+After a resolution for a vulnerability is determined,  a fix is provided in the next Astronomer Certified major, minor, or patch release and details about the vulnerability are provided here.
 
-> **Note:** All other Airflow and product support requests should be directed to [Astronomer's Support Portal](https://support.astronomer.io), where our team's Airflow Engineers are ready to help.
+Send all other Airflow and product support requests to the [Astronomer Support Portal](https://support.astronomer.io).
 
-## Previously Announced Vulnerabilities
+## Previously announced vulnerabilities
 
-### Apache Airflow Core
+### Apache Airflow core
 
 | CVE | Date | Versions Affected | Description | Remediation |
 |---|---|---|---|---|
@@ -37,7 +37,7 @@ Once a resolution has been confirmed, we'll release it in the next major, minor,
 | CVE-2021-35936 | 2021-08-13 | <ul><li>2.1.1-1</li><li>2.1.0-1 to 2.1.0-2</li><li>2.0.2-1 to 2.0.2-3</li><li>2.0.0-1 to 2.0.0-7</li><li>1.10.15-1 to 1.10.15-2</li><li>1.10.14-1 to 1.10.14-3</li><li>1.10.12-1 to 1.10.12-4</li><li>1.10.10-1 to 1.10.10-8</li><li>1.10.7-1 to 1.10.7-18</li><li>1.10.5-1 to 1.10.5-11</li></ul> | No Authentication on Logging Server. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-35936)) | Use one of the following AC Versions: <ul><li>2.1.1-2</li><li>2.1.0-3</li><li>2.0.2-4</li><li>2.0.0-8</li><li>1.10.15-3</li><li>1.10.14-4</li><li>1.10.12-4</li><li>1.10.10-9</li><li>1.10.7-19</li></ul> |
 | CVE-2021-28359 | 2021-02-17 | <ul><li>2.0.0-1 to 2.0.0-3</li><li>1.10.14-1 to 1.10.14-2</li><li>1.10.12-1 to 1.10.12-3</li><li>1.10.10-1 to 1.10.10-7</li><li>1.10.7-1 to 1.10.7-17</li><li>1.10.5-1 to 1.10.5-11</li></ul> | The "origin" parameter passed to some of the endpoints like '/trigger' was vulnerable to XSS exploit. This issue affects Apache Airflow versions <1.10.15 in 1.x series and affects 2.0.0 and 2.0.1 and 2.x series. Update to Airflow 1.10.15 or 2.0.2. This is the same as CVE-2020-13944 & CVE-2020-17515 but the implemented fix did not account for certain cases. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28359)) | Use one of the following AC Versions: <ul><li>2.0.0-4</li><li>1.10.14-3</li><li>1.10.12-4</li><li>1.10.10-8</li><li>1.10.7-18</li></ul> |
 | CVE-2021-26697 | 2021-02-17 | <ul><li>2.0.0-1 to 2.0.0-2</li></ul> | Lineage API endpoint for Experimental API missed authentication check. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-26697)) | Use one of the following AC Versions: <ul><li>2.0.0-3</li></ul> |
-| CVE-2021-26559 | 2021-02-17 | <ul><li>2.0.0-1 to 2.0.0-2</li></ul> | Users with Viewer or User role can get Airflow Configurations using Stable API including sensitive information even when `[webserver] expose_config` is set to `False` in `airflow.cfg`. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-26559)) | Use one of the following AC Versions: <ul><li>2.0.0-3</li></ul> |
+| CVE-2021-26559 | 2021-02-17 | <ul><li>2.0.0-1 to 2.0.0-2</li></ul> | Users with Viewer or User roles can get Airflow Configurations using Stable API including sensitive information even when `[webserver] expose_config` is set to `False` in `airflow.cfg`. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-26559)) | Use one of the following AC Versions: <ul><li>2.0.0-3</li></ul> |
 | CVE-2020-17526 | 2020-12-21 | <ul><li>1.10.12-1</li><li>1.10.10-1 to 1.10.10-5</li><li>1.10.7-1 to 1.10.7-15</li><li>1.10.5-1 to 1.10.5-11</li></ul> | Incorrect Session Validation in Airflow webserver with default config allows a malicious airflow user on site A where they log in normally, to access unauthorized Airflow webserver on Site B through the session from Site A. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-17526)) | Use one of the following AC Versions: <ul><li>1.10.14-1</li><li>1.10.12-2</li><li>1.10.10-6</li><li>1.10.7-16</li></ul> |
 | CVE-2020-17513 | 2020-12-11 | <ul><li>1.10.12-1</li><li>1.10.10-1 to 1.10.10-5</li><li>1.10.7-1 to 1.10.7-15</li><li>1.10.5-1 to 1.10.5-11</li></ul> | The Charts and Query View of the old (Flask-admin based) UI were vulnerable for SSRF attack. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-17513)) | Use one of the following AC Versions: <ul><li>1.10.14-1</li><li>1.10.12-2</li><li>1.10.10-6</li><li>1.10.7-16</li></ul> |
 | CVE-2020-17511 | 2020-12-11 | <ul><li>1.10.12-1</li><li>1.10.10-1 to 1.10.10-5</li><li>1.10.7-1 to 1.10.7-15</li><li>1.10.5-1 to 1.10.5-11</li></ul> | Apache Airflow Admin password gets logged in plain text. ([Details](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-17511)) | Use one of the following AC Versions: <ul><li>1.10.14-1</li><li>1.10.12-2</li><li>1.10.10-6</li><li>1.10.7-16</li></ul> |

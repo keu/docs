@@ -6,36 +6,35 @@ description: Access Airflow's Postgres metadata database on Astronomer Software.
 
 ---
 
-On Astronomer, each Airflow deployment is equipped with a PostgreSQL database that serves as Airflow's underlying metadata database and the scheduler's source of truth.
+On Astronomer, each Airflow deployment includes a PostgreSQL database that serves as the underlying metadata database and the scheduler's source of truth for Airflow.
 
-On Astronomer Software, a Postgres metadata database will be created for each individual Airflow Deployment and hosted within your wider platform database.
+On Astronomer Software, a Postgres metadata database is created for each individual Airflow Deployment and is hosted within your wider platform database.
 
-This guide will cover guidelines for the following:
+This topic provides the following information:
 
-- Risks associated with and use cases for database Access
-- Access to Airflow's database in local development
-- Decode Astronomer's metadata Secret
-- Access to Airflow's database on Astronomer
+- Risks associated with and use cases for database access.
+- How to access the  Airflow database in local development.
+- How to decode the Astronomer metadata secret.
+- How to access the Airflow database on Astronomer.
 - Example DAG that incorporates a query to the database
 
-> **Note:** Airflow's "Ad-Hoc Query" feature used to be a common way to test DB connections and query the Airflow metadata database via the Airflow UI but was deprecated in 1.10 for security reasons.
+> **Note:** The Airflow "Ad-Hoc Query" feature was deprecated in version 1.10.
 
 ### Risk associated with database access
 
-As noted above, every Airflow Deployment's metadata database on Astronomer is hosted within the Platform database your team initiated during the install process for Astronomer Software. Given its importance to the scheduler's performance, it's worth noting the risks associated with accessing Airflow's database.
+Every Airflow Deployment metadata database on Astronomer is hosted within the Platform database you initiated during the Astronomer Software installation process. Given its importance to scheduler performance, it's important that you understand the risks associated with accessing the Airflow database.
 
-We strongly recommend users do not write to the database directly as it can compromise both the integrity of your Airflow Deployment and both of our team's ability to support a user in the case of an issue.
+Astronomer recommends that you avoid writing to the database directly as it can compromise the integrity of your Airflow Deployment and it can make it more challenging for Astronomer Support to resolve issues.
 
 ### Use cases
 
-Keeping the above risk in mind, pulling from and reading the database safely can be a great way to gather metadata from your Airflow Deployment that isn't otherwise exposed on Astronomer and Airflow (yet).
+Pulling from and reading the database safely can be a great way to gather metadata from your Airflow Deployment that isn't otherwise exposed on Astronomer and Airflow.
 
 A few examples of what you can query for:
 - Completed Task Count
 - Tasks started per hour, per week
 - Task duration
 
-Read below for DB access guidelines both locally and on Astronomer.
 
 ## Local access to the Airflow database
 
