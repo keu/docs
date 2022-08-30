@@ -275,6 +275,11 @@ module.exports = {
       src: './scripts/consent-manager-config.js',
     },
     {
+      src: "/scripts/set-tab.js",
+      async: true,
+      defer: true,
+    },
+    {
       src: 'https://docs.astronomer.io/js/script.outbound-links.js',
       "data-domain": 'docs.astronomer.io',
       defer: true,
