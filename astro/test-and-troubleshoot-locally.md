@@ -73,16 +73,17 @@ You can only use `astro dev run` in a local Airflow environment. To automate Air
 
 :::
 
-## Call the Airflow REST API in a local environment
+## Make requests to the Airflow REST API locally
 
-Use HTTP basic access authentication to make requests to the [Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/cli-and-env-variables-ref.html) in a local Airflow environment. This can be useful for testing API calls that you might have to execute in a production environment.
+Make requests to the [Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html) in a local Airflow environment with HTTP basic access authentication. This can be useful for testing API calls that you might have to execute in a production Deployment on Astro.
 
-To authenticate to your environment through HTTP, you only need your Airflow UI username and password, which by default are both `admin`.
+To make local requests with cURL or Python, you only need the username and password for your local user. Both of these values are `admin` by default. They are the same credentials that are listed when you run `astro dev start` with the Astro CLI and required by the Airflow UI in a local environment.
 
 ### cURL
 
 ```sh
 curl -X GET localhost:8080/api/v1/<endpoint> --user "admin:admin"
+```
 
 ### Python
 
