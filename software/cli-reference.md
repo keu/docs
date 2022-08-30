@@ -420,6 +420,73 @@ Run `astro deployment service-account list <service-account-id> --deployment-id=
 
 - [Deploy to Astronomer via CI/CD](ci-cd.md)
 
+## astro deployment team add
+
+Add a Team to a Deployment.
+
+### Usage
+
+`astro deployment team add --deployment-id=<deployment-id> --team-id=<team-id> --role=<deployment_level_role>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
+
+### Flags
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--workspace-id` (_Required_)    | String     | The Workspace for the Team                    |
+| `--team-id` (_Required_)    | None     | The Team's ID             |
+| `--role`    | None     | The Team's role in the Deployment. Can be `DEPLOYMENT_VIEWER`, `DEPLOYMENT_EDITOR`, or `DEPLOYMENT_ADMIN`.      |
+
+## astro deployment team list
+
+View a list of all Teams in a Deployment.
+
+### Usage
+
+`astro deployment team list`
+
+## astro deployment team remove
+
+Update a Team from a given Deployment.
+
+### Usage
+
+`astro deployment team remove <team-id> --deployment-id <deployment-id>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
+
+### Flags
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--deployment-id` (_Required_)    | String     | The Deployment for the Team                    |
+
+## astro deployment team update
+
+Update a Team's permissions in a given Deployment.
+
+### Usage
+
+`astro deployment team update <team-id> --deployment-id <deployment-id> --role=<system-role>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--deployment-id` (_Required_)    | String     | The Deployment for the Team                    |
+| `--team-id` (_Required_)    | None     | The Team's ID             |
+| `--role`    | None     | The Team's role in the Deployment. Can be `DEPLOYMENT_VIEWER`, `DEPLOYMENT_EDITOR`, or `DEPLOYMENT_ADMIN`.      |
+
 ## astro deployment update
 
 Updates various parts of an Airflow Deployment on Astronomer, including metadata, deployment methods, and executor type. Can also be used to append IAM roles to the webserver, scheduler, and worker pods for Deployments running on Amazon EKS or Google GCP.
@@ -537,6 +604,30 @@ This set of commands allow you to create and manage a local Airflow environment 
 `astro dev <subcommand> [flags]`
 
 Refer to the following sections for information on each subcommand.
+
+## astro dev bash
+
+Run a bash command in a locally running Docker container for an Airflow component. This command is equivalent to running `docker exec -it <container-id>`.
+
+### Usage
+
+In a locally running Astro project, run:
+
+```sh
+astro dev bash
+```
+
+By default, the command execs into the scheduler container and prompts you to run a bash command. To run a command in a different container, you have to specify a different container flag.
+
+### Flags
+
+| Flag                | Value type | Usage |
+| ------------------- | ---------- | ----- |
+| `-p`, `--postgres`  |``              | Run a bash command in the metadata database container |
+| `-s`,`--scheduler`  | ``              |Run a bash command in the scheduler container         |
+| `-t`, `--triggerer` | ``              |Run a bash command in the triggerer container         |
+| `-w`, `--webserver` |``              | Run a bash command in the webserver container         |
+
 
 ## astro dev init
 
@@ -734,6 +825,52 @@ Checks for the latest version of the Astro CLI, but does not perform the upgrade
 > brew install astro
 > ```
 
+## astro team get
+
+Get the information for any Team across a Software installation.
+
+### Usage
+
+`astro team get <team-id>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro team list`](#astro-team-list) and copy the value in the `ID` column.
+
+### Flags
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--user`    | None     | List information about each user in the Team.                    |
+
+## astro team list
+
+View a list of all Teams in a Software installation.
+
+### Usage
+
+`astro team list`
+
+## astro team update
+
+Update a Team's system-level permissions.
+
+### Usage
+
+`astro team update <team-id> --role=<system-role>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro team list`](#astro-team-list) and copy the value in the `ID` column.
+
+### Flags
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--role` (_Required_)   | String     | The role for the Team. Can be `SYSTEM_VIEWER`, `SYSTEM_EDITOR`, or `SYSTEM_ADMIN`.              |
+
 ## astro user create
 
 Creates a new user on Astronomer. An invitation email will be sent to the email address you specify. Once this user creates an account on Astronomer, they are able to join an existing Workspace or create a new Workspace.
@@ -882,6 +1019,73 @@ Switches the Workspace in which you're working.
 ### Usage
 
 `astro workspace switch <workspace-id>`
+
+## astro workspace team add
+
+Add a Team to a Workspace.
+
+### Usage
+
+`astro workspace team add --workspace-id=<workspace_id> --team-id=<team-id> --role=<workspace_level_role>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro workspace team list`](#astro-workspace-team-list) and copy the value in the `ID` column.
+
+### Flags
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--workspace-id` (_Required_)    | String     | The Workspace for the Team                    |
+| `--team-id` (_Required_)    | None     | The Team's ID             |
+| `--role`    | None     | The Team's role in the Workspace. Can be `WORKSPACE_VIEWER`, `WORKSPACE_EDITOR`, or `WORKSPACE_ADMIN`.      |
+
+## astro workspace team list
+
+View a list of all Teams in a Workspace.
+
+### Usage
+
+`astro workspace team list`
+
+## astro workspace team remove
+
+Update a Team from a given Workspace.
+
+### Usage
+
+`astro workspace team remove <team-id> --workspace-id <workspace-id>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro workspace team list`](#astro-workspace-team-list) and copy the value in the `ID` column.
+
+### Flags
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--workspace-id` (_Required_)    | String     | The Workspace for the Team                    |
+
+## astro workspace team update
+
+Update a Team's permissions in a given Workspace.
+
+### Usage
+
+`astro workspace team update <team-id> --workspace-id <workspace-id> --role=<system-role>`
+
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro workspace team list`](#astro-workspace-team-list) and copy the value in the `ID` column.
+
+| Flag         | Value Type | Usage                                                                                                                                     |
+| ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `--workspace-id` (_Required_)    | String     | The Workspace for the Team                    |
+| `--team-id` (_Required_)    | None     | The Team's ID             |
+| `--role`    | None     | The Team's role in the Workspace. Can be `WORKSPACE_VIEWER`, `WORKSPACE_EDITOR`, or `WORKSPACE_ADMIN`.      |
 
 ## astro workspace update
 
