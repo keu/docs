@@ -101,7 +101,7 @@ Applying the code above ensures that when this DAG runs, it will launch a Kubern
 
 ## Run images from a Private Registry
 
-By default, the KubernetesPodOperator expects to pull a Docker image that's hosted publicly on Docker Hub. If you want to execute a Docker image that's hosted in a private registry, complete the setup below.
+By default, the KubernetesPodOperator expects to pull a Docker image that's hosted publicly on Docker Hub. If you want to execute a Docker image that's hosted in a private registry, you'll need to create a Kubernetes Secret and then specify the Kubernetes Secret in your DAG. If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) repository, see [Docker images hosted in private Amazon ECR repositories](#docker-images-hosted-in-private-amazon-ecr-repositories)
 
 ### Prerequisites
 
@@ -114,7 +114,7 @@ To complete this setup, you need:
 
 ### Step 1: Create a Kubernetes Secret
 
-To run Docker images from a private registry on Astro, a Kubernetes secret that contains credentials to your registry must be created. Injecting this secret into your Deployment's namespace will give your tasks access to Docker images within your private registry.
+To run Docker images from a private registry on Astro, a Kubernetes Secret that contains credentials to your registry must be created. Injecting this secret into your Deployment's namespace will give your tasks access to Docker images within your private registry.
 
 1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
 2. In the Cloud UI, select a Workspace and then select the Deployment you want to use the KubernetesPodOperator with.
@@ -148,7 +148,7 @@ KubernetesPodOperator(
 ```
 ### Docker images hosted in private Amazon ECR repositories
 
-If your Docker image is hosted in an Amazon Elastic Container Registry (ECR) repository, add a permissions policy to the repository to allow the KubernetesPodOperator to pull the Docker image. You don't need to create a Kubernetes secret, or specify the Kubernetes secret in your DAG.
+If your Docker image is hosted in an Amazon ECR repository, add a permissions policy to the repository to allow the KubernetesPodOperator to pull the Docker image. You don't need to create a Kubernetes secret, or specify the Kubernetes secret in your DAG.
 
 1. Log in to the Amazon ECR Dashboard and then select **Menu** > **Repositories**.
 2. Click the **Private** tab and then click the name of the repository that hosts the Docker image. 
