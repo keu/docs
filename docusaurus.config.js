@@ -80,7 +80,7 @@ module.exports = {
             {
               label: '0.29',
               to: '/software/',
-              activeBaseRegex: `software(?!(\/${versions.join('|\\/')}))`,
+              activeBaseRegex: '(software\/0.29)+',
             },
             {
               label: '0.28',
