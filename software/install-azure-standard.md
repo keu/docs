@@ -242,9 +242,9 @@ kubectl create secret generic astronomer-bootstrap \
 > **Note:** You must URL encode any special characters in your Postgres password.
 
 A few additional configuration notes:
-- If you want to use Azure Database for PostgreSQL with Astronomer, you must use the [Flexible Server](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/) service.
-- If you provision Azure Database for PostgreSQL - Flexible Server, it enforces TLS/SSL and requires that you set `sslmode` to `prefer` in your `config.yaml`.
 - If you provision an external database, `postgresqlEnabled` should be set to `false` in Step 8.
+- If you want to use Azure Database for PostgreSQL with Astronomer, you must use the [Flexible Server](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/) service. You also need to enable the `pg_trgm` extension using either Azure portal or the Azure CLI. See [Azure documentation](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions) for configuration steps.
+- If you provision Azure Database for PostgreSQL - Flexible Server, it enforces TLS/SSL and requires that you set `sslmode` to `prefer` in your `config.yaml`.
 
 ## Step 8: Configure Your Helm chart
 

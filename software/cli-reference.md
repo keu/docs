@@ -428,7 +428,10 @@ Add a Team to a Deployment.
 
 `astro deployment team add --deployment-id=<deployment-id> --team-id=<team-id> --role=<deployment_level_role>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 ### Flags
 
@@ -454,7 +457,10 @@ Update a Team from a given Deployment.
 
 `astro deployment team remove <team-id> --deployment-id <deployment-id>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 ### Flags
 
@@ -470,7 +476,10 @@ Update a Team's permissions in a given Deployment.
 
 `astro deployment team update <team-id> --deployment-id <deployment-id> --role=<system-role>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 | Flag         | Value Type | Usage                                                                                                                                     |
 | ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -824,7 +833,10 @@ Get the information for any Team across a Software installation.
 
 `astro team get <team-id>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 ### Flags
 
@@ -848,7 +860,10 @@ Update a Team's system-level permissions.
 
 `astro team update <team-id> --role=<system-role>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 ### Flags
 
@@ -1013,7 +1028,10 @@ Add a Team to a Workspace.
 
 `astro workspace team add --workspace-id=<workspace_id> --team-id=<team-id> --role=<workspace_level_role>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 ### Flags
 
@@ -1039,7 +1057,10 @@ Update a Team from a given Workspace.
 
 `astro workspace team remove <team-id> --workspace-id <workspace-id>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 ### Flags
 
@@ -1055,7 +1076,10 @@ Update a Team's permissions in a given Workspace.
 
 `astro workspace team update <team-id> --workspace-id <workspace-id> --role=<system-role>`
 
-You can retrieve a Team's ID by accessing the Team in the Software UI and copying the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+You can retrieve a Team's ID in one of two ways:
+
+- Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
+- Run [`astro deployment team list`](#astro-deployment-team-list) and copy the value in the `ID` column.
 
 | Flag         | Value Type | Usage                                                                                                                                     |
 | ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |

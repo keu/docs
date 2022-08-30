@@ -17,11 +17,6 @@ Release date: August 18, 2022
 
 You can now run bash commands in any locally running Airflow container using `astro dev bash`. For more information, see the [CLI command reference](cli/astro-dev-bash.md).
 
-<<<<<<< HEAD
-### New command to invite a user to an Astro Organization
-
-You can invite new users to an Astro Organization with the `astro user invite` command. For more information, see the [CLI command reference](cli/astro-user-invite.md).
-
 ### New commands to manage Teams
 
 Several new commands have been introduced to help you manage Teams on Astronomer Software.
@@ -41,13 +36,11 @@ Several new commands have been introduced to help you manage Teams on Astronomer
 
 #### Manage teams across a Deployment
 
-- `astro deployment team add --deployment-id=<deployment-id> --team-id=<team-id> --role=<deployment_level_role>`: Add a Team to a given Deployment
-- `astro deployment team remove <team-id> --deployment-id=<deployment-id>`: Remove a Team from a given Deployment
-- `astro deployment team update <team-id> --deployment-id=<deployment-id> --role=<deployment_level_role>`: Update a Team's permissions for a given Deployment
-- `astro deployment team list --deployment-id=<deployment-id>`: List all Teams in a Workspace
+- `astro deployment team add`: Add a Team to a given Deployment
+- `astro deployment team remove`: Remove a Team from a given Deployment
+- `astro deployment team update`: Update a Team's permissions for a given Deployment
+- `astro deployment team list`: List all Teams in a Workspace
 
-=======
->>>>>>> f1b529a42536724965fbeec96575b4897cec64a4
 ### Additional improvements
 
 - If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
