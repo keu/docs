@@ -9,9 +9,8 @@ import clsx from "clsx";
 import styles from "./styles.module.css";
 
 function updateTabLink(val) {
-  history.replaceState({}, "", "?lang=" + val);
+  history.replaceState({}, "", "?tab=" + val);
 }
-// End Temporal additions
 
 function isTabItem(comp) {
   return typeof comp.props.value !== "undefined";
