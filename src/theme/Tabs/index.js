@@ -9,7 +9,13 @@ import clsx from "clsx";
 import styles from "./styles.module.css";
 
 function updateTabLink(val) {
-  history.replaceState({}, "", "?tab=" + val);
+  const url = window.location.href;
+  const parts = url.split("#");
+  if (parts.length > 1) {
+    history.replaceState({}, "", `?tab=${val}#${parts.pop()}`);
+  } else {
+    history.replaceState({}, "", `?tab=${val}`);
+  }
 }
 
 function isTabItem(comp) {

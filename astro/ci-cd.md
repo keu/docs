@@ -59,6 +59,7 @@ The following templates use [Astro CLI v1.0+](cli/release-notes.md) to deploy vi
 
 <Tabs
     defaultValue="standard"
+    groupId= "tabs"
     values={[
         {label: 'Standard', value: 'standard'},
         {label: 'Multi-branch', value: 'multibranch'},
@@ -394,6 +395,7 @@ To automate code deploys across multiple Deployments using [Jenkins](https://www
 
 <Tabs
     defaultValue="awscodebuildstandard"
+    groupId= "tabs"
     values={[
         {label: 'Standard', value: 'awscodebuildstandard'},
         {label: 'Multi-branch', value: 'awscodebuildmultibranch'},
@@ -413,14 +415,14 @@ To automate code deploys to a single Deployment using [AWS CodeBuild](https://aw
 2. At the root of your Git repository, add a [buildspec.yml](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-example) file that includes the following script:
 
    ```yaml
-   
+
    version: 0.2
 
    phases:
      install:
        runtime-versions:
          python: latest
-   
+
      build:
        commands:
          - echo "${CODEBUILD_WEBHOOK_HEAD_REF}"
@@ -428,7 +430,7 @@ To automate code deploys to a single Deployment using [AWS CodeBuild](https://aw
          - export ASTRONOMER_KEY_SECRET="${ASTRONOMER_KEY_SECRET}"
          - curl -sSL install.astronomer.io | sudo bash -s
          - astro deploy "${ASTRONOMER_DEPLOYMENT_ID}" -f
-   
+
     ```
 
 3. In your AWS CodeBuild project, create a [webhook event](https://docs.aws.amazon.com/codebuild/latest/userguide/webhooks.html) for the source provider where your Astro project is hosted, such as BitBucket or GitHub. When configuring the webhook, select an event type of `PUSH`.
@@ -453,14 +455,14 @@ To automate code deploys across multiple Deployments using [AWS CodeBuild](https
 2. At the root of your Git repository, add a [buildspec.yml](https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec-ref-example) that includes the following script:
 
    ```yaml
-   
+
    version: 0.2
-   
+
    phases:
      install:
        runtime-versions:
          python: latest
-   
+
      build:
        commands:
          - |
@@ -712,7 +714,7 @@ When you create environment variables that will be used in multiple branches, yo
         only:
           - main
    `}</code></pre>
-   
+
 
 
 </TabItem>
@@ -742,7 +744,7 @@ To automate code deploys to a Deployment using [Bitbucket](https://bitbucket.org
               services:
                 - docker
     `}</code></pre>
-    
+
 
 ### Azure DevOps
 
@@ -775,4 +777,3 @@ To automate code deploys to a Deployment using [Azure DevOps](https://dev.azure.
             ASTRONOMER_KEY_ID: $(ASTRONOMER_KEY_ID)
             ASTRONOMER_KEY_SECRET: $(ASTRONOMER_KEY_SECRET)
     `}</code></pre>
-
