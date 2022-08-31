@@ -3,7 +3,6 @@ sidebar_label: "GCP"
 title: "Resources required for Astro on GCP"
 id: resource-reference-gcp
 description: Reference of all supported configurations for new clusters on Astro in Google Cloud Platform (GCP).
-sidebar_custom_props: { icon: 'img/gcp.png' }
 ---
 
 Unless otherwise specified, new Clusters on Google Cloud Platform (GCP) are created with a set of default resources that our team has deemed appropriate for most use cases.

@@ -1,6 +1,4 @@
-# This is a reference configuration file that contains source code from Astronomer's private Houston API repository.
-# It is maintained by Astronomer's documentation team and should be used as a reference to help you configure
-# the `astronomer.houston.config` section of your `config.yaml` file on Astronomer Software.
+# This file contains non-secret configurations.
 
 # API webserver configuration.
 webserver:

@@ -33,7 +33,6 @@ Astro only supports Service Provider (SP)-initiated SSO. Users are required to l
 
 <Tabs
     defaultValue="Okta"
-    groupId= "configure-your-identity-provider"
     values={[
         {label: 'Okta', value: 'Okta'},
         {label: 'Azure AD', value: 'Azure AD'},

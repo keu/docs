@@ -24,7 +24,6 @@ An assigned Astronomer engineer will work with you to activate your data plane. 
 
 <Tabs
     defaultValue="aws"
-    groupId= "prerequisites"
     values={[
         {label: 'AWS', value: 'aws'},
         {label: 'Azure', value: 'azure'},

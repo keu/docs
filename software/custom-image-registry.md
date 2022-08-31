@@ -34,7 +34,6 @@ Deploying code changes to a custom image registry requires triggering a GraphQL 
 
 <Tabs
     defaultValue="standard"
-    groupId= "setup"
     values={[
         {label: 'Standard', value: 'standard'},
         {label: 'Airgapped', value: 'airgapped'},

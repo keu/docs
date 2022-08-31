@@ -26,7 +26,6 @@ To create an Astro cluster, you need to have:
 
 <Tabs
     defaultValue="aws"
-    groupId= "prerequisites"
     values={[
         {label: 'AWS', value: 'aws'},
         {label: 'Azure', value: 'azure'},

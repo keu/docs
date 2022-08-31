@@ -3,7 +3,6 @@ sidebar_label: "AWS"
 title: "Resources required for Astro on AWS"
 id: resource-reference-aws
 description: Reference of all supported configurations for new clusters on Astro in AWS.
-sidebar_custom_props: { icon: 'img/aws.png' }
 ---
 
 Unless otherwise specified, new clusters on Astro are created with a set of default AWS resources that should be suitable for most use cases.
@@ -93,7 +92,7 @@ Astro supports a variety of AWS RDS instance types. Instance types comprise of v
 
 ### Worker node pools
 
-A node pool is a group of nodes within a cluster that all have the same configuration. On Astro, worker nodes are responsible for running the Pods that execute Airflow tasks. Each worker node pool can be configured with a node instance type and a maximum node count. All Astro clusters have one worker node pool by default, but you can configure additional node pools for advanced configurability.
+A node pool is a group of nodes within a cluster that all have the same configuration. On Astro, worker nodes are responsible for running the Pods that execute Airflow tasks. Each worker node pool can be configured with a node instance type and a maximum node count. All Astro clusters have one worker node pool by default, but you can configure additional node pools for advanced configurability. 
 
 If your cluster has multiple worker node pools with different worker node instance types, users in your organization can configure tasks to run on those worker types using [worker queues](configure-deployment-resources.md#worker-queues.md). To enable a new worker type for your cluster, contact [Astronomer support](https://support.astronomer.io) with a request to create a new node pool or modify an existing node pool.
 
