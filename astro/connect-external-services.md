@@ -149,14 +149,14 @@ To grant an Astro cluster access to a service that is running in an AWS account 
 
 ## Workload Identity (_GCP only_)
 
-[Workload Identity](https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity) is recommended by Google as the best way for data pipelines running on GCP to access Google Cloud services in a secure and manageable way. All Astro clusters on GCP have Workload Identity enabled by default. Each Astro Deployment is associated with a Kubernetes service account that's created by Astronomer and is bound to an identity from your Google Cloud project's fixed workload identity pool.
+[Workload Identity](https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity) is recommended by Google as the best way for data pipelines running on GCP to access Google Cloud services in a secure and manageable way. All Astro clusters on GCP have Workload Identity enabled by default. Each Astro Deployment is associated with a Google service account that's created by Astronomer and is bound to an identity from your Google Cloud project's fixed workload identity pool.
 
 To grant a Deployment on Astro access to external data services on GCP, such as BigQuery:
 
 1. In the Cloud UI, select a Deployment and then copy the value in the **Namespace** field.
-2. Use the Deployment namespace value and the name of your GCP project to identify the Kubernetes service account for your Deployment.
+2. Use the Deployment namespace value and the name of your Google Cloud project to identify the Google service account for your Deployment.
     
-    Kubernetes service accounts for Astro Deployments are formatted as follows:
+    Google service accounts for Astro Deployments are formatted as follows:
 
     ```text
     astro-<deployment-namespace>@<gcp-project-name>.iam.gserviceaccount.com
@@ -167,19 +167,30 @@ To grant a Deployment on Astro access to external data services on GCP, such as 
     ```text
     astro-nuclear-science-2730@astronomer-prod.iam.gserviceaccount.com
     ```
-3. Go to the Google Cloud project in which your external data service is hosted.
-4. Add the Kubernetes service account for your Astro Deployment to the principal of that Google Cloud project. See [Configure applications to use Workload Identity](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity#authenticating_to).
-5. Bind the service account to a role that has access to your external data service.
-6. Optional. Repeat these steps for every Astro Deployment that requires access to external data services on GCP.
+4. Grant the Google service account for your Astro Deployment an IAM role that has access to your external data service. With the Google Cloud CLI, run:
+
+    ```text
+    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:astro-<deployment-namespace>@<gcp-project-name>.iam.gserviceaccount.com --role=roles/viewer
+    ```
+
+    For instructions on how to grant your service account an IAM role in the Google Cloud console, see [Grant an IAM role](https://cloud.google.com/iam/docs/grant-role-console#grant_an_iam_role).
+
+5. Optional. Repeat these steps for every Astro Deployment that requires access to external data services on GCP.
 
 :::info
 
-GCP has a 30 character limit for service account names. For Deployment namespaces which are longer than 24 characters, use only the first 24 characters when determining your service account name.
+GCP has a 30-character limit for service account names. For Deployment namespaces which are longer than 24 characters, use only the first 24 characters when determining your service account name.
 
-For example, if your GCP project is named `astronomer-prod` and your Deployment namespace is `nuclear-scintillation-2730`, the service account name is:
+For example, if your Google Cloud project is named `astronomer-prod` and your Deployment namespace is `nuclear-scintillation-2730`, the service account name is:
 
 ```text
 astro-nuclear-scintillation-27@astronomer-prod.iam.gserviceaccount.com
+```
+
+To determine your Deployment namespace that meets requirements without having to manually count characters, run:
+
+```
+echo astro-$(echo <deployment-namespace> | cut -c -24)
 ```
 
 :::
