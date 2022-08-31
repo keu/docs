@@ -168,7 +168,7 @@ To build additional helper functions for DAGs into your Astro project, Astronome
    ```sh
 
     astro dev bash --scheduler "/bin/bash"
-    
+
    ```
 
     The command should output a list of files in the scheduler container including your helper functions:
@@ -241,39 +241,6 @@ RUN ls
 `}</code></pre>
 
 This is supported both on Astro and in the context of local development.
-
-## Override the CLI's Docker Compose file (Local development only)
-
-The Astro CLI is built on top of [Docker Compose](https://docs.docker.com/compose/), which is a tool for defining and running multi-container Docker applications. To override CLI Docker Compose configurations, add a `docker-compose.override.yml` file to your Astro project. Any values in this file override the default CLI settings whenever you run `astro dev start`.
-
-To see what values you can override, reference the CLI's [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go). The linked file is for the original Astro CLI, but the values here are identical to those used in the Astro CLI. Common use cases for Docker Compose overrides include:
-
-- Adding extra containers to mimic services that your Airflow environment needs to interact with locally, such as an SFTP server.
-- Change the volumes mounted to any of your local containers.
-
-For example, to add another volume mount for a directory named `custom_dependencies`, add the following to your `docker-compose.override.yml` file:
-
-```yaml
-version: "3.1"
-services:
-  scheduler:
-    volumes:
-      - /home/astronomer_project/custom_dependencies:/usr/local/airflow/custom_dependencies:ro
-```
-
-Make sure to specify `version: "3.1"` and follow the format of the source code file linked above.
-
-To see your override file live in your local Airflow environment, run the following command to see the file in your scheduler container:
-
-```sh
-astro dev bash --scheduler "ls -al"
-```
-
-:::info
-
-The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global environment variables](platform-variables.md). To learn more about environment variables, read [Environment variables](environment-variables.md).
-
-:::
 
 ## Set environment variables locally
 
@@ -352,6 +319,7 @@ Deploying a custom Runtime image with a CI/CD pipeline requires additional confi
 
 <Tabs
     defaultValue="github"
+    groupId= "install-python-packages-from-private-sources"
     values={[
         {label: 'Private GitHub Repo', value: 'github'},
         {label: 'Private PyPi Index', value: 'pypi'},
@@ -418,7 +386,7 @@ This example assumes that the name of each of your Python packages is identical 
 
   :::info
 
-  If you currently use the default distribution of Astro Runtime, replace your existing image with its corresponding `-base` image as demonstrated in the example above. The `-base` distribution is built to be customizable and does not include default build logic. For more information on Astro Runtime distributions, see [Distributions](runtime-version-lifecycle-policy.md#distribution).
+  If you currently use the default distribution of Astro Runtime, replace your existing image with its corresponding `-base` image as demonstrated in the example above. The `-base` distribution is built to be customizable and does not include default build logic. For more information on Astro Runtime distributions, see [Distributions](runtime-image-architecture.md#distribution).
 
   :::
 

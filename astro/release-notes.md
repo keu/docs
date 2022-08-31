@@ -11,9 +11,37 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
-**Latest Astro Runtime Version**: 5.0.7 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 5.0.8 ([Release notes](runtime-release-notes.md))
 
 **Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
+
+## August 31, 2022
+
+### New integration for exporting Deployment metrics to Datadog
+
+You can use a new Astronomer-supported integration to export Airflow Deployment metrics to Datadog. After you configure this feature, your Deployment exports all available metrics to Datadog. For more information about the type of metrics you can export, see the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
+
+To configure this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
+
+### Additional improvements
+
+- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers.
+- When you create a new worker queue, the Cloud UI now populates the **Worker type** field with a default worker type.
+- The CLoud UI now automatically validates worker queue names.
+- The number of times that a user can enter the wrong credentials for Astro before being locked out has been reduced from 10 to 6.
+- The timestamp appended to the end of a Deployment's Runtime image tag is now updated when you update a Deployment's environment variables.
+
+## August 24, 2022
+
+### Additional improvements
+
+- When you configure worker queues in the Cloud UI, the total CPU and memory capacity of each worker instance type is now shown instead of the nominal available resources.
+- Improved error handling for creating new worker queues when soft-deleted worker queues might still exist on the data plane.
+
+### Bug fixes
+
+- Fixed an issue where running `astro deploy` with a Deployment API key could revert changes to a worker queue's size that were previously set in the Cloud UI.
+- Fixed an issue where the **Lineage** tab in the Cloud UI showed all job durations as having a length of 0.
 
 ## August 18, 2022
 
@@ -69,6 +97,12 @@ To learn more, see [Worker queue settings](configure-deployment-resources.md#wor
 A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Switch Organization**.
 
 Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
+
+### New Azure region (Australia East)
+
+You can now [create an Astro cluster on Azure](create-cluster.md) in Australia East (New South Wales).
+
+For a list of all Azure regions that Astro supports, see [Azure resource reference](resource-reference-azure.md#supported-regions).
 
 ### New Google Cloud Platform regions
 
