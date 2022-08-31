@@ -11,7 +11,7 @@ Airflow is the perfect orchestrator to pair with SageMaker. With Airflow, you ca
 
 In this tutorial, you'll learn about the SageMaker modules that are available in the [AWS Airflow provider package](https://registry.astronomer.io/providers/amazon). You'll also complete sample implementations that use Airflow to get inferences from an existing SageMaker model and orchestrate a full ML pipeline including creating, training, and testing a new SageMaker model. 
 
-All code used in this tutorial is located in the [the Astronomer Registry](https://registry.astronomer.io/dags/sagemaker-run-model).
+All code used in this tutorial is located in the [Astronomer Registry](https://registry.astronomer.io/dags/sagemaker-run-model).
 
 ## SageMaker modules
 
