@@ -141,7 +141,7 @@ CALL sp_pi_squared();
 
 Finally, you need to set up a connection to Snowflake. There are a few ways to manage connections using Astronomer, including [IAM roles](https://docs.astronomer.io/software/integrate-iam), [secrets managers](https://docs.astronomer.io/software/secrets-backend), and the [Airflow API](https://docs.astronomer.io/software/airflow-api). For this example, set up a connection using the Airflow UI. Because the connection in the DAG is called `snowflake`, your configured connection should look something like this:
 
-![Configured Snowflake connection in the Airflow UI](img/guides/snowflake_connection.png)
+![Configured Snowflake connection in the Airflow UI](/img/guides/snowflake_connection.png)
 
 With the connection established, you can now run the DAG to execute the SQL queries.
 
