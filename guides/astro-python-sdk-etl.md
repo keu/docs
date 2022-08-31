@@ -159,7 +159,7 @@ def classic_etl_dag():
 classic_etl_dag = classic_etl_dag()
 ```
 
-![Classic Graph](https://assets2.astronomer.io/main/guides/astro-etl/classic_graph.png)
+![Classic Graph](/img/guides/astro-etl/classic_graph.png)
 
 Although you achieved your ETL goal with the DAG, the following limitations made this implementation more complicated:
 
@@ -268,7 +268,7 @@ def example_s3_to_snowflake_etl():
 example_s3_to_snowflake_etl_dag = example_s3_to_snowflake_etl()
 ```
 
-![Astro Graph](https://assets2.astronomer.io/main/guides/astro-etl/astro_sdk_graph.png)
+![Astro Graph](/img/guides/astro_sdk_graph.png)
 
 The key differences with this implementation are:
 
