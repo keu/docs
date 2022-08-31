@@ -11,9 +11,21 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
 
-**Latest Astro Runtime Version**: 5.0.7 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 5.0.8 ([Release notes](runtime-release-notes.md))
 
 **Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
+
+## August 24, 2022
+
+### Additional improvements
+
+- When you configure worker queues in the Cloud UI, the total CPU and memory capacity of each worker instance type is now shown instead of the nominal available resources.
+- Improved error handling for creating new worker queues when soft-deleted worker queues might still exist on the data plane.
+
+### Bug fixes
+
+- Fixed an issue where running `astro deploy` with a Deployment API key could revert changes to a worker queue's size that were previously set in the Cloud UI.
+- Fixed an issue where the **Lineage** tab in the Cloud UI showed all job durations as having a length of 0.
 
 ## August 18, 2022
 
@@ -69,6 +81,12 @@ To learn more, see [Worker queue settings](configure-deployment-resources.md#wor
 A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Switch Organization**.
 
 Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
+
+### New Azure region (Australia East)
+
+You can now [create an Astro cluster on Azure](create-cluster.md) in Australia East (New South Wales).
+
+For a list of all Azure regions that Astro supports, see [Azure resource reference](resource-reference-azure.md#supported-regions).
 
 ### New Google Cloud Platform regions
 
