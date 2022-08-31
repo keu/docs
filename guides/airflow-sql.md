@@ -191,7 +191,7 @@ WHERE date = {{ yesterday_ds_nodash }}f
 
 In this example, the query has been parameterized to dynamically select data for yesterday's date using a built-in Airflow variable with double curly brackets. The rendered template in the Airflow UI looks like this:
 
-![Rendered Template](img/guides/rendered_template.png)
+![Rendered Template](/img/guides/rendered_template.png)
 
 Astronomer recommends using Airflow variables or macros whenever possible to increase flexibility and make your workflows [idempotent](https://en.wikipedia.org/wiki/Idempotence). The above example will work with any Airflow variables. For example, you could access a variable from your Airflow config:
 
@@ -299,7 +299,7 @@ with DAG('covid_data_s3_to_snowflake',
 
 Here's a graph view of the DAG:
 
-![Covid-to-Snowflake Graph](img/guides/covid_to_snowflake_graph_view.png)
+![Covid-to-Snowflake Graph](/img/guides/covid_to_snowflake_graph_view.png)
 
 There are a few things you need to configure in Snowflake to make this DAG work:
 
@@ -313,7 +313,7 @@ Next, set up your Airflow connections. This example requires two connections:
 
 After this setup, you're ready to run the DAG! After a successful run, you can see the new data for today's date in your table.
 
-![Snowflake Data](img/guides/snowflake_data_populated.png)
+![Snowflake Data](/img/guides/snowflake_data_populated.png)
 
 Note that while this example is specific to Snowflake, the concepts apply to any database you might be using. If a transfer operator doesn't exist for your specific source and destination tools, you can always write your own (and maybe contribute it back to the Airflow project)!
 
@@ -434,7 +434,7 @@ dag_factory.generate_dags(globals())
 
 Once you Deploy it, the DAG will show a single task the Airflow UI:
 
-![DAG Factory Graph](img/guides/dag_factory_graph_view.png)
+![DAG Factory Graph](/img/guides/dag_factory_graph_view.png)
 
 ## Next steps
 
