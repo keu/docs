@@ -15,6 +15,26 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
 
+## August 31, 2022
+
+### New integration for exporting Deployment metrics to Datadog
+
+You can use a new Astronomer-supported integration to export Airflow Deployment metrics to Datadog. After you configure this feature, your Deployment exports all available metrics to Datadog. For more information about the type of metrics you can export, see the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
+
+To configure this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-deployment-metrics-to-datadog).
+
+### Additional improvements
+
+- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers.
+- When you create a new worker queue, the Cloud UI now populates the **Worker type** field with a default worker type.
+- The Cloud UI now automatically validates worker queue names.
+- The number of times that a user can enter the wrong credentials for Astro before being locked out has been reduced from 10 to 6.
+- The timestamp appended to the end of a Deployment's Runtime image tag is now updated when you update a Deployment's environment variables.
+
+## Bug fixes
+
+- Fixed an issue where logging in to the Airflow UI with unrecognized credentials could freeze you on an error page.
+
 ## August 24, 2022
 
 ### Additional improvements
@@ -80,7 +100,7 @@ To learn more, see [Worker queue settings](configure-deployment-resources.md#wor
 
 A single user account can now belong to multiple Organizations. A user with multiple Organizations can switch to another Organization by clicking on their current Organization's name in the Cloud UI and then clicking **Switch Organization**.
 
-Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations.md).
+Note that switching Organizations with the Astro CLI is not yet supported. For more information, see [Switch Organizations](log-in-to-astro.md#switch-organizations).
 
 ### New Azure region (Australia East)
 
