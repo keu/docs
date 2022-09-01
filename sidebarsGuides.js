@@ -27,7 +27,7 @@ module.exports = {
         'airflow-pools',
         'airflow-scaling-workers',
         'airflow-importing-custom-hooks-operators',
-        'airflow-sql'
+        'airflow-sql',
         'airflow-decorators',
       ],
     },
