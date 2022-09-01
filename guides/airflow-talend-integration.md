@@ -7,13 +7,11 @@ sidebar_label: "Talend"
 
 [Talend](https://www.talend.com/) is a popular tool for data integration and data management. Airflow provides a centralized platform for data orchestration, job monitoring, and issue resolution. Using the tools together eliminates the need to migrate existing jobs to Python code and you can combine Talend jobs and other tasks in the same DAG.
 
-
-
 In this tutorial, you'll learn how Talend and Airflow work well together.
 
 ## Implementation
 
-There are two easy ways to execute Talend jobs with Airflow:
+To execute Talend jobs with Airflow, you can use one of the following methods:
 
 - Use the Talend Cloud API and execute the job using the [SimpleHttpOperator](https://registry.astronomer.io/providers/http/modules/simplehttpoperator).
 - Containerize your Talend jobs and execute them using the [KubernetesPodOperator](https://registry.astronomer.io/providers/kubernetes/modules/kubernetespodoperator).
@@ -57,7 +55,6 @@ Make sure the job you want to execute is present in the Talend Management Consol
 
 ![Token](/img/guides/talend_api_3.png)
 
-That's all you have to do on Talend! Now you can create an Airflow DAG to execute this job.
 
 ### Use the Talend API with Airflow
 
@@ -113,7 +110,7 @@ After you run this DAG in Airflow, you should see a successful log entry that lo
 
 ![Success log](/img/guides/airflow_talend_6.png)
 
-And looking at the Talend Management Console, you can see the job is running:
+The Talend Management Console appears similar to the following image when the job is running:
 
 ![Talend Running Job](/img/guides/airflow_talend_7.png)
 
@@ -250,9 +247,9 @@ with DAG('talend_jobs',
 
 The first half of the code imports packages and sets the DAG up to work with Kubernetes. Each Talend job is its own task using the `KubernetesPodOperator`. In this case, the two tasks correlate to two Talend jobs, `talend1` and `talend2`.
 
-In each task, the `image` is the name of the image of the containerized job saved to a registry as described above. Note that in this example, the image is pulled from DockerHub. By default, this is where the `KubernetesPodOperator` looks for the provided image name. If you want to pull an image from a private registry (e.g. ECR, GCR, etc.) instead, the setup looks a little different. Refer to the [Apache Airflow documentation](https://airflow.readthedocs.io/en/latest/howto/operator/kubernetes.html#how-to-use-private-images-container-registry) for details.
+In each task, the `image` is the name of the image of the containerized job saved to a registry as described previously. In this example, the image is pulled from DockerHub. By default, this is where the `KubernetesPodOperator` looks for the provided image name. If you want to pull an image from a private registry such as ECR or GCR see the [Apache Airflow documentation](https://airflow.readthedocs.io/en/latest/howto/operator/kubernetes.html#how-to-use-private-images-container-registry).
 
-Since this example is very simple we don't need to provide any additional arguments to run the image. But if needed, these can all be specified in the operator's parameters.
+This is a straightforward example and you don't need to provide any additional arguments to run the image. If you need to add additional arguments, you can specify them in the operator's parameters.
 
 The `send_email` task notifies you that the tasks completed successfully. The final lines of code define task dependencies.
 
