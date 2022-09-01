@@ -3,6 +3,9 @@
   if (!querystring) {
     return;
   }
+  // pull groupId from anchor text, which should be equivalent
+  const getAnchor = querystring.split("#");
+  const groupId = getAnchor[1];
 
   const entries = querystring
     .slice(1)
@@ -12,8 +15,6 @@
       entries[key] = value;
       return entries;
     }, {});
-
-  // for app dev guide
   if (typeof entries.tab === "string") {
     const tab = entries.tab.toLowerCase();
     window.localStorage.setItem(`docusaurus.tab.${groupId}`, tab);
