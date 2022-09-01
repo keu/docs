@@ -21,7 +21,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 You can use a new Astronomer-supported integration to export Airflow Deployment metrics to Datadog. After you configure this feature, your Deployment exports all available metrics to Datadog. For more information about the type of metrics you can export, see the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
 
-To configure this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
+To configure this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-deployment-metrics-to-datadog).
 
 ### Additional improvements
 
