@@ -52,6 +52,7 @@ module.exports = {
         'airflow-redshift',
         'airflow-great-expectations',
         'airflow-talend-integration',
+        'astro-python-sdk-etl',
       ],
     },
   ],
