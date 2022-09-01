@@ -7,21 +7,21 @@ sidebar_label: "Execute SQL queries"
 
 Executing SQL queries is one of the most common use cases for data pipelines. Whether you're extracting and loading data, calling a stored procedure, or executing a complex query for a report, Airflow has you covered. Using Airflow, you can orchestrate all of your SQL tasks elegantly with just a few lines of boilerplate code.
 
-In this guide, we'll cover general best practices for executing SQL from your DAG, showcase Airflow's available SQL-related operators, and demonstrate how to use Airflow for a few common SQL use cases.
+In this tutorial you'll learn about the best practices for executing SQL from your DAG,  review the  most commonly used Airflow SQL-related operators, and then use sample code to implement a few common SQL use cases.
 
 :::info
 
-All code in this guide can be found on the [Astronomer GitHub](https://github.com/astronomer/airflow-sql-tutorial).
+All code used in this tutorial is located in the [Astronomer GitHub](https://github.com/astronomer/airflow-sql-tutorial).
 
 :::
 
 ## Best practices for executing SQL from your DAG
 
-No matter which database and flavor of SQL you're using, there are many ways to execute  your queries using Airflow. Once you determine how to execute your queries, the following tips will help you keep your DAGs clean, readable, and efficient for execution.
+No matter what database or SQL version you're using, there are many ways to execute your queries using Airflow. Once you determine how to execute your queries, the following tips will help you keep your DAGs clean, readable, and efficient for execution.
 
 ### Use hooks and operators
 
-Using hooks and operators whenever possible makes your DAGs easier to read, easier to maintain, and more performant. Airflow has many SQL-related operators available that can significantly limit the code needed to execute your queries.
+Using hooks and operators whenever possible makes your DAGs easier to read, easier to maintain, and improves performance. The SQL-related operators included with Airflow can significantly limit the code needed to execute your queries.
 
 ### Keep lengthy SQL code out of your DAG
 
@@ -49,7 +49,7 @@ Remember that Airflow is primarily an orchestrator, not a transformation framewo
 
 ## SQL operators
 
-Airflow has many operators available out of the box that make working with SQL easier. This guide lists some of the most commonly used ones that you should be aware of, but note that this list isn't comprehensive. For more documentation about Airflow operators, head [here](https://airflow.apache.org/docs/stable/_api/airflow/operators/index.html#).
+To make working with SQL easier, Airflow includes many built in operators. This tutorial discusses some of the most commonly used operators and shouldn't be considered a definitive resource. For more information about the available Airflow operators, see [airflow.operators](https://airflow.apache.org/docs/stable/_api/airflow/operators/index.html#).
 
 :::info
 
@@ -80,9 +80,9 @@ Transfer operators move data from a source to a destination. For SQL-related tas
 
 ## Examples
 
-With those basic concepts in mind, we'll show a few examples of common SQL use cases. For this tutorial you'll use [Snowflake](https://www.snowflake.com/), but note that the concepts shown can be adapted for other databases. Some of the environment setup for each example makes use of the [Astro CLI](https://docs.astronomer.io/astro/cli/overview) and Astro project structure, but you can also adapt this setup for use with Apache Airflow.
+Now that you've learned about the most commonly used Airflow SQL operators, you'll use the operators in some SQL use cases. For this tutorial you'll use [Snowflake](https://www.snowflake.com/), but the concepts shown can be adapted for other databases. Some of the environment setup for each example makes use of the [Astro CLI](https://docs.astronomer.io/astro/cli/overview) and Astro project structure, but you can also adapt this setup for use with Apache Airflow.
 
-### Example 1: Executing a query
+### Example 1: Execute a query
 
 In this first example, a DAG executes two simple interdependent queries using [SnowflakeOperator](https://registry.astronomer.io/providers/snowflake/modules/snowflakeoperator).
 
@@ -145,7 +145,7 @@ Finally, you need to set up a connection to Snowflake. There are a few ways to m
 
 With the connection established, you can now run the DAG to execute the SQL queries.
 
-### Example 2: Executing a query with parameters
+### Example 2: Execute a query with parameters
 
 Using Airflow, you can also parameterize your SQL queries to make them more dynamic. Consider when you have a query that selects data from a table for a date that you want to dynamically update. You can execute the query using the same setup as in Example 1, but with a few adjustments.
 
@@ -181,7 +181,7 @@ with DAG('parameterized_query',
          )
 ```
 
-The DAG is essentially the same as in Example 1. The difference is in the query itself:
+The DAG is essentially the same that you used in Example 1. The difference is in the query itself:
 
 ```sql
 SELECT *
@@ -201,7 +201,7 @@ FROM STATE_DATA
 WHERE state = {{ conf['state_variable'] }}
 ```
 
-If you need a parameter that is not available as a built-in variable/macro, such as a value from another task in your DAG, you can also pass that parameter into your query using the operator:
+If you need a parameter that is not available as a built-in variable or a macro, such as a value from another task in your DAG, you can also pass that parameter into your query using the operator:
 
 ```python
 opr_param_query = SnowflakeOperator(
@@ -220,9 +220,9 @@ FROM STATE_DATA
 WHERE date = {{ params.date }}
 ```
 
-### Example 3: Loading data
+### Example 3: Load data
 
-The next example loads data from an external source into a table in a database. You'll grab data from an API and save it to a flat file on S3, which you can then load into Snowflake.
+The next example loads data from an external source into a  database table. You'll pull data from an API and save it to a flat file on Amazon S3, which you can then load into Snowflake.
 
 This example uses the [S3toSnowflakeTransferOperator](https://registry.astronomer.io/providers/snowflake/modules/s3tosnowflakeoperator) to limit the code that you have to write.
 
@@ -297,7 +297,7 @@ with DAG('covid_data_s3_to_snowflake',
         t0 >> generate_files >> snowflake
 ```
 
-Here's a graph view of the DAG:
+This image shows a graph view of the DAG:
 
 ![Covid-to-Snowflake Graph](/img/guides/covid_to_snowflake_graph_view.png)
 
@@ -317,9 +317,9 @@ After this setup, you're ready to run the DAG! After a successful run, you can s
 
 Note that while this example is specific to Snowflake, the concepts apply to any database you might be using. If a transfer operator doesn't exist for your specific source and destination tools, you can always write your own (and maybe contribute it back to the Airflow project)!
 
-## Example 4: Using pandas
+## Example 4: Use pandas
 
-While Astronomer recommends using SQL-related operators and keeping any data transformations in SQL, for some use cases this doesn't work. For instance, pivoting data into a new format for a report can be difficult to complete with SQL alone. In this next example, you'll make use of Python libraries to integrate your SQL into a Python function.
+While Astronomer recommends using SQL-related operators and keeping any data transformations in SQL, for some use cases this doesn't work. For instance, pivoting data into a new format for a report can be difficult to complete with SQL alone. In this next example, you'll make use of Python libraries to integrate your SQL operator into a Python function.
 
 The following DAG pivots a table of data in Snowflake into a wide format for a report using Python:
 
@@ -392,11 +392,11 @@ with DAG('pandas_processing',
         opr_pivot_data >> opr_load_data
 ```
 
-In the DAG, the Python function `pivot_data` executes the SQL query and saves the results in a pandas dataframe using the `read_sql` function. It then pivots the data to the desired format and saves the it to S3. Lastly, the downstream task `opr_load_data`  loads that data back to Snowflake using the transfer operator described in Example 3.
+In the DAG, the Python function `pivot_data` executes the SQL query and saves the results in a pandas dataframe using the `read_sql` function. It then pivots the data to the desired format and saves it to Amazon S3. Lastly, the downstream task `opr_load_data`  loads that data back to Snowflake using the transfer operator described in Example 3.
 
-## Example 5 - Using dag-factory
+## Example 5 - Use dag-factory
 
-If you have SQL users who aren't familiar with Airflow or don't know any Python, they can use [dag-factory](https://github.com/ajbosco/dag-factory) to generate DAGs using a YAML configuration file.
+If you're unfamiliar with Airflow or Python, you can use [dag-factory](https://github.com/ajbosco/dag-factory) to generate DAGs using a YAML configuration file.
 
 Once you've installed dag-factory in your Airflow environment, you can add your SQL query tasks to a YAML configuration file and add this to your project's `include/` directory:
 
@@ -438,7 +438,7 @@ Once you Deploy it, the DAG will show a single task the Airflow UI:
 
 ## Next steps
 
-This guide covered how to interact with your SQL database from Airflow and important best practices when doing so. But there are still some outstanding questions:
+You've learned how to interact with your SQL database from Airflow. There are some topics you didn't cover, including:
 
 - How does it work behind the scenes?
 - What if you want to retrieve data with the PostgresOperator?
