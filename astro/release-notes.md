@@ -15,6 +15,38 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
 
+## August 31, 2022
+
+### New integration for exporting Deployment metrics to Datadog
+
+You can use a new Astronomer-supported integration to export Airflow Deployment metrics to Datadog. After you configure this feature, your Deployment exports all available metrics to Datadog. For more information about the type of metrics you can export, see the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
+
+To configure this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
+
+### Additional improvements
+
+- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers.
+- When you create a new worker queue, the Cloud UI now populates the **Worker type** field with a default worker type.
+- The Cloud UI now automatically validates worker queue names.
+- The number of times that a user can enter the wrong credentials for Astro before being locked out has been reduced from 10 to 6.
+- The timestamp appended to the end of a Deployment's Runtime image tag is now updated when you update a Deployment's environment variables.
+
+## Bug fixes
+
+- Fixed an issue where logging in to the Airflow UI with unrecognized credentials could freeze you on an error page.
+
+## August 24, 2022
+
+### Additional improvements
+
+- When you configure worker queues in the Cloud UI, the total CPU and memory capacity of each worker instance type is now shown instead of the nominal available resources.
+- Improved error handling for creating new worker queues when soft-deleted worker queues might still exist on the data plane.
+
+### Bug fixes
+
+- Fixed an issue where running `astro deploy` with a Deployment API key could revert changes to a worker queue's size that were previously set in the Cloud UI.
+- Fixed an issue where the **Lineage** tab in the Cloud UI showed all job durations as having a length of 0.
+
 ## August 18, 2022
 
 ### Create multiple worker queues
