@@ -28,6 +28,7 @@ module.exports = {
         'airflow-scaling-workers',
         'airflow-importing-custom-hooks-operators',
         'airflow-sql'
+        'airflow-decorators',
       ],
     },
     {

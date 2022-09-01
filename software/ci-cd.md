@@ -170,6 +170,18 @@ docker build -t registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD
 
 If you would like to see a more complete working example please visit our [full example using Drone-CI](https://github.com/astronomer/airflow-example-dags/blob/main/.drone.yml).
 
+### Run unit tests
+
+For CI/CD pipelines that push code to a production Deployment, Astronomer recommends adding a unit test after the image build step to ensure that you don't push a Docker image with breaking changes. To run a basic unit test, add a step in your CI/CD pipeline that executes `docker run` and then runs `pytest tests` in a container that is based on your newly built image before it's pushed to your registry.
+
+For example, you can add the following command as a step in a [Drone](ci-cd.md#DroneCI) pipeline:
+
+> **Note:** `BASE_DOMAIN` and `RELEASE_NAME` are pre-configured environment variables in the CI/CD tool, and `DRONE_BUILD_NUMBER` is an environment variable provided by the job execution in DroneCI.
+
+```bash
+docker run --rm registry.${BASE_DOMAIN}/${RELEASE_NAME}/airflow:ci-${DRONE_BUILD_NUMBER} /bin/bash -c "pytest tests"
+```
+
 ## Step 3: Configure your CI/CD pipeline
 
 Depending on your CI/CD tool, configuration will be slightly different. This section will focus on outlining what needs to be accomplished, not the specifics of how.
@@ -207,11 +219,12 @@ The following setup is an example implementation of CI/CD using GitHub Actions. 
             registry: registry.${BASE_DOMAIN}
             username: _
             password: ${{ secrets.SERVICE_ACCOUNT_KEY_DEV }}
-        - name: Build and push image
-          uses: docker/build-push-action@v2
-          with:
-            push: true
-            tags: registry.${BASE_DOMAIN}/<dev-release-name>/airflow:ci-${{ github.sha }}
+        - name: Build image
+          run: docker build -t registry.${BASE_DOMAIN}/<dev-release-name>/airflow:ci-${{ github.sha }} .
+        - name: Run tests
+          run: docker run --rm registry.${BASE_DOMAIN}/<dev-release-name>/airflow:ci-${{ github.sha }} /bin/bash -c "pytest tests"
+        - name: Push image
+          run: docker push registry.${BASE_DOMAIN}/<dev-release-name>/airflow:ci-${{ github.sha }}
       prod-push:
         if: github.event.action == 'closed' && github.event.pull_request.merged == true
         runs-on: ubuntu-latest
@@ -224,11 +237,12 @@ The following setup is an example implementation of CI/CD using GitHub Actions. 
             registry: registry.${BASE_DOMAIN}
             username: _
             password: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        - name: Build and push image
-          uses: docker/build-push-action@v2
-          with:
-            push: true
-            tags: registry.${BASE_DOMAIN}/<prod-release-name>/airflow:ci-${{ github.sha }}
+        - name: Build image
+          run: docker build -t registry.${BASE_DOMAIN}/<prod-release-name>/airflow:ci-${{ github.sha }} .
+        - name: Run tests
+          run: docker run --rm registry.${BASE_DOMAIN}/<prod-release-name>/airflow:ci-${{ github.sha }} /bin/bash -c "pytest tests"
+        - name: Push image
+          run: docker push registry.${BASE_DOMAIN}/<prod-release-name>/airflow:ci-${{ github.sha }}
     ```
 
     Ensure the branches match the names of the branches in your repository, and replace `<dev-release-name>` and `<prod-release-name>` with the respective release names of your development and production Airflow Deployments on Astronomer.
@@ -249,6 +263,16 @@ pipeline:
     image: quay.io/astronomer/ap-build:latest
     commands:
       - docker build -t registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${DRONE_BUILD_NUMBER} .
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    when:
+      event: push
+      branch: [ master, release-* ]
+
+  test:
+    image: quay.io/astronomer/ap-build:latest
+    commands:
+      - docker run --rm registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${DRONE_BUILD_NUMBER} /bin/bash -c "pytest tests"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     when:
@@ -317,6 +341,7 @@ jobs:
           command: |
             TAG=0.1.$CIRCLE_BUILD_NUM
             docker build -t registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-$TAG .
+            docker run --rm registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-$TAG /bin/bash -c "pytest tests"
             docker login registry.$BASE_DOMAIN -u _ -p $SERVICE_ACCOUNT_KEY
             docker push registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-$TAG
 
@@ -345,6 +370,7 @@ pipeline {
        steps {
          script {
            sh 'docker build -t registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${BUILD_NUMBER} .'
+           sh 'docker run --rm registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${BUILD_NUMBER} /bin/bash -c "pytest tests'
            sh 'docker login registry.$BASE_DOMAIN -u _ -p $SERVICE_ACCOUNT_KEY'
            sh 'docker push registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${BUILD_NUMBER}'
          }
@@ -375,6 +401,7 @@ pipelines:
           script:
             - echo ${SERVICE_ACCOUNT_KEY}
             - docker build -t registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${BITBUCKET_BUILD_NUMBER} .
+            - docker run --rm registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${BITBUCKET_BUILD_NUMBER} /bin/bash -c "pytest tests"
             - docker login registry.$BASE_DOMAIN -u _ -p $SERVICE_ACCOUNT_KEY
             - docker push registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${BITBUCKET_BUILD_NUMBER}
           services:
@@ -394,6 +421,7 @@ astro_deploy:
   script:
     - echo "Building container.."
     - docker build -t registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:CI-$CI_PIPELINE_IID .
+    - docker run --rm registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:CI-$CI_PIPELINE_IID /bin/bash -c "pytest tests"
     - docker login registry.$BASE_DOMAIN -u _ -p $SERVICE_ACCOUNT_KEY
     - docker push registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:CI-$CI_PIPELINE_IID
   only:
@@ -420,6 +448,7 @@ phases:
   build:
     commands:
       - docker build -t "registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-$GIT_VERSION" .
+      - docker run --rm "registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-$GIT_VERSION" /bin/bash -c "pytest tests"
       - docker push "registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-$GIT_VERSION"
 ```
 
@@ -446,11 +475,12 @@ jobs:
         registry: registry.$BASE_DOMAIN
         username: _
         password: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-    - name: Build and push images
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${{ github.sha }}
+    - name: Build image
+      run: docker build -t registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${{ github.sha }} .
+    - name: Run tests
+      run: docker run --rm registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${{ github.sha }} /bin/bash -c "pytest tests"
+    - name: Push image
+      run: docker push registry.$BASE_DOMAIN/$RELEASE_NAME/airflow:ci-${{ github.sha }}
 ```
 
 > **Note:** Make sure to replace `$RELEASE_NAME` in the example above with your deployment's release name and to store your service account Key in your GitHub repo's secrets according to [this GitHub guide]( https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables).
@@ -495,6 +525,7 @@ To set up this workflow, make sure you have:
         - script: |
             echo "Building container.."
             docker build -t registry.$(BASE-DOMAIN)/$(RELEASE-NAME)/airflow:$(Build.SourceVersion) .
+            docker run --rm registry.$(BASE-DOMAIN)/$(RELEASE-NAME)/airflow:$(Build.SourceVersion) /bin/bash -c "pytest tests"
             docker login registry.$(BASE-DOMAIN) -u _ -p $(SVC-ACCT-KEY)
             docker push registry.$(BASE-DOMAIN)/$(RELEASE-NAME)/airflow:$(Build.SourceVersion)
     ```

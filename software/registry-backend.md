@@ -15,6 +15,8 @@ The following are the registry backend tools supported by Astronomer:
 - [AWS S3](https://aws.amazon.com/s3/)
 - [Azure Blob Storage](https://azure.microsoft.com/en-us/services/storage/blobs/)
 
+Note that this doc explains only how to set up a registry for hosting Astronomer's system images. To create a custom registry for Deployment images, see [Configure a custom image registry for Deployment images](custom-image-registry.md).
+
 ## Google Cloud Storage
 
 If you're running Astronomer Software on Google Cloud Platform (GCP) Google Kubernetes Engine (GKE), Astronomer recommends using Google Cloud Storage (GCS) as a registry backend solution.
