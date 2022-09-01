@@ -29,6 +29,7 @@ module.exports = {
         'airflow-importing-custom-hooks-operators',
         'airflow-sql',
         'airflow-decorators',
+        'custom-xcom-backends',
       ],
     },
     {
