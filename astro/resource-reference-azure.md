@@ -3,7 +3,6 @@ sidebar_label: "Azure"
 title: "Resources required for Astro on Azure"
 id: resource-reference-azure
 description: Reference information for new Astro on Azure clusters.
-sidebar_custom_props: { icon: 'img/azure.png' }
 ---
 
 Unless otherwise specified, new clusters on Microsoft Azure are created with a set of default resources that are considered appropriate for most use cases.
@@ -35,12 +34,11 @@ To create a new cluster on Astro with a specified configuration, see [Install As
 
 Astro supports the following Azure regions:
 
-- Australia East
-- Canada Central
 - Central US
 - East US
-- West Europe
 - West US 3
+- Canada Central
+- West Europe
 
 Modifying the region of an existing Astro cluster isn't supported. If you're interested in a region that isn't on this list, contact [Astronomer support](https://support.astronomer.io).
 

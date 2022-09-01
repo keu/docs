@@ -41,7 +41,6 @@ Depending on where you want to run Telescope, install the CLI on a machine that 
 
 <Tabs
     defaultValue="binary"
-    groupId= "install-the-telescope-cli"
     values={[
         {label: 'Binary', value: 'binary'},
         {label: 'Pip', value: 'pip'},

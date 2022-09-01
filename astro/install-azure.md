@@ -3,7 +3,6 @@ sidebar_label: 'Azure'
 title: 'Install Astro on Azure'
 id: install-azure
 description: Get started on Astro by creating your first Astro cluster on Azure.
-sidebar_custom_props: { icon: 'img/azure.png' }
 ---
 
 import Tabs from '@theme/Tabs';
@@ -25,7 +24,7 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
 - An Azure AD user with the following role assignments:
     - `Application Administrator`. See [Understand roles in Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/roles/concept-understand-roles).
     - `Owner` with permission to create and manage subscription resources of all types. See [Azure built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
-
+    
     These role assignments are required for cluster creation, and can be removed after the cluster is created.
 - Microsoft Azure CLI or Azure Az PowerShell module.  See [How to install the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and [Install the Azure Az PowerShell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps).
 - A minimum quota of 48 Standard Ddv5-series vCPUs in the deployment region. You can use Dv5-series vCPUs, but you'll need 96 total vCPUs composed of 48 Ddv5-series vCPUs and 48 Dv5-series vCPUs. To adjust your quota limits up or down, see [Increase VM-family vCPU quotas](https://docs.microsoft.com/en-us/azure/azure-portal/supportability/per-vm-quota-requests).
@@ -67,7 +66,6 @@ The data plane is a collection of Astro infrastructure components that run in yo
 
 <Tabs
     defaultValue="azure"
-    groupId= "step-2-prepare-for-data-plane-activation"
     values={[
         {label: 'Azure CLI on Bash', value: 'azure'},
         {label: 'PowerShell', value: 'powershell'},
@@ -140,15 +138,15 @@ The data plane is a collection of Astro infrastructure components that run in yo
     $ra = New-AzRoleAssignment -ObjectId $sp.id -RoleDefinitionName Owner -Scope "/subscriptions/$subid"
     ```
 5. Run the following commands to register the `EncryptionAtHost` feature:
-
+    
     ```sh
     Register-AzProviderFeature -FeatureName EncryptionAtHost -ProviderNamespace Microsoft.Compute
     while ( (Get-AzProviderFeature -FeatureName EncryptionAtHost -ProviderNamespace Microsoft.Compute).RegistrationState -ne "Registered") {echo "Still waiting for Feature Registration (EncryptionAtHost) to complete, this can take up to 15 minutes"; sleep 60} echo "Registration Complete"
     ```
     ```sh
-    Register-AzResourceProvider -ProviderNamespace Microsoft.compute
+    Register-AzResourceProvider -ProviderNamespace Microsoft.compute 
     ```
-
+    
 </TabItem>
 </Tabs>
 

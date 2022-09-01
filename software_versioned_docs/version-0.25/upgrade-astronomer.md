@@ -138,17 +138,6 @@ Make changes as needed and rerun the upgrade command from Step 7. Do not continu
 
 This topic contains information about upgrading to specific versions of Astronomer Software. This includes notes on breaking changes, database migrations, and other considerations that might depend on your use case.
 
-### Upgrading to 0.30 using --no-hook
-
-Using the `--no-hook` flag in [Step 7](#step-7-run-astronomers-upgrade-script) results in the upgrade script skipping a necessary database migration job. Because of this, you should not specify this flag when running the upgrade script.
-
-If you do specify the `--no-hook` flag, the upgrade script will return a success message even though it failed, resulting in broken behavior in your upgraded environment.
-
-### Upgrading to 0.30 when using Azure Database for PostgreSQL
-
-A change in 0.30 enabled the `trgm` extension for PosgreSQL. If you use Azure Database for PostgreSQL as your database backend, you need to enable the `pg_trgm` extension before upgrading to Software 0.30 using either Azure portal or the Azure CLI. See [Azure documentation](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions) for configuration steps.
-If you don't complete this setup before your upgrade, the upgrade will fail.
-
 ### Upgrading to 0.29
 
 :::caution

@@ -15,7 +15,6 @@ This is where you'll find information about installing, upgrading, and uninstall
 
 <Tabs
     defaultValue="mac"
-    groupId= "install-the-astro-cli"
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},
@@ -116,7 +115,6 @@ If you specify only a major version, this command installs the latest minor or p
 
 <Tabs
     defaultValue="mac"
-    groupId= "upgrade-the-cli"
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},
@@ -170,7 +168,6 @@ curl -sSL install.astronomer.io | sudo bash -s
 
 <Tabs
     defaultValue="mac"
-    groupId= "uninstall-the-cli"
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},
@@ -220,7 +217,6 @@ For more information on Astro CLI v1.0.0, see [Astro CLI Release Notes](cli/rele
 
 <Tabs
     defaultValue="mac"
-    groupId= "step-1-uninstall-astrocloud"
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},

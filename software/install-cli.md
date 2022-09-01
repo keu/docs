@@ -22,7 +22,6 @@ You can also use the CLI to:
 
 <Tabs
     defaultValue="mac"
-    groupId= "install-the-astro-cli"
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},

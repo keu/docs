@@ -251,7 +251,6 @@ Depending on where your private packages are stored, use one of the following se
 
 <Tabs
     defaultValue="github"
-    groupId= "install-python-packages-from-private-sources"
     values={[
         {label: 'Private GitHub Repo', value: 'github'},
         {label: 'Private PyPi Index', value: 'pypi'},
@@ -342,7 +341,7 @@ This example assumes that the name of each of your Python packages is identical 
     FROM stage1 AS stage3
     # Copy requirements directory
     COPY --from=stage2 /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin
+    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin 
     ENV PATH="/home/astro/.local/bin:$PATH"
 
     COPY . .
@@ -457,7 +456,7 @@ Ensure that the name of the package on the private repository does not clash wit
     FROM stage1 AS stage3
     # Copy requirements directory
     COPY --from=stage2 /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
-    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin
+    COPY --from=stage2 /usr/local/bin /home/astro/.local/bin 
     ENV PATH="/home/astro/.local/bin:$PATH"
 
     COPY . .

@@ -51,6 +51,7 @@ module.exports = {
         'airflow-sagemaker',
         'airflow-redshift',
         'airflow-great-expectations',
+        'astro-python-sdk-etl',
       ],
     },
   ],

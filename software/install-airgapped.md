@@ -37,27 +37,16 @@ Astronomer's Docker images are hosted on a public registry which isn't accessibl
 
 You can also set up your own registry using a dedicated registry service such as [JFrog Artifactory](https://jfrog.com/artifactory/). Regardless of which service you use, follow the product documentation to configure a private registry according to your organization's security requirements.
 
-After you create your registry:
-
-1. Log in to the registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
-2. Run the following command to create an image pull secret:
-
-    ```sh
-    kubectl create secret generic regcred \
-    --from-file=.dockerconfigjson=<path/to/.docker/config.json> \
-    --type=kubernetes.io/dockerconfigjson
-    ```
-3. Copy the generated secret for use in Step 3.
-
 ## Step 2: Fetch images from Astronomer's Helm template
+<!--Version-specific-->
 
 The images and tags which are required for your Software installation depend on the version of Astronomer you're installing. To gather a list of exact images and tags required for your Astronomer version:
 
 1. Run the following command to template the Astronomer Helm chart and fetch its rendered image tags:
 
-    ```bash
-    $ helm template astronomer/astronomer | grep "image: " | sed -e 's/"//g' -e 's/image:[ ]//' -e 's/^ *//g' | sort | uniq                          
-    ```
+```bash
+$ helm template astronomer/astronomer | grep "image: " | sed -e 's/"//g' -e 's/image:[ ]//' -e 's/^ *//g' | sort | uniq                          
+```
 
 2. Run the following command to template the Airflow Helm chart and fetch its rendered image tags:
 
@@ -80,10 +69,11 @@ global:
   privateRegistry:
     enabled: true
     repository: 012345678910.dkr.ecr.us-east-1.amazonaws.com/myrepo
-    # secretName: ~
+    # user: ~
+    # password: ~
 ```
 
-This configuration automatically pulls most Docker images required in the Astronomer Helm chart. You must also configure the following images individually in a separate section of your `config.yaml` file:
+This configuration automatically pulls most Docker images required in the Astronomer Helm chart. You must configure the following additional images individually in a separate section of your `config.yaml` file:
 
 ```yaml
 astronomer:

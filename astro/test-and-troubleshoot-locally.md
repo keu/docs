@@ -73,31 +73,6 @@ You can only use `astro dev run` in a local Airflow environment. To automate Air
 
 :::
 
-## Make requests to the Airflow REST API locally
-
-Make requests to the [Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html) in a local Airflow environment with HTTP basic access authentication. This can be useful for testing and troubleshooting API calls before executing them in a Deployment on Astro.
-
-To make local requests with cURL or Python, you only need the username and password for your local user. Both of these values are `admin` by default. They are the same credentials that are listed when you run `astro dev start` with the Astro CLI and required by the Airflow UI in a local environment.
-
-To make requests to the Airflow REST API in a Deployment on Astro, see [Airflow API](airflow-api.md).
-
-### cURL
-
-```sh
-curl -X GET localhost:8080/api/v1/<endpoint> --user "admin:admin"
-```
-
-### Python
-
-```python
-import requests
-
-response = requests.get(
-   url="localhost:8080/api/v1/<endpoint>",
-   auth=("admin", "admin")
-)
-```
-
 ## Troubleshoot KubernetesPodOperator issues
 
 View local Kubernetes logs to troubleshoot issues with Pods that are created by the operator. See [Test and Troubleshoot the KubernetesPodOperator Locally](kubepodoperator-local.md#step-4-view-kubernetes-logs).
@@ -145,43 +120,6 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
 
 5. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
 
-## Override the CLI's Docker Compose file
-
-The Astro CLI uses a default set of [Docker Compose](https://docs.docker.com/compose/) configurations to define and run local Airflow components. For advanced testing cases, you might need to override these default configurations. For example:
-
-- Adding extra containers to mimic services that your Airflow environment needs to interact with locally, such as an SFTP server.
-- Change the volumes mounted to any of your local containers.
-
-:::info
-
-The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global environment variables](platform-variables.md). To learn more about environment variables, read [Environment variables](environment-variables.md).
-
-:::
-
-To override default configurations:
-
-1. Reference the Astro CLI's default [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go) (`composeyml.go`) and determine one or more configurations to override.
-2. Add a `docker-compose.override.yml` file to your Astro project.
-3. Specify your new configuration values in `docker-compose.override.yml` file using the same format as in `composeyml.go`.
-
-For example, to add another volume mount for a directory named `custom_dependencies`, add the following to your `docker-compose.override.yml` file:
-
-```yaml
-version: "3.1"
-services:
-  scheduler:
-    volumes:
-      - /home/astronomer_project/custom_dependencies:/usr/local/airflow/custom_dependencies:ro
-```
-
-Make sure to specify `version: "3.1"` and follow the format of the source code file linked above.
-
-To see your override file live in your local Airflow environment, run the following command to see the file in your scheduler container:
-
-```sh
-astro dev bash --scheduler "ls -al"
-```
-
 ## Troubleshoot common issues
 
 Use the information provided here to resolve common issues with running an Astro project in a local environment.
@@ -219,7 +157,7 @@ If you see this error, increase the CPU and memory allocated to Docker. If you'r
 
 If you're running the Astro CLI on a Mac computer that's built with the Apple M1 chip, your Astro project might take more than 5 mins to start after running `astro dev start`. This is a current limitation of Astro Runtime and the Astro CLI.
 
-If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers.
+If your project won't load, it might also be because your webserver or scheduler is unhealthy. In this case, you might need to debug your containers. 
 
 1. After running `astro dev start`, retrieve a list of running containers by running `astro dev ps`.
 2. If the webserver and scheduler containers exist but are unhealthy, check their logs by running:
@@ -259,7 +197,7 @@ To resolve a port availability error, you have the following options:
 1. Run `docker ps` to identify the Docker containers running on your computer.
 2. Copy the values in the `CONTAINER ID` column.
 3. Select one of the following options:
-
+    
     - Run `docker stop <container_id>` to stop a specific Docker container. Replace `<container_id>` with one of the values you copied in step 2.
     - Run `docker stop $(docker ps -q)` to stop all running Docker containers.
 
@@ -267,14 +205,14 @@ To resolve a port availability error, you have the following options:
 
 If port 8080 or 5432 are in use on your machine by other services, the Airflow webserver and metadata database won't be able to start. To run these components on different ports, run the following commands in your Astro project:
 
-```sh
-astro config set webserver.port <available-port>
-astro config set postgres.port <available-port>
-```
+    ```sh
+    astro config set webserver.port <available-port>
+    astro config set postgres.port <available-port>
+    ```
 
-For example, to use 8081 for your webserver port and 5435 for your database port, you would run the following commands:
+For example, to use `8081` for your webserver port and `5435` for your database port, you would run the following commands:
 
-```sh
-astro config set webserver.port 8081
-astro config set postgres.port 5435
-```
+    ```sh
+    astro config set webserver.port 8081
+    astro config set postgres.port 5435
+    ```
