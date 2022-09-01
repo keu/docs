@@ -1,6 +1,6 @@
 ---
 title: "Manage Connections in Apache Airflow"
-sidebar_label: "Manage Apache Airflow connections"
+sidebar_label: "Connections"
 description: "An overview of how connections work in the Airflow UI."
 id: connections
 ---
