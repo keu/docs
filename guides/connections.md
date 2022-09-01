@@ -106,8 +106,6 @@ AIRFLOW_CONN_MYCONNID='{
     }
 }'
 ```
-
-
 Connections that are defined using environment variables do not appear in the list of available connections in the Airflow UI.
 
 ## Masking sensitive information
