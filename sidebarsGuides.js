@@ -27,6 +27,7 @@ module.exports = {
         'airflow-pools',
         'airflow-scaling-workers',
         'airflow-importing-custom-hooks-operators',
+        'airflow-sql'
         'airflow-decorators',
         'connections',
       ],
@@ -51,6 +52,7 @@ module.exports = {
         'airflow-sagemaker',
         'airflow-redshift',
         'airflow-great-expectations',
+        'astro-python-sdk-etl',
       ],
     },
   ],
