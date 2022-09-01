@@ -95,8 +95,14 @@ module.exports = {
           ],
         },
         {
-          to: '/guides/',
-          label: 'Guides',
+          to: '/guides/airflow-sql',
+          label: 'Concepts',
+          position: 'left',
+          activeClassName: 'navbar__link--active',
+        },
+        {
+          to: '/guides/overview',
+          label: 'Tutorials',
           position: 'left',
           activeClassName: 'navbar__link--active',
         },

@@ -8,39 +8,73 @@
  */
 
 module.exports = {
-  guides: [
-    {
-      type: 'doc',
-      id: 'overview',
-      label: 'Overview',
-    },
+  concepts: [
     {
       type: 'category',
-      label: 'Concepts',
+      label: 'Getting started',
       items: [
-        'overview',
-        'airflow-passing-data-between-tasks',
-        'airflow-database',
-        'airflow-executors-explained',
-        'airflow-components',
-        'airflow-branch-operator',
-        'airflow-pools',
-        'airflow-scaling-workers',
-        'airflow-importing-custom-hooks-operators',
         'airflow-sql',
         'airflow-decorators',
       ],
     },
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Airflow infrastructure',
+      items: [
+        'airflow-passing-data-between-tasks',
+        'airflow-database',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Airflow features',
+      items: [
+        'airflow-executors-explained',
+        'airflow-components',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Operationalizing Airflow',
+      items: [
+        'airflow-branch-operator',
+        'airflow-pools',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'DAG design and best practices',
+      items: [
+        'airflow-sql',
+        'airflow-decorators',
+      ],
+    },
+  ],
+  tutorials: [
+    {
+      type: 'category',
+      label: 'Get started with Airflow',
       items: [
         'overview',
       ],
     },
     {
       type: 'category',
-      label: 'Integrations',
+      label: 'Build environments',
+      items: [
+        'overview',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Build ETL pipelines',
+      items: [
+        'overview',
+      ],
+    },
+    {
+      type: 'category',
+      label: '3rd party integrations',
       items: [
         'overview',
         'airflow-azure-data-factory-integration',
