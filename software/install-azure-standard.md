@@ -17,7 +17,7 @@ Install Astronomer Software on Azure to deploy and scale [Apache Airflow](https:
 * SMTP Service & Credentials (e.g. Mailgun, Sendgrid, etc.)
 * Permission to create and modify resources on AKS
 * Permission to generate a certificate (not self-signed) that covers a defined set of subdomains
-* If your organization uses Azure Database for PostgreSQL as the database backend, you need to enable the `pg_trgm` extension before upgrading to Astronomer Software 0.30 using the Azure portal or the Azure CLI.  If you don't enable the `pg_trgm` extension before you perform the upgrade, the upgrade will fail. For more information about enabling the `pg_trgm` extension, see [PostgreSQL extensions in Azure Database for PostgreSQL - Flexible Server](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions).
+* If your organization uses Azure Database for PostgreSQL as the database backend, you need to enable the `pg_trgm` extension using the Azure portal or the Azure CLI before installing Astronomer Software. If you don't enable the `pg_trgm` extension, the install will fail. For more information about enabling the `pg_trgm` extension, see [PostgreSQL extensions in Azure Database for PostgreSQL - Flexible Server](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions).
 
 ## Step 1: Choose a base domain
 
