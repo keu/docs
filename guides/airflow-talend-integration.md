@@ -7,9 +7,7 @@ sidebar_label: "Talend"
 
 [Talend](https://www.talend.com/) is a popular tool for data integration and data management. Airflow provides a centralized platform for data orchestration, job monitoring, and issue resolution. Using the tools together eliminates the need to migrate existing jobs to Python code and you can combine Talend jobs and other tasks in the same DAG.
 
-Using Airflow for orchestration allows for easily running multiple jobs with dependencies, parallelizing jobs, and monitoring run status and failures. When you combine Talend and Airflow, you can use both tools for what they're good for. If Talend works particularly well for one use case and Python for another, you can do both and still have a central platform for orchestration, monitoring, and logs with Airflow.
 
-Additionally if you are moving to Airflow with existing Talend jobs, using the tools together eliminates the need to migrate existing jobs to Python code You can even combine both Talend jobs and other tasks in the same DAG.
 
 In this tutorial, you'll learn how Talend and Airflow work well together.
 
