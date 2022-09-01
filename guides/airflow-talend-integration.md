@@ -49,12 +49,11 @@ Make sure the job you want to execute is present in the Talend Management Consol
 
 1. Copy the Task ID for the job. This Task ID is passed to the API to trigger the job.
 
-![Task ID](/img/guides/talend_api_2.png)
+    ![Task ID](/img/guides/talend_api_2.png)
 
 2. Select a user and then go to **Profile Preferences** > **Personal Access Tokens** and then add a personal access token. A personal access token is required for API authentication .
 
-![Token](/img/guides/talend_api_3.png)
-
+    ![Token](/img/guides/talend_api_3.png)
 
 ### Use the Talend API with Airflow
 
@@ -132,41 +131,43 @@ Existing Talend jobs and can be can be containerized with docker and pushed to a
 
 1. Go to Talend studio, right-click the job you want to containerize, and then select the publish feature.
 
-![Talend UI](/img/guides/talend_ui_1.png)
+    ![Talend UI](/img/guides/talend_ui_1.png)
 
-A **Push Docker Image to Registry** dialog appears. 
+    A **Push Docker Image to Registry** dialog appears. 
 
 2. In the **Export Type** list, select **Docker Image**.
 
-![Talend UI 2](/img/guides/talend_ui_2.png)
+    ![Talend UI 2](/img/guides/talend_ui_2.png)
 
 3. Click **Next** and complete the following fields:
 
-- **Image name**: The name of your repository (in this example, `talendjob`)
-- **Image tag**: The image tag (in this example, `0.1.0`)
-- **Registry** The location of your registry
-- **Username**: Your DockerHub username
-- **Password**: Your DockerHub Password
+    - **Image name**: The name of your repository (in this example, `talendjob`)
+    - **Image tag**: The image tag (in this example, `0.1.0`)
+    - **Registry** The location of your registry
+    - **Username**: Your DockerHub username
+    - **Password**: Your DockerHub Password
 
-If you are using a remote Docker host, you need to find the IP address Docker is running on and use TCP to connect. For example put `tcp://<docker-host-ip>` in the input box to the side of 'Remote'.
+    If you are using a remote Docker host, you need to find the IP address Docker is running on and use TCP to connect. For example put `tcp://<docker-host-ip>` in the input box to the side of 'Remote'.
 
-![Talend UI 3](/img/guides/talend_ui_3.png)
+    ![Talend UI 3](/img/guides/talend_ui_3.png)
 
-Then, configure the following additional parameters:
+    Then, configure the following additional parameters:
 
-- **Image name**: The name of your repository (in this example, `talendjob`)
-- **Image tag**: The image tag (in this example, `0.1.0`)
-- **Registry** The location of your registry
-- **Username**: Your DockerHub username
-- **Password**: Your DockerHub Password
+    - **Image name**: The name of your repository (in this example, `talendjob`)
+    - **Image tag**: The image tag (in this example, `0.1.0`)
+    - **Registry** The location of your registry
+    - **Username**: Your DockerHub username
+    - **Password**: Your DockerHub Password
 
 4. Click **Finish**.  The job is converted to Docker image and pushed to the specified registry. In this example the job was pushed to `https://hub.docker.com/repository/docker/user/talendjob`.
 
 5. Run the following command to run the job locally:
+    
+    ```sh
+    docker run user/talendjob:0.1.0
+    ```
 
-`docker run user/talendjob:0.1.0`
-
-If you ran the command on the terminal, you should see the output `hello`. You can now pull and run this image from Airflow.
+    If you ran the command on the terminal, you should see the output `hello`. You can now pull and run this image from Airflow.
 
 ### Orchestrate containerized Talend jobs with Airflow
 
