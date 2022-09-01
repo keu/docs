@@ -15,7 +15,7 @@ New versions of Astro Runtime are released regularly to support new Astro and Ap
 Consider the following when you upgrade Astro Runtime:
 
 - All versions of the Astro CLI support all versions of Astro Runtime. There are no dependencies between the two products.
-- Upgrading to certain versions of Runtime might result in extended upgrade times or otherwise disruptive changes to your environment. To learn more, see [Upgrade considerations](upgrade-runtime.md#upgrade-considerations).
+- Upgrading to certain versions of Runtime might result in extended upgrade times or otherwise disruptive changes to your environment. To learn more, see [Version-specific upgrade considerations](upgrade-runtime.md#version-specific-upgrade-considerations).
 - Astronomer does not support downgrading a Deployment on Astro to a lower version of Astro Runtime.
 
 To stay up to date on the latest versions of Astro Runtime, see [Astro Runtime release notes](runtime-release-notes.md). For more information on Astro Runtime versioning and support, see [Astro Runtime versioning and lifecycle policy](runtime-version-lifecycle-policy.md). For a full collection of Astro Runtime Docker images, go to the [Astro Runtime repository on Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags).
@@ -80,7 +80,7 @@ Once you upgrade to a Deployment on Astro to a new version of Astro Runtime, you
 
     You will also see an **Image tag** for your deploy. This tag is shown only for Deployments on Astro and is not generated for changes in a local environment.
 
-## Upgrade considerations
+## Version-specific upgrade considerations
 
 This topic contains information about upgrading to specific versions of Astro Runtime. This includes notes on breaking changes, database migrations, and other considerations that might depend on your use case.
 
