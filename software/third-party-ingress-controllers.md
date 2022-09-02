@@ -100,7 +100,20 @@ global:
     tag: stable
 ```
 
-If you use a Traefik or Contour ingress controller, you need to configure additional values in your chart. For more information, read the following subsections.
+If you use a Nginx, Traefik or Contour ingress controller, you need to configure additional values in your chart. For more information, read the following subsections.
+
+### Required configuration for ingress-nginx
+
+If you're using a nginx ingress controller, add the following configuration to your `config.yaml` file:
+
+```yaml
+global:
+  extraAnnotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 0
+```
+
+This setting will disable Nginx's maximum allowed size upload and prevent HTTP 413 (Request Entity Too Large) errors. 
+It is required for Astro CLI to properly deploy DAGs to the internal registry.
 
 ### Required configuration for traefik
 
