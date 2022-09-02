@@ -109,49 +109,48 @@ The following table lists all available instance types for worker node pools, as
 
 | Worker Node Type | CPU       | Memory       |
 |--------------------|-----------|--------------|
-| m5.xlarge          | 2 CPUs    | 7.5 GiB MEM  |
-| m5.2xlarge         | 6 CPUs    | 22.5 GiB MEM |
-| m5.4xlarge         | 14 CPUs   | 52.5 GiB MEM |
-| m5.8xlarge         | 30 CPUs   | 112.5 GiB MEM|
-| m5.12xlarge        | 46 CPUs   | 172.5 GiB MEM|
-| m5.16xlarge        | 62 CPUs   | 232.5 GiB MEM|
-| m5.24xlarge        | 94 CPUs   | 352.5 Gib MEM|
-| m5.metal           | 94 CPUs   | 352.5 Gib MEM|
-| m5d.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
-| m5d.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
-| m5d.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
-| m5d.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
-| m5d.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
-| m5d.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
-| m5d.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
-| m5d.metal          | 94 CPUs   | 352.5 Gib MEM|
-| m6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
-| m61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
-| m6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
-| m6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
-| m6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
-| m6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
-| m6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
-| m6i.metal          | 94 CPUs   | 352.5 Gib MEM|
-| r6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
-| r61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
-| r6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
-| r6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
-| r6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
-| r6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
-| r6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
-| r6i.metal          | 94 CPUs   | 352.5 Gib MEM|
-| c6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
-| c61.2xlarge        | 6 CPUs    | 22.5 GiB MEM |
-| c6i.4xlarge        | 14 CPUs   | 52.5 GiB MEM |
-| c6i.8xlarge        | 30 CPUs   | 112.5 GiB MEM|
-| c6i.12xlarge       | 46 CPUs   | 172.5 GiB MEM|
-| c6i.16xlarge       | 62 CPUs   | 232.5 GiB MEM|
-| c6i.24xlarge       | 94 CPUs   | 352.5 Gib MEM|
-| c6i.metal          | 94 CPUs   | 352.5 Gib MEM|
-| c6i.xlarge         | 2 CPUs    | 7.5 GiB MEM  |
-| t3.xlarge          | 2 CPUs    | 7.5 GiB MEM  |
-| t3.2xlarge         | 6 CPUs    | 22.5 GiB MEM |
+| m5.xlarge          | 3 CPUs    | 13 GiB MEM   |
+| m5.2xlarge         | 7 CPUs    | 29 GiB MEM   |
+| m5.4xlarge         | 15 CPUs   | 61 GiB MEM   |
+| m5.8xlarge         | 31 CPUs   | 125 GiB MEM  |
+| m5.12xlarge        | 47 CPUs   | 189 GiB MEM  |
+| m5.16xlarge        | 63 CPUs   | 253 GiB MEM  |
+| m5.24xlarge        | 95 CPUs   | 381 Gib MEM  |
+| m5.metal           | 95 CPUs   | 381 Gib MEM  |
+| m5d.xlarge         | 3 CPUs    | 13 GiB MEM   |
+| m5d.2xlarge        | 7 CPUs    | 29 GiB MEM   |
+| m5d.4xlarge        | 15 CPUs   | 61 GiB MEM   |
+| m5d.8xlarge        | 31 CPUs   | 125 GiB MEM  |
+| m5d.12xlarge       | 47 CPUs   | 189 GiB MEM  |
+| m5d.16xlarge       | 63 CPUs   | 253 GiB MEM  |
+| m5d.24xlarge       | 95 CPUs   | 381 Gib MEM  |
+| m5d.metal          | 95 CPUs   | 381 Gib MEM  |
+| m6i.xlarge         | 3 CPUs    | 13 GiB MEM   |
+| m61.2xlarge        | 7 CPUs    | 29 GiB MEM   |
+| m6i.4xlarge        | 15 CPUs   | 61 GiB MEM   |
+| m6i.8xlarge        | 31 CPUs   | 125 GiB MEM  |
+| m6i.12xlarge       | 47 CPUs   | 189 GiB MEM  |
+| m6i.16xlarge       | 63 CPUs   | 253 GiB MEM  |
+| m6i.24xlarge       | 95 CPUs   | 381 Gib MEM  |
+| m6i.metal          | 95 CPUs   | 381 Gib MEM  |
+| r6i.xlarge         | 3 CPUs    | 29 GiB MEM   |
+| r61.2xlarge        | 7 CPUs    | 61 GiB MEM   |
+| r6i.4xlarge        | 15 CPUs   | 125 GiB MEM  |
+| r6i.8xlarge        | 31 CPUs   | 253 GiB MEM  |
+| r6i.12xlarge       | 47 CPUs   | 381 GiB MEM  |
+| r6i.16xlarge       | 63 CPUs   | 509 GiB MEM  |
+| r6i.24xlarge       | 95 CPUs   | 765 Gib MEM  |
+| r6i.metal          | 95 CPUs   | 1021 Gib MEM |
+| c6i.xlarge         | 3 CPUs    | 5 GiB MEM    |
+| c61.2xlarge        | 7 CPUs    | 13 GiB MEM   |
+| c6i.4xlarge        | 15 CPUs   | 29 GiB MEM   |
+| c6i.8xlarge        | 31 CPUs   | 61 GiB MEM   |
+| c6i.12xlarge       | 47 CPUs   | 93 GiB MEM   |
+| c6i.16xlarge       | 63 CPUs   | 125 GiB MEM  |
+| c6i.24xlarge       | 95 CPUs   | 189 Gib MEM  |
+| c6i.metal          | 95 CPUs   | 189 Gib MEM  |
+| t3.xlarge          | 3 CPUs    | 13 GiB MEM   |
+| t3.2xlarge         | 7 CPUs    | 29 GiB MEM   |
 
 
 :::info
