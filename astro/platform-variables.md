@@ -12,7 +12,7 @@ As part of the Astro architecture, certain environment variables have preset val
 | `AIRFLOW__LOGGING__REMOTE_LOGGING`| Enables remote logging | `True` |
 | `AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER`| Location of remote logging storage | `baseLogFolder`|
 | `AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID` | Airflow connection ID to access remote logging storage   | `astro_s3_logging` |
-| `AIRFLOW_CONN_ASTRO_S3_LOGGING` | Connection URI for writing task logs to Astro's managed S3 bucket | `<Connection URI>`|
+| `AIRFLOW_CONN_ASTRO_S3_LOGGING` | Connection URI for writing task logs to Astro's managed S3 bucket | `<Connection-URI>`|
 | `AIRFLOW__LOGGING__ENCRYPT_S3_LOGS` | Determines whether to use server-side encryption for S3 logs | `False` |
 | `AIRFLOW__WEBSERVER__BASE_URL` | The base URL of the Airflow UI  | `https://${fullIngressHostname}`|
 |`AIRFLOW__CORE__SQL_ALCHEMY_CONN`| The SqlAlchemy connection string for the metadata database | `dbConnSecret` |
@@ -32,5 +32,5 @@ As part of the Astro architecture, certain environment variables have preset val
 | `AIRFLOW__METRICS__STATSD_PORT` | The port for sending metrics to Statsd | `<statsd-metrics-port>` |
 | `AIRFLOW__WEBSERVER__COOKIE_SECURE` | Sets a `secure` flag on server cookies | `True` |
 | `AIRFLOW__WEBSERVER__INSTANCE_NAME` | Shows the name of your Deployment in the Home view of the Airflow UI | `<Deployment-Name>` |
-| `AIRFLOW__CELERY__WORKER_CONCURRENCY` | Determines how many tasks each Celery worker can run at any given time and is the basis of worker auto-scaling logic | `16` |
+| `AIRFLOW__CELERY__WORKER_CONCURRENCY` | Determines how many tasks each Celery worker can run at any given time and is the basis of worker auto-scaling logic | `<Max-Tasks-Per-Worker>` |
 | `AIRFLOW__WEBSERVER__NAVBAR_COLOR` | The color of the main navigation bar in the Airflow UI | `#4a4466` |
