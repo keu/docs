@@ -179,7 +179,7 @@ To access the **DAGs** page, you can either click the DAGs icon in the UI or cli
 
 ## Export Airflow Deployment metrics to Datadog
 
-You can export metrics about a Deployment's Airflow environment to Datadog. After you configure this integration, the Datadog Agent collects metrics that are available in the Astro UI as well as more specific metrics about your environment's performance. See the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected) for a complete list of exported metrics.
+You can export metrics about a Deployment's Airflow environment to Datadog by adding a Datadog API key to your Deployment. Datadog Agent collects metrics that are available in the Astro UI as well as more specific metrics about your environment's performance. See the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected) for a complete list of exported metrics.
 
 :::info
 
@@ -191,7 +191,7 @@ Astro does not export any [service checks](https://docs.datadoghq.com/integratio
 2. [Create a new environment variable](environment-variable.md) in your Deployment. Specify the variable key as `DATADOG_API_KEY` and its value as your Datadog API key. Select the **Secret** checkbox.
 3. Save the environment variable.
 
-After you complete this setup, Astro launches a sidecar container in your Deployment that runs [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/?tab=hostagent). This container works with your Deployment's existing StatsD infrastructure to export Airflow metrics to the Datadog instance associated with your API key.
+After you configure the API key, Astro automatically launches a sidecar container in your Deployment that runs [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/?tab=hostagent). This container works with your Deployment's existing StatsD infrastructure to export Airflow metrics to the Datadog instance associated with your API key.
 
 ## Astro usage
 
