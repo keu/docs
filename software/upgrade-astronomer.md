@@ -139,13 +139,31 @@ If there is a problem creating a new Airflow Deployment, check the commander log
 
 Make changes as needed and rerun the upgrade command from Step 7. Do not continue to Step 8 until you have successfully created a new Airflow Deployment.
 
+## Step 9: Upgrade the Astro CLI
+
+Each Software version is compatible only with specific versions of the Astro CLI. Ensure that all users on your installation are using the latest compatible version of the Astro CLI for your Software version. See [Version compatibility reference](version-compatibility-reference.md).
+
+To upgrade from a pre-1.0 version of the CLI to version 1.0+, see [Upgrade to Astro CLI version 1.0+](upgrade-astro-cli.md).
+
 ## Upgrade considerations
 
 This topic contains information about upgrading to specific versions of Astronomer Software. This includes notes on breaking changes, database migrations, and other considerations that might depend on your use case.
 
 To avoid extended service disruptions, Astronomer recommends upgrading Astronomer Software to a compatible version before you upgrade Kubernetes. To view Astronomer Software and Kubernetes compatibility information, see [Version compatibility reference for Astronomer Software](version-compatibility-reference.md#astronomer-software).
 
-### Upgrading to 0.30
+### Upgrading to Kubernetes 1.22
+
+If upgrade to Astronomer Software 0.29+ at the same time as you're upgrading to Kubernetes 1.22, complete your upgrades in the following order:
+
+1. Follow the standard Software upgrade procedure as described in this document.
+2. Upgrade all of your Deployments to use at least version 1.6.0 of the Airflow Helm chart. To do this, run the following command:
+
+    ```sh
+    <command-here>
+    ```
+3. Upgrade Kubernetes to version 1.22.
+
+### Upgrading to Astronomer Software 0.30
 
 #### Running the 0.30 upgrade script with --no-hook
 
@@ -159,7 +177,7 @@ A change in 0.30 enabled the `trgm` extension for PosgreSQL. If you use Azure Da
 
 If you don't complete this setup before your upgrade, the upgrade will fail.
 
-### Upgrading to 0.29
+### Upgrading to Astronomer Software 0.29
 
 :::caution
 
