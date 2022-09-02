@@ -182,13 +182,13 @@ As part of the 0.29 release, Astronomer deprecated its usage of [kubed](https://
 When upgrading to 0.29 from any earlier minor version, run the following command between Steps 2 and 3 in the standard procedure to annotate the certificate secret:
 
 ```bash
-kubectl -n annotate secret -houston-jwt-signing-certificate "astronomer.io/commander-sync"="platform=astronomer"
+kubectl -n annotate secret <astronomer-platform-release-name>-houston-jwt-signing-certificate "astronomer.io/commander-sync"="platform=astronomer"
 ```
 
 If you upgraded to Astronomer Software 0.29 without annotating this secret, you can still complete the sync by running the following command after the upgrade:
 
 ```bash
-kubectl create job -n --from=cronjob/-config-syncer upgrade-config-synchronization
+kubectl create job -n --from=cronjob/<astronomer-platform-release-name>-config-syncer upgrade-config-synchronization
 ```
 
 ### Upgrading to Astronomer Software 0.28
