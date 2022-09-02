@@ -18,8 +18,8 @@ module.exports = {
       type: 'category',
       label: 'Get started',
       items: [
-        'log-in-to-astro',
         'create-project',
+        'log-in-to-astro',
         'create-deployment',
       ],
     },
@@ -107,7 +107,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Manage Clusters',
+          label: 'Manage clusters',
           items: [
             'view-clusters',
             'create-cluster',

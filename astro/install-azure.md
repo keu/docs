@@ -67,6 +67,7 @@ The data plane is a collection of Astro infrastructure components that run in yo
 
 <Tabs
     defaultValue="azure"
+    groupId= "step-2-prepare-for-data-plane-activation"
     values={[
         {label: 'Azure CLI on Bash', value: 'azure'},
         {label: 'PowerShell', value: 'powershell'},

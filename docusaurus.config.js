@@ -73,9 +73,14 @@ module.exports = {
           activeClassName: 'navbar__link--active',
           items: [
             {
-              label: '0.29 (Latest)',
+              label: '0.30 (Latest)',
               to: '/software/',
               activeBaseRegex: `software(?!(\/${versions.join('|\\/')}))`,
+            },
+            {
+              label: '0.29',
+              to: '/software/0.29/overview',
+              activeBaseRegex: '(software\/0.29)+',
             },
             {
               label: '0.28',
@@ -217,7 +222,7 @@ module.exports = {
         sitemap: {
         id: 'default',
         changefreq: 'daily',
-        ignorePatterns: ['/software/0.28/**','/software/0.27/**','/software/0.26/**','/software/0.25/**','/software/0.23/**','/software/0.16/**'],
+        ignorePatterns: ['/software/0.29/**','/software/0.28/**','/software/0.27/**','/software/0.26/**','/software/0.25/**','/software/0.23/**','/software/0.16/**'],
         filename: 'sitemap.xml',
         },
         theme: {
@@ -240,7 +245,7 @@ module.exports = {
         lastVersion: 'current',
         versions: {
           current: {
-            label: '0.29',
+            label: '0.30',
             path: '',
             banner: 'none',
           },
@@ -252,7 +257,7 @@ module.exports = {
       {
        id: 'software',
        changefreq: 'daily',
-       ignorePatterns: ['/software/0.28/**','/software/0.27/**','/software/0.26/**','/software/0.25/**','/software/0.23/**','/software/0.16/**'],
+       ignorePatterns: ['/software/0.29/**', '/software/0.28/**','/software/0.27/**','/software/0.26/**','/software/0.25/**','/software/0.23/**','/software/0.16/**'],
        filename: 'sitemap.xml',
       },
     ]
@@ -268,6 +273,11 @@ module.exports = {
     },
     {
       src: './scripts/consent-manager-config.js',
+    },
+    {
+      src: "/scripts/set-tab.js",
+      async: true,
+      defer: true,
     },
     {
       src: 'https://docs.astronomer.io/js/script.outbound-links.js',

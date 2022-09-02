@@ -73,6 +73,31 @@ You can only use `astro dev run` in a local Airflow environment. To automate Air
 
 :::
 
+## Make requests to the Airflow REST API locally
+
+Make requests to the [Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html) in a local Airflow environment with HTTP basic access authentication. This can be useful for testing and troubleshooting API calls before executing them in a Deployment on Astro.
+
+To make local requests with cURL or Python, you only need the username and password for your local user. Both of these values are `admin` by default. They are the same credentials that are listed when you run `astro dev start` with the Astro CLI and required by the Airflow UI in a local environment.
+
+To make requests to the Airflow REST API in a Deployment on Astro, see [Airflow API](airflow-api.md).
+
+### cURL
+
+```sh
+curl -X GET localhost:8080/api/v1/<endpoint> --user "admin:admin"
+```
+
+### Python
+
+```python
+import requests
+
+response = requests.get(
+   url="localhost:8080/api/v1/<endpoint>",
+   auth=("admin", "admin")
+)
+```
+
 ## Troubleshoot KubernetesPodOperator issues
 
 View local Kubernetes logs to troubleshoot issues with Pods that are created by the operator. See [Test and Troubleshoot the KubernetesPodOperator Locally](kubepodoperator-local.md#step-4-view-kubernetes-logs).
@@ -242,14 +267,14 @@ To resolve a port availability error, you have the following options:
 
 If port 8080 or 5432 are in use on your machine by other services, the Airflow webserver and metadata database won't be able to start. To run these components on different ports, run the following commands in your Astro project:
 
-    ```sh
-    astro config set webserver.port <available-port>
-    astro config set postgres.port <available-port>
-    ```
+```sh
+astro config set webserver.port <available-port>
+astro config set postgres.port <available-port>
+```
 
-For example, to use `8081` for your webserver port and `5435` for your database port, you would run the following commands:
+For example, to use 8081 for your webserver port and 5435 for your database port, you would run the following commands:
 
-    ```sh
-    astro config set webserver.port 8081
-    astro config set postgres.port 5435
-    ```
+```sh
+astro config set webserver.port 8081
+astro config set postgres.port 5435
+```

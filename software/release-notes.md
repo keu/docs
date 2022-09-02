@@ -1,118 +1,48 @@
 ---
-title: 'Astronomer Software v0.29 release notes'
+title: 'Astronomer Software v0.30 release notes'
 sidebar_label: 'Astronomer Software'
 id: release-notes
 description: Astronomer Software release notes.
 ---
 
-
 <!--- Version-specific -->
 
-This document includes all release notes for Astronomer Software version 0.29.
-
-0.29 is the latest stable version of Astronomer Software, while 0.28 remains  the latest LTS long-term support (LTS) version of Astronomer Software. To upgrade to 0.29, read [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, read [Release and lifecycle policies](release-lifecycle-policy.md). To read release notes specifically for the Astro CLI, see [Astro CLI release notes](cli-release-notes.md).
+0.30 is the latest stable version of Astronomer Software, while 0.28 remains the latest LTS long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, see [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). To read release notes specifically for the Astro CLI, see [Astro CLI release notes](cli-release-notes.md).
 
 We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
 
-## v0.29.3
+## 0.30.0
 
-Release date: August 5, 2022
+:::danger Breaking Change for Azure Database for PostgreSQL
 
-:::danger Breaking change
+A change in 0.30 enabled the `trgm` extension for PostgreSQL. If you use Azure Database for PostgreSQL as your database backend, you need to enable the `pg_trgm` extension before upgrading to Software 0.30 using either Azure portal or the Azure CLI. See [Azure documentation](https://docs.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-extensions) for configuration steps.
 
-There is an [unresolved Kubernetes bug](https://github.com/kubernetes/kubernetes/issues/65106) that occurs when upgrading Helm charts that include duplicate keys in an `env` array. If you have a Helm chart with duplicate keys and upgrade to Astronomer Software 0.29.3, all key-value pairs with the duplicate key are removed from your environment.
-
-To preserve duplicate keys in your Helm chart, you can either reapply the values after upgrading, or you can use the `--reset-values` flag when running the upgrade script as described in [Upgrade Astronomer](upgrade-astronomer.md).
+If you don't complete this setup before your upgrade, the upgrade will fail.
 
 :::
 
-### Additional improvements
+### Improved token refreshing for IdP integrations
 
-- Resolved several high and critical CVEs.
+The Software UI now refreshes your JSON web token (JWT) based on the validity of your authentication token from your IdP. This means that as long as you stay logged in to your IdP, you no longer have to refresh the Software UI to continue accessing the Software UI, Astro CLI, and Houston API.
 
-### Bug fixes
+Additionally, if you change a user's access to Astronomer from your IdP, their permissions will be automatically updated in Astronomer after their current IdP token expires. If you remove a user completely from Astronomer, they are automatically logged out of the Software UI and CLI after their current IdP token expires.
 
-- API requests to query the AUs allocated to **Extra Capacity** are now returning results for all Deployments in a Workspace. Previously, queries were only returning partial results.
-
-## v0.29.2
-
-Release date: July 18, 2022
+As part of this change, you can now configure `jwt.authDuration` in your [Houston Helm configuration](https://github.com/astronomer/docs/blob/main/software_configs/0.30/default.yaml). If a user is logged on longer than `authDuration`, they will be immediately logged out regardless of the status of their JWT or authentication token.
 
 ### Additional improvements
 
-- You can now configure Vector on [logging sidecars](export-task-logs.md#export-logs-using-container-sidecars) to send Airflow task logs to third-party log management systems.
-- Resolved several high and critical CVEs.
-- You can now assign System Viewer and System Editor permissions to a [Team](import-idp-groups.md).
-- You can now assign System Viewer and System Editor permissions to a user from the Software UI.
+- Workspace users are now paginated in the Software UI.
+- You can now configure credentials for a private image registry by specifying a secret you create instead of a username and password. The secret is attached to any Pods that need to access the registry.
+- You can now specify `authUrlParams` for your identity provider (IdP) in `config.yaml`.
+- System Editors can no longer manage Teams or users in a Workspace. These permissions are now available only at the System Admin level.
 
 ### Bug fixes
 
-- If you have `customLogging.enabled=true` and `loggingSidecar.customConfig=false` in your Helm configuration, logs now appear in the Software UI as expected.
-- System Admins can no longer update their own role.
-- The Software UI no longer counts inactive users in its user count figures.
-- Fixed an issue where you could still access a Deployment using a URL after logging out of the Software UI.
-- Fixed an issue where you could view Deployment information from a Workspace that was deleted with `astro workspace delete`.
-- Fixed an issue where you could not open Celery from the Software UI.
-- Improved the reliability of upgrading Astronomer Software with 30+ Deployments when `upgradeDeployments=true`.
-
-## v0.29.1
-
-Release date: June 3, 2022
-
-### Bug fixes
-
-- Fixed an issue where you couldn't run Houston API queries for Deployments using `releaseName` and `label`
-- Fixed an issue where a user could not log in through Azure AD SSO if the user belonged to a group without a `displayName`
-
-## v0.29.0
-
-Release date: June 1, 2022
-
-### Support for Astro Runtime images
-
-You can now use Astro Runtime images in your Software Deployments. Additionally, you can now select Runtime images when setting **Image Version** for a Deployment in the Software UI.
-
-Functionally, Runtime images are similar to Certified images. They both include:
-
-- Same-day support for Apache Airflow releases
-- Extended support lifecycles
-- Regularly backported bug and security fixes
-
-Astro Runtime includes additional features which are not available in Astronomer Certified images, including:
-
-- The `astronomer-providers` package, which includes a set of operators that are built and maintained by Astronomer
-- Airflow UI improvements, such as showing your Deployment's Docker image tag in the footer
-- Features that are exclusive to Astro Runtime and coming soon, such as new Airflow components and improvements to the DAG development experience
-
-To upgrade a Deployment to Runtime, follow the steps in [Upgrade Airflow](manage-airflow-versions.md), making sure to replace the Astronomer Certified image in your Dockerfile with an Astro Runtime version.
-
-### Use a custom container image registry to deploy code
-
-You can now configure a custom container image registry in place of Astronomer's default registry. This option is best suited for mature organizations who require additional control for security and governance reasons. Using a custom registry provides your organization with the opportunity to scan images for CVEs, malicious code, and approved/ unapproved Python and OS-level dependencies prior to deploying code. To configure this feature, see [Configure a custom image registry](custom-image-registry.md).
-
-### Export task logs using logging sidecars
-
-You can now configure logging sidecar containers to collect and export task logs to ElasticSearch. This exporting approach is best suited for organizations that use Astronomer Software in a multi-tenant cluster where security is a concern, as well as for organizations running many small tasks using the Kubernetes executor. To configure this feature, see [Export task logs](export-task-logs.md).
-
-### Simplified configuration for namespace pools
-
-The process for configuring namespace pools has been simplified. As an alternative to manually creating namespaces, you can now delegate the creation of each namespace, including roles and rolebindings, to Astronomer Software. While this feature is suitable for most use cases, you can still manually create namespaces if you want more fine-grained control over the namespace's resources and permissions. For more information, see [Namespace pools](namespace-pools.md).
-
-### Additional improvements
-
-- Added support for [Kubernetes 1.22](https://kubernetes.io/blog/2021/08/04/kubernetes-1-22-release-announcement/)
-- Deprecated usage of [kubed](https://appscode.com/products/kubed/) for security and performance improvements
-- Redis containers can now run as non-root users
-- Added minimum security requirements for user passwords when using local auth
-- You can now use Azure DevOps repos in your [Git sync](deploy-git-sync.md) configurations
-- You can now disable all network policies for Airflow components using the Astronomer Helm chart
-- System Admins can now view all Workspaces on their installation by default
-- User auth tokens for the Software UI are now stored in httpOnly cookies
-- When importing IdP groups as teams, you can now configure a `teamFilterRegex` in `config.yaml` to filter out IdP groups from being imported using regex
-- Added support for audit logging when a user interacts with the Houston API. This includes actions within the Software UI
-
-### Bug fixes
-
-- Fixed a typo in the `loadBalancerIP` key in the Nginx Helm chart
-- Fixed an issue where Azure AD connect sync did not work with Astronomer's Teams feature
-- Fixed an issue where upgrades would fail if you had changed `networkNSLabels` from `true` to `false` in `config.yaml`
+- Fixed an issue where applying an IAM role to a Deployment would reset the Deployment's **Extra Capacity** setting back to the default of 0 AU.
+- Fixed an issue where System Admins could receive an error when trying to view a Team imported from a different IdP than their current one.
+- When a System Admin makes a change to a Team, that change now appears in the UI without needing to refresh the page.
+- Configurations for disabling a specific executor type in `config.yaml` are now reflected in the Software UI.
+- Fixed an issue where Workspace-level service accounts could view Deployment information from Deployments outside of their Workspace.
+- Fixed an issue where updating the role of a user in a Team using the Astro CLI would not throw an error as expected.
+- Fixed an issue where JSON web tokens persisted after a user logged out if `idpGroupsRefreshEnabled` was set to `false`.
+- Fixed an issue where users who authenticated with Google Direct were automatically logged out of the Software UI after 1 hour.

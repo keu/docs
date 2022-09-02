@@ -16,6 +16,7 @@ The Kubernetes infrastructure required to run the `KubernetesPodOperator` is bui
 ## Step 1: Set up Kubernetes
 <Tabs
     defaultValue="windows and mac"
+    groupId= "step-1-set-up-kubernetes"
     values={[
         {label: 'Windows and Mac', value: 'windows and mac'},
         {label: 'Linux', value: 'linux'},
@@ -48,6 +49,7 @@ The latest versions of Docker for Windows and Mac let you run a single node Kube
 
 <Tabs
     defaultValue="windows and mac"
+    groupId= "step-2-update-the-kubeconfig-file"
     values={[
         {label: 'Windows and Mac', value: 'windows and mac'},
         {label: 'Linux', value: 'linux'},
@@ -154,6 +156,7 @@ Optional. Use the `kubectl` command line tool to review the logs for any pods th
 
 <Tabs
     defaultValue="windows and mac"
+    groupId= "step-4-view-kubernetes-logs"
     values={[
         {label: 'Windows and Mac', value: 'windows and mac'},
         {label: 'Linux', value: 'linux'},

@@ -97,6 +97,7 @@ Use the external ID you saved from Step 2 to create a cross-account IAM role for
 
 <Tabs
     defaultValue="managementconsole"
+    groupId= "step-3-create-a-cross-account-iam-role-for-astro"
     values={[
         {label: 'AWS Management Console', value: 'managementconsole'},
         {label: 'AWS Command Line', value: 'commandline'},
