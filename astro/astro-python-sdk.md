@@ -1,3 +1,4 @@
+
 ---
 title: 'Write DAGs with the Astro Python SDK'
 sidebar_label: 'Astro Python SDK'
@@ -5,43 +6,44 @@ id: astro-python-sdk
 description: Learn how you can use the Astro SDK to manage database queries in Python.
 ---
 
-The Astro Python SDK is an open source DAG development platform built and maintained by Astronomer. The purpose of the SDK is to abstract away Airflow's code-level configuration and let DAG authors focus on writing Python code.
+The Astro Python SDK is an open source tool for DAG development that is built and maintained by Astronomer. The purpose of the SDK is to remove the complexity associated with writing DAGs and setting Airflow configurations. This enables pipeline authors to focus on writing Python code.
 
-The Astro SDK uses [decorators](https://realpython.com/primer-on-python-decorators/) and the TaskFlow API to extend the behaviors of your Python functions and properly configure them for use in Airflow. Specifically, the Astro SDK decorators remove the need to specify Xcoms, dependencies, and downstream database connections in your DAG.
+The Astro SDK uses Python [decorators](https://realpython.com/primer-on-python-decorators/) and the TaskFlow API to simplify Python functions for common data orchestration use cases. Specifically, the Astro SDK decorators include eight python functions that make it easier to:
 
-## Use cases
+- Extract a file from a remote object store, such as Amazon S3 or Google Cloud Storage (GCS).
+- Load that file to a new or existing table in a data warehouse, such as Snowflake.
+- Transform the data in that file with SQL written by your team.
 
-You can use the SDK to write any ETL pipeline that you could typically run in Airflow. The Astro SDK is optimized for DAG authors who want to focus data transformations instead of Airflow configurations. Writing a DAG with the Astro SDK is more similar to writing a traditional Python script than it is to writing an Airflow DAG.
+For extract, load, and transform (ELT) use cases, these functions significantly reduce the lines of code required. The Astro SDK is more similar to writing a traditional Python script than it is writing a data pipeline in Airflow.
 
 ## Installation
 
-1. Add the following line to the `requirements.txt` file of your Astro project:
+1. Install the Astro Python SDK package by adding the following line to the `requirements.txt` file of your Astro project:
 
     ```text
     astro-sdk-python
     ```
 
-2. Add the following environment variables to the `.env` file of your Astro project
+2. Add the following environment variables to the `.env` file of your Astro project:
 
     ```text
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
-    AIRFLOW__ASTRO_SDK__SQL_SCHEMA=<snowflake_schema>
     ```
 
-    To use the Astro Python SDK on a Deployment, add these environment variables in your Deployment's configuration. See [Environment variables](environment-variables.md).
+    To deploy a pipeline written with the Astro Python SDK to Astro, add these environment variables in your Deployment configuration. See [Environment variables](environment-variables.md).
 
 ## Available functions
 
-The Astro SDK includes task decorators for the most common actions you would want to complete in an ETL pipeline. Some of the key functions available are:
+The Astro SDK includes task decorators for actions that are most commonly required for ETL pipelines:
 
 - `load_file`: Loads a given file into a SQL table.
 - `transform`: Applies a SQL select statement to a source table and saves the result to a destination table.
 - `drop_table`: Drops a SQL table.
-- `run_raw_sql`: Runs any SQL statement without handling its output
-- `append`: Inserts rows from the source SQL table into the destination SQL table, if there are no conflicts
+- `run_raw_sql`: Runs any SQL statement without handling its output.
+- `append`: Inserts rows from the source SQL table into the destination SQL table, if there are no conflicts.
 - `merge`: Inserts rows from the source SQL table into the destination SQL table, depending on conflicts:
 - `export_file`: Exports SQL table rows into a destination file.
-- `dataframe`: Exports a specific SQL table into an in-memory Pandas data-frame.
+- `dataframe`: Exports a specific SQL table into an in-memory pandas DataFrame.
 
 ## Example
 
@@ -129,7 +131,7 @@ example_s3_to_snowflake_etl_dag = example_s3_to_snowflake_etl()
 
 This Astro SDK implementation is different from a standard TaskFlow implementation in the following ways:
 
-- You don't have to pass tables through XComs. All operations between different database types are handled automatically by the SDK.
+- You don't have to manually create temp tables and pass them through XComs. All operations between different database types are handled automatically by the SDK.
 - You don't have to define connections to your databases in each task. Tasks can automatically inherit connection information from `Tables`.
 - You can run SQL queries directly without first defining them. The SDK includes decorators for common actions in SQL that you would otherwise have to write yourself.
 
@@ -137,3 +139,4 @@ This Astro SDK implementation is different from a standard TaskFlow implementati
 
 - [readthedocs.io](https://astro-sdk.readthedocs.io/en/latest/): Complete SDK documentation, including API and operator references.
 - [Astro Python SDK README](https://github.com/astronomer/astro-sdk): Includes an overview of the SDK, a quickstart, and supported database types.
+- [Astro Python SDK Webinar](https://www.astronomer.io/events/recaps/the-astro-python-sdk/): A recorded demonstration of the SDK led by Astronomer.
