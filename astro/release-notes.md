@@ -25,13 +25,13 @@ For teams already using the observability service, this integration allows your 
 
 After you configure this feature, Astro automatically exports all available metrics to Datadog. For a complete list of supported metrics, see [Data Collected](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
 
-To set up this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-deployment-metrics-to-datadog).
+To set up this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
 
 ### Additional improvements
 
 - The Cloud UI now automatically ensures that worker queue names are valid as you type in real time.
 - The number of times that a user can enter the wrong credentials for Astro before being locked out has been reduced from 10 to 6.
-- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers. Depending on your cloud provider and Deployment configurations, a running Deployment might not be able to scale to 0 workers even if desired.
+- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers. Note that depending on your cloud provider and Deployment configurations, some Deployments still might not be able to scale to 0 workers.
 
 ## Bug fixes
 
