@@ -19,13 +19,11 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Export Deployment metrics to Datadog
 
-You can now export over 40 Airflow metrics related to the state of your Astro Deployment to [Datadog](https://www.datadoghq.com/). This includes task successes, DAG processing time, frequency of import errors, and more.
+You can now export over 40 Airflow metrics related to the state of your Astro Deployment to [Datadog](https://www.datadoghq.com/) by adding a Datadog API key to the Deployment. Metrics include task successes, DAG processing time, frequency of import errors, and more.
 
-For teams already using the observability service, this integration allows your team to standardize on tooling and gain a more granular view of Deployment metrics in a single place.
+For organizations already using the observability service, this integration allows your team to standardize on tooling and gain a more granular view of Deployment metrics in a single place. Once the integration is configured, Astro automatically exports all available metrics to Datadog. For a complete list of supported metrics, see [Data Collected](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
 
-After you configure this feature, Astro automatically exports all available metrics to Datadog. For a complete list of supported metrics, see [Data Collected](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
-
-To set up this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
+To learn more, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
 
 ### Additional improvements
 
