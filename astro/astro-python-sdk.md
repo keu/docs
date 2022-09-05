@@ -1,4 +1,3 @@
-
 ---
 title: 'Write DAGs with the Astro Python SDK'
 sidebar_label: 'Astro Python SDK'
@@ -28,6 +27,7 @@ For extract, load, and transform (ELT) use cases, these functions significantly 
 
     ```text
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
+    export AIRFLOW__ASTRO_SDK__SQL_SCHEMA=<default-schema>
     ```
 
     To deploy a pipeline written with the Astro Python SDK to Astro, add these environment variables in your Deployment configuration. See [Environment variables](environment-variables.md).
@@ -44,16 +44,17 @@ The Astro SDK includes task decorators for actions that are most commonly requir
 - `merge`: Inserts rows from the source SQL table into the destination SQL table, depending on conflicts:
 - `export_file`: Exports SQL table rows into a destination file.
 - `dataframe`: Exports a specific SQL table into an in-memory pandas DataFrame.
+- `cleanup`: Cleans up temporary tables created in your pipeline.
 
 ## Example
 
 The following DAG is a complete implementation of an ETL pipeline using the Astro Python SDK. In order, the DAG:
 
 - Loads `.csv` files from GitHub into `Tables`, which are objects that contain all of the necessary functionality to pass database contexts between functions without reconfiguration.
-- Extracts the data from the files into a new temporary `Table` using `aql.transform`.
-- Turns the temporary `Table` into a dataframe and melts the values using `aql.dataframe`.
+- Combines the two `Tables` of home data using `aql.transform`.
+- Turns the temporary `Table` into a dataframe, melts the values using `aql.dataframe`, and returns the results as a `Table`.
 - Creates a new reporting table in Snowflake using `aql.run_raw_sql`.
-- Converts the dataframe back into a SQL table and appends it to the reporting table with `aql.append`.
+- Appends the `Table` of transformed home data to a reporting table with `aql.append`.
 
 ```python
 import os
@@ -133,7 +134,7 @@ This Astro SDK implementation is different from a standard TaskFlow implementati
 
 - You don't have to manually create temp tables and pass them through XComs. All operations between different database types are handled automatically by the SDK.
 - You don't have to define connections to your databases in each task. Tasks can automatically inherit connection information from `Tables`.
-- You can run SQL queries directly without first defining them. The SDK includes decorators for common actions in SQL that you would otherwise have to write yourself.
+- You can run common SQL queries using Python alone. The SDK includes Python functions for some of the most common actions in SQL.
 
 ## Related documentation
 
