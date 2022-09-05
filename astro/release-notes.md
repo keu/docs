@@ -17,22 +17,23 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## August 31, 2022
 
-### New integration for exporting Deployment metrics to Datadog
+### Export Deployment metrics to Datadog
 
-You can use a new Astronomer-supported integration to export Airflow Deployment metrics to Datadog. After you configure this feature, your Deployment exports all available metrics to Datadog. For more information about the type of metrics you can export, see the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
+You can now export over 40 Airflow metrics related to the state of your Astro Deployment to [Datadog](https://www.datadoghq.com/) by adding a Datadog API key to the Deployment. Metrics include task successes, DAG processing time, frequency of import errors, and more.
 
-To configure this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-deployment-metrics-to-datadog).
+For organizations already using the observability service, this integration allows your team to standardize on tooling and gain a more granular view of Deployment metrics in a single place. Once the integration is configured, Astro automatically exports all available metrics to Datadog. For a complete list of supported metrics, see [Data Collected](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
+
+To learn more, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
 
 ### Additional improvements
 
-- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers.
-- When you create a new worker queue, the Cloud UI now populates the **Worker type** field with a default worker type.
-- The Cloud UI now automatically validates worker queue names.
+- The Cloud UI now automatically ensures that worker queue names are valid as you type in real time.
 - The number of times that a user can enter the wrong credentials for Astro before being locked out has been reduced from 10 to 6.
-- The timestamp appended to the end of a Deployment's Runtime image tag is now updated when you update a Deployment's environment variables.
+- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers. Note that depending on your cloud provider and Deployment configurations, some Deployments still might not be able to scale to 0 workers.
 
 ## Bug fixes
 
+- The timestamp shown in the **Updated** field of the Deployment view in the Cloud UI is now properly updated when you create or modify environment variables.
 - Fixed an issue where logging in to the Airflow UI with unrecognized credentials could freeze you on an error page.
 
 ## August 24, 2022

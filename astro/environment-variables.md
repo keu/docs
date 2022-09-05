@@ -7,10 +7,11 @@ description: Set environment variables on Astro to specify Airflow configuration
 
 You can use environment variables to set Airflow configurations and custom values for Deployments on Astro. For example, you can use environment variables to:
 
-- Set up an SMTP service.
-- Identify a production Deployment versus a development Deployment.
-- Store Airflow connections and variables.
-- Customize your default DAG view in the Airflow UI (Tree, Graph, Gantt, and so on).
+- Identify a production Deployment versus a development Deployment that allows you to apply conditional logic in your DAG code.
+- Store [Airflow connections and variables](environment-variables.md#add-airflow-connections-and-variables-using-environment-variables).
+- Set up an SMTP service to receive [Airflow alerts](airflow-alerts.md) by email.
+- Integrate with Datadog or other third-party tooling to [export Deployment metrics](deployment-metrics.md#export-airflow-metrics-to-datadog).
+- Set [Airflow configurations](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html?), such as default timezone and maximum active runs per DAG.
 
 :::caution
 
@@ -36,7 +37,6 @@ If you prefer to work with the Astro CLI, you can create and update environment 
 
 4. Click **Add**.
 5. Click **Save Variables** to save your changes. Your Airflow scheduler, webserver, and workers restart. After saving, it can take up to two minutes for new variables to be applied to your Deployment.
-
 
 ### Edit existing values
 
@@ -64,7 +64,7 @@ Non-secret environment variables set in the Cloud UI are stored in a database th
 
 This process occurs every time you update the environment variable's key or value.
 
-## Set environment variables using your Dockerfile
+## Set environment variables in your Dockerfile
 
 If you want to store environment variables using an external version control tool, Astronomer recommends setting them in your `Dockerfile`. This file is automatically created when you first initialize an Astro project using `astro dev init`.
 
@@ -96,6 +96,16 @@ Environment variables applied in the Cloud UI only become available once the Doc
 
 :::
 
+## Environment variable priority
+
+On Astro, environment variables are applied and overridden in the following order:
+
+- Cloud UI
+- [.env (local development only)](develop-project.md#set-environment-variables-local-development)
+- Dockerfile
+- Default Airflow values
+
+For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud UI and you set the same environment variable with another value in your `Dockerfile`, the value set in the Cloud UI takes precedence.
 
 ## Add Airflow connections and variables using environment variables
 
@@ -150,17 +160,6 @@ Here, the environment variable would read:
 ```
 ENV AIRFLOW_VAR_MY_VAR=2
 ```
-
-## Environment variable priority
-
-On Astro, environment variables are applied and overridden in the following order:
-
-- Cloud UI
-- [.env (local development only)](develop-project.md#set-environment-variables-local-development)
-- Dockerfile
-- Default Airflow values
-
-For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud UI and you set the same environment variable with another value in your `Dockerfile`, the value set in the Cloud UI takes precedence.
 
 ## Query environment variables in a DAG
 
