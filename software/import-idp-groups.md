@@ -19,7 +19,7 @@ Before you implement Teams, consider the following:
 
 - By default, the first user to log in to your Astronomer platform is automatically granted `SYSTEM ADMIN` permissions. If you are configuring Teams for a new Astronomer installation, we recommend first logging in as the user who will be responsible for importing your IdP groups using Astronomer's default login flow.
 - Teams are based solely on the IdP group they were configured from, meaning that you cannot configure Team membership from Astronomer.
-- To remove a Team from your Software installation, you have to delete it from the Software UI or the Houston API. Deleting an IdP group doesn't automatically delete the associated Team.
+- To remove a Team from your Software installation, you have to delete it from the Astronomer Software UI or the Houston API. Deleting an IdP group from your IdP UI doesn't automatically delete the associated Team.
 - If a user is added or removed from your original IdP group, that change applies to the related Astronomer Team only after the user logs back in to Astronomer.
 
 :::caution "Most Permissive" Role Priority
@@ -70,6 +70,6 @@ By default, Astronomer assumes that the name of your group claim is `groups`. If
 
 ## Step 3: Add Teams to Workspaces and Deployments
 
-After configuring your IdP group, at least one user belonging to the group has to log in to Software before the group appears as a Team in the Software UI. To quickly import many groups at once, add a user to all groups and then log in to Software with the user.
+After configuring your IdP group, at least one user belonging to the group has to log in to Software before the group appears as a Team in the Software UI. To quickly import many groups at once, add a user to all groups and then log in to Astronomer Software UI with the user's credentials.
 
-After configuring and importing user groups, Workspace Admins and Deployment Admins can configure those groups as Teams using the Astronomer UI. To learn more about adding and setting permissions for Teams via the Software UI, read [User Permissions](workspace-permissions.md#via-teams).
+After configuring and importing user groups, Workspace Admins and Deployment Admins can configure those groups as Teams using the Astronomer Software UI. To learn more about adding and setting permissions for Teams in the Astronomer Software UI, see [User Permissions](workspace-permissions.md#via-teams).
