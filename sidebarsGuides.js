@@ -29,6 +29,9 @@ module.exports = {
         'airflow-importing-custom-hooks-operators',
         'airflow-sql',
         'airflow-decorators',
+        'connections',
+        'dag-best-practices',
+        'custom-xcom-backends',
       ],
     },
     {
@@ -52,6 +55,7 @@ module.exports = {
         'airflow-redshift',
         'airflow-great-expectations',
         'airflow-talend-integration',
+        'airflow-sql-data-quality-tutorial',
         'astro-python-sdk-etl',
       ],
     },
