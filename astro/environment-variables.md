@@ -76,10 +76,10 @@ To add environment variables, declare an ENV command with the environment variab
 ENV AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG=1
 ENV AIRFLOW__CORE__PARALLELISM=25`}</code></pre>
 
-Once your environment variables are added:
+Once your environment variables are added, do one of the following:
 
-1. Run `astro dev restart` to rebuild your image and apply your changes locally OR
-2. Run `astro deploy` to apply your changes to your running Deployment on Astronomer
+- Run `astro dev restart` to rebuild your image and apply your changes locally.
+- Run `astro deploy` to apply your changes to your running Deployment on Astronomer.
 
 Environment variables added to a `Dockerfile` are mounted at build time and can be referenced in any other build process that follows `astro deploy` or `astro dev start`. Environment variables applied in the Cloud UI only become available once the Docker build process is completed.
 
