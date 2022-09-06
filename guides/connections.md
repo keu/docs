@@ -57,9 +57,7 @@ Airflow doesn't provide any preconfigured connections. To create a new connectio
 
 ![Empty Connection](/img/guides/EmptyConnection.png)
 
-As you update the **Connection Type** field, notice how the other available fields change. Each connection type requires different kinds of information.
-
-> **Note**: Specific connection types are only available in the dropdown menu if the relevant provider is installed in your Airflow environment.  
+As you update the **Connection Type** field, notice how the other available fields change. Each connection type requires different kinds of information. Specific connection   types are only available in the dropdown list when the relevant provider is installed in your Airflow environment.  
 
 You don't have to specify every field for most connections. However, the values marked as required in the Airflow UI can be misleading. For example, to set up a connection to a PostgreSQL database, you need to reference the [PostgreSQL provider documentation](https://airflow.apache.org/docs/apache-airflow-providers-postgres/stable/connections/postgres.html) to learn that the connection requires a `Host`, a user name as `login`, and a password in the `password` field.
 
