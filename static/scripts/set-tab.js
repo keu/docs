@@ -4,8 +4,7 @@
     return;
   }
   // pull groupId from anchor text, which should be equivalent
-  const getAnchor = querystring.split("#");
-  const groupId = getAnchor[1];
+  const groupId = window.location.hash.replace("#", '');
 
   const entries = querystring
     .slice(1)
@@ -16,8 +15,14 @@
       return entries;
     }, {});
   if (typeof entries.tab === "string") {
-    const tab = entries.tab.toLowerCase();
+    const tab = entries.tab;
     window.localStorage.setItem(`docusaurus.tab.${groupId}`, tab);
-    }
   }
 })();
+
+function scrollToHeading() {
+  const heading = document.querySelector(`${window.location.hash}`);
+  heading.scrollIntoView();
+}
+
+window.onload = () => window.location.hash && scrollToHeading();
