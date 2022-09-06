@@ -54,6 +54,7 @@ module.exports = {
         'airflow-redshift',
         'airflow-great-expectations',
         'airflow-talend-integration',
+        'airflow-sql-data-quality-tutorial',
       ],
     },
   ],
