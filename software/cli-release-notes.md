@@ -9,6 +9,43 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, contact [Astronomer Support](https://support.astronomer.io).
 
+## Astro CLI v1.4.0
+
+Release date: August 18, 2022
+
+### New command to run commands in local Airflow containers
+
+You can now run bash commands in any locally running Airflow container using `astro dev bash`. For more information, see the [CLI command reference](cli/astro-dev-bash.md).
+
+### New commands to manage Teams
+
+Several new commands have been introduced to help you manage Teams on Astronomer Software.
+
+#### Manage teams across a Software installation:
+
+- `astro team get`: Get the information for an existing Team
+- `astro team list`: View all Teams across an installation
+- `astro team update`: Update a Team's permissions
+
+#### Manage teams across a Workspace
+
+- `astro workspace team add`: Add a Team to a given Workspace
+- `astro workspace team remove`: Remove a Team from a given Workspace
+- `astro workspace team update`: Update a Team's permissions for a given Workspace
+- `astro workspace team list`: List all Teams in a given Workspace
+
+#### Manage teams across a Deployment
+
+- `astro deployment team add`: Add a Team to a given Deployment
+- `astro deployment team remove`: Remove a Team from a given Deployment
+- `astro deployment team update`: Update a Team's permissions for a given Deployment
+- `astro deployment team list`: List all Teams in a Workspace
+
+### Additional improvements
+
+- If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
+- The Airflow webserver now automatically opens in your default web browser after you run `astro dev start`.
+
 ## Astro CLI v1.3.0
 
 Release date: July 19, 2022

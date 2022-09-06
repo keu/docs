@@ -34,6 +34,7 @@ The Astronomer Certified Docker image is built from the Python wheel and incorpo
 
 Every supported version of the Astronomer Certified Python wheel is available at [pip.astronomer.io](https://pip.astronomer.io/simple/astronomer-certified/). The Dockerfiles for all supported Astronomer Certified images can be found in the [Astronomer Certified GitHub repository](https://quay.io/repository/astronomer/ap-airflow?tab=tags):
 
+- [Airflow 2.3.4](https://github.com/astronomer/ap-airflow/blob/master/2.3.4/bullseye/Dockerfile)
 - [Airflow 2.3.3](https://github.com/astronomer/ap-airflow/blob/master/2.3.3/bullseye/Dockerfile)
 - [Airflow 2.3.2](https://github.com/astronomer/ap-airflow/blob/master/2.3.2/bullseye/Dockerfile)
 - [Airflow 2.2.5](https://github.com/astronomer/ap-airflow/blob/master/2.2.5/bullseye/Dockerfile)
@@ -84,22 +85,27 @@ The following table lists the essential environment variables used when running 
 
 Starting in version 2.0.0, the Astronomer Certified image includes provider packages that are utilized in some background processes, as well as packages which are commonly used by the Airflow community. The following table contains version information for each provider package installed as part of Astronomer Certified:
 
-| Astronomer Certified | [amazon](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/index.html) |[azure](https://airflow.apache.org/docs/apache-airflow-providers-microsoft-azure/stable/index.html) | [celery](https://airflow.apache.org/docs/apache-airflow-providers-celery/stable/index.html) | [cncf.kubernetes](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/index.html) | [elasticsearch](https://airflow.apache.org/docs/apache-airflow-providers-elasticsearch/stable/index.html) | [ftp](https://airflow.apache.org/docs/apache-airflow-providers-ftp/stable/index.html) | [google](https://airflow.apache.org/docs/apache-airflow-providers-google/stable/index.html) |   [http](https://airflow.apache.org/docs/apache-airflow-providers-http/stable/index.html) |[imap](https://airflow.apache.org/docs/apache-airflow-providers-imap/stable/index.html) | [mysql](https://airflow.apache.org/docs/apache-airflow-providers-microsoft-mssql/stable/index.html) | [postgres](https://airflow.apache.org/docs/apache-airflow-providers-postgres/stable/index.html) | [redis](https://airflow.apache.org/docs/apache-airflow-providers-redis/stable/index.html) | [slack](https://airflow.apache.org/docs/apache-airflow-providers-slack/stable/index.html) | [sqlite](https://airflow.apache.org/docs/apache-airflow-providers-sqlite/stable/index.html) | [ssh](https://airflow.apache.org/docs/apache-airflow-providers-ssh/stable/index.html) |
-| -------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-|**2.0.0**|1.0.0|1.1.0|1.0.0|1.0.1|1.0.4|1.0.0|1.0.0|1.0.0|1.0.0|1.0.0|1.0.0|1.0.0|1.0.0|1.0.0|1.0.0|
-|**2.0.2**|1.3.0|1.3.0|1.0.1|1.2.0|1.0.4|1.0.1|2.2.0|1.1.1|1.0.1|1.1.0|1.0.1|1.0.1|3.0.0|1.0.2|1.3.0|
-|**2.1.0**|1.4.0|2.0.0|1.0.1|1!1.2.1|1.0.4|1.1.0|3.0.0|2.0.0|1.0.1|1.1.0|1.0.2|1.0.1|3.0.0|1.0.2|1.3.0|
-|**2.1.1**|1!2.0.0|1!3.0.0|1!2.0.0|1!2.0.0|1!2.0.1|1!2.0.0|1!4.0.0|1!2.0.0|1!2.0.0|1!2.0.0|1!2.0.0|1!2.0.0|1!4.0.0|1!2.0.0|1!2.0.0|
-|**2.1.3**|1!2.1.0|1!3.1.0|1!2.0.0|1!2.0.2|1!2.0.2|1!2.0.0|1!5.0.0|1!2.0.0|1!2.0.0|1!2.1.0|1!2.0.0|1!2.0.0|1!4.0.0|1!2.0.0|1!2.1.0|
-|**2.1.4**|1!2.2.0|1!3.1.1|1!2.1.0|1!2.0.2|1!2.0.3|1!2.0.1|1!5.1.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.2.0|1!2.0.1|1!4.0.1|1!2.0.1|1!2.1.1|
-|**2.2.0**|1!2.2.0|1!3.2.0|1!2.1.0|1!2.0.3|1!2.0.3|1!2.0.1|1!6.0.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.2.0|
-|**2.2.1**|1!2.2.0|1!3.2.0|1!2.1.0|1!2.0.3|1!2.0.3|1!2.0.1|1!6.0.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.2.0|
-|**2.2.2**|1!2.3.0|1!3.3.0|1!2.1.0|1!2.1.0|1!2.1.0|1!2.0.1|1!6.1.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.3.0|
-|**2.2.3**|1!2.3.0|1!3.3.0|1!2.1.0|1!2.1.0|1!2.1.0|1!2.0.1|1!6.1.0|1!2.0.1|1!2.0.1|1!2.1.1|1!2.3.0|1!2.0.1|1!4.1.0|1!2.0.1|1!2.3.0|
-|**2.2.4**|1!3.0.0|1!3.6.0|1!2.1.0|1!3.0.2|1!2.2.0|1!2.0.1|1!6.4.0|1!2.0.3|1!2.2.0|1!2.2.0|1!3.0.0|1!2.0.1|1!4.2.0|1!2.1.0|1!2.4.0|
-|**2.2.5**|1!3.2.0|1!3.7.2|1!2.1.0|1!3.0.0|1!3.0.2|1!2.1.2|1!6.7.0|1!2.1.1|1!2.2.3|1!2.2.3|1!4.1.0|1!2.0.4|1!4.2.3|1!2.1.3|1!2.4.3|
-|**2.3.0**|1!3.3.0|1!3.8.0|1!2.1.0|1!4.0.1|1!3.0.3|1!2.1.2|1!6.8.0|1!2.1.2|1!2.2.3|1!2.2.3|1!4.1.0|1!2.0.4|1!4.2.3|1!2.1.3|1!2.4.3|
+- [amazon](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/index.html)
+- [azure](https://airflow.apache.org/docs/apache-airflow-providers-microsoft-azure/stable/index.html)
+- [celery](https://airflow.apache.org/docs/apache-airflow-providers-celery/stable/index.html)
+- [cncf.kubernetes](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/index.html)
+- [elasticsearch](https://airflow.apache.org/docs/apache-airflow-providers-elasticsearch/stable/index.html)
+- [ftp](https://airflow.apache.org/docs/apache-airflow-providers-ftp/stable/index.html)
+- [google](https://airflow.apache.org/docs/apache-airflow-providers-google/stable/index.html)
+- [http](https://airflow.apache.org/docs/apache-airflow-providers-http/stable/index.html)
+- [imap](https://airflow.apache.org/docs/apache-airflow-providers-imap/stable/index.html)
+- [mysql](https://airflow.apache.org/docs/apache-airflow-providers-microsoft-mssql/stable/index.html)
+- [postgres](https://airflow.apache.org/docs/apache-airflow-providers-postgres/stable/index.html)
+- [redis](https://airflow.apache.org/docs/apache-airflow-providers-redis/stable/index.html)
+- [slack](https://airflow.apache.org/docs/apache-airflow-providers-slack/stable/index.html)
+- [sqlite](https://airflow.apache.org/docs/apache-airflow-providers-sqlite/stable/index.html)
+- [ssh](https://airflow.apache.org/docs/apache-airflow-providers-ssh/stable/index.html) |
 
+To determine the version of any provider package installed in your current Astronomer Certified image, run:
+
+```sh
+docker run --rm {image} pip freeze | grep <provider>
+```
 
 ## System dependencies
 

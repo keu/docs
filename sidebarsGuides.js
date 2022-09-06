@@ -27,6 +27,10 @@ module.exports = {
         'airflow-pools',
         'airflow-scaling-workers',
         'airflow-importing-custom-hooks-operators',
+        'airflow-sql',
+        'airflow-decorators',
+        'connections',
+        'dag-best-practices',
       ],
     },
     {
@@ -49,6 +53,7 @@ module.exports = {
         'airflow-sagemaker',
         'airflow-redshift',
         'airflow-great-expectations',
+        'airflow-talend-integration',
         'airflow-sql-data-quality-tutorial',
       ],
     },
