@@ -5,6 +5,8 @@ id: environment-variables
 description: Set environment variables on Astro to specify Airflow configurations and custom logic.
 ---
 
+import {siteVariables} from '@site/src/versions';
+
 An environment variable on Astro is a key-value configuration that is applied to a specific Deployment. You can use environment variables to set Airflow configurations and custom values for Deployments on Astro. For example, you can use environment variables to:
 
 - Identify a production Deployment versus a development Deployment that allows you to apply conditional logic in your DAG code.
