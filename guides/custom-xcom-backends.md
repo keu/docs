@@ -1,13 +1,13 @@
 ---
-title: "Custom XCom Backends"
-sidebar_label: "Custom XCom Backends"
+title: "Custom XCom backends"
+sidebar_label: "Custom XCom backends"
 description: "Creating a custom XCom backend with Airflow 2.0."
 id: custom-xcom-backends
 ---
 
 One of the most significant features in the [Airflow 2.0](https://www.astronomer.io/blog/introducing-airflow-2-0) release was the [TaskFlow API](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html#taskflow-api). The TaskFlow API was introduced to solve the challenge of explicitly passing messages between Airflow tasks. The TaskFlow API abstracts the task and dependency management layer and improves the experience of working with XComs.
 
-One of the features of the TaskFlow API that increases the flexibility of XComs is support for a [custom XCom backend](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#custom-xcom-backend). This means that rather than store XComs in the Airflow metadata database by default, you can push and pull XComs to and from an external system such as Amazon S3, Google Cloud Storage (GCS), or Hadoop Distributed File System (HDFS). You can also implement your own serialization and deserialization methods to define how XComs are handled. 
+As part of this update, support was introduced for configuring [custom XCom backends](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#custom-xcom-backend). This means that rather than store XComs in the Airflow metadata database by default, you can push and pull XComs to and from an external system such as Amazon S3, Google Cloud Storage (GCS), or Hadoop Distributed File System (HDFS). You can also implement your own serialization and deserialization methods to define how XComs are handled. 
 
 This guide discusses the benefits of using an XCom backend, shows an example of implementing an XCom backend with Airflow S3, and describes how to set this up if you're running Airflow on Astro.
 
@@ -146,7 +146,7 @@ To add this class to your Airflow environment, complete the following steps:
     - AIRFLOW__CORE__XCOM_BACKEND=include.s3_xcom_backend.S3XComBackend
     ```
 
-To run this docker-compose example, you need to set your Python Path in your `docker-compose.yaml` file. For example, `PYTHONPATH: /opt/airflow/`.
+    To run this docker-compose example, you need to set your Python Path in your `docker-compose.yaml` file. For example, `PYTHONPATH: /opt/airflow/`.
 
 When you restart Airflow and run a DAG with pandas dataframe XComs, the XComs get pushed to your Amazon S3 backend as shown in the following image:
 
@@ -161,7 +161,7 @@ In this example, you'll use the Great Expectations use case for storing operator
 1. Configure your backend. See [Set up an XCom backend](#set-up-an-xcom-backend).
 2. Open an existing Astronomer project, or initialize a new one using `astro dev init`. 
 3. Add the XCom backend Python file with serialization and deserialization methods to the `include/` directory of your Astronomer project.
-4. Add the `AIRFLOW__CORE_XCOM_BACKEND` environment variable to your Astronomer project. For this example, it be `AIRFLOW__CORE__XCOM_BACKEND=include.s3_xcom_backend.S3XComBackend`. There are a few ways to add an environment variable to your Astronomer Deployment, which are detailed in the [Environment Variables guide](https://www.astronomer.io/docs/cloud/stable/deploy/environment-variables). In this example, you added the variable to your Dockerfile.
+4. Add the `AIRFLOW__CORE_XCOM_BACKEND` environment variable to your Astronomer project. For this example, it be `AIRFLOW__CORE__XCOM_BACKEND=include.s3_xcom_backend.S3XComBackend`. There are a few ways to add an environment variable to your Astronomer Deployment, which are detailed in the [Environment Variables guide](https://docs.astronomer.io/astro/environment-variables). This example assumes that you added the variable to your Dockerfile.
 5. Deploy your project code to Astronomer, or start Airflow locally by running `astro dev start`.
 6. Add an Airflow connection to connect to your backend. If you are using a secrets backend with Astronomer, you can add the connection there.
 7. Test your new XCom backend by running the following sample DAG.
