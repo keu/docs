@@ -9,6 +9,36 @@ This document provides a summary of all changes made to the [Astro CLI](install-
 
 If you have any questions or a bug to report, contact [Astronomer Support](https://support.astronomer.io).
 
+## Astro CLI 1.5.0
+
+Release date: September 2, 2022
+
+### New flags for paginating Workspace, Team, and user lists
+
+You can now paginate longer lists of Workspaces, Teams, and users by using the `--paginated` flag with any of the following commands:
+
+- `astro workspace user list`
+- `astro workspace switch`
+- `astro team list`
+
+By default, paginated lists show 20 items per page. To change the number of items per page, set the `--page-list` flag.
+
+To permanently set these flags, run the following commands:
+
+```sh
+# Always paginate lists when possible
+astro config set -g interactive true
+# Always show the specified number of items per page
+astro config set -g page_size <page_size>
+```
+
+### Additional improvements
+
+- You can now use the `--no-browser` flag with `astro dev start` to run Airflow on a browserless machine.
+- You can now use the `--roles` flag with `astro team get` to see the role of that Team in each Workspace and Deployment it belongs to.
+- You can now use the `--all` flag with `astro team get` to view all available information for each user in the Team.
+- `astro dev restart` no longer automatically opens a browser tab with the Airflow UI.
+
 ## Astro CLI v1.4.0
 
 Release date: August 18, 2022
