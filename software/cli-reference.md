@@ -782,6 +782,7 @@ Initializes a local Airflow environment on your machine by creating a Docker con
 | ------------ | ---------- | ----------------------------------------------------------------------------------- |
 | `--env`      | String     | Specifies the filepath containing environment variables for the Airflow cluster.    |
 | `--no-cache` | None       | Do not use any images from the container engine's cache when building your project. |
+| `-n`, `--no-browser`      | None | Starts Airflow without opening a browser for the Airflow UI                                  | 
 
 ## astro dev stop
 
