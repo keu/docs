@@ -5,7 +5,7 @@ id: environment-variables
 description: Set environment variables on Astro to specify Airflow configurations and custom logic.
 ---
 
-You can use environment variables to set Airflow configurations and custom values for Deployments on Astro. For example, you can use environment variables to:
+An environment variable on Astro is a key-value configuration that is applied to a specific Deployment. You can use environment variables to set Airflow configurations and custom values for Deployments on Astro. For example, you can use environment variables to:
 
 - Identify a production Deployment versus a development Deployment that allows you to apply conditional logic in your DAG code.
 - Store [Airflow connections and variables](environment-variables.md#add-airflow-connections-and-variables-using-environment-variables).
@@ -13,11 +13,7 @@ You can use environment variables to set Airflow configurations and custom value
 - Integrate with Datadog or other third-party tooling to [export Deployment metrics](deployment-metrics.md#export-airflow-metrics-to-datadog).
 - Set [Airflow configurations](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html?), such as default timezone and maximum active runs per DAG.
 
-:::caution
-
 Some environment variables on Astro are set globally and cannot be overridden for individual Deployments. For more information on these environment variables, see [Global environment variables](platform-variables.md).
-
-:::
 
 ## Set environment variables in the Cloud UI
 
@@ -29,7 +25,7 @@ If you prefer to work with the Astro CLI, you can create and update environment 
 
     :::caution
 
-    Environment variables marked as secret are stored securely by Astronomer and are not shown in the Cloud UI. However, it's possible for a user in your organization to create or configure a DAG that exposes secret values in Airflow task logs. Airflow task logs are visible to all Workspace members in the Airflow UI and accessible in your Astro cluster's Amazon S3 bucket.
+    Environment variables marked as secret are stored securely by Astronomer and are not shown in the Cloud UI. However, it's possible for a user in your organization to create or configure a DAG that exposes secret values in Airflow task logs. Airflow task logs are visible to all Workspace members in the Airflow UI and accessible in your Astro cluster's storage
 
     To avoid exposing secret values in task logs, instruct users to not log environment variables in DAG code.
 
@@ -70,31 +66,22 @@ If you want to store environment variables using an external version control too
 
 :::caution
 
-Given that this file will be committed to your version control tool and to Astro, Astronomer recommends either storing sensitive environment variables with the Cloud UI or using a third party secrets backend. For more information, see [Configure a secrets backend](secrets-backend.md).
+Because environment variables set in your `Dockerfile` are stored in plain text, Astronomer recommends storing sensitive environment variables using either the Cloud UI or a third party secrets backend. For more information, see [Configure a secrets backend](secrets-backend.md).
 
 :::
 
-To add environment variables, declare an ENV statement with the environment variable key and value. Your Dockerfile might look like this:
+To add environment variables, declare an ENV command with the environment variable key and value. For example, the following `Dockerfile` sets two environment variables:
 
-```dockerfile
-FROM quay.io/astronomer/astro-runtime:2.1.1
+<pre><code parentName="pre">{`FROM quay.io/astronomer/astro-runtime:${siteVariables.runtimeVersion}
 ENV AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG=1
-ENV AIRFLOW__CORE__DAG_CONCURRENCY=5
-ENV AIRFLOW__CORE__PARALLELISM=25
-```
+ENV AIRFLOW__CORE__PARALLELISM=25`}</code></pre>
 
 Once your environment variables are added:
 
 1. Run `astro dev restart` to rebuild your image and apply your changes locally OR
 2. Run `astro deploy` to apply your changes to your running Deployment on Astronomer
 
-:::info
-
-Environment variables added to the `Dockerfile` of an Astro project are mounted at build time and can be referenced in any other processes run during the Docker build process that immediately follows `astro deploy` or `astro dev start`.
-
-Environment variables applied in the Cloud UI only become available once the Docker build process is completed.
-
-:::
+Environment variables added to a `Dockerfile` are mounted at build time and can be referenced in any other build process that follows `astro deploy` or `astro dev start`. Environment variables applied in the Cloud UI only become available once the Docker build process is completed.
 
 ## Environment variable priority
 
