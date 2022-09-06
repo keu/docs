@@ -1,6 +1,6 @@
 ---
 title: 'Airflow Tutorials'
-sidebar_label: 'Astro Python SDK'
+sidebar_label: 'Run an ETL pipeline with the Astro SDK'
 id: astro-python-sdk
 description: 'Use tutorials and guides to make the most out of Airflow and Astronomer.'
 ---
@@ -245,15 +245,15 @@ with dag:
 
 1. In the Airflow UI, you should see a DAG called `astro_orders`. Make it active by clicking the slider next to its name:
 
-    ![toggle](../images/unpause-dag.png)
+    ![toggle](/img/guides/unpause-dag.png)
 
 2. Click the play button next to the DAG's name to run the DAG:
 
-    ![trigger](../images/trigger-dag.png)
+    ![trigger](/img/guides/trigger-dag.png)
 
 3. Click the DAG's name to see how it ran in the **Grid** view:
 
-    ![gridview](../images/select-dag-grid-view.png)
+    ![gridview](/img/guides/select-dag-grid-view.png)
 
 ## How does it work?
 
@@ -356,7 +356,7 @@ def transform_dataframe(df: DataFrame):
 
 You can find the output of this function in the logs of the final task:
 
-![log](../images/task-logs.png)
+![log](/img/guides/task-logs.png)
 
 ## Clean up temporary tables
 
