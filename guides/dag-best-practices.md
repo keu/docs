@@ -170,7 +170,7 @@ with DAG('bad_practices_dag_2',
     )
 ```
 
-Keeping the query in the DAG file like this makes the DAG harder to read and maintain. Instead, in the following DAG `template_searchpath` is set in the DAG instantiation and then calls in a file named `covid_state_query.sql` into the PostgresOperator instantiation:
+Keeping the query in the DAG file like this makes the DAG harder to read and maintain. In the following DAG, the DAG-level configuration includes `template_searchpath` and the `PostgresOperator` specifies a `covid_state_query.sql` file that contains the same query as in the previous example:
 
 ```python
 from airflow import DAG
