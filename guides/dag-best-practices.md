@@ -71,7 +71,6 @@ For example, with a DAG that runs hourly, each DAG run is responsible for loadin
 
 When a last modified date is unavailable, a sequence or incrementing ID can be used for incremental loads. This logic works best when the source records are only being appended to and not updated. Although implementing a last modified date system in your records is considered best practice, basing your incremental logic off of a sequence ID can be a sound way to filter pipeline records without a last modified date.
 
-
 ### Avoid top-level code in your DAG file
 
 In the context of Airflow, top-level code refers to any code that isn't part of your DAG or operator instantiations, particularly code making requests to external systems.
