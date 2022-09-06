@@ -31,6 +31,7 @@ module.exports = {
         'airflow-decorators',
         'connections',
         'dag-best-practices',
+        'custom-xcom-backends',
       ],
     },
     {
