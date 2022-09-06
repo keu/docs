@@ -12,6 +12,7 @@ Follow this guide to upgrade to any version of Astronomer Software. For informat
 A few notes before you get started:
 - The upgrade process will not affect running Airflow tasks as long as `upgradeDeployments.enabled=false` is set in your upgrade script.
 - Updates will not cause any downtime to Astronomer services, including the Software UI, the Astro CLI, and the Houston API.
+-  To avoid potential complications, perform Astronomer Software upgrades in order and include all minor versions in your upgrade sequence. 
 
 :::info Upgrading Kubernetes
 
@@ -21,7 +22,7 @@ To avoid extended service disruptions, Astronomer recommends upgrading Astronome
 
 ## Step 1: Review upgrade considerations
 
-The [Upgrade considerations](upgrade-astronomer.md#upgrade-considerations) section of this document contains upgrade information for specific Astronomer versions. Review these notes before starting the upgrade process.
+The [Upgrade considerations](upgrade-astronomer.md#upgrade-considerations) section of this document contains upgrade information for specific Astronomer versions. Review these notes before starting the upgrade process. To avoid potential complications, perform Astronomer Software upgrades in order and include all minor versions in your upgrade sequence. 
 
 ## Step 2: Check permissions
 
