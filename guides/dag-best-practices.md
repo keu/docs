@@ -55,7 +55,6 @@ yesterday = {{ yesterday_ds_nodash }}
 
 You can use one of the Airflow built-in [variables and macros](https://airflow.apache.org/docs/apache-airflow/stable/macros-ref.html), or you can create your own templated field to pass information at runtime. For more information on this topic, see [templating and macros in Airflow](https://www.astronomer.io/guides/templating).
 
-
 ### Incremental record filtering
 
 You should break out your pipelines into incremental extracts and loads wherever possible. For example, if you have a DAG that runs hourly, each DAG run should process only records from that hour, rather than the whole dataset. When the results in each DAG run represent only a small subset of your total dataset, a failure in one subset of the data won't prevent the rest of your DAG Runs from completing successfully. If your DAGs are idempotent, you can rerun a DAG for only the data that failed rather than reprocessing the entire dataset. 
