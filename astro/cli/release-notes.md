@@ -15,9 +15,10 @@ Release date: September 2, 2022
 
 ### Additional improvements
 
-- You can now use the `--deployment-name` command on all `astro deployment` commands to specify a Deployment by its name instead of its ID.
+- You can now use the `--deployment-name` command with all `astro deployment` commands to specify a Deployment by its name instead of its ID.
+- You can now use the `--no-browser` flag with `astro dev start` to run Airflow on a browserless machine.
 - You can now use the `--wait` flag with `astro deployment create` to have the command wait until the new Deployment is healthy before completing.
-
+- `astro dev restart` no longer automatically opens a browser tab with the Airflow UI.
 ### Bug fixes
 
 - Fixed an issue where some environment variable values could be truncated when using `astro deployment variable create --load`.

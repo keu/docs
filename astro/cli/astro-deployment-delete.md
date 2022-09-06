@@ -7,7 +7,7 @@ description: Reference documentation for astro deployment delete.
 
 Delete a Deployment on Astro. This command is functionally identical to deleting a Deployment via the Cloud UI.
 
-When you run `astro deployment delete`, you are prompted to select from a list of Deployments that you have access to across Workspaces. You can bypass this prompt and specify a Deployment name or ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find a Deployment ID or name by running `astro deployment list`.
+When you run `astro deployment delete`, you are prompted to select from a list of Deployments that you have access to within your Workspace. You can bypass this prompt and specify a Deployment name or ID in the command. To retrieve a Deployment ID, go to the Deployment information page in the Cloud UI and copy the value after the last `/` in the URL. You can also run `astro deployment list` to find a Deployment ID or name.
 
 :::info
 

@@ -34,7 +34,7 @@ astro config set -g page_size <page_size>
 
 ### Additional improvements
 
-- You can now use the `--roles` flag with `astro team get` to see the roles of each user in the Team.
+- You can now use the `--roles` flag with `astro team get` to see the role of that Team in each Workspace and Deployment it belongs to.
 - You can now use the `--all` flag with `astro team get` to view all available information for each user in the Team.
 
 ## Astro CLI v1.4.0
