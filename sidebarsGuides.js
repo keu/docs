@@ -30,6 +30,7 @@ module.exports = {
         'airflow-sql',
         'airflow-decorators',
         'connections',
+        'dag-best-practices',
       ],
     },
     {
