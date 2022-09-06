@@ -95,13 +95,7 @@ module.exports = {
           ],
         },
         {
-          to: '/guides/airflow-sql',
-          label: 'Concepts',
-          position: 'left',
-          activeClassName: 'navbar__link--active',
-        },
-        {
-          to: '/guides/overview',
+          to: '/tutorials/',
           label: 'Tutorials',
           position: 'left',
           activeClassName: 'navbar__link--active',
@@ -267,13 +261,13 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'guides',
-        routeBasePath: 'guides',
+        id: 'tutorials',
+        routeBasePath: 'tutorials',
         editUrl: ({ docPath }) =>
-          `https://github.com/astronomer/docs/blob/main/guides/${docPath}`,
+          `https://github.com/astronomer/docs/blob/main/tutorials/${docPath}`,
         editCurrentVersion: true,
-        sidebarPath: require.resolve('./sidebarsGuides.js'),
-        path: 'guides',
+        sidebarPath: require.resolve('./sidebarsTutorials.js'),
+        path: 'tutorials',
       },
     ],
     [
