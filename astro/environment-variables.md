@@ -76,7 +76,7 @@ To add environment variables, declare an ENV command with the environment variab
 ENV AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG=1
 ENV AIRFLOW__CORE__PARALLELISM=25`}</code></pre>
 
-Once your environment variables are added, do one of the following:
+Once your environment variables are added, deploy your changes using one of the following options:
 
 - Run `astro dev restart` to rebuild your image and apply your changes locally.
 - Run `astro deploy` to apply your changes to your running Deployment on Astronomer.
