@@ -56,6 +56,7 @@ module.exports = {
         'airflow-great-expectations',
         'airflow-talend-integration',
         'airflow-sql-data-quality-tutorial',
+        'astro-python-sdk-etl',
       ],
     },
   ],
