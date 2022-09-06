@@ -125,25 +125,23 @@ To grant an Astro cluster access to a service that is running in an AWS account 
 5. Click the **Trust relationships** tab.
 6. Click **Edit trust policy** and update the `arn` value:
 
-```text {8}
-    {
-    "Version": "2012-10-17",
-    "Statement": [
+    ```text {8}
         {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": [
-                    "arn:aws:iam::<dataplane-AWS-account-ID>:role/AirflowS3Logs-<cluster-ID>"
-                ]
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "AWS": [
+                        "arn:aws:iam::<dataplane-AWS-account-ID>:role/AirflowS3Logs-<cluster-ID>"
+                    ]
+                },
+                "Action": "sts:AssumeRole"
             },
-            "Action": "sts:AssumeRole"
-        },
-    ]
-}
-```
-
+        ]
+    }
+     ```
     Your Astro cluster's data plane account includes the `AirflowLogsS3-<clusterid>` role. When you configure an Airflow connection for a Deployment, specify this role in an [AWS Airflow Connection](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/aws.html) to allow your Deployment access your service.
-
 7. Click **Update policy**.
 8. In the Airflow UI or as an environment variable on Astro, create an Airflow connection to AWS for each Deployment that requires the resources you connected. See [Managing connections to Apache Airflow](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/aws.html).
 8. Optional. Repeat these steps for each Astro cluster that requires access to external data services on AWS.
