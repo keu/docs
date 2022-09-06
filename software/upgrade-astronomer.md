@@ -156,10 +156,10 @@ To avoid extended service disruptions, Astronomer recommends upgrading Astronome
 If upgrade to Astronomer Software 0.29+ at the same time as you're upgrading to Kubernetes 1.22, complete your upgrades in the following order:
 
 1. Follow the standard Software upgrade procedure as described in this document.
-2. Upgrade all of your Deployments to use at least version 1.6.0 of the Airflow Helm chart. To do this, run the following command:
+2. For each Deployment, run the following command to upgrade the Deployment to use the latest version of the Airflow Helm chart:
 
     ```sh
-    <command-here>
+    kubectl exec -it `kubectl get pods -l component=houston --no-headers -n <deployment-namespace>` -n <deployment-namespace> -- yarn run upgrade-deployments
     ```
 3. Upgrade Kubernetes to version 1.22.
 
@@ -206,7 +206,7 @@ kubectl -n <your-platform-namespace> annotate secret astronomer-houston-jwt-sign
 If you upgraded to Astronomer Software 0.29 without annotating this secret, you can still complete the sync by running the following command after the upgrade:
 
 ```bash
-kubectl create job -n <release-namespace> --from=cronjob/astronomer-config-syncer upgrade-config-synchronization
+kubectl create job -n <your-platform-namespace> --from=cronjob/astronomer-config-syncer upgrade-config-synchronization
 ```
 
 ### Upgrading to Astronomer Software 0.28
