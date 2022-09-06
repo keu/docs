@@ -1,7 +1,7 @@
 ---
 title: "The Astro Python SDK for ETL"
-sidebar_label: "The Astro Python SDK for ETL"
-description: "Using the Astro Python SDK to implement ETL use cases in Airflow."
+sidebar_label: "Astro Python SDK for ETL"
+description: "Use the Astro Python SDK to implement ETL use cases in Airflow."
 id: "astro-python-sdk-etl"
 ---
 
@@ -141,7 +141,7 @@ def classic_etl_dag():
 classic_etl_dag = classic_etl_dag()
 ```
 
-![Classic Graph](/img/guides/astro-etl/classic_graph.png)
+![Classic Graph](/img/guides/classic_graph.png)
 
 Although you achieved your ETL goal with the DAG, the following limitations made this implementation more complicated:
 
