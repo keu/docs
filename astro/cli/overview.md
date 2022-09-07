@@ -19,11 +19,11 @@ To install with Homebrew, run:
 brew install astro
 ```
 
-For alternative installation steps, see [Configure the Astro CLI](configure-cli.md#install-the-astro-cli).
+For alternative installation steps, see [Install the Astro CLI](install-cli.md).
 
 ## Get started
 
-Follow the [Get started](get-started.md) tutorial to run Airflow locally and write your first DAG.
+Follow the [Get started](REPLACE LINK) tutorial to run Airflow locally and write your first DAG.
 
 ## Features
 
