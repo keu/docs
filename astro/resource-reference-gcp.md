@@ -93,14 +93,6 @@ The following table lists all available instance types for worker node pools, as
 
 If your Organization is interested in using an instance type that supports a larger worker size, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md).
 
-:::info
-
-The size limits defined here currently also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment.
-
-For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
-
-:::
-
 ### Maximum node count
 
 Each Astro cluster has a limit on how many nodes it can run at once. This maximum includes worker nodes as well as system nodes managed by Astronomer.
