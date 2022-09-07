@@ -34,17 +34,24 @@ module.exports = {
       //... other Algolia params
     },
     colorMode: {
-      disableSwitch: false,
+      disableSwitch: true,
     },
     navbar: {
       title: 'Docs',
       logo: {
         alt: 'Astronomer',
         src: 'img/LogoPrimaryDarkMode.svg',
-        href: 'https://docs.astronomer.io/astro',
+        href: 'https://www.astronomer.io/',
         target: '_self',
       },
       items: [
+        {
+          to: '/astro/',
+          label: 'Docs',
+          position: 'left',
+          activeClassName: 'navbar__link--active',
+          className: 'docs__title'
+        },
         {
           type: 'dropdown',
           to: '/astro/',
@@ -69,7 +76,7 @@ module.exports = {
           label: 'Software',
           to: 'software/',
           activeBaseRegex: 'software',
-          position: 'left',
+          position: 'right',
           activeClassName: 'navbar__link--active',
           items: [
             {
@@ -100,7 +107,7 @@ module.exports = {
       logo: {
         alt: "Astronomer logo",
         src: "img/monogram-light.png",
-        href: "https://astronomer.io",
+        href: "https://www.astronomer.io/",
         width: 48,
       },
       links: [
@@ -220,10 +227,10 @@ module.exports = {
           },
         },
         sitemap: {
-        id: 'default',
-        changefreq: 'daily',
-        ignorePatterns: ['/software/0.29/**','/software/0.28/**','/software/0.27/**','/software/0.26/**','/software/0.25/**','/software/0.23/**','/software/0.16/**'],
-        filename: 'sitemap.xml',
+          id: 'default',
+          changefreq: 'daily',
+          ignorePatterns: ['/software/0.29/**', '/software/0.28/**', '/software/0.27/**', '/software/0.26/**', '/software/0.25/**', '/software/0.23/**', '/software/0.16/**'],
+          filename: 'sitemap.xml',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -255,10 +262,10 @@ module.exports = {
     [
       '@docusaurus/plugin-sitemap',
       {
-       id: 'software',
-       changefreq: 'daily',
-       ignorePatterns: ['/software/0.29/**', '/software/0.28/**','/software/0.27/**','/software/0.26/**','/software/0.25/**','/software/0.23/**','/software/0.16/**'],
-       filename: 'sitemap.xml',
+        id: 'software',
+        changefreq: 'daily',
+        ignorePatterns: ['/software/0.29/**', '/software/0.28/**', '/software/0.27/**', '/software/0.26/**', '/software/0.25/**', '/software/0.23/**', '/software/0.16/**'],
+        filename: 'sitemap.xml',
       },
     ]
   ],
