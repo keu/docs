@@ -69,48 +69,51 @@ This happens because the DAG uses two Airflow providers the [HTTP provider](http
 
 2. Go to the [Astronomer Registry](https://registry.astronomer.io/) and enter “GitHub” in the search. Click on the card in the drop down menu to open the page of the GitHub provider.
 
-![Screenshot 2022-09-07 at 15.34.56.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/990748d1-de3d-4caf-8a75-d826b556bb80/Screenshot_2022-09-07_at_15.34.56.png)
+![GitHub Provider](/img/tutorials/T2_GitHubProvider.png)
 
 3. Copy the provider name and version (`apache-airflow-providers-github=2.1.0`) from the **Quick Install** statement. 
-2. Paste the provider name and version into the `requirements.txt` file of your Astro project.
+4. Paste the provider name and version into the `requirements.txt` file of your Astro project.
 
-![Screenshot 2022-09-07 at 15.38.44.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/75d5aea9-4e08-4035-a1e6-44ce123d22c4/Screenshot_2022-09-07_at_15.38.44.png)
+![Requirements File](/img/tutorials/T2_RequirementsFile.png)
 
-1. Restart your Airflow instance using the command `astro dev restart`. 
+5. Restart your Airflow instance using the command `astro dev restart`. 
 
 ## Step 4: Add an Airflow variable
 
-After restarting you will get a new DAG Import Error alerting you to a missing Airflow variable. Airflow variables are key value pairs you can set from within the Airflow UI that can be accessed in all DAGs of your Airflow instance. 
+After restarting you will get a new DAG Import Error alerting you to a missing Airflow variable. Airflow variables are key value pairs you can set from within the Airflow UI that can be accessed in all DAGs of your Airflow instance.
 
 1. Go to **Admin** → **Variables** to open the list of Airflow variables. It will be empty.
 
-![Screenshot 2022-09-07 at 17.02.15.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/03052af9-1030-4021-bc8e-c5d5ef0bcb6c/Screenshot_2022-09-07_at_17.02.15.png)
+![Admin Variables](/img/tutorials/T2_AdminVariables.png)
 
-1. Click on the `+` sign to open the form for adding a new variable. Use the **Key** `my_github_repo` and a GitHub repository you have administrator access to as a value. The repository can be private.
+2. Click on the `+` sign to open the form for adding a new variable. Use the **Key** `my_github_repo` and a GitHub repository you have administrator access to as a value. The repository can be private.
 
-![Screenshot 2022-09-07 at 17.04.29.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e9a4def6-a3b3-4eb9-b471-390bd1a4067b/Screenshot_2022-09-07_at_17.04.29.png)
+![Add new variable](/img/tutorials/T2_AddNewVariable.png)
 
-1. Save the variable.
+3. Save the variable.
 
 Now the DAG is listed in your **DAGs** view without any Import Error.
 
-> **Note**: If you don’t have a GitHub repository you can follow the [steps in the GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo) on how to create one.
-> 
+:::note
+
+If you don’t have a GitHub repository you can follow the [steps in the GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo) on how to create one.
+
+:::
 
 ## Step 5: Add a GitHub connection
 
 1. Open the Connections List by clicking on **Admin** → **Connections**.
 
-![Screenshot 2022-09-07 at 17.09.07.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e535c7be-7fda-457e-87d5-4a8d851ccd0d/Screenshot_2022-09-07_at_17.09.07.png)
+![Admin Connections](/img/tutorials/T2_AdminConnections.png)
 
-1. Click on the `+` sign to open the form for adding new Airflow connections.
-2. Name the connection `my_github_connection` and select the **Connection Type** `GitHub`.
-3. Enter your **GitHub Access Token**. 
-4. Test your connection by pressing the `Test` button. You should see a green banner indicating that your connection was successfully tested.
+2. Click on the `+` sign to open the form for adding new Airflow connections.
+3. Name the connection `my_github_connection` and select the **Connection Type** `GitHub`.
+4. Enter your **GitHub Access Token**. 
+5. Test your connection by pressing the `Test` button. You should see a green banner indicating that your connection was successfully tested.
     
-    ![Screenshot 2022-09-07 at 16.40.32.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34e5ecfa-328a-4673-ba23-382c92a67ecd/Screenshot_2022-09-07_at_16.40.32.png)
+![GitHub Connection](/img/tutorials/T2_GitHubConnection.png)
     
-5. Save the connection by clicking the `Save` button.
+6. Save the connection by clicking the `Save` button.
 
 ## Step 6: Add a HTTP connection
 
@@ -119,13 +122,13 @@ Now the DAG is listed in your **DAGs** view without any Import Error.
 3. Enter the name of the API you want to query in the **Host** field. We suggest the Catfact API `http://catfact.ninja/fact`, which will return a random fact about cats for every `GET` request and does not need any further authorization.
 4. Test your connection by pressing the `Test` button.
 
-![Screenshot 2022-09-07 at 13.36.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f74f9ff6-c489-4775-b2e5-aec939ccdf95/Screenshot_2022-09-07_at_13.36.13.png)
+![HTTP Connection](/img/tutorials/T2_HTTPConnection.png)
 
-1. Save the connection by clicking the `Save` button.
+5. Save the connection by clicking the `Save` button.
 
 You should now have two connections in your list as shown in the screenshot below.
 
-![Screenshot 2022-09-07 at 16.54.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/807d7b0d-6f77-4650-bd7e-4bd789d5456d/Screenshot_2022-09-07_at_16.54.13.png)
+![Connection List](/img/tutorials/T2_TwoConnections.png)
 
 ## Step 7: View your DAG code
 
@@ -152,8 +155,11 @@ with DAG(
 ) as dag:
 ```
 
-> **Note:** the `schedule_interval` uses a CRON expression. A good resource to learn about CRON is the [Crontab website](https://crontab.guru/).
-> 
+:::tip
+
+The `schedule_interval` uses a CRON expression. A good resource to learn about CRON is the [Crontab website](https://crontab.guru/).
+
+:::
 
 The DAG itself has two tasks, the first one uses the `GithubTagSensor` to wait for a tag with the name `v1.0` to be added to the GitHub repository you specified in the Airflow variable `my_github_repo`. The sensor will check every `30` seconds and time out after a day.
 
@@ -187,17 +193,17 @@ tag_sensor >> query_API
 
 The DAG produces the following **Graph** view:
 
-![Screenshot 2022-09-07 at 17.23.14.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/70d44dbc-8c5d-46b7-bcb5-5456d3d621a4/Screenshot_2022-09-07_at_17.23.14.png)
+![Graph View](/img/tutorials/T2_GraphView.png)
 
 ## Step 8: Test your DAG
 
 1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run will automatically start and the `tag_sensor` will start to wait for the `v1.0` tag to be added to your GitHub repository. This process is visible from the **DAGs** view as light green circles, on for the active DAG run, one for the active task run.
 
-![Screenshot 2022-09-07 at 18.22.11.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/735f9639-fa90-4a3e-9661-7ea06d41615d/Screenshot_2022-09-07_at_18.22.11.png)
+![DAG running](/img/tutorials/![Connection List](/img/tutorials/T2_GraphView.png).png)
 
-1. Add the tag `v1.0` to your GitHub repository using the command `git tag v1.0 && git push --tags` from within your local clone of the repository. 
-2. See the `tag_sensor` task finishing sucessfully and kicking off the `query_api` task. 
-3. Check the logs of the `query_api` task for a brand new cat fact!
+2. Add the tag `v1.0` to your GitHub repository using the command `git tag v1.0 && git push --tags` from within your local clone of the repository. 
+3. See the `tag_sensor` task finishing sucessfully and kicking off the `query_api` task. 
+4. Check the logs of the `query_api` task for a brand new cat fact!
 
 ```
 [2022-09-07, 16:34:04 UTC] {base.py:68} INFO - Using connection ID 'my_http_connection' for task execution.
