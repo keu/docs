@@ -45,4 +45,4 @@ As part of this change, you can now configure `jwt.authDuration` in your [Housto
 - Fixed an issue where Workspace-level service accounts could view Deployment information from Deployments outside of their Workspace.
 - Fixed an issue where updating the role of a user in a Team using the Astro CLI would not throw an error as expected.
 - Fixed an issue where JSON web tokens persisted after a user logged out if `idpGroupsRefreshEnabled` was set to `false`.
-- Fixed an issue where users who authenticated with Google Direct were automatically logged out of the Software UI after 1 hour.
+- Users authenticating with Google Direct are no longer automatically logged out of Astronomer Software after 1 hour.
