@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Export task logs'
-title: 'Export task logs to ElasticSearch'
+sidebar_label: 'Configure task log collection'
+title: 'Configure task log collection and exporting to ElasticSearch'
 id: export-task-logs
 description: Configure how Astronomer exports task logs to your ElasticSearch instance.
 ---
@@ -15,7 +15,7 @@ You can configure how Astronomer collects Deployment task logs and exports them 
 - Using a Fluentd Daemonset pod on each Kubernetes node in your cluster.
 - Using container sidecars for Deployment components.
 
-## Export task logs Using a Fluentd DaemonSet
+## Export task logs using a Fluentd DaemonSet
 
 By default, Astronomer Software uses a Fluentd DaemonSet to aggregate task logs. The is the workflow for the default implementation:
 

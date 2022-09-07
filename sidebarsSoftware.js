@@ -69,43 +69,41 @@ module.exports = {
           ],
         },
         'upgrade-astronomer',
-        {
-        type: 'category',
-        label: 'Platform setup',
-        items: [
-        'integrate-auth-system',
-        'logs-to-s3',
-        'registry-backend',
-        'renew-tls-cert',
-        'namespace-pools',
-        'export-task-logs',
-        'third-party-ingress-controllers',
-        'custom-image-registry',
-          ],
-        },
-        {
-        type: 'category',
-        label: 'Platform management',
-        items: [
         'apply-platform-config',
-        'houston-api',
-        'configure-platform-resources',
-          ],
-        },
         {
-          type: 'category',
-          label: 'Deployment management',
-          items: [
+        type: 'category',
+        label: 'Manage resources',
+        items: [
           'configure-deployment',
-          'secrets-backend',
           'environment-variables',
-          'deploy-git-sync',
-          'deploy-nfs',
+          'registry-backend',
+          'namespace-pools',
+          'configure-platform-resources',
           ],
         },
         {
         type: 'category',
-        label: 'User access',
+        label: 'CI/CD and automation',
+        items: [
+        'houston-api',
+        'deploy-git-sync',
+        'deploy-nfs',
+          ],
+        },
+        {
+        type: 'category',
+        label: 'Security and compliance',
+        items: [
+          'secrets-backend',
+          'integrate-auth-system',
+          'custom-image-registry',
+          'third-party-ingress-controllers',
+          'renew-tls-cert',
+          ],
+        },
+        {
+        type: 'category',
+        label: 'User access and management',
         items: [
         'manage-workspaces',
         'import-idp-groups',
@@ -125,6 +123,8 @@ module.exports = {
       'kibana-logging',
       'airflow-alerts',
       'platform-alerts',
+      'logs-to-s3',
+      'export-task-logs',
       ],
     },
     {
