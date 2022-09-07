@@ -2,7 +2,7 @@
 title: "Get started with Apache Airflow - Part 2"
 sidebar_label: "Get started with Airflow - Part 2"
 description: "Learn core Apache Airflow concepts like providers and connections."
-id: get-started-part-2
+id: get-started-with-airflow-part-2
 ---
 
 Learn core Apache Airflow concepts in this hands-on tutorial using the Astro CLI.
