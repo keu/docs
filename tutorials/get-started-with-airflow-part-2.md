@@ -1,7 +1,7 @@
 ---
 title: "Get started with Apache Airflow - Part 2"
 sidebar_label: "Get started with Airflow - Part 2"
-description: "Learn core Apache Airflow concepts like providers and connections."
+description: "Learn core Apache Airflow concepts: using providers and connections."
 id: get-started-with-airflow-part-2
 ---
 
@@ -14,8 +14,8 @@ After you complete this tutorial, you'll be able to:
 - Add a provider to your Airflow environment.
 - Create and use an Airflow connection.
 - Create and use an Airflow variable.
-- Use the SimpleHTTPOperator to query an API.
-- Use the SnowflakeOperator to create and query a table in Snowflake.
+- Use the `GithubTagSensor` to wait for a tag to be added to a GitHub repository.
+- Use the `SimpleHTTPOperator` to query an API.
 
 ## Time to complete
 
@@ -25,7 +25,7 @@ This tutorial takes approximately 1 hour to complete.
 
 To complete this tutorial, you'll need to know:
 
-- Contents of [Get started with Apache Airflow.](https://docs.astronomer.io/astro/cli/get-started)
+- Contents of [Get started with Apache Airflow](https://docs.astronomer.io/astro/cli/get-started).
 - Basic knowledge of git. See the [tutorial on Git’s official webpage](https://git-scm.com/docs/gittutorial).
 
 ## Prerequisites
@@ -33,8 +33,11 @@ To complete this tutorial, you'll need to know:
 - An Astro project created with the [Astro CLI](https://docs.astronomer.io/astro/cli/configure-cli).
 - A GitHub account with a personal access token.
 
-> **Note:** If you do not have a GitHub account you can create one for free following the steps on the [GitHub website](https://github.com/signup) . You can learn how to create a personal access token in the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
-> 
+:::note
+
+If you do not have a GitHub account you can create one for free following the steps on the [GitHub website](https://github.com/signup) . You can learn how to create a personal access token in the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+
+:::
 
 ## Step 1: Start your Astro project
 
@@ -48,19 +51,19 @@ astro dev start
 
 Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
 
-1. Log into the Airflow UI with `admin` for both your username and password.
+2. Log into the Airflow UI with `admin` for both your username and password.
 
 ## Step 2: Create your DAG file
 
-1. Create a new Python file in the `/dags` folder of your Astro project called `my_second_dag.py`. 
-2. Copy the  Getting started with Apache Airflow Part 2 example DAG from the Astronomer Registry.
-3. Paste the code into `my_second_dag.py`. 
+1. Create a new Python file in the `/dags` folder of your Astro project called `my_second_dag.py`.
+2. Copy the Getting started with Apache Airflow Part 2 example DAG from the Astronomer Registry.
+3. Paste the code into `my_second_dag.py`.
 
 ## Step 3: Add a provider package
 
-1. Go back to the Airflow UI. Most likely you will see a DAG Import Error like the one shown below. 
+1. Go back to the Airflow UI. Most likely you will see a DAG Import Error like the one shown below.
 
-![Screenshot 2022-09-07 at 15.20.44.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2e52e5da-8ac9-4555-9ef1-98f8ebbf7f68/Screenshot_2022-09-07_at_15.20.44.png)
+![Import Error](/img/tutorials/T2_ImportError.png)
 
 This happens because the DAG uses two Airflow providers the [HTTP provider](https://registry.astronomer.io/providers/http) and the [GitHub provider](https://registry.astronomer.io/providers/github). While the HTTP provider is pre-installed in the Astro Runtime image, the GitHub provider is not, which causes the DAG Import Error.
 
