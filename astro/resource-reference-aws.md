@@ -15,9 +15,9 @@ Read the following document for a reference of our default resources as well as 
 | Resource                                  | Description                                                                                                                   | Quantity / Default Size |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [EKS Cluster](https://aws.amazon.com/eks) | An EKS cluster is required to run the Astro Data Plane, which hosts the resources and data required to execute Airflow tasks. | 1x                      |
-| Worker node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that run all workers across Deployments in the cluster. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different worker types. | 1x pool of m5.xlarge nodes |
-| Airflow system node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all core Airflow components, including the scheduler and webserver. This node pool is fully managed by Astronomer. | 1x pool of m5.xlarge nodes |
-| Astro system node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all other system components required in Astro. This node pool is fully managed by Astronomer.| 1x pool of m5.xlarge nodes |
+| Worker node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that run all workers across Deployments in the cluster. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different worker types. This node pool is fully managed by Astronomer. | 1x pool of m5.xlarge nodes |
+| Airflow node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all core Airflow components, including the scheduler and webserver. This node pool is fully managed by Astronomer. | 1x pool of m5.xlarge nodes |
+| Astro node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all other system components required in Astro. The availability zone determines how many nodes are created.  This node pool is fully managed by Astronomer.| 1x pool of m5.xlarge nodes |
 | [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/) | The RDS instance is the primary database of the Astro Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster. | 1x db.r5.large |
 | [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) | Required for connectivity with the Control Plane, and other public services. | 2x |
 | [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) | Subnets are provisioned in 2 different [Availability Zones (AZs)](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for redundancy, with 1 public and 1 private subnet per AZ. Public subnets are required for the NAT and Internet gateways, while private subnets are required for EC2 nodes. | 2x /26 (public) and 1x /20 + 1x /21 (private) |
@@ -27,7 +27,7 @@ Read the following document for a reference of our default resources as well as 
 | [Route Tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html) | Home for the routes. | 2x |
 | [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) | Virtual network for launching and hosting AWS resources. | 1x /19 |
 | [Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide//Welcome.html) | Stores Airflow task logs. | 1x |
-| Maximum Node Count | The maximum number of EC2 nodes that your Astro cluster can support. When this limit is reached, your cluster can't auto-scale and worker Pods may fail to schedule. | 20 |
+| Maximum Node Count | The maximum number of EC2 worker nodes that your Astro cluster can support. When this limit is reached, your cluster can't auto-scale and worker Pods may fail to schedule. | 20 |
 
 ## Supported cluster configurations
 
