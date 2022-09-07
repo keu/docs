@@ -1,6 +1,6 @@
 ---
-title: 'Airflow Tutorials'
-sidebar_label: 'Astrp Python SDK'
+title: 'Develop an ETL pipeline with the Astro Python SDK'
+sidebar_label: 'Astro Python SDK'
 id: astro-python-sdk
 description: 'Run an ETL pipeline with the Astro SDK.'
 ---

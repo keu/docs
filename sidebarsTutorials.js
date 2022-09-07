@@ -9,17 +9,8 @@
 
 module.exports = {
   tutorials: [
-    {
-      type: 'category',
-      label: 'Tutorials',
-      link: {
-        type:'doc',
-        id: 'overview',
-      },
-      items: [
-        'get-started-with-airflow',
-        'astro-python-sdk',
-      ]
-    },
+    'overview',
+    'get-started-with-airflow',
+    'astro-python-sdk',
   ],
 };
