@@ -34,6 +34,7 @@ module.exports = {
         'custom-xcom-backends',
         'debugging-dags',
         'deferrable-operators',
+        'dynamically-generating-dags',
       ],
     },
     {
