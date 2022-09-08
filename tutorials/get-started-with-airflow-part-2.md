@@ -61,18 +61,19 @@ Once your local environment is ready, the CLI automatically opens a new tab or w
 
 ## Step 3: Add a provider package
 
-1. Go back to the Airflow UI. Most likely you will see a DAG Import Error like the one shown below.
+1. Go back to the Airflow UI. You will see a DAG Import Error like the one shown below.
 
 ![Import Error](/img/tutorials/T2_ImportError.png)
 
 This happens because the DAG uses operators from two Airflow providers: the [HTTP provider](https://registry.astronomer.io/providers/http) and the [GitHub provider](https://registry.astronomer.io/providers/github). While the HTTP provider is pre-installed in the Astro Runtime image, the GitHub provider is not, which causes the DAG Import Error.
+Provider packages are Python packages maintained separately from core Airflow that contain the hooks and operators to interact with external services. You can browse all available providers in the Astronomer Registry. 
 
 2. Go to the [Astronomer Registry](https://registry.astronomer.io/) and enter “GitHub” in the search. Click on the card in the drop down menu to open the page of the GitHub provider.
 
 ![GitHub Provider](/img/tutorials/T2_GitHubProvider.png)
 
-3. Copy the provider name and version (`apache-airflow-providers-github=2.1.0`) from the **Quick Install** statement. 
-4. Paste the provider name and version into the `requirements.txt` file of your Astro project.
+3. Copy the provider name and version from the **Quick Install** statement. 
+4. Paste the provider name and version into the `requirements.txt` file of your Astro project. Make sure to only add `apache-airflow-providers-github=2.1.0` without `pip install`. 
 5. Restart your Airflow instance using the command `astro dev restart`. 
 
 ## Step 4: Add an Airflow variable
@@ -99,18 +100,26 @@ If you don’t have a GitHub repository you can follow the [steps in the GitHub 
 
 ## Step 5: Add a GitHub connection
 
+Connections in Airflow are sets of configurations used to connect with other tools in the data ecosystem. If you are using a hook or operator that connects to an external system, they are most likely doing so using a connection. In our example DAG we use two operators that interact with two different external systems, which means we will need to define two connections.
+
 1. Open the Connections List by clicking on **Admin** → **Connections**.
 
 ![Admin Connections](/img/tutorials/T2_AdminConnections.png)
 
 2. Click on the `+` sign to open the form for adding new Airflow connections.
-3. Name the connection `my_github_connection` and select the **Connection Type** `GitHub`.
+3. Name the connection `my_github_connection` and select the **Connection Type** `GitHub`. Note that you can only select connection types that are either available form core Airflow or from a provider package you have installed. If you are missing the connection type `GitHub` double check that you installed the `GitHub` provider correctly (Step 3). 
 4. Enter your **GitHub Access Token**. 
 5. Test your connection by pressing the `Test` button. You should see a green banner indicating that your connection was successfully tested.
     
 ![GitHub Connection](/img/tutorials/T2_GitHubConnection.png)
     
 6. Save the connection by clicking the `Save` button.
+
+:::info
+
+The option to test connections was added in Airflow 2.2. If you are running an older version you can skip step 5.
+
+:::
 
 ## Step 6: Add a HTTP connection
 
@@ -158,7 +167,7 @@ The `schedule_interval` uses a CRON expression. A good resource to learn about C
 
 :::
 
-The DAG itself has two tasks, the first one uses the `GithubTagSensor` to wait for a tag with the name `v1.0` to be added to the GitHub repository you specified in the Airflow variable `my_github_repo`. The sensor will check for the tag every `30` seconds and time out after one day.
+The DAG itself has two tasks, the first one uses the `GithubTagSensor` to wait for a tag with the name `v1.0` to be added to the GitHub repository you specified in the Airflow variable `my_github_repo`. The sensor will check for the tag every `30` seconds and time out after one day. It is best practice to always set a `timeout` because the default value is 7 days, which means the sensor would be waiting for 7 days for the tag to be added to your GitHub repository until it fails.
 
 ```python
     tag_sensor = GithubTagSensor(
