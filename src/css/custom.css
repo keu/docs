@@ -237,7 +237,7 @@ small {
 .navbar,
 .navbar-sidebar__brand {
   background-color: #554288;
-  font-family: "Strawford", "Open Sans", sans-serif;
+  /* font-family: "Strawford", "Open Sans", sans-serif; */
 }
 
 .navbar__logo {
@@ -253,6 +253,11 @@ small {
 .navbar__link {
   font-weight: 600;
   text-transform: uppercase;
+}
+
+a.navbar__link.navbar__link--active {
+  color: var(--ifm-link-color);
+  opacity: 1;
 }
 
 .main-wrapper {
@@ -487,7 +492,7 @@ html[data-theme='dark'] .alert--cli {
 }
 
 .dropdown--right > a {
-  opacity: 0.4;
+  opacity: 0.6;
 }
 
 .navbar__title {
@@ -499,9 +504,13 @@ html[data-theme='dark'] .alert--cli {
 }
 
 .docs__title {
+  color: white !important;
   font-weight: bold;
-  font-size: 1.25rem;
-  margin: 0 1rem 0 2rem;
+  font-size: 1rem;
+  border-left: 1px solid white;
+  height: 20px;
+  line-height: 0.75;
+  padding-left: 1rem;
 }
 
 @media screen and (min-width: 550px) {

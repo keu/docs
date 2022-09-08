@@ -34,7 +34,7 @@ module.exports = {
       //... other Algolia params
     },
     colorMode: {
-      disableSwitch: true,
+      disableSwitch: false,
     },
     navbar: {
       title: 'Docs',

@@ -56,9 +56,9 @@ export default function NavbarContent() {
         // TODO stop hardcoding items?
         // Ask the user to add the respective navbar items => more flexible
         <>
+          <NavbarColorModeToggle className={styles.colorModeToggle} />
           <NavbarItems items={rightItems} />
           <a className={styles.button} href="https://www.astronomer.io/get-started/?utm_source=docs-nav-button" target="_blank">Get Started</a>
-          <NavbarColorModeToggle className={styles.colorModeToggle} />
         </>
       }
     />

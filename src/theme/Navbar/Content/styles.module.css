@@ -7,6 +7,10 @@ Hide color mode toggle in small viewports
   }
 }
 
+.colorModeToggle {
+  margin-right: 1rem;
+}
+
 .button {
   --white: #fff;
   --black: #000;
@@ -34,7 +38,7 @@ Hide color mode toggle in small viewports
   text-decoration: none;
   padding: 3px 30px 2px 30px !important;
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   background-color: var(--mint-3);
   color: var(--gray-8);
   box-shadow: 0 1px 1px 0 rgba(65, 66, 70, 0.3);
