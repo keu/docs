@@ -33,6 +33,7 @@ module.exports = {
         'dag-best-practices',
         'custom-xcom-backends',
         'debugging-dags',
+        'deferrable-operators',
       ],
     },
     {
