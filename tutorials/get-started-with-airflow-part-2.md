@@ -73,9 +73,6 @@ This happens because the DAG uses operators from two Airflow providers: the [HTT
 
 3. Copy the provider name and version (`apache-airflow-providers-github=2.1.0`) from the **Quick Install** statement. 
 4. Paste the provider name and version into the `requirements.txt` file of your Astro project.
-
-![Requirements File](/img/tutorials/T2_RequirementsFile.png)
-
 5. Restart your Airflow instance using the command `astro dev restart`. 
 
 ## Step 4: Add an Airflow variable
@@ -86,7 +83,7 @@ After restarting your Airflow instance, you will see a new DAG Import Error aler
 
 ![Admin Variables](/img/tutorials/T2_AdminVariables.png)
 
-2. Click on the `+` sign to open the form for adding a new variable. Use `my_github_repo` as the **Key** and a GitHub repository you have administrator access to as the **Val". The repository can be private.
+2. Click on the `+` sign to open the form for adding a new variable. Use `my_github_repo` as the **Key** and a GitHub repository you have administrator access to as the **Val**. The repository can be private.
 
 ![Add new variable](/img/tutorials/T2_AddNewVariable.png)
 
@@ -161,10 +158,10 @@ The `schedule_interval` uses a CRON expression. A good resource to learn about C
 
 :::
 
-The DAG itself has two tasks, the first one uses the `GithubTagSensor` to wait for a tag with the name `v1.0` to be added to the GitHub repository you specified in the Airflow variable `my_github_repo`. The sensor will check for the file every `30` seconds and time out after one day.
+The DAG itself has two tasks, the first one uses the `GithubTagSensor` to wait for a tag with the name `v1.0` to be added to the GitHub repository you specified in the Airflow variable `my_github_repo`. The sensor will check for the tag every `30` seconds and time out after one day.
 
 ```python
-tag_sensor = GithubTagSensor(
+    tag_sensor = GithubTagSensor(
         task_id='tag_sensor',
         github_conn_id="my_github_connection",
         tag_name='v1.0',
@@ -177,18 +174,18 @@ tag_sensor = GithubTagSensor(
 The second task uses the `SimpleHttpOperator` to send a `GET` request to the cat fact API. The response is logged to the Airflow task logs (`log_response=True`).
 
 ```python
-query_API = SimpleHttpOperator(
-            task_id="query_API",
-            http_conn_id="my_http_connection",
-            method="GET",
-            log_response=True
+    query_API = SimpleHttpOperator(
+        task_id="query_API",
+        http_conn_id="my_http_connection",
+        method="GET",
+        log_response=True
     ) 
 ```
 
 Lastly, the dependency between the two tasks is set so that the API is only queried after the `tag_sensor` task has been successful.
 
 ```python
-tag_sensor >> query_API
+    tag_sensor >> query_API
 ```
 
 The DAG produces the following **Graph** view:
