@@ -1,6 +1,6 @@
 ---
-title: "Deferrable Operators"
-sidebar_label: "Deferrable Operators"
+title: "Deferrable operators"
+sidebar_label: "Deferrable operators"
 description: "Implement deferrable operators to save cost and resources with Airflow."
 id: deferrable-operators
 ---
@@ -18,7 +18,7 @@ Review the following terms and concepts to gain a better understanding of deferr
 
 The terms deferrable, async, and asynchronous are used interchangeably and have the same meaning.
 
-With traditional operators, a task submits a job to an external system such as a Spark Cluster and then polls the job status until it is completed. Although the task isn't doing significant work, it still occupies a worker slot during the polling process. As worker slots are occupied, tasks are queued and start times are delayed. The following image illustrates this process:
+With traditional operators, a task submits a job to an external system such as a Spark cluster and then polls the job status until it is completed. Although the task isn't doing significant work, it still occupies a worker slot during the polling process. As worker slots are occupied, tasks are queued and start times are delayed. The following image illustrates this process:
 
 ![Classic Worker](/img/guides/classic_worker_process.png)
 
@@ -115,7 +115,7 @@ As tasks are raised into a deferred state, triggers are registered in the trigge
 
 ### High availability
 
-Triggers are designed to be highly-available. You can implement this by starting multiple triggerer processes. Similar to the [HA scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html#running-more-than-one-scheduler) introduced in Airflow 2.0, Airflow ensures that they co-exist with correct locking and high availability. See [High Availability](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html#high-availability) for more information on this topic.
+Triggers are designed to be highly available. You can implement this by starting multiple triggerer processes. Similar to the [HA scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html#running-more-than-one-scheduler) introduced in Airflow 2.0, Airflow ensures that they co-exist with correct locking and high availability. See [High Availability](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html#high-availability) for more information on this topic.
 
 ### Create a deferrable operator
 
