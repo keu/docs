@@ -107,7 +107,7 @@ Connections in Airflow are sets of configurations used to connect with other too
 ![Admin Connections](/img/tutorials/T2_AdminConnections.png)
 
 2. Click on the `+` sign to open the form for adding new Airflow connections.
-3. Name the connection `my_github_connection` and select the **Connection Type** `GitHub`. Note that you can only select connection types that are either available form core Airflow or from a provider package you have installed. If you are missing the connection type `GitHub` double check that you installed the `GitHub` provider correctly (Step 3). 
+3. Name the connection `my_github_connection` and select the **Connection Type** `GitHub`. Note that you can only select connection types that are either available form core Airflow or from a provider package you have installed. If you are missing the connection type `GitHub`, double check that you installed the `GitHub` provider correctly (Step 3). 
 4. Enter your **GitHub Access Token**. 
 5. Test your connection by pressing the `Test` button. You should see a green banner indicating that your connection was successfully tested.
     
@@ -117,7 +117,7 @@ Connections in Airflow are sets of configurations used to connect with other too
 
 :::info
 
-The option to test connections was added in Airflow 2.2. If you are running an older version you can skip step 5.
+The option to test connections was added in Airflow 2.2. If you are running an older version of Airflow, you can skip step 5.
 
 :::
 
