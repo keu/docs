@@ -9,7 +9,7 @@ This guide provides information that will help you resolve common Airflow DAG is
 
 This guide focuses on [Airflow 2.0 and later](https://www.astronomer.io/events/webinars/intro-to-data-orchestration-with-airflow). For older Airflow versions, the debugging steps might be different.
 
-## DAGs not appearing in the Airflow UI
+## DAGs don't appear in the Airflow UI
 
 If a DAG isn't appearing in the Airflow UI, it's typically because Airflow is unable to parse the DAG. If this is the case, you'll see an `Import Error` in the Airflow UI. 
 
@@ -22,7 +22,7 @@ If you don't see an import error message, here are some debugging steps you can 
 - Airflow scans the `dags_folder` for new DAGs every `dag_dir_list_interval`, which defaults to 5 minutes but can be modified. You might have to wait until this interval has passed before a new DAG appears in the Airflow UI.
 - Ensure that you have permission to see the DAGs, and that the permissions on the DAG file are correct.
 - Run `airflow dags list` with the [Airflow CLI](https://airflow.apache.org/docs/apache-airflow/stable/usage-cli.html) to make sure that Airflow has registered the DAG in the metastore. If the DAG appears in the list, try restarting the webserver.
-- Try restarting the scheduler. If you're using the [Astro CLI](https://docs.astronomer.io/astro/install-cli), run `astro dev stop && astro dev start`.
+- Try restarting the scheduler. If you're using the [Astro CLI](https://docs.astronomer.io/astro/cli/overview), run `astro dev restart`.
 - If you see an error similar to the following image indicating that the scheduler is not running, check the scheduler logs to see if something in the DAG file is causing the scheduler to crash. If you are using the Astro CLI, run `astro dev logs --scheduler` and then try restarting.
 
     ![No Scheduler](/img/guides/scheduler_not_running.png)
@@ -48,7 +48,7 @@ If you're unable to resolve package conflicts, add your DAGs to multiple project
 
 Your DAG is visible in the Airflow UI, but your tasks don't run when you trigger the DAG. This is a common issue and the cause can be very simple or complex. The following are some debugging steps you can try:
 
-- Make sure your DAG is `Unpaused`. If your DAG is paused when you trigger it, the tasks will not run. 
+- Make sure your DAG is unpaused. If your DAG is paused when you trigger it, the tasks will not run. 
 
     ![Paused DAG](/img/guides/paused_dag.png)
 
