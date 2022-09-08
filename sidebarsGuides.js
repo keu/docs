@@ -32,6 +32,7 @@ module.exports = {
         'connections',
         'dag-best-practices',
         'custom-xcom-backends',
+        'deferrable-operators',
       ],
     },
     {
