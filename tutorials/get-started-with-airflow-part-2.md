@@ -65,7 +65,7 @@ Once your local environment is ready, the CLI automatically opens a new tab or w
 
 ![Import Error](/img/tutorials/T2_ImportError.png)
 
-This happens because the DAG uses two Airflow providers the [HTTP provider](https://registry.astronomer.io/providers/http) and the [GitHub provider](https://registry.astronomer.io/providers/github). While the HTTP provider is pre-installed in the Astro Runtime image, the GitHub provider is not, which causes the DAG Import Error.
+This happens because the DAG uses operators from two Airflow providers: the [HTTP provider](https://registry.astronomer.io/providers/http) and the [GitHub provider](https://registry.astronomer.io/providers/github). While the HTTP provider is pre-installed in the Astro Runtime image, the GitHub provider is not, which causes the DAG Import Error.
 
 2. Go to the [Astronomer Registry](https://registry.astronomer.io/) and enter “GitHub” in the search. Click on the card in the drop down menu to open the page of the GitHub provider.
 
@@ -80,19 +80,19 @@ This happens because the DAG uses two Airflow providers the [HTTP provider](http
 
 ## Step 4: Add an Airflow variable
 
-After restarting you will get a new DAG Import Error alerting you to a missing Airflow variable. Airflow variables are key value pairs you can set from within the Airflow UI that can be accessed in all DAGs of your Airflow instance.
+After restarting your Airflow instance, you will see a new DAG Import Error alerting you to a missing Airflow variable. Airflow variables are key value pairs that can be accessed in all DAGs of your Airflow instance. You can define Airflow variables in the Airflow UI.
 
 1. Go to **Admin** → **Variables** to open the list of Airflow variables. It will be empty.
 
 ![Admin Variables](/img/tutorials/T2_AdminVariables.png)
 
-2. Click on the `+` sign to open the form for adding a new variable. Use the **Key** `my_github_repo` and a GitHub repository you have administrator access to as a value. The repository can be private.
+2. Click on the `+` sign to open the form for adding a new variable. Use `my_github_repo` as the **Key** and a GitHub repository you have administrator access to as the **Val". The repository can be private.
 
 ![Add new variable](/img/tutorials/T2_AddNewVariable.png)
 
 3. Save the variable.
 
-Now the DAG is listed in your **DAGs** view without any Import Error.
+4. Refresh the DAGs View. You should now see your DAG without any import errors.
 
 :::note
 
@@ -117,9 +117,9 @@ If you don’t have a GitHub repository you can follow the [steps in the GitHub 
 
 ## Step 6: Add a HTTP connection
 
-1. Click on the `+` sign to open another form to add the HTTP connection.
+1. While still on the Connections View, click on the `+` sign to open another form to add the HTTP connection.
 2. Name the connection `my_http_connection` and select the **Connection Type** `HTTP`.
-3. Enter the name of the API you want to query in the **Host** field. We suggest the Catfact API `http://catfact.ninja/fact`, which will return a random fact about cats for every `GET` request and does not need any further authorization.
+3. Enter the name of the API you want to query in the **Host** field. For this tutorial we use the Catfact API `http://catfact.ninja/fact`, which will return a random fact about cats for every `GET` request. This API does not need any further authorization.
 4. Test your connection by pressing the `Test` button.
 
 ![HTTP Connection](/img/tutorials/T2_HTTPConnection.png)
@@ -134,7 +134,7 @@ You should now have two connections in your list as shown in the screenshot belo
 
 In this step we will go through the DAG code you copied from the repository and explain each section in detail.
 
-On top of the file all necessary packages are imported. Notice how both the `SimpleHttpOperator` as well as the `GithubTagSensor` are part of two different provider packages.
+At the top of the script, all necessary packages are imported. Notice how both the `SimpleHttpOperator` as well as the `GithubTagSensor` are part of two different provider packages.
 
 ```python
 from airflow import DAG
@@ -161,7 +161,7 @@ The `schedule_interval` uses a CRON expression. A good resource to learn about C
 
 :::
 
-The DAG itself has two tasks, the first one uses the `GithubTagSensor` to wait for a tag with the name `v1.0` to be added to the GitHub repository you specified in the Airflow variable `my_github_repo`. The sensor will check every `30` seconds and time out after a day.
+The DAG itself has two tasks, the first one uses the `GithubTagSensor` to wait for a tag with the name `v1.0` to be added to the GitHub repository you specified in the Airflow variable `my_github_repo`. The sensor will check for the file every `30` seconds and time out after one day.
 
 ```python
 tag_sensor = GithubTagSensor(
@@ -197,12 +197,12 @@ The DAG produces the following **Graph** view:
 
 ## Step 8: Test your DAG
 
-1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run will automatically start and the `tag_sensor` will start to wait for the `v1.0` tag to be added to your GitHub repository. This process is visible from the **DAGs** view as light green circles, on for the active DAG run, one for the active task run.
+1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run will automatically start and the `tag_sensor` will start to wait for the `v1.0` tag to be added to your GitHub repository. You will see two light green circles in the **DAGs** View indicating that the DAG run is in progress and the `example_tag_sensor` task is running..
 
-![DAG running](/img/tutorials/![Connection List](/img/tutorials/T2_GraphView.png).png)
+![DAG running](/img/tutorials/T2_GraphView.png)
 
-2. Add the tag `v1.0` to your GitHub repository using the command `git tag v1.0 && git push --tags` from within your local clone of the repository. 
-3. See the `tag_sensor` task finishing sucessfully and kicking off the `query_api` task. 
+2. Add the tag `v1.0` to your GitHub repository by running the command `git tag v1.0 && git push --tags` from within your local clone of the repository in your terminal. 
+3. Watch for the `example_tag_sensor` task to finish successfully. The `query_api` task should now start. 
 4. Check the logs of the `query_api` task for a brand new cat fact!
 
 ```
