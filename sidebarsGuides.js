@@ -32,8 +32,7 @@ module.exports = {
         'connections',
         'dag-best-practices',
         'custom-xcom-backends',
-        'debugging-dags',
-        'deferrable-operators',
+        'bashoperator',
       ],
     },
     {
@@ -41,6 +40,7 @@ module.exports = {
       label: 'Tutorials',
       items: [
         'overview',
+        'executing-notebooks'
       ],
     },
     {
@@ -59,6 +59,8 @@ module.exports = {
         'airflow-talend-integration',
         'airflow-sql-data-quality-tutorial',
         'astro-python-sdk-etl',
+        'aws-lambda',
+        'soda-data-quality',
       ],
     },
   ],
