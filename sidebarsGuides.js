@@ -32,6 +32,7 @@ module.exports = {
         'connections',
         'dag-best-practices',
         'custom-xcom-backends',
+        'bashoperator',
         'debugging-dags',
         'deferrable-operators',
       ],
@@ -41,6 +42,7 @@ module.exports = {
       label: 'Tutorials',
       items: [
         'overview',
+        'execute-notebooks'
       ],
     },
     {
