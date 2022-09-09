@@ -36,7 +36,7 @@ Before completing this setup, make sure that you have:
     - `UpdateAssumeRolePolicy`
 
    See [Creating an administrator IAM user and user group (console)](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html#getting-started_create-admin-group-console).
-- A subscription to the [Astro Status Page](https://cloud-status.astronomer.io/). This will ensure that you're alerted in the case of an incident or scheduled maintenance.
+- A subscription to the [Astro Status Page](https://status.astronomer.io/). This will ensure that you're alerted in the case of an incident or scheduled maintenance.
 
 Astro requires a clean AWS account with a minimum set of EC2 service quotas. For security reasons, the install process is not currently supported on an AWS account that has other tooling running in it. For instructions on creating a new AWS account, follow [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 
@@ -196,7 +196,7 @@ After creating the AWS account, provide Astronomer support with the following in
 - Your preferred node instance type.
 - Your preferred maximum node count.
 
-If you do not specify configuration preferences, Astronomer will create a cluster with two `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. For information on all supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
+If you do not specify configuration preferences, Astronomer creates a cluster with `m5.xlarge` nodes and a maximum node count of 20 in `us-east-1`. For information on all supported regions, configurations, and defaults, see [Resources required for Astro on AWS](resource-reference-aws.md).
 
 ## Step 5: Wait for Astronomer to complete the install
 

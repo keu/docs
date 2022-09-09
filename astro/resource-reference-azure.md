@@ -2,7 +2,7 @@
 sidebar_label: "Azure"
 title: "Resources required for Astro on Azure"
 id: resource-reference-azure
-description: Reference information for new Astro on Azure clusters.
+description: Reference of all supported configurations for new clusters on Astro in Azure.
 sidebar_custom_props: { icon: 'img/azure.png' }
 ---
 
@@ -46,11 +46,11 @@ Modifying the region of an existing Astro cluster isn't supported. If you're int
 
 ### Worker node pools
 
-Node pools are a scalable collection of worker nodes with the same instance type. These nodes are responsible for running the Pods that execute Airflow tasks. If your cluster has a node pool for a specific instance type, you can configure tasks to run on those instance types using [worker queues](configure-deployment-resources.md#worker-queues.md). To make an instance type available in a cluster, contact [Astronomer support](https://cloud.astronomer.io/support) with a request to create a new node pool for the specific instance type. Not all instance types are supported in all AWS regions.
+Node pools are a scalable collection of worker nodes with the same instance type. These nodes are responsible for running the Pods that execute Airflow tasks. If your cluster has a node pool for a specific instance type, you can configure tasks to run on those instance types using [worker queues](configure-deployment-resources.md#worker-queues). To make an instance type available in a cluster, contact [Astronomer support](https://support.astronomer.io) with a request to create a new node pool for the specific instance type. Not all instance types are supported in all AWS regions.
 
 Astronomer monitors your usage and the number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer support might contact you and provide recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
-For detailed information on each instance type, see [Virtual machines in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/). If you're interested in a machine type that isn't on this list, contact [Astronomer support](https://support.astronomer.io/). Not all machine types are supported in all regions.
+For detailed information on each instance type, see [Virtual machines in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/). If you're interested in a machine type that isn't on this list, contact [Astronomer support](https://cloud.astronomer.io/support). Not all machine types are supported in all regions.
 
 ### Worker node size resource reference
 
@@ -65,15 +65,7 @@ The following table lists all available instance types for worker node pools, as
 | Standard_D4d_v5 - 4/16 (Default) | 2.5 CPUs | 9.3 GiB MEM |
 | Standard_D8d_v5 - 8/32           | 6.4 CPUs | 24 GiB MEM  |
 
-If your Organization needs an instance type that supports a larger worker size, contact [Astronomer support](https://cloud.astronomer.io/support). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md#worker-resources).
-
-:::info
-
-The size limits defined here also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment.
-
-For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
-
-:::
+If your Organization needs an instance type that supports a larger worker size, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md).
 
 ### Maximum node count
 
