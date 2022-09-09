@@ -61,13 +61,13 @@ Astro supports the following AWS regions:
 - `us-west-1` - US West (N. California)
 - `us-west-2` - US West (Oregon)
 
-Modifying the region of an existing cluster on Astro is not supported. If you're interested in an AWS region that is not on this list, reach out to [Astronomer support](https://support.astronomer.io).
+Modifying the region of an existing cluster on Astro is not supported. If you're interested in an AWS region that is not on this list, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 ### RDS instance type
 
 Every Astro cluster on AWS is created with and requires an [RDS instance](https://aws.amazon.com/rds/). RDS serves as a primary relational database for the data plane and powers the metadata database of each Astro Deployment within a single cluster. During the cluster creation process, you'll be asked to specify an RDS instance type according to your use case and expected workload, but it can be modified at any time.
 
-Astro supports a variety of AWS RDS instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, reach out to [Astronomer support](https://support.astronomer.io).
+Astro supports a variety of AWS RDS instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 #### db.r5
 
@@ -95,7 +95,7 @@ Astro supports a variety of AWS RDS instance types. Instance types comprise of v
 
 A node pool is a group of nodes within a cluster that all have the same configuration. On Astro, worker nodes are responsible for running the Pods that execute Airflow tasks. Each worker node pool can be configured with a node instance type and a maximum node count. All Astro clusters have one worker node pool by default, but you can configure additional node pools for advanced configurability.
 
-If your cluster has multiple worker node pools with different worker node instance types, users in your organization can configure tasks to run on those worker types using [worker queues](configure-deployment-resources.md#worker-queues). To enable a new worker type for your cluster, contact [Astronomer support](https://support.astronomer.io) with a request to create a new node pool or modify an existing node pool.
+If your cluster has multiple worker node pools with different worker node instance types, users in your organization can configure tasks to run on those worker types using [worker queues](configure-deployment-resources.md#worker-queues). To enable a new worker type for your cluster, contact [Astronomer support](https://cloud.astronomer.io/support) with a request to create a new node pool or modify an existing node pool.
 
 Astronomer monitors your usage and the number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer support might contact you and provide recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
@@ -169,4 +169,4 @@ Each Astro cluster has a limit on how many nodes it can run at once. This maximu
 
 The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
 
-If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
+If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://cloud.astronomer.io/support).

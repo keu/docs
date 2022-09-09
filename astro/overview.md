@@ -37,6 +37,6 @@ Astronomer support will schedule an onboarding session for your initial install.
 - [Develop your Astro project](develop-project.md)
 - [Configure your Deployment](configure-deployment-resources.md)
 
-If you have a feature request or a bug to report, contact [Astronomer support](https://support.astronomer.io). We're here to help.
+If you have a feature request or a bug to report, contact [Astronomer support](https://cloud.astronomer.io/support). We're here to help.
 
 To check the operational status of Astro, visit the [status page](https://cloud-status.astronomer.io). Click **Subscribe to Updates**  and then enter your email address to receive a notification when an incident is created, updated, or resolved.

@@ -40,7 +40,7 @@ Worker queues support the following settings:
 
 Your organization can enable up to 10 different worker types per cluster. Once a worker type is enabled for an Astro cluster, the worker type becomes available to any Deployment in that cluster and appears in the **Worker Type** menu of the Cloud UI.
 
-To request a new worker type for your cluster, reach out to [Astronomer support](https://support.astronomer.io) or see [Modify a cluster](modify-cluster.md). For a list of supported worker types, see the [AWS](resource-reference-aws.md#node-instance-type), [GCP](resource-reference-gcp.md#node-instance-type), and [Azure](resource-reference-azure.md#node-instance-type) resource references.
+To request a new worker type for your cluster, reach out to [Astronomer support](https://cloud.astronomer.io/support) or see [Modify a cluster](modify-cluster.md). For a list of supported worker types, see the [AWS](resource-reference-aws.md#node-instance-type), [GCP](resource-reference-gcp.md#node-instance-type), and [Azure](resource-reference-azure.md#node-instance-type) resource references.
 
 :::
 
@@ -141,7 +141,7 @@ Astronomer recommends changing the worker type of an existing worker queue only 
 
 ## Delete a Deployment
 
-When you delete a Deployment, all infrastructure resources assigned to the Deployment are immediately deleted from your data plane. However, the Kubernetes namespace and metadata database for the Deployment are retained for 30 days. Deleted Deployments can't be restored. If you accidentally delete a Deployment, contact [Astronomer support](https://support.astronomer.io).
+When you delete a Deployment, all infrastructure resources assigned to the Deployment are immediately deleted from your data plane. However, the Kubernetes namespace and metadata database for the Deployment are retained for 30 days. Deleted Deployments can't be restored. If you accidentally delete a Deployment, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
 2. Click the **Options** menu of the Deployment you want to delete, and select **Delete Deployment**.

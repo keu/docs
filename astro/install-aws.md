@@ -16,7 +16,7 @@ At a high-level, we'll ask that you come prepared with a new AWS account. From t
 - Share AWS account information with our team.
 - Create a cross-account IAM role that Astro can assume within your new AWS account.
 
-Astronomer will then create a cluster within your AWS account that hosts the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. If you'd like to support more than 1 Astro cluster, [contact Astronomer support](https://support.astronomer.io).
+Astronomer will then create a cluster within your AWS account that hosts the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. If you'd like to support more than 1 Astro cluster, [contact Astronomer support](https://cloud.astronomer.io/support).
 
 For a complete list of the AWS resources that our team will provision in your AWS account, see [Resource usage](resource-reference-aws.md).
 
@@ -200,7 +200,7 @@ If you do not specify configuration preferences, Astronomer creates a cluster wi
 
 ## Step 5: Wait for Astronomer to complete the install
 
-After you've created the cross-account IAM role for Astro, contact [Astronomer support](https://support.astronomer.io). Astronomer support will finish creating the cluster in your AWS account.
+After you've created the cross-account IAM role for Astro, contact [Astronomer support](https://cloud.astronomer.io/support). Astronomer support will finish creating the cluster in your AWS account.
 
 This process can take some time. Wait for confirmation that the installation was successful before proceeding to the next step.
 
