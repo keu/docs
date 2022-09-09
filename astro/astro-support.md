@@ -12,10 +12,10 @@ In addition to product documentation, the following resources are available to h
 
 If you're experiencing an issue or have a question that requires Astronomer expertise, or if you want to [modify a cluster configuration](modify-cluster.md), use one of the following methods to contact Astronomer support:
 
-- Submit a support request in the [Cloud UI](astro-support.md#submit-a-support-request-in-the-cloud-ui)
-- Submit a support request on the [Astronomer support portal](https://support.astronomer.io/hc/en-us)
-- Send an email to [support@astronomer.io](mailto:support@astronomer.io)
-- Call +1 (831) 777-2768
+- Submit a support request in the [Cloud UI](https://cloud.astronomer.io/support).
+- Submit a support request on the [Astronomer support portal](https://support.astronomer.io/hc/en-us).
+- Send an email to [support@astronomer.io](mailto:support@astronomer.io).
+- Call +1 (831) 777-2768.
 
 ## Best practices for support request submissions
 
