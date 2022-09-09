@@ -164,7 +164,7 @@ This functionality may also be useful when your pipelines have conditional branc
 
 ## Email notifications
 
-Email notifications are a native Airflow feature. The `email_on_failure` and `email_on_retry` parameters can be set to `True` either at the DAG level or task level to send emails when tasks fail or retry. The `email` parameter can be used to specify which email(s) you want to receive the notification. If you want to receive email alerts for all DAG failures and retries, you define default arguments similar to this example:
+Email notifications are a native Airflow feature. The `email_on_failure` and `email_on_retry` parameters can be set to `True` either at the DAG level or task level to send emails when tasks fail or retry. The `email` parameter can be used to specify which email(s) you want to receive the notification. If you want to receive email notifications for all DAG failures and retries, you define default arguments similar to this example:
 
 ```python
 from datetime import datetime, timedelta
@@ -271,9 +271,9 @@ In the following example, you'll use the [Slack provider](https://registry.astro
 
  5. Define your `on_failure_callback` parameter in your DAG either as a `default_arg` for the whole DAG, or for specific tasks. Set it equal to the function you created in the previous step.
 
-## Airflow Service Level Agreements
+## Airflow service-level agreements
 
-[Airflow Service Level Agreements (SLAs)](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#slas) are a type of notification that you can use if your tasks take longer than expected to complete. If a task takes longer than a maximum amount of time to complete as defined in the SLA, the SLA will be missed and notifications are triggered. This can be useful when you have long-running tasks that might require user intervention after a certain period of time, or if you have tasks that need to complete within a certain period. 
+[Airflow service-level agreements (SLAs)](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#slas) are a type of notification that you can use if your tasks take longer than expected to complete. If a task takes longer than the maximum amount of time to complete as defined in the SLA, the SLA will be missed and notifications are triggered. This can be useful when you have long-running tasks that might require user intervention after a certain period of time, or if you have tasks that need to complete within a certain period. 
 
 Exceeding an SLA does not stop a task from running. If you want tasks to stop running after a certain time, use [timeouts](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#timeouts).
 
@@ -391,6 +391,6 @@ There is no functionality to disable email alerting for SLAs. If you have an `'e
 
 ## Astronomer notifications
 
-If you are running Airflow with Astronomer Software or Astro, there are a number of options available for managing your Airflow notifications. All of the previous methods for sending task notifications from Airflow can be implemented on Astronomer. See the [Astronomer Software](https://docs.astronomer.io/software/airflow-alerts) and [Astro](https://docs.astronomer.io/astro/airflow-alerts) documentation to learn how to leverage notifications on the platform, including how to set up SMTP to enable email alerts.
+If you are running Airflow with Astronomer Software or Astro, there are a number of options available for managing your Airflow notifications. All of the previous methods for sending task notifications from Airflow can be implemented on Astronomer. See the [Astronomer Software](https://docs.astronomer.io/software/airflow-alerts) and [Astro](https://docs.astronomer.io/astro/airflow-alerts) documentation to learn how to leverage notifications on the platform, including how to set up SMTP to enable email notifications.
 
-Astronomer also provides deployment and platform-level alerting to notify you if any aspect of your Airflow or Astronomer infrastructure is unhealthy. For more on that, including how to customize alerts for Software users, see [Alerting in Astronomer Software](https://docs.astronomer.io/software/platform-alerts).
+Astronomer also provides deployment and platform-level alerting to notify you if any aspect of your Airflow or Astronomer infrastructure is unhealthy. For more on that, including how to customize notifications for Software users, see [Alerting in Astronomer Software](https://docs.astronomer.io/software/platform-alerts).
