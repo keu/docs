@@ -42,7 +42,7 @@ module.exports = {
       label: 'Tutorials',
       items: [
         'overview',
-        'executing-notebooks'
+        'execute-notebooks'
       ],
     },
     {
