@@ -1,6 +1,6 @@
 ---
 title: "Manage Airflow DAG notifications"
-sidebar_label: "Manage Airflow DAG notifications"
+sidebar_label: "DAG alerts"
 description: "Methods for managing notifications in your Airflow DAGs."
 id: error-notifications-in-airflow
 ---
