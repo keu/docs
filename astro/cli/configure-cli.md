@@ -2,16 +2,20 @@
 sidebar_label: 'Configure the CLI'
 title: 'Configure the Astro CLI'
 id: configure-cli
-description: Update project-level configurations for the Astro CLI.
+description: Make changes to your project and local Apache Airflow environment with the Astro CLI.
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {siteVariables} from '@site/src/versions';
 
-You can use `astro config set` to update local configurations for an Astro project. These configurations affect the behavior of local Airflow environments and the CLI commands that you run within the project directory. They are mostly used for debugging and troubleshooting your Airflow infrastructure.
+Every Astro project includes a file called `.astro/config.yaml` that supports various project-level settings, including:
 
-Use this document to learn more about each possible configuration. Note that some possible configurations are not documented here because they are used only on Astronomer Software.
+- The name of your Astro project.
+- The port for the Airflow webserver and Postgres metadata database.
+- The username and password for accessing the Postgres metadata database.
+
+In most cases, you only need to modify these settings in the case of debugging and troubleshooting the behavior of Airflow components in your local environment.
 
 ## Set a configuration
 
@@ -23,7 +27,7 @@ astro config set <configuration> <value>
 
 This command applies your configuration to `.astro/config.yaml` in your current Astro project. Configurations do not persist between Astro projects.
 
-For example, to update the port of your local Airflow webserver, you can run the following:
+For example, to update the port of your local Airflow webserver to 8081 from the default of 8080, run:
 
 ```sh
 astro config set webserver.port 8081

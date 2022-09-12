@@ -5,8 +5,6 @@ id: overview
 description: Learn about every command that you can run with the Astro CLI.
 ---
 
-## Run Airflow locally
-
 The Astro CLI is the command line interface for data orchestration. It's the easiest way to get started with [Apache Airflow](https://airflow.apache.org/) and can be used with all Astronomer products.
 
 The Astro CLI is open source and built for data practitioners everywhere. The binary is maintained in the public [Astro CLI GitHub repository](https://github.com/astronomer/astro-cli), where pull requests and GitHub issues are welcome.
