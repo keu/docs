@@ -31,7 +31,7 @@ To complete this tutorial, you'll need to know:
 ## Prerequisites
 
 - An Astro project created with the [Astro CLI](https://docs.astronomer.io/astro/cli/configure-cli).
-- A GitHub account with a personal access token.
+- A GitHub account with a personal access token and at least one repository. If you don’t have a GitHub repository you can follow the [steps in the GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo) on how to create one.
 
 :::note
 
@@ -41,7 +41,7 @@ If you do not have a GitHub account you can create one for free following the st
 
 ## Step 1: Start your Astro project
 
-Navigate to the folder of your Astro project from the Get started with Apache Airflow tutorial. 
+Navigate to the directory of your Astro project from the Get started with Apache Airflow tutorial. 
 
 1. Run the following Astro CLI command to start Airflow:
 
@@ -55,7 +55,7 @@ Navigate to the folder of your Astro project from the Get started with Apache Ai
 
 ## Step 2: Create your DAG file
 
-1. Create a new Python file in the `/dags` folder of your Astro project called `my_second_dag.py`.
+1. Create a new Python file in the `/dags` directory of your Astro project called `my_second_dag.py`.
 2. Copy the Getting started with Apache Airflow Part 2 example DAG from the Astronomer Registry.
 3. Paste the code into `my_second_dag.py`.
 
@@ -75,7 +75,7 @@ Navigate to the folder of your Astro project from the Get started with Apache Ai
 
 3. Copy the provider name and version from **Quick Install**. 
 4. Paste the provider name and version into the `requirements.txt` file of your Astro project. Make sure to only add `apache-airflow-providers-github=<version>` without `pip install`. 
-5. Restart your Airflow environment by running `astro dev restart`. Unlike DAG code changes, dependency changes require a complete restart of Airflow.
+5. Restart your Airflow environment by running `astro dev restart`. Unlike DAG code changes, package dependency changes require a complete restart of Airflow.
 
 ## Step 4: Add an Airflow variable
 
@@ -93,12 +93,6 @@ After restarting your Airflow instance, you should not see the same DAG import e
 
 4. Go back to the **DAGs** view. You should now see your DAG without any import errors.
 
-:::note
-
-If you don’t have a GitHub repository you can follow the [steps in the GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo) on how to create one.
-
-:::
-
 ## Step 5: Create a GitHub connection
 
 An Airflow connection is a set of configurations for connecting with an external tool in the data ecosystem. If you use a hook or operator that connects to an external system, it likely needs a connection. 
@@ -111,18 +105,14 @@ In your example DAG, you used two operators that interact with two external syst
 
 2. Click **+** to open the form for adding a new Airflow connection.
 3. Name the connection `my_github_connection` and set its **Connection Type** to `GitHub`. Note that you can only select connection types that are available from either core Airflow or an installed provider package. If you are missing the connection type `GitHub`, double check that you installed the `GitHub` provider correctly in Step 3.
-4. Enter your **GitHub Access Token**. 
+4. Enter your **GitHub Access Token** in the GitHub Access Token field. If you need to create a token, you can follow the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 5. Test your connection by clicking **Test**. You should see a green banner indicating that your connection was successfully tested.
     
     ![GitHub Connection](/img/tutorials/T2_GitHubConnection.png)
+
+    Note that the option to test connections was added in Airflow 2.2. If you are running an older version of Airflow, you can skip this step.
     
 6. Save the connection by clicking the `Save` button.
-
-:::info
-
-The option to test connections was added in Airflow 2.2. If you are running an older version of Airflow, you can skip step 5.
-
-:::
 
 ## Step 6: Create an HTTP connection
 
