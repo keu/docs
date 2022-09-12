@@ -103,13 +103,13 @@ The KubernetesPodOperator can be instantiated like any other operator within the
 - `pod_template_file`: The path to a Pod template file.
 - `full_pod_spec`: A complete Pod configuration formatted as a Python `k8s` object.
 
-There are also many other arguments that can be used to configure the Pod and pass information to the Docker image. For a list of the available KubernetesPodOperator arguments, see the [KubernetesPodOperator source code](https://github.com/apache/airflow/blob/main/airflow/providers/cncf/kubernetes/operators/kubernetes_pod.py).
+There are many other arguments that can be used to configure the Pod and pass information to the Docker image. For a list of the available KubernetesPodOperator arguments, see the [KubernetesPodOperator source code](https://github.com/apache/airflow/blob/main/airflow/providers/cncf/kubernetes/operators/kubernetes_pod.py).
 
 The following KubernetesPodOperator arguments can be used with Jinja templates: `image`, `cmds`, `arguments`, `env_vars`, `labels`, `config_file`, `pod_template_file`, and `namespace`.
 
 ### Configure a Kubernetes connection
 
-If you leave `in_cluster=True`, you only need to specify the KubernetesPodOperator's `namespace` argument to establish a connection with your Kubernetes cluster. The Pod specified by the KubernetesPodOperator runs on the same Kubernetes cluster as your Airflow instance is running on.
+If you leave `in_cluster=True`, you only need to specify the KubernetesPodOperator's `namespace` argument to establish a connection with your Kubernetes cluster. The Pod specified by the KubernetesPodOperator runs on the same Kubernetes cluster as your Airflow instance.
 
 If you are not running Airflow on Kubernetes, or want to send the Pod to a different cluster than the one currently hosting your Airflow instance, you can create a Kubernetes Cluster [connection](https://www.astronomer.io/guides/connections) which uses the [Kubernetes hook](https://registry.astronomer.io/providers/kubernetes/modules/kuberneteshook) to connect to the [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) of a different Kubernetes cluster. This connection can be passed to the KubernetesPodOperator using the `kubernetes_conn_id` argument and requires the following components to work:
 
@@ -118,17 +118,15 @@ If you are not running Airflow on Kubernetes, or want to send the Pod to a diffe
 
 The following image shows how to set up a Kubernetes cluster connection in the Airflow UI.
 
-![Kubernetes Cluster Connection](https://assets2.astronomer.io/main/guides/kubepod-operator/kubernetes_cluster_connection.png)
+![Kubernetes Cluster Connection](/img/guides/kubernetes_cluster_connection.png)
 
 The components of the connection can also be set or overwritten at the task level by using the arguments `config_file` (to specify the path to the `KubeConfig` file) and `cluster_context`. Setting these parameters at the level of `airflow.cfg` has been deprecated.
 
 ### Example: Using the KubernetesPodOperator to run a script in another language
 
-A frequent use case for the KubernetesPodOperator is run a task in a language other than Python. To do this, you build a custom Docker image containing the script.
+A frequent use case for the KubernetesPodOperator is running a task in a language other than Python. To do this, you build a custom Docker image containing the script.
 
-> **Note**: Astro provides documentation on [how to run images from private repositories](https://docs.astronomer.io/astro/kubernetespodoperator).
-
-For example, say that we want to run the following Haskell script, which prints the value of `NAME_TO_GREET` to the console:
+In the following example, the Haskell script runs and the value `NAME_TO_GREET` is printed on the console:
 
 ```haskell
 import System.Environment
@@ -138,7 +136,7 @@ main = do
         putStrLn ("Hello, " ++ name)
 ```
 
-The Dockerfile creates the necessary environment to run the script and then executes it with a `CMD` command.
+The Dockerfile creates the necessary environment to run the script and then executes it with a `CMD` command:
 
 ```Dockerfile
 FROM haskell
@@ -151,7 +149,7 @@ RUN cabal install
 CMD ["haskell_example"]
 ```
 
-After making the Docker image available it can be run from the KubernetesPodOperator via the `image` argument. The example DAG below showcases a variety of arguments of the KubernetesPodOperator, including how to pass `NAME_TO_GREET` to the Haskell code.
+After making the Docker image available, it can be run from the KubernetesPodOperator with the `image` argument. The following example DAG showcases a variety of arguments of the KubernetesPodOperator, including how to pass `NAME_TO_GREET` to the Haskell code.
 
 ```python
 from airflow import DAG
@@ -208,9 +206,9 @@ with DAG(
 
 [XCom](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) is a commonly used Airflow feature for passing small amounts of data between tasks. You can use the KubernetesPodOperator to both receive values stored in XCom and push values to XCom.
 
-The DAG below shows an ETL pipeline with an `extract_data` task that runs a query on a database and returns a value. The return value is automatically pushed to XComs thanks to the [TaskFlow API](https://airflow.apache.org/docs/apache-airflow/stable/tutorial_taskflow_api.html#tutorial-on-the-taskflow-api).  
+The following example DAG shows an ETL pipeline with an `extract_data` task that runs a query on a database and returns a value. The [TaskFlow API](https://airflow.apache.org/docs/apache-airflow/stable/tutorial_taskflow_api.html#tutorial-on-the-taskflow-api) automatically pushes the return value to XComs.  
 
-The `transform` task is a KubernetesPodOperator which requires the XCom data pushed from the upstream task before it, and launches an image having been built with the following Dockerfile:
+The `transform` task is a KubernetesPodOperator which requires that the XCom data is pushed from the upstream task before it, and then launches an image created with the following Dockerfile:
 
 ```dockerfile
 FROM python
@@ -226,7 +224,7 @@ COPY multiply_by_23.py ./
 CMD ["python", "./multiply_by_23.py"]
 ```
 
-When using XComs with the KubernetesPodOperator, you must create the file `airflow/xcom/return.json` in your Docker container (ideally from within your Dockerfile as seen above), because Airflow can only look for XComs to pull at that specific location. The Docker image also contains a simple Python script (shown below) to multiply an environment variable by 23, package the result into JSON, and write that JSON to the correct file to be retrieved as an XCom. The XComs from the KubernetesPodOperator are pushed only if the task itself was marked as successful.  
+When using XComs with the KubernetesPodOperator, you must create the file `airflow/xcom/return.json` in your Docker container (ideally from within your Dockerfile), because Airflow can only look for XComs to pull at that specific location. IN the following example, the Docker image contains a simple Python script to multiply an environment variable by 23, package the result into JSON, and then write that JSON to the correct file to be retrieved as an XCom. The XComs from the KubernetesPodOperator are pushed only if the task is marked successful.  
 
 ```python
 import os
@@ -244,9 +242,9 @@ f.write(f"{return_json}")
 f.close()
 ```
 
-Lastly the `load_data` task pulls the XCom returned from the `transform` task and prints it to the console.
+The `load_data` task pulls the XCom returned from the `transform` task and prints it to the console.
 
-Below you can find the full DAG code. Remember to turn on `do_xcom_push` only if you have created the `airflow/xcom/return.json` within the Docker container run by the KubernetesPodOperator. Otherwise, the task will fail.
+The full DAG code is provided in the following example. To avoid task failure, turn on `do_xcom_push` after you create the `airflow/xcom/return.json` within the Docker container run by the KubernetesPodOperator.
 
 
 ```python
@@ -318,107 +316,105 @@ with DAG(
 
 ## Example: Using KubernetesPodOperator to run a Pod in a separate cluster
 
-If some of your tasks require specific resources like a GPU, you might want to run them in a different cluster than your Airflow instance. In setups where both clusters are used by the same AWS or GCP account, this can be managed with roles and permissions. There is also the possibility to use a CI account and enable [cross-account access to AWS EKS cluster resources](https://aws.amazon.com/blogs/containers/enabling-cross-account-access-to-amazon-eks-cluster-resources/).  
+If some of your tasks require specific resources such as a GPU, you might want to run them in a different cluster than your Airflow instance. In setups where both clusters are used by the same AWS or GCP account, this can be managed with roles and permissions. There is also the possibility to use a CI account and enable [cross-account access to AWS EKS cluster resources](https://aws.amazon.com/blogs/containers/enabling-cross-account-access-to-amazon-eks-cluster-resources/).  
 
-However, you might want to use a specific AWS or GCP account that you keep separate from your Airflow environment. Or you might run Airflow on a local setup without Kubernetes, but you still want to run some tasks in a Kubernetes Pod on a remote cluster.
+This example shows how to set up an EKS cluster on AWS and run a Pod on it from an Airflow instance where cross-account access is not available.The same process applicable to other Kubernetes services such as GKE.  
 
-This example shows how to set up an EKS cluster on AWS and run a Pod on it from an Airflow instance where cross-account access is not available. Note that the same general steps are applicable to other Kubernetes services (e.g. GKE).  
-
-> **Note**: Some platforms which can host Kubernetes clusters have their own specialised operators available like the [GKEStartPodOperator](https://registry.astronomer.io/providers/google/modules/gkestartPodoperator) and the [EksPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/_api/airflow/providers/amazon/aws/operators/eks/index.html#module-airflow.providers.amazon.aws.operators.eks).
+Some platforms which can host Kubernetes clusters have their own specialised operators. For excample, the [GKEStartPodOperator](https://registry.astronomer.io/providers/google/modules/gkestartPodoperator) and the [EksPodOperator](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/_api/airflow/providers/amazon/aws/operators/eks/index.html#module-airflow.providers.amazon.aws.operators.eks).
 
 ### Step 1: Set up an EKS cluster on AWS
 
-To set up a new EKS cluster on AWS, first [create an EKS cluster IAM role](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html#create-service-role) with a unique name and add the following permission policies:
+1. [Create an EKS cluster IAM role](https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html#create-service-role) with a unique name and add the following permission policies:
 
-- `AmazonEKSWorkerNodePolicy`
-- `AmazonEKS_CNI_Policy`
-- `AmazonEC2ContainerRegistryReadOnly`
+    - `AmazonEKSWorkerNodePolicy`
+    - `AmazonEKS_CNI_Policy`
+    - `AmazonEC2ContainerRegistryReadOnly`
 
-[Update the trust policy](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html) of this new role to include your user and necessary AWS Services. This step ensures that the role can be assumed by your user.
+2. [Update the trust policy](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html) of this new role to include your user and necessary AWS Services. This step ensures that the role can be assumed by your user.
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
+    ```json
     {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS": "arn:aws:iam::<aws account id>:<your user>",
-        "Service": [
-              "ec2.amazonaws.com",
-              "eks.amazonaws.com"
-        ]
-      },
-      "Action": "sts:AssumeRole"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+        "Effect": "Allow",
+        "Principal": {
+            "AWS": "arn:aws:iam::<aws account id>:<your user>",
+            "Service": [
+                "ec2.amazonaws.com",
+                "eks.amazonaws.com"
+            ]
+        },
+        "Action": "sts:AssumeRole"
+        }
+    ]
     }
-  ]
-}
-```
+    ```
 
-Add the new role to your local AWS config file, which by default is located at `~/.aws/config` (for more information see the [AWS docs](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html#cli-configure-files-where)).
+3. Add the new role to your local AWS config file, which by default is located at `~/.aws/config` (for more information see the [AWS docs](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html#cli-configure-files-where)).
 
-```text
-[default]
-region = <your region>
+    ```text
+    [default]
+    region = <your region>
 
-[profile <name of the new role>]
-role_arn = <EKS role arn>
-source_profile = <your user>
-```
+    [profile <name of the new role>]
+    role_arn = <EKS role arn>
+    source_profile = <your user>
+    ```
 
-Make sure your default credentials include a valid and active key for your username (see the [AWS docs](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for more information).
+4. Make sure your default credentials include a valid and active key for your username. See [Programmatic access](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for more information).
 
-Make a copy of `~/.aws/credentials` and `~/.aws/config` available to your Airflow environment. If you run Airflow using the Astro CLI, create a new directory called `.aws` in the `include` folder of your Astro project and copy both files into it.
+5. Make a copy of `~/.aws/credentials` and `~/.aws/config` available to your Airflow environment. If you run Airflow using the Astro CLI, create a new directory called `.aws` in the `include` folder of your Astro project and copy both files into it.
 
-Lastly, [create a new EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html) and assign the newly created role to it.
+6. [Create a new EKS cluster](https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html) and assign the newly created role to it.
 
 ### Step 2: Retrieve the KubeConfig file from the EKS cluster
 
-Use a `KubeConfig` file to remotely connect to your new EKS cluster. Retrieve it by running:
+1. Use a `KubeConfig` file to remotely connect to your new EKS cluster. Run the following command to retrieve it:
 
-```bash
-aws eks --region <your-region> update-kubeconfig --name <cluster-name>
-```
+    ```bash
+    aws eks --region <your-region> update-kubeconfig --name <cluster-name>
+    ```
 
-This command copies information relating to the new cluster into your existing `KubeConfig` file at `~/.kube/config`.
+    This command copies information relating to the new cluster into your existing `KubeConfig` file at `~/.kube/config`.
 
-Check this file before making it available to Airflow. It should look like the following configuration. If any of the configurations listed here are missing, add them to the file.
+2. Check this file before making it available to Airflow. It should appear similar to the following configuration. Add any missing configurations to the file.
 
-```text
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: <your certificate>
-    server: <your AWS server address>
-  name: <arn of your cluster>
-contexts:
-- context:
-    cluster: <arn of your cluster>
-    user: <arn of your cluster>
-  name: <arn of your cluster>
-current-context: <arn of your cluster>
-kind: Config
-preferences: {}
-users:
-- name: <arn of your cluster>
-  user:
-    exec:
-      apiVersion: client.authentication.k8s.io/v1alpha1
-      args:
-      - --region
-      - <your cluster's AWS region>
-      - eks
-      - get-token
-      - --cluster-name
-      - <name of your cluster>
-      - --profile
-      - default
-      command: aws
-      interactiveMode: IfAvailable
-      provideClusterInfo: false
-```
+    ```text
+    apiVersion: v1
+    clusters:
+    - cluster:
+        certificate-authority-data: <your certificate>
+        server: <your AWS server address>
+    name: <arn of your cluster>
+    contexts:
+    - context:
+        cluster: <arn of your cluster>
+        user: <arn of your cluster>
+    name: <arn of your cluster>
+    current-context: <arn of your cluster>
+    kind: Config
+    preferences: {}
+    users:
+    - name: <arn of your cluster>
+    user:
+        exec:
+        apiVersion: client.authentication.k8s.io/v1alpha1
+        args:
+        - --region
+        - <your cluster's AWS region>
+        - eks
+        - get-token
+        - --cluster-name
+        - <name of your cluster>
+        - --profile
+        - default
+        command: aws
+        interactiveMode: IfAvailable
+        provideClusterInfo: false
+    ```
 
-Once you confirm that the `KubeConfig` file is formatted properly, make it available to Airflow. If you're an Astro CLI user, you can do this by adding the file to the `include` directory of your Astro project.
+3. Confirm that the `KubeConfig` file is formatted properly and make it available to Airflow. If you're an Astro CLI user, you can do this by adding the file to the `include` directory of your Astro project.
 
 ### Step 3: Add a new namespace to the EKS cluster
 
@@ -431,7 +427,7 @@ kubectl create namespace <your-namespace-name>
 
 ### Step 4: Adjust the Airflow configuration files
 
-This step will differ depending on the Airflow setup.
+This step will differ depending on your Airflow setup.
 
 #### Local Apache Airflow
 
@@ -460,7 +456,7 @@ apache-airflow-providers-amazon
 
 ### Step 5: Add AWS connection ID
 
-In the Airflow UI, go to **Admin** -> **Connections** to set up the connection to the AWS account running the target EKS cluster. Set the following configurations for the connection:
+In the Airflow UI, go to **Admin** > **Connections** and complete these fields:
 
 - **Connection ID**: Any
 - **Connection Type**: Amazon Web Services
@@ -469,7 +465,7 @@ In the Airflow UI, go to **Admin** -> **Connections** to set up the connection t
 
 ### Step 6: Create the DAG with the KubernetesPodOperator
 
-> **Note**: When creating new deployments, users of the Astro cloud will need to set one additional argument in the KubernetesPodOperator: `labels={"airflow_kpo_in_cluster": "False"}` to connect to a remote cluster. If you are trying to set up the KubernetesPodOperator connecting to a remote cluster in an existing deployment please contact Customer Support.
+When you create new Deployments, you'll need to set one additional argument in the KubernetesPodOperator: `labels={"airflow_kpo_in_cluster": "False"}` to connect to a remote cluster. If you are trying to set up the KubernetesPodOperator connecting to a remote cluster in an existing deployment please contact Customer Support.
 
 The following DAG utilizes several classes from the Amazon provider package to dynamically spin up and delete Pods for each task in a newly created node group. If your remote Kubernetes cluster already has a node group available, you only need to define your task in the KubernetesPodOperator itself.
 
@@ -602,6 +598,6 @@ with DAG(
     run_on_EKS >> delete_gpu_nodegroup >> check_nodegroup_termination
 ```
 
-It is possible to view the remote Pod while it runs using `kubectl` (if the local command line connection to the remote cluster has been configured):
+If you've configured a local command line connection to the remote cluster, you can use `kubectl` to view the remote Pod while it runs. For example:
 
-![Kubectl remote Pod running](https://assets2.astronomer.io/main/guides/kubepod-operator/kubectl_remote_pod.png)
+ ![Kubectl remote Pod running](/img/guides/kubectl_remote_pod.png)
