@@ -80,7 +80,7 @@ This command builds your project and spins up 4 Docker containers on your machin
 
 If your project builds successfully, the Airflow UI automatically opens in your default webserver at `https://localhost:8080/`.
 
-When you create an Astro project, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database by default. If these ports are already in use on your local computer, an error message might appear. To resolve this error message, see [Test and troubleshoot locally](test-and-troubleshoot-locally.md#port-allocation-issues).
+When you create an Astro project, the Astro CLI uses port `8080` for the Airflow webserver and port `5432` for the Airflow metadata database by default. If these ports are already in use on your local computer, an error message might appear. To resolve this error message, see [Test and troubleshoot locally](test-and-troubleshoot-locally.md#ports-are-not-available).
 
 ## Step 3: Access the Airflow UI
 
