@@ -35,6 +35,7 @@ module.exports = {
         'bashoperator',
         'debugging-dags',
         'deferrable-operators',
+        'managing-airflow-code',
       ],
     },
     {
