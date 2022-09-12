@@ -41,9 +41,27 @@ If you do not have a GitHub account you can create one for free following the st
 
 ## Step 1: Start your Astro project
 
-Navigate to the directory of your Astro project from the Get started with Apache Airflow tutorial. 
+To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial]().
 
-1. Run the following Astro CLI command to start Airflow:
+1. Create a new directory for your Astro project:
+
+    ```sh
+    mkdir <your-astro-project-name>
+    ```
+
+2. Open the directory:
+
+    ```sh
+    cd <your-astro-project-name>
+    ```
+
+3. Run the following Astro CLI command to initialize an Astro project in the directory:
+
+    ```sh
+    astro dev init
+    ```
+
+4. Run the following Astro CLI command to start Airflow:
 
     ```bash
     astro dev start
@@ -51,9 +69,9 @@ Navigate to the directory of your Astro project from the Get started with Apache
 
     Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
 
-2. Log in to the Airflow UI with `admin` for both your username and password.
+5. Log in to the Airflow UI with `admin` for both your username and password.
 
-## Step 2: Create your DAG file
+## Step 2: Create your DAG
 
 1. Create a new Python file in the `/dags` directory of your Astro project called `my_second_dag.py`.
 2. Copy the Getting started with Apache Airflow Part 2 example DAG from the Astronomer Registry.
