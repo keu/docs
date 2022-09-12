@@ -263,6 +263,6 @@ To confirm that your setup is successful, run a Spark job after you save your co
 </TabItem>
 </Tabs>
 
-## Make source code visible for supported operators
+## Make source code visible for Airflow operators
 
 Because Workspace permissions are not yet applied to the **Lineage** tab, viewing source code for [supported Airflow operators](data-lineage-support-and-compatibility.md#supported-airflow-operators) is off by default. If you want users across Workspaces to be able to view source code for Airflow tasks in a given Deployment, create an [environment variable](environment-variables.md) in the Deployment with a key of `OPENLINEAGE_AIRFLOW_DISABLE_SOURCE_CODE` and a value of `False`. Astronomer recommends enabling this feature only for Deployments with non-sensitive code and workflows.
