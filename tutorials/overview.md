@@ -7,19 +7,19 @@ hide_table_of_contents: true
 description: 'Use tutorials and guides to make the most out of Airflow and Astronomer.'
 ---
 
-Learn how to write data pipelines and get Airflow up and running for any use case. These tutorials provide step-by-step instructions for writing DAGs and setting up Airflow.
+Learn how to write data pipelines and become an expert on data orchestration. These tutorials provide step-by-step instructions for both basic and advanced use cases on Apache Airflow and Astro.
 
 ## Tutorials
 
-- **[Get started with Apache Airflow](get-started-with-airflow.md)**: Learn how write and run your first DAG in Airflow.
-- **[Develop an ETL pipeline with the Astro Python SDK](astro-python-sdk.md)**: Develop an entire ETL pipeline that you can run from your local computer.
+- [Get started with Apache Airflow](get-started-with-airflow.md): Learn how write and run your first DAG in Airflow.
+- [Write an ETL pipeline with the Astro Python SDK](astro-python-sdk.md): Develop an entire ETL pipeline that you can run from your local computer.
 
-## More learning resources  
+## Learn more
 
-- [Astronomer Webinars](https://www.astronomer.io/events/webinars/) cover concepts and use cases in-depth and offer the possibility to ask us questions live on air.
-- [Live with Astronomer](https://www.astronomer.io/events/live/) are hands-on and code focussed live walkthroughs of specific Airflow features.
+- [Astronomer Webinars](https://www.astronomer.io/events/webinars/) are live, recorded events that cover in-depth data orchestration concepts and use cases. They are run by Astronomer team members who often answer questions and give advice.
+- [Live with Astronomer](https://www.astronomer.io/events/live/) are hands-on workshops that offer live walkthroughs of specific Airflow features in code.
 - [Astronomer Guides](https://www.astronomer.io/guides/) cover both entry and expert level concepts in Airflow.
-- [Astronomer Academy](https://academy.astronomer.io/) offers many video tutorials and the option to purchase full length Airflow courses and to take exams to get certified.
+- [Astronomer Academy](https://academy.astronomer.io/) offers step-by-step video tutorials for basic and advanced functionality of both Astro and Airflow. The Academy also offers full-length Airflow courses and certification exams.
 
 Don't know where to start? For beginners, the next resources we recommend are:
 

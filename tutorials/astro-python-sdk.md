@@ -1,12 +1,13 @@
 ---
-title: 'Develop an ETL pipeline with the Astro Python SDK'
-sidebar_label: 'Astro Python SDK'
+title: 'Write an ETL pipeline with the Astro Python SDK'
+sidebar_label: 'Write an ETL pipeline with the Astro SDK'
 id: astro-python-sdk
-description: 'Run an ETL pipeline with the Astro SDK.'
+description: 'Write an ETL pipeline for Amazon S3 and Snowflake with the Astro SDK.'
 ---
 
+This tutorial demonstrates how to write an Extract, Transform, Load (ETL) pipeline on your local machine with the Astro Python SDK. The Astro SDK is maintained by Astronomer and simplifies the pipeline authoring process with native Python functions for common data orchestration use cases.
 
-This tutorial demonstrates how to use the Astro Python SDK through a simple ETL pipeline that you can run on your local machine. The pipeline you build will:
+The pipeline you build in this tutorial :
 
 - **Extract** a file from S3 into a Snowflake relational table.
 - **Transform** that table in Snowflake.
@@ -17,7 +18,8 @@ This tutorial demonstrates how to use the Astro Python SDK through a simple ETL 
 To get the most out of this tutorial, make sure you have a knowledge of:
 
 - Basic Python and SQL.
-- Airflow fundamentals, such as writing DAGs and defining tasks.
+- Basic knowledge of [Amazon S3](https://aws.amazon.com/s3/getting-started/) and [Snowflake](https://docs.snowflake.com/en/user-guide-getting-started.html).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
 
 ## Prerequisites
 
@@ -25,10 +27,11 @@ To complete this tutorial, you need:
 
 - An AWS S3 account with a [storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html). If you don't already have an account, Amazon offers 5GB of free storage in S3 for 12 months. This should be more than enough for this tutorial.
 - A Snowflake Enterprise account. If you don't already have an account, Snowflake has a [free Snowflake trial](https://signup.snowflake.com/) for 30 days.
-- Python 3.
-- A local Airflow environment. You can use either [Apache Airflow](https://airflow.apache.org/docs/apache-airflow/stable/start/local.html) or [the Astro CLI](https://docs.astronomer.io/astro/cli/get-started) to run your environment. If you're using the Astro CLI, we recommend [creating a new Astro project](https://docs.astronomer.io/astro/create-project) for this tutorial.
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 
 ## Step 1: Set up your data stores
+
+To run the DAG, you first need to load some arbitrary data into S3 and create a destination for the data in Snowflake.
 
 1. On your local machine create a file named `orders_data_header.csv` with the following data:
 
@@ -40,7 +43,7 @@ To complete this tutorial, you need:
     ```
 
 2. [Upload `orders_data_header.csv`](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html) to your S3 bucket.
-3. In Snowflake, create a new Worksheet and run the following SQL commands:
+3. In Snowflake, create a new [worksheet](https://docs.snowflake.com/en/user-guide/ui-worksheet.html) and run the following SQL commands:
 
     ```sql
     CREATE DATABASE ASTRO_SDK_DB;
@@ -48,86 +51,71 @@ To complete this tutorial, you need:
     CREATE SCHEMA ASTRO_SDK_SCHEMA;
     ```
 
-    Ensure that you have `ACCOUNTADMIN` permissions for your newly created database.
+    These commands create all of the required data stores for the load step of your pipeline. Ensure that you have `ACCOUNTADMIN` permissions for your newly created database.
 
 ## Step 2: Set up your Airflow environment
 
-1. Install the Astro Python SDK. If you are using Apache Airflow, run the following command to install the Python SDK and additional packages packages required for working with AWS and Snowflake.
+1. Run the following commands to create a new Astro project
 
-    ```shell
-    pip install 'astro-sdk-python[amazon,snowflake]>=1.0'
+    ```sh
+    $ mkdir astro-sdk-tutorial && cd astro-sdk-tutorial
+    $ astro dev init
     ```
 
-    If you are using the Astro CLI, you can install these packages by adding the following line to the `requirements.txt` file of your Astro project:
+2. Add the following line to the `requirements.txt` file of your Astro project to install the Python SDK and required dependencies for the tutorial:
 
     ```text
     astro-sdk-python[amazon,snowflake]>=0.11
     ```
 
-2. Create the necessary environment variables for running the Astro SDK. If you are using Apache Airflow, you can do this by running the following commands:
-
-    ```shell
-    export AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
-    export AIRFLOW__ASTRO_SDK__SQL_SCHEMA=ASTRO_SDK_SCHEMA
-    ```
-
-    If you are using the Astro CLI, you can do this by adding the following text to your `.env` file:
+3. Add the following environment variables to the `.env` file of your project:
 
     ```text
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
     AIRFLOW__ASTRO_SDK__SQL_SCHEMA=ASTRO_SDK_SCHEMA
     ```
 
-    > **Note:** If you're running Airflow on macOS, you must additionally set the following environment variable [(background)](https://github.com/apache/airflow/issues/12808):
-        ```shell
-        export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-        ```
+    If you're running Airflow on macOS, additionally set the following environment variable [(background)](https://github.com/apache/airflow/issues/12808):
 
-3. Start Airflow. If you have an Apache Airflow environment, you can do this by running:
-
-    ```sh
-    airflow standalone
+    ```shell
+    export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
     ```
 
-    If you use the Astro CLI, you can start a local Airflow environment by opening your Astro project and running:
+4. Run the following command to start your project in a local environment:
 
     ```sh
     astro dev start
     ```
 
-4. Confirm that your environment is up and running by opening `http://localhost:8080/` in a web browser.
-
 ## Step 3: Create Airflow connections to data stores
 
 1. Open the Airflow UI at `http://localhost:8080/`
-2. Open to **Admin** > **Connections**.
-3. Create a new connection with the following values:
+2. Go to **Admin** > **Connections**.
+3. Create a new connection to AWS S3 with the following values:
+
     - Connection ID: `aws_default`
     - Connection type: `S3`
     - Extra: `{"aws_access_key_id": "<your_access_key>", "aws_secret_access_key": "<you_secret_access_key>"}`
 
-### Connect Snowflake to Airflow
+4. Create a new connection to Snowflake with the following values
 
-Click on the blue "+" icon to *Add a new record*
-
-- Connection Id: `snowflake_default`
-- Connection Type: `Snowflake`
-- Host: `https://<account>.<region>.snowflakecomputing.com/`. This is the URL where you can log into your Snowflake account
-- Schema: `ASTRO_SDK_SCHEMA`
-- Login:
-- Password:
-- Account:
-- Database: `ASTRO_SDK_DB`
-- Region: (something like `us-east-1` or `us-central1.gcp`)
-- Role: `ACCOUNTADMIN`
-- Warehouse: `ASTRO_SDK_DW`
-
+    - Connection Id: `snowflake_default`
+    - Connection Type: `Snowflake`
+    - Host: `https://<account>.<region>.snowflakecomputing.com/`. This is the URL where you can log into your Snowflake account.
+    - Schema: `ASTRO_SDK_SCHEMA`
+    - Login:
+    - Password:
+    - Account:
+    - Database: `ASTRO_SDK_DB`
+    - Region: (something like `us-east-1` or `us-central1.gcp`)
+    - Role: `ACCOUNTADMIN`
+    - Warehouse: `ASTRO_SDK_DW`
 
 ## Step 4: Create and populate some tables in Snowflake
 
-Let's create some auxiliary tables in Snowflake and populate them with a small amount of data for our ETL example.
+Create some auxiliary tables in Snowflake and populate them with a small amount of data for this ETL example.
 
-1. In your Snowflake Worksheet, create and populate a `customers_table`. We will join this table with an orders table that we create with the Astro Python SDK:
+1. In your Snowflake Worksheet, create and populate a `customers_table`. You'll join this table with an orders table that you create with the Astro Python SDK:
 
     ```sql
     CREATE OR REPLACE TABLE customers_table (customer_id CHAR(10), customer_name VARCHAR(100), type VARCHAR(10) );
@@ -135,7 +123,7 @@ Let's create some auxiliary tables in Snowflake and populate them with a small a
     INSERT INTO customers_table (CUSTOMER_ID, CUSTOMER_NAME,TYPE) VALUES     ('CUST1','NAME1','TYPE1'),('CUST2','NAME2','TYPE1'),('CUST3','NAME3','TYPE2');
     ```
 
-2. Create and populate a reporting table. This is where we'll merge our transformed data:
+2. Create and populate a reporting table. This is where you'll merge our transformed data:
 
     ```sql
 
@@ -159,39 +147,41 @@ from datetime import datetime
 from airflow.models import DAG
 from pandas import DataFrame
 
+# Import decorators and classes from the SDK
 from astro import sql as aql
 from astro.files import File
 from astro.sql.table import Table
 
+# Define constants for interacting with external systems
 S3_FILE_PATH = "s3://<aws-bucket-name>"
 S3_CONN_ID = "aws_default"
 SNOWFLAKE_CONN_ID = "snowflake_default"
 SNOWFLAKE_ORDERS = "orders_table"
-SNOWFLAKE_FILTERED_ORDERS = "filtered_table"
-SNOWFLAKE_JOINED = "joined_table"
 SNOWFLAKE_CUSTOMERS = "customers_table"
 SNOWFLAKE_REPORTING = "reporting_table"
 
-
+# Define an SQL query for our transform step as a Python function using the SDK.
+# This function filters out all rows with an amount value less than 150.
 @aql.transform
 def filter_orders(input_table: Table):
     return "SELECT * FROM {{input_table}} WHERE amount > 150"
 
-
+# Define an SQL query for our transform step as a Python function using the SDK.
+# This function joins two tables into a new table.
 @aql.transform
 def join_orders_customers(filtered_orders_table: Table, customers_table: Table):
     return """SELECT c.customer_id, customer_name, order_id, purchase_date, amount, type
     FROM {{filtered_orders_table}} f JOIN {{customers_table}} c
     ON f.customer_id = c.customer_id"""
 
-
+# Define a function for transforming tables to dataframes
 @aql.dataframe
 def transform_dataframe(df: DataFrame):
     purchase_dates = df.loc[:, "purchase_date"]
     print("purchase dates:", purchase_dates)
     return purchase_dates
 
-
+# Basic DAG definition. Run the DAG starting January 1st, 2019 on a daily schedule.
 dag = DAG(
     dag_id="astro_orders",
     start_date=datetime(2019, 1, 1),
@@ -210,7 +200,7 @@ with dag:
         output_table=Table(conn_id=SNOWFLAKE_CONN_ID),
     )
 
-    # Create a Table object for customer data in our Snowflake database
+    # Create a Table object for customer data in the Snowflake database
     customers_table = Table(
         name=SNOWFLAKE_CUSTOMERS,
         conn_id=SNOWFLAKE_CONN_ID,
@@ -220,8 +210,8 @@ with dag:
     # saving the output into a temporary table referenced by the Table instance `joined_data`
     joined_data = join_orders_customers(filter_orders(orders_data), customers_table)
 
-    # Merge the joined data into our reporting table, based on the order_id .
-    # If there's a conflict in the customer_id or customer_name then use the ones from
+    # Merge the joined data into the reporting table based on the order_id.
+    # If there's a conflict in the customer_id or customer_name, then use the ones from
     # the joined data
     reporting_table = aql.merge(
         target_table=Table(
@@ -234,12 +224,17 @@ with dag:
         if_conflicts="update",
     )
 
+    # Transform the reporting table into a dataframe
     purchase_dates = transform_dataframe(reporting_table)
 
     # Delete temporary and unnamed tables created by `load_file` and `transform`, in this example
     # both `orders_data` and `joined_data`
     aql.cleanup()
 ```
+
+This DAG extracts the data you loaded into S3 into Airflow and runs a few simple SQL statements to clean the data, load it into a reporting table on Snowflake, and transform it into a dataframe so that you can print various table details to Airflow logs using Python.
+
+Much of this DAG's functionality comes from the Python functions that use task decorators from the Python SDK. See [How it works](#how-it-works) for more information about these decorators and the benefits of using the SDK for this implementation.  
 
 ## Step 6: Run the code
 
@@ -378,3 +373,13 @@ You can clean up temporary tables in one of two ways:
     # Alternative syntax:
     [orders_data, joined_data] >> aql.cleanup()
     ```
+
+## Conclusion
+
+You now know how to use the Astro SDK to write a common ETL pipeline! More specifically, you can now:
+
+- Pass connection and database information to downstream Airflow tasks.
+- Merge tables from different schemas and platforms without using XComs.
+- Run SQL in an entirely Pythonic context.
+
+As a next step, read the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/latest/) to learn more about its functionality and task decorators.
