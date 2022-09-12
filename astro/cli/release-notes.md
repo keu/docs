@@ -7,7 +7,7 @@ description: Release notes for the Astro CLI.
 
 This document provides a summary of all changes made to the [Astro CLI](cli/get-started.md). For general product release notes, go to [Astro Release Notes](release-notes.md).
 
-If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
+If you have any questions or a bug to report, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Astro CLI 1.5.0
 
@@ -15,13 +15,15 @@ Release date: September 2, 2022
 
 ### Additional improvements
 
-- You can now use the `--deployment-name` command with all `astro deployment` commands to specify a Deployment by its name instead of its ID.
-- You can now use the `--no-browser` flag with `astro dev start` to run Airflow on a browserless machine.
-- You can now use the `--wait` flag with `astro deployment create` to have the command wait until the new Deployment is healthy before completing.
-- `astro dev restart` no longer automatically opens a browser tab with the Airflow UI.
+- You can now use a new `--deployment-name` flag with all `astro deployment` commands to specify a Deployment by its name instead of its Deployment ID.
+- You can now use a new `--wait` flag with `astro deployment create` to have the command wait until the new Deployment is healthy before completing.
+- You can now use a new `--no-browser` flag with `astro dev start` if you don't want the Airflow UI to automatically open in a new tab on your browser when you run the command.
+- The `astro dev restart` command no longer opens a new tab in your browser for the Airflow UI. When you use this command to apply changes to your DAGs, the Airflow UI should already be open.
+
 ### Bug fixes
 
 - Fixed an issue where some environment variable values could be truncated when using `astro deployment variable create --load`.
+- Fixed an issue where users with access to more than one Astro Organization could only log in to their primary Organization. Now, users can authenticate to multiple Organizations with a [token login](https://docs.astronomer.io/astro/cli/astro-login). Native support for organization commands is coming soon.
 
 ## Astro CLI 1.4.0
 

@@ -66,7 +66,7 @@ In this section, you'll learn how to use [Hashicorp Vault](https://www.vaultproj
 - Test the backend in a local environment.
 - Deploy your changes to Astronomer Software.
 
-### Prerequisites
+#### Prerequisites
 
 - A [Deployment](configure-deployment.md) on Astronomer.
 - [The Astro CLI](install-cli.md).
@@ -80,7 +80,7 @@ If you do not already have a Vault server deployed but would like to test this f
 - Sign up for a Vault trial on [Hashicorp Cloud Platform (HCP)](https://cloud.hashicorp.com/products/vault) or
 - Deploy a local Vault server using the instructions in the [Airflow Guide](https://www.astronomer.io/guides/airflow-and-hashicorp-vault).
 
-### Step 1: Create a Policy and AppRole in Vault
+#### Step 1: Create a Policy and AppRole in Vault
 
 To use Vault as a secrets backend, Astronomer recommends configuring a Vault AppRole with a policy that grants only the minimum necessary permissions for Astronomer Software. To do this:
 
@@ -106,7 +106,7 @@ To use Vault as a secrets backend, Astronomer recommends configuring a Vault App
 
     Save these values for Step 3.
 
-### Step 2: Write an Airflow variable or connection to Vault
+#### Step 2: Write an Airflow variable or connection to Vault
 
 To test whether your Vault server is set up properly, create a test Airflow variable or connection to store as a secret.
 
@@ -131,7 +131,7 @@ $ vault kv get secret/variables/<your-variable-key>
 $ vault kv get secret/connections/<your-connection-id>
 ```
 
-### Step 3: Set up Vault locally
+#### Step 3: Set up Vault locally
 
 In your Astro project, add the [Hashicorp Airflow provider](https://airflow.apache.org/docs/apache-airflow-providers-hashicorp/stable/index.html) to your project by adding the following to your `requirements.txt` file:
 
@@ -163,7 +163,7 @@ By default, Airflow uses `"kv_engine_version": 2`, but this secret was written u
 
 For more information on the Airflow provider for Hashicorp Vault and how to further customize your integration, see the [Apache Airflow documentation](https://airflow.apache.org/docs/apache-airflow-providers-hashicorp/stable/_api/airflow/providers/hashicorp/hooks/vault/index.html).
 
-### Step 4: Run an example DAG to test Vault locally
+#### Step 4: Run an example DAG to test Vault locally
 
 To test Vault, write a simple DAG which calls your test secret and add this DAG to your project's `dags` directory. For example, you can use the following DAG to print the value of a variable to your task logs:
 
@@ -198,7 +198,7 @@ Once you've added this DAG to your project:
 
 Once you confirm that the setup was successful, you can delete this example DAG.
 
-### Step 5: Deploy on Astronomer Software
+#### Step 5: Deploy on Astronomer Software
 
 Once you've confirmed that the integration with Vault works locally, you can complete a similar set up with a Deployment on Astronomer Software.
 
@@ -214,7 +214,7 @@ Now, any Airflow variable or connection that you write to your Vault server can 
 
 In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html) as a secrets backend on Astronomer Software.
 
-### Prerequisites
+#### Prerequisites
 
 - A [Deployment](configure-deployment.md).
 - The [Astro CLI](install-cli.md).
@@ -222,13 +222,13 @@ In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter St
 - Access to AWS SSM Parameter Store.
 - A valid AWS Access Key ID and Secret Access Key.
 
-### Step 1: Write an Airflow variable or connection to AWS Parameter Store
+#### Step 1: Write an Airflow variable or connection to AWS Parameter Store
 
 To start, add an Airflow variable or connection as a secret to Parameter Store for testing. For instructions, see the AWS documentation on how to do so using the [AWS Systems Manager Console](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-create-console.html), the [AWS CLI](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-cli.html), or [Tools for Windows PowerShell](https://docs.aws.amazon.com/systems-manager/latest/userguide/param-create-ps.html).
 
 Variables and connections should live at `/airflow/variables` and `/airflow/connections`, respectively. For example, if you're setting a secret variable with the key `my_secret`, it should exist at `/airflow/connections/my_secret`.
 
-### Step 2: Set up AWS Parameter Store locally
+#### Step 2: Set up AWS Parameter Store locally
 
 To test AWS Parameter Store locally, configure it as a secrets backend in your Astro project.
 
@@ -265,7 +265,7 @@ To further customize the integration between Airflow and AWS SSM Parameter Store
 
 :::
 
-### Step 3: Run an example DAG to test AWS Parameter Store locally
+#### Step 3: Run an example DAG to test AWS Parameter Store locally
 
 To test Parameter Store, write a simple DAG which calls your secret and add this DAG to your Astro project's `dags` directory.
 
@@ -301,7 +301,7 @@ To test your changes:
     {logging_mixin.py:109} INFO - My variable is: my-test-variable
     ```
 
-### Step 4: Deploy to Astronomer Software
+#### Step 4: Deploy to Astronomer Software
 
 Once you've confirmed that the integration with AWS SSM Parameter Store works locally, you can complete a similar set up with a Deployment on Astronomer Software.
 
@@ -317,7 +317,7 @@ Now, any Airflow variable or connection that you write to AWS SSM Parameter Stor
 
 In this section, you'll learn how to use [Google Cloud Secret Manager](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astronomer Software.
 
-### Prerequisites
+#### Prerequisites
 
 - A [Deployment](configure-deployment.md).
 - The [Astro CLI](install-cli.md).
@@ -327,7 +327,7 @@ In this section, you'll learn how to use [Google Cloud Secret Manager](https://c
 - A [service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) with the [Secret Manager Secret Accessor](https://cloud.google.com/secret-manager/docs/access-control) role on Google Cloud.
 - A [JSON service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys) for the service account.
 
-### Step 1: Write an Airflow variable or connection to Google Cloud Secret Manager
+#### Step 1: Write an Airflow variable or connection to Google Cloud Secret Manager
 
 To start, add an Airflow variable or connection as a secret to Google Cloud Secret Manager. You can do so in the Cloud Console or the gcloud CLI.
 
@@ -344,7 +344,7 @@ gcloud secrets create airflow-variables-<my-secret-variable> \
 
 For more information on creating secrets in Google Cloud Secret Manager, see the [Google Cloud documentation](https://cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#create).
 
-### Step 2: Set up Secret Manager locally
+#### Step 2: Set up Secret Manager locally
 
 To test Google Secret Manager locally, configure it as a secrets backend in your Astro project.
 
@@ -369,7 +369,7 @@ If you want to deploy your project to a hosted Git repository before deploying t
 
 :::
 
-### Step 3: Run an example DAG to test Secret Manager locally
+#### Step 3: Run an example DAG to test Secret Manager locally
 
 To test Secret Manager, [create a secret](https://cloud.google.com/secret-manager/docs/creating-and-accessing-secrets#create) containing either an Airflow variable or connection for testing.
 
@@ -406,7 +406,7 @@ To test your changes:
 
 Once you confirm that the setup was successful, you can delete this DAG.
 
-### Step 4: Deploy to Astronomer Software
+#### Step 4: Deploy to Astronomer Software
 
 Once you've confirmed that the integration with Google Cloud Secret Manager works locally, you can complete a similar set up with a Deployment on Astronomer Software.
 
@@ -422,7 +422,7 @@ You now should be able to see your secret information being pulled from Secret M
 
 In this section, you'll learn how to use [Azure Key Vault](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) as a secrets backend on Astronomer Software.
 
-### Prerequisites
+#### Prerequisites
 
 - A [Deployment](configure-deployment.md).
 - The [Astro CLI](install-cli.md).
@@ -432,7 +432,7 @@ In this section, you'll learn how to use [Azure Key Vault](https://cloud.google.
 
 If you do not already have Key Vault configured, see the [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal).
 
-### Step 1: Register Astronomer as an app on Azure
+#### Step 1: Register Astronomer as an app on Azure
 
 Follow the [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-credentials) to register a new application for Astronomer.
 
@@ -440,14 +440,14 @@ At a minimum, you need to add a [secret](https://docs.microsoft.com/en-us/azure/
 
 Note the value of the application's client ID and secret for Step 3.
 
-### Step 2: Create an access policy
+#### Step 2: Create an access policy
 
 Follow the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-credentials) to create a new access policy for the application that you just registered. The settings you need to configure for your policy are:
 
 - **Configure from template**: Select `Key, Secret, & Certificate Management`.
 - **Select principal**: Select the name of the application that you registered in Step 1.
 
-### Step 3: Set up Key Vault locally
+#### Step 3: Set up Key Vault locally
 
 In your Astro project, add the following line to your `requirements.txt` file:
 
@@ -476,7 +476,7 @@ If you want to deploy your project to a hosted Git repository before deploying t
 
 :::
 
-### Step 4: Test Key Vault locally
+#### Step 4: Test Key Vault locally
 
 To test your Key Vault setup on Astronomer locally, [create a new secret](https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-create-portal#add-a-secret-to-key-vault) in Key Vault containing either a variable or a connection.
 
@@ -512,7 +512,7 @@ To test your changes:
 
 Once you confirm that the setup was successful, you can delete this DAG.
 
-### Step 5: Push changes to Astronomer
+#### Step 5: Push changes to Astronomer
 
 Once you've confirmed that your secrets are being imported correctly to your local environment, you're ready to configure the same feature in a Deployment on Astronomer Software.
 

@@ -16,7 +16,7 @@ At a high-level, we'll ask that you come prepared with a new AWS account. From t
 - Share AWS account information with our team.
 - Create a cross-account IAM role that Astro can assume within your new AWS account.
 
-Astronomer will then create a cluster within your AWS account that hosts the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. If you'd like to support more than 1 Astro cluster, [contact Astronomer support](https://support.astronomer.io).
+Astronomer will then create a cluster within your AWS account that hosts the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. If you'd like to support more than 1 Astro cluster, [contact Astronomer support](https://cloud.astronomer.io/support).
 
 For a complete list of the AWS resources that our team will provision in your AWS account, see [Resource usage](resource-reference-aws.md).
 
@@ -36,7 +36,7 @@ Before completing this setup, make sure that you have:
     - `UpdateAssumeRolePolicy`
 
    See [Creating an administrator IAM user and user group (console)](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html#getting-started_create-admin-group-console).
-- A subscription to the [Astro Status Page](https://cloud-status.astronomer.io/). This will ensure that you're alerted in the case of an incident or scheduled maintenance.
+- A subscription to the [Astro Status Page](https://status.astronomer.io/). This will ensure that you're alerted in the case of an incident or scheduled maintenance.
 
 Astro requires a clean AWS account with a minimum set of EC2 service quotas. For security reasons, the install process is not currently supported on an AWS account that has other tooling running in it. For instructions on creating a new AWS account, follow [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 
@@ -200,7 +200,7 @@ If you do not specify configuration preferences, Astronomer creates a cluster wi
 
 ## Step 5: Wait for Astronomer to complete the install
 
-After you've created the cross-account IAM role for Astro, contact [Astronomer support](https://support.astronomer.io). Astronomer support will finish creating the cluster in your AWS account.
+After you've created the cross-account IAM role for Astro, contact [Astronomer support](https://cloud.astronomer.io/support). Astronomer support will finish creating the cluster in your AWS account.
 
 This process can take some time. Wait for confirmation that the installation was successful before proceeding to the next step.
 
