@@ -1,6 +1,6 @@
 ---
 title: "Use the KubernetesPodOperator"
-sidebar_label: "Use the KubernetesPodOperator"
+sidebar_label: "KubernetesPodOperator"
 description: "Use the KubernetesPodOperator in Airflow to run tasks in Kubernetes Pods"
 id: kubepod-operator
 ---
@@ -16,7 +16,7 @@ In this guide, you'll learn:
 
 You'll also learn how to use the KubernetesPodOperator to run a task in a language other than Python, how to use the KubernetesPodOperator with XComs, and how to launch a Pod in a remote AWS EKS Cluster.  
 
-If you're unfamiliar with Kubernetes, Astronomer recommends that you review the [Kubernetes Documentation](https://kubernetes.io/docs/home/).  
+If you're unfamiliar with Kubernetes, review the [Kubernetes Documentation](https://kubernetes.io/docs/home/) before starting this guide.  
 
 ## Requirements
 
@@ -26,6 +26,10 @@ To use the KubernetesPodOperator you need to install the Kubernetes provider pac
 pip install apache-airflow-providers-cncf-kubernetes==<version>
 ```
 
+If you use the [Astro CLI](https://docs.astronomer.io/astro/cli/overview), you can alternatively install the package by adding the following line to your Astro project:
+
+```text
+apache-airflow-providers-cncf-kubernetes==<version>
 Review the [Airflow Kubernetes provider Documentation](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/index.html#requirements) to make sure you install the correct version of the provider package for your version of Airflow.
 
 You also need an existing Kubernetes cluster to connect to. This is commonly the same cluster that Airflow is running on, but it doesn't have to be.
@@ -38,7 +42,6 @@ You don't need to use the Kubernetes executor to use the KubernetesPodOperator. 
 - Kubernetes executor
 - CeleryKubernetes executor
 
-When using Celery, install the [Apache Airflow provider for Celery](https://registry.astronomer.io/providers/celery).
 
 On Astro, the infrastructure needed to run the KubernetesPodOperator with the Celery executor is included with all clusters by default.  For more information, see [Run the KubernetesPodOperator on Astro](https://docs.astronomer.io/astro/kubernetespodoperator).  
 
@@ -46,16 +49,15 @@ On Astro, the infrastructure needed to run the KubernetesPodOperator with the Ce
 
 Setting up your local environment to use the KubernetesPodOperator can help you avoid time consuming deployments to remote environments.
 
-To set up your local environment using the Astro CLI, see [Test and Troubleshoot the KubernetesPodOperator Locally](https://docs.astronomer.io/astro/kubepodoperator-local).
+To set up your local environment using the Astro CLI, see [Test and troubleshoot the KubernetesPodOperator locally](https://docs.astronomer.io/astro/kubepodoperator-local).
 
 You can use the [Helm Chart for Apache Airflow](https://airflow.apache.org/docs/helm-chart/stable/index.html) to run open source Airflow within a local Kubernetes cluster. See [Getting Started With the Official Airflow Helm Chart](https://www.youtube.com/watch?v=39k2Sz9jZ2c&ab_channel=Astronomer).
-
 
 ## When to use the KubernetesPodOperator
 
 The KubernetesPodOperator runs any Docker image provided to it. Frequent use cases are:
 
-- Running a task in a language other than Python. We include an example of how to run a Haskell script with the KubernetesPodOperator later in this guide.
+- Running a task in a language other than Python. This guide includes an example of how to run a Haskell script with the KubernetesPodOperator.
 - Having full control over how much compute resources and memory a single task can use.
 - Executing tasks in a separate environment with individual packages and dependencies.
 - Running tasks that use a version of Python not supported by your Airflow environment.
@@ -120,9 +122,9 @@ The following image shows how to set up a Kubernetes cluster connection in the A
 
 ![Kubernetes Cluster Connection](/img/guides/kubernetes_cluster_connection.png)
 
-The components of the connection can also be set or overwritten at the task level by using the arguments `config_file` (to specify the path to the `KubeConfig` file) and `cluster_context`. Setting these parameters at the level of `airflow.cfg` has been deprecated.
+The components of the connection can also be set or overwritten at the task level by using the arguments `config_file` (to specify the path to the `KubeConfig` file) and `cluster_context`. Setting these parameters in `airflow.cfg` has been deprecated.
 
-### Example: Using the KubernetesPodOperator to run a script in another language
+### Example: Use the KubernetesPodOperator to run a script in another language
 
 A frequent use case for the KubernetesPodOperator is running a task in a language other than Python. To do this, you build a custom Docker image containing the script.
 
@@ -202,7 +204,7 @@ with DAG(
         )
 ```
 
-## Example: Using the KubernetesPodOperator with XComs
+## Example: Use the KubernetesPodOperator with XComs
 
 [XCom](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) is a commonly used Airflow feature for passing small amounts of data between tasks. You can use the KubernetesPodOperator to both receive values stored in XCom and push values to XCom.
 
@@ -314,7 +316,7 @@ with DAG(
     extract_data() >> transform >> load_data()
 ```
 
-## Example: Using KubernetesPodOperator to run a Pod in a separate cluster
+## Example: Use KubernetesPodOperator to run a Pod in a separate cluster
 
 If some of your tasks require specific resources such as a GPU, you might want to run them in a different cluster than your Airflow instance. In setups where both clusters are used by the same AWS or GCP account, this can be managed with roles and permissions. There is also the possibility to use a CI account and enable [cross-account access to AWS EKS cluster resources](https://aws.amazon.com/blogs/containers/enabling-cross-account-access-to-amazon-eks-cluster-resources/).  
 
@@ -351,7 +353,7 @@ Some platforms which can host Kubernetes clusters have their own specialised ope
     }
     ```
 
-3. Add the new role to your local AWS config file, which by default is located at `~/.aws/config` (for more information see the [AWS docs](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html#cli-configure-files-where)).
+3. Add the new role to your local AWS config file, which by default is located at `~/.aws/config`. See the [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html#cli-configure-files-where).
 
     ```text
     [default]
@@ -362,7 +364,7 @@ Some platforms which can host Kubernetes clusters have their own specialised ope
     source_profile = <your user>
     ```
 
-4. Make sure your default credentials include a valid and active key for your username. See [Programmatic access](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) for more information).
+4. Make sure your default credentials include a valid and active key for your username. See [Programmatic access](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys).
 
 5. Make a copy of `~/.aws/credentials` and `~/.aws/config` available to your Airflow environment. If you run Airflow using the Astro CLI, create a new directory called `.aws` in the `include` folder of your Astro project and copy both files into it.
 
