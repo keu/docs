@@ -197,7 +197,7 @@ If you want different behavior or to add several handlers to one logger, you nee
 
 Logs are sent to remote storage only once a task has been completed or failed. This means that logs of currently running tasks are accessible only from your local Airflow environment.
 
-## Remote Logging Example: Sending Task Logs to Amazon S3
+## Remote logging example: Send task logs to Amazon S3
 
 1. Add the `apache-airflow-providers-amazon` provider package to `requirements.txt`.
 
