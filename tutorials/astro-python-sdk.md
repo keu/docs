@@ -129,7 +129,7 @@ Create some auxiliary tables in Snowflake and populate them with a small amount 
     INSERT INTO customers_table (CUSTOMER_ID, CUSTOMER_NAME,TYPE) VALUES     ('CUST1','NAME1','TYPE1'),('CUST2','NAME2','TYPE1'),('CUST3','NAME3','TYPE2');
     ```
 
-2. Create and populate a reporting table. This is where you'll merge our transformed data:
+2. Create and populate a reporting table. This is where you'll merge your transformed data:
 
     ```sql
 
@@ -262,18 +262,18 @@ The example DAG uses the TaskFlow API and decorators to define dependencies betw
 
 The Astro SDK takes this abstraction a step further while providing more flexibility to your code. The most important details are:
 
-- Using `aql` decorators, you can run both SQL and Python within a Pythonic context. In our example DAG, we use decorators to run both SQL queries and Python code
+- Using `aql` decorators, you can run both SQL and Python within a Pythonic context. This example DAG uses decorators to run both SQL queries and Python code
 - The Astro SDK includes a `Table` object which contains all of the metadata that's necessary for handling SQL table creation between Airflow tasks. When a `Table` is passed into a function, the Astro SDK automatically passes all connection, XCom, and metadata configuration to the task.
 
-    The example DAG demonstrates one of the key powers of the `Table` object. When we called `join_orders_customers`, we joined two tables that had different connections and schema. The Astro SDK automatically creates a temporary table and handles joining the tables. This also means that you can replace the S3 and Snowflake configurations with any valid configurations for other supported data stores and the code will still work. The Astro SDK handles all of the translation between services and database types in the background.
+    The example DAG demonstrates one of the key powers of the `Table` object. When the DAG ran `join_orders_customers`, it joined two tables that had different connections and schema. The Astro SDK automatically creates a temporary table and handles joining the tables. This also means that you can replace the S3 and Snowflake configurations with any valid configurations for other supported data stores and the code will still work. The Astro SDK handles all of the translation between services and database types in the background.
 
 - The Astro SDK can automatically convert to SQL tables to pandas DataFrames using the `aql.dataframe`, meaning you can run complex ML models and SQL queries on the same data in the same DAG without any additional configuration.
 
-Now that you understand the core qualities of the Astro SDK, let's look at it in the context of the example DAG by walking through each step in our ETL pipeline.
+Now that you understand the core qualities of the Astro SDK, let's look at it in the context of the example DAG by walking through each step in your ETL pipeline.
 
 ### Extract
 
-To extract from S3 into a SQL Table, we only need to specify the location of the data on S3 and an Airflow connection for the destination SQL table in Snowflake.
+To extract from S3 into a SQL Table, you only need to specify the location of the data on S3 and an Airflow connection for the destination SQL table in Snowflake.
 
 ```python
 # Extract a file with a header from S3 into a temporary Table, referenced by the
@@ -285,13 +285,13 @@ orders_data = aql.load_file(
 )
 ```
 
-Because we don't want to keep the content of `orders_data` after the DAG is completed, we specify it without a name. When you define a `Table` object without a preexisting name, that table is considered a temporary table.
+Because the content of `orders_data` isn't needed after the DAG is completed, it's specified without a name. When you define a `Table` object without a preexisting name, that table is considered a temporary table.
 
 The Astro SDK deletes all temporary tables after you run `aql.cleanup` in your DAG.
 
 ### Transform
 
-We can filter our loaded table from S3 and join it to a Snowflake table with single line of code. The result of this function is a temporary table called `joined_data`:
+You can filter your loaded table from S3 and join it to a Snowflake table with single line of code. The result of this function is a temporary table called `joined_data`:
 
 ```python
 @aql.transform
@@ -318,11 +318,11 @@ customers_table = Table(
 joined_data = join_orders_customers(filter_orders(orders_data), customers_table)
 ```
 
-Because we defined `customers_table`, it is not considered temporary and will not be deleted after running `aql.cleanup`.
+Because you defined `customers_table`, it is not considered temporary and will not be deleted after running `aql.cleanup`.
 
 ### Merge
 
-To merge our processed data into a reporting table, we call the `aql.merge` function:
+To merge your processed data into a reporting table, you can call the `aql.merge` function:
 
 ```python
 # Merge the joined data into our reporting table, based on the order_id .
@@ -344,7 +344,7 @@ reporting_table = aql.merge(
 
 ### Dataframe transformation
 
-To illustrate the power of the `@aql.dataframe` decorator, we simply convert our reporting table to a simple dataframe operation:
+To illustrate the power of the `@aql.dataframe` decorator, the DAG simply converts your reporting table to a simple dataframe operation:
 
 ```python
 @aql.dataframe
@@ -359,26 +359,16 @@ You can find the output of this function in the logs of the final task:
 
 ![log](/img/guides/task-logs.png)
 
-## Clean up temporary tables
+### Clean up temporary tables
 
-Temporary tables can be created by setting `table.temp=True` when defining a Table object, or by simply not defining a `Table` outside of a function. Because we created a few temporary tables in the DAG, we need to delete them at the end of the DAG.
+Temporary tables can be created by setting `table.temp=True` when defining a Table object, or by simply not defining a `Table` outside of a function. The example DAG creates two temporary tables: `joined_data` and `orders_data`.
 
-You can clean up temporary tables in one of two ways:
+To remove these tables from your database once the DAG completes, you can delete them using the `aql.cleanup()` function:
 
-- Delete all temporary tables using an `aql.cleanup()` function:
-
-    ```python
-    # Delete all temporary
-    aql.cleanup()
-    ```
-
-- Specify a subset of temporary tables to be deleted:
-
-    ```python
-    aql.cleanup([orders_data, joined_data])
-    # Alternative syntax:
-    [orders_data, joined_data] >> aql.cleanup()
-    ```
+```python
+# Delete all temporary tables
+aql.cleanup()
+```
 
 ## Conclusion
 
