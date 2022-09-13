@@ -17,25 +17,7 @@ astro config get <option>
 
 ## Options
 
-| Option              | Description                                                                             |
-| ------------------- | --------------------------------------------------------------------------------------- |
-| `cloud.api.protocol`  | The type of protocol to use when calling the Airflow API in a local Airflow environment |
-| `cloud.api.port`      | The port to use when calling the Airflow API in a local environment                     |
-| `context`           | The context for your Astro project                                                      |
-| `local.registry`     | The location of your local Docker container running Airflow                             |
-| `postgres.user`      | Your username for the local Airflow metadata database                                           |
-| `postgres.password`  | Your password for the local Airflow metadata database                                              |
-| `postgres.host`      | The host for the local Airflow metadata database                                                   |
-| `postgres.port`      | The port for the local Airflow metadata database                                                    |
-| `project.name`       | The name of your Astro project                                                       |
-| `webserver.port`     | The port for the webserver in your local Airflow environment                           |
-| `show_warnings`      | Determines whether warning messages appear when starting up a local Airflow environment |
-
-:::info
-
-Some possible configurations are not documented here because they are used only on Astronomer Software.
-
-:::
+For a list of available configurations, see [Configure the CLI](configure-cli.md).
 
 ## Examples
 
