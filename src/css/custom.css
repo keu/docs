@@ -252,7 +252,6 @@ small {
 
 .navbar__link {
   font-weight: 600;
-  text-transform: uppercase;
 }
 
 a.navbar__link.navbar__link--active {
