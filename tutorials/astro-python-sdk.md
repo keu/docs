@@ -1,6 +1,6 @@
 ---
-title: 'Write an ETL pipeline with the Astro Python SDK'
-sidebar_label: 'Write an ETL pipeline with the Astro SDK'
+title: 'Write a DAG with the Astro Python SDK'
+sidebar_label: 'Use the Astro Python SDK'
 id: astro-python-sdk
 description: 'Write an ETL pipeline for Amazon S3 and Snowflake with the Astro SDK.'
 ---
