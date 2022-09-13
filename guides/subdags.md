@@ -1,6 +1,6 @@
 ---
 title: "Airflow SubDAGs"
-sidebar_label: "Airflow SubDAGs"
+sidebar_label: "SubDAGs"
 description: "Use SubDAGs to create Airflow modular workflows."
 id: subdags
 ---
