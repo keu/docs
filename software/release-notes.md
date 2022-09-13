@@ -13,9 +13,6 @@ description: Astronomer Software release notes.
 
 Release date: September 12, 2022
 
-### Additional improvements
-
-- You can now configure a custom `scrape_interval` for Prometheus using the `--set` flag when [applying a platform config change with Helm](apply-platform-config.md).
 
 ### Bug fixes
 
