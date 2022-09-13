@@ -37,6 +37,7 @@ module.exports = {
         'deferrable-operators',
         'intro-to-airflow',
         'kubepod-operator',
+        'logging',
       ],
     },
     {
