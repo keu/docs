@@ -7,11 +7,13 @@ description: 'Write an ETL pipeline for Amazon S3 and Snowflake with the Astro S
 
 This tutorial demonstrates how to write an Extract, Transform, Load (ETL) pipeline on your local machine with the Astro Python SDK. The Astro SDK is maintained by Astronomer and simplifies the pipeline authoring process with native Python functions for common data orchestration use cases.
 
-The pipeline you build in this tutorial :
+The pipeline you build in this tutorial will:
 
-- **Extract** a file from S3 into a Snowflake relational table.
-- **Transform** that table in Snowflake.
-- **Load** that transformed table into a reporting table in Snowflake.
+- **Extract** a file into a Snowflake relational table.
+- **Transform** that table.
+- **Load** the transformed table into a reporting table.
+
+The example DAG in this tutorial uses Amazon S3 and Snowflake, but you can replace these with any supported data sources and tables simply by changing connection information.
 
 ## Assumed knowledge
 
@@ -31,7 +33,7 @@ To complete this tutorial, you need:
 
 ## Step 1: Set up your data stores
 
-To run the DAG, you first need to load some arbitrary data into S3 and create a destination for the data in Snowflake.
+For this example, you first need to load a file into S3 and create a destination for the data in Snowflake. In this case, the data has three example orders with distinct customers, purchase dates, and amounts.
 
 1. On your local machine create a file named `orders_data_header.csv` with the following data:
 
@@ -55,18 +57,22 @@ To run the DAG, you first need to load some arbitrary data into S3 and create a 
 
 ## Step 2: Set up your Airflow environment
 
-1. Run the following commands to create a new Astro project
+Now that you have a staging table in Snowflake and some example data ready to load, you need to set up a local Airflow environment for your DAG to run in. This is easy with the Astro CLI.
+
+1. Create a new Astro project:
 
     ```sh
     $ mkdir astro-sdk-tutorial && cd astro-sdk-tutorial
     $ astro dev init
     ```
 
-2. Add the following line to the `requirements.txt` file of your Astro project to install the Python SDK and required dependencies for the tutorial:
+2. Add the following line to the `requirements.txt` file of your Astro project:
 
     ```text
     astro-sdk-python[amazon,snowflake]>=0.11
     ```
+
+    This installs the SDK package as well as the Snowflake and Amazon providers, which are required for any DAG that loads data to or from Amazon S3 and Snowflake. If you build this pipeline with different database services, you'll have to modify this line.
 
 3. Add the following environment variables to the `.env` file of your project:
 
@@ -87,7 +93,7 @@ To run the DAG, you first need to load some arbitrary data into S3 and create a 
     astro dev start
     ```
 
-## Step 3: Create Airflow connections to data stores
+## Step 3: Create Airflow connections to S3 and Snowflake
 
 1. Open the Airflow UI at `http://localhost:8080/`
 2. Go to **Admin** > **Connections**.
@@ -115,7 +121,7 @@ To run the DAG, you first need to load some arbitrary data into S3 and create a 
 
 Create some auxiliary tables in Snowflake and populate them with a small amount of data for this ETL example.
 
-1. In your Snowflake Worksheet, create and populate a `customers_table`. You'll join this table with an orders table that you create with the Astro Python SDK:
+1. In your Snowflake worksheet, create and populate a `customers_table`. You'll join this table with an orders table that you create with the Astro Python SDK:
 
     ```sql
     CREATE OR REPLACE TABLE customers_table (customer_id CHAR(10), customer_name VARCHAR(100), type VARCHAR(10) );
@@ -135,7 +141,6 @@ Create some auxiliary tables in Snowflake and populate them with a small amount 
     ('CUST3','NAME3','ORDER3','3/3/2023',300,'TYPE2'),
     ('CUST4','NAME4','ORDER4','4/4/2022',400,'TYPE2');
     ```
-
 
 ## Step 5: Write a DAG for a simple ETL workflow
 
@@ -193,7 +198,8 @@ with dag:
     # Extract a file with a header from S3 into a temporary Table, referenced by the
     # variable `orders_data`
     orders_data = aql.load_file(
-        # data file needs to have a header row
+        # Data file needs to have a header row. The input and output table can be replaced with any
+        # valid file and connection ID.
         input_file=File(
             path=S3_FILE_PATH + "/orders_data_header.csv", conn_id=S3_CONN_ID
         ),
@@ -232,7 +238,7 @@ with dag:
     aql.cleanup()
 ```
 
-This DAG extracts the data you loaded into S3 into Airflow and runs a few simple SQL statements to clean the data, load it into a reporting table on Snowflake, and transform it into a dataframe so that you can print various table details to Airflow logs using Python.
+This DAG extracts the data you loaded into S3 and runs a few simple SQL statements to clean the data, load it into a reporting table on Snowflake, and transform it into a dataframe so that you can print various table details to Airflow logs using Python.
 
 Much of this DAG's functionality comes from the Python functions that use task decorators from the Python SDK. See [How it works](#how-it-works) for more information about these decorators and the benefits of using the SDK for this implementation.  
 
@@ -250,7 +256,7 @@ Much of this DAG's functionality comes from the Python functions that use task d
 
     ![gridview](/img/guides/select-dag-grid-view.png)
 
-## How does it work?
+## How it works
 
 The example DAG uses the TaskFlow API and decorators to define dependencies between tasks. If you're used to defining dependencies with bitshift operators, this might not look familiar. Essentially, the TaskFlow API abstracts dependencies, XComs, and other boilerplate DAG code so that you can define task dependencies with function invocations.
 
@@ -259,7 +265,7 @@ The Astro SDK takes this abstraction a step further while providing more flexibi
 - Using `aql` decorators, you can run both SQL and Python within a Pythonic context. In our example DAG, we use decorators to run both SQL queries and Python code
 - The Astro SDK includes a `Table` object which contains all of the metadata that's necessary for handling SQL table creation between Airflow tasks. When a `Table` is passed into a function, the Astro SDK automatically passes all connection, XCom, and metadata configuration to the task.
 
-    The example DAG demonstrates one of the key powers of the `Table` object. When we called `join_orders_customers`, we joined two tables that had different connections and schema. The Astro SDK automatically creates a temporary table and handles joining the tables.
+    The example DAG demonstrates one of the key powers of the `Table` object. When we called `join_orders_customers`, we joined two tables that had different connections and schema. The Astro SDK automatically creates a temporary table and handles joining the tables. This also means that you can replace the S3 and Snowflake configurations with any valid configurations for other supported data stores and the code will still work. The Astro SDK handles all of the translation between services and database types in the background.
 
 - The Astro SDK can automatically convert to SQL tables to pandas DataFrames using the `aql.dataframe`, meaning you can run complex ML models and SQL queries on the same data in the same DAG without any additional configuration.
 

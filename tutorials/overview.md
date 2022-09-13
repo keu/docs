@@ -7,7 +7,7 @@ hide_table_of_contents: true
 description: 'Use tutorials and guides to make the most out of Airflow and Astronomer.'
 ---
 
-Learn how to write data pipelines and become an expert on data orchestration. These tutorials provide step-by-step instructions for both basic and advanced use cases on Apache Airflow and Astro.
+Learn how to write data pipelines and become an expert on data orchestration. These tutorials provide step-by-step instructions for both basic and advanced use cases specific to Apache Airflow and Astro.
 
 ## Tutorials
 
