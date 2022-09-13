@@ -23,6 +23,17 @@ The following operators are supported in Astro lineage:
 - `BigQueryOperator`
 - `SnowflakeOperator`
 - `GreatExpectationsOperator`
+- `MySqlOperator`
+- `RedshiftDataOperator`
+- `RedshiftSQLOperator`
+- `SQLCheckOperator`
+- `SQLValueCheckOperator`
+- `SQLThresholdCheckOperator`
+- `SQLIntervalCheckOperator`
+- `SQLColumnCheckOperator`
+- `BigQueryColumnCheckOperator`
+- `SQLTableCheckOperator`
+- `BigQueryTableCheckOperator`
 
 :::tip
 
@@ -54,4 +65,3 @@ Lineage on Astro is in active development. Keep in mind the following limitation
 
 - Source code emitted by partially supported operators doesn't appear in the lineage UI.
 - Airflow operators emit lineage data about failed task runs only for Deployments on Astro Runtime v5.0+.
-- Data lineage cannot be extracted from datasets whose Airflow connections are stored in a [secrets backend](secrets-backend.md).
