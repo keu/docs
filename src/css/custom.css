@@ -542,3 +542,7 @@ html[data-theme='dark'] .alert--cli {
     justify-content: space-between;
   }
 }
+
+.menu__list .menu__list {
+  padding-bottom: 0;
+}
