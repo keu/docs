@@ -535,7 +535,7 @@ html[data-theme='dark'] .alert--cli {
 }
 
 @media screen and (min-width: 997px) {
-  .menu_src-theme-DocSidebar-Desktop-Content-styles-module {
+  .theme-doc-sidebar-container nav.menu {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
