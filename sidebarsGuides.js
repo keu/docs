@@ -36,6 +36,7 @@ module.exports = {
         'debugging-dags',
         'deferrable-operators',
         'intro-to-airflow',
+        'kubepod-operator',
       ],
     },
     {
