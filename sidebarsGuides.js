@@ -38,6 +38,7 @@ module.exports = {
         'intro-to-airflow',
         'kubepod-operator',
         'logging',
+        'managing-airflow-code',
       ],
     },
     {
