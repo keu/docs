@@ -1,7 +1,7 @@
 ---
 title: "Rerun Airflow DAGs"
-sidebar_label: "Rerun Airflow DAGs"
-description: "How to use catchup, backfill, and cleared task instances in Airflow."
+sidebar_label: "Rerun DAGs"
+description: "How to catchup, backfill, and clear task instances in Airflow."
 id: rerunning-dags
 ---
 
@@ -11,9 +11,9 @@ Running DAGs whenever you want is one of the most powerful and flexible features
 - You want to deploy a DAG with a start date of one year ago and trigger all DAG runs that would have been scheduled in the past year.
 - You have a running DAG and realize you need it to process data for two months prior to the DAG's start date.
 
-In this guide, you'll learn how to rerun tasks or DAGs and trigger historical DAG runs, and review the Airflow concepts of catchup and backfill. If you're looking for additional information about DAG scheduling, see [Scheduling and Timetables in Airflow](https://www.astronomer.io/guides/scheduling-in-airflow) guide.
+In this guide, you'll learn how to rerun tasks or DAGs and trigger historical DAG runs, and review the Airflow concepts of catchup and backfill. If you're looking for additional information about DAG scheduling, see [Scheduling and timetables in Airflow](https://www.astronomer.io/guides/scheduling-in-airflow).
 
-## Rerunning tasks
+## Rerun tasks
 
 [Rerunning tasks](https://airflow.apache.org/docs/apache-airflow/stable/dag-run.html#re-run-tasks) or full DAGs in Airflow is a common workflow. 
 
@@ -52,7 +52,7 @@ To clear a full DAG run, go to the Tree View in the Airflow UI and then click **
 
 ![Clear DAG Status](/img/guides/clear_dag_ui.png)
 
-### Clearing all tasks
+### Clear all tasks
 
 1. In the Airflow UI, go to **Browse** > **Task Instances**. 
 2. Select the tasks to rerun.
@@ -112,6 +112,6 @@ When using backfill keep the following considerations in mind:
 - Consider your available resources. If your backfill will trigger many DAG runs, you might want to add some of the catchup parameters to your DAG.
 - Clearing the task or DAG status of a backfilled DAG run does not rerun the task or DAG.
 
-If you don't have access to the Airflow CLI, deploy a copy of the DAG with a new name and a start date that is the date you want to backfill to. Airflow will consider this a separate DAG so you won't see all the DAG runs and task instances in the same place, but it would accomplish running the DAG for data in the desired time period. If you have a small number of DAG runs to backfill, you can trigger them manually from the Airflow UI and choose the desired logical date as shown in the following image:
+Alternatively, you can deploy a copy of the DAG with a new name and a start date that is the date you want to backfill to. Airflow will consider this a separate DAG so you won't see all the DAG runs and task instances in the same place, but it would accomplish running the DAG for data in the desired time period. If you have a small number of DAG runs to backfill, you can trigger them manually from the Airflow UI and choose the desired logical date as shown in the following image:
 
     ![Trigger Execution Date](/img/guides/trigger_execution_date.png)
