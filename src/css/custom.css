@@ -545,3 +545,7 @@ html[data-theme='dark'] .alert--cli {
 .menu__list .menu__list {
   padding-bottom: 0;
 }
+
+.plugin-id-software ul[class*='menu__listBottom'] {
+  display: none !important;
+}

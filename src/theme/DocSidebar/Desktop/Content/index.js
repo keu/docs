@@ -35,7 +35,7 @@ export default function DocSidebarDesktopContent({ path, sidebar, className }) {
       </ul>
       <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list', styles.menu__listBottom)}>
         <li>
-          <a href="https://www.astronomer.io/get-started/?utm-source=docs-sidebar">Get a Demo</a>
+          <a href="https://www.astronomer.io/get-started/?utm_source=docs-sidebar">Get a Demo</a>
         </li>
         <li>
           <a href="https://status.astronomer.io/">System Status</a>
