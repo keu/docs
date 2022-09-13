@@ -5,13 +5,13 @@ description: "Use task groups to build modular Airflow workflows."
 id: task-groups
 ---
 
-Use [Task Groups](https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html#taskgroups) to organize tasks in the Airflow UI DAG graph view.
+Use [task groups](https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html#taskgroups) to organize tasks in the Airflow UI DAG graph view.
 
-In this guide, you'll learn how to create Task Groups and review some example DAGs that demonstrate their scalability.
+In this guide, you'll learn how to create task groups and review some example DAGs that demonstrate their scalability.
 
-## Create Task Groups
+## Create task groups
 
-To use Task Groups, run the following import statement:
+To use task groups, run the following import statement:
 
 ```python 
 from airflow.utils.task_group import TaskGroup
@@ -19,7 +19,7 @@ from airflow.utils.task_group import TaskGroup
 
 For your first example, you'll instantiate a Task Group using a `with` statement and provide a `group_id`. Inside your Task Group, you'll define your two tasks, `t1` and `t2`, and their respective dependencies. 
 
-You can use dependency operators (`<<` and `>>`) in Task Groups in the same way that you can with individual tasks. Dependencies applied to a Task Group are applied across its tasks. In the following code, you'll add additional dependencies to `t0` and `t3` to the Task Group, which automatically applies the same dependencies across `t1` and `t2`:  
+You can use dependency operators (`<<` and `>>`) in task groups in the same way that you can with individual tasks. Dependencies applied to a Task Group are applied across its tasks. In the following code, you'll add additional dependencies to `t0` and `t3` to the Task Group, which automatically applies the same dependencies across `t1` and `t2`:  
 
 ```python
 t0 = DummyOperator(task_id='start')
@@ -39,7 +39,7 @@ t0 >> tg1 >> t3
 
 ```
 
-In the Airflow UI, blue highlighting is used to identify tasks and Task Groups. When you click and expand `group1`, blue circles identify the Task Group dependencies. The task immediately to the right of the first blue circle (`t1`) gets the group's upstream dependencies and the task immediately to the left (`t2`) of the last blue circle gets the group's downstream dependencies. The Task Group dependencies are shown in the following animation: 
+In the Airflow UI, blue highlighting is used to identify tasks and task groups. When you click and expand `group1`, blue circles identify the Task Group dependencies. The task immediately to the right of the first blue circle (`t1`) gets the group's upstream dependencies and the task immediately to the left (`t2`) of the last blue circle gets the group's downstream dependencies. The Task Group dependencies are shown in the following animation: 
 
 ![UI Task Group](https://assets2.astronomer.io/main/guides/task-groups/task_groups_ui.gif)
 
@@ -47,7 +47,7 @@ When your task is within a Task Group, your callable `task_id` is the `task_id` 
 
 ## Use the Task Group decorator
 
-Another way of defining Task Groups in your DAGs is by using the Task Group decorator. The Task Group decorator is available in Airflow 2.1 and later. The Task Group decorator functions like other [Airflow decorators](https://www.astronomer.io/guides/airflow-decorators) and allows you to define your Task Group with the TaskFlow API. Using Task Group decorators doesn't change the functionality of Task Groups, but they can make your code formatting more consistent if you're already using them in your DAGs.
+Another way of defining task groups in your DAGs is by using the Task Group decorator. The Task Group decorator is available in Airflow 2.1 and later. The Task Group decorator functions like other [Airflow decorators](https://www.astronomer.io/guides/airflow-decorators) and allows you to define your Task Group with the TaskFlow API. Using Task Group decorators doesn't change the functionality of task groups, but they can make your code formatting more consistent if you're already using them in your DAGs.
 
 To use the decorator, add `@task_group` before a Python function which calls the functions of tasks that should go in the Task Group. For example:
 
@@ -127,11 +127,11 @@ There are a few things to consider when using the Task Group decorator:
 - If downstream tasks require the output of tasks that are in the Task Group decorator, then the Task Group function must return a result. In the previous example, a dictionary with two values was returned, one from each of the tasks in the Task Group, that are then passed to the downstream `load()` task.
 - If your Task Group function returns an output, you can call the function from your DAG with the TaskFlow API. If your Task Group function does not return any output, you must use the bitshift operators (`<<` or `>>`) to define dependencies to the Task Group.
 
-## Dynamically generate Task Groups
+## Dynamically generate task groups
 
-Task Groups can be dynamically generated to make use of patterns within your code. In an ETL DAG, you might have similar downstream tasks that can be processed independently, such as when you call different API endpoints for data that needs to be processed and stored in the same way. For this use case, you can dynamically generate Task Groups by API endpoint. You can expand generated Task Groups in the Airflow UI to see specific tasks. 
+Task groups can be dynamically generated to make use of patterns within your code. In an ETL DAG, you might have similar downstream tasks that can be processed independently, such as when you call different API endpoints for data that needs to be processed and stored in the same way. For this use case, you can dynamically generate task groups by API endpoint. You can expand generated task groups in the Airflow UI to see specific tasks. 
 
-In the following code, iteration is used to create multiple Task Groups. While the tasks and dependencies remain the same across Task Groups, you can change which parameters are passed in to each Task Group based on the `group_id`:
+In the following code, iteration is used to create multiple task groups. While the tasks and dependencies remain the same across task groups, you can change which parameters are passed in to each Task Group based on the `group_id`:
 
 ```python
 for g_id in range(1,3):
@@ -142,15 +142,15 @@ for g_id in range(1,3):
         t1 >> t2
 ```
 
-The following image shows the expanded view of the Task Groups in the Airflow UI:
+The following image shows the expanded view of the task groups in the Airflow UI:
 
 ![Dynamic Task Group](/img/guides/dynamic_task_groups.png)
 
-## Order Task Groups
+## Order task groups
 
-By default, using a loop to generate your Task Groups will put them in parallel. If your Task Groups are dependent on elements of another Task Group, you'll want to run them sequentially. For example, when loading tables with foreign keys, your primary table records need to exist before you can load your foreign table.
+By default, using a loop to generate your task groups will put them in parallel. If your task groups are dependent on elements of another Task Group, you'll want to run them sequentially. For example, when loading tables with foreign keys, your primary table records need to exist before you can load your foreign table.
 
-In the following example, your third dynamically generated Task Group has a foreign key constraint on both your first and second dynamically generated Task Groups, so you'll want to process it last. To do this, you'll create an empty list and append your Task Group objects as they are generated. Using this list, you can reference the Task Groups and define their dependencies to each other:
+In the following example, your third dynamically generated Task Group has a foreign key constraint on both your first and second dynamically generated task groups, so you'll want to process it last. To do this, you'll create an empty list and append your Task Group objects as they are generated. Using this list, you can reference the task groups and define their dependencies to each other:
 
 ```python
 groups = []
@@ -171,19 +171,19 @@ for g_id in range(1,4):
 [groups[0] , groups[1]] >> groups[2]
 ```
 
-The following image shows how these Task Groups appear in the Airflow UI:
+The following image shows how these task groups appear in the Airflow UI:
 
 ![Task Group Dependencies](/img/guides/task_group_dependencies.png)
 
-### Task Group conditioning
+### Task group conditioning
 
-In the previous example, you added an additional task to `group1` based on your `group_id`. This demonstrated that even though you're dynamically creating Task Groups to take advantage of patterns, you can still introduce variations to the pattern while avoiding code redundancies introduced by building each Task Group definition manually.
+In the previous example, you added an additional task to `group1` based on your `group_id`. This demonstrated that even though you're dynamically creating task groups to take advantage of patterns, you can still introduce variations to the pattern while avoiding code redundancies introduced by building each Task Group definition manually.
 
-## Nest Task Groups
+## Nest task groups
 
-For additional complexity, you can nest Task Groups. Building on our previous ETL example, when calling API endpoints you may need to process new records for each endpoint before you can process updates to them.
+For additional complexity, you can nest task groups. Building on our previous ETL example, when calling API endpoints you may need to process new records for each endpoint before you can process updates to them.
 
-In the following code, your top-level Task Groups represent your new and updated record processing, while the nested Task Groups represent your API endpoint processing:
+In the following code, your top-level task groups represent your new and updated record processing, while the nested task groups represent your API endpoint processing:
 
 ```python
 groups = []
@@ -207,7 +207,7 @@ for g_id in range(1,3):
 groups[0] >> groups[1]
 ```
 
-The following image shows the expanded view of the nested Task Groups in the Airflow UI:
+The following image shows the expanded view of the nested task groups in the Airflow UI:
 
-![Nested Task Groups](/img/guides/nested_task_groups.png)
+![Nested task groups](/img/guides/nested_task_groups.png)
 
