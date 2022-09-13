@@ -102,7 +102,7 @@
 
 # Redirect to converged CLI docs
 /install-cli /astro/install-cli 301
-/astro/install-cli /astro/cli/get-started 301
+/astro/install-cli /astro/cli/install-cli 301
 /astro/cli-reference /astro/cli/reference 301
 /astro/cli-release-notes /astro/cli/release-notes 301
 /software/cli-quickstart /software/install-cli 301
@@ -211,7 +211,6 @@
 # redirect links to renamed files
 /astro/configure-deployment /astro/configure-deployment-resources 301
 /astro/scheduler-logs /astro/view-logs 301
-
 
 # redirect links out in the wild (beyond our control)
 /v2/* /astro 301
