@@ -24,7 +24,7 @@ To stay up to date on the latest versions of Astro Runtime, see [Astro Runtime r
 
 - An [Astro project](create-project.md).
 - An [Astro Deployment](create-deployment.md).
-- The [Astro CLI](cli/configure-cli.md#install-the-cli).
+- The [Astro CLI](cli/install-cli.md).
 
 :::info
 

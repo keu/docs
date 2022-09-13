@@ -161,7 +161,7 @@ astrocloud auth login
 astro login
 ```
 
-For Astro users, these are the only changes to existing CLI functionality. All other commands will continue to work as expected. We strongly recommend that all users upgrade. For instructions, see [Migrate from `astrocloud` to `astro`](cli/configure-cli.md#migrate-from-astrocloud-to-astro).
+For Astro users, these are the only changes to existing CLI functionality. All other commands will continue to work as expected. We strongly recommend that all users upgrade. For instructions, see [Migrate from `astrocloud` to `astro`](cli/install-cli.md#migrate-from-astrocloud-to-astro).
 
 :::caution Possible Breaking Change
 

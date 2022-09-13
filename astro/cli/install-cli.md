@@ -23,7 +23,7 @@ This is where you'll find information about installing, upgrading, and uninstall
     ]}>
 <TabItem value="mac">
 
-This is where you'll find information about installing the Astro CLI on a Mac operating system.
+Install the Astro CLI on a Mac operating system with a single command.
 
 #### Prerequisites
 
@@ -38,13 +38,13 @@ To install the latest version of the Astro CLI, run the following command:
 brew install astro
 ```
 
-To install a [specific version](https://docs.astronomer.io/astro/cli/release-notes) of the Astro CLI, specify the version you want to install at the end of the command:
+To install a specific version of the Astro CLI, specify the version you want to install at the end of the command:
 
 ```sh
 brew install astro@<major.minor.patch-version>
 ```
 
-If you specify only a major version, this command installs the latest minor or patch version available for the major version.
+If you specify only a major version, this command installs the latest minor or patch version available for the major version. For a list of all available versions, see the [CLI release notes](cli/release-notes.md). If you specify only a major version, this command installs the latest minor or patch version available for the major version. For a list of all available versions, see the [CLI release notes](cli/release-notes.md).
 
 </TabItem>
 
@@ -93,13 +93,13 @@ Run the following command to install the latest version of the Astro CLI directl
 curl -sSL install.astronomer.io | sudo bash -s
 ```
 
-To install a [specific version](https://docs.astronomer.io/astro/cli/release-notes) of the CLI, specify the version number as a flag at the end of the command. For example, to install v1.1.0 of the CLI, you would run:
+To install a specific version of the CLI, specify the version number as a flag at the end of the command. For example, to install v1.1.0 of the CLI, you would run:
 
 ```sh
 curl -sSL install.astronomer.io | sudo bash -s -- v1.1.0
 ```
 
-If you specify only a major version, this command installs the latest minor or patch version available for the major version.
+If you specify only a major version, this command installs the latest minor or patch version available for the major version. If you specify only a major version, this command installs the latest minor or patch version available for the major version. For a list of all available versions, see the [CLI release notes](cli/release-notes.md).
 
 </TabItem>
 
@@ -250,7 +250,7 @@ To uninstall `astrocloud` on Linux:
 
 ### Step 2: Install Astro CLI v1.0+
 
-Install the latest version of `astro` on your machine. See [Install the CLI](cli/configure-cli.md#install-the-cli).
+Install the latest version of `astro` on your machine. See [Install the CLI](cli/install-cli.md).
 
 ### Step 3: Migrate existing Astro projects
 

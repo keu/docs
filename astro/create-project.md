@@ -11,7 +11,7 @@ To run Airflow pipelines on Astro, you first need to create an Astro project. An
 
 ## Prerequisites
 
-- [The Astro CLI](cli/configure-cli.md#install-the-cli)
+- [The Astro CLI](cli/install-cli.md)
 - [Docker](https://www.docker.com/products/docker-desktop)
 
 ## Step 1: Create an Astro project
