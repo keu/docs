@@ -39,6 +39,7 @@ module.exports = {
         'kubepod-operator',
         'logging',
         'managing-airflow-code',
+        'subdags',
       ],
     },
     {
