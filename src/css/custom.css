@@ -127,7 +127,7 @@
   --ifm-color-primary-lightest: var(--blue-300);
 
   --ifm-navbar-link-color: var(--white);
-  --ifm-navbar-link-hover-color: var(--blue-500);
+  --ifm-navbar-link-hover-color: var(--white);
 
   --ifm-footer-background-color: var(--purple-900);
   --ifm-footer-color: var(--gray-600);
@@ -234,22 +234,15 @@ small {
 }
 
 
-.navbar {
-  background-image: linear-gradient(
-    to left,
-    var(--black),
-    var(--purple-800) 80%
-  );
+.navbar,
+.navbar-sidebar__brand {
+  background-color: #554288;
+  /* font-family: "Strawford", "Open Sans", sans-serif; */
 }
 
 .navbar__logo {
   align-items: center;
   display: flex;
-}
-
-.navbar__logo img {
-  height: 18px;
-  margin-right: 0.5rem;
 }
 
 .navbar__brand:hover,
@@ -259,6 +252,11 @@ small {
 
 .navbar__link {
   font-weight: 600;
+}
+
+a.navbar__link.navbar__link--active {
+  color: var(--ifm-link-color);
+  opacity: 1;
 }
 
 .main-wrapper {
@@ -332,15 +330,32 @@ html .DocSearch-Button-Key {
   justify-content: flex-end;
 }
 
+
+html .DocSearch {
+  --docsearch-searchbox-background: none;
+  border: 1px solid #8670C1;
+}
+
 html .DocSearch-Button-Placeholder {
   font-size: 0.85rem;
 }
 html .DocSearch-Button .DocSearch-Search-Icon {
-  color: var(--gray-800);
+  color: white;
+}
+
+.DocSearch-Button:active .DocSearch-Search-Icon,
+.DocSearch-Button:focus .DocSearch-Search-Icon,
+.DocSearch-Button:hover .DocSearch-Search-Icon {
+  color: black;
+}
+
+.DocSearch-Button-Placeholder,
+.DocSearch-Button-Keys {
+  opacity: 0;
 }
 
 html[data-theme="dark"] .DocSearch {
-  --docsearch-searchbox-background: var(--gray-300);
+  --docsearch-searchbox-background: none;
   --docsearch-searchbox-focus-background: var(--ifm-color-white);
   --docsearch-text-color: var(--gray-800);
 }
@@ -348,14 +363,6 @@ html[data-theme="dark"] .DocSearch {
 /* Mobile Menu */
 .navbar__toggle {
   color: var(--white);
-}
-
-.navbar-sidebar__brand {
-  background-image: linear-gradient(
-    to left,
-    var(--black),
-    #2e1f51 80%
-  );
 }
 
 /* Table Styling */
@@ -481,4 +488,64 @@ html[data-theme='dark'] .alert--cli {
   color: var(--white);
   font-size: 1rem;
   text-align: left;
+}
+
+.dropdown--right > a {
+  opacity: 0.6;
+}
+
+.navbar__title {
+  display: none;
+}
+
+.navbar__logo {
+  height: 16px;
+}
+
+.docs__title {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1rem;
+  border-left: 1px solid white;
+  height: 20px;
+  line-height: 0.75;
+  padding-left: 1rem;
+}
+
+@media screen and (min-width: 550px) {
+  .navbar__logo img {
+    height: 22px;
+  }
+}
+
+.dropdown > .navbar__link:after {
+  border-color: #9079CC transparent;
+  border-style: solid;
+  border-width: 0.4em 0.4em 0;
+  content: '';
+  display: inline-block;
+  margin-left: 0.3em;
+  position: relative;
+  top: 2px;
+  transform: translateY(-50%);
+}
+
+.menu__list {
+  padding-bottom: 4rem;
+}
+
+@media screen and (min-width: 997px) {
+  .theme-doc-sidebar-container nav.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.menu__list .menu__list {
+  padding-bottom: 0;
+}
+
+.plugin-id-software ul[class*='menu__listBottom'] {
+  display: none !important;
 }
