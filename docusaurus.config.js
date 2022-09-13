@@ -101,6 +101,12 @@ module.exports = {
             },
           ],
         },
+        {
+          to: '/tutorials/',
+          label: 'Tutorials',
+          position: 'left',
+          activeClassName: 'navbar__link--active',
+        },
       ],
     },
     footer: {
@@ -257,6 +263,18 @@ module.exports = {
             banner: 'none',
           },
         },
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tutorials',
+        routeBasePath: 'tutorials',
+        editUrl: ({ docPath }) =>
+          `https://github.com/astronomer/docs/blob/main/tutorials/${docPath}`,
+        editCurrentVersion: true,
+        sidebarPath: require.resolve('./sidebarsTutorials.js'),
+        path: 'tutorials',
       },
     ],
     [
