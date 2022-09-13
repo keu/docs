@@ -35,13 +35,13 @@ export default function DocSidebarDesktopContent({ path, sidebar, className }) {
       </ul>
       <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list', styles.menu__listBottom)}>
         <li>
-          <a href="https://www.astronomer.io/events/weekly-demo/?utm_source=docs-sidebar">Get a Demo</a>
+          <a href="https://www.astronomer.io/events/weekly-demo/?utm_source=docs-sidebar">Get a demo</a>
         </li>
         <li>
-          <a href="https://www.astronomer.io/events/webinars/?utm_source=docs-sidebar">Watch a Webinar</a>
+          <a href="https://www.astronomer.io/events/webinars/?utm_source=docs-sidebar">Watch a webinar</a>
         </li>
         <li>
-          <a href="https://status.astronomer.io/?utm_source=docs-sidebar">Astro Status</a>
+          <a href="https://status.astronomer.io/?utm_source=docs-sidebar">Astro status</a>
         </li>
       </ul>
     </nav>
