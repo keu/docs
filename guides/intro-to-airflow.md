@@ -44,7 +44,7 @@ Airflow provides many benefits, including:
 
 Airflow can be used for almost any batch data pipeline, and there are a significant number of [documented use cases](https://soundcloud.com/the-airflow-podcast/use-cases) in the community. Because of its extensibility, Airflow is particularly powerful for orchestrating jobs with complex dependencies in multiple external systems.
 
-For example, the following diagram illustrates a complex use case that can be quickly accomplished with Airflow. By writing pipelines in code and using Airflow providers, you can integrate with any number of different, dependent systems with just a single platform for orchestration and monitoring.
+The following diagram illustrates a complex use case that can be accomplished with Airflow. By writing pipelines in code and using Airflow providers, you can integrate with any number of different systems with just a single platform for orchestration and monitoring.
 
 ![Example Use Case](/img/guides/example_pipeline.png)
 
