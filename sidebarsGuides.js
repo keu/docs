@@ -40,6 +40,8 @@ module.exports = {
         'logging',
         'managing-airflow-code',
         'subdags',
+        'rerunning-dags',
+        'managing-dependencies',
         'task-groups',
       ],
     },
