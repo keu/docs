@@ -40,6 +40,7 @@ module.exports = {
         'logging',
         'managing-airflow-code',
         'subdags',
+        'templating',
       ],
     },
     {
