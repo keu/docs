@@ -1,7 +1,7 @@
 ---
-title: "Airflow Task Groups"
-sidebar_label: "Task Groups"
-description: "Use Task Groups to build modular Airflow workflows."
+title: "Airflow task groups"
+sidebar_label: "Task groups"
+description: "Use task groups to build modular Airflow workflows."
 id: task-groups
 ---
 
@@ -126,7 +126,6 @@ There are a few things to consider when using the Task Group decorator:
 
 - If downstream tasks require the output of tasks that are in the Task Group decorator, then the Task Group function must return a result. In the previous example, a dictionary with two values was returned, one from each of the tasks in the Task Group, that are then passed to the downstream `load()` task.
 - If your Task Group function returns an output, you can call the function from your DAG with the TaskFlow API. If your Task Group function does not return any output, you must use the bitshift operators (`<<` or `>>`) to define dependencies to the Task Group.
-
 
 ## Dynamically generate Task Groups
 
