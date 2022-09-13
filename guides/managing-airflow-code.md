@@ -1,6 +1,6 @@
 ---
 title: "Manage Airflow code"
-sidebar_label: "Manage Airflow code"
+sidebar_label: "Manage project code"
 description: "Learn how to manage and organize Airflow projects and code."
 id: managing-airflow-code
 ---
