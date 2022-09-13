@@ -71,7 +71,7 @@ If you run Airflow locally, logging information is accessible in the following l
 - Task: Logs can be viewed in the Airflow UI or at `$AIRFLOW_HOME/logs/`.
 - Metadata database: Logs are handled differently depending on which database you use.
 
-### Run Airflow in Docker
+### Docker Airflow environment
 
 If you run Airflow in Docker using the [Astro CLI](https://docs.astronomer.io/software/install-cli) or by [following the Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/start/docker.html)), you can find the logs for each Airflow component in the following locations:
 
