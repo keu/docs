@@ -44,6 +44,8 @@ A Workspace role grants a user some level of access to a specific Workspace. The
 | View Airflow task logs                          | ✔️                   | ✔️                   | ✔️                  |
 | Update Deployment configurations                |                      | ✔️                   | ✔️                  |
 | Manually trigger DAG and task runs              |                      | ✔️                   | ✔️                  |
+| Pause or unpause a DAG                          |                      | ✔️                   | ✔️                  |
+| Clear/Mark a Task Instance or DAG Run           |                      | ✔️                   | ✔️                  |
 | Push code to Deployments                        |                      | ✔️                   | ✔️                  |
 | Create and Delete Deployments                   |                      | ✔️                   | ✔️                  |
 | Create, Update and Delete Environment Variables |                      | ✔️                   | ✔️                  |
