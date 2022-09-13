@@ -18,9 +18,10 @@
 
 .menu__listBottom {
   font-family: "Strawford", "Open Sans", sans-serif;
-  position: absolute;
-  bottom: 3rem;
   left: 1rem;
+  position: relative;
+  bottom: 3rem;
+  padding: 0;
 }
 
 .menu__listBottom > li + li {

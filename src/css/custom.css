@@ -530,3 +530,15 @@ html[data-theme='dark'] .alert--cli {
   top: 2px;
   transform: translateY(-50%);
 }
+
+.menu__list {
+  padding-bottom: 4rem;
+}
+
+@media screen and (min-width: 997px) {
+  .menu_src-theme-DocSidebar-Desktop-Content-styles-module {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
