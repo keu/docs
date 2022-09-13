@@ -41,6 +41,7 @@ module.exports = {
         'managing-airflow-code',
         'subdags',
         'rerunning-dags',
+        'managing-dependencies',
       ],
     },
     {
