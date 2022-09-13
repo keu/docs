@@ -30,6 +30,7 @@ If you use the [Astro CLI](https://docs.astronomer.io/astro/cli/overview), you c
 
 ```text
 apache-airflow-providers-cncf-kubernetes==<version>
+```
 Review the [Airflow Kubernetes provider Documentation](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/index.html#requirements) to make sure you install the correct version of the provider package for your version of Airflow.
 
 You also need an existing Kubernetes cluster to connect to. This is commonly the same cluster that Airflow is running on, but it doesn't have to be.
@@ -41,7 +42,6 @@ You don't need to use the Kubernetes executor to use the KubernetesPodOperator. 
 - Celery executor
 - Kubernetes executor
 - CeleryKubernetes executor
-
 
 On Astro, the infrastructure needed to run the KubernetesPodOperator with the Celery executor is included with all clusters by default.  For more information, see [Run the KubernetesPodOperator on Astro](https://docs.astronomer.io/astro/kubernetespodoperator).  
 
