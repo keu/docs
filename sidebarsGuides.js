@@ -42,6 +42,7 @@ module.exports = {
         'subdags',
         'rerunning-dags',
         'managing-dependencies',
+        'task-groups',
       ],
     },
     {
