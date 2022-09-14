@@ -44,6 +44,7 @@ module.exports = {
         'managing-dependencies',
         'task-groups',
         'what-is-a-hook',
+        'using-airflow-plugins',
       ],
     },
     {
