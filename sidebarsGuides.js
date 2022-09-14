@@ -45,6 +45,7 @@ module.exports = {
         'task-groups',
         'what-is-a-hook',
         'using-airflow-plugins',
+        'testing-airflow',
       ],
     },
     {
