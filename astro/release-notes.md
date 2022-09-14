@@ -19,7 +19,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Additional improvements
 
-- Worker counts can now scale to 0 in worker queues on AWS clusters.
+- You can now set a minimum worker count of 0 in worker queues on AWS clusters.
 - When you configure a new worker queue, the default worker type on your cluster is now pre-selected in the **Worker Type** field.
 - You can now configure multiple instances of the same identity provider (IdP). See [Configure an identity provider](configure-idp.md).
 - Reduced the minimum data plane system node count of AWS clusters from 3 to 2.
