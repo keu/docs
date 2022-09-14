@@ -19,18 +19,20 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Additional improvements
 
-- You can now set a minimum worker count of 0 in worker queues on AWS clusters.
-- When you configure a new worker queue, the default worker type on your cluster is now pre-selected in the **Worker Type** field.
+- New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost money until it's specified in a Deployment.
+- New worker queues on AWS clusters can now have a minimum worker count of 0, but default worker queues  continue to require a minimum of 1 worker.
+- When you create a new worker queue, the default worker type in your cluster is now pre-selected in the **Worker Type** list.
 - You can now configure multiple instances of the same identity provider (IdP). See [Configure an identity provider](configure-idp.md).
-- Reduced the minimum data plane system node count of AWS clusters from 3 to 2.
-- Reduced the minimum data plane system node count of Azure clusters from 2 to 1.
-- Reduced the minimum data plane system node count of GCP clusters from 2 to 1.
-- You can now expand and collapse the Workspace menu sidebar in the Cloud UI.
+- Google Cloud Platform (GCP) clusters now use `e2-standard-4` instance types for Airflow and data plane system nodes.
+- Reduced the total minimum data plane system node count of AWS clusters from 3 to 2.
+- Reduced the total minimum data plane system node count of Azure clusters from 3 to 2.
+- Reduced the total minimum data plane system node count of GCP clusters from 6 to 3.
+- You can now expand and collapse the **Workspace** menu in the Cloud UI.
 
 ### Bug fixes
 
 - Removed inaccurate scheduler resource values from the Cloud UI.
-- Fixed an issue where some Astronomer services nodes were not deleted from the data plane after deleting their respective Deployments.
+- Astronomer services nodes are now properly deleted from the data plane when their respective Deployments are deleted.
 - Fixed an issue where you could not open the Airflow UI from a Deployment.
 
 ## August 31, 2022
