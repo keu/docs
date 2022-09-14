@@ -15,6 +15,24 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.5.0 ([Release notes](cli/release-notes.md))
 
+## September 14, 2022
+
+### Additional improvements
+
+- Worker counts can now scale to 0 in worker queues on AWS clusters.
+- When you configure a new worker queue, the default worker type on your cluster is now pre-selected in the **Worker Type** field.
+- You can now configure multiple instances of the same identity provider (IdP). See [Configure an identity provider](configure-idp.md).
+- Reduced the minimum data plane system node count of AWS clusters from 3 to 2.
+- Reduced the minimum data plane system node count of Azure clusters from 2 to 1.
+- Reduced the minimum data plane system node count of GCP clusters from 2 to 1.
+- You can now expand and collapse the Workspace menu sidebar in the Cloud UI.
+
+### Bug fixes
+
+- Removed inaccurate scheduler resource values from the Cloud UI
+- Fixed an issue where some Astronomer services nodes were not deleted from the data plane after deleting their respective Deployments.
+- Fixed an issue where you could not open the Airflow UI from a Deployment.
+
 ## August 31, 2022
 
 ### Export Deployment metrics to Datadog
