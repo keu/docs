@@ -20,7 +20,7 @@ Release date: September 13, 2022
 
 ### Additional improvements
 
-- You can now specify `authUrlParams` for your identity provider (IdP) in `config.yaml`.
+- You can now specify `authUrlParams` for your identity provider (IdP) in `config.yaml`
 - Added error handling for upgrading a Software installation on an unsupported upgrade path
 
 ### Bug fixes
