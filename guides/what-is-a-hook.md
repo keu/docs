@@ -1,7 +1,7 @@
 ---
 title: "Airflow hooks"
-sidebar_label: "Airflow hooks"
-description: "An introduction to Hooks in Apache Airflow."
+sidebar_label: "Hooks"
+description: "An introduction to hooks in Apache Airflow."
 id: what-is-a-hook
 ---
 
@@ -59,7 +59,7 @@ apache-airflow-providers-slack
 ### Create the connections
 
 1. In the Airflow UI, go to **Admin** > **Connections** and click the plus (+) icon to add a new connection.
-2, In the **Connection Id** field, enter a unique name for the connection.
+2. In the **Connection Id** field, enter a unique name for the connection.
 3. In the **Connection Type** list, select **Amazon S3** as the connection type for the Amazon S3 bucket. If the **Amazon S3** connection type isn't available, make sure you installed the provider correctly.
 4. Enter your AWS access key ID in the **Login** field.
 5. Enter your AWS secret access key in the **Password** field. To retrieve your AWS access key ID and AWS secret access key, see [AWS Account and Access Keys](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html).
