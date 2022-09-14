@@ -293,7 +293,7 @@ a.navbar__link.navbar__link--active {
   color: var(--white);
 }
 /* Revert always ignores other styling and unstyles */
-.navbar__items--right:hover button.clean-btn {
+.navbar__items--right [class*="toggle_node_modules"]:hover button.clean-btn {
   color: revert;
 }
 
