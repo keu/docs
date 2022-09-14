@@ -43,6 +43,8 @@ module.exports = {
         'rerunning-dags',
         'managing-dependencies',
         'task-groups',
+        'what-is-a-hook',
+        'using-airflow-plugins',
         'testing-airflow',
       ],
     },
