@@ -20,7 +20,7 @@ If you're new to test-driven development, or CI/CD, you should review the follow
 
 ### Test runners
 
-There are multiple test runners available for Python, including `unittest`, `pytest`, and `nose2`. Airflow doesn't require a specific test runner. This guide uses `pytest`. The test runner that you use is determined by personal preference, experience, and the requirements of your organization.
+There are multiple test runners available for Python, including `unittest`, `pytest`, and `nose2`. Airflow doesn't require a specific test runner. This guide uses `pytest`.
 
 ## DAG validation testing
 
