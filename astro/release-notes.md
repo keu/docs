@@ -29,7 +29,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Bug fixes
 
-- Removed inaccurate scheduler resource values from the Cloud UI
+- Removed inaccurate scheduler resource values from the Cloud UI.
 - Fixed an issue where some Astronomer services nodes were not deleted from the data plane after deleting their respective Deployments.
 - Fixed an issue where you could not open the Airflow UI from a Deployment.
 
