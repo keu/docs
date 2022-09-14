@@ -18,9 +18,21 @@ We're committed to testing all Astronomer Software versions for scale, reliabili
 
 Release date: September 13, 2022
 
+### Additional improvements
+
+- You can now specify `authUrlParams` for your identity provider (IdP) in `config.yaml`.
+- Added error handling for upgrading a Software installation on an unsupported upgrade path
+
 ### Bug fixes
 
-- Fixed [CVE-2022-21698](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698)
+- Fixed an issue where you could not create Deployments with unsupported Airflow versions when `enableSystemAdminCanCreateDeprecatedAirflows: true`
+- Fixed the following vulnerabilities:
+
+    - [CVE-2022-1996](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-1996)
+    - [CVE-2022-21698](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698)
+    - [CVE-2022-35949](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-35949)
+    - [CVE-2022-35948](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-35948)
+    - [CVE-2022-37434](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-37434)
 
 ## v0.29.3
 
