@@ -1,6 +1,6 @@
 ---
 title: "Dynamically generating DAGs in Airflow"
-sidebar_label: "Dynamically generating DAGs in Airflow"
+sidebar_label: "Dynamically generate DAGs"
 description: "Use a base DAG template to create multiple DAGs."
 id: dynamically-generating-dags
 ---
@@ -356,6 +356,3 @@ Dynamically generating DAGs can cause performance issues when used at scale. Whe
 
 Upgrading to Airflow 2.0 to make use of the [HA Scheduler](https://www.astronomer.io/blog/airflow-2-scheduler) should help resolve potential performance issues. Additional optimization might be required. There is no single right way to implement or scale dynamically generated DAGs, but the flexibility of Airflow means there are many ways to arrive at a solution that works for your organization.
 
-## Related documentation
-
-[Dynamic DAGs](https://academy.astronomer.io/dynamic-dags)
