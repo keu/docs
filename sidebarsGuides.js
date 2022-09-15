@@ -47,6 +47,7 @@ module.exports = {
         'using-airflow-plugins',
         'testing-airflow',
         'templating',
+        'dags',
       ],
     },
     {
