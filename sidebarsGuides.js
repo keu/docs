@@ -50,6 +50,7 @@ module.exports = {
         'dags',
         'what-is-a-sensor',
         'what-is-an-operator',
+        'dynamically-generating-dags',
       ],
     },
     {
