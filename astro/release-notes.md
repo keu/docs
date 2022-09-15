@@ -17,21 +17,25 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## September 14, 2022
 
+### Data plane cost tuning
+
+Astronomer has modified the default resource usage of Astro clusters to minimize cost for Astro customers:
+
+- New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
+- Google Cloud Platform (GCP) clusters now use `e2-standard-4` instance types for Airflow and data plane system nodes.
+- The total minimum data plane system node count of AWS clusters has been reduced from 3 to 2.
+- The total minimum data plane system node count of Azure clusters has been reduced from 3 to 2.
+- The total minimum data plane system node count of GCP clusters has been reduced from 6 to 3.
+
 ### Additional improvements
 
-- New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost money until it's specified in a Deployment.
-- New worker queues on AWS clusters can now have a minimum worker count of 0, but default worker queues  continue to require a minimum of 1 worker.
+- New worker queues on AWS clusters now support a minimum worker count of 0. Default worker queues continue to require a minimum of 1 worker.
 - When you create a new worker queue, the default worker type in your cluster is now pre-selected in the **Worker Type** list.
 - You can now configure multiple instances of the same identity provider (IdP). See [Configure an identity provider](configure-idp.md).
-- Google Cloud Platform (GCP) clusters now use `e2-standard-4` instance types for Airflow and data plane system nodes.
-- Reduced the total minimum data plane system node count of AWS clusters from 3 to 2.
-- Reduced the total minimum data plane system node count of Azure clusters from 3 to 2.
-- Reduced the total minimum data plane system node count of GCP clusters from 6 to 3.
 - You can now expand and collapse the **Workspace** menu in the Cloud UI.
 
 ### Bug fixes
 
-- Removed inaccurate scheduler resource values from the Cloud UI.
 - Astronomer services nodes are now properly deleted from the data plane when their respective Deployments are deleted.
 - Fixed an issue where you could not open the Airflow UI from a Deployment.
 
