@@ -9,11 +9,7 @@ View Airflow task and component logs to troubleshoot your data pipelines and bet
 
 :::info
 
-Astro has early access support for forwarding Airflow task logs and basic Airflow metrics to [Datadog](https://www.datadoghq.com/). To enable log forwarding, [submit a request to Astronomer Support](astro-support.md).
-
-In your request, make sure to provide your Datadog API key and identify on which Astro cluster(s) you want to enable the integration.
-
-If you're interested in forwarding task logs to other third-party logging tools, contact Astronomer Support.
+If you need to forward task logs to other third-party logging tools, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 :::
 
@@ -75,3 +71,176 @@ Typically, this indicates that the Deployment you selected does not currently ha
     - **Info**: Emitted frequently by Airflow to show that a standard scheduler process, such as DAG parsing, has started. These logs are frequent but can contain useful information. If you run dynamically generated DAGs, for example, these logs will show how many DAGs were created per DAG file and how long it took the scheduler to parse each of them.
 
 5. Optional. To view the scheduler logs for another Deployment, select a different Deployment in the **Select a Deployment** menu.
+
+## Export AWS task logs to Datadog
+
+Exporting AWS task logs to your existing Datadog instance allows you to centralize the management of logs and deployment metrics and resolve issues quickly.  
+
+### Prerequisites
+
+- [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/).
+- Data plane cluster ID.
+- Datadog API key.
+- A [Datadog site](https://docs.datadoghq.com/getting_started/site/) to receive the AWS task logs.
+
+### Create an AWS forwarder stack
+
+Open the AWS CLI and run the following command to create the AWS forwarder stack:
+
+ ```bash
+    aws cloudformation create-stack \
+--stack-name <data-plane-cluster-ID>-datadog \
+--template-url http://datadog-cloudformation-template.s3.amazonaws.com/aws/forwarder/latest.yaml \
+--capabilities CAPABILITY_NAMED_IAM \
+--parameters ParameterKey=DdApiKey,ParameterValue=<Datadog-API-key> \
+             ParameterKey=DdTags,ParameterValue="source:astronomer\,name:airflow"
+ ```
+The command includes a lambda function that forwards AWS task logs to the datadoghq.com Datadog site. To forward AWS task logs to a different Datadog site, add an additional parameter to the command. For example:
+
+```bash
+    aws cloudformation create-stack \
+--stack-name <data-plane-cluster-ID>-datadog \
+--template-url http://datadog-cloudformation-template.s3.amazonaws.com/aws/forwarder/latest.yaml \
+--capabilities CAPABILITY_NAMED_IAM \
+--parameters ParameterKey=DdApiKey,ParameterValue=<Datadog-API-key> \
+             ParameterKey=DdTags,ParameterValue="source:astronomer\,name:airflow"
+             ParameterKey=DdSite,ParameterValue=<Datadog-site>
+```
+For a list of available Datadog sites, see [Getting Started with Datadog Sites](https://docs.datadoghq.com/getting_started/site/).
+
+### Add source identifier tags (optional)
+
+Add tags to log messages to help you identify the source of the messages. To add source identifier tags, add an additional parameter to the command. For example:
+
+```bash
+    aws cloudformation create-stack \
+--stack-name <dataplane-cluster-ID>-datadog \
+--template-url http://datadog-cloudformation-template.s3.amazonaws.com/aws/forwarder/latest.yaml \
+--capabilities CAPABILITY_NAMED_IAM \
+--parameters ParameterKey=DdApiKey,ParameterValue=<Datadog-API-key> \
+             ParameterKey=DdTags,ParameterValue="source:astronomer\,name:airflow"
+             ParameterKey=DdSite,ParameterValue=<Datadog-site>
+             ParameterKey=DdTags,ParameterValue="new:tags\,more:tags"
+```
+
+Specify additional tags with a comma delimited list and use the backslash \ character to escape commas.
+
+### Verify AWS forwarder stack creation
+
+Open the AWS CLI and run the following command to view a list of AWS stacks:
+
+```bash
+    aws cloudformation list-stacks
+```
+Run the following command to view a resource description for the AWS forwarder stack:
+
+```bash
+    aws cloudformation describe-stack-resources --<stack-name> <dataplane-cluster-ID>-datadog
+```
+Confirm the resource description includes `<dataplane-cluster-ID>-datadog-Forwarder-Xliw1oDOFMPj)` or similar.
+
+Run the following command to view a resource description for the AWS forwarder stack:
+
+```bash
+    aws cloudformation describe-stack-resources --<stack-name> <dataplane-cluster-ID>
+```
+
+Confirm the resource description includes `airflow-logs-<dataplane-cluster-ID>`.
+
+### Create a notification
+
+1. Open the AWS CLI and run the following command to return the Amazon Resource Name (ARN) for the AWS forwarder stack:
+
+    ```bash
+    aws lambda list-functions | grep -i "<lambda-name>"
+    ```
+2. Create a file named `notification.json` in your project directory and add the following entry:
+
+    ```sh
+        {
+          "LambdaFunctionConfigurations": [
+        {
+            "LambdaFunctionArn": "<LAMBDA ARN>",
+            "Events": [
+              "s3:ObjectCreated:*"
+        ]
+        }
+    ]
+    }
+    ```
+3. Run the following command to enable notifications for the Amazon S3 bucket containing AWS task logs:
+
+    ```bash
+        aws s3api put-bucket-notification-configuration \
+        --bucket <S3-bucket-for-Airflow-logs> \
+        --notification-configuration file://notification.json
+    ```
+
+### Verify log stream functionality
+
+1. Open the AWS CLI and run the following command to list the log streams for the AWS task logs:
+
+    ```bash
+            aws logs describe-log-streams --log-group-name '/aws/lambda/<lambda- name>' --query 'logStreams[*].logStreamName'
+    ```
+2. Run the following command to list log events for the AWS task log stream:
+
+    ```bash
+            aws logs get-log-events --log-group-name "/aws/lambda/<lambda- name>" --log-stream-name '<log-stream-name>'
+    ```
+### Update an AWS forwarder stack (optional)
+
+1. Open the AWS CLI and run the following command to return summary information for the AWS stacks you have created:
+
+    ```bash
+            aws logs get-log-events --log-group-name "/aws/lambda/<lambda- name>" --log-stream-name '<log-stream-name>'
+    ```
+
+2. Run the following command to update the AWS forwarder stack:
+
+    ```bash
+        aws cloudformation update-stack \
+        --stack-name <data-plane-cluster-ID>-datadog \
+        --template-url http://datadog-cloudformation-template.s3.amazonaws.com/aws/forwarder/latest.yaml \
+        --capabilities CAPABILITY_NAMED_IAM \
+        --parameters ParameterKey=DdApiKey,ParameterValue=<new-Datadog-API-key> \
+                    ParameterKey=DdTags,ParameterValue="<tags>" 
+    ```
+The example command updates the `DdApiKey` parameter with a new value.
+
+### Delete an AWS forwarder stack (optional)
+
+1. Open the AWS CLI and run the following command to list all Amazon S3 objects and common prefixes in all S3 buckets:
+
+    ```bash
+        aws s3 ls 
+    ```
+2. Run the following command to confirm notifications were enabled for the Amazon S3 bucket:
+
+    ```bash
+        aws s3api get-bucket-notification-configuration --bucket airflow-logs-<CLUSTER ID>
+
+        Output example
+        {
+        "LambdaFunctionConfigurations": [
+            {
+            "Id": "NWI3ZTVmNjktZTliNC00MzdkLWJjY2MtYmU3N2E3ZTEzOGJi",
+            "LambdaFunctionArn": "arn:aws:lambda:us-east-1:670049755923:function:ckwqtv0zl000c0rr01u5icygi-datadog-Forwarder-O4Z80ihIkN3X",
+            "Events": [
+                "s3:ObjectCreated:*"
+            ]
+            }
+        ]
+        } 
+    ```
+3. Run the following command to disable notifications for the Amazon S3 bucket:
+
+    ```bash
+        aws s3api put-bucket-notification-configuration --bucket airflow-logs-<dataplane-cluster-ID> --notification-configuration="{}"
+    ```
+4. Run the following command to delete the AWS forwarder stack:
+
+    ```bash
+        aws cloudformation delete-stack --stack-name <dataplane-cluster-ID>-datadog
+    ```
+5. Repeat step 1 and confirm the AWS forwarder stack has the status `StackStatus: DELETE_COMPLETE`. 
