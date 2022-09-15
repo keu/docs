@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Airflow DAGs"
-sidebar_label: "Airflow DAGs"
+sidebar_label: "DAGs"
 description: "How to write your first DAG in Apache Airflow"
 id: dags
 ---
@@ -15,7 +15,6 @@ To get the most out of this guide, you should have an understanding of:
 
 - What Airflow is and when to use it. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-
 
 ## What is a DAG?
 
