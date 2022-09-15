@@ -1,6 +1,6 @@
 ---
 title: "Use Airflow templates"
-sidebar_label: "Airflow templates"
+sidebar_label: "Jinja templates"
 description: "How to leverage the power of Jinja templating when writing your DAGs."
 id: templating
 ---
@@ -42,10 +42,10 @@ For a complete list of the available variables, see the Airflow [Templates refer
 
 ## Templateable fields and scripts
 
-Templates cannot be applied to all arguments of an operator. Two attributes in the BaseOperator define limitations on templating:
+Templates cannot be applied to all arguments of an operator. Two attributes in the BaseOperator define where you can use templated values:
 
-- `template_fields`: Defines which fields are templateable.
-- `template_ext`: Defines which file extensions are templateable.
+- `template_fields`: Defines which operator arguments can use templated values.
+- `template_ext`: Defines which file extensions can use templated values.
 
 The following example shows a simplified version of the BashOperator:
 
@@ -68,11 +68,11 @@ class BashOperator(BaseOperator):
         self.output_encoding = output_encoding  # not templateable
 ```
 
-The `template_fields` attribute holds a list of attributes that can be templated. You can also find this list in [the Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/operators/bash/index.html#airflow.operators.bash.BashOperator.template_fields) or in the Airflow UI as shown in the following image:
+The `template_fields` attribute holds a list of attributes that can use templated values. You can also find this list in [the Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/operators/bash/index.html#airflow.operators.bash.BashOperator.template_fields) or in the Airflow UI as shown in the following image:
 
 ![Rendered Template view](/img/guides/taskinstancedetails.png)
 
-`template_ext` contains a list of file extensions that can be read and templated at runtime. For example, instead of providing a Bash command to `bash_command`, you could provide a `.sh` script:
+`template_ext` contains a list of file extensions that can be read and templated at runtime. For example, instead of providing a Bash command to `bash_command`, you could provide a `.sh` script that contains a templated value:
 
 ```python
 run_this = BashOperator(
@@ -81,7 +81,7 @@ run_this = BashOperator(
 )
 ```
 
-The following command reads the contents of `script.sh`, templates it, and the executes it:
+The BashOperator takes the contents of the following script, templates it, and executes it:
 
 ```bash
 # script.sh
@@ -90,9 +90,9 @@ echo "Today is {{ execution_date.format('dddd') }}"
 
 Templating from files speeds development because an integrated development environment (IDE) can apply language-specific syntax highlighting on the script. This wouldn't be possible if your script is defined as a big string of Airflow code.
 
-By default, Airflow searches for `script.sh` relative to the directory the DAG file is defined in. So, if your DAG is stored in `/path/to/dag.py` and your script is stored in `/path/to/scripts/script.sh`, you set the value of `bash_command` to `scripts/script.sh`.
+By default, Airflow searches for the location of your scripts relative to the directory the DAG file is defined in. So, if your DAG is stored in `/path/to/dag.py` and your script is stored in `/path/to/scripts/script.sh`, you would update the value of `bash_command` in the previous example to `scripts/script.sh`.
 
-Additional search paths can be controlled at the DAG-level with the `template_searchpath` argument. For example:
+Alternatively, you can set a base path for templates at the DAG-level with the `template_searchpath` argument. For example, the following DAG would look for `script.sh` at `/tmp/script.sh`:
 
 ```python
 with DAG(..., template_searchpath="/tmp") as dag:
@@ -119,17 +119,19 @@ echo "Today is Friday"
 None
 ```
 
-For this command to work, Airflow needs access to a metastore. To set up a local SQLite metastore run the following command:
+For this command to work, Airflow needs access to a metadata database. To set up a local SQLite database, run the following commands:
 
 ```bash
-cd [your project dir]
+cd <your-project-directory>
 export AIRFLOW_HOME=$(pwd)
 airflow db init  # generates airflow.db, airflow.cfg, and webserver_config.py in your project dir
 
 # airflow tasks render [dag_id] [task_id] [execution_date]
 ```
 
-For most templates, this is sufficient. However, if an external system such as a variable in your production Airflow metastore is reached by the templating logic, you must have connectivity to it.
+If you use the Astro CLI, a postgres metadata database is automatically configured for you after running `astro dev start` in your project directory. From here, you can run `astro dev run tasks render <parameters>` to test your templated values. 
+
+For most templates, this is sufficient. However, if an external system such as a variable in your production Airflow metadata database is reached by the templating logic, you must have connectivity to it.
 
 To view the result of templated attributes after running a task in the Airflow UI, click a task and then click **Rendered** as shown in the following image:
 
