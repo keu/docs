@@ -32,6 +32,20 @@ module.exports = {
         'connections',
         'dag-best-practices',
         'custom-xcom-backends',
+        'bashoperator',
+        'debugging-dags',
+        'deferrable-operators',
+        'intro-to-airflow',
+        'kubepod-operator',
+        'logging',
+        'managing-airflow-code',
+        'subdags',
+        'rerunning-dags',
+        'managing-dependencies',
+        'task-groups',
+        'what-is-a-hook',
+        'using-airflow-plugins',
+        'testing-airflow',
       ],
     },
     {
@@ -39,6 +53,7 @@ module.exports = {
       label: 'Tutorials',
       items: [
         'overview',
+        'execute-notebooks'
       ],
     },
     {
