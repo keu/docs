@@ -1,6 +1,6 @@
 ---
 title: "Airflow operators"
-sidebar_label: "Airflow operators"
+sidebar_label: "Operators"
 description: "An introduction to Airflow operators."
 id: what-is-an-operator
 ---
@@ -12,7 +12,6 @@ There are many different types of operators available in Airflow. Some operators
 In this guide, you'll learn the basics of using operators in Airflow and then implement them in a DAG.
 
 To view all of the available Airflow operators, go to the [Astronomer Registry](https://registry.astronomer.io/modules?types=operators).
-
 
 ## Operator basics
 
@@ -36,7 +35,6 @@ Operators typically only require a few parameters. Keep the following considerat
 - [Sensors](https://www.astronomer.io/guides/what-is-a-sensor) are a type of operator that waits for something to happen. They can be used to make your DAGs more event-driven.
 - [Deferrable Operators](https://www.astronomer.io/guides/deferrable-operators) are a type of operator that releases their worker slot while waiting for their work to be completed. This can result in cost savings and greater scalability. Astronomer recommends using deferrable operators whenever one exists for your use case and your task takes longer than a minute. You must be using Airflow 2.2 or later and have a triggerer running to use deferrable operators.
 - Any operator that interacts with a service external to Airflow typically requires a connection so that Airflow can authenticate to that external system. For more information about setting up connections, see [Managing your connections in Apache Airflow](https://www.astronomer.io/guides/connections/) or in the examples to follow.
-
 
 ## Example implementation
 
