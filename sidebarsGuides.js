@@ -48,6 +48,7 @@ module.exports = {
         'testing-airflow',
         'templating',
         'dags',
+        'what-is-a-sensor',
       ],
     },
     {
