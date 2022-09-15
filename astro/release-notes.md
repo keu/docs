@@ -15,6 +15,30 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.5.0 ([Release notes](cli/release-notes.md))
 
+## September 14, 2022
+
+### Data plane cost tuning
+
+Astronomer has modified the default resource usage of Astro clusters to minimize cost for Astro customers:
+
+- New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
+- Google Cloud Platform (GCP) clusters now use `e2-standard-4` instance types for Airflow and data plane system nodes.
+- The total minimum data plane system node count of AWS clusters has been reduced from 3 to 2.
+- The total minimum data plane system node count of Azure clusters has been reduced from 3 to 2.
+- The total minimum data plane system node count of GCP clusters has been reduced from 6 to 3.
+
+### Additional improvements
+
+- New worker queues on AWS clusters now support a minimum worker count of 0. Default worker queues continue to require a minimum of 1 worker.
+- When you create a new worker queue, the default worker type in your cluster is now pre-selected in the **Worker Type** list.
+- You can now configure multiple instances of the same identity provider (IdP). See [Configure an identity provider](configure-idp.md).
+- You can now expand and collapse the **Workspace** menu in the Cloud UI.
+
+### Bug fixes
+
+- Astronomer services nodes are now properly deleted from the data plane when their respective Deployments are deleted.
+- Fixed an issue where you could not open the Airflow UI from a Deployment.
+
 ## August 31, 2022
 
 ### Export Deployment metrics to Datadog
