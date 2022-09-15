@@ -49,6 +49,7 @@ module.exports = {
         'templating',
         'dags',
         'what-is-a-sensor',
+        'what-is-an-operator',
       ],
     },
     {
