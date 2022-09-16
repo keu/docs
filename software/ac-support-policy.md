@@ -101,9 +101,10 @@ The maintenance period for an Astronomer Certified version depends on its releas
 | Stable          | 6 Months             |
 | LTS             | 18 Months            |
 
-For each `major.minor` pair, only the latest patch and hot-fix combination is supported at any given time. If you report an issue with an Astronomer Certified patch or hot-fix version that is not latest, the Astronomer Support team will always ask that you upgrade as a first step to resolution. For example, the Support team encourages any user who reports an issue with Astronomer Certified 2.2.2 to first upgrade to 2.2.3 as soon as it's generally available.
+To fix bugs, Astronomer provides patch releases as new images and recommends that organizations install them regularly to ensure optimum performance. Upgrading only when an issue occurs can delay the resolution of the issue. 
 
-To correct bugs, Astronomer provides patch releases as new images and recommends that organizations install them regularly to ensure optimum performance. Failure to install patch releases as they are made available can make it challenging for Astronomer support to assist organizations that restrict their deployments to organization-approved images. To resolve issues, organizations are often required to upgrade their Airflow version. The upgrade and image approval process could significantly delay the resolution of issues. 
+For each `major.minor` pair, only the latest patch and hot-fix combination is supported at any given time. If you report an issue with an Astronomer Certified patch or hot-fix version that is not latest, the Astronomer Support team will always ask that you upgrade as a first step to resolution. For example, if Astronomer Certified 2.2.3 is the latest patch in the 2.2.x series, the Support team would encourage any user who reports an issue with Astronomer Certified 2.2.2 to first upgrade to 2.2.3 before starting to troubleshoot the issue. 
+
 
 Within the maintenance window of each Astronomer Certified version, the following is true:
 
