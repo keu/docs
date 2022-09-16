@@ -253,8 +253,7 @@ As a next step, create a file named `config.yaml` in an empty directory.
 
 For context, this `config.yaml` file will assume a set of default values for our platform that specify everything from user role definitions to the Airflow images you want to support. As you grow with Astronomer and want to customize the platform to better suit your team and use case, your `config.yaml` file is the best place to do so.
 
-In the newly created file, copy the example below and replace `baseDomain`, `private-root-ca`, `/etc/docker/certs.d`, and `smtpUrl` with your own values. For more example configuration files, go [here](https://github.com/astronomer/astronomer/tree/master/configs).
-
+In the newly created file, copy the example below and replace `baseDomain`, `private-root-ca`, `/etc/docker/certs.d`, and `astronomer.houston.secret` with your own values. For more example configuration files, see the [Astronomer GitHub](https://github.com/astronomer/astronomer/tree/master/configs).
 
 ```yaml
 #################################
@@ -312,10 +311,6 @@ nginx:
   # Dict of arbitrary annotations to add to the nginx ingress. For full configuration options, see https://docs.nginx.com/nginx-ingress-controller/configuration/ingress-resources/advanced-configuration-with-annotations/
   ingressAnnotations: {}
 
-#################################
-### SMTP configuration
-#################################
-
 astronomer:
   houston:
     config:
@@ -335,15 +330,9 @@ astronomer:
           google:
             enabled: true # Lets users authenticate with Google
     secret:
-    - envName: "EMAIL__SMTP_URL"  # Reference to the Kubernetes secret for SMTP credentials. Can be removed if email is not used.
+    - envName: "<smtp_uri_secret>"  # Reference to the Kubernetes secret for SMTP credentials. Can be removed if email is not used.
       secretName: "astronomer-smtp"
       secretKey: "connection"
-```
-
-SMTP is required and will allow users to send and accept email invites to Astronomer. The SMTP URI will take the following form:
-
-```yml
-smtpUrl: smtps://USERNAME:PW@HOST/?pool=true
 ```
 
 >> **Note:** If there are `/` or other escape characters in your username or password, you may need to [URL encode](https://www.urlencoder.org/) those characters.
