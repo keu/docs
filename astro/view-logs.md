@@ -74,13 +74,19 @@ Typically, this indicates that the Deployment you selected does not currently ha
 
 ## Export task logs to Datadog (_AWS only_)
 
-Exporting task logs from AWS to Datadog allows you to centralize the management of logs and identify issues quickly.  
+Exporting task logs from AWS to Datadog allows you to centralize the management of logs and identify issues quickly.  If you're unfamiliar with using the 
 
 To export metrics to Datadog, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
 
+:::info
+
+If you're unfamiliar with using the AWS Command Line Interface (CLI) and AWS stack creation and management, contact your AWS SysOps Administrator or [Astronomer support](https://cloud.astronomer.io/support) to discuss your requirements.
+
+:::
+
 ### Prerequisites
 
-- [AWS Command Line Interface (CLI)](https://aws.amazon.com/cli/).
+- [AWS CLI](https://aws.amazon.com/cli/).
 - Cluster ID. Find this in the **Clusters** tab of the Cloud UI.
 - Datadog API key. See [API and Application Keys](https://docs.datadoghq.com/account_management/api-app-keys/).
 - A [Datadog site](https://docs.datadoghq.com/getting_started/site/) to receive the AWS task logs.
