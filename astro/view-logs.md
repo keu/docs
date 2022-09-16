@@ -177,6 +177,8 @@ Create a notification to recieve notifications when a task log is added to your 
     ```bash
     aws logs get-log-events --log-group-name "/aws/lambda/<lambda- name>" --log-stream-name '<log-stream-name>'
     ```
+3. In the Datadog UI, go to the Log Explorer.
+4. In the **Search for** field, enter `arn:aws:s3:::airflow-logs-*` and in the **Service** column look for logs from Amazon S3. If the task logs are not appearing in the Datadog UI, contact your AWS SysOps Administrator or [Astronomer support](https://cloud.astronomer.io/support).
 
 ### Update an AWS forwarder stack (optional)
 
