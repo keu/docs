@@ -195,7 +195,15 @@ Astro does not export any [service checks](https://docs.datadoghq.com/integratio
    Select the **Secret?** checkbox. This ensures that your Datadog API key is saved securely and is not available to Workspace users in plain text.
 4. Click **Save variable**.
 
+To confirm the setup:
+
+1. In the Datadog UI, go to **Metrics** > **Summary**.
+2. Search for metrics starting with `airflow` and open any Airflow metric.
+3. In the **Tags** table, check the values for the `namespace` tag key. The namespaces of the Deployments you configured to export logs should appear as tag values.
+
 After you complete this setup, Astro automatically launches a sidecar container in your Deployment that runs [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/?tab=hostagent). This container works with your Deployment's existing infrastructure to export Airflow metrics to the Datadog instance associated with your API key.
+
+To check the health of a Deployment's DogStatsD container, open the `datadog.dogstatsd.running` metric in the Datadog UI. If the Deployment's namespace appears under the metric's `host` tag key, its DogSatsD container is healthy and exporting metrics to Datadog.
 
 ## Astro usage
 
