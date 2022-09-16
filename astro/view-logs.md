@@ -96,35 +96,12 @@ Open the AWS CLI and run the following command to create the AWS forwarder stack
 --capabilities CAPABILITY_NAMED_IAM \
 --parameters ParameterKey=DdApiKey,ParameterValue=<Datadog-API-key> \
              ParameterKey=DdTags,ParameterValue="source:astronomer\,name:airflow"
- ```
-The command includes a lambda function that forwards AWS task logs to the datadoghq.com Datadog site. To forward AWS task logs to a different Datadog site, add an additional parameter to the command. For example:
-
-```bash
-    aws cloudformation create-stack \
---stack-name <data-plane-cluster-ID>-datadog \
---template-url http://datadog-cloudformation-template.s3.amazonaws.com/aws/forwarder/latest.yaml \
---capabilities CAPABILITY_NAMED_IAM \
---parameters ParameterKey=DdApiKey,ParameterValue=<Datadog-API-key> \
-             ParameterKey=DdTags,ParameterValue="source:astronomer\,name:airflow"
+             # By default, task logs are sent to the datadoghq.com Datadog site. Include the followining optional parameter to forward AWS task logs to a different Datadog site.
              ParameterKey=DdSite,ParameterValue=<Datadog-site>
-```
-
-### Add source identifier tags (optional)
-
-Add tags to log messages to help you identify the source of the messages. To add source identifier tags, add an additional parameter to the command. For example:
-
-```bash
-    aws cloudformation create-stack \
---stack-name <dataplane-cluster-ID>-datadog \
---template-url http://datadog-cloudformation-template.s3.amazonaws.com/aws/forwarder/latest.yaml \
---capabilities CAPABILITY_NAMED_IAM \
---parameters ParameterKey=DdApiKey,ParameterValue=<Datadog-API-key> \
-             ParameterKey=DdTags,ParameterValue="source:astronomer\,name:airflow"
-             ParameterKey=DdSite,ParameterValue=<Datadog-site>
+             # Include the followining optional parameter to add source identifier tags. Source identifier tags help you identify the source of log messages. Specify additional tags with a comma-delimited list and use the `\` character to escape commas.
              ParameterKey=DdTags,ParameterValue="new:tags\,more:tags"
-```
-
-Specify additional tags with a comma-delimited list and use the `\` character to escape commas.
+ ```
+ 
 
 ### Step 2: Verify AWS forwarder stack creation
 
@@ -151,6 +128,8 @@ Specify additional tags with a comma-delimited list and use the `\` character to
     Confirm the resource description includes `airflow-logs-<dataplane-cluster-ID>`.
 
 ### Step 3: Create a notification
+
+Create a notification to recieve notifications when a task log is added to your Amazon S3 bucket. 
 
 1. Open the AWS CLI and run the following command to return the Amazon Resource Name (ARN) for the AWS forwarder stack:
 
@@ -215,37 +194,21 @@ The example command updates the `DdApiKey` parameter with a new value.
 
 ### Delete an AWS forwarder stack
 
+When you delete a cluster, you have to manually delete its associated forwarder stack.
+
 1. Open the AWS CLI and run the following command to list all Amazon S3 objects and common prefixes in all S3 buckets:
 
     ```bash
     aws s3 ls 
     ```
-2. Run the following command to confirm notifications were enabled for the Amazon S3 bucket:
-
-    ```bash
-    aws s3api get-bucket-notification-configuration --bucket airflow-logs-<CLUSTER ID>
-
-    # Output example
-        {
-        "LambdaFunctionConfigurations": [
-            {
-            "Id": "NWI3ZTVmNjktZTliNC00MzdkLWJjY2MtYmU3N2E3ZTEzOGJi",
-            "LambdaFunctionArn": "arn:aws:lambda:us-east-1:670049755923:function:ckwqtv0zl000c0rr01u5icygi-datadog-Forwarder-O4Z80ihIkN3X",
-            "Events": [
-                "s3:ObjectCreated:*"
-            ]
-            }
-        ]
-        } 
-    ```
-3. Run the following command to disable notifications for the Amazon S3 bucket:
+2. Run the following command to disable notifications for the Amazon S3 bucket:
 
     ```bash
     aws s3api put-bucket-notification-configuration --bucket airflow-logs-<dataplane-cluster-ID> --notification-configuration="{}"
     ```
-4. Run the following command to delete the AWS forwarder stack:
+3. Run the following command to delete the AWS forwarder stack:
 
     ```bash
     aws cloudformation delete-stack --stack-name <dataplane-cluster-ID>-datadog
     ```
-5. Repeat step 1 and confirm the AWS forwarder stack has the status `StackStatus: DELETE_COMPLETE`. 
+4. Repeat step 1 and confirm the AWS forwarder stack has the status `StackStatus: DELETE_COMPLETE`. 
