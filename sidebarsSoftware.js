@@ -51,7 +51,8 @@ module.exports = {
       label: 'Deploy',
       items: [
       'deploy-cli',
-      'ci-cd',
+      'configure-deployment',
+      'environment-variables',
       ],
     },
     {
@@ -72,10 +73,8 @@ module.exports = {
         'apply-platform-config',
         {
         type: 'category',
-        label: 'Manage resources',
+        label: 'Manage platform resources',
         items: [
-          'configure-deployment',
-          'environment-variables',
           'registry-backend',
           'namespace-pools',
           'configure-platform-resources',
@@ -88,6 +87,15 @@ module.exports = {
         'houston-api',
         'deploy-git-sync',
         'deploy-nfs',
+          ],
+        },
+        {
+        type: 'category',
+        label: 'Platform observability',
+        items: [
+          'platform-alerts',
+          'logs-to-s3',
+          'export-task-logs',
           ],
         },
         {
@@ -118,13 +126,10 @@ module.exports = {
       type: 'category',
       label: 'Observability',
       items: [
-      'deployment-logs',
       'grafana-metrics',
       'kibana-logging',
+      'deployment-logs',
       'airflow-alerts',
-      'platform-alerts',
-      'logs-to-s3',
-      'export-task-logs',
       ],
     },
     {
