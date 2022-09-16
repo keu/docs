@@ -203,7 +203,7 @@ To confirm the setup:
 
 After you complete this setup, Astro automatically launches a sidecar container in your Deployment that runs [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/?tab=hostagent). This container works with your Deployment's existing infrastructure to export Airflow metrics to the Datadog instance associated with your API key.
 
-To check the health of a Deployment's DogStatsD container, open the `datadog.dogstatsd.running` metric in the Datadog UI. If the Deployment's namespace appears under the metric's `host` tag key, its DogSatsD container is healthy and exporting metrics to Datadog.
+To check the health of a Deployment's DogStatsD container, open the `datadog.dogstatsd.running` metric in the Datadog UI. If the Deployment's namespace appears under the metric's `host` tag key, its DogStatsD container is healthy and exporting metrics to Datadog.
 
 ## Astro usage
 
