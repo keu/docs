@@ -72,7 +72,7 @@ Typically, this indicates that the Deployment you selected does not currently ha
 
 5. Optional. To view the scheduler logs for another Deployment, select a different Deployment in the **Select a Deployment** menu.
 
-## Export AWS task logs to Datadog
+## Export task logs to Datadog (_AWS only_)
 
 Exporting task logs from AWS to Datadog allows you to centralize the management of logs and identify issues quickly.  
 
