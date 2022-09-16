@@ -68,6 +68,6 @@ Typically, this indicates that the Deployment you selected does not currently ha
 
 ## Export task logs to Datadog (_AWS only_) 
 
-Astro has early access support for forwarding Airflow task logs and basic Airflow metrics to Datadog. If you want to enable log forwarding or you're interested in forwarding task logs to other third-party logging tools, submit a request to [Astronomer support](https://cloud.astronomer.io/support). In your request, make sure to provide your Datadog API key and identify on which Astro cluster(s) you want to enable the integration.
+Astro supports forwarding Airflow task logs and basic Airflow metrics to Datadog. If you want to enable log forwarding or you're interested in forwarding task logs to other third-party logging tools, submit a request to [Astronomer support](https://cloud.astronomer.io/support). In your request, make sure to provide your Datadog API key and identify on which Astro cluster(s) you want to enable the integration.
 
 To export metrics to Datadog, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
