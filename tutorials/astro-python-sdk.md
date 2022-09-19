@@ -372,4 +372,4 @@ You now know how to use the Astro SDK to write a common ETL pipeline! More speci
 - Merge tables from different schemas and platforms without using XComs.
 - Run SQL in an entirely Pythonic context.
 
-As a next step, read the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/latest/) to learn more about its functionality and task decorators.
+As a next step, read the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/) to learn more about its functionality and task decorators.
