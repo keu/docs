@@ -42,7 +42,7 @@ Astro supports the following Azure regions:
 - West Europe
 - West US 3
 
-Modifying the region of an existing Astro cluster isn't supported. If you're interested in a region that isn't on this list, contact [Astronomer support](https://support.astronomer.io).
+Modifying the region of an existing Astro cluster isn't supported. If you're interested in a region that isn't on this list, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 ### Worker node pools
 
@@ -50,7 +50,7 @@ Node pools are a scalable collection of worker nodes with the same instance type
 
 Astronomer monitors your usage and the number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer support might contact you and provide recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
-For detailed information on each instance type, see [Virtual machines in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/). If you're interested in a machine type that isn't on this list, contact [Astronomer support](https://support.astronomer.io/). Not all machine types are supported in all regions.
+For detailed information on each instance type, see [Virtual machines in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/). If you're interested in a machine type that isn't on this list, contact [Astronomer support](https://cloud.astronomer.io/support). Not all machine types are supported in all regions.
 
 ### Worker node size resource reference
 
@@ -66,6 +66,7 @@ The following table lists all available instance types for worker node pools, as
 | Standard_D8d_v5 - 8/32           | 6.4 CPUs | 24 GiB MEM  |
 
 If your Organization needs an instance type that supports a larger worker size, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md).
+<<<<<<< HEAD
 
 :::info
 
@@ -74,6 +75,8 @@ The size limits defined here also apply to **Scheduler Resources**, which determ
 For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
 
 :::
+=======
+>>>>>>> 00bfbaaab1e6e319f87785f582ef08a49519bfb8
 
 ### Maximum node count
 
@@ -81,4 +84,4 @@ Each Astro cluster has a limit on how many nodes it can run at a time. This limi
 
 The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
 
-If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer support monitors the maximum node count and will contact your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
+If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer support monitors the maximum node count and will contact your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://cloud.astronomer.io/support).

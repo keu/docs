@@ -72,7 +72,7 @@ This topic provides steps for using [Hashicorp Vault](https://www.vaultproject.i
 #### Prerequisites
 
 - A [Deployment](create-deployment.md) on Astro.
-- [The Astro CLI](cli/get-started.md).
+- [The Astro CLI](cli/overview.md).
 - A [Hashicorp Vault server](https://learn.hashicorp.com/tutorials/vault/getting-started-dev-server?in=vault/getting-started).
 - An [Astro project](create-project.md).
 - [The Vault CLI](https://www.vaultproject.io/docs/install).
@@ -224,7 +224,7 @@ In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter St
 #### Prerequisites
 
 - A [Deployment](create-deployment.md).
-- The [Astro CLI](cli/get-started.md).
+- The [Astro CLI](cli/overview.md).
 - An [Astro project](create-project.md).
 - Access to AWS SSM Parameter Store.
 - An [IAM policy](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-access.html) allowing access to parameters
@@ -335,7 +335,7 @@ This topic provides setup steps for configuring [AWS Secrets Manager](https://aw
 #### Prerequisites
 
 - A [Deployment](create-deployment.md).
-- The [Astro CLI](cli/get-started.md).
+- The [Astro CLI](cli/overview.md).
 - An [Astro project](create-project.md).
 - An AWS account with the `SecretsManagerReadWrite` policy.
 - A valid AWS Access Key ID and Secret Access Key.
@@ -462,7 +462,7 @@ This topic provides setup steps for configuring [Google Cloud Secret Manager](ht
 #### Prerequisites
 
 - A [Deployment](create-deployment.md).
-- The [Astro CLI](cli/get-started.md).
+- The [Astro CLI](cli/overview.md).
 - An [Astro project](create-project.md).
 - [Cloud SDK](https://cloud.google.com/sdk/gcloud).
 - A Google Cloud environment with [Secret Manager](https://cloud.google.com/secret-manager/docs/configuring-secret-manager) configured.
@@ -571,7 +571,7 @@ This topic provides setup steps for configuring [Azure Key Vault](https://azure.
 #### Prerequisites
 
 - A [Deployment](create-deployment.md).
-- The [Astro CLI](cli/get-started.md).
+- The [Astro CLI](cli/overview.md).
 - An [Astro project](create-project.md).
 - An existing Azure Key Vault linked to a resource group.
 - Your Key Vault URL. To find this, go to your Key Vault overview page > **Vault URI**.

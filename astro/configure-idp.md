@@ -48,7 +48,7 @@ To integrate Okta as your IdP for Astro, you must have an [Okta account](https:/
 
 #### Step 1: Reach out to Astronomer
 
-Reach out to [Astronomer support](https://support.astronomer.io) with a request to integrate Okta as an IdP on Astro. From here, an Astronomer Representative will provide you with two things:
+Reach out to [Astronomer support](https://cloud.astronomer.io/support) with a request to integrate Okta as an IdP on Astro. From here, an Astronomer Representative will provide you with two things:
 
 - A Single Sign-On (SSO) URL
 - An Audience URI
@@ -149,7 +149,7 @@ If your Azure Active Directory is configured to require admin approval on API pe
 
 #### Step 4: Provide Astronomer with your Azure AD app information
 
-Reach out to [Astronomer support](https://support.astronomer.io) and provide the following information from your Azure AD application:
+Reach out to [Astronomer support](https://cloud.astronomer.io/support) and provide the following information from your Azure AD application:
 
 - **Microsoft Azure AD Domain**: Retrieve this from your Azure AD directory's overview page in the Microsoft Azure portal.
 - **Application (client) ID**: Retrieve this from the **Overview** page of your application.

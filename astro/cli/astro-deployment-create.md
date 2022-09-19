@@ -24,6 +24,7 @@ astro deployment create
 | `-s`,`--scheduler-au`       | The number of AU to allocate towards the Deployment's Scheduler(s). The default is`5`.     | Integer between `0` and `24`                                             |
 | `-a`,`--worker-au`          | The number of AU to allocate towards the Deployment's worker(s). The default is `10`.      | Integer between `0` and `175`                                            |
 | `-r`,`--scheduler-replicas` | The number of scheduler replicas for the Deployment. The default is `1`. | Integer between `0` and `4`                                              |
+| `--wait` | Waits until the new Deployment has a [healthy](deployment-metrics.md#deployment-health) status before completing the command . | None                                            |
 | `--workspace-id` | The Workspace in which to create a Deployment. If not specified, your current Workspace is assumed. | Any valid Workspace ID                                            |
 
 ## Examples
