@@ -81,12 +81,6 @@ Now that you have a staging table in Snowflake and some example data ready to lo
     AIRFLOW__ASTRO_SDK__SQL_SCHEMA=ASTRO_SDK_SCHEMA
     ```
 
-    If you're running Airflow on macOS, additionally set the following environment variable [(background)](https://github.com/apache/airflow/issues/12808):
-
-    ```shell
-    export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
-    ```
-
 4. Run the following command to start your project in a local environment:
 
     ```sh

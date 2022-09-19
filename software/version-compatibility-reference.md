@@ -13,14 +13,19 @@ While the tables below reference the minimum compatible versions, we typically r
 
 <!--- Version-specific -->
 
-| Astronomer Platform | Kubernetes                   | Astro CLI    | Postgres | Python                                    | Astronomer Certified / Runtime     | Helm |
+| Astronomer Platform | Kubernetes                   | Astro CLI    | Postgres | Python                                    | Astronomer Certified / Astro Runtime     | Helm |
 | ------------------- | ---------------------------- | ------------ | -------- | ----------------------------------------- | ---------------------------------- | ---- |
-| v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 0.25.x       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified versions             | 3.6  |
-| v0.28               | 1.19, 1.20, 1.21             | 1.0.x, 1.1.x | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified versions             | 3.6  |
-| v0.29               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.3.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified and Runtime versions | 3.6  |
-| v0.30               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.4.x, 1.5.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All Certified and Runtime versions | 3.6  |
+| v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 0.25.x       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified versions*             | 3.6  |
+| v0.28               | 1.19, 1.20, 1.21             | 1.0.x, 1.1.x | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified versions             | 3.6  |
+| v0.29               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.3.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified and Runtime versions | 3.6  |
+| v0.30               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.4.x, 1.5.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified and Runtime versions | 3.6  |
 
 For more detail about the changes in each Astronomer Software release, see the [Astronomer Software Release Notes](release-notes.md).
+
+All currently supported Astronomer-distributed images are compatible with all versions of Astronomer Software. Astronomer Certified and Astro Runtime maintenance is independent of Software maintenance. For more information, see:
+
+- [Astro Runtime maintenance and lifecycle policy](runtime-version-lifecycle-policy.md)
+- [Astronomer Certified versioning and support](ac-support-policy.md)
 
 > **Note:** Due to the [deprecation of Dockershim](https://kubernetes.io/blog/2020/12/02/dockershim-faq/), Azure does not support private CAs starting with Kubernetes 1.19. If you use a private CA, contact [Astronomer support](https://support.astronomer.io) before upgrading to Kubernetes 1.19 on AKS.
 
@@ -38,6 +43,8 @@ For more information on upgrading Kubernetes versions, follow the guidelines off
 - [RedHat OpenShift](https://docs.openshift.com/container-platform/4.6/updating/updating-cluster-between-minor.html)
 
 ## Astronomer Certified
+
+Astronomer Certified images have the following version dependencies:
 
 | Astronomer Certified | Postgres | MySQL     | Python                         | System Distribution  | Airflow Helm chart |
 | -------------------- | -------- | --------- | ------------------------------ | -------------------- | ------------------ |
