@@ -15,15 +15,19 @@ While the tables below reference the minimum compatible versions, we typically r
 
 <!--- Version-specific -->
 
-| Astronomer Platform | Kubernetes                   |  Postgres | Python                                    | Astro CLI | Astronomer Certified / Runtime | Helm|
-| ------------------- | ---------------------------- |  -------- | ----------------------------------------- | -------------- | -------------------- |---|
-| v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.25.x         | All Certified versions                  |3.6|
-| v0.26               | 1.17, 1.18, 1.19, 1.20, 1.21 |  9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.26.x         | All Certified versions                  |3.6|
-| v0.27               | 1.18, 1.19, 1.20, 1.21       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 0.27.x         | All Certified versions                  |3.6|
-| v0.28               | 1.19, 1.20, 1.21             |  9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 1.0.x, 1.1.x        | All Certified versions                  |3.6|
-| v0.29               | 1.19, 1.20, 1.21, 1.22        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | 1.3.x         | All Certified and Runtime versions    | 3.6|
+| Astronomer Platform | Kubernetes                   | Astro CLI    | Postgres | Python                                    | Astronomer Certified / Astro Runtime     | Helm |
+| ------------------- | ---------------------------- | ------------ | -------- | ----------------------------------------- | ---------------------------------- | ---- |
+| v0.25               | 1.17, 1.18, 1.19, 1.20, 1.21 | 0.25.x       | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified versions*             | 3.6  |
+| v0.28               | 1.19, 1.20, 1.21             | 1.0.x, 1.1.x | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified versions             | 3.6  |
+| v0.29               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.3.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified and Runtime versions | 3.6  |
+| v0.30               | 1.19, 1.20, 1.21, 1.22, 1.23 | 1.4.x, 1.5.x        | 9.6+     | 3.6, 3.7, 3.8, 3.9 (_requires AC 2.2.0+_) | All supported Certified and Runtime versions | 3.6  |
 
-For more detail on changes between Software versions, see [Astronomer Software Release Notes](release-notes.md).
+For more detail about the changes in each Astronomer Software release, see the [Astronomer Software Release Notes](release-notes.md).
+
+All currently supported Astronomer-distributed images are compatible with all versions of Astronomer Software. Astronomer Certified and Astro Runtime maintenance is independent of Software maintenance. For more information, see:
+
+- [Astro Runtime maintenance and lifecycle policy](runtime-version-lifecycle-policy.md)
+- [Astronomer Certified versioning and support](ac-support-policy.md)
 
 > **Note:** On Astronomer v0.23+, new versions of Apache Airflow on Astronomer Certified and Runtime are automatically made available in the Software UI and CLI within 24 hours of their publication. For more information, refer to [Available Astronomer Certified Versions](ac-support-policy.md#astronomer-certified-lifecycle-schedule).
 

@@ -104,7 +104,7 @@ Use `astro completion <subcommand>` to generate autocompletion scripts, which ca
    ```sh
 
     brew install bash-completion
-    
+
    ```
 
 ### Subcommands
@@ -782,6 +782,7 @@ Initializes a local Airflow environment on your machine by creating a Docker con
 | ------------ | ---------- | ----------------------------------------------------------------------------------- |
 | `--env`      | String     | Specifies the filepath containing environment variables for the Airflow cluster.    |
 | `--no-cache` | None       | Do not use any images from the container engine's cache when building your project. |
+| `-n`, `--no-browser`      | None | Starts Airflow without opening a browser for the Airflow UI                                  | 
 
 ## astro dev stop
 
@@ -845,6 +846,10 @@ You can retrieve a Team's ID in one of two ways:
 | Flag         | Value Type | Usage                                                                                                                                     |
 | ------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `--user`    | None     | List information about each user in the Team.                    |
+| `--roles` | None | List the roles for each user in the Team. |
+| `--all` | None | List all available information for each user in the Team. |
+| `--paginated `         | None     | Paginate the list of users. If `--page-size` is not specified, the default page size is 20.                                                                                                         |
+| `--page-size`         | Integer     | The page size for paginated lists.                                                                                                         |
 
 ## astro team list
 
@@ -1022,6 +1027,11 @@ Switches the Workspace in which you're working.
 
 `astro workspace switch <workspace-id>`
 
+| Flag             | Value Type | Usage                                                                                                                             |
+| ---------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `--paginated `         | None     | Paginate the list of Workspaces. If `--page-size` is not specified, the default page size is 20.                                                                                                         |
+| `--page-size`         | Integer     | The page size for paginated lists.                                                                                                         |
+
 ## astro workspace team add
 
 Add a Team to a Workspace.
@@ -1167,6 +1177,9 @@ Outputs a list of all users with access to your current Workspace.
 | `--workspace-id` | String     | The Workspace that you're searching in. Specify this flag if you want to search for users in a Workspace that is different than your current Workspace. |
 | `--email`        | String     | The email for the user you're searching for.                                                                                                |
 | `--name`         | String     | The name of the user to search for.                                                                                                         |
+| `--paginated `         | None     | Paginate the list of users. If `--page-size` is not specified, the default page size is 20.                                                                                                         |
+| `--page-size`         | Integer     | The page size for paginated lists.                                                                                                         |
+
 
 ### Related documentation
 

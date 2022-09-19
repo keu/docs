@@ -20,7 +20,7 @@ This is where you'll find information about:
 ## Prerequisites
 
 - An existing [Astro project](create-project.md).
-- [The Astro CLI](cli/get-started.md)
+- [The Astro CLI](cli/overview.md)
 - [Docker](https://www.docker.com/products/docker-desktop)
 
 ## Build and run a project locally
@@ -342,7 +342,7 @@ The following setup has been validated only with a single SSH key. You might nee
 
 To install Python packages from a private GitHub repository on Astro, you need:
 
-- The [Astro CLI](cli/get-started.md).
+- The [Astro CLI](cli/overview.md).
 - An [Astro project](create-project.md).
 - Custom Python packages that are [installable with pip](https://packaging.python.org/en/latest/tutorials/packaging-projects/).
 - A private GitHub repository for each of your custom Python packages.

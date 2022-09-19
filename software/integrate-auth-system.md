@@ -293,7 +293,7 @@ This setup must be completed only during a scheduled maintenance window. There s
 
 To use a custom Oauth authorization code flow:
 
-1. In your `config.yaml` file, set the `astronomer.auth.openidConnect.flow` value to `"code"`:
+1. In your `config.yaml` file, set the `astronomer.houston.auth.openidConnect.flow` value to `"code"`:
 
     ```yaml
     auth:

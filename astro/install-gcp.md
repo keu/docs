@@ -103,7 +103,7 @@ Once you've activated your data plane, provide Astronomer with:
 - Your preferred maximum node count.
 - (_Optional_) Your custom CIDR ranges for connecting to Astronomer's services.
 
-If you don't specify your organization's preferred configurations, Astronomer creates a cluster in `us-central1` with default configurations for Astro on GCP. For more information, see [GCP resource reference](resource-reference-gcp.md).
+If you don't specify your organization's preferred configurations, Astronomer creates a cluster in `us-central1` with a node pool of `e2-standard-4` nodes. For more information, see [GCP resource reference](resource-reference-gcp.md).
 
 :::info VPC Peering with Astronomer
 
@@ -138,7 +138,7 @@ When Astronomer confirms that your Astro cluster has been created, you are ready
 Now that you have an Astro cluster up and running, take a look at the docs below for information on how to start working in Astro:
 
 - [Set up an identity provider](configure-idp.md)
-- [Install CLI](cli/get-started.md)
+- [Install the Astro CLI](cli/overview.md)
 - [Configure Deployments](configure-deployment-resources.md)
 - [Deploy code](deploy-code.md)
 - [Add users](add-user.md)

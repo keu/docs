@@ -30,7 +30,7 @@ Some cluster and Deployment-level modifications require Astronomer support and c
 
 ## Step 1: Submit a request to Astronomer
 
-To modify an existing cluster in your Organization, first verify that the change you want to make is supported by reading the resource reference documentation for either [AWS](resource-reference-aws.md) or [GCP](resource-reference-gcp.md). Then, reach out to [Astronomer support](https://support.astronomer.io).
+To modify an existing cluster in your Organization, first verify that the change you want to make is supported by reading the resource reference documentation for either [AWS](resource-reference-aws.md) or [GCP](resource-reference-gcp.md). Then, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Step 2: Confirm the modification
 

@@ -72,7 +72,7 @@ After setting the variables, running `astro deployment update` works for the Dep
 
 3. Click **Delete API Key**, and then follow the onscreen prompt to finalize the deletion:
 
-    [Delete API key button](/img/docs/delete-api-key.png)
+    ![Delete API key button](/img/docs/delete-api-key.png)
 
 If you delete an API key, make sure that no existing CI/CD pipelines are using it. Once deleted, an API key and secret cannot be recovered. If you unintentionally delete an API key, create a new one and update any CI/CD workflows that used the deleted API key.
 

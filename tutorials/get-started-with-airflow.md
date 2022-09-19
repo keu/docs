@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Get started'
-title: 'Get started with Apache Airflow '
-id: get-started
-description: Install Apache Airflow and deploy your first local project with the Astro CLI.
+title: 'Get started with Apache Airflow'
+sidebar_label: 'Get started with Airflow'
+id: get-started-with-airflow
+description: 'Use tutorials and guides to make the most out of Airflow and Astronomer.'
 ---
 
 Getting started with Apache Airflow locally is easy with the Astro CLI.

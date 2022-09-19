@@ -33,7 +33,8 @@ After setting the variables, this command works for a Deployment without you hav
 
 | Option                         | Description                                                                            | Possible Values                                                                |
 | ------------------------------ | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `-d`,`--deployment-id`           |       The Deployment whose environment variable(s) you want to update                           | Any valid Deployment ID |
+| `-d`,`--deployment-id`           |       The ID of the Deployment whose environment variable(s) you want to update.                           | Any valid Deployment ID |
+| `--deployment-name` | The name of the Deployment whose environment variable(s) you want to update. Use as an alternative to `<deployment-id>`. | Any valid Deployment name                                            |
 | `-e`,`--env`                  | The path to a file that contains a list of environment variables.  If a filepath isn't specified, this looks for a `.env` file in your current directory. If `.env` doesn't exist, this flag will create it for you                                                                 | Any valid filepath       |
 | `-l`,`--load`    | Export updated environment variables from your Astro project's `.env` file to the Deployment. This is an alternative to updating an environment variable by manually specifying `--key` and `--value`. By default, this flag updates all environment variables based on the file specified with `--env`            |`` |
 | `-s`,`--secret`    | Set the value of the updated environment variable as secret      |`` |

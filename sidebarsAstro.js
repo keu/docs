@@ -18,8 +18,8 @@ module.exports = {
       type: 'category',
       label: 'Get started',
       items: [
-        'log-in-to-astro',
         'create-project',
+        'log-in-to-astro',
         'create-deployment',
       ],
     },
@@ -181,8 +181,8 @@ module.exports = {
       },
       {
         type: 'doc',
-        label: 'Get started',
-        id: 'cli/get-started'
+        label: 'Install the CLI',
+        id: 'cli/install-cli'
       },
     {
       type: 'doc',
