@@ -77,6 +77,7 @@ module.exports = {
         'airflow-talend-integration',
         'airflow-sql-data-quality-tutorial',
         'astro-python-sdk-etl',
+        'soda-data-quality',
       ],
     },
   ],
