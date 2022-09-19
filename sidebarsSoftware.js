@@ -42,18 +42,10 @@ module.exports = {
       'kubernetes-executor',
         ],
       },
+      'deploy-cli',
       'cli-podman',
       'upgrade-astro-cli',
     ],
-    },
-    {
-      type: 'category',
-      label: 'Deploy',
-      items: [
-      'deploy-cli',
-      'configure-deployment',
-      'environment-variables',
-      ],
     },
     {
       type: 'category',
@@ -82,8 +74,17 @@ module.exports = {
         },
         {
         type: 'category',
+        label: 'Manage Deployments',
+        items: [
+          'configure-deployment',
+          'environment-variables',
+          ],
+        },
+        {
+        type: 'category',
         label: 'CI/CD and automation',
         items: [
+        'ci-cd.md',
         'houston-api',
         'deploy-git-sync',
         'deploy-nfs',
