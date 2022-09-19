@@ -68,7 +68,7 @@ SNOWFLAKE_CONN_ID = "snowflake_conn"
 AWS_CONN_ID = "aws_conn"
 # The first transformation combines data from the two source tables
 @aql.transform
-def extract_data(homes1: Table, homes2: Table):
+def combine_tables(homes1: Table, homes2: Table):
     return """
     SELECT *
     FROM {{homes1}}
@@ -110,7 +110,7 @@ def example_s3_to_snowflake_etl():
         output_table=Table(name="HOMES2", conn_id=SNOWFLAKE_CONN_ID)
     )
     # Define task dependencies
-    extracted_data = extract_data(
+    extracted_data = combine_tables(
         homes1=homes_data1,
         homes2=homes_data2,
         output_table=Table(name="combined_homes_data"),
@@ -138,6 +138,7 @@ This Astro SDK implementation is different from a standard TaskFlow implementati
 
 ## Related documentation
 
+- [Write a DAG with the Astro Python SDK](https://docs.astronomer.io/tutorials/astro-python-sdk): A step-by-step tutorial for setting up Airflow and running an ETL pipeline using the Astro Python SDK.
 - [readthedocs.io](https://astro-sdk.readthedocs.io/en/latest/): Complete SDK documentation, including API and operator references.
 - [Astro Python SDK README](https://github.com/astronomer/astro-sdk): Includes an overview of the SDK, a quickstart, and supported database types.
 - [Astro Python SDK Webinar](https://www.astronomer.io/events/recaps/the-astro-python-sdk/): A recorded demonstration of the SDK led by Astronomer.
