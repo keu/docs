@@ -66,17 +66,6 @@ The following table lists all available instance types for worker node pools, as
 | Standard_D8d_v5 - 8/32           | 6.4 CPUs | 24 GiB MEM  |
 
 If your Organization needs an instance type that supports a larger worker size, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md).
-<<<<<<< HEAD
-
-:::info
-
-The size limits defined here also apply to **Scheduler Resources**, which determines the CPU and memory allocated to the Airflow Scheduler(s) of each Deployment.
-
-For more information about the scheduler, see [Configure a Deployment](configure-deployment-resources.md#scheduler-resources).
-
-:::
-=======
->>>>>>> 00bfbaaab1e6e319f87785f582ef08a49519bfb8
 
 ### Maximum node count
 
