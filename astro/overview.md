@@ -33,7 +33,7 @@ The following diagram outlines how the control plane, data plane, and users are 
 
 Astronomer support will schedule an onboarding session for your initial install. Astronomer recommends that you review the following topics after your installation is complete:
 
-- [Install the Astro CLI](cli/get-started.md)
+- [Install the Astro CLI](cli/overview.md)
 - [Develop your Astro project](develop-project.md)
 - [Configure your Deployment](configure-deployment-resources.md)
 
