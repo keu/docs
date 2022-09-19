@@ -103,7 +103,7 @@ After restarting your Airflow instance, you should not see the same DAG import e
 
     ![Admin Variables](/img/tutorials/T2_AdminVariables.png)
 
-2. Click on the `+` sign to open the form for adding a new variable. Use `my_github_repo` as the **Key** and a GitHub repository you have administrator access to as the **Val**. The repository can be private.
+2. Click on the **+** sign to open the form for adding a new variable. Set the **Key** for the variable as `my_github_repo` and set the **Val** as a GitHub repository you have administrator access to. Make sure the **Val** is in the format `github_account_name/repository_name` (for example `apache/airflow`). The repository can be private.
 
     ![Add new variable](/img/tutorials/T2_AddNewVariable.png)
 
