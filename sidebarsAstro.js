@@ -79,6 +79,16 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Astro Runtime',
+      items: [
+        'upgrade-runtime',
+        'runtime-image-architecture',
+        'runtime-release-notes',
+        'runtime-version-lifecycle-policy',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Administration',
       items: [
         {
@@ -129,9 +139,6 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
-        'known-limitations',
-        'runtime-image-architecture',
-        'runtime-version-lifecycle-policy',
         'astro-support',
         {
           type: 'category',

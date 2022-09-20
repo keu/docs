@@ -58,3 +58,9 @@ A Workspace role grants a user some level of access to a specific Workspace. The
 ### Update Workspace roles
 
 Workspace Admins can set user roles on the **Access** tab in the Cloud UI. See [Manage Workspaces](manage-workspaces.md#manage-workspace-users).
+
+:::info
+
+If a user changes Workspace roles, it can take a maximum of 10 minutes for corresponding Airflow permission changes to take effect.
+
+:::
