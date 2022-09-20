@@ -253,7 +253,7 @@ Then, add the following environment variables to your project's `.env` file:
 AIRFLOW_VAR_AWS_ARN=<your-role-arn>
 AIRFLOW_VAR_AWS_REGION=<your-aws-region>
 AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
-AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $AWS_ARN, "region_name": "$AWS_REGION"}
+AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $AWS_ARN, "region_name": $AWS_REGION}
 ```
 
 :::caution
