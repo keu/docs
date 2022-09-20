@@ -102,6 +102,12 @@ module.exports = {
           ],
         },
         {
+          to: '/concepts/',
+          label: 'Concepts',
+          position: 'left',
+          activeClassName: 'navbar__link--active',
+        },
+        {
           to: '/tutorials/',
           label: 'Tutorials',
           position: 'left',
@@ -280,13 +286,34 @@ module.exports = {
     [
       '@docusaurus/plugin-sitemap',
       {
-        id: 'software',
+        id: 'tutorials',
         changefreq: 'daily',
         ignorePatterns: ['/software/0.29/**', '/software/0.28/**', '/software/0.27/**', '/software/0.26/**', '/software/0.25/**', '/software/0.23/**', '/software/0.16/**'],
         filename: 'sitemap.xml',
       },
-    ]
+    ],
+    [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'concepts',
+      routeBasePath: 'concepts',
+      editUrl: ({ docPath }) =>
+        `https://github.com/astronomer/docs/blob/main/concepts/${docPath}`,
+      editCurrentVersion: true,
+      sidebarPath: require.resolve('./sidebarsConcepts.js'),
+      path: 'concepts',
+    },
   ],
+  [
+    '@docusaurus/plugin-sitemap',
+    {
+      id: 'concepts',
+      changefreq: 'daily',
+      ignorePatterns: ['/software/0.29/**', '/software/0.28/**', '/software/0.27/**', '/software/0.26/**', '/software/0.25/**', '/software/0.23/**', '/software/0.16/**'],
+      filename: 'sitemap.xml',
+    },
+  ],
+],
   scripts: [
     {
       src: './scripts/segment.js',

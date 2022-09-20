@@ -1,5 +1,6 @@
 module.exports = {
   concepts: [
+    'overview',
     {
       type: 'category',
       label: 'Airflow basics',
@@ -50,35 +51,13 @@ module.exports = {
           'debugging-dags',
           'subdags',
           'task-groups',
+          'execute-notebooks',
           'rerunning-dags',
           'managing-dependencies',
           'managing-airflow-code',
           'templating',
           'dynamically-generating-dags',
-      ],
-    },
-  ],
-  tutorials: [
-    'overview'
-    'get-started-with-airflow',
-    'astro-python-sdk',
-    'execute-notebooks',
-    {
-      type: 'category',
-      label: 'Integrations',
-      items: [
-        'airflow-azure-data-factory-integration',
-        'airflow-azure-data-explorer',
-        'airflow-openlineage',
-        'airflow-dbt',
-        'airflow-databricks',
-        'airflow-sagemaker',
-        'airflow-redshift',
-        'airflow-great-expectations',
-        'airflow-talend-integration',
-        'airflow-sql-data-quality-tutorial',
-        'astro-python-sdk-etl',
-        'soda-data-quality',
+          'airflow-sql-data-quality-tutorial',
       ],
     },
   ],

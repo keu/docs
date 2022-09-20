@@ -246,7 +246,7 @@ To view your new DAG in the Airflow UI, enter `http://localhost:8080/` in your b
 
 When your new DAG appears in the Airflow UI, you can run it to test it.
 
-1. Start the new DAG and trigger a run like you did in [Step 4](getting-started.md#step-4-trigger-a-dag-run).
+1. Start the new DAG and trigger a run like you did in [Step 4](#step-4-trigger-a-dag-run).
 2. Click the name of your new DAG and open the **Graph** view. After your DAG runs, there should be a dark green border around the tasks in the graph showing that your run was successful.
 
 ## Step 8: View task logs
