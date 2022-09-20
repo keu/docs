@@ -33,7 +33,7 @@ To complete this tutorial, you'll need to know:
 - An Astro project created with the [Astro CLI](https://docs.astronomer.io/astro/cli/configure-cli).
 - A GitHub account with a personal access token and at least one repository. If you don’t have a GitHub repository you can follow the [steps in the GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo) on how to create one.
 
-:::note
+:::info
 
 If you do not have a GitHub account you can create one for free following the steps on the [GitHub website](https://github.com/signup) . You can learn how to create a personal access token in the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
