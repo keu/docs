@@ -336,10 +336,9 @@ This topic provides setup steps for configuring [AWS Secrets Manager](https://aw
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/overview.md).
-- An [Astro project](create-project.md).
-- An AWS account with the `SecretsManagerReadWrite` policy.
+- An [Astro project](create-project.md) with version 5.1.0+ of `apache-airflow-providers-amazon`. See [AWS IAM roles](connect-external-services.md#aws-iam-roles).
+- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html).
 - A valid AWS Access Key ID and Secret Access Key.
-
 
 #### Step 1: Create an Airflow Variable or Connection in AWS Secrets Manager
 
@@ -387,11 +386,9 @@ apache-airflow-providers-amazon
 Add the following environment variables to your project's `.env` file:
 
 ```dockerfile
-AWS_ACCESS_KEY_ID="<your-aws-access-key-id>"
-AWS_SECRET_ACCESS_KEY="<your-aws-secret-access-key>"
 AWS_DEFAULT_REGION="<your-aws-region>"
 AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend
-AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "airflow/connections", "variables_prefix": "airflow/variables"}
+AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "airflow/connections", "role_arn": "<your-role-arn>"}
 ```
 
 :::info
@@ -447,9 +444,6 @@ Using the [astrocloud deployment variable create](https://docs.astronomer.io/ast
     ```text
     astro deployment variable create --deployment-id <your-deployment-id> --load --env .env
     ```
-
-    - After using this command, navigate to the Cloud UI and mark your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as **Secret**.
-
 
 You now should be able to see your secret information being pulled from AWS Secrets Manager on Astro. From here, you can store any Airflow variables or connections as secrets on AWS Secrets Manager and use them in your project.
 
