@@ -247,12 +247,20 @@ First, install the [Airflow provider for Amazon](https://airflow.apache.org/docs
 apache-airflow-providers-amazon
 ```
 
-Then, add the following environment variables to your project's `Dockerfile`:
+Then, add the following environment variables to your project's `.env` file:
 
 ```dockerfile
-ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
-ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": "<your-role-arn>", "region_name": "<your-aws-region>"}
+AIRFLOW_VAR_AWS_ARN=<your-role-arn>
+AIRFLOW_VAR_AWS_REGION=<your-aws-region>
+AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
+AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $AWS_ARN, "region_name": "$AWS_REGION"}
 ```
+
+:::caution
+
+If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-role-arn>` and `<your-aws-region>` in a secure manner. When you deploy to Astro, use the Cloud UI to set these values as secrets.
+
+:::
 
 In the next step, you'll test that this configuration is valid locally.
 
@@ -306,11 +314,15 @@ To test your changes:
 
 #### Step 4: Deploy to Astro
 
-Once you've confirmed that the integration with AWS SSM Parameter Store works locally, you can complete a similar set up with a Deployment on Astro.
+Once you've confirmed that the integration with AWS Secrets Manager works locally, you can now add these environment variables to your Astro Deployment.
 
-1. In the Cloud UI, add the same environment variables found in your `Dockerfile` to your Deployment [environment variables](https://docs.astronomer.io/astro/environment-variables).
-2. In your Astro project, delete the environment variables from your `Dockerfile`.
-3. [Deploy your changes](https://docs.astronomer.io/astro/deploy-code) to Astro.
+Using the [astrocloud deployment variable create](https://docs.astronomer.io/astro/cli/astro-deployment-variable-create) CLI command, deploy the contents of your `.env` file directly to your Cloud UI. For example:
+
+```text
+astro deployment variable create --deployment-id <your-deployment-id> --load --env .env
+```
+
+After using this command, open your Deployment in the Cloud UI and mark your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as **Secret**.
 
 Now, any Airflow variable or connection that you write to AWS SSM Parameter Store can be automatically pulled by any DAG in your Deployment on Astro.
 
@@ -372,10 +384,18 @@ apache-airflow-providers-amazon
 
 Add the following environment variables to your project's `.env` file:
 
-```dockerfile
-AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend
-AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "airflow/connections", "variables_prefix": "/airflow/variables", "role_arn": "<your-role-arn>", "region_name": "<your-aws-region>"}
 ```
+AIRFLOW_VAR_AWS_ARN=<your-role-arn>
+AIRFLOW_VAR_AWS_REGION=<your-aws-region>
+AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
+AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $AWS_ARN, "region_name": $AWS_REGION}
+```
+
+:::caution
+
+If you want to deploy your project to a hosted Git repository before deploying to Astro, be sure to save `<your-role-arn>` and `<your-aws-region>` in a secure manner. When you deploy to Astro, use the Cloud UI to set these values as secrets.
+
+:::
 
 #### Step 3: Run an example DAG to test Secrets Manager locally
 
@@ -421,9 +441,11 @@ Once you've confirmed that the integration with AWS Secrets Manager works locall
 
 Using the [astrocloud deployment variable create](https://docs.astronomer.io/astro/cli/astro-deployment-variable-create) CLI command, deploy the contents of your `.env` file directly to your Cloud UI. For example:
 
-    ```text
-    astro deployment variable create --deployment-id <your-deployment-id> --load --env .env
-    ```
+```text
+astro deployment variable create --deployment-id <your-deployment-id> --load --env .env
+```
+
+After using this command, open your Deployment in the Cloud UI and mark your `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` as **Secret**.
 
 You now should be able to see your secret information being pulled from AWS Secrets Manager on Astro. From here, you can store any Airflow variables or connections as secrets on AWS Secrets Manager and use them in your project.
 
