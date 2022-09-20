@@ -19,7 +19,7 @@ This guide focuses on setting up email alerts on Astro with an SMTP service.
 
 On Astro, setting up email alerts requires configuring an SMTP service for delivering each alert.
 
-If your team isn't already using an SMTP service, we recommend one of the following:
+If your organization isn't using an SMTP service currently, Astronomer recommends one of the following:
 
 - [SendGrid](https://sendgrid.com/)
 - [Amazon SES](https://aws.amazon.com/ses/)
@@ -29,8 +29,6 @@ The following topics provide setup steps for integrating each of these external 
 ### Integrate with SendGrid
 
 [SendGrid](https://sendgrid.com/) is an email delivery service that's easy to set up for Airflow alerts. A free SendGrid account grants users 40,000 free emails within the first 30 days of an account opening and 100 emails per day after that. This should be more than enough emails for most alerting use cases.
-
-To get started with SendGrid:
 
 1. [Create a SendGrid account](https://signup.sendgrid.com). Be prepared to disclose some standard information about yourself and your organization.
 

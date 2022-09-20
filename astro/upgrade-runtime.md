@@ -45,7 +45,7 @@ If you're upgrading a local Airflow environment, you don't need an Astro Deploym
 
 ## Step 2: Test Astro Runtime locally
 
-We strongly recommend testing new versions of Astro Runtime locally before upgrading a Deployment on Astro.  To test your upgrade locally:
+Astronomer recommends testing new versions of Astro Runtime locally before upgrading a Deployment on Astro.
 
 1. Save the changes to your `Dockerfile`.
 2. Open your project directory in your terminal and run `astro dev restart`. This restarts the Docker containers for the Airflow webserver, scheduler, triggerer, and Postgres metadata database.
