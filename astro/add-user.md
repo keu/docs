@@ -35,8 +35,6 @@ You can invite a user to an Organization only if their email address' domain is 
 
 ## Add a user to a Workspace
 
-In order to invite a user to a Workspace, the user must already be a member of the Workspace's Organization.
-
 1. In the Cloud UI, select a Workspace.
 
 2. Click **Access** in the left menu.
