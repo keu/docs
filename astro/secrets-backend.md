@@ -231,7 +231,7 @@ In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter St
 - A valid AWS Access Key ID and Secret Access Key.
 
 
-#### Step 1: Create an Airflow Variable or Connection in AWS Parameter Store
+#### Step 1: Create an Airflow variable or connection in AWS Parameter Store
 
 To start, create an Airflow variable or connection in Parameter Store that you want to store as a secret. It can be either a real or test value. You will use this secret to test your backend's functionality in Step 3.
 
@@ -340,7 +340,7 @@ This topic provides setup steps for configuring [AWS Secrets Manager](https://aw
 - An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html).
 - A valid AWS Access Key ID and Secret Access Key.
 
-#### Step 1: Create an Airflow Variable or Connection in AWS Secrets Manager
+#### Step 1: Create an Airflow variable or connection in AWS Secrets Manager
 
 To start, create an Airflow variable or connection in AWS Secrets Manager that you want to store as a secret. It can be either a real or test value. You will use this secret to test your backend's functionality in Step 3.
 
@@ -464,7 +464,7 @@ This topic provides setup steps for configuring [Google Cloud Secret Manager](ht
 - A [JSON service account key](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys) for the service account.
 
 
-#### Step 1: Create an Airflow Variable or Connection in Google Cloud Secret Manager
+#### Step 1: Create an Airflow variable or connection in Google Cloud Secret Manager
 
 To start, create an Airflow variable or connection in Google Cloud Secret Manager that you want to store as a secret. You can do so via the Cloud Console or the gcloud CLI.
 
