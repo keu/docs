@@ -336,8 +336,8 @@ This topic provides setup steps for configuring [AWS Secrets Manager](https://aw
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/overview.md).
-- An [Astro project](create-project.md) with version 5.1.0+ of `apache-airflow-providers-amazon`. See [AWS IAM roles](connect-external-services.md#aws-iam-roles).
-- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [Creating a role to delegate permissions to an AWS service](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-service.html).
+- An [Astro project](create-project.md) with version 5.1.0+ of `apache-airflow-providers-amazon`. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
+- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [AWS IAM roles](connect-external-services.md#aws-iam-roles).
 - A valid AWS Access Key ID and Secret Access Key.
 
 #### Step 1: Create an Airflow variable or connection in AWS Secrets Manager
