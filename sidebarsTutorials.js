@@ -3,7 +3,6 @@ module.exports = {
     'overview'
     'get-started-with-airflow',
     'astro-python-sdk',
-    'execute-notebooks',
     {
       type: 'category',
       label: 'Integrations',
