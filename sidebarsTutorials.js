@@ -1,6 +1,6 @@
 module.exports = {
   tutorials: [
-    'overview'
+    'overview',
     'get-started-with-airflow',
     'astro-python-sdk',
     {
