@@ -2,7 +2,7 @@
 title: 'Write DAGs with the Astro Python SDK'
 sidebar_label: 'Astro Python SDK'
 id: astro-python-sdk
-description: Learn how you can use the Astro SDK to manage database queries in Python.
+description: Learn how you can use the Astro SDK to build ETL pipelines with Python.
 ---
 
 The Astro Python SDK is an open source tool for DAG development that is built and maintained by Astronomer. The purpose of the SDK is to remove the complexity associated with writing DAGs and setting Airflow configurations. This enables pipeline authors to focus on writing Python code.
@@ -14,6 +14,12 @@ The Astro SDK uses Python [decorators](https://realpython.com/primer-on-python-d
 - Transform the data in that file with SQL written by your team.
 
 For extract, load, and transform (ELT) use cases, these functions significantly reduce the lines of code required. The Astro SDK is more similar to writing a traditional Python script than it is writing a data pipeline in Airflow.
+
+:::info
+
+The Astro Python SDK currently relies on [pickling](https://docs.python.org/3/library/pickle.html), which is a Python serialization method that transforms data into a portable format. A more secure method for the Astro SDK to serialize objects is coming soon.
+
+:::
 
 ## Installation
 
@@ -41,7 +47,7 @@ The Astro SDK includes task decorators for actions that are most commonly requir
 - `drop_table`: Drops a SQL table.
 - `run_raw_sql`: Runs any SQL statement without handling its output.
 - `append`: Inserts rows from the source SQL table into the destination SQL table, if there are no conflicts.
-- `merge`: Inserts rows from the source SQL table into the destination SQL table, depending on conflicts:
+- `merge`: Inserts rows from the source SQL table into the destination SQL table, if there are no conflicts.
 - `export_file`: Exports SQL table rows into a destination file.
 - `dataframe`: Exports a specific SQL table into an in-memory pandas DataFrame.
 - `cleanup`: Cleans up temporary tables created in your pipeline.
@@ -50,11 +56,11 @@ The Astro SDK includes task decorators for actions that are most commonly requir
 
 The following DAG is a complete implementation of an ETL pipeline using the Astro Python SDK. In order, the DAG:
 
-- Loads `.csv` files from GitHub into `Tables`, which are objects that contain all of the necessary functionality to pass database contexts between functions without reconfiguration.
-- Combines the two `Tables` of home data using `aql.transform`.
-- Turns the temporary `Table` into a dataframe, melts the values using `aql.dataframe`, and returns the results as a `Table`.
+- Loads `.csv` files from Amazon S3 into two tables that contain data about the housing market. Tables are objects that contain all of the necessary functionality to pass database contexts between functions without reconfiguration.
+- Combines the two tables of home data using `aql.transform`.
+- Turns the combined into a dataframe, melts the values using `aql.dataframe`, and returns the results as a `Table` object.
 - Creates a new reporting table in Snowflake using `aql.run_raw_sql`.
-- Appends the `Table` of transformed home data to a reporting table with `aql.append`.
+- Appends the table of transformed home data to a reporting table with `aql.append`.
 
 ```python
 import os
@@ -132,8 +138,8 @@ example_s3_to_snowflake_etl_dag = example_s3_to_snowflake_etl()
 
 This Astro SDK implementation is different from a standard TaskFlow implementation in the following ways:
 
-- You don't have to manually create temp tables and pass them through XComs. All operations between different database types are handled automatically by the SDK.
-- You don't have to define connections to your databases in each task. Tasks can automatically inherit connection information from `Tables`.
+- You don't have to manually create temporary tables and pass them through XComs. All operations between different database types are handled automatically by the SDK.
+- You don't have to define connections to your databases in each task. Tasks can automatically inherit connection information from `Table` objects.
 - You can run common SQL queries using Python alone. The SDK includes Python functions for some of the most common actions in SQL.
 
 ## Related documentation
