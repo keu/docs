@@ -1,6 +1,6 @@
 ---
 title: "Branching in Airflow"
-sidebar_label: "Branching"
+sidebar_label: "Branches"
 description: "Use Apache Airflow's BranchPythonOperator and ShortCircuitOperator to execute conditional branches in your workflow"
 id: airflow-branch-operator
 tags: ["DAGs", "Operators", "Basics", "Tasks"]
