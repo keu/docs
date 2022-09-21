@@ -17,17 +17,6 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## September 21, 2022
 
-### Additional improvements
-
-- During the DAG deployment process, the data plane is now less likely to run two different versions of your DAG code between your workers and the scheduler.
-- You can now use `m6id` type nodes on AWS clusters.
-
-## Bug fixes
-
-- Fixed an issue where you could not successfully
-
-## September 14, 2022
-
 ### View Deployment details from a single page
 
 All of a Deployment's configurations, including analytics, API keys, environment variables, and resource configurations, are now organized as tabs within the Deployment's page in the Cloud UI.
