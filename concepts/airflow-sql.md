@@ -2,7 +2,7 @@
 title: "Using Airflow to Execute SQL"
 description: "Execute queries, parameterize queries, and embed SQL-driven ETL in Apache Airflow DAGs."
 id: airflow-sql
-sidebar_label: "Execute SQL queries"
+sidebar_label: "Run SQL"
 ---
 
 Executing SQL queries is one of the most common use cases for data pipelines. Whether you're extracting and loading data, calling a stored procedure, or executing a complex query for a report, Airflow has you covered. Using Airflow, you can orchestrate all of your SQL tasks elegantly with just a few lines of boilerplate code.
