@@ -26,20 +26,19 @@ This tutorial takes approximately 1 hour to complete.
 To complete this tutorial, you'll need to know:
 
 - How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/astro/cli/get-started).
-- Basic knowledge of git. See the [tutorial on Git’s official webpage](https://git-scm.com/docs/gittutorial).
+- The basics of git. See the [tutorial on Git’s official webpage](https://git-scm.com/docs/gittutorial).
 
 ## Prerequisites
 
-- An Astro project created with the [Astro CLI](https://docs.astronomer.io/astro/cli/configure-cli).
 - A GitHub account with a personal access token and at least one repository. If you don’t have a GitHub repository you can follow the [steps in the GitHub documentation](https://docs.github.com/en/get-started/quickstart/create-a-repo) on how to create one.
 
 :::info
 
-If you do not have a GitHub account you can create one for free following the steps on the [GitHub website](https://github.com/signup) . You can learn how to create a personal access token in the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+If you do not have a GitHub account, you can create one for free on the [GitHub website](https://github.com/signup). To create a personal access token, see the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 
 :::
 
-## Step 1: Start your Astro project
+## Step 1: Create your Astro project
 
 To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial].
 
@@ -83,11 +82,11 @@ To run data pipelines on Astro, you first need to create an Astro project, which
 
 ![Import Error](/img/tutorials/T2_ImportError.png)
 
-        Provider packages are Python packages maintained separately from core Airflow that contain hooks and operators for interacting with external services. You can browse all available providers in the Astronomer Registry. 
+Provider packages are Python packages maintained separately from core Airflow that contain hooks and operators for interacting with external services. You can browse all available providers in the [Astronomer Registry](https://registry.astronomer.io/). 
 
   Your DAG uses operators from two Airflow provider packages: the [HTTP provider](https://registry.astronomer.io/providers/http) and the [GitHub provider](https://registry.astronomer.io/providers/github). While the HTTP provider is pre-installed in the Astro Runtime image, the GitHub provider is not, which causes the DAG import error.
 
-2. Open the GitHub provider page in the [Astronomer Registry](https://registry.astronomer.io/providers/github).
+2. Open the [GitHub provider page](https://registry.astronomer.io/providers/github) in the Astronomer Registry.
 
     ![GitHub Provider](/img/tutorials/T2_GitHubProvider.png)
 
@@ -173,7 +172,7 @@ with DAG(
 ```
 
 
-The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been to your GitHub repository. It uses the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is 7 days, which is a long default value that can impact performance.
+The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been to your GitHub repository. It utilizes the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is quite long at 7 days, which can impact performance if left unchanged in DAG that run on a higher frequency.
 
 ```python
     tag_sensor = GithubTagSensor(
@@ -203,7 +202,7 @@ Lastly, the dependency between the two tasks is set so that the API is only quer
     tag_sensor >> query_API
 ```
 
-The DAG produces the following **Graph** view:
+You can see this dependency in the **Graph** view of the Airflow UI:
 
 ![Graph View](/img/tutorials/T2_GraphView.png)
 
