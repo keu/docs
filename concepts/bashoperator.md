@@ -2,7 +2,7 @@
 title: "Using the BashOperator"
 description: "Use the BashOperator in Airflow to execute bash commands and scripts"
 id: bashoperator
-sidebar_label: Using the BashOperator
+sidebar_label: BashOperator
 ---
 
 The [BashOperator](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator) is one of the most commonly used operators in Airflow. It executes bash commands or a bash script from within your Airflow DAG.
