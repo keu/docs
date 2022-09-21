@@ -28,7 +28,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## September 14, 2022
 
-### New
+### View Deployment details from a single page
 
 All of a Deployment's configurations, including analytics, API keys, environment variables, and resource configurations, are now organized as tabs within the Deployment's page in the Cloud UI.
 
