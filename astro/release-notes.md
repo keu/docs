@@ -27,13 +27,10 @@ This new UI simplifies the Deployments page, making it easier to focus on specif
 
 ### Data plane cost tuning
 
-Astronomer has modified the default resource usage of Astro clusters to minimize cost for Astro customers:
+Astronomer has modified the default resource usage of Astro clusters to minimize cost for Astro customers. In addition to minor improvements across cluster resource usage:
 
 - New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
 - Google Cloud Platform (GCP) clusters now use `e2-standard-4` instance types for Airflow and data plane system nodes.
-- The total minimum data plane system node count of AWS clusters has been reduced from 3 to 2.
-- The total minimum data plane system node count of Azure clusters has been reduced from 3 to 2.
-- The total minimum data plane system node count of GCP clusters has been reduced from 6 to 3.
 
 ### Improved user dashboard and onboarding
 
@@ -46,7 +43,7 @@ You can now access essential Astro resources and user settings at `account.astro
 - During the DAG deployment process, the data plane is now less likely to run two different versions of your DAG code between your workers and the scheduler.
 - You can now use `m6id` type nodes on AWS clusters.
 
-### Bug fixes 
+### Bug fixes
 
 - Fixed an issue where the Cloud UI Deployment metrics showed a maximum worker CPU and memory that was inconsistent with your configured worker queues.
 
