@@ -138,7 +138,7 @@ In your example DAG, you used two operators that interact with two external syst
 3. Enter the host URL for the API you want to query in the **Host** field. For this tutorial we use the Catfact API, which returns a random fact about cats for every `GET` request. The host for this API is `http://catfact.ninja/fact`.
 4. Test your connection by pressing the **Test** button.
 
-    ![HTTP Connection](/img/tutorials/T2_HTTPConnection.png)
+![HTTP Connection](/img/tutorials/T2_HTTPConnection.png)
 
 5. Click **Save**.
 
@@ -164,7 +164,7 @@ You should now have two connections as shown in the following screenshot:
 
 ## Step 8: View your DAG code
 
-Now that your Airflow environment is configured correctly, look at DAG code you copied from the repository to see how your new configurations are used at the code level.
+Now that your Airflow environment is configured correctly, look at the DAG code you copied from the repository to see how your new configurations are used at the code level.
 
 At the top of the file, all necessary packages are imported. Notice how both the `SimpleHttpOperator` as well as the `GithubTagSensor` are part of the provider packages you installed.
 
@@ -176,7 +176,7 @@ from airflow.providers.github.sensors.github import GithubTagSensor
 from datetime import datetime
 ```
 
-Next, the DAG context is instantiated using the `DAG` class. The DAG has the ID `my_second_dag`, and it starts its runs on September 1st, 2022. After its start date, the DAG runs every day at 9:00 AM as defined in a [cron](https://crontab.guru/) statement. `catchup` is set to `False` in order to prevent the DAG runs from between the `start_date` and today from being scheduled automatically.
+Next, the DAG context is instantiated using the `DAG` class. The DAG has the ID `my_second_dag`, and it starts running on September 1st, 2022. After its start date, the DAG runs every day at 9:00 AM as defined in a [cron](https://crontab.guru/) statement. `catchup` is set to `False` in order to prevent the DAG runs from between the `start_date` and today from being scheduled automatically.
 
 ```python
 with DAG(
