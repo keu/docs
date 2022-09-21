@@ -1,6 +1,6 @@
 ---
-title: "Airflow executors explained"
-sidebar_label: "Executors
+title: "Airflow Executors"
+sidebar_label: "Executor"
 description: "An introduction to the Apache Airflow Executors: Celery, Local, and Kubernetes."
 id: airflow-executors-explained
 ---
