@@ -23,7 +23,7 @@ If you prefer, you can also run the `astro deployment create` command in the Ast
 
 1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
 
-2. In the **Deployments** page, click the **+ Deployment** button.
+2. On the **Deployments** page, click **Deployment**.
 
 3. Complete the following fields:
 

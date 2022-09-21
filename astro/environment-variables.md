@@ -47,7 +47,7 @@ After you set an environment variable key, only the environment variable value c
 
 3. Click **Edit Variables**.
 
-4. Click the pencil icon next to the value you want to edit.
+4. Click **Edit value** next to the value you want to edit.
 
     ![Edit value location](/img/docs/variable-pencil.png)
 

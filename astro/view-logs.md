@@ -44,7 +44,7 @@ Logs for the Airflow webserver, worker, and triggerer are not available for Depl
 
 You can access the past 24 hours of scheduler logs for any Deployment on its **Logs** page. Logs are color-coded according to their type. Scheduler logs can help you understand scheduler performance and indicate if a task failed due to an issue with the scheduler. For more information on configuring the scheduler on Astro, see [Scheduler resources](configure-deployment-resources.md#scheduler-resources).
 
-1. In the Cloud UI, select a Workspace and Deployment.
+1. In the Cloud UI, select a Workspace and then a Deployment.
 
 2. Click **Logs**.
 

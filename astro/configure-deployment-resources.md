@@ -118,9 +118,9 @@ If you haven't created a Deployment, see [Create a Deployment](create-deployment
 
 1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
 2. Select a Deployment.
-3. Based on the resource setting you want to change, click one of the following buttons:
+3. Select one of the following options to adjust the settings of a Worker Queue or a Scheduler:
 
-    - To create a worker queue or change an existing worker queue, click **Worker Queues**.
+    - To change the settings of an existing worker queue, click **Edit** in the **Worker Queues** area, adjust the settings, and then click **Update Queue**.
     - To change scheduler resources, click **Configuration** and then click **Edit Configuration**.
 
 4. Edit the Deployment resource settings. For more information about these settings, review the content in this topic.
