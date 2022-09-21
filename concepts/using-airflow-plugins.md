@@ -1,6 +1,6 @@
 ---
 title: "Import plugins to Airflow"
-sidebar_label: "Import plugins"
+sidebar_label: "Plugins"
 description: "How to use Airflow plugins."
 id: using-airflow-plugins
 ---
