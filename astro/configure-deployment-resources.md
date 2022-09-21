@@ -120,11 +120,8 @@ If you haven't created a Deployment, see [Create a Deployment](create-deployment
 2. Select a Deployment.
 3. Based on the resource setting you want to change, click one of the following buttons:
 
-    ![Location of all Deployment resource setting buttons](/img/docs/deployment-settings.png)
-
-    - To create a new worker queue, click **Add Worker Queue**.
-    - To change an existing worker queue, click the **Edit** button next to that worker queue's entry in the table in the **Worker Queues** section.
-    - To change scheduler resources, click the **Edit** button in the **Scheduler Settings** section.
+    - To create a worker queue or change an existing worker queue, click **Worker Queues**.
+    - To change scheduler resources, click **Configuration** and then click **Edit Configuration**.
 
 4. Edit the Deployment resource settings. For more information about these settings, review the content in this topic.
 5. Click **Update Deployment**.
