@@ -401,7 +401,7 @@ For a reference of all node instance types Astro supports and their correspondin
 
 The Cloud UI now includes a dedicated **Analytics** page that contains various Deployment-level metrics. These metrics are collected in real time and can provide insight into how your data pipelines are performing over time:
 
-![Analytics menu location](/img/docs/access-analytics.png)
+![Analytics menu location](/img/release-notes/access-analytics.png)
 
 For more information about accessing the **Analytics** page and the available metrics, see [Deployment Analytics](deployment-metrics.md#deployment-analytics).
 
@@ -809,7 +809,7 @@ All user configurations can be found by clicking your user profile picture in th
 - The name of your Astro Deployment now appears on the main DAGs view of the Airflow UI.
 - You can now see the health status for each Deployment in your Workspace on the table view of the **Deployments** page in the Cloud UI:
 
-   ![Deployment Health statuses visible in the Deployments table view](/img/docs/health-status-table.png)
+   ![Deployment Health statuses visible in the Deployments table view](/img/release-notes/health-status-table.png)
 
 - In the Cloud UI, you can now access the Airflow UI for Deployments via the **Deployments** page's card view:
 
