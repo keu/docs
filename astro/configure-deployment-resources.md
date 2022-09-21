@@ -106,7 +106,7 @@ These calculations are computed by KEDA every 10 seconds. For more information o
 
 ## Scheduler resources
 
-The [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html) is responsible for monitoring task execution and triggering downstream tasks once dependencies have been met. By adjusting the **Scheduler Count** slider in the Cloud UI, you can configure up to 4 schedulers, each of which will be provisioned with the AU specified in **Scheduler Resources**.
+The [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html) is responsible for monitoring task execution and triggering downstream tasks once dependencies have been met. By adjusting the **Scheduler Count** slider in the Cloud UI, you can configure up to 4 schedulers, each of which will be provisioned with the AU specified in **Resources**.
 
 For example, if you set scheduler resources to 10 AU and **Scheduler Count** to 2, your Deployment will run with 2 Airflow schedulers using 10 AU each.
 

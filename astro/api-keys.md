@@ -25,11 +25,14 @@ When using Deployment API keys, keep in mind the following:
 To create an API key for a Deployment:
 
 1. In the Cloud UI, open your Deployment.
-2. In the **API keys** menu, click **Add API Key**:
+
+2. Click **API Keys**.
+
+3. Click **+ API Key**:
 
     ![Add API key button](/img/docs/add-api-key.png)
 
-3. Give the key a name and description, then click **Create API Key**:
+4. Give the key a name and description, then click **Create API Key**:
 
     ![Create API key button](/img/docs/create-api-key.png)
 
@@ -66,13 +69,14 @@ After setting the variables, running `astro deployment update` works for the Dep
 ## Delete an API key
 
 1. In the Cloud UI, select a Workspace and then select a Deployment.
-2. In the menu for the API key you want to delete, click **Edit**:
+
+2. Click **API Keys**
+
+3. Click the **Edit** button next to your API key.
 
     ![Edit API key button](/img/docs/edit-api-key.png)
 
-3. Click **Delete API Key**, and then follow the onscreen prompt to finalize the deletion:
-
-    ![Delete API key button](/img/docs/delete-api-key.png)
+3. Click **Delete API Key**, and then follow the onscreen prompt to finalize the deletion.
 
 If you delete an API key, make sure that no existing CI/CD pipelines are using it. Once deleted, an API key and secret cannot be recovered. If you unintentionally delete an API key, create a new one and update any CI/CD workflows that used the deleted API key.
 
