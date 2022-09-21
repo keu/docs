@@ -46,6 +46,10 @@ You can now access essential Astro resources and user settings at `account.astro
 - During the DAG deployment process, the data plane is now less likely to run two different versions of your DAG code between your workers and the scheduler.
 - You can now use `m6id` type nodes on AWS clusters.
 
+### Bug fixes 
+
+- Fixed an issue where the Cloud UI Deployment metrics showed a maximum worker CPU and memory that was inconsistent with your configured worker queues.
+
 ## September 14, 2022
 
 ### Additional improvements
@@ -57,7 +61,6 @@ You can now access essential Astro resources and user settings at `account.astro
 ### Bug fixes
 
 - Fixed an issue where you could not open the Airflow UI from a Deployment.
-- Fixed an issue where the Cloud UI Deployment metrics showed a maximum worker CPU and memory that was inconsistent with your configured worker queues.
 
 ## August 31, 2022
 
