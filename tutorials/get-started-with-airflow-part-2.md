@@ -82,7 +82,7 @@ To run data pipelines on Astro, you first need to create an Astro project, which
 
 ![Import Error](/img/tutorials/T2_ImportError.png)
 
-Provider packages are Python packages maintained separately from core Airflow that contain hooks and operators for interacting with external services. You can browse all available providers in the [Astronomer Registry](https://registry.astronomer.io/). 
+Provider packages are Python packages maintained separately from core Airflow that contain hooks and operators for interacting with external services. You can browse all available providers in the [Astronomer Registry](https://registry.astronomer.io/).
 
   Your DAG uses operators from two Airflow provider packages: the [HTTP provider](https://registry.astronomer.io/providers/http) and the [GitHub provider](https://registry.astronomer.io/providers/github). While the HTTP provider is pre-installed in the Astro Runtime image, the GitHub provider is not, which causes the DAG import error.
 
@@ -90,8 +90,8 @@ Provider packages are Python packages maintained separately from core Airflow th
 
     ![GitHub Provider](/img/tutorials/T2_GitHubProvider.png)
 
-3. Copy the provider name and version from **Quick Install**. 
-4. Paste the provider name and version into the `requirements.txt` file of your Astro project. Make sure to only add `apache-airflow-providers-github=<version>` without `pip install`. 
+3. Copy the provider name and version from **Quick Install**.
+4. Paste the provider name and version into the `requirements.txt` file of your Astro project. Make sure to only add `apache-airflow-providers-github=<version>` without `pip install`.
 5. Restart your Airflow environment by running `astro dev restart`. Unlike DAG code changes, package dependency changes require a complete restart of Airflow.
 
 ## Step 4: Add an Airflow variable
@@ -112,7 +112,7 @@ After restarting your Airflow instance, you should not see the same DAG import e
 
 ## Step 5: Create a GitHub connection
 
-An Airflow connection is a set of configurations for connecting with an external tool in the data ecosystem. If you use a hook or operator that connects to an external system, it likely needs a connection. 
+An Airflow connection is a set of configurations for connecting with an external tool in the data ecosystem. If you use a hook or operator that connects to an external system, it likely needs a connection.
 
 In your example DAG, you used two operators that interact with two external systems, which means you need to define two different connections.
 
@@ -124,11 +124,11 @@ In your example DAG, you used two operators that interact with two external syst
 3. Name the connection `my_github_connection` and set its **Connection Type** to `GitHub`. Note that you can only select connection types that are available from either core Airflow or an installed provider package. If you are missing the connection type `GitHub`, double check that you installed the `GitHub` provider correctly in Step 3.
 4. Enter your **GitHub Access Token** in the GitHub Access Token field. If you need to create a token, you can follow the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 5. Test your connection by clicking **Test**. You should see a green banner indicating that your connection was successfully tested.
-    
+
     ![GitHub Connection](/img/tutorials/T2_GitHubConnection.png)
 
     Note that the option to test connections was added in Airflow 2.2. If you are running an older version of Airflow, you can skip this step.
-    
+
 6. Save the connection by clicking the `Save` button.
 
 ## Step 6: Create an HTTP connection
@@ -146,7 +146,23 @@ You should now have two connections as shown in the following screenshot:
 
 ![Connection List](/img/tutorials/T2_TwoConnections.png)
 
-## Step 7: View your DAG code
+## Step 7: Test your DAG
+
+1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run automatically starts, and the `tag_sensor` starts waiting for the `v1.0` tag to be added to your GitHub repository. You will see two light green circles in the **DAGs** view which indicate that the DAG run is in progress and the `example_tag_sensor` task is running.
+
+![DAG running](/img/tutorials/T2_GraphView.png)
+
+2. Add the tag `v1.0` to your GitHub repository by configuring it in the GitHub UI or running `git tag v1.0 && git push --tags` in your local repository clone.
+3. Watch for the `example_tag_sensor` task to finish successfully. The `query_api` task should now start.
+4. In the **Grid** view, click on the green box representing the successful task run for `query_api`. Check the **Log** page of the task for a brand new cat fact!
+
+```
+[2022-09-07, 16:34:04 UTC] {base.py:68} INFO - Using connection ID 'my_http_connection' for task execution.
+[2022-09-07, 16:34:04 UTC] {http.py:148} INFO - Sending 'GET' to url: http://catfact.ninja/fact
+[2022-09-07, 16:34:05 UTC] {http.py:125} INFO - {"fact":"Cats sleep 16 to 18 hours per day. When cats are asleep, they are still alert to incoming stimuli. If you poke the tail of a sleeping cat, it will respond accordingly.","length":167}
+```
+
+## Step 8: View your DAG code
 
 Now that your Airflow environment is configured correctly, look at DAG code you copied from the repository to see how your new configurations are used at the code level.
 
@@ -171,8 +187,7 @@ with DAG(
 ) as dag:
 ```
 
-
-The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been to your GitHub repository. It utilizes the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is quite long at 7 days, which can impact performance if left unchanged in DAG that run on a higher frequency.
+The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been to your GitHub repository. It utilizes the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is quite long at 7 days, which can impact performance if left unchanged in DAGs that run on a higher frequency.
 
 ```python
     tag_sensor = GithubTagSensor(
@@ -193,7 +208,7 @@ The second task uses the `SimpleHttpOperator` to send a `GET` request to the cat
         http_conn_id="my_http_connection",
         method="GET",
         log_response=True
-    ) 
+    )
 ```
 
 Lastly, the dependency between the two tasks is set so that the API is only queried after the `tag_sensor` task is successful.
@@ -205,22 +220,6 @@ Lastly, the dependency between the two tasks is set so that the API is only quer
 You can see this dependency in the **Graph** view of the Airflow UI:
 
 ![Graph View](/img/tutorials/T2_GraphView.png)
-
-## Step 8: Test your DAG
-
-1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run automatically starts, and the `tag_sensor` starts waiting for the `v1.0` tag to be added to your GitHub repository. You will see two light green circles in the **DAGs** view which indicate that the DAG run is in progress and the `example_tag_sensor` task is running.
-
-![DAG running](/img/tutorials/T2_GraphView.png)
-
-2. Add the tag `v1.0` to your GitHub repository by configuring it in the GitHub UI or running `git tag v1.0 && git push --tags` in your local repository clone.
-3. Watch for the `example_tag_sensor` task to finish successfully. The `query_api` task should now start. 
-4. In the **Grid** view, click on the green box representing the successful task run for `query_api`. Check the **Log** page of the task for a brand new cat fact!
-
-```
-[2022-09-07, 16:34:04 UTC] {base.py:68} INFO - Using connection ID 'my_http_connection' for task execution.
-[2022-09-07, 16:34:04 UTC] {http.py:148} INFO - Sending 'GET' to url: http://catfact.ninja/fact
-[2022-09-07, 16:34:05 UTC] {http.py:125} INFO - {"fact":"Cats sleep 16 to 18 hours per day. When cats are asleep, they are still alert to incoming stimuli. If you poke the tail of a sleeping cat, it will respond accordingly.","length":167}
-```
 
 ## Conclusion
 
