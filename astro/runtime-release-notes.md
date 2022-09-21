@@ -11,6 +11,25 @@ Astro Runtime is a Docker image built and published by Astronomer that extends t
 
 To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For general product release notes, see [Astro Release Notes](release-notes.md). If you have any questions or a bug to report, contact [Astronomer support](https://cloud.astronomer.io/support).
 
+## Astro Runtime 5.0.9
+
+- Release date: September 20, 2022
+- Airflow version: 2.3.4
+
+### Additional improvements
+
+- Upgraded `astronomer-providers` to 1.8.1, which includes various bug fixes. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#181-2022-09-01).
+- Upgraded `openlineage-airflow` to 0.13.0, which includes fixes for Spark integrations. See the [Astronomer Providers changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md#0141---2022-09-07).
+- Set `AIRFLOW__CELERY__STALLED_TASK_TIMEOUT=600` by default. 
+- Backported several changes from Airflow 2.4.0:
+
+    - Properly build URL to retrieve logs independently from system [#26337](https://github.com/apache/airflow/pull/26337)
+    - Fix proper joining of the path for logs retrieved from celery workers [#26493](https://github.com/apache/airflow/pull/26493)
+    - Fix UI redirect [#26409](https://github.com/apache/airflow/pull/26409)
+    - Fix broken auto-refresh in Airflow 2.3.4 [#25950](https://github.com/apache/airflow/pull/25950)
+    - Properly check the existence of missing mapped TIs [#25788](https://github.com/apache/airflow/pull/25788)
+
+
 ## Astro Runtime 6.0.0
 
 - Release date: September 19, 2022
@@ -29,7 +48,6 @@ Astro Runtime 6.0.0 provides support for [Airflow 2.4.0](https://airflow.apache.
 
 - Upgraded `astronomer-providers` to 1.9.0, which includes two new deferrable versions of operators from the dbt provider package. see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.9.0/CHANGELOG.rst).
 - Upgraded `openlineage-airflow` to version `0.14.1`. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
-
 
 ## Astro Runtime 5.0.8
 

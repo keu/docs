@@ -12,6 +12,7 @@ As part of the Astro architecture, certain environment variables have preset val
 | `AIRFLOW__LOGGING__REMOTE_LOGGING`| Enables remote logging | `True` |
 | `AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER`| Location of remote logging storage | `baseLogFolder`|
 | `AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID` | Airflow connection ID to access remote logging storage   | `astro_s3_logging` |
+|`AIRFLOW__CELERY__STALLED_TASK_TIMEOUT| Timeout length for stalled tasks in seconds | `600` |
 | `AIRFLOW_CONN_ASTRO_S3_LOGGING` | Connection URI for writing task logs to Astro's managed S3 bucket | `<Connection-URI>`|
 | `AIRFLOW__LOGGING__ENCRYPT_S3_LOGS` | Determines whether to use server-side encryption for S3 logs | `False` |
 | `AIRFLOW__WEBSERVER__BASE_URL` | The base URL of the Airflow UI  | `https://${fullIngressHostname}`|
