@@ -141,6 +141,14 @@ module.exports = {
         'astro-support',
         {
           type: 'category',
+          label: 'Astro Runtime',
+          items: [
+          'runtime-image-architecture',
+          'runtime-version-lifecycle-policy',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Cloud configuration reference',
           link: {
             type:'generated-index',
