@@ -5,17 +5,14 @@ id: runtime-image-architecture
 description: Reference documentation for Astro Runtime, a differentiated distribution of Apache Airflow.
 ---
 
-Astro Runtime is a production ready, data orchestration tool based on Apache Airflow that is distributed as a Docker image and is required by all Astronomer products. It is intended to provide organizations with improved functionality, reliability, efficiency, and performance.
+Astro Runtime is a production ready data orchestration tool based on Apache Airflow that is distributed as a Docker image. It is intended to provide organizations with improved functionality, reliability, efficiency, and performance.
 
-Deploying Astro Runtime is a requirement if your organization is using Astro. Astro Runtime includes the following features:
+Astro Runtime includes the following features:
 
 - Timely support for new patch, minor, and major versions of Apache Airflow. This includes bug fixes that have not been released by the open source project but are backported to Astro Runtime and available to users earlier.
-- Exclusive features to enrich the task execution experience, including smart task concurrency defaults and high availability configurations.
 - The `astronomer-providers` package. This package is an open source collection of Apache Airflow providers and modules maintained by Astronomer. It includes deferrable versions of popular operators such as `ExternalTaskSensor`, `DatabricksRunNowOperator`, and `SnowflakeOperator`. See [Astronomer deferrable operators](deferrable-operators.md#astronomer-deferrable-operators).
-- The `openlineage-airflow` package. [OpenLineage](https://openlineage.io/) standardizes the definition of data lineage, the metadata that forms lineage data, and how data lineage data is collected from external systems. This package enables data lineage on Astro. See [OpenLineage and Airflow](https://www.astronomer.io/guides/airflow-openlineage/).
-- A custom logging module that ensures Airflow task logs are reliably available to the Astro data plane.
-- A custom security manager that enforces user roles and permissions as defined by Astro. See [Manage user permissions on Astronomer Software](workspace-permissions.md).
-- A custom Airflow UI that includes links to Astronomer resources and exposes the currently running Docker image tag in the footer of all UI pages.
+- The `openlineage-airflow` package. [OpenLineage](https://openlineage.io/) standardizes the definition of data lineage, the metadata that forms lineage data, and how data lineage data is collected from external systems. See [OpenLineage and Airflow](https://www.astronomer.io/guides/airflow-openlineage/).
+- A custom security manager that enforces user roles and permissions as defined by Astronomer. See [Manage user permissions on Astronomer Software](workspace-permissions.md).
 
 For more information about the features that are available in Astro Runtime releases, see the [Astro Runtime release notes](https://docs.astronomer.io/astro/runtime-release-notes).
 
@@ -27,7 +24,7 @@ Astro Runtime versions are released regularly and use [semantic versioning](http
 - **Minor** versions are released for functional changes. This includes new patch versions of Apache Airflow as well as API or DAG specification changes that are backwards-compatible.
 - **Patch** versions are released for bug and security fixes that resolve unwanted behavior. This includes new patch versions of `astronomer-providers` and `openlineage-airflow`.
 
-Every version of Astro Runtime correlates to an Apache Airflow version. All Deployments on Astro must run only one version of Astro Runtime, but you can run different versions of Astro Runtime on different Deployments within a given cluster or Workspace. See [Create a Deployment](configure-deployment.md#create-a-deployment).
+Every version of Astro Runtime correlates to an Apache Airflow version. All Deployments on Astronomer Software must run only one version of Astro Runtime, but you can run different versions of Astro Runtime on different Deployments within a given cluster or Workspace. See [Create a Deployment](configure-deployment.md#create-a-deployment).
 
 For a list of supported Astro Runtime versions and more information on the Astro Runtime maintenance policy, see [Astro Runtime versioning and lifecycle policy](https://docs.astronomer.io/astro/runtime-version-lifecycle-policy).
 
@@ -39,7 +36,8 @@ This table lists Astro Runtime releases and their associated Apache Airflow vers
 | ------------- | ---------------------- |
 | 4.1.x         | 2.2.4                  |
 | 4.2.x         | 2.2.4-2.2.5            |
-| 5.0.x         | 2.3.0-2.3.3            |
+| 5.0.x         | 2.3.0-2.3.4            |
+| 5.0.x         | 2.4.0                  |
 
 :::info
 Each Runtime version in a given minor series supports only a single version of Apache Airflow. For specific version compatibility information, see [Runtime release notes](runtime-release-notes.md).
@@ -86,7 +84,7 @@ Astro Runtime supports Python 3.9. This is the only version of Python that Astro
 
 In Airflow, the executor is responsible for determining how and where a task is completed.
 
-In all local environments created with the Astro CLI, Astro Runtime runs the [Local executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/local.html). On Astro, Astro Runtime exclusively supports the [Celery executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html).
+In all local environments created with the Astro CLI, Astro Runtime runs the [Local executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/local.html). On Software Depolyments, Astro Runtime is compatible with the [Celery executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html) and [Kubernetes executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/kubernetes.html)
 
 Soon, Astronomer will provide a new executor with intelligent worker packing, task-level resource requests, improved logging, and Kubernetes-like task isolation.
 
