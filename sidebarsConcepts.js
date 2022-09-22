@@ -57,6 +57,7 @@ module.exports = {
         'kubepod-operator',
         'airflow-sql-data-quality-tutorial',
         'dynamically-generating-dags',
+        'dynamic-tasks',
       ],
     },
   ],
