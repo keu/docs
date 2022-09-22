@@ -16,19 +16,19 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 - Release date: September 20, 2022
 - Airflow version: 2.3.4
 
+### Backported fixes from Apache Airflow 2.4
+
+- Properly build URL to retrieve logs independently from system [#26337](https://github.com/apache/airflow/pull/26337)
+- Fix proper joining of the path for logs retrieved from celery workers [#26493](https://github.com/apache/airflow/pull/26493)
+- Fix UI redirect [#26409](https://github.com/apache/airflow/pull/26409)
+- Fix broken auto-refresh in Airflow 2.3.4 [#25950](https://github.com/apache/airflow/pull/25950)
+- Properly check the existence of missing mapped TIs [#25788](https://github.com/apache/airflow/pull/25788)
+
 ### Additional improvements
 
 - Upgraded `astronomer-providers` to 1.8.1, which includes various bug fixes. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#181-2022-09-01).
 - Upgraded `openlineage-airflow` to 0.13.0, which includes fixes for Spark integrations. See the [Astronomer Providers changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md#0141---2022-09-07).
-- Set `AIRFLOW__CELERY__STALLED_TASK_TIMEOUT=600` by default. 
-- Backported several changes from Airflow 2.4.0:
-
-    - Properly build URL to retrieve logs independently from system [#26337](https://github.com/apache/airflow/pull/26337)
-    - Fix proper joining of the path for logs retrieved from celery workers [#26493](https://github.com/apache/airflow/pull/26493)
-    - Fix UI redirect [#26409](https://github.com/apache/airflow/pull/26409)
-    - Fix broken auto-refresh in Airflow 2.3.4 [#25950](https://github.com/apache/airflow/pull/25950)
-    - Properly check the existence of missing mapped TIs [#25788](https://github.com/apache/airflow/pull/25788)
-
+- Set `AIRFLOW__CELERY__STALLED_TASK_TIMEOUT=600` by default. This means that tasks that are in `queued` state for more than 600 seconds (10 minutes) will fail. This environment variable can be overridden on Astro but will help prevent tasks from getting stuck in a queued state.
 
 ## Astro Runtime 6.0.0
 
