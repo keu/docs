@@ -13,7 +13,28 @@ This document includes all release notes for Astronomer Software v0.28.
 
 0.30 is the latest long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, see [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). To review release notes specifically for the Astro CLI, see [Astro CLI release notes](cli-release-notes.md).
 
-We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
+All Astronomer Software versions are tested for scale, reliability and security on Amazon EKS, Google GKE, and Azure AKS. If you have questions or an issue to report, contact [Astronomer support](https://support.astronomer.io).
+
+## v0.28.6
+
+Release date: September 21, 2022
+
+### Additional improvements
+
+- You can now specify `authUrlParams` for your identity provider (IdP) in `config.yaml`
+- Added support for [Kubernetes 1.22](https://kubernetes.io/blog/2021/08/04/kubernetes-1-22-release-announcement/)
+- Upgraded Prometheus to the LTS release of 2.37.0
+
+### Bug fixes
+
+- Fixed the following Common Vulnerabilities and Exposures (CVEs):
+    - [CVE-2022-1996](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-1996)
+    - [CVE-2022-21698](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698)
+    - [CVE-2022-0624](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-0624)
+    - [CVE-2022-31129](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-31129)
+
+- Fixed several additional CVEs by upgrading images for system components
+- Fixed an issue where custom authentication methods did not appear in the Software UI
 
 ## v0.28.5
 
