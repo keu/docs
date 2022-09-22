@@ -79,15 +79,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Astro Runtime',
-      items: [
-        'upgrade-runtime',
-        'runtime-image-architecture',
-        'runtime-version-lifecycle-policy',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Administration',
       items: [
         {
