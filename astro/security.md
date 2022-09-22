@@ -23,13 +23,13 @@ The Astro control and data planes are architected and deployed on major public c
 
 ## Disaster recovery
 
-While Astro data plane is designed to withstand and survive in-region Availability Zone (AZ) degradations and outages, rest assured Astronomer can also help you recover from major region failures by restoring configuration and secrets from a secure and highly available data store. For more information, read [Disaster Recovery](disaster-recovery.md).
+While Astro data plane is designed to withstand and survive in-region Availability Zone (AZ) degradations and outages, rest assured Astronomer can also help you recover from major region failures by restoring configuration and secrets from a secure and highly available data store. For more information, see [Disaster Recovery](disaster-recovery.md).
 
 ## Physical and environment security
 
-Astro leverages all three major public cloud providers (Azure, Google Cloud Platform, Amazon Web Services), thus physical and environmental security is handled entirely by those providers. Each cloud service provider provides an extensive list of compliance and regulatory assurances that they are rigorously tested against, including SOC 1/2-3, PCI-DSS, and ISO27001. For more information, read [Cloud provider security responsibilities](shared-responsibility-model.md#cloud-provider-security-responsibilities).
+Astro leverages all three major public cloud providers (Azure, Google Cloud Platform, Amazon Web Services), thus physical and environmental security is handled entirely by those providers. Each cloud service provider provides an extensive list of compliance and regulatory assurances that they are rigorously tested against, including SOC 1/2-3, PCI-DSS, and ISO27001. For more information, see [Cloud provider security responsibilities](shared-responsibility-model.md#cloud-provider-security-responsibilities).
 
-Astronomer is a global remote company first. We have some small offices in the United States, but they are treated as trustless. Employees need to authenticate to all applications and systems using our IdP (Okta) with MFA even if using office WiFi.
+Astronomer is a global remote company first. The Astronomer offices in the United States are treated as trustless. Employees need to authenticate to all applications and systems using Okta with multi-factor authentication (MFA) when using the office WiFi.
 
 ## Data privacy and compliance
 
