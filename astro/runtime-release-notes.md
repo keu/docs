@@ -18,11 +18,10 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 ### Backported fixes from Apache Airflow 2.4
 
-- Properly build URL to retrieve logs independently from system [#26337](https://github.com/apache/airflow/pull/26337)
-- Fix proper joining of the path for logs retrieved from celery workers [#26493](https://github.com/apache/airflow/pull/26493)
-- Fix UI redirect [#26409](https://github.com/apache/airflow/pull/26409)
-- Fix broken auto-refresh in Airflow 2.3.4 [#25950](https://github.com/apache/airflow/pull/25950)
-- Properly check the existence of missing mapped TIs [#25788](https://github.com/apache/airflow/pull/25788)
+- Fixed an issue where logs were not loading from Celery workers ([#26337](https://github.com/apache/airflow/pull/26337) and [#26493](https://github.com/apache/airflow/pull/26493))
+- Fixed CVE-2022-40754 ([#26409](https://github.com/apache/airflow/pull/26409))
+- Fixed the Airflow UI not auto-refreshing when scheduled tasks are running. This bug was introduced in Airflow 2.3.4 ([#25950](https://github.com/apache/airflow/pull/25950))
+- Fixed an issue where the scheduler could crash when queueing dynamically mapped tasks ([#25788](https://github.com/apache/airflow/pull/25788))
 
 ### Additional improvements
 
