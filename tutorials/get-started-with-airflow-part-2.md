@@ -217,10 +217,6 @@ Lastly, the dependency between the two tasks is set so that the API is only quer
     tag_sensor >> query_API
 ```
 
-You can see this dependency in the **Graph** view of the Airflow UI:
-
-![Graph View](/img/tutorials/T2_GraphView.png)
-
 ## Conclusion
 
 Congratulations on finishing this tutorial! You now know how to:
