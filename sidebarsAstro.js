@@ -83,7 +83,6 @@ module.exports = {
       items: [
         'upgrade-runtime',
         'runtime-image-architecture',
-        'runtime-release-notes',
         'runtime-version-lifecycle-policy',
       ],
     },
