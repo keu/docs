@@ -14,6 +14,7 @@ module.exports = {
         'airflow-decorators',
         'bashoperator',
         'airflow-sql',
+        'airflow-ui',
       ],
     },
     {
