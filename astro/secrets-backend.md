@@ -225,7 +225,6 @@ In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter St
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/overview.md).
-- An [Astro project](create-project.md).
 - An [Astro project](create-project.md) with version 5.1.0+ of `apache-airflow-providers-amazon`. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
 - An IAM role with access to the [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-access.html) that your Astro cluster can assume. See [AWS IAM roles](connect-external-services.md#aws-iam-roles).
 
