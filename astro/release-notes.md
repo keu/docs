@@ -17,31 +17,30 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## September 21, 2022
 
-### View Deployment details from a single page
+### A simpler Deployment page
 
 All of a Deployment's configurations, including analytics, API keys, environment variables, and resource configurations, are now organized as tabs within the Deployment's page in the Cloud UI.
 
 ![New organization of Deployment-level pages in the Cloud UI](/img/release-notes/deployment-tabs.png)
 
-This new UI simplifies the Deployments page, making it easier to focus on specific configuration and operational tasks. It also simplifies the left sidebar so that it exclusively contains Workspace-level menus.
+This new UI moves the **Analytics** and **Logs** from the left sidebar to the main Deployment page so that you longer have to filter those views separately by Deployment. The left sidebar now exclusively contains Workspace-level menus.
 
 ### Data plane cost tuning
 
-Astronomer has modified the default resource usage of Astro clusters to minimize cost for Astro customers. In addition to minor improvements across cluster resource usage:
+Astronomer has modified the default resource usage of Astro clusters to improve infrastructure cost for Astro customers. In addition to minor improvements to node autoscaling behavior:
 
 - New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
-- Google Cloud Platform (GCP) clusters now use `e2-standard-4` instance types for Airflow and data plane system nodes.
+- Astro clusters on Google Cloud Platform (GCP) now use `e2-standard-4` instance types for the Airflow and data plane system node pools instead of `n2-standard-4`.
 
-### Improved user dashboard and onboarding
+### New Account Dashboard
 
-You can now access essential Astro resources and user settings at `account.astronomer.io`. You can also access your user home page from `cloud.astronomer.io` by clicking **Manage your Astro Account** in your profile menu.
+You can now access your Account Dashboard to manage your user account settings and find links to helpful resources. Access this page by going to `account.astronomer.io` in your browser or by clicking **Profile** > **Manage your Astro Account** in the Cloud UI. You must be authenticated to Astro.
 
 ![New user home page](/img/release-notes/user-home.png)
 
 ### Additional improvements
 
-- During the DAG deployment process, the data plane is now less likely to run two different versions of your DAG code between your workers and the scheduler.
-- You can now use `m6id` type nodes on AWS clusters.
+- You can now use the `m6id` worker node type series for Deployments on AWS clusters. This worker type is general purpose and includes significant storage as well as up to 15% better performance compared to `m5d` nodes. For more information, see [Worker instance types](resource-reference-aws.md#worker-node-types).
 
 ### Bug fixes
 

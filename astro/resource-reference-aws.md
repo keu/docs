@@ -3,7 +3,7 @@ sidebar_label: "AWS"
 title: "Resources required for Astro on AWS"
 id: resource-reference-aws
 description: Reference of all supported configurations for new clusters on Astro in AWS.
-sidebar_custom_props: { icon: 'img/aws.png' }
+sidebar_custom_props: { icon: "img/aws.png" }
 ---
 
 Unless otherwise specified, new clusters on Astro are created with a set of default AWS resources that should be suitable for most use cases.
@@ -12,22 +12,22 @@ Read the following document for a reference of our default resources as well as 
 
 ## Default cluster values
 
-| Resource                                  | Description                                                                                                                   | Quantity / Default Size |
-| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| [EKS Cluster](https://aws.amazon.com/eks) | An EKS cluster is required to run the Astro Data Plane, which hosts the resources and data required to execute Airflow tasks. | 1x                      |
-| Worker node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that run all workers across Deployments in the cluster. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different worker types. | 1x pool of m5.xlarge nodes |
-| Airflow system node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all core Airflow components, including the scheduler and webserver. This node pool is fully managed by Astronomer | 1x pool of m5.xlarge nodes |
-| Astro system node pool | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all other system components required in Astro. This node pool is fully managed by Astronomer| 1x pool of m5.xlarge nodes |
-| [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/) | The RDS instance is the primary database of the Astro Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster. | 1x db.r5.large |
-| [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) | Elastic IPs are required for connectivity with the Control Plane, and other public services. | 2x |
-| [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html) | Subnets are provisioned in 2 different [Availability Zones (AZs)](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for redundancy, with 1 public and 1 private subnet per AZ. Public subnets are required for the NAT and Internet gateways, while private subnets are required for EC2 nodes. | 2x /26 (public) and 1x /20 + 1x /21 (private) |
-| [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html) | Required for connectivity with the control plane and other public services. | 1x |
-| [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html) | NAT Gateways translate outbound traffic from private subnets to public subnets. | 2x |
-| [Routes](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#route-table-routes) | Routes are necessary to direct network traffic from the subnets and gateways. | 2x |
-| [Route Tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html) | Home for the routes. | 2x |
-| [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html) | Virtual network for launching and hosting AWS resources. | 1x /19 |
-| [S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide//Welcome.html) | S3 bucket for storage of Airflow task logs. | 1x |
-| Maximum Node Count | The maximum number of EC2 nodes that your Astro cluster can support. When this limit is reached, your cluster can't auto-scale and worker Pods may fail to schedule. | 20 |
+| Resource                                                                                            | Description                                                                                                                                                                                                                                                                                                          | Quantity / Default Size                       |
+| --------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [EKS Cluster](https://aws.amazon.com/eks)                                                           | An EKS cluster is required to run the Astro Data Plane, which hosts the resources and data required to execute Airflow tasks.                                                                                                                                                                                        | 1x                                            |
+| Worker node pool                                                                                    | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that run all workers across Deployments in the cluster. The number of nodes in the pool auto-scales based on the demand for workers in your cluster. You can configure multiple worker node pools to run tasks on different worker types. | 1x pool of m5.xlarge nodes                    |
+| Airflow system node pool                                                                            | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all core Airflow components, including the scheduler and webserver. This node pool is fully managed by Astronomer                                                                                                               | 1x pool of m5.xlarge nodes                    |
+| Astro system node pool                                                                              | A node pool of [EC2 instances](https://aws.amazon.com/ec2/instance-types/) that runs all other system components required in Astro. This node pool is fully managed by Astronomer                                                                                                                                    | 1x pool of m5.xlarge nodes                    |
+| [RDS for PostgreSQL Instance](https://aws.amazon.com/rds/)                                          | The RDS instance is the primary database of the Astro Data Plane. It hosts a metadata database for each Airflow Deployment hosted on the EKS cluster.                                                                                                                                                                | 1x db.r5.large                                |
+| [Elastic IPs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)    | Elastic IPs are required for connectivity with the Control Plane, and other public services.                                                                                                                                                                                                                         | 2x                                            |
+| [Subnets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html)                        | Subnets are provisioned in 2 different [Availability Zones (AZs)](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/) for redundancy, with 1 public and 1 private subnet per AZ. Public subnets are required for the NAT and Internet gateways, while private subnets are required for EC2 nodes.    | 2x /26 (public) and 1x /20 + 1x /21 (private) |
+| [Internet Gateway](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html)      | Required for connectivity with the control plane and other public services.                                                                                                                                                                                                                                          | 1x                                            |
+| [NAT Gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)               | NAT Gateways translate outbound traffic from private subnets to public subnets.                                                                                                                                                                                                                                      | 2x                                            |
+| [Routes](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html#route-table-routes) | Routes are necessary to direct network traffic from the subnets and gateways.                                                                                                                                                                                                                                        | 2x                                            |
+| [Route Tables](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html)              | Home for the routes.                                                                                                                                                                                                                                                                                                 | 2x                                            |
+| [VPC](https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html)                     | Virtual network for launching and hosting AWS resources.                                                                                                                                                                                                                                                             | 1x /19                                        |
+| [S3](https://docs.aws.amazon.com/AmazonS3/latest/userguide//Welcome.html)                           | S3 bucket for storage of Airflow task logs.                                                                                                                                                                                                                                                                          | 1x                                            |
+| Maximum Node Count                                                                                  | The maximum number of EC2 nodes that your Astro cluster can support. When this limit is reached, your cluster can't auto-scale and worker Pods may fail to schedule.                                                                                                                                                 | 20                                            |
 
 ## Supported cluster configurations
 
@@ -107,59 +107,58 @@ Each worker in a worker node pool runs a single worker Pod. A worker Pod's actua
 
 The following table lists all available instance types for worker node pools, as well as the Pod size that is supported for each instance type. As the system requirements of Astro change, these values can increase or decrease.
 
-| Worker Node Type | CPU       | Memory       |
-|--------------------|-----------|--------------|
-| m5.xlarge          | 3 CPUs    | 13 GiB MEM   |
-| m5.2xlarge         | 7 CPUs    | 29 GiB MEM   |
-| m5.4xlarge         | 15 CPUs   | 61 GiB MEM   |
-| m5.8xlarge         | 31 CPUs   | 125 GiB MEM  |
-| m5.12xlarge        | 47 CPUs   | 189 GiB MEM  |
-| m5.16xlarge        | 63 CPUs   | 253 GiB MEM  |
-| m5.24xlarge        | 95 CPUs   | 381 Gib MEM  |
-| m5.metal           | 95 CPUs   | 381 Gib MEM  |
-| m5d.xlarge         | 3 CPUs    | 13 GiB MEM   |
-| m5d.2xlarge        | 7 CPUs    | 29 GiB MEM   |
-| m5d.4xlarge        | 15 CPUs   | 61 GiB MEM   |
-| m5d.8xlarge        | 31 CPUs   | 125 GiB MEM  |
-| m5d.12xlarge       | 47 CPUs   | 189 GiB MEM  |
-| m5d.16xlarge       | 63 CPUs   | 253 GiB MEM  |
-| m5d.24xlarge       | 95 CPUs   | 381 Gib MEM  |
-| m5d.metal          | 95 CPUs   | 381 Gib MEM  |
-| m6i.xlarge         | 3 CPUs    | 13 GiB MEM   |
-| m61.2xlarge        | 7 CPUs    | 29 GiB MEM   |
-| m6i.4xlarge        | 15 CPUs   | 61 GiB MEM   |
-| m6i.8xlarge        | 31 CPUs   | 125 GiB MEM  |
-| m6i.12xlarge       | 47 CPUs   | 189 GiB MEM  |
-| m6i.16xlarge       | 63 CPUs   | 253 GiB MEM  |
-| m6i.24xlarge       | 95 CPUs   | 381 Gib MEM  |
-| m6i.metal          | 95 CPUs   | 381 Gib MEM  |
-| m6id.xlarge         |X    | X  |
-| m61d.2xlarge        | X   | X  |
-| m6id.4xlarge        | X   | X   |
-| m6id.8xlarge        |X   | X  |
-| m6id.12xlarge       | X   | X |
-| m6id.16xlarge       | X   | X |
-| m6id.24xlarge       | X   | X  |
-| m6id.metal          | X   | X  |
-| r6i.xlarge         | 3 CPUs    | 29 GiB MEM   |
-| r61.2xlarge        | 7 CPUs    | 61 GiB MEM   |
-| r6i.4xlarge        | 15 CPUs   | 125 GiB MEM  |
-| r6i.8xlarge        | 31 CPUs   | 253 GiB MEM  |
-| r6i.12xlarge       | 47 CPUs   | 381 GiB MEM  |
-| r6i.16xlarge       | 63 CPUs   | 509 GiB MEM  |
-| r6i.24xlarge       | 95 CPUs   | 765 Gib MEM  |
-| r6i.metal          | 95 CPUs   | 1021 Gib MEM |
-| c6i.xlarge         | 3 CPUs    | 5 GiB MEM    |
-| c61.2xlarge        | 7 CPUs    | 13 GiB MEM   |
-| c6i.4xlarge        | 15 CPUs   | 29 GiB MEM   |
-| c6i.8xlarge        | 31 CPUs   | 61 GiB MEM   |
-| c6i.12xlarge       | 47 CPUs   | 93 GiB MEM   |
-| c6i.16xlarge       | 63 CPUs   | 125 GiB MEM  |
-| c6i.24xlarge       | 95 CPUs   | 189 Gib MEM  |
-| c6i.metal          | 95 CPUs   | 189 Gib MEM  |
-| t3.xlarge          | 3 CPUs    | 13 GiB MEM   |
-| t3.2xlarge         | 7 CPUs    | 29 GiB MEM   |
-
+| Worker Node Type | CPU     | Memory       |
+| ---------------- | ------- | ------------ |
+| m5.xlarge        | 3 CPUs  | 13 GiB MEM   |
+| m5.2xlarge       | 7 CPUs  | 29 GiB MEM   |
+| m5.4xlarge       | 15 CPUs | 61 GiB MEM   |
+| m5.8xlarge       | 31 CPUs | 125 GiB MEM  |
+| m5.12xlarge      | 47 CPUs | 189 GiB MEM  |
+| m5.16xlarge      | 63 CPUs | 253 GiB MEM  |
+| m5.24xlarge      | 95 CPUs | 381 GiB MEM  |
+| m5.metal         | 95 CPUs | 381 GiB MEM  |
+| m5d.xlarge       | 3 CPUs  | 13 GiB MEM   |
+| m5d.2xlarge      | 7 CPUs  | 29 GiB MEM   |
+| m5d.4xlarge      | 15 CPUs | 61 GiB MEM   |
+| m5d.8xlarge      | 31 CPUs | 125 GiB MEM  |
+| m5d.12xlarge     | 47 CPUs | 189 GiB MEM  |
+| m5d.16xlarge     | 63 CPUs | 253 GiB MEM  |
+| m5d.24xlarge     | 95 CPUs | 381 GiB MEM  |
+| m5d.metal        | 95 CPUs | 381 GiB MEM  |
+| m6i.xlarge       | 3 CPUs  | 13 GiB MEM   |
+| m61.2xlarge      | 7 CPUs  | 29 GiB MEM   |
+| m6i.4xlarge      | 15 CPUs | 61 GiB MEM   |
+| m6i.8xlarge      | 31 CPUs | 125 GiB MEM  |
+| m6i.12xlarge     | 47 CPUs | 189 GiB MEM  |
+| m6i.16xlarge     | 63 CPUs | 253 GiB MEM  |
+| m6i.24xlarge     | 95 CPUs | 381 GiB MEM  |
+| m6i.metal        | 95 CPUs | 381 GiB MEM  |
+| m6id.xlarge      | 3 CPUs  | 13 GiB MEM   |
+| m61d.2xlarge     | 7 CPUs  | 29 GiB MEM   |
+| m6id.4xlarge     | 15 CPU  | 61 GiB MEM   |
+| m6id.8xlarge     | 31 CPU  | 125 GiB MEM  |
+| m6id.12xlarge    | 47 CPU  | 189 GiB MEM  |
+| m6id.16xlarge    | 63 CPU  | 253 GiB MEM  |
+| m6id.24xlarge    | 95 CPU  | 381 GiB MEM  |
+| m6id.metal       | 127 CPU | 509 GiB MEM  |
+| r6i.xlarge       | 3 CPUs  | 29 GiB MEM   |
+| r61.2xlarge      | 7 CPUs  | 61 GiB MEM   |
+| r6i.4xlarge      | 15 CPUs | 125 GiB MEM  |
+| r6i.8xlarge      | 31 CPUs | 253 GiB MEM  |
+| r6i.12xlarge     | 47 CPUs | 381 GiB MEM  |
+| r6i.16xlarge     | 63 CPUs | 509 GiB MEM  |
+| r6i.24xlarge     | 95 CPUs | 765 GiB MEM  |
+| r6i.metal        | 95 CPUs | 1021 GiB MEM |
+| c6i.xlarge       | 3 CPUs  | 5 GiB MEM    |
+| c61.2xlarge      | 7 CPUs  | 13 GiB MEM   |
+| c6i.4xlarge      | 15 CPUs | 29 GiB MEM   |
+| c6i.8xlarge      | 31 CPUs | 61 GiB MEM   |
+| c6i.12xlarge     | 47 CPUs | 93 GiB MEM   |
+| c6i.16xlarge     | 63 CPUs | 125 GiB MEM  |
+| c6i.24xlarge     | 95 CPUs | 189 GiB MEM  |
+| c6i.metal        | 95 CPUs | 189 GiB MEM  |
+| t3.xlarge        | 3 CPUs  | 13 GiB MEM   |
+| t3.2xlarge       | 7 CPUs  | 29 GiB MEM   |
 
 :::info
 
