@@ -33,7 +33,7 @@ To complete this tutorial, you'll need to know:
 - A terminal that accepts bash commands. This is pre-installed on most operating systems.
 - [Python 3](https://www.python.org/downloads/).
 - [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
-- The [Astro CLI](cli/configure-cli.md).
+- The [Astro CLI](astro/cli/install-cli.md).
 - An integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
 
 ## Step 1: Create an Astro project
