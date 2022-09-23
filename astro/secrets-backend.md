@@ -335,11 +335,6 @@ For more information on adding secrets to Secrets Manager, see [AWS documentatio
     AF_SB_REGION=<your-aws-region>
     ```
 
-:::caution
-
-To deploy your project to a hosted Git repository before deploying to Astro, save `<your-role-arn>` and `<your-aws-region>` values securely. When you deploy to Astro, use the Cloud UI to set these values as secrets.
-
-:::
 
 #### Step 3: Deploy to Astro
 
