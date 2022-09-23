@@ -9,6 +9,19 @@ description: Astronomer Software release notes.
 
 0.30 is the latest stable and long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, see [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). To read release notes specifically for the Astro CLI, see [Astro CLI release notes](cli-release-notes.md).
 
+## 0.30.2
+
+Release date: September 23, 2022
+
+### Additional improvements
+
+- You can now set a `securityContext` for Fluentd Pods and containers using the [Fluentd Helm chart](https://github.com/astronomer/astronomer/blob/master/charts/fluentd/values.yaml).
+- Improved the startup time for the platform NATS server.
+
+### Bug fixes
+
+- Fixed several CVEs as a result of updating images for system components. 
+
 ## 0.30.1
 
 Release date: September 12, 2022
