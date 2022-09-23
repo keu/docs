@@ -38,6 +38,7 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
     - `https://images.astronomer.cloud/`
     - `https://auth.astronomer.io/`
     - `https://updates.astronomer.io/`
+    - `https://install.astronomer.io/`
 
 For more information about the resources required to run Astro on Azure, see [Azure Resource Reference](resource-reference-azure.md).
 

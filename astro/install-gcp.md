@@ -34,6 +34,7 @@ For more information about managing Google Cloud projects, see [GCP documentatio
     - `https://images.astronomer.cloud/`
     - `https://auth.astronomer.io/`
     - `https://updates.astronomer.io/`
+    - `https://install.astronomer.io/`
 
 For more information about the resources required to run Astro on GCP, see [GCP Resource Reference](resource-reference-gcp.md).
 
