@@ -5,9 +5,9 @@ description: "An overview of the Airflow UI"
 id: airflow-ui
 ---
 
-A notable feature of Apache Airflow is the [User Interface (UI)](https://airflow.apache.org/docs/apache-airflow/stable/ui.html), which provides insights into your DAGs and DAG runs. The UI is a useful tool for understanding, monitoring, and troubleshooting your pipelines.
+A notable feature of Apache Airflow is the [user interface (UI)](https://airflow.apache.org/docs/apache-airflow/stable/ui.html), which provides insights into your DAGs and DAG runs. The UI is a useful tool for understanding, monitoring, and troubleshooting your pipelines.
 
-In this guide, you'll review an overview of some of the most useful features and visualizations in the Airflow UI. Each section of this guide corresponds to one of the tabs at the top of the Airflow UI. If you're not already using Airflow and want to get it up and running to follow along, see [Install the Astro CLI](https://docs.astronomer.io/astro/cli/get-started) to quickly run Airflow locally.
+This guide is an overview of some of the most useful features and visualizations in the Airflow UI. Each section of this guide corresponds to one of the tabs at the top of the Airflow UI. If you're not already using Airflow and want to get it up and running to follow along, see [Install the Astro CLI](https://docs.astronomer.io/astro/cli/get-started) to quickly run Airflow locally.
 
 This guide focuses on the Airflow 2 UI. If you're using an older version of the UI, see [Upgrading from 1.10 to 2](https://airflow.apache.org/docs/apache-airflow/stable/upgrading-from-1-10/index.html).
 
@@ -22,7 +22,7 @@ To get the most out of this guide, you should have knowledge of:
 
 ## DAGs
 
-The DAGs view is the landing page when you sign in to Airflow. It shows a list of all your DAGs, the status of recent DAG runs and tasks, the time of the last DAG run, and basic metadata about the DAG like the owner and the schedule. To see the status of the DAGs update in real time, toggle **Auto-refresh** (added in Airflow 2.4).
+The **DAGs** view is the landing page when you sign in to Airflow. It shows a list of all your DAGs, the status of recent DAG runs and tasks, the time of the last DAG run, and basic metadata about the DAG like the owner and the schedule. To see the status of the DAGs update in real time, toggle **Auto-refresh** (added in Airflow 2.4).
 
 ![DAGs View](/img/guides/2_4_DAGs.png)
 
@@ -37,7 +37,7 @@ To see more information about a specific DAG, click its name or use one of the l
 
 ### Graph view
 
-The Graph view shows a visualization of the tasks and dependencies in your DAG and their current status for a specific DAG run. This view is particularly useful when reviewing and developing a DAG. When running the DAG, toggle **Auto-refresh** to see the status of the tasks update in real time.
+The **Graph** view shows a visualization of the tasks and dependencies in your DAG and their current status for a specific DAG run. This view is particularly useful when reviewing and developing a DAG. When running the DAG, toggle **Auto-refresh** to see the status of the tasks update in real time.
 
 ![Graph View](/img/guides/2_4_GraphView.png)
 
@@ -63,23 +63,23 @@ The actions available for the task instance are:
 
 ### Grid view
 
-The Grid view was introduced in Airflow 2.3 and shows a grid representation of the DAG's previous runs, including their duration and the outcome of all individual task instances. Each column represents a DAG run and each square represents a task instance in that DAG run. Task instances are color-coded according to their status. A small play icon on a DAG run indicates that a run was triggered manually, and a small dataset icon shows that a run was triggered via a [dataset update](https://astronomer.io/guides/airflow-datasets).
+The **Grid** view was introduced in Airflow 2.3 and shows a grid representation of the DAG's previous runs, including their duration and the outcome of all individual task instances. Each column represents a DAG run and each square represents a task instance in that DAG run. Task instances are color-coded according to their status. A small play icon on a DAG run indicates that a run was triggered manually, and a small dataset icon shows that a run was triggered via a [dataset update](https://astronomer.io/guides/airflow-datasets).
 
 ![Grid View](/img/guides/2_4_GridView_incl_fails_skip.png)
 
 Click a square in the grid to view more details about the task instance and access links to additional views and actions.
 
-The Grid view replaced the [Tree View](https://airflow.apache.org/docs/apache-airflow/2.2.5/ui.html#tree-view) in Airflow version 2.3 and later.
+The **Grid** view replaced the [Tree View](https://airflow.apache.org/docs/apache-airflow/2.2.5/ui.html#tree-view) in Airflow version 2.3 and later.
 
 ### Calendar view
 
-The Calendar view is available in Airflow 2.1 and later. It shows the state of DAG runs overlaid on a calendar. States are represented by color. If there were multiple DAG runs on the same day with different states, the color is a gradient between green (success) and red (failure).
+The **Calendar** view is available in Airflow 2.1 and later. It shows the state of DAG runs overlaid on a calendar. States are represented by color. If there were multiple DAG runs on the same day with different states, the color is a gradient between green (success) and red (failure).
 
 ![Calendar View](/img/guides/2_4_CalendarView.png)
 
 ### Code view
 
-The Code view shows the code that is used to generate the DAG. While your code should live in source control, the Code view provides a quick insight into what is going on in the DAG. DAG code can't be edited in the UI.
+The **Code** view shows the code that is used to generate the DAG. While your code should live in source control, the **Code** view provides a quick insight into what is going on in the DAG. DAG code can't be edited in the UI.
 
 ![Code View](/img/guides/2_4_CodeView.png)
 
@@ -98,21 +98,21 @@ The following are the additional DAG views that are available, but not discussed
 
 ## Datasets tab
 
-The Dataset tab was introduced in Airflow 2.4 in support of the new [dataset driven scheduling](https://www.astronomer.io/guides/airflow-datasets) feature. The Dataset tab links to a page showing all datasets that have been produced in the Airflow environment, as well as all dependencies between datasets and DAGs in a graph.
+The **Dataset** tab was introduced in Airflow 2.4 in support of the new [dataset driven scheduling](https://www.astronomer.io/guides/airflow-datasets) feature. The **Dataset** tab links to a page showing all datasets that have been produced in the Airflow environment, as well as all dependencies between datasets and DAGs in a graph.
 
 ![Datasets](/img/guides/2_4_Datasets.png)
 
-Click a Dataset to open the history of all updates to the Dataset that were recorded in the Airflow environment.
+Click a dataset to open the history of all updates to the dataset that were recorded in the Airflow environment.
 
 ![Dataset History](/img/guides/2_4_DatasetsDetails.png)
 
 ## Security tab
 
-The **Security** tab links to multiple pages, including List Users and List Roles, that you can use to review and manage Airflow role-based access control (RBAC). For more information on working with RBAC, see [Security](https://airflow.apache.org/docs/apache-airflow/stable/security/index.html).
+The **Security** tab links to multiple pages, including **List Users** and **List Roles**, that you can use to review and manage Airflow role-based access control (RBAC). For more information on working with RBAC, see [Security](https://airflow.apache.org/docs/apache-airflow/stable/security/index.html).
 
 ![Security](/img/guides/2_4_SecurityTab.png)
 
-If you are running Airflow on Astronomer, the Astronomer RBAC will extend into Airflow and take precedence. There is no need for you to use Airflow RBAC in addition to Astronomer RBAC. Astronomer RBAC can be managed from the Astronomer UI, so the **Security** tab may be less relevant for Astronomer users.
+If you are running Airflow on Astronomer, the Astronomer RBAC will extend into Airflow and take precedence. There is no need for you to use Airflow RBAC in addition to Astronomer RBAC. Astronomer RBAC can be managed from the Astronomer UI, so the **Security** tab might be less relevant for Astronomer users.
 
 ## Browse tab
 
