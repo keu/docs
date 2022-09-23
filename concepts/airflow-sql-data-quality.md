@@ -2,7 +2,7 @@
 title: "Airflow data quality checks with SQL Operators"
 sidebar_label: "Airflow data quality checks with SQL Operators"
 description: "Executing queries in Apache Airflow DAGs to ensure data quality."
-id: "airflow-sql-data-quality-tutorial"
+id: "airflow-sql-data-quality"
 ---
 
 Data quality is key to the success of an organization's data systems. With in-DAG quality checks, you can halt pipelines and alert stakeholders before bad data makes its way to a production lake or warehouse.
