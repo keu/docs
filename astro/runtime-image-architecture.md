@@ -25,7 +25,7 @@ Astro Runtime versions are released regularly and use [semantic versioning](http
 
 - **Major** versions are released for significant feature additions. This includes new major or minor versions of Apache Airflow as well as API or DAG specification changes that are not backwards-compatible.
 - **Minor** versions are released for functional changes. This includes API or DAG specification changes that are backwards-compatible.
-- **Patch** versions are released for bug and security fixes that resolve unwanted behavior. This includes new patch versions of Apache Airflow, as well as `astronomer-providers` and `openlineage-airflow`.
+- **Patch** versions are released for bug and security fixes that resolve unwanted behavior. This includes new patch versions of Apache Airflow, `astronomer-providers`, and `openlineage-airflow`.
 
 Every version of Astro Runtime correlates to an Apache Airflow version. All Deployments on Astro must run only one version of Astro Runtime, but you can run different versions of Astro Runtime on different Deployments within a given cluster or Workspace. See [Create a Deployment](create-deployment.md#create-a-deployment).
 
