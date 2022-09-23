@@ -60,6 +60,7 @@ module.exports = {
         'airflow-sql-data-quality',
         'dynamically-generating-dags',
         'dynamic-tasks',
+        'airflow-datasets',
       ],
     },
   ],
