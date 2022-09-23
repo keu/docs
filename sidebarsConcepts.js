@@ -33,6 +33,7 @@ module.exports = {
         'managing-dependencies',
         'managing-airflow-code',
         'templating',
+        'cross-dag-dependencies',
       ],
     },
     {
