@@ -2,7 +2,7 @@
 title: "Airflow components"
 sidebar_label: "Core components"
 description: "Learn about the core components of Apache Airflow."
-tags: ["Components", "Executors", "Database", "Basics"]
+id: airflow-components
 ---
 
 When working with Airflow, understanding the underlying infrastructure components and how they function can help you develop and run your DAGs, troubleshoot issues, and successfully run Airflow.
