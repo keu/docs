@@ -26,7 +26,14 @@ For more information about managing Google Cloud projects, see [GCP documentatio
 - A minimum [CPU](https://cloud.google.com/compute/quotas#cpu_quota) quota of 36. To adjust your project's quota limits up or down, see [Managing your quota using the Cloud console](https://cloud.google.com/docs/quota#managing_your_quota_console).
 - A minimum [N2_CPU](https://cloud.google.com/compute/quotas#cpu_quota) quota of 24. To adjust your project's quota limits up or down, see [Managing your quota using the Cloud console](https://cloud.google.com/docs/quota#managing_your_quota_console).
 - A subscription to the [Astro Status Page](https://status.astronomer.io). This ensures that you're alerted when an incident occurs or scheduled maintenance is required.
-- The `https://cloud.astronomer.io/`, `https://astro-<your-org>.datakin.com/`, and `https://<your-org>.astronomer.run/` domains added to your organization's allowlist.
+- The following domains added to your organization's allowlist:
+    - `https://cloud.astronomer.io/`
+    - `https://astro-<your-org>.datakin.com/`
+    - `https://<your-org>.astronomer.run/`
+    - `https://api.astronomer.io/`
+    - `https://images.astronomer.cloud/`
+    - `https://auth.astronomer.io/`
+    - `https://updates.astronomer.io/`
 
 For more information about the resources required to run Astro on GCP, see [GCP Resource Reference](resource-reference-gcp.md).
 

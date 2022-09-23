@@ -30,7 +30,14 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
 - Microsoft Azure CLI or Azure Az PowerShell module.  See [How to install the Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) and [Install the Azure Az PowerShell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps).
 - A minimum quota of 48 Standard Ddv5-series vCPUs in the deployment region. You can use Dv5-series vCPUs, but you'll need 96 total vCPUs composed of 48 Ddv5-series vCPUs and 48 Dv5-series vCPUs. To adjust your quota limits up or down, see [Increase VM-family vCPU quotas](https://docs.microsoft.com/en-us/azure/azure-portal/supportability/per-vm-quota-requests).
 - A subscription to the [Astro Status Page](https://status.astronomer.io). This ensures that you're alerted when an incident occurs or when scheduled maintenance is planned.
-- The `https://cloud.astronomer.io/`, `https://astro-<your-org>.datakin.com/`, and `https://<your-org>.astronomer.run/` domains added to your organization's allowlist.
+- The following domains added to your organization's allowlist:
+    - `https://cloud.astronomer.io/`
+    - `https://astro-<your-org>.datakin.com/`
+    - `https://<your-org>.astronomer.run/`
+    - `https://api.astronomer.io/`
+    - `https://images.astronomer.cloud/`
+    - `https://auth.astronomer.io/`
+    - `https://updates.astronomer.io/`
 
 For more information about the resources required to run Astro on Azure, see [Azure Resource Reference](resource-reference-azure.md).
 
