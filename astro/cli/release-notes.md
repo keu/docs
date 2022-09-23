@@ -9,6 +9,14 @@ This document provides a summary of all changes made to the [Astro CLI](cli/over
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
+## Astro CLI 1.5.1
+
+Release date: September 23, 2022
+
+### Bug fixes
+
+- Fixes an issue where customers are not able to push deprecated versions of Runtime to their Deployments. The Astro CLI used to cancel these deploys now it will just provides warning.
+
 ## Astro CLI 1.5.0
 
 Release date: September 2, 2022
