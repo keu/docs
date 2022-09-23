@@ -9,6 +9,13 @@ One of the great benefits of Airflow is its vast network of provider packages th
 
 In this guide, you'll learn how to define your own custom code. Then, you'll make your custom code available to your DAGs. You'll be using custom operators in your primary example, but the same concepts are applicable to custom hooks and sensors.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Managing Airflow project structure. See [Managing Airflow code](https://www.astronomer.io/guides/managing-airflow-code/).
+
 ## Define a custom operator
 
 At a high level, creating a custom operator is straightforward. At a minimum, all custom operators must:

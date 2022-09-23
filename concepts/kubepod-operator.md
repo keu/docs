@@ -16,7 +16,12 @@ In this guide, you'll learn:
 
 You'll also learn how to use the KubernetesPodOperator to run a task in a language other than Python, how to use the KubernetesPodOperator with XComs, and how to launch a Pod in a remote AWS EKS Cluster.  
 
-If you're unfamiliar with Kubernetes, review the [Kubernetes Documentation](https://kubernetes.io/docs/home/) before starting this guide.  
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Kubernetes basics. See the [Kubernetes Documentation](https://kubernetes.io/docs/home/).  
 
 ## Requirements
 

@@ -12,6 +12,15 @@ Astronomer has many customers who use Databricks to run jobs as part of complex 
 
 > **Note**: All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/databricks-tutorial).
 
+## Assumed knowledge
+
+To get the most out of this tutorial, make sure you have a knowledge of:
+
+- The basics of Databricks. See [Getting started with Databricks](https://www.databricks.com/learn).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+
 ## Databricks hooks and operators
 
 The Databricks provider package includes many hooks and operators that allow users to accomplish most common Databricks-related use cases without writing a ton of code.

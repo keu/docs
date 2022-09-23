@@ -13,6 +13,15 @@ Additionally if you are moving to Airflow with existing Talend jobs, using the t
 
 This guide includes examples that highlight a few ways in which Talend and Airflow can work well together.
 
+## Assumed knowledge
+
+To get the most out of this tutorial, make sure you have a knowledge of:
+
+- The basics of Talend Cloud. See [Talend Cloud Getting Started Guide](https://help.talend.com/r/en-US/Cloud/talend-cloud-getting-started/tic-architecture).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+
 ## Implementation overview
 
 There are two easy ways to execute Talend jobs with Airflow:

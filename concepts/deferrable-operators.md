@@ -7,6 +7,13 @@ id: deferrable-operators
 
 With Airflow 2.2 and later, you can use deferrable operators to run tasks in your Airflow environment. These operators leverage the Python [asyncio](https://docs.python.org/3/library/asyncio.html) library to efficiently run tasks waiting for an external resource to finish. This frees up your workers and allows you to utilize resources more effectively. In this guide, you'll review deferrable operator concepts and learn which operators are deferrable.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Airflow sensors. See [Sensors 101](https://www.astronomer.io/guides/what-is-a-sensor/).
+
 ## Terms and concepts
 
 Review the following terms and concepts to gain a better understanding of deferrable operator functionality:

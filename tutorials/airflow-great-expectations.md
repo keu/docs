@@ -15,6 +15,15 @@ You can now find the [Great Expectations Provider](https://registry.astronomer.i
 
 This guide will walk you through how to use the [`GreatExpectationsOperator`](https://registry.astronomer.io/providers/great-expectations/modules/greatexpectationsoperator) in an Airflow DAG and the Astronomer environment.
 
+## Assumed knowledge
+
+To get the most out of this tutorial, make sure you have a knowledge of:
+
+- The basics of Great Expectations. See [Getting started with Great Expectations](https://docs.greatexpectations.io/docs/tutorials/getting_started/tutorial_overview).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+
 ## Great Expectations concepts
 
 Typically, using Great Expectations is a two-step process:

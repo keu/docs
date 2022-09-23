@@ -17,6 +17,12 @@ In this guide, you'll learn everything you need to know about the Airflow metada
 - Best practices for using the metadata database.
 - Different methods for accessing data of interest.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Airflow core components. See [Airflow's components](https://www.astronomer.io/guides/airflow-components/).
 
 ## Database specifications
 

@@ -13,6 +13,13 @@ In this guide, you'll learn the basics of using operators in Airflow and then im
 
 To view all of the available Airflow operators, go to the [Astronomer Registry](https://registry.astronomer.io/modules?types=operators).
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have knowledge of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).
+
 ## Operator basics
 
 Operators are Python classes that encapsulate logic to do a unit of work. They can be viewed as a wrapper around each unit of work that defines the actions that will be completed and abstract the majority of code you would typically need to write. When you create an instance of an operator in a DAG and provide it with its required parameters, it becomes a task.

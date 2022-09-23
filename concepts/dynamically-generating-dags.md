@@ -13,6 +13,12 @@ Because everything in Airflow is code, you can dynamically generate DAGs using P
 
 All code used in this tutorial is located in the [Astronomer Registry](https://github.com/astronomer/dynamic-dags-tutorial).
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+
 ## Single-file methods
 
 One method for dynamically generating DAGs is to have a single Python file which generates DAGs based on some input parameter(s). For example, a list of APIs or tables. A common use case for this is an ETL or ELT-type pipeline where there are many data sources or destinations. This requires creating many DAGs that all follow a similar pattern.

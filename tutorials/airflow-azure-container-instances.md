@@ -10,6 +10,15 @@ tags: ["Integrations", "Azure", "DAGs"]
 
 > **Note:** All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-container-instance).
 
+## Assumed knowledge
+
+To get the most out of this tutorial, make sure you have a knowledge of:
+
+- The basics of ACI. See [Getting started with Azure Container Instances](https://azure.microsoft.com/en-us/products/container-instances/#getting-started).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+
 ## The ACI Operator
 
 The easiest way to orchestrate ACI with Airflow is to use the [AzureContainerInstancesOperator](https://registry.astronomer.io/providers/microsoft-azure/modules/azurecontainerinstancesoperator). This operator starts a container on ACI, runs the container, and terminates the container when all processes are completed.

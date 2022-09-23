@@ -11,6 +11,12 @@ Translating code written in a notebook to code running in production can be chal
 
 In this guide, you'll learn how to orchestrate commonly used notebooks, including Jupyter, Databricks, and SageMaker notebooks, using Airflow and the Astro CLI.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+
 ## Execute Jupyter Notebooks with Papermill
 
 [Jupyter notebooks](https://jupyter.org/) are the most commonly used open source notebooks out there. They are especially popular for exploratory analysis and data science, offering support for over 40 programming languages.

@@ -13,7 +13,7 @@ In this tutorial, you'll learn DAG basics and about DAG parameters and how to de
 
 To get the most out of this guide, you should have an understanding of:
 
-- What Airflow is and when to use it. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
 
 ## What is a DAG?

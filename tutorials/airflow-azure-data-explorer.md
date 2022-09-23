@@ -12,12 +12,14 @@ You can use the ADX [Hook](https://registry.astronomer.io/providers/microsoft-az
 
 > **Note:** All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-data-explorer-tutorial).
 
-## Assumed Knowledge
+## Assumed knowledge
 
-To get the most out of this guide, you should have knowledge of:
+To get the most out of this tutorial, make sure you have a knowledge of:
 
+- The basics of ADX. See [Quickstart: Create an Azure Data Explorer cluster and database](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Running an ADX cluster. See [Quickstart: Create an Azure Data Explorer cluster and database](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
 
 ## Configuring ADX to work with Airflow
 
