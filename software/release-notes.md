@@ -15,7 +15,7 @@ Release date: September 23, 2022
 
 ### Additional improvements
 
-- You can now set a `securityContext` for Fluentd Pods and containers using the [Fluentd Helm chart](https://github.com/astronomer/astronomer/blob/master/charts/fluentd/values.yaml).
+- You can now use the [Fluentd Helm chart](https://github.com/astronomer/astronomer/blob/master/charts/fluentd/values.yaml) to set a `securityContext` for Fluentd Pods and containers.
 - Improved the startup time for the platform NATS server.
 
 ### Bug fixes
