@@ -14,8 +14,6 @@ To test Airflow API calls in a local Airflow environment running with the Astro 
 
 ## Prerequisites
 
-To make an Airflow API request, you need:
-
 - A [Deployment API key](api-keys.md).
 - A Deployment on Astro.
 - [cURL](https://curl.se/).

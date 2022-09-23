@@ -497,7 +497,7 @@ Updates various parts of an Airflow Deployment on Astronomer, including metadata
 
 Run `astro deployment update <your-deployment-id> [flags]` to update a Deployment. The Deployment ID can be found by running `astro deployment list`.
 
-> **Note:** Only the `--cloud-role` flag is specified with a `--`. Additional flags should be written without a leading `--`.
+> **Note:** Some flags such as `--cloud-role` are specified with a double-dash `--`. Additional flags should be written without a leading double-dash `--`.
 
 ### Flags
 
