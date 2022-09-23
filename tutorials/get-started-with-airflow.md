@@ -33,7 +33,7 @@ To complete this tutorial, you'll need to know:
 - A terminal that accepts bash commands. This is pre-installed on most operating systems.
 - [Python 3](https://www.python.org/downloads/).
 - [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
-- The [Astro CLI](astro/cli/install-cli.md).
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/install-cli).
 - An integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
 
 ## Step 1: Create an Astro project
@@ -315,5 +315,5 @@ Astronomer offers a variety of resources like this tutorial to learn more about 
 Don't know where to start? For beginners, the next resources we recommend are:
 
 - [Managing connections in Airflow](https://www.astronomer.io/guides/connections/): Learn how to connect Airflow to third party products and services.
-- [Develop a project](astro/develop-project.md): Learn about all of the ways you can configure your Astro project and local Airflow environment.
+- [Develop a project](https://docs.astronomer.io/astro/develop-project): Learn about all of the ways you can configure your Astro project and local Airflow environment.
 - [DAG Writing Best Practices](https://www.astronomer.io/guides/dag-best-practices?search=best): Learn how to write efficient, secure, and scalable DAGs.
