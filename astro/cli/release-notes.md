@@ -15,7 +15,7 @@ Release date: September 23, 2022
 
 ### Bug fixes
 
-- Fixes an issue where customers are not able to push deprecated versions of Runtime to their Deployments. The Astro CLI used to cancel these deploys now it will just provides warning.
+- Fixes an issue where customers are not able to push deprecated versions of Runtime to their Deployments. The Astro CLI used to cancel these deploys now it will just provides a warning.
 
 ## Astro CLI 1.5.0
 
