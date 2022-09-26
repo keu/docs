@@ -116,15 +116,14 @@ If you experience delays in task execution, which you can track via the Gantt Ch
 
 If you haven't created a Deployment, see [Create a Deployment](create-deployment.md).
 
+### Edit worker queue settings
+
 1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
 2. Select a Deployment.
-3. Select one of the following options to adjust the settings of a Worker Queue or a Scheduler:
-
-    - To change the settings of an existing worker queue, click **Edit** in the **Worker Queues** area, adjust the settings, and then click **Update Queue**.
-    - To change scheduler resources, click **Configuration** and then click **Edit Configuration**.
-
-4. Edit the Deployment resource settings. For more information about these settings, review the content in this topic.
-5. Click **Update**.
+3. Click **Worker Queues** 
+4. Click **Edit** for the worker queue you want to edit.
+5. Edit the worker queue's settings. See [Worker queue settings](#worker-queue-settings).
+6. Click **Update Queue**.
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
@@ -135,6 +134,17 @@ If you change the worker type of a worker queue that's currently running tasks, 
 Astronomer recommends changing the worker type of an existing worker queue only at times which are not critical to production pipelines. Astronomer also recommends waiting up to 5 minutes after changing worker type before pushing new code to your Deployment.
 
 :::
+
+### Edit scheduler settings 
+
+1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
+2. Select a Deployment.
+3. Click **Configuration**.
+4. Click **Edit Configuration**. 
+4. Edit the scheduler resource settings. See [Scheduler resources](#scheduler-resources).
+5. Click **Update**.
+
+    The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
 ## Delete a Deployment
 
