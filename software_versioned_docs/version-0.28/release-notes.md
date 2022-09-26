@@ -11,7 +11,7 @@ description: Astronomer Software release notes.
 
 This document includes all release notes for Astronomer Software v0.28.
 
-0.30 is the latest long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, see [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). For more Software release notes, see:
+0.30 is the latest long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, see [Upgrade Astronomer](upgrade-astronomer.md). For more information about Astronomer Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). For more Astronomer Software release notes, see:
 
 - [Astro CLI release notes](cli-release-notes.md)
 - [Astro Runtime release notes](runtime-release-notes.md)
