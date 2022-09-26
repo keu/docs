@@ -1,5 +1,5 @@
 ---
-title: "Datasets and data-aware scheduling"
+title: "Datasets and data-aware scheduling in Airflow"
 sidebar_label: "Datasets and data-aware scheduling"
 description: "Using datasets to implement DAG dependencies and scheduling in Airflow."
 id: airflow-datasets
