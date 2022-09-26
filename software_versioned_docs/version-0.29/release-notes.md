@@ -133,6 +133,7 @@ The process for configuring namespace pools has been simplified. As an alternati
 
 ### Bug fixes
 
+- Fixed an issue in Deployments running Airflow 2.3+ where logs for dynamically mapped tasks did not have a correct `log_id`
 - Fixed a typo in the `loadBalancerIP` key in the Nginx Helm chart
 - Fixed an issue where Azure AD connect sync did not work with Astronomer's Teams feature
 - Fixed an issue where upgrades would fail if you had changed `networkNSLabels` from `true` to `false` in `config.yaml`

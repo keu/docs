@@ -58,7 +58,7 @@ module.exports = {
         'custom-xcom-backends',
         'logging',
         'kubepod-operator',
-        'airflow-sql-data-quality-tutorial',
+        'airflow-sql-data-quality',
         'dynamically-generating-dags',
         'dynamic-tasks',
       ],

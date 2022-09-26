@@ -7,16 +7,6 @@ description: View logs for your data pipelines both locally and on Astro.
 
 View Airflow task and component logs to troubleshoot your data pipelines and better understand the behavior of your tasks and their execution environment.
 
-:::info
-
-Astro has early access support for forwarding Airflow task logs and basic Airflow metrics to [Datadog](https://www.datadoghq.com/). To enable log forwarding, [submit a request to Astronomer Support](astro-support.md).
-
-In your request, make sure to provide your Datadog API key and identify on which Astro cluster(s) you want to enable the integration.
-
-If you're interested in forwarding task logs to other third-party logging tools, contact Astronomer Support.
-
-:::
-
 ## View Airflow task logs
 
 Airflow task logs for both local Airflow environments and Deployments on Astro are available in the Airflow UI. Task logs can help you troubleshoot a specific task instance that failed or retried.
@@ -75,3 +65,13 @@ Typically, this indicates that the Deployment you selected does not currently ha
     - **Info**: Emitted frequently by Airflow to show that a standard scheduler process, such as DAG parsing, has started. These logs are frequent but can contain useful information. If you run dynamically generated DAGs, for example, these logs will show how many DAGs were created per DAG file and how long it took the scheduler to parse each of them.
 
 5. Optional. To view the scheduler logs for another Deployment, select a different Deployment in the **Select a Deployment** menu.
+
+## Export task logs to Datadog (_AWS only_) 
+
+Astro supports forwarding Airflow task logs to [Datadog](https://www.datadoghq.com/). You only need to enable Datadog once for each Astro cluster. After you enable Datadog, task logs from all Deployments in the cluster are exported.
+
+Astro also supports exporting Airflow metrics to Datadog. See [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
+
+1. Create a new Datadog API key or copy an existing API key. See [API and Application Keys](https://docs.datadoghq.com/account_management/api-app-keys/).
+2. Identify the Astro cluster from which you want to forward task logs.
+3. Submit a request to [Astronomer support](https://cloud.astronomer.io/support) with your Datadog API key, the name of your Astro cluster, and the [Datadog Site](https://docs.datadoghq.com/getting_started/site/) where you want the logs forwarded.
