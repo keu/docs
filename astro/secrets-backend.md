@@ -242,14 +242,14 @@ For instructions, see the [AWS Systems Manager Console](https://docs.aws.amazon.
 
     ```dockerfile
     ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
-    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $AD_PS_ARN, "region_name": $AF_PS_REGION}
+    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $PARAMETER_STORE_ARN, "region_name": $PARAMETER_STORE_REGION}
     ```
 
 2. Add the following lines to your `.env` file:
 
     ```text
-    AF_PS_REGION=<your-role-arn>
-    AF_PS_REGION=<your-aws-region>
+    PARAMETER_STORE_ARN=<your-role-arn>
+    PARAMETER_STORE_REGION=<your-aws-region>
     ```
 
 #### Step 3: Deploy to Astro
@@ -326,14 +326,14 @@ For more information on adding secrets to Secrets Manager, see [AWS documentatio
 
     ```dockerfile
     ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
-    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $AD_SB_ARN, "region_name": $AF_SB_REGION}
+    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $SECRETS_BACKEND_ARN, "region_name": $SECRETS_BACKEND_REGION}
     ```
 
 2. Add the following lines to your `.env` file:
 
     ```text
-    AF_SB_ARN=<your-role-arn>
-    AF_SB_REGION=<your-aws-region>
+    SECRETS_BACKEND_ARN=<your-role-arn>
+    SECRETS_BACKEND_REGION=<your-aws-region>
     ```
 
 :::caution
