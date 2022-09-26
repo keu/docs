@@ -11,7 +11,7 @@ Executing SQL queries is one of the most common use cases for data pipelines, an
 
 In this tutorial, you'll learn about three SQL Check operators and how to use them to build a robust data quality suite for your DAGs. If you aren't familiar with SQL operators in general, it's recommended that you review the [SQL tutorial](https://www.astronomer.io/guides/airflow-sql-tutorial) first.
 
-All code used in this tutorial is located in [the Astronomer Registry](https://github.com/astronomer/airflow-data-quality-demo/).
+All code used in this tutorial is located in the [Astronomer Registry](https://github.com/astronomer/airflow-data-quality-demo/).
 
 ## SQL Check operators
 
