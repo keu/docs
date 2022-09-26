@@ -16,7 +16,7 @@ In this guide you'll learn:
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
 - Basic bash commands. See the [Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html).

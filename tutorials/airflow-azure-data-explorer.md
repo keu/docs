@@ -14,7 +14,7 @@ You can use the ADX [Hook](https://registry.astronomer.io/providers/microsoft-az
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of ADX. See [Quickstart: Create an Azure Data Explorer cluster and database](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).

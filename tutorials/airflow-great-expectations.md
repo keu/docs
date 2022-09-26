@@ -17,7 +17,7 @@ This guide will walk you through how to use the [`GreatExpectationsOperator`](ht
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of Great Expectations. See [Getting started with Great Expectations](https://docs.greatexpectations.io/docs/tutorials/getting_started/tutorial_overview).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).

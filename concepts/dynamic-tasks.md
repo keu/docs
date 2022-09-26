@@ -13,7 +13,7 @@ In this guide, you'll learn about dynamic task mapping and complete an example i
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have an existing knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
 - Airflow Operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
 - How to use Airflow decorators to define tasks. See [Introduction to Airflow Decorators](https://www.astronomer.io/guides/airflow-decorators/).

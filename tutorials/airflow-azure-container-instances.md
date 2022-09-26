@@ -12,7 +12,7 @@ tags: ["Integrations", "Azure", "DAGs"]
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of ACI. See [Getting started with Azure Container Instances](https://azure.microsoft.com/en-us/products/container-instances/#getting-started).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).

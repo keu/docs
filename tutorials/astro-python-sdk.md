@@ -17,7 +17,7 @@ The example DAG in this tutorial uses Amazon S3 and Snowflake, but you can repla
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - Basic Python and SQL.
 - Basic knowledge of [Amazon S3](https://aws.amazon.com/s3/getting-started/) and [Snowflake](https://docs.snowflake.com/en/user-guide-getting-started.html).

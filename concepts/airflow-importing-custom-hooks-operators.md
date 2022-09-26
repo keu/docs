@@ -14,6 +14,7 @@ In this guide, you'll learn how to define your own custom code. Then, you'll mak
 To get the most out of this guide, you should have an understanding of:
 
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Airflow hooks. See [Hooks 101](https://www.astronomer.io/guides/what-is-a-hook/).
 - Managing Airflow project structure. See [Managing Airflow code](https://www.astronomer.io/guides/managing-airflow-code/).
 
 ## Define a custom operator

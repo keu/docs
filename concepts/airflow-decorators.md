@@ -11,7 +11,7 @@ In this guide, you'll learn about the benefits of decorators, the decorators ava
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
 - Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).

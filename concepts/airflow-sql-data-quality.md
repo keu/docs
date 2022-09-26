@@ -15,7 +15,7 @@ All code used in this tutorial is located in the [the Astronomer Registry](https
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, you should have an understanding of:
 
 - How to design a data quality process. See [Data quality and Airflow](https://www.astronomer.io/guides/data-quality).
 - Running SQL from Airflow. See [Using Airflow to execute SQL](https://www.astronomer.io/guides/airflow-sql-tutorial/).

@@ -15,7 +15,7 @@ All code used in this tutorial is located in the [Astronomer Registry](https://r
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of [Amazon S3](https://aws.amazon.com/s3/getting-started/) and [Amazon SageMaker](https://aws.amazon.com/sagemaker/getting-started/).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).

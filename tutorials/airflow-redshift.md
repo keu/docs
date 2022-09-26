@@ -16,7 +16,7 @@ All code in this tutorial is located in the [GitHub repo](https://github.com/ast
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of [Amazon Redshift](https://aws.amazon.com/redshift/getting-started/?nc=sn&loc=4&dn=1).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).

@@ -12,7 +12,7 @@ Azure Data Factory (ADF) is a commonly used service for constructing data pipeli
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of Azure Data Factory. See [Introduction to Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/introduction).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).

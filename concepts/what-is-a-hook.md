@@ -13,7 +13,7 @@ In this guide, you'll learn about using hooks in Airflow and when you should use
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
 - Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
 - Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).

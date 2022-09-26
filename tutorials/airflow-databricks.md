@@ -14,7 +14,7 @@ Astronomer has many customers who use Databricks to run jobs as part of complex 
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of Databricks. See [Getting started with Databricks](https://www.databricks.com/learn).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).

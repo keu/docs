@@ -16,7 +16,7 @@ In this tutorial, you’ll define data lineage, review the OpenLineage standard 
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).

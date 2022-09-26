@@ -17,7 +17,7 @@ In this guide, you'll learn about the key features of Soda Core and how to use i
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - How to design a data quality process. See [Data quality and Airflow](https://www.astronomer.io/guides/data-quality).
 - The basics of Soda Core. See [How Soda Core works](https://docs.soda.io/soda-core/how-core-works.html).

@@ -13,7 +13,7 @@ Throughout this guide, the term project is used to denote any set of DAGs and su
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
 - Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
 

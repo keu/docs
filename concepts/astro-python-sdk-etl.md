@@ -11,7 +11,7 @@ In this tutorial, you’ll learn how you can use Astro Python SDK functions for 
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
 - Airflow decorators. See [Introduction to Airflow Decorators guide](https://www.astronomer.io/guides/airflow-decorators/).
 

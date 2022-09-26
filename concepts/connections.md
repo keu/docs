@@ -16,7 +16,7 @@ In this tutorial you'll:
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, you should have knowledge of:
+To get the most out of this tutorial, you should have an understanding of:
 
 - Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow/).
 - Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).

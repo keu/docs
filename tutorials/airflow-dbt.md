@@ -22,7 +22,7 @@ In this guide, you'll:
 
 ## Assumed knowledge
 
-To get the most out of this tutorial, make sure you have a knowledge of:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of dbt. See [Getting started with dbt Cloud](https://docs.getdbt.com/guides/getting-started).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
