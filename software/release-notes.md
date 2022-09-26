@@ -11,13 +11,13 @@ description: Astronomer Software release notes.
 
 ## 0.30.2
 
-Release date: September 23, 2022
+Release date: September 22, 2022
 
 ### Additional improvements
 
 - You can now use the [Fluentd Helm chart](https://github.com/astronomer/astronomer/blob/master/charts/fluentd/values.yaml) to set a `securityContext` for Fluentd Pods and containers.
 - Improved the startup time for the platform NATS server.
-
+- You can now configure external containers in the `astronomer.houston.config` section of the Astronomer Helm chart.
 ### Bug fixes
 
 - Fixed several CVEs as a result of updating images for system components. 
