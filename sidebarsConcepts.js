@@ -15,6 +15,7 @@ module.exports = {
         'bashoperator',
         'airflow-sql',
         'airflow-ui',
+        'scheduling-in-airflow',
       ],
     },
     {
