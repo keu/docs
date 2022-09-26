@@ -225,7 +225,6 @@ In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter St
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/overview.md).
-- An [Astro project](create-project.md).
 - An [Astro project](create-project.md) with version 5.1.0+ of `apache-airflow-providers-amazon`. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
 - An IAM role with access to the [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-access.html) that your Astro cluster can assume. See [AWS IAM roles](connect-external-services.md#aws-iam-roles).
 
@@ -336,11 +335,6 @@ For more information on adding secrets to Secrets Manager, see [AWS documentatio
     SECRETS_BACKEND_REGION=<your-aws-region>
     ```
 
-:::caution
-
-To deploy your project to a hosted Git repository before deploying to Astro, save `<your-role-arn>` and `<your-aws-region>` values securely. When you deploy to Astro, use the Cloud UI to set these values as secrets.
-
-:::
 
 #### Step 3: Deploy to Astro
 
