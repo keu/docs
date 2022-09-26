@@ -124,7 +124,7 @@ If you haven't created a Deployment, see [Create a Deployment](create-deployment
     - To change scheduler resources, click **Configuration** and then click **Edit Configuration**.
 
 4. Edit the Deployment resource settings. For more information about these settings, review the content in this topic.
-5. Click **Update Deployment**.
+5. Click **Update**.
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
