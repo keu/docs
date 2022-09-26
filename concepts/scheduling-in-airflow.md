@@ -1,5 +1,5 @@
 ---
-title: "DAG scheduling and timetables"
+title: "DAG scheduling and timetables in Airflow"
 sidebar_label: "DAG scheduling and timetables"
 description: "How to schedule DAGs"
 id: scheduling-in-airflow
@@ -37,7 +37,7 @@ The following parameters ensure your DAGs run at the correct time:
 
 - **`data_interval_start`**: Defines the start date and time of the data interval. A DAG's timetable will return this parameter for each DAG run. This parameter is created automatically by Airflow, or is specified by the user when implementing a custom timetable.
 - **`data_interval_end`**: Defines the end date and time of the data interval. A DAG's timetable will return this parameter for each DAG run. This parameter is created automatically by Airflow, or is specified by the user when implementing a custom timetable.
-- **`schedule`**: Defines when that DAG will be run and set at the DAG level. It accepts cron expressions, timedelta objects, timetables, and lists of datasets.
+- **`schedule`**: Defines when a DAG will be run. This value is set at the DAG configuration level. It accepts cron expressions, timedelta objects, timetables, and lists of datasets.
 - **`start_date`**: The first date your DAG will be executed. This parameter is required for your DAG to be scheduled by Airflow.
 - **`end_date`**: The last date your DAG will be executed. This parameter is optional.
 
@@ -45,18 +45,18 @@ In Airflow 2.3 and earlier, the `schedule_interval` is used instead of the `sche
 
 ### Example
 
-To demonstrate how these concepts work together, you'll assume that you have a DAG that is scheduled to run every 5 minutes. Looking at the most recent DAG run, the logical date is `2022-08-28 22:37:33`, which is displayed in the **Data interval start** field in the following image. The logical date is also included in the **Run ID** field and identifies the DAG run in the Airflow metadata database. The value in the **Data interval end** field is 5 minutes later.
+To demonstrate how these concepts work together, consider a DAG that is scheduled to run every 5 minutes. Looking at the most recent DAG run, the logical date is `2022-08-28 22:37:33`, which is displayed in the **Data interval start** field in the following image. The logical date is also included in the **Run ID** field and identifies the DAG run in the Airflow metadata database. The value in the **Data interval end** field is 5 minutes later.
 
 ![5 Minute Example DAG](/img/guides/2_4_5minExample.png)
 
-If you look at the next DAG run in the UI, the logical date is `2022-08-28 22:42:33`, which is shown as the **Next Run** value in the Airflow UI. This is 5 minutes after the previous logical date, and the same value shown in the **Data interval end** field of the last DAG run because there are no gaps in the schedule. If you hover over **Next Run**, you can see that the run after value, which is the date and time that the next DAG run will actually start, matches the value in the **Data interval end** field:
+If you look at the next DAG run in the UI, the logical date is `2022-08-28 22:42:33`, which is shown as the **Next Run** value in the Airflow UI. This is 5 minutes after the previous logical date, and the same value shown in the **Data interval end** field of the previous DAG run. If you hover over **Next Run**, you can see that the **Run After** value, which is the date and time that the next DAG run will actually start, matches the value in the **Data interval end** field:
 
 ![5 Minute Next Run](/img/guides/2_4_5minExample_next_run.png)
 
-You've reviewed two DAG runs with the following settings:
+The following is a comparison of the two successive DAG runs:
 
-- DAG run 1 with the run ID `scheduled__2022-08-28T22:37:33.620191+00:00` has a logical date of `2022-08-28 22:37:33`, a data interval start of `2022-08-28 22:37:33` and a data interval end of `2022-08-28 22:42:33`. This DAG run will actually start at `2022-08-28 22:42:33`.
-- DAG run 2 with the run ID `scheduled__2022-08-28T22:42:33.617231+00:00` has a logical date of `2022-08-28 22:42:33`, a data interval start of `2022-08-28 22:42:33` and a data interval end of `2022-08-28 22:47:33`. This DAG run will actually start at `2022-08-28 22:47:33`.
+- DAG run 1 (`scheduled__2022-08-28T22:37:33.620191+00:00`) has a logical date of `2022-08-28 22:37:33`, a data interval start of `2022-08-28 22:37:33` and a data interval end of `2022-08-28 22:42:33`. This DAG run will actually start at `2022-08-28 22:42:33`.
+- DAG run 2 (`scheduled__2022-08-28T22:42:33.617231+00:00`) has a logical date of `2022-08-28 22:42:33`, a data interval start of `2022-08-28 22:42:33` and a data interval end of `2022-08-28 22:47:33`. This DAG run will actually start at `2022-08-28 22:47:33`.
 
 ## Cron-based schedules
 
