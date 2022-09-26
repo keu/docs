@@ -182,7 +182,7 @@ with DAG(
     )
 ```
 
-![Snowflake DAG Graph](/img/docs/guides/snowflake_dag_graph.png)
+![Snowflake DAG Graph](/img/guides/snowflake_dag_graph.png)
 
 Note that to run this DAG, you need an Airflow connection to your Snowflake instance. This DAG uses a connection called `snowflake_default`. Your connection should have a type of `Snowflake` include the following information:
 
@@ -210,13 +210,13 @@ Because `SnowflakeOperator` and `SnowflakeOperatorAsync` have an extractor, you 
 
 At a high level, the interaction between OpenLineage,Airflow, and Snowflake works like this:
 
-![Snowflake Openlineage](/img/docs/guides/snowflake_openlineage_architecture.png)
+![Snowflake Openlineage](/img/guides/snowflake_openlineage_architecture.png)
 
 Note that to view lineage data from your DAGs you need to have OpenLineage installed in your Airflow environment and a lineage front end running. For [Astro users](https://docs.astronomer.io/astro/data-lineage), lineage is enabled automatically. For users working with open source tools, you can run Marquez locally and connect it to your Airflow environment following the instructions in [this guide](https://www.astronomer.io/guides/airflow-openlineage).
 
 To show an example of lineage resulting from Snowflake orchestration, we'll look at the write, audit, publish DAG from the example above. Note that screenshots below are from the Datakin UI integrated with Astro, but Marquez will show similar information.
 
-![Lineage Graph](/img/docs/guides/lineage_graph.png)
+![Lineage Graph](/img/guides/lineage_graph.png)
 
 Looking at the lineage graph, you can see the flow of data from the creation of the table, to the insertion of data, to the data quality checks. If any failures were to happen, particularly in the data quality checks, the lineage graph would quickly tell us which datasets were impacted. If your work on this dataset expanded into other DAGs in Airflow, you would see those connections here as well, all in one place.
 
