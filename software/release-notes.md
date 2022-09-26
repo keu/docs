@@ -18,6 +18,7 @@ Release date: September 22, 2022
 - You can now use the [Fluentd Helm chart](https://github.com/astronomer/astronomer/blob/master/charts/fluentd/values.yaml) to set a `securityContext` for Fluentd Pods and containers.
 - Improved the startup time for the platform NATS server.
 - You can now configure external containers in the `astronomer.houston.config` section of the Astronomer Helm chart.
+
 ### Bug fixes
 
 - Fixed several CVEs as a result of updating images for system components. 
