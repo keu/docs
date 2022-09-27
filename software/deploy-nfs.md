@@ -62,7 +62,7 @@ Workspace editors can configure a new or existing Airflow Deployment to use a pr
 
 ## Create and mount an Azure file share
 
-Create and mount an Azure file share to deploy DAGs to an Airflow Deployment on Astronomer. For additional information about this process, see [File Storage](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-how-to-create-nfs-shares?tabs=azure-portal).
+Create and mount an Azure file share to deploy DAGs to an Airflow Deployment on Astronomer. For additional information about this process, see [Premium File Storage](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-how-to-create-nfs-shares?tabs=azure-portal).
 
 1. Update your `config.yaml` file with the following values:
 
@@ -83,13 +83,19 @@ Create and mount an Azure file share to deploy DAGs to an Airflow Deployment on 
 
 6. Click **Deploy Changes**.
 
-7. Run the following command to create a new namespace:
+7. Add your DAGs to the NFS share.
+
+### Example deployment
+
+The following example shows how you can add your DAGs to an NFS share. 
+
+1. Run the following command to create a new namespace:
 
    ```
    kubectl create ns storage
    ```
 
-8. Create a Deployment with the following configuration to mount the Azure NFS file share:
+2. Create a Deployment with the following configuration to mount the Azure NFS file share:
 
     ```yaml
         apiVersion: apps/v1
@@ -129,12 +135,12 @@ Create and mount an Azure file share to deploy DAGs to an Airflow Deployment on 
               server: <storage-server-path>
     ```
 
-9. Run the following command to apply the Deployment manifest:
+3. Run the following command to apply the Deployment manifest:
 
     ```
     kubectl create ns storage
     ```
-10. Run the following commands to confirm the pod was created and and mounted successfully:
+4. Run the following commands to confirm the pod was created and and mounted successfully:
 
     ```
     kubectl get pods -n storage
