@@ -13,8 +13,6 @@ To get the most out of this guide, you should have an understanding of:
 
 - Python testing basics. See [Getting Started with Testing in Python](https://realpython.com/python-testing/).
 - CI/CD for Python scripts. See [Continuous Integration with Python: An Introduction](https://realpython.com/python-continuous-integration/).
-- Airflow testing concepts. See [Testing a DAG](https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html#testing-a-dag).
-- Testing for Airflow contributions. See [Testing guidelines for contributors](https://github.com/apache/airflow/blob/main/TESTING.rst).
 
 ## Test runners
 
