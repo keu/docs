@@ -47,12 +47,13 @@ The following topics provide setup steps for integrating each of these external 
     ```text
     apache-airflow-providers-sendgrid
     ```
-7. In the Deployment view of the Cloud UI, create an environment variable with the following values:
+7. In the Deployment view of the Cloud UI, add the following environment variables:
 
-    - **Key**: `AIRFLOW__EMAIL__EMAIL_BACKEND`
-    - **Value**: `airflow.providers.sendgrid.utils.emailer.send_email`
+    - `AIRFLOW__EMAIL__EMAIL_BACKEND` = `airflow.providers.sendgrid.utils`
+    - `AIRFLOW__EMAIL__EMAIL_CONN_ID` = `smtp_default`
+    - `SENDGRID_MAIL_FROM` = `<validated-sendgrid-sender-email-address>`
 
-    For more information on this environment variable, see [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/howto/email-config.html#send-email-using-sendgrid).
+    For more information about these environment variables, see [Send email using SendGrid](https://airflow.apache.org/docs/apache-airflow/stable/howto/email-config.html#send-email-using-sendgrid).
 
 8. In the Airflow UI, [create an Airflow connection](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#creating-a-connection-with-the-ui) with the following values:
 
