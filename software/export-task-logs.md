@@ -117,7 +117,7 @@ After you've created an Elastic deployment and endpoint, you have two options to
         {label: 'config.yaml', value: 'configyaml'},
         {label: 'Kubernetes secret', value: 'kubernetessecret'},
     ]}>
-<TabItem value="config.yaml">
+<TabItem value="configyaml">
 
 1. Run the following command to base64 encode your Elastic Cloud deployment credentials:
 
@@ -152,7 +152,7 @@ After you've created an Elastic deployment and endpoint, you have two options to
  ```
 
 </TabItem>
-<TabItem value="kubernetes secret">
+<TabItem value="kubernetessecret">
 
 1. Run the following command to create a secret for your Elastic Cloud Deployment credentials in the Kubernetes cluster:
 

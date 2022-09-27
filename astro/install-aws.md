@@ -9,20 +9,18 @@ sidebar_custom_props: { icon: 'img/aws.png' }
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This is where you'll find instructions for completing the Astro installation process, including prerequisites and the steps required for our team to provision resources in your network.
+This is where you'll find instructions for completing the Astro installation process, including prerequisites and the steps required to allow Astronomer support to provision resources in your network.
 
-At a high-level, we'll ask that you come prepared with a new AWS account. From there, you can expect to:
+To install Astro on AWS, you'll complete the following tasks:
 - Create an account on Astro.
-- Share AWS account information with our team.
+- Share AWS account information with Astronomer support.
 - Create a cross-account IAM role that Astro can assume within your new AWS account.
 
-Astronomer will then create a cluster within your AWS account that hosts the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. If you'd like to support more than 1 Astro cluster, [contact Astronomer support](https://cloud.astronomer.io/support).
+Astronomer will then create a cluster within your AWS account that hosts the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. If you'd like to support more than 1 Astro cluster, contact [Astronomer support](https://cloud.astronomer.io/support).
 
-For a complete list of the AWS resources that our team will provision in your AWS account, see [Resource usage](resource-reference-aws.md).
+For a complete list of the AWS resources that Astronomer support provisions in your AWS account, see [Resource usage](resource-reference-aws.md).
 
 ## Prerequisites
-
-Before completing this setup, make sure that you have:
 
 - A dedicated AWS account with minimum EC2 service quotas.
 - An AWS IAM user with the following permissions:
@@ -37,6 +35,15 @@ Before completing this setup, make sure that you have:
 
    See [Creating an administrator IAM user and user group (console)](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html#getting-started_create-admin-group-console).
 - A subscription to the [Astro Status Page](https://status.astronomer.io/). This will ensure that you're alerted in the case of an incident or scheduled maintenance.
+- The following domains added to your organization's allowlist:
+    - `https://cloud.astronomer.io/`
+    - `https://astro-<your-org>.datakin.com/`
+    - `https://<your-org>.astronomer.run/`
+    - `https://api.astronomer.io/`
+    - `https://images.astronomer.cloud/`
+    - `https://auth.astronomer.io/`
+    - `https://updates.astronomer.io/`
+    - `https://install.astronomer.io/`
 
 Astro requires a clean AWS account with a minimum set of EC2 service quotas. For security reasons, the install process is not currently supported on an AWS account that has other tooling running in it. For instructions on creating a new AWS account, follow [AWS documentation](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
 
@@ -71,17 +78,17 @@ If you want to continue with the second option, you'll additionally need:
 
 ## Step 1: Access Astro
 
-To begin the Astro install process, first create an account at https://cloud.astronomer.io/.
+Go to https://cloud.astronomer.io/ and create an account.
 
 When you first authenticate to Astro, you can sign in to the Cloud UI with a Google account, a GitHub account, or an email and password.
 
 ![Astro login screen](/img/docs/login.png)
 
-If you're the first person from your team to authenticate, the Astronomer team will add you as a Workspace Admin to a new Workspace named after your Organization. From there, you'll be able to add other team members to that Workspace without Astronomer's assistance.
+If you're the first person from your Organization to authenticate, Astronomer support will add you as a Workspace Admin to a new Workspace named after your Organization. From there, you'll be able to add other team members to that Workspace without the assistance of Astronomer support.
 
 :::tip
 
-After completing your initial installation, we recommend [setting up an identity provider (IdP)](configure-idp.md) so that users can log in to Astro through your IdP.
+After completing your initial installation, Astronomer recommends [setting up an identity provider (IdP)](configure-idp.md) so that users can log in to Astro through your IdP.
 
 :::
 

@@ -6,11 +6,33 @@ id: release-notes
 
 This document contains all release notes for Astronomer Software 0.25.
 
-0.30 is the latest long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, read [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). To review release notes specifically for the Astro CLI, see [Astro CLI release notes](cli-release-notes.md).
+0.30 is the latest long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, read [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). 
 
-If you're upgrading to Astronomer v0.30, see [Upgrade to Astronomer v0.25](upgrade-astronomer.md). For instructions on how to upgrade to a patch version within the Astronomer v0.25 series, see [Upgrade to a Patch Version of Astronomer Software](upgrade-astronomer.md).
+If you're upgrading to Astronomer v0.30, see [Upgrade to Astronomer v0.25](upgrade-astronomer.md). To upgrade to a patch version within the Astronomer v0.25 series, see [Upgrade to a Patch Version of Astronomer Software](upgrade-astronomer.md).
 
-We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
+For more Astronomer Software release notes, see:
+
+- [Astro CLI release notes](cli-release-notes.md)
+- [Astro Runtime release notes](runtime-release-notes.md)
+- [Astronomer Software 0.29 release notes](https://docs.astronomer.io/software/0.29/release-notes)
+- [Astronomer Software 0.28 release notes](https://docs.astronomer.io/software/0.28/release-notes)
+- [Astronomer Software 0.25 release notes](https://docs.astronomer.io/software/0.25/release-notes)
+
+All Astronomer Software versions are tested for scale, reliability and security on Amazon EKS, Google GKE, and Azure AKS. If you have questions or an issue to report, contact [Astronomer support](https://support.astronomer.io).
+
+## 0.25.14
+
+Release date: September 21, 2022
+
+### Additional improvements
+
+- Improved the startup time for the NATS server
+- Upgraded Prometheus to the LTS release of 2.37.0
+- Removed all remaining uses of Helm2
+
+### Bug fixes
+
+- Fixed several Common Vulnerabilities and Exposures (CVEs) by upgrading images for system components
 
 ## 0.25.13
 

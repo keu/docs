@@ -11,8 +11,6 @@ Pushing your Astro project, including your DAG code, to a Deployment with the As
 
 ## Prerequisites
 
-To deploy DAGs to Astro, you must have:
-
 - The [Astro CLI](cli/overview.md) installed in an empty directory.
 - An Astro Workspace with at least one [Deployment](create-deployment.md).
 - An [Astro project](create-project.md).

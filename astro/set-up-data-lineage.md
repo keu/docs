@@ -29,7 +29,7 @@ You can access this documentation directly from the **Lineage** tab in the Cloud
 
 ### Retrieve your OpenLineage API key
 
-To send lineage data from an external system to Astro, you must specify your Organization's OpenLineage API key in the external system's configuration. To find your Organization's API key:
+To send lineage data from an external system to Astro, you must specify your Organization's OpenLineage API key in the external system's configuration.
 
 1. In the Cloud UI, open the **Lineage** tab.
 2. In the left menu, click **Integrations**:
@@ -94,8 +94,6 @@ Use the information provided here to set up lineage collection for Spark running
 
 #### Prerequisites
 
-To complete this setup, you need:
-
 - A Databricks cluster.
 
 #### Setup
@@ -135,8 +133,6 @@ To test that lineage was configured correctly on your Databricks cluster, run a 
 This guide outlines how to set up lineage collection for a dbt project.
 
 #### Prerequisites
-
-To complete this setup, you need:
 
 - A [dbt project](https://docs.getdbt.com/docs/building-a-dbt-project/projects).
 - The [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview) v0.20+.
@@ -183,8 +179,6 @@ To confirm that your setup is successful, run a dbt model in your project. After
 This guide outlines how to set up lineage collection for a running Great Expectations suite.
 
 #### Prerequisites
-
-To complete this setup, you need:
 
 - A [Great Expectations suite](https://legacy.docs.greatexpectations.io/en/latest/guides/tutorials/getting_started.html#tutorials-getting-started).
 - Your Astro base domain.
@@ -234,8 +228,6 @@ If your code hasn't produced any data quality assertion issues, use the search b
 This guide outlines how to set up lineage collection for Spark.
 
 #### Prerequisites
-
-To complete this setup you need:
 
 - A Spark application.
 - A Spark job.
