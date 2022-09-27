@@ -15,6 +15,17 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.5.1 ([Release notes](cli/release-notes.md))
 
+## September 28, 2022 
+
+### Additional improvements 
+
+- You can now access tooltips for worker queues from more places across the Cloud UI.
+- Organization Owners can now [push code](deploy-code.md) to a Deployment even if they aren't explicit members of the Deployment. 
+
+### Bug fixes 
+
+- Values in the Organization **Settings** page no longer overlap with other UI elements. 
+
 ## September 21, 2022
 
 ### A simpler Deployment page
