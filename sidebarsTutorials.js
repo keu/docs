@@ -13,6 +13,7 @@ module.exports = {
         'airflow-dbt',
         'airflow-databricks',
         'airflow-sagemaker',
+        'airflow-snowflake',
         'airflow-redshift',
         'airflow-great-expectations',
         'airflow-talend-integration',
