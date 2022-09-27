@@ -20,7 +20,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 ### Additional improvements 
 
 - You can now access tooltips for worker queues from more places across the Cloud UI.
-- Organization Owners can now [push code](deploy-code.md) to a Deployment even if they aren't explicit members of the Deployment. 
+- Organization Owners can now [push code](deploy-code.md) to a Deployment even if they aren't explicit members of the Deployment's Workspace. 
 
 ### Bug fixes 
 
