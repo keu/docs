@@ -49,7 +49,7 @@ The following topics provide setup steps for integrating each of these external 
     ```
 7. In the Deployment view of the Cloud UI, add the following environment variables:
 
-    - `AIRFLOW__EMAIL__EMAIL_BACKEND` = `airflow.providers.sendgrid.utils`
+    - `AIRFLOW__EMAIL__EMAIL_BACKEND` = `airflow.providers.sendgrid.utils.emailer.send_email`
     - `AIRFLOW__EMAIL__EMAIL_CONN_ID` = `smtp_default`
     - `SENDGRID_MAIL_FROM` = `<validated-sendgrid-sender-email-address>`
 
