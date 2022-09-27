@@ -201,6 +201,14 @@ To access the source code of this package, visit the [Astronomer Providers GitHu
 - Release date: April 30, 2022
 - Airflow version: 2.3.0
 
+:::danger Breaking change
+
+The `dbt-core` provider package is currently incompatible with Runtime 5+. The root cause for this issue is not yet known. If `dbt-core` is listed in your Astro project `requirements.txt` file when you attempt to upgrade to Runtime 5+, the upgrade will fail.
+
+To continue with the upgrade to Runtime 5, remove `dbt-core` from your `requirements.txt` file. To continue running dbt Core jobs with Airflow, stay on your current Runtime version or upgrade to Runtime version 4.2.x until the fix for this issue is developed. 
+
+:::
+
 ### Support for Airflow 2.3 & dynamic task mapping
 
 Astro Runtime 5.0.0 provides support for [Airflow 2.3.0](https://airflow.apache.org/blog/airflow-2.3.0/), which is a significant open source release. The most notable new features in Airflow 2.3.0 are:

@@ -80,11 +80,19 @@ Once you upgrade to a Deployment on Astro to a new version of Astro Runtime, you
 
     You will also see an **Image tag** for your deploy. This tag is shown only for Deployments on Astro and is not generated for changes in a local environment.
 
-## Version-specific upgrade considerations
+## Version upgrade considerations
 
 This topic contains information about upgrading to specific versions of Astro Runtime. This includes notes on breaking changes, database migrations, and other considerations that might depend on your use case.
 
 ### Runtime 5 (Airflow 2.3)
+
+### Incompatibility with dbt-core provider package
+
+The `dbt-core` provider package is currently incompatible with Runtime 5+. The root cause for this issue is not yet known. If `dbt-core` is listed in your Astro project `requirements.txt` file when you attempt to upgrade to Runtime 5+, the upgrade will fail.
+
+To continue with the upgrade to Runtime 5, remove `dbt-core` from your `requirements.txt` file. To continue running dbt Core jobs with Airflow, stay on your current Runtime version or upgrade to Runtime version 4.2.x until the fix for this issue is developed. 
+
+### Changes to the Airflow metadata database 
 
 Astro Runtime 5, based on Airflow 2.3, includes changes to the schema of the Airflow metadata database. When you first upgrade to Runtime 5, consider the following:
 
