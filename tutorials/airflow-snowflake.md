@@ -1,5 +1,5 @@
 ---
-title: "Orchestrating Snowflake Queries with Airflow"
+title: "Orchestrate Snowflake Queries with Airflow"
 description: "How to use Airflow to get enhanced observability and compute savings while orchestrating your Snowflake jobs."
 id: airflow-snowflake
 sidebar_label: Snowflake
