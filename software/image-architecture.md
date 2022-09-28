@@ -43,7 +43,7 @@ Every supported version of the Astronomer Certified Python wheel is available at
 
 ## System distribution
 
-Astronomer Certified versions 1.10.15 and 2.1.4 are based on Debian 10.13 (Buster). All other Astronomer Certified versions are based on Debian 11.3 (Bullseye).
+Astronomer Certified versions 1.10.15 and 2.1.4 are based on Debian 10.13 (buster). All other Astronomer Certified versions are based on Debian 11.3 (bullseye).
 
 ## Image requirements
 
