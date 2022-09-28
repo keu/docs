@@ -33,8 +33,6 @@ When you use publicly accessible endpoints to connect Astro and Azure, traffic m
 
 <TabItem value="VNet peering">
 
-### VNet peering
-
 Every Astro cluster runs in a dedicated Virtual Private Network (VPC). To set up a private connection between an Astro VPC and an Azure Virtual Network (VNet), you can create a VPC peering connection. VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
 
 To create a VPC peering connection between an Astro VPC and an Azure VNet, contact [Astronomer support](https://cloud.astronomer.io/support) and provide the following information:
@@ -50,8 +48,6 @@ After receiving your request, Astronomer support initiates a peering request tha
 </TabItem>
 
 <TabItem value="Azure Private Link">
-
-### Azure Private Link
 
 Use Azure Private Link to create private connections from Astro to your Azure services without exposing your data to the public internet.
 
