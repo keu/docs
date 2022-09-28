@@ -19,7 +19,7 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 ### Bug fixes 
 
 - Fixed an issue where Astro users could not access task logs on Deployments using Runtime 6.0.0
-- Backported a fix to an issue where logs were not loading from Celery workers ([#26493](https://github.com/apache/airflow/pull/26493))
+- Backported a fix to correct an issue where logs were not loading from Celery workers ([#26493](https://github.com/apache/airflow/pull/26493))
 - Fixed [CVE-2022-40674](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-40674)
 
 ## Astro Runtime 5.0.9

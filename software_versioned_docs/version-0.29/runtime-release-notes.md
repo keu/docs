@@ -19,7 +19,7 @@ For instructions on how to upgrade, read [Upgrade Airflow on Astronomer Software
 ### Bug fixes 
 
 - Fixed an issue where Astro users could not access task logs on Deployments using Runtime 6.0.0
-- Backported a fix to an issue where logs were not loading from Celery workers ([#26493](https://github.com/apache/airflow/pull/26493))
+- Backported a fix to correct an issue where logs were not loading from Celery workers ([#26493](https://github.com/apache/airflow/pull/26493))
 - Fixed [CVE-2022-40674](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-40674)
 
 ## Astro Runtime 5.0.9
@@ -32,12 +32,12 @@ For instructions on how to upgrade, read [Upgrade Airflow on Astronomer Software
 - Fixed an issue where logs were not loading from Celery workers ([#26337](https://github.com/apache/airflow/pull/26337) and [#26493](https://github.com/apache/airflow/pull/26493))
 - Fixed CVE-2022-40754 ([#26409](https://github.com/apache/airflow/pull/26409))
 - Fixed the Airflow UI not auto-refreshing when scheduled tasks are running. This bug was introduced in Airflow 2.3.4 ([#25950](https://github.com/apache/airflow/pull/25950))
-- Fixed an issue where the scheduler could crash when queueing dynamically mapped tasks ([#25788](https://github.com/apache/airflow/pull/25788))
+- Fixed an issue where the scheduler could become unresponsive when queueing dynamically mapped tasks ([#25788](https://github.com/apache/airflow/pull/25788))
 
 ### Additional improvements
 
 - Set `AIRFLOW__CELERY__STALLED_TASK_TIMEOUT=600` by default. This means that tasks that are in `queued` state for more than 600 seconds (10 minutes) will fail. This environment variable can be overridden on Astro but will help prevent tasks from getting stuck in a queued state.
-- Upgraded `astronomer-providers` to 1.8.1, which includes various bug fixes. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#181-2022-09-01).
+- Upgraded `astronomer-providers` to 1.8.1, which includes various bug fixes. See the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#181-2022-09-01).
 - Upgraded `openlineage-airflow` to 0.13.0, which includes fixes for Spark integrations. See the [Astronomer Providers changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md#0141---2022-09-07).
 
 ## Astro Runtime 6.0.0
@@ -66,7 +66,7 @@ Astro Runtime 5.0.8 includes Airflow 2.3.4, which primarily includes bug fixes. 
 ### Additional improvements
 
 - Upgraded `astronomer-providers` to version `1.8.0`, which includes minor bug fixes and performance enhancements. For more information, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.8.0/CHANGELOG.rst).
-- Upgraded `openlineage-airflow` to version `0.13.0`, which includes support for Azure Cosmos DB. For a list of all changes, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
+- Upgraded `openlineage-airflow` to version `0.13.0`, which includes support for Azure Cosmos DB. For more information, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
 
 ## Astro Runtime 5.0.7
 
@@ -85,7 +85,7 @@ These changes were backported from Apache Airflow 2.3.4, which is not yet genera
 
 ### Additional improvements
 
-- Upgraded `openlineage-airflow` to version `0.12.0`, which includes support for Spark 3.3.0 and Apache Flink. For a list of all changes, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
+- Upgraded `openlineage-airflow` to version `0.12.0`, which includes support for Spark 3.3.0 and Apache Flink. For more information, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
 - Upgraded `astronomer-providers` to version `1.7.1`, which includes new deferrable operators and improvements to documentation. For more information, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.7.1/CHANGELOG.rst).
 - Upgraded `apache-airflow-providers-amazon` to version `4.1.0`, which includes a bug fix for integrating with AWS Secrets Manager.
 
