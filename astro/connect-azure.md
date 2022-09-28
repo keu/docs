@@ -6,6 +6,10 @@ description: Connect your Astro data plane to Microsoft Azure.
 sidebar_custom_props: { icon: 'img/azure.png' }
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import {siteVariables} from '@site/src/versions';
+
 Use the information provided here to learn how you can securely connect your Astro data plane to your existing Azure instance. A connection to Azure allows Astro to access data stored on your Azure instance and is a necessary step to running pipelines in a production environment.
 
 ## Connection options
