@@ -34,7 +34,7 @@ To create a VPC peering connection between an Astro VPC and an AWS VPC, contact 
 
 After receiving your request, Astronomer support initiates a peering request that must be accepted by the owner of the target VPC in your organization. After the VPC peering connection is established, the owner of the target VPC works with Astronomer support to update the routing tables of both VPCs to allow multidirectional traffic.
 
-### DNS considerations for VPC peering
+#### DNS considerations for VPC peering
 
 To resolve DNS hostnames from your target VPC, every Astro VPC has **DNS Hostnames**, **DNS Resolutions**, and **Requester DNS Resolution** enabled. See AWS [Peering Connection settings](https://docs.aws.amazon.com/vpc/latest/peering/modify-peering-connections.html).
 
