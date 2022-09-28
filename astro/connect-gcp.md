@@ -6,13 +6,25 @@ description: Connect your Astro data plane to GCP.
 sidebar_custom_props: { icon: 'img/gcp.png' }
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import {siteVariables} from '@site/src/versions';
+
 Use the information provided here to learn how you can securely connect your Astro data plane to your existing Google Cloud Platform (GCP) instance. A connection to GCP allows Astro to access data stored on your GCP instance and is a necessary step to running pipelines in a production environment.
 
 ## Connection options
 
-The connection option that you choose is determined by the requirements of your organization and your existing infrastructure. You can choose a straightforward implementation, or a more complex implementation that provides enhanced data security. Astronomer recommends that you review all of the available connection options before selecting one for your organization. 
+The connection option that you choose is determined by the requirements of your organization and your existing infrastructure. You can choose a straightforward implementation, or a more complex implementation that provides enhanced data security. Astronomer recommends that you review all of the available connection options before selecting one for your organization.
 
-### Public endpoints
+<Tabs
+    defaultValue="Public endpoints"
+    groupId="connection-options"
+    values={[
+        {label: 'Public endpoints', value: 'Public endpoints'},
+        {label: 'VPC peering', value: 'VPC peering'},
+        {label: 'Private Service Connect', value: 'Private Service Connect'},
+    ]}>
+<TabItem value="Public endpoints">
 
 Publicly accessible endpoints allow you to quickly connect Astro to GCP. To configure these endpoints, you can use one of the following methods:
 
@@ -21,7 +33,9 @@ Publicly accessible endpoints allow you to quickly connect Astro to GCP. To conf
 
 When you use publicly accessible endpoints to connect Astro and GCP, traffic moves directly between your Astro data plane and the GCP API endpoint. Data in this traffic never reaches the control plane, which is managed by Astronomer.
 
-### VPC peering
+</TabItem>
+
+<TabItem value="VPC peering">
 
 Every Astro cluster runs in a dedicated Virtual Private Network (VPC). To set up a private connection between an Astro VPC and a GCP VPC, you can create a VPC peering connection. VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
 
@@ -34,19 +48,34 @@ To create a VPC peering connection between an Astro VPC and a GCP VPC, contact [
 
 After receiving your request, Astronomer support initiates a peering request that must be accepted by the owner of the target VPC in your organization. After the VPC peering connection is established, the owner of the target VPC works with Astronomer support to update the routing tables of both VPCs to allow multidirectional traffic.
 
-### Private Service Connect
+</TabItem>
+
+<TabItem value="Private Service Connect">
 
 Private Service Connect allows Astro to access GCP data that belongs to different groups, teams, projects, and organizations.
+
+</TabItem>
+
+</Tabs>
 
 ## Authentication options
 
 Authentication is the process of verifying a user's identity before allowing them access to organizational applications and resources. The authentication option that you choose is determined by the requirements of your organization and your existing infrastructure. Astronomer recommends that you review all of the available authentication options before selecting one for your organization.
 
-### JSON service account keys
+<Tabs
+    defaultValue="JSON service account keys"
+    groupId="authentication-options"
+    values={[
+        {label: 'JSON service account keys', value: 'JSON service account keys'},
+        {label: 'Workload Identity', value: 'Workload Identity'},
+    ]}>
+<TabItem value="JSON service account keys">
 
 *Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi vel velit sagittis tristique. Etiam vitae iaculis leo. Donec malesuada placerat justo ut vulputate. Vivamus eget cursus neque. Suspendisse condimentum mattis lacus, sit amet iaculis diam interdum at. Nam enim orci, vestibulum tincidunt nibh at, semper imperdiet metus. Cras bibendum semper enim, nec accumsan massa mattis venenatis. Suspendisse condimentum, lectus at pellentesque facilisis, sem neque porta risus, quis imperdiet lacus dolor a lorem. Maecenas dignissim sem vitae dui ultricies, feugiat tincidunt tortor bibendum. Phasellus laoreet laoreet vehicula. Pellentesque pretium nulla erat, ut tristique quam condimentum vel.*
 
-### Workload Identity
+</TabItem>
+
+<TabItem value="Workload Identity">
 
 To allow data pipelines running on GCP to access Google Cloud services in a secure and manageable way, Google recommends using [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity). All Astro clusters on GCP have Workload Identity enabled by default. Each Astro Deployment is associated with a Google service account that's created by Astronomer and is bound to an identity from your Google Cloud project's fixed workload identity pool.
 
@@ -95,4 +124,6 @@ To grant a Deployment on Astro access to external data services on GCP, such as 
 
 4. Optional. Repeat these steps for every Astro Deployment that requires access to external data services on GCP.
 
+</TabItem>
 
+</Tabs>
