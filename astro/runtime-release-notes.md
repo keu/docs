@@ -203,9 +203,9 @@ To access the source code of this package, visit the [Astronomer Providers GitHu
 
 :::danger Breaking change
 
-The `dbt-core` provider package is currently incompatible with Runtime 5+. The root cause for this issue is not yet known. If `dbt-core` is listed in your Astro project `requirements.txt` file when you attempt to upgrade to Runtime 5+, the upgrade will fail.
+The `dbt-core` provider package is currently incompatible with Runtime 5.0.0 and later. The root cause for this issue is not yet known. If `dbt-core` is listed in your Astro project `requirements.txt` file when you attempt to upgrade to Runtime 5.0 or later, the upgrade fails.
 
-To continue with the upgrade to Runtime 5, remove `dbt-core` from your `requirements.txt` file. To continue running dbt Core jobs with Airflow, stay on your current Runtime version or upgrade to Runtime version 4.2.x until the fix for this issue is developed. 
+To upgrade to Runtime 5.0.0 or later, remove `dbt-core` from your `requirements.txt` file. To continue running dbt Core jobs with Airflow, don't upgrade your current Runtime version or upgrade to Runtime version 4.2.x and wait until a  fix is announced. 
 
 :::
 
