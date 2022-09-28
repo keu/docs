@@ -42,11 +42,12 @@ The following topics provide setup steps for integrating each of these external 
 
 5. Verify your integration in SendGrid to confirm that the key was activated. If you get an error indicating that SendGrid can't find the test email, try rerunning the cURL code in your terminal before retrying the verification.
 
-6. Add the [SendGrid Airflow provider](https://airflow.apache.org/docs/apache-airflow-providers-sendgrid/stable/index.html) to your Astro project by adding the following to your `requirements.txt` file:
+6. Add the following line to your Astro project `requirements.txt` file to install the [SendGrid Airflow provider](https://airflow.apache.org/docs/apache-airflow-providers-sendgrid/stable/index.html):
 
     ```text
     apache-airflow-providers-sendgrid
     ```
+
 7. In the Deployment view of the Cloud UI, add the following environment variables:
 
     - `AIRFLOW__EMAIL__EMAIL_BACKEND` = `airflow.providers.sendgrid.utils.emailer.send_email`
