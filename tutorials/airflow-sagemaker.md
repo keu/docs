@@ -13,6 +13,15 @@ In this tutorial, you'll learn about the SageMaker modules that are available in
 
 All code used in this tutorial is located in the [Astronomer Registry](https://registry.astronomer.io/dags/sagemaker-run-model).
 
+## Assumed knowledge
+
+To get the most out of this tutorial, make sure you have an understanding of:
+
+- The basics of [Amazon S3](https://aws.amazon.com/s3/getting-started/) and [Amazon SageMaker](https://aws.amazon.com/sagemaker/getting-started/).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+
 ## SageMaker modules
 
 There are multiple SageMaker operators and sensors available within the [AWS provider](https://registry.astronomer.io/providers/amazon) that cover a wide range of SageMaker features. All of these are built on the [SageMakerBaseOperator](https://registry.astronomer.io/providers/amazon/modules/sagemakerbaseoperator), which uses the SageMaker API. If you're new to working with SageMaker, you should review the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations_Amazon_SageMaker_Service.html) before you configure operators and sensors.

@@ -9,6 +9,12 @@ This guide provides information that will help you resolve common Airflow DAG is
 
 This guide focuses on [Airflow 2.0 and later](https://www.astronomer.io/events/webinars/intro-to-data-orchestration-with-airflow). For older Airflow versions, the debugging steps might be different.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+
 ## DAGs don't appear in the Airflow UI
 
 If a DAG isn't appearing in the Airflow UI, it's typically because Airflow is unable to parse the DAG. If this is the case, you'll see an `Import Error` in the Airflow UI. 

@@ -11,9 +11,15 @@ As part of this update, support was introduced for configuring [custom XCom back
 
 This guide discusses the benefits of using an XCom backend, shows an example of implementing an XCom backend with Airflow S3, and describes how to set this up if you're running Airflow on Astro.
 
-If you're new to working with XComs or the TaskFlow API it's recommended that you review the [Airflow documentation on XComs](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#xcoms) and the [TaskFlow API in Airflow 2.0](https://www.astronomer.io/events/webinars/taskflow-api-airflow-2.0/) webinar.
-
 All code used in this tutorial is located in the [Astronomer Registry](https://github.com/astronomer/custom-xcom-backend-tutorial).
+
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- XComs basics. See the [Airflow documentation on XComs](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#xcoms).
+- Passing data between tasks. See [Passing data between Airflow tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks/).
+- The TaskFlow API. See [the TaskFlow API in Airflow 2.0](https://www.astronomer.io/events/webinars/taskflow-api-airflow-2.0/)
 
 ## When to use custom XCom backends
 

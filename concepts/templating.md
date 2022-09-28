@@ -25,6 +25,13 @@ Airflow leverages [Jinja](https://jinja.palletsprojects.com), a Python templatin
 - How to apply custom variables and functions when templating.
 - How to render templates to strings and native Python code.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Jinja templating. See [Jinja basics](https://jinja.palletsprojects.com/en/3.1.x/api/#basics). 
+
 ## Runtime variables in Airflow
 
 Templating in Airflow works the same as Jinja templating in Python. You enclose the code you want evaluated between double curly braces, and the expression is evaluated at runtime. 

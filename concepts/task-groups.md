@@ -9,6 +9,12 @@ Use [task groups](https://airflow.apache.org/docs/apache-airflow/stable/concepts
 
 In this guide, you'll learn how to create task groups and review some example DAGs that demonstrate their scalability.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+
 ## Create task groups
 
 To use task groups, run the following import statement:

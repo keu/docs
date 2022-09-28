@@ -11,6 +11,13 @@ Pools allow you to limit parallelism for an arbitrary set of tasks, allowing you
 
 In this tutorial, you'll learn basic Airflow pool concepts, how to create and assign pools, and what you can and can't do with pools. You'll also implement some sample DAGs that use pools to fulfill simple requirements. 
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- The basics of scaling Airflow. See [Scaling out Airflow](https://www.astronomer.io/guides/airflow-scaling-workers/).
+
 ## Create a pool
 
 There are three ways you can create and manage pools in Airflow:

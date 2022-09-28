@@ -12,6 +12,13 @@ Sharing data between tasks is a very common use case in Airflow. If you've been 
 
 There are a few methods you can use to implement data sharing between your Airflow tasks. In this tutorial, you'll walk through the two most commonly used methods, learn when to use them, and use some example DAGs to understand how they can be implemented.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- DAG writing best practices. See [DAG writing best practices in Apache Airflow](https://www.astronomer.io/guides/dag-best-practices/).
+
 ## Best practices
 
 Before you dive into the specifics, there are a couple of important concepts to understand before you write DAGs that pass data between tasks.

@@ -24,6 +24,12 @@ To view a video presentation of these concepts, see [Manage Dependencies Between
 
 The focus of this guide is dependencies between tasks in the same DAG. If you need to implement dependencies between DAGs, see [Cross-DAG dependencies](https://www.astronomer.io/guides/cross-dag-dependencies).
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+
 ## Basic dependencies
 
 Basic dependencies between Airflow tasks can be set in the following ways:

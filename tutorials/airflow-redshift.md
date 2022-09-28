@@ -14,6 +14,15 @@ In this tutorial, you'll learn about the Redshift modules that are available in 
 
 All code in this tutorial is located in the [GitHub repo](https://github.com/astronomer/cs-tutorial-redshift). 
 
+## Assumed knowledge
+
+To get the most out of this tutorial, make sure you have an understanding of:
+
+- The basics of [Amazon Redshift](https://aws.amazon.com/redshift/getting-started/?nc=sn&loc=4&dn=1).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+
 ## Setup
 
 To use Redshift operators in Airflow, you first need to install the Redshift provider package and create a connection to your Redshift cluster.

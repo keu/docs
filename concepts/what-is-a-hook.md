@@ -11,6 +11,12 @@ In this guide, you'll learn about using hooks in Airflow and when you should use
 
 [Over 200 hooks](https://registry.astronomer.io/modules/?types=hooks%2CHooks&page=2) are available in the Astronomer Registry. If a hook isn't available for your use case, you can write your own and share it with the community.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).
 
 ## Hook basics
 

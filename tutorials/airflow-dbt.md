@@ -20,6 +20,15 @@ In this guide, you'll:
 
 > The dbt Core sections of this guide summarize some of the key practices and findings from our blog series with [Updater](https://updater.com/) and [Sam Bail](https://sambail.com/) about using dbt in Airflow. For more information, check out [Part 1](https://www.astronomer.io/blog/airflow-dbt-1), [Part 2](https://www.astronomer.io/blog/airflow-dbt-2), and [Part 3](https://www.astronomer.io/blog/airflow-dbt-3) of the series.
 
+## Assumed knowledge
+
+To get the most out of this tutorial, make sure you have an understanding of:
+
+- The basics of dbt. See [Getting started with dbt Cloud](https://docs.getdbt.com/guides/getting-started).
+- Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+
 ## dbt Cloud
 
 To orchestrate [dbt Cloud](https://www.getdbt.com/product/what-is-dbt/) jobs with Airflow, you can use the [dbt Cloud provider](https://registry.astronomer.io/providers/dbt-cloud), which contains the following useful modules:

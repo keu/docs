@@ -9,6 +9,12 @@ Plugins are Airflow components that you can add to your project to customize you
 
 In this guide you'll learn about plugin capabilities and review some examples that show how they are used and the benefits they provide.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Airflow core components. See [Airflow's components](https://www.astronomer.io/guides/airflow-components/).
 
 ### Macros
 

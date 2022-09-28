@@ -24,7 +24,7 @@ All code used in this  is available in the [cross-dag-dependencies-tutorial regi
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have an existing knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
 - Dependencies in Airflow. See [Managing Dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies/).
 - Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).

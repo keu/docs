@@ -9,6 +9,13 @@ When you're using a data orchestration tool, how do you know when something has 
 
 In this guide, you'll learn the basics of Airflow notifications and how to set up common notification mechanisms including email, Slack, and SLAs. You'll also learn how to make the most of Airflow alerting when using Astro.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+- Task dependencies. See [Managing dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies/).
+
 ## Airflow notification basics
 
 Having your DAGs defined as Python code gives you full autonomy to define your tasks and notifications in whatever way makes sense for your organization.

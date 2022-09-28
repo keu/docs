@@ -14,6 +14,12 @@ This guide offers an introduction to Apache Airflow and its core concepts. You'l
 - When you should use Airflow.
 - Core Airflow concepts.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).
+
 ## History
 
 Airflow started as an open source project at Airbnb. In 2015, Airbnb was growing rapidly and struggling to manage the vast quantities of internal data it generated every day. Airbnb data engineers, data scientists, and analysts had to regularly write scheduled batch jobs to automate processes. To satisfy the need for a robust scheduling tool, [Maxime Beauchemin](https://maximebeauchemin.medium.com/) created Airflow to allow Airbnb to quickly author, iterate, and monitor batch data pipelines.

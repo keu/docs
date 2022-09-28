@@ -15,9 +15,9 @@ All images in this guide were taken from an [Astronomer Runtime](https://docs.as
 
 ## Assumed knowledge
 
-To get the most out of this guide, you should have knowledge of:
+To get the most out of this guide, you should have an understanding of:
 
-- What Airflow is and when to use it. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
 - Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
 
 ## DAGs

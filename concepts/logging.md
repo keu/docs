@@ -21,6 +21,13 @@ You'll also use example code to:
 
 In addition to standard logging, Airflow provides observability features that you can use to collect metrics, trigger callback functions with task events, monitor Airflow health status, and track errors and user activity. For more information about the monitoring options in Airflow, see [Logging & Monitoring](https://airflow.apache.org/docs/apache-airflow/stable/logging-monitoring/index.html). Astro builds on these features, providing more detailed metrics about how your tasks run and use resources in your cloud. To learn more, see [Deployment metrics](https://docs.astronomer.io/astro/deployment-metrics).
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Airflow core components. See [Airflow's components](https://www.astronomer.io/guides/airflow-components/).
+
 ## Airflow logging
 
 Logging in Airflow leverages the [Python stdlib `logging` module](https://docs.python.org/3/library/logging.html). The `logging` module includes the following classes:

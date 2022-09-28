@@ -9,6 +9,12 @@ When working with Airflow, understanding the underlying infrastructure component
 
 In this guide, we'll describe the core components of Airflow and managing Airflow infrastructure for high availability. Some of the components and features described in this topic are unavailable in earlier Airflow versions.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+
 ## Core components
 
 The following Apache Airflow core components are running at all times: 

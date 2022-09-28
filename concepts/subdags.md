@@ -9,6 +9,13 @@ SubDAGs are a legacy Airflow feature that allowed the creation of reusable task 
 
 In this guide, you'll learn about SubDAG alternatives and SubDAG issues.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow task groups. See [Task Groups](https://www.astronomer.io/guides/task-groups).
+- Implementing dependencies between DAGs. See [Cross-DAG dependencies](https://www.astronomer.io/guides/cross-dag-dependencies).
+
 ## SubDAG alternatives
 
 Don't use SubDAGs. Use one of the following alternatives instead:

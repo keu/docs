@@ -11,7 +11,13 @@ Running DAGs whenever you want is one of the most powerful and flexible features
 - You want to deploy a DAG with a start date of one year ago and trigger all DAG runs that would have been scheduled in the past year.
 - You have a running DAG and realize you need it to process data for two months prior to the DAG's start date.
 
-In this guide, you'll learn how to rerun tasks or DAGs and trigger historical DAG runs, and review the Airflow concepts of catchup and backfill. If you're looking for additional information about DAG scheduling, see [Scheduling and timetables in Airflow](https://www.astronomer.io/guides/scheduling-in-airflow).
+In this guide, you'll learn how to rerun tasks or DAGs and trigger historical DAG runs, and review the Airflow concepts of catchup and backfill.
+
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- DAG scheduling. See [Scheduling and timetables in Airflow](https://www.astronomer.io/guides/scheduling-in-airflow)
 
 ## Rerun tasks
 

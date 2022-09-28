@@ -7,18 +7,14 @@ id: testing-airflow
 
 Effectively testing DAGs requires an understanding of their structure and their relationship to other code and data in your environment. In this guide, you'll learn about DAG validation testing, unit testing, and data and pipeline integrity testing.
 
-### Before you begin
+## Assumed knowledge
 
-If you're new to test-driven development, or CI/CD, you should review the following documentation:
+To get the most out of this guide, you should have an understanding of:
 
-- [Getting Started with Testing in Python](https://realpython.com/python-testing/)
-- [Continuous Integration with Python: An Introduction](https://realpython.com/python-continuous-integration/)
-- [The challenge of testing Data Pipelines](https://medium.com/slalom-build/the-challenge-of-testing-data-pipelines-4450744a84f1)
-- [Configure CI/CD on Astronomer Software](https://docs.astronomer.io/software/ci-cd)
-- [Testing a DAG](https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html#testing-a-dag)
-- [Testing guidelines for contributors](https://github.com/apache/airflow/blob/main/TESTING.rst)
+- Python testing basics. See [Getting Started with Testing in Python](https://realpython.com/python-testing/).
+- CI/CD for Python scripts. See [Continuous Integration with Python: An Introduction](https://realpython.com/python-continuous-integration/).
 
-### Test runners
+## Test runners
 
 There are multiple test runners available for Python, including `unittest`, `pytest`, and `nose2`. Airflow doesn't require a specific test runner. This guide uses `pytest`.
 

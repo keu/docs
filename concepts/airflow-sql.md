@@ -7,13 +7,20 @@ sidebar_label: "Run SQL"
 
 Executing SQL queries is one of the most common use cases for data pipelines. Whether you're extracting and loading data, calling a stored procedure, or executing a complex query for a report, Airflow has you covered. Using Airflow, you can orchestrate all of your SQL tasks elegantly with just a few lines of boilerplate code.
 
-In this tutorial you'll learn about the best practices for executing SQL from your DAG,  review the  most commonly used Airflow SQL-related operators, and then use sample code to implement a few common SQL use cases.
+In this tutorial you'll learn about the best practices for executing SQL from your DAG, review the  most commonly used Airflow SQL-related operators, and then use sample code to implement a few common SQL use cases.
 
 :::info
 
 All code used in this tutorial is located in the [Astronomer GitHub](https://github.com/astronomer/airflow-sql-tutorial).
 
 :::
+
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Snowflake basics. See [Introduction to Snowflake](https://docs.snowflake.com/en/user-guide-intro.html).
 
 ## Best practices for executing SQL from your DAG
 

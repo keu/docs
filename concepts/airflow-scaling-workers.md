@@ -18,6 +18,13 @@ In this tutorial, you'll learn about the key parameters that you can use to modi
 
 This guide references the parameters available in Airflow version 2.0 and later. If you're using an earlier version of Airflow, some of the parameter names might be different.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow core components. See [Airflow's components](https://www.astronomer.io/guides/airflow-components/).
+- Airflow executors. See [Airflow executors explained](https://www.astronomer.io/guides/airflow-executors-explained/).
+
 ## Parameter tuning
 
 Airflow has many parameters that impact its performance. Tuning these settings can impact DAG parsing and task scheduling performance, parallelism in your Airflow environment, and more. 

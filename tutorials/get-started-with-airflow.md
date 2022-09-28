@@ -23,7 +23,7 @@ This tutorial takes approximately 1 hour to complete.
 
 ## Assumed knowledge
 
-To complete this tutorial, you'll need to know:
+To get the most out of this tutorial, make sure you have an understanding of:
 
 - Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
 - Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).

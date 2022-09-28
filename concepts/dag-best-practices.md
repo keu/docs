@@ -14,6 +14,13 @@ In general, best practices fall into one of two categories:
 
 For an in-depth walk through and examples of some of the concepts covered in this guide, it's recommended that you review the [DAG Writing Best Practices in Apache Airflow](https://www.astronomer.io/blog/dag-writing-best-practices-in-apache-airflow) webinar and the [Github repo](https://github.com/astronomer/webinar-dag-writing-best-practices) for DAG examples.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+
 ## Review idempotency
 
 [Idempotency](https://en.wikipedia.org/wiki/Idempotence) is the foundation for many computing practices, including the Airflow best practices in this guide. A program is considered idempotent if, for a set input, running the program once has the same effect as running the program multiple times.

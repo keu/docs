@@ -9,6 +9,13 @@ id: what-is-a-sensor
 
 In this guide, you'll learn how sensors are used in Airflow, best practices for implementing sensors in production, and learn about smart sensors and deferrable operators. For more information about implementing sensors, see the video [Create Powerful Data Pipelines by Mastering Sensors](https://www.astronomer.io/events/webinars/creating-data-pipelines-using-master-sensors/).
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).
+
 ## Sensor basics
 
 Sensors are a type of operator that checks if a condition is met at a specific interval. If the condition is met, the task is marked successful and the DAG can move to downstream tasks. If the condition isn't met, the sensor waits for another interval before checking again. 

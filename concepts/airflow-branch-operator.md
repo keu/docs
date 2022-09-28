@@ -10,6 +10,13 @@ When designing your data pipelines, you may encounter use cases that require mor
 
 In this guide, we'll cover examples using the `BranchPythonOperator` and `ShortCircuitOperator`, other available branching operators, and additional resources for implementing conditional logic in your Airflow DAGs.
 
+## Assumed knowledge
+
+To get the most out of this guide, you should have an understanding of:
+
+- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Dependencies in Airflow. See [Managing Dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies/).
+
 ## BranchPythonOperator
 
 One of the simplest ways to implement branching in Airflow is to use the [BranchPythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/branchpythonoperator). Like the [`PythonOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator), the `BranchPythonOperator` takes a Python function as an input. However, the `BranchPythonOperator's` input function must return a list of task IDs that the DAG should proceed with based on some logic. 
