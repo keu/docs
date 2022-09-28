@@ -113,7 +113,20 @@ module.exports = {
             'view-clusters',
             'create-cluster',
             'modify-cluster',
-            'connect-external-services',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Connect Astro',
+          link: {
+            type:'generated-index',
+            title: 'Connect Astro to external data services',
+            description: 'Connect Astro to external data services.'
+          },
+          items: [
+            'connect-aws',
+            'connect-azure',
+            'connect-gcp',
           ],
         },
       ],
