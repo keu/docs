@@ -16,6 +16,8 @@ Use the information provided here to learn how you can securely connect your Ast
 
 The connection option that you choose is determined by the requirements of your organization and your existing infrastructure. You can choose a straightforward implementation, or a more complex implementation that provides enhanced data security. Astronomer recommends that you review all of the available connection options before selecting one for your organization.
 
+### Public endpoints
+
 <Tabs
     defaultValue="Public endpoints"
     groupId="public-endpoints"
@@ -26,8 +28,6 @@ The connection option that you choose is determined by the requirements of your 
         {label: 'AWS PrivateLink', value: 'aws privatelink'},
     ]}>
 <TabItem value="Public endpoints">
-
-### Public endpoints
 
 Publicly accessible endpoints allow you to quickly connect Astro to AWS. To configure these endpoints, you can use one of the following methods:
 
