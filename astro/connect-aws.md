@@ -16,16 +16,14 @@ Use the information provided here to learn how you can securely connect your Ast
 
 The connection option that you choose is determined by the requirements of your organization and your existing infrastructure. You can choose a straightforward implementation, or a more complex implementation that provides enhanced data security. Astronomer recommends that you review all of the available connection options before selecting one for your organization.
 
-### Public endpoints
-
 <Tabs
     defaultValue="Public endpoints"
-    groupId="public-endpoints"
+    groupId="connection-options"
     values={[
-        {label: 'Public endpoints', value: 'public endpoints'},
-        {label: 'VPC peering', value: 'vpc peering'},
-        {label: 'Transit Gateways', value: 'transit gateways'},
-        {label: 'AWS PrivateLink', value: 'aws privatelink'},
+        {label: 'Public endpoints', value: 'Public endpoints'},
+        {label: 'VPC peering', value: 'VPC peering'},
+        {label: 'Transit Gateways', value: 'Transit Gateways'},
+        {label: 'AWS PrivateLink', value: 'AWS PrivateLink'},
     ]}>
 <TabItem value="Public endpoints">
 
@@ -39,8 +37,6 @@ When you use publicly accessible endpoints to connect Astro and AWS, traffic mov
 </TabItem>
 
 <TabItem value="VPC peering">
-
-### VPC peering
 
 Every Astro cluster runs in a dedicated Virtual Private Network (VPC). To set up a private connection between an Astro VPC and an AWS VPC, you can create a VPC peering connection. VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
 
@@ -67,8 +63,6 @@ To retrieve the ID of any Astro VPC, contact [Astronomer support](https://cloud.
 </TabItem>
 
 <TabItem value="Transit Gateways">
-
-### Transit Gateways
 
 Use AWS Transit Gateway to connect one or more Astro clusters to other VPCs, AWS accounts, and on-premises networks supported by your organization.
 
@@ -105,8 +99,6 @@ If Astronomer creates a new transit gateway in your AWS account for Astro, keep 
 </TabItem>
 
 <TabItem value="AWS PrivateLink">
-
-### AWS PrivateLink
 
 Use AWS PrivateLink to create private connections from Astro to your AWS services without exposing your data to the public internet.
 
