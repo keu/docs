@@ -1,8 +1,9 @@
 ---
-sidebar_label: "Connect to AWS"
-title: "Connect Astro to AWS"
+sidebar_label: 'AWS'
+title: 'Connect Astro to AWS'
 id: connect-aws
 description: Connect your Astro data plane to AWS.
+sidebar_custom_props: { icon: 'img/aws.png' }
 ---
 
 Use the information provided here to learn how you can securely connect your Astro data plane to your existing AWS instance. A connection to AWS allows Astro to access data stored on your AWS instance and is a necessary step to running pipelines in a production environment.

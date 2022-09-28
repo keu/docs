@@ -1,8 +1,9 @@
 ---
-sidebar_label: "Connect to GCP"
-title: "Connect Astro to GCP"
+sidebar_label: 'GCP'
+title: 'Connect Astro to GCP'
 id: connect-gcp
 description: Connect your Astro data plane to GCP.
+sidebar_custom_props: { icon: 'img/gcp.png' }
 ---
 
 Use the information provided here to learn how you can securely connect your Astro data plane to your existing Google Cloud Platform (GCP) instance. A connection to GCP allows Astro to access data stored on your GCP instance and is a necessary step to running pipelines in a production environment.
