@@ -1,0 +1,110 @@
+module.exports = {
+  learn: [
+    'overview',
+    {
+      type: 'category',
+      label: 'Concepts',
+      link: {
+        type:'generated-index',
+        title: 'Concepts',
+        description: 'Learn about the fundamentals of Apache Airflow.'
+      },
+      items: [
+        {
+          type: 'category',
+          label: 'Basics',
+          items: [
+            'intro-to-airflow',
+            'dags',
+            'what-is-an-operator',
+            'what-is-a-sensor',
+            'connections',
+            'what-is-a-hook',
+            'airflow-decorators',
+            'bashoperator',
+            'airflow-sql',
+            'airflow-ui',
+            'scheduling-in-airflow',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Pipelines',
+          items: [
+            'dag-best-practices',
+            'airflow-passing-data-between-tasks',
+            'airflow-branch-operator',
+            'airflow-importing-custom-hooks-operators',
+            'debugging-dags',
+            'subdags',
+            'task-groups',
+            'execute-notebooks',
+            'rerunning-dags',
+            'managing-dependencies',
+            'managing-airflow-code',
+            'templating',
+            'cross-dag-dependencies',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Infrastructure',
+          items: [
+            'airflow-components',
+            'deferrable-operators',
+            'airflow-database',
+            'using-airflow-plugins',
+            'airflow-scaling-workers',
+            'airflow-executors-explained',
+            'airflow-pools',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Management',
+          items: [
+            'testing-airflow',
+            'custom-xcom-backends',
+            'logging',
+            'kubepod-operator',
+            'data-quality',
+            'airflow-sql-data-quality',
+            'dynamically-generating-dags',
+            'dynamic-tasks',
+            'airflow-datasets',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Tutorials',
+      link: {
+        type:'generated-index',
+        title: 'Tutorials',
+        description: 'Step-by-step guides for writing DAGs and running Airflow.'
+      },
+      items: [
+        'get-started-with-airflow',
+        'astro-python-sdk',
+        {
+          type: 'category',
+          label: 'Integrations',
+          items: [
+            'airflow-azure-data-factory-integration',
+            'airflow-azure-data-explorer',
+            'airflow-openlineage',
+            'airflow-dbt',
+           'airflow-databricks',
+            'airflow-sagemaker',
+           'airflow-snowflake',
+            'airflow-redshift',
+            'airflow-great-expectations',
+            'airflow-talend-integration',
+           'soda-data-quality',
+         ],
+        },
+      ],
+    },
+  ],
+};
