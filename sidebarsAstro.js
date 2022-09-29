@@ -120,8 +120,8 @@ module.exports = {
           label: 'Connect Astro',
           link: {
             type:'generated-index',
-            title: 'Connect Astro to external data services',
-            description: 'Connect Astro to external data services.'
+            title: 'Connect Astro to external data sources',
+            description: 'Connect Astro to external data sources.'
           },
           items: [
             'connect-aws',
