@@ -57,6 +57,12 @@ You can change all settings of the default worker queue except for its name.
 
 #### Create a worker queue
 
+:::cli 
+
+You can alternatively create worker queues using the Astro CLI. See [`astro deployment worker-queue create`](cli/astro-deployment-worker-queue-create.md).
+
+:::
+
 Running multiple worker queues improves resource usage efficiency and enables dependent tasks with different computational requirements to coexist on the same Deployment.
 
 1. Log in to the Cloud UI.
