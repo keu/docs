@@ -5,7 +5,7 @@ id: astro-deployment-worker-queue-create
 description: Reference documentation for astro deployment worker-queue create.
 ---
 
-Create a [worker queue](../configure-deployment-resources.md#worker-queues).
+Create a [worker queue](configure-deployment-resources.md#worker-queues).
 
 ## Usage
 
