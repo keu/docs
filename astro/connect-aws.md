@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'AWS'
-title: 'Connect Astro to AWS'
+title: 'Connect Astro to AWS data sources'
 id: connect-aws
 description: Connect your Astro data plane to AWS.
 sidebar_custom_props: { icon: 'img/aws.png' }
@@ -125,18 +125,12 @@ You'll incur additional AWS infrastructure costs for every AWS PrivateLink endpo
 Authentication is the process of verifying a user's identity before allowing them access to organizational applications and resources. The authentication option that you choose is determined by the requirements of your organization and your existing infrastructure. Astronomer recommends that you review all of the available authentication options before selecting one for your organization.
 
 <Tabs
-    defaultValue="AWS access keys and secrets"
+    defaultValue="AWS IAM roles"
     groupId="authentication-options"
     values={[
-        {label: 'AWS access keys and secrets', value: 'AWS access keys and secrets'},
         {label: 'AWS IAM roles', value: 'AWS IAM roles'},
+        {label: 'AWS access keys', value: 'AWS access keys'},
     ]}>
-<TabItem value="AWS access keys and secrets">
-
-*Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi vel velit sagittis tristique. Etiam vitae iaculis leo. Donec malesuada placerat justo ut vulputate. Vivamus eget cursus neque. Suspendisse condimentum mattis lacus, sit amet iaculis diam interdum at. Nam enim orci, vestibulum tincidunt nibh at, semper imperdiet metus. Cras bibendum semper enim, nec accumsan massa mattis venenatis. Suspendisse condimentum, lectus at pellentesque facilisis, sem neque porta risus, quis imperdiet lacus dolor a lorem. Maecenas dignissim sem vitae dui ultricies, feugiat tincidunt tortor bibendum. Phasellus laoreet laoreet vehicula. Pellentesque pretium nulla erat, ut tristique quam condimentum vel.*
-
-</TabItem>
-
 <TabItem value="AWS IAM roles">
 
 To grant an Astro cluster access to a service that is running in an AWS account not managed by Astronomer, use AWS IAM roles. IAM roles on AWS are often used to manage the level of access a specific user, object, or group of users has to a resource. This includes an Amazon S3 bucket, Redshift instance, or secrets backend.
@@ -170,6 +164,14 @@ To grant an Astro cluster access to a service that is running in an AWS account 
 7. Click **Update policy**.
 8. In the Airflow UI or as an environment variable on Astro, create an Airflow connection to AWS for each Deployment that requires the resources you connected. See [Managing connections to Apache Airflow](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/aws.html).
 9. Optional. Repeat these steps for each Astro cluster that requires access to external data services on AWS.
+
+</TabItem>
+
+<TabItem value="AWS access keys">
+
+Astro supports all Airflow AWS connection types. For more information about the available AWS connection types, see [Amazon Web Services Connection](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/aws.html). When you create your Airflow AWS connection, you'll need your AWS access key ID and secret access key. 
+
+Astronomer recommends using an external secrets backend to store your AWS access key ID and secret access key. See [Configure an external secrets backend on Astro](secrets-backend.md).
 
 </TabItem>
 

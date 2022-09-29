@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'GCP'
-title: 'Connect Astro to GCP'
+title: 'Connect Astro to GCP data sources'
 id: connect-gcp
 description: Connect your Astro data plane to GCP.
 sidebar_custom_props: { icon: 'img/gcp.png' }
@@ -63,18 +63,12 @@ Private Service Connect allows Astro to access GCP data that belongs to differen
 Authentication is the process of verifying a user's identity before allowing them access to organizational applications and resources. The authentication option that you choose is determined by the requirements of your organization and your existing infrastructure. Astronomer recommends that you review all of the available authentication options before selecting one for your organization.
 
 <Tabs
-    defaultValue="JSON service account keys"
+    defaultValue="Workload Identity"
     groupId="authentication-options"
     values={[
-        {label: 'JSON service account keys', value: 'JSON service account keys'},
         {label: 'Workload Identity', value: 'Workload Identity'},
+        {label: 'Service account keys', value: 'Service account keys'},
     ]}>
-<TabItem value="JSON service account keys">
-
-*Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in nisi vel velit sagittis tristique. Etiam vitae iaculis leo. Donec malesuada placerat justo ut vulputate. Vivamus eget cursus neque. Suspendisse condimentum mattis lacus, sit amet iaculis diam interdum at. Nam enim orci, vestibulum tincidunt nibh at, semper imperdiet metus. Cras bibendum semper enim, nec accumsan massa mattis venenatis. Suspendisse condimentum, lectus at pellentesque facilisis, sem neque porta risus, quis imperdiet lacus dolor a lorem. Maecenas dignissim sem vitae dui ultricies, feugiat tincidunt tortor bibendum. Phasellus laoreet laoreet vehicula. Pellentesque pretium nulla erat, ut tristique quam condimentum vel.*
-
-</TabItem>
-
 <TabItem value="Workload Identity">
 
 To allow data pipelines running on GCP to access Google Cloud services in a secure and manageable way, Google recommends using [Workload Identity](https://cloud.google.com/kubernetes-engine/docs/concepts/workload-identity). All Astro clusters on GCP have Workload Identity enabled by default. Each Astro Deployment is associated with a Google service account that's created by Astronomer and is bound to an identity from your Google Cloud project's fixed workload identity pool.
@@ -123,6 +117,14 @@ To grant a Deployment on Astro access to external data services on GCP, such as 
     For instructions on how to grant your service account an IAM role in the Google Cloud console, see [Grant an IAM role](https://cloud.google.com/iam/docs/grant-role-console#grant_an_iam_role).
 
 4. Optional. Repeat these steps for every Astro Deployment that requires access to external data services on GCP.
+
+</TabItem>
+
+<TabItem value="Service account keys">
+
+When you create a connection from Astro to GCP, you can specify the service account key in JSON format, or you can create a secret to hold the service account key. For more information about creating and managing GCP service account keys, see [Create and manage service account keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) and [Creating and accessing secrets](https://cloud.google.com/secret-manager/docs/creating-and-accessing-secrets).
+
+Astronomer recommends using Google Cloud Secret Manager to store your GCP service account keys and other secrets. See [Google Cloud Secret Manager](secrets-backend.md#setup).
 
 </TabItem>
 
