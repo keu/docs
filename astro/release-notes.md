@@ -30,7 +30,6 @@ This new UI moves the **Analytics** and **Logs** from the left sidebar to the ma
 Astronomer has modified the default resource usage of Astro clusters to improve infrastructure cost for Astro customers. In addition to minor improvements to node autoscaling behavior:
 
 - New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
-- Astro clusters on Google Cloud Platform (GCP) now use `e2-standard-4` instance types for the Airflow and data plane system node pools instead of `n2-standard-4`.
 
 ### New Account Dashboard
 
