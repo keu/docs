@@ -1,7 +1,7 @@
 ---
-title: "Orchestrate Redshift operations in Airflow"
+title: "Orchestrate Redshift operations with Airflow"
 sidebar_label: "Amazon Redshift"
-description: "Use Redshift modules to set up a Redshift connection."
+description: "Orchestrate Redshift queries from your Airflow DAGs."
 id: airflow-redshift
 tags: [Database, SQL, DAGs, Integrations, AWS]
 ---

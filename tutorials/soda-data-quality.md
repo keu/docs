@@ -1,6 +1,6 @@
 ---
-title: "Soda Core and Airflow"
-description: "Using Soda Core to implement data quality checks in Airflow DAGs."
+title: "Orchestrate Soda Core with Airflow"
+description: "Orchestrate Soda Core data quality checks with your Airflow DAGs."
 id: soda-data-quality
 sidebar_label: "Soda Core"
 ---

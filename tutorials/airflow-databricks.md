@@ -1,7 +1,7 @@
 ---
-title: "Orchestrating Databricks jobs with Airflow"
-sidebar_label: "Orchestrating Databricks jobs with Airflow"
-description: "Orchestrating Databricks jobs from your Apache Airflow DAGs."
+title: "Orchestrate Databricks jobs with Airflow"
+sidebar_label: "Databricks"
+description: "Orchestrate Databricks jobs with your Airflow DAGs."
 id: airflow-databricks
 tags: [Integrations, DAGs]
 ---
