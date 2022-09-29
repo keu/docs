@@ -1,7 +1,7 @@
 ---
-title: "Executing Azure Data Explorer Queries with Airflow"
+title: "Orchestrate Azure Data Explorer Queries with Airflow"
 sidebar_label: "Azure Data Explorer"
-description: "Executing Azure Data Explorer queries from your Apache Airflow DAGs."
+description: "How to orchestrate Azure Data Explorer queries with your Apache Airflow DAGs."
 id: airflow-azure-data-explorer
 tags: ["Integrations", "Azure", "DAGs"]
 ---

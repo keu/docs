@@ -1,7 +1,7 @@
 ---
-title: "Use Airflow with SageMaker"
-sidebar_label: "SageMaker"
-description: "Orchestrate SageMaker machine learning pipelines with Airflow."
+title: "Orchestrate SageMaker with Airflow"
+sidebar_label: "Amazon SageMaker"
+description: "Orchestrate SageMaker machine learning pipelines with your Airflow DAGs."
 id: airflow-sagemaker
 ---
 

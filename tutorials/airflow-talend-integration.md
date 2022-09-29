@@ -1,6 +1,6 @@
 ---
-title: "Executing Talend Jobs with Airflow"
-description: "Triggering remote jobs in Talend from your Apache Airflow DAGs."
+title: "Orchestrate Talend Jobs with Airflow"
+description: "Orchestrate remote jobs in Talend with your Apache Airflow DAGs."
 id: airflow-talend-integration
 sidebar_label: "Talend"
 ---
