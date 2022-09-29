@@ -17,8 +17,13 @@ Release date: September 28, 2022
 
 You can use the new `astro dev object` commands to better manage Airflow connections, variables, and pools between your local testing environment and Astro Deployments. 
 
-- `astro dev object import` imports connections, variables, and pools from your Astro project `airflow_settings.yaml` into your locally running Airflow environment without restarting it. 
+- `astro dev object import` imports connections, variables, and pools from your Astro project `airflow_settings.yaml` into your locally running Airflow environment.
 - `astro dev object export` exports connections, variables, and pools from your local airflow database to a file of your choosing. specify the `--env-export` flag to export Airflow connections and variables to your `.env` file as Astro environment variables. 
+
+These commands enable you to:
+
+- Update objects in a locally running Airflow environment without restarting it.
+- Quickly move Airflow objects from a local testing environment to an Astro Deployment. 
 
 ### New commands to configure worker queues on Astro
 
@@ -44,6 +49,7 @@ To use these commands, you must be authenticated to your primary Organization th
 
 ### Bug fixes 
 
+- Fixed an issue where the Astro CLI generated incorrect URLs for accessing Deployments
 - Improved error handling and messaging when the Astro CLI doesn't recognize the image in a project's Dockerfile
 
 ## Astro CLI 1.5.1
