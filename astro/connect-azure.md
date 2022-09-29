@@ -57,7 +57,6 @@ Use Azure Private Link to create private connections from Astro to your Azure se
 
 Astro clusters are pre-configured with the following Azure private endpoints:
 
-- Azure PostgreSQL
 - Blob
 
 To request additional endpoints, or assistance connecting to other Azure services, contact [Astronomer support](https://cloud.astronomer.io/support).
