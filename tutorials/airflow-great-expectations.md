@@ -1,5 +1,5 @@
 ---
-title: "Orchestrate Great Expectations wtih Airflow"
+title: "Orchestrate Great Expectations with Airflow"
 sidebar_label: "Great Expectations"
 description: "Orchestrate Great Expectations data quality checks with your Airflow DAGs."
 id: airflow-great-expectations
