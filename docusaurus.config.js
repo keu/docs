@@ -198,7 +198,7 @@ module.exports = {
             },
             {
               label: 'Airflow Guides',
-              href: 'https://www.astronomer.io/guides/',
+              href: 'https:/docs.astronomer.io/learn/',
             },
             {
               label: 'Docs on GitHub',

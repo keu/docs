@@ -13,15 +13,15 @@ Soda Core lets you:
 - Provide a SQL query within the YAML file and check against a returned value if no preset checks fit your use case.
 - Integrate data quality checks with commonly used data engineering tools such as Airflow, Apache Spark, PostgreSQL, Snowflake [and more](https://www.soda.io/integrations).
 
-In this guide, you'll learn about the key features of Soda Core and how to use it with Airflow. For an overview of data quality and the tools you can use to run data quality checks in Airflow, see [Data quality and Airflow](https://www.astronomer.io/guides/data-quality).
+In this guide, you'll learn about the key features of Soda Core and how to use it with Airflow. For an overview of data quality and the tools you can use to run data quality checks in Airflow, see [Data quality and Airflow](data-quality.md).
 
 ## Assumed knowledge
 
 To get the most out of this tutorial, make sure you have an understanding of:
 
-- How to design a data quality process. See [Data quality and Airflow](https://www.astronomer.io/guides/data-quality).
+- How to design a data quality process. See [Data quality and Airflow](data-quality.md).
 - The basics of Soda Core. See [How Soda Core works](https://docs.soda.io/soda-core/how-core-works.html).
-- How to use the BashOperator. See [Using the BashOperator](https://www.astronomer.io/guides/scripts-bash-operator/).
+- How to use the BashOperator. See [Using the BashOperator](scripts-bash-operator.md).
 - Relational Databases. See [IBM's "Relational Databases Explained"](https://www.ibm.com/cloud/learn/relational-databases).
 - Familiarity with writing YAML configurations. See [yaml.org](https://yaml.org/).
 

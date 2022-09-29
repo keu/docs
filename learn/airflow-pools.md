@@ -15,8 +15,8 @@ In this tutorial, you'll learn basic Airflow pool concepts, how to create and as
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-- The basics of scaling Airflow. See [Scaling out Airflow](https://www.astronomer.io/guides/airflow-scaling-workers/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- The basics of scaling Airflow. See [Scaling out Airflow](airflow-scaling-workers.md).
 
 ## Create a pool
 

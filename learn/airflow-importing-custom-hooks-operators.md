@@ -13,9 +13,9 @@ In this guide, you'll learn how to define your own custom code. Then, you'll mak
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-- Airflow hooks. See [Hooks 101](https://www.astronomer.io/guides/what-is-a-hook/).
-- Managing Airflow project structure. See [Managing Airflow code](https://www.astronomer.io/guides/managing-airflow-code/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow hooks. See [Hooks 101](what-is-a-hook.md).
+- Managing Airflow project structure. See [Managing Airflow code](managing-airflow-code.md).
 
 ## Define a custom operator
 
@@ -72,7 +72,7 @@ By default, Airflow adds the `dags/` and `plugins/` directories in a project to 
 └── requirements.txt    
 ```
 
-For more details on why Astronomer recommends this project structure, see the [Managing Airflow Code guide](https://www.astronomer.io/guides/managing-airflow-code).
+For more details on why Astronomer recommends this project structure, see the [Managing Airflow Code guide](managing-airflow-code.md).
 
 :::tip
 

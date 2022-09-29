@@ -14,8 +14,8 @@ In this guide, we'll cover examples using the `BranchPythonOperator` and `ShortC
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-- Dependencies in Airflow. See [Managing Dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Dependencies in Airflow. See [Managing Dependencies in Apache Airflow](managing-dependencies.md).
 
 ## BranchPythonOperator
 

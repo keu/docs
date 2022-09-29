@@ -22,8 +22,8 @@ This guide references the parameters available in Airflow version 2.0 and later.
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow core components. See [Airflow's components](https://www.astronomer.io/guides/airflow-components/).
-- Airflow executors. See [Airflow executors explained](https://www.astronomer.io/guides/airflow-executors-explained/).
+- Airflow core components. See [Airflow's components](airflow-components.md).
+- Airflow executors. See [Airflow executors explained](airflow-executors-explained.md).
 
 ## Parameter tuning
 
@@ -101,7 +101,7 @@ Task-level settings are defined by task operators that you can use to implement 
 There are two primary task-level Airflow settings users can define in code:
 
 - `max_active_tis_per_dag` (formerly `task_concurrency`): The maximum number of times that the same task can run concurrently across all DAG runs. For instance, if a task pulls from an external resource, such as a data table, that should not be modified by multiple tasks at once, then you can set this value to 1.
-- `pool`: Defines the amount of pools available for a task. Pools are a way to limit the number of concurrent instances of an arbitrary group of tasks. This setting is useful if you have a lot of workers or DAG runs in parallel, but you want to avoid an API rate limit or otherwise don't want to overwhelm a data source or destination. For more information, see the [Airflow Pools Guide](https://www.astronomer.io/guides/airflow-pools).
+- `pool`: Defines the amount of pools available for a task. Pools are a way to limit the number of concurrent instances of an arbitrary group of tasks. This setting is useful if you have a lot of workers or DAG runs in parallel, but you want to avoid an API rate limit or otherwise don't want to overwhelm a data source or destination. For more information, see the [Airflow Pools Guide](airflow-pools.md).
 
 The parameters above are inherited from the `BaseOperator`, so you can set them in any operator definition. For example:
 

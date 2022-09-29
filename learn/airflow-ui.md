@@ -17,8 +17,8 @@ All images in this guide were taken from an [Astronomer Runtime](https://docs.as
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
-- Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
+- Airflow DAGs. See [Introduction to Airflow DAGs](dags.md).
 
 ## DAGs
 
@@ -98,7 +98,7 @@ The following are the additional DAG views that are available, but not discussed
 
 ## Datasets tab
 
-The **Dataset** tab was introduced in Airflow 2.4 in support of the new [dataset driven scheduling](https://www.astronomer.io/guides/airflow-datasets) feature. The **Dataset** tab links to a page showing all datasets that have been produced in the Airflow environment, as well as all dependencies between datasets and DAGs in a graph.
+The **Dataset** tab was introduced in Airflow 2.4 in support of the new [dataset driven scheduling](airflow-datasets.md) feature. The **Dataset** tab links to a page showing all datasets that have been produced in the Airflow environment, as well as all dependencies between datasets and DAGs in a graph.
 
 ![Datasets](/img/guides/2_4_Datasets.png)
 
@@ -124,7 +124,7 @@ The DAG runs and task instances pages are the easiest way to view and manipulate
 
 ![Task Instance](/img/guides/2_4_ListTaskInstance.png)
 
-The DAG Dependencies view shows a graphical representation of any [cross-DAG](https://www.astronomer.io/guides/cross-dag-dependencies) and dataset dependencies in your Airflow environment.
+The DAG Dependencies view shows a graphical representation of any [cross-DAG](cross-dag-dependencies.md) and dataset dependencies in your Airflow environment.
 
 ![DAG Dependencies](/img/guides/2_4_DAGDependencies.png)
 
@@ -133,7 +133,7 @@ Other views on the **Browse** tab include:
 - **Jobs:** Shows a list of all jobs that have been completed. This includes executed tasks as well as scheduler jobs.
 - **Audit Logs:** Shows a list of events that have occurred in your Airflow environment that can be used for auditing purposes.
 - **Task Reschedules:** Shows a list of all tasks that have been rescheduled.
-- **Triggers:** Shows any triggers that occurred in this Airflow environment. To learn more about triggers and related concepts added in Airflow 2.2, you can check out the guide on [Deferrable Operators](https://www.astronomer.io/guides/deferrable-operators/).
+- **Triggers:** Shows any triggers that occurred in this Airflow environment. To learn more about triggers and related concepts added in Airflow 2.2, you can check out the guide on [Deferrable Operators](deferrable-operators.md).
 - **SLA Misses:** Shows any task instances that have missed their SLAs.
 
 ## Admin tab
@@ -142,7 +142,7 @@ The **Admin** tab links to pages for content related to Airflow administration t
 
 ![Admin](/img/guides/2_4_AdminTab.png)
 
-For example, the **Connections** page shows all Airflow connections stored in your environment. Click `+` to add a new connection. For more information, see [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+For example, the **Connections** page shows all Airflow connections stored in your environment. Click `+` to add a new connection. For more information, see [Managing your Connections in Apache Airflow](connections.md).
 
 ![Connections](/img/guides/2_4_Connections.png)
 

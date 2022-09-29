@@ -36,16 +36,16 @@ The following are the available modules for orchestrating basic queries and func
 - [`SnowflakeOperator`](https://registry.astronomer.io/providers/snowflake/modules/snowflakeoperator): Executes a SQL query in Snowflake. This operator is part of `apache-airflow-providers-snowflake`.
 - [`S3ToSnowflakeOperator`](https://registry.astronomer.io/providers/snowflake/modules/s3tosnowflakeoperator): Executes a COPY command to transfer data from S3 into Snowflake.
 - [`SnowflakeToSlackOperator`](https://registry.astronomer.io/providers/snowflake/modules/snowflaketoslackoperator): Executes a SQL query in Snowflake and sends the results to Slack.
-- `SnowflakeOperatorAsync`: The [deferrable](https://www.astronomer.io/guides/deferrable-operators) version of the `SnowflakeOperator`, executes a SQL query in Snowflake.
+- `SnowflakeOperatorAsync`: The [deferrable](deferrable-operators.md) version of the `SnowflakeOperator`, executes a SQL query in Snowflake.
 - [`SnowflakeHook`](https://registry.astronomer.io/providers/snowflake/modules/snowflakehook): A hook abstracting the Snowflake API. Generally, you only need to use this hook when creating a custom operator or function. This hook is part of `apache-airflow-providers-snowflake`.
-- `SnowflakeHookAsync`: The [deferrable](https://www.astronomer.io/guides/deferrable-operators) version of the `SnowflakeHook`, abstracts the Snowflake API.
+- `SnowflakeHookAsync`: The [deferrable](deferrable-operators.md) version of the `SnowflakeHook`, abstracts the Snowflake API.
 
 The following are the available modules for orchestrating data quality checks in Snowflake:
 
 - [`SQLColumnCheckOperator`](https://registry.astronomer.io/providers/common-sql/modules/sqlcolumncheckoperator): Performs a data quality check against columns of a given table. Using this operator with Snowflake requires a Snowflake connection ID, the name of the table to run checks on, and a `column_mapping` describing the relationship between columns and tests to run.
 - [`SQLTableCheckOperator`](https://registry.astronomer.io/providers/common-sql/modules/sqltablecheckoperator): Performs a data quality check against a given table. Using this operator with Snowflake requires a Snowflake connection ID, the name of the table to run checks on, and a checks dictionary describing the relationship between the table and the tests to run.
 
-Although the `apache-airflow-providers-snowflake` package contains operators that you can use to run data quality checks in Snowflake, Astronomer recommends that you use `apache-airflow-providers-common-sql` instead for its additional flexibility and community support. For more information about using the SQL check operators, see [Airflow Data Quality Checks with SQL Operators](https://www.astronomer.io/guides/airflow-sql-data-quality-tutorial).
+Although the `apache-airflow-providers-snowflake` package contains operators that you can use to run data quality checks in Snowflake, Astronomer recommends that you use `apache-airflow-providers-common-sql` instead for its additional flexibility and community support. For more information about using the SQL check operators, see [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality.md).
 
 
 ### Example Implementation
@@ -59,7 +59,7 @@ Example code using various Snowflake operators can be found on the [Astronomer R
 The following example DAG runs a write, audit, and publish pattern to showcase loading and quality checking Snowflake data. The DAG completes the following steps:
 
 - Simultaneously create tables in Snowflake for the production data and the raw data that needs to be audited using the `SnowflakeOperator`. These tasks are not implemented with the deferrable version of the `SnowflakeOperator` because `CREATE TABLE` statements typically run very quickly.
-- Load data into the audit table using the `SnowflakeOperatorAsync`. This task is deferred to save on computational resources, because loading data can take some time if the dataset is large. To use the deferrable operator, you must have a [triggerer running](https://www.astronomer.io/guides/deferrable-operators#running-deferrable-tasks-in-your-airflow-environment) in your Airflow environment.
+- Load data into the audit table using the `SnowflakeOperatorAsync`. This task is deferred to save on computational resources, because loading data can take some time if the dataset is large. To use the deferrable operator, you must have a [triggerer running](deferrable-operators.md#running-deferrable-tasks-in-your-airflow-environment) in your Airflow environment.
 - Run data quality checks on the audit table to ensure that no erroneous data is moved to production. This task group includes column checks using the `SQLColumnCheckOperator` and table checks using the `SQLTableCheckOperator`.
 - If the data quality checks are passed, copy data from the audit table into the production table using the `SnowflakeOperatorAsync`.
 - Delete the audit table because it only contains temporary data.
@@ -197,7 +197,7 @@ Warehouse: <your-warehouse>
 
 ## Enhanced Observability with OpenLineage
 
-The [OpenLineage project](https://openlineage.io/) integration with Airflow lets you obtain and view lineage data from your  Airflow tasks. As long as an extractor exists for the operator being used, lineage data is generated automatically from each task instance. For an overview of how OpenLineage works with Airflow, see [OpenLineage and Airflow](https://www.astronomer.io/guides/airflow-openlineage).
+The [OpenLineage project](https://openlineage.io/) integration with Airflow lets you obtain and view lineage data from your  Airflow tasks. As long as an extractor exists for the operator being used, lineage data is generated automatically from each task instance. For an overview of how OpenLineage works with Airflow, see [OpenLineage and Airflow](airflow-openlineage.md).
 
 Because `SnowflakeOperator` and `SnowflakeOperatorAsync` have an extractor, you can use lineage metadata to answer the following questions across DAGs:
 
@@ -209,7 +209,7 @@ This image shows an overview of the interaction between OpenLineage,Airflow and 
 
 ![Snowflake Openlineage](/img/guides/snowflake_openlineage_architecture.png)
 
-To view lineage data from your DAGs, you need to have OpenLineage installed in your Airflow environment and a lineage front end running. If you're using [Astro users](https://docs.astronomer.io/astro/data-lineage), lineage is enabled automatically. If you're using open source tools, you can run Marquez locally and connect it to your Airflow environment. See [OpenLineage and Airflow](https://www.astronomer.io/guides/airflow-openlineage).
+To view lineage data from your DAGs, you need to have OpenLineage installed in your Airflow environment and a lineage front end running. If you're using [Astro users](https://docs.astronomer.io/astro/data-lineage), lineage is enabled automatically. If you're using open source tools, you can run Marquez locally and connect it to your Airflow environment. See [OpenLineage and Airflow](airflow-openlineage.md).
 
 To show an example of lineage resulting from Snowflake orchestration, you'll look at the write, audit, publish DAG from the previous example. The following image shows the Datakin UI integrated with Astro, but Marquez will show similar information.
 

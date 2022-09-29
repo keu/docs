@@ -13,7 +13,7 @@ In this tutorial, you’ll learn how you can use Astro Python SDK functions for 
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow decorators. See [Introduction to Airflow Decorators guide](https://www.astronomer.io/guides/airflow-decorators/).
+- Airflow decorators. See [Introduction to Airflow Decorators guide](airflow-decorators.md).
 
 ## Astro Python SDK ETL functionality
 

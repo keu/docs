@@ -15,7 +15,7 @@ In this guide, you'll learn how to orchestrate commonly used notebooks, includin
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 
 ## Execute Jupyter Notebooks with Papermill
 
@@ -97,7 +97,7 @@ With versions of `papermill` you might encounter a bug when writing grammar tabl
 
 [Databricks](https://databricks.com/) is a popular unified data and analytics platform built around [Apache Spark](https://spark.apache.org/) that provides users with fully managed Apache Spark clusters and interactive notebooks. Databricks notebooks are frequently used when working with large data sets that require Spark's large-scale data processing capabilities.
 
-Databricks notebooks can be easily orchestrated with Airflow by using the [Databricks provider](https://registry.astronomer.io/providers/databricks). The `DatabricksRunNowOperator` and `DatabricksSubmitRunOperator` can be used to run an existing notebook in your Databricks workspace and manage your Databricks notebooks and cluster configuration. For more details on how to use these operators, see [Orchestrating Databricks Jobs with Airflow](https://www.astronomer.io/guides/airflow-databricks).
+Databricks notebooks can be easily orchestrated with Airflow by using the [Databricks provider](https://registry.astronomer.io/providers/databricks). The `DatabricksRunNowOperator` and `DatabricksSubmitRunOperator` can be used to run an existing notebook in your Databricks workspace and manage your Databricks notebooks and cluster configuration. For more details on how to use these operators, see [Orchestrating Databricks Jobs with Airflow](airflow-databricks.md).
 
 ## Execute AWS SageMaker notebooks
 
@@ -117,4 +117,4 @@ SageMaker can be easily integrated with Airflow by using the [AWS provider](http
 - [`SageMakerTuningSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertuningsensor): Waits until the tuning state is terminated.
 - [`SageMakerTrainingSensor`](https://registry.astronomer.io/providers/amazon/modules/sagemakertrainingsensor): Waits until the training state is terminated.
 
-For examples of how to use these operators in common machine learning use cases, see [Using Airflow with SageMaker](https://www.astronomer.io/guides/airflow-sagemaker).
+For examples of how to use these operators in common machine learning use cases, see [Using Airflow with SageMaker](airflow-sagemaker.md).

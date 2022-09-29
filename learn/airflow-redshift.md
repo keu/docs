@@ -20,8 +20,8 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of [Amazon Redshift](https://aws.amazon.com/redshift/getting-started/?nc=sn&loc=4&dn=1).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow connections. See [Managing your Connections in Apache Airflow](connections.md).
 
 ## Setup
 
@@ -135,7 +135,7 @@ insert into {{ params.schema }}.{{ params.table }}
 end;
 ```
 
-In this SQL query, there are multiple templated parameters: `{{ params.schema }}`, `{{ params.table }}`, and `{{ ds }}`. Based on the task definition, `{{ params.schema }}` is set as `fct` and `{{ params.table }}` is set as `listing`. These values are injected into the SQL query at runtime. The `{{ ds }}` variable is a built-in [Airflow Jinja Template Variable](https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html) that returns the DAG run's logical date in the format YYYY-MM-DD. Using templated variables makes your SQL code reusable and aligned DAG writing best practices (particularly in relation to [idempotency](https://www.astronomer.io/guides/dag-best-practices#reviewing-idempotency)).
+In this SQL query, there are multiple templated parameters: `{{ params.schema }}`, `{{ params.table }}`, and `{{ ds }}`. Based on the task definition, `{{ params.schema }}` is set as `fct` and `{{ params.table }}` is set as `listing`. These values are injected into the SQL query at runtime. The `{{ ds }}` variable is a built-in [Airflow Jinja Template Variable](https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html) that returns the DAG run's logical date in the format YYYY-MM-DD. Using templated variables makes your SQL code reusable and aligned DAG writing best practices (particularly in relation to [idempotency](dag-best-practices.md#reviewing-idempotency)).
 
 ## Using the S3ToRedshiftOperator
 

@@ -16,8 +16,8 @@ There are a few methods you can use to implement data sharing between your Airfl
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-- DAG writing best practices. See [DAG writing best practices in Apache Airflow](https://www.astronomer.io/guides/dag-best-practices/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- DAG writing best practices. See [DAG writing best practices in Apache Airflow](dag-best-practices.md).
 
 ## Best practices
 
@@ -63,7 +63,7 @@ You can see that these limits aren't very big. And even if you think your data m
 
 ### Custom XCom backends
 
-[Custom XCom Backends](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#custom-xcom-backend) are a new feature available in Airflow 2.0 and greater. Using an XCom backend means you can push and pull XComs to and from an external system such as S3, GCS, or HDFS rather than the default of Airflow's metadata database. You can also implement your own serialization and deserialization methods to define how XComs are handled. This is a concept in its own right and you can learn more by reading [Custom XCom Backends](https://www.astronomer.io/guides/custom-xcom-backends).
+[Custom XCom Backends](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#custom-xcom-backend) are a new feature available in Airflow 2.0 and greater. Using an XCom backend means you can push and pull XComs to and from an external system such as S3, GCS, or HDFS rather than the default of Airflow's metadata database. You can also implement your own serialization and deserialization methods to define how XComs are handled. This is a concept in its own right and you can learn more by reading [Custom XCom Backends](custom-xcom-backends.md).
 
 ### Example DAG using XComs
 

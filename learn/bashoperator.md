@@ -18,7 +18,7 @@ In this guide you'll learn:
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 - Basic bash commands. See the [Bash Reference Manual](https://www.gnu.org/software/bash/manual/bash.html).
 
 ## How to use the BashOperator
@@ -46,7 +46,7 @@ If you expect a non-zero exit from a sub-command you can add the prefix `set -e;
 
 :::
 
-Both the `bash_command` and the `env` parameter can accept [Jinja templates](https://www.astronomer.io/guides/templating/). However, the input given through Jinja templates to `bash_command` is not escaped or sanitized. If you are concerned about potentially harmful user input you can use the setup shown in the [BashOperator documentation](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/bash.html).
+Both the `bash_command` and the `env` parameter can accept [Jinja templates](templating.md). However, the input given through Jinja templates to `bash_command` is not escaped or sanitized. If you are concerned about potentially harmful user input you can use the setup shown in the [BashOperator documentation](https://airflow.apache.org/docs/apache-airflow/stable/howto/operator/bash.html).
 
 ## When to use the BashOperator
 
@@ -55,7 +55,7 @@ The following are common use cases for the BashOperator in Airflow DAGs:
 - Running a single or multiple bash commands in your Airflow environment.
 - Running a previously prepared bash script.
 - Running scripts in a programming language other than Python.
-- Running commands to initialize tools that lack specific operator support. For example [Soda Core](https://www.astronomer.io/guides/soda-data-quality/).
+- Running commands to initialize tools that lack specific operator support. For example [Soda Core](soda-data-quality.md).
 
 ## Example: Execute two bash commands using one BashOperator
 

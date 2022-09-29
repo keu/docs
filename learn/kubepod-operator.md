@@ -20,7 +20,7 @@ You'll also learn how to use the KubernetesPodOperator to run a task in a langua
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 - Kubernetes basics. See the [Kubernetes Documentation](https://kubernetes.io/docs/home/).  
 
 ## Requirements
@@ -70,7 +70,7 @@ The KubernetesPodOperator runs any Docker image provided to it. Frequent use cas
 
 ### A comparison of the KubernetesPodOperator and the Kubernetes executor
 
-[Executors](https://www.astronomer.io/guides/airflow-executors-explained) determine how your Airflow tasks are executed. The Kubernetes executor and the KubernetesPodOperator both dynamically launch and terminate Pods to run Airflow tasks. As the name suggests, the Kubernetes executor affects how all tasks in an Airflow instance are executed. The KubernetesPodOperator launches only its own task in a Kubernetes Pod with its own configuration. It does not affect any other tasks in the Airflow instance. To configure the Kubernetes executor, see [Kubernetes Executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/kubernetes.html).
+[Executors](airflow-executors-explained.md) determine how your Airflow tasks are executed. The Kubernetes executor and the KubernetesPodOperator both dynamically launch and terminate Pods to run Airflow tasks. As the name suggests, the Kubernetes executor affects how all tasks in an Airflow instance are executed. The KubernetesPodOperator launches only its own task in a Kubernetes Pod with its own configuration. It does not affect any other tasks in the Airflow instance. To configure the Kubernetes executor, see [Kubernetes Executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/kubernetes.html).
 
 The following are the primary differences between the KubernetesPodOperator and the Kubernetes executor:
 
@@ -118,7 +118,7 @@ The following KubernetesPodOperator arguments can be used with Jinja templates: 
 
 If you leave `in_cluster=True`, you only need to specify the KubernetesPodOperator's `namespace` argument to establish a connection with your Kubernetes cluster. The Pod specified by the KubernetesPodOperator runs on the same Kubernetes cluster as your Airflow instance.
 
-If you are not running Airflow on Kubernetes, or want to send the Pod to a different cluster than the one currently hosting your Airflow instance, you can create a Kubernetes Cluster [connection](https://www.astronomer.io/guides/connections) which uses the [Kubernetes hook](https://registry.astronomer.io/providers/kubernetes/modules/kuberneteshook) to connect to the [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) of a different Kubernetes cluster. This connection can be passed to the KubernetesPodOperator using the `kubernetes_conn_id` argument and requires the following components to work:
+If you are not running Airflow on Kubernetes, or want to send the Pod to a different cluster than the one currently hosting your Airflow instance, you can create a Kubernetes Cluster [connection](connections.md) which uses the [Kubernetes hook](https://registry.astronomer.io/providers/kubernetes/modules/kuberneteshook) to connect to the [Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) of a different Kubernetes cluster. This connection can be passed to the KubernetesPodOperator using the `kubernetes_conn_id` argument and requires the following components to work:
 
 - A `KubeConfig` file, provided as either a path to the file or in JSON format.
 - The cluster context from the provided `KubeConfig` file.

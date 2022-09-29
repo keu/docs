@@ -13,7 +13,7 @@ In this guide, you'll learn how to create task groups and review some example DA
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 
 ## Create task groups
 
@@ -53,7 +53,7 @@ When your task is within a Task Group, your callable `task_id` is the `task_id` 
 
 ## Use the Task Group decorator
 
-Another way of defining task groups in your DAGs is by using the Task Group decorator. The Task Group decorator is available in Airflow 2.1 and later. The Task Group decorator functions like other [Airflow decorators](https://www.astronomer.io/guides/airflow-decorators) and allows you to define your Task Group with the TaskFlow API. Using Task Group decorators doesn't change the functionality of task groups, but they can make your code formatting more consistent if you're already using them in your DAGs.
+Another way of defining task groups in your DAGs is by using the Task Group decorator. The Task Group decorator is available in Airflow 2.1 and later. The Task Group decorator functions like other [Airflow decorators](airflow-decorators.md) and allows you to define your Task Group with the TaskFlow API. Using Task Group decorators doesn't change the functionality of task groups, but they can make your code formatting more consistent if you're already using them in your DAGs.
 
 To use the decorator, add `@task_group` before a Python function which calls the functions of tasks that should go in the Task Group. For example:
 

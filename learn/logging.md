@@ -25,8 +25,8 @@ In addition to standard logging, Airflow provides observability features that yo
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
-- Airflow core components. See [Airflow's components](https://www.astronomer.io/guides/airflow-components/).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
+- Airflow core components. See [Airflow's components](airflow-components.md).
 
 ## Airflow logging
 
@@ -51,7 +51,7 @@ The four default loggers in Airflow each have a handler with a predefined log de
 By default, log file names have the following format:
 
 - For standard tasks: `dag_id={dag_id}/run_id={run_id}/task_id={task_id}/attempt={try_number}.log`
-- For [dynamically mapped tasks](https://www.astronomer.io/guides/dynamic-tasks): `dag_id={dag_id}/run_id={run_id}/task_id={task_id}/map_index={map_index}/attempt={try_number}.log`
+- For [dynamically mapped tasks](dynamic-tasks.md): `dag_id={dag_id}/run_id={run_id}/task_id={task_id}/map_index={map_index}/attempt={try_number}.log`
 
 These filename formats can be reconfigured using `log_filename_template` in `airflow.cfg`.
 

@@ -19,7 +19,7 @@ In this tutorial, you’ll define data lineage, review the OpenLineage standard 
 To get the most out of this tutorial, make sure you have an understanding of:
 
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 
 ## What is data lineage
 
@@ -142,7 +142,7 @@ To show the lineage data that can result from Airflow DAG runs, you'll use two s
 
     ```
 
-3. Create an [Airflow connection](https://www.astronomer.io/guides/connections) to the Postgres database you created in Step 1.
+3. Create an [Airflow connection](connections.md) to the Postgres database you created in Step 1.
 
 With those prerequisites met, you can move on to the example DAGs. The first DAG creates and populates a table (`animal_adoptions_combined`) with data aggregated from the two source tables (`adoption_center_1` and `adoption_center_2`). You might want to make adjustments to this DAG if you are working with different source tables, or if your Postgres connection id is not `postgres_default`.
 

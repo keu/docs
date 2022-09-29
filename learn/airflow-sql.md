@@ -19,7 +19,7 @@ All code used in this tutorial is located in the [Astronomer GitHub](https://git
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 - Snowflake basics. See [Introduction to Snowflake](https://docs.snowflake.com/en/user-guide-intro.html).
 
 ## Best practices for executing SQL from your DAG

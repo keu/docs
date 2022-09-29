@@ -56,7 +56,7 @@ The following diagram illustrates a complex use case that can be accomplished wi
 
 Some common use cases of Airflow include:
 
-- ETL/ELT pipelines: For example, running a write, audit, publish pattern on data in Snowflake as shown in [Orchestrating Snowflake Queries with Airflow](https://www.astronomer.io/guides/airflow-snowflake/).
+- ETL/ELT pipelines: For example, running a write, audit, publish pattern on data in Snowflake as shown in [Orchestrating Snowflake Queries with Airflow](airflow-snowflake.md).
 - MLOps: For example, using Airflow with Tensorflow and MLFlow as shown in [Using Airflow with Tensorflow and MLFlow](https://www.astronomer.io/events/webinars/using-airflow-with-tensorflow-mlflow/).
 - Operationalized analytics: For example, orchestrating a pipeline to extract insights from your data and display them in dashboards as shown in [Using Airflow as a Data Analyst](https://www.astronomer.io/events/webinars/using-airflow-as-a-data-analyst/).
 
@@ -64,7 +64,7 @@ Some common use cases of Airflow include:
 
 To navigate Airflow resources, it is helpful to have a general understanding of the following core Airflow concepts:
 
-- **DAG**: Directed Acyclic Graph. An Airflow DAG is a workflow defined as a graph, where all dependencies between nodes are directed and nodes do not self-reference. For more information on Airflow DAGs, see [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+- **DAG**: Directed Acyclic Graph. An Airflow DAG is a workflow defined as a graph, where all dependencies between nodes are directed and nodes do not self-reference. For more information on Airflow DAGs, see [Introduction to Airflow DAGs](dags.md).
 - **DAG run**: The execution of a DAG at a specific point in time. A DAG run can be scheduled or manually triggered.
 - **Task**: A step in a DAG describing a single unit of work.
 - **Task instance**: The execution of a task at a specific point in time.
@@ -73,11 +73,11 @@ When authoring DAGs, you use operators. An operator is an abstraction over Pytho
 
 The following are the primary operator categories:
 
-- **Action operators**: Execute a function. For example, the [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator) or the [BashOperator](https://www.astronomer.io/guides/scripts-bash-operator/).
+- **Action operators**: Execute a function. For example, the [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator) or the [BashOperator](scripts-bash-operator.md).
 - **Transfer operators**: Move data from a source to a destination. For example, the [S3ToRedshiftOperator](https://registry.astronomer.io/providers/amazon/modules/s3toredshiftoperator).
-- **[Sensors](https://www.astronomer.io/guides/what-is-a-sensor/)**: Wait for something to happen. For example, the [ExternalTaskSensor](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor) or the [HttpSensorAsync](https://registry.astronomer.io/providers/astronomer-providers/modules/httpsensorasync).
+- **[Sensors](what-is-a-sensor.md)**: Wait for something to happen. For example, the [ExternalTaskSensor](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor) or the [HttpSensorAsync](https://registry.astronomer.io/providers/astronomer-providers/modules/httpsensorasync).
 
-While operators are defined individually, they can pass information to each other by using [XComs](https://www.astronomer.io/guides/airflow-passing-data-between-tasks/). To learn more about operators, see [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
+While operators are defined individually, they can pass information to each other by using [XComs](airflow-passing-data-between-tasks.md). To learn more about operators, see [Operators 101](what-is-an-operator.md).
 
 Some commonly used action operators such as the PythonOperator are part of core Airflow and are automatically installed in your Airflow instance. Operators used to interact with external systems are maintained separately to Airflow in provider packages.
 
@@ -98,14 +98,14 @@ When working with Airflow, it is important to understand the underlying componen
 
 The following Airflow components must be running at all times:
 
-- **Webserver**: A Flask server running with Gunicorn that serves the [Airflow UI](https://www.astronomer.io/guides/airflow-ui/).
+- **Webserver**: A Flask server running with Gunicorn that serves the [Airflow UI](airflow-ui.md).
 - **[Scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html)**: A Daemon responsible for scheduling jobs. This is a multi-threaded Python process that determines what tasks need to be run, when they need to be run, and where they are run.
-- **[Database](https://www.astronomer.io/guides/airflow-database)**: A database where all DAG and task metadata are stored. This is typically a Postgres database, but MySQL, MsSQL, and SQLite are also supported.
-- **[Executor](https://www.astronomer.io/guides/airflow-executors-explained/)**: The mechanism that defines how the available computing resources are used to execute tasks. An executor is running within the scheduler whenever Airflow is up.
+- **[Database](airflow-database.md)**: A database where all DAG and task metadata are stored. This is typically a Postgres database, but MySQL, MsSQL, and SQLite are also supported.
+- **[Executor](airflow-executors-explained.md)**: The mechanism that defines how the available computing resources are used to execute tasks. An executor is running within the scheduler whenever Airflow is up.
 
 Additionally, you may also have the following situational components:
 
-- **Triggerer**: A separate process which supports [deferrable operators](https://www.astronomer.io/guides/deferrable-operators). This component is optional and must be run separately.
+- **Triggerer**: A separate process which supports [deferrable operators](deferrable-operators.md). This component is optional and must be run separately.
 - **Worker**: The process that executes tasks, as defined by the executor. Depending on which executor you choose, you may or may not have workers as part of your Airflow infrastructure.
 
 To learn more about the Airflow infrastructure, see [Airflow Components](airflow-components.md).
@@ -115,6 +115,6 @@ To learn more about the Airflow infrastructure, see [Airflow Components](airflow
 - [Astro CLI](https://docs.astronomer.io/astro/cli/get-started)
 - [Astronomer Webinars](https://www.astronomer.io/events/webinars/)
 - [LIVE with Astronomer](https://www.astronomer.io/events/live/)
-- [Astronomer Guides](https://www.astronomer.io/guides/)
+- [Astronomer Guides](https:/docs.astronomer.io/learn/)
 - [Astronomer Academy](https://academy.astronomer.io/)
 - [Official Airflow Documentation](https://airflow.apache.org/docs/)

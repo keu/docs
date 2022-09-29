@@ -25,7 +25,7 @@ This tutorial takes approximately 1 hour to complete.
 
 To get the most out of this tutorial, make sure you have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
 - Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).
 
 ## Prerequisites
@@ -62,7 +62,7 @@ The Astro project is built to run Airflow with Docker. [Docker](https://docs.doc
 
 The default Astro project structure includes a collection of folders and files that you can use to run and customize Airflow. For this tutorial, you only need to know the following files and folders:
 
-- `/dags`: A directory of DAG files. Each Astro project includes two example DAGs: `example-dag-basic` and `example-dag-advanced`. For more information on DAGs, see [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+- `/dags`: A directory of DAG files. Each Astro project includes two example DAGs: `example-dag-basic` and `example-dag-advanced`. For more information on DAGs, see [Introduction to Airflow DAGs](dags.md).
 - `Dockerfile`: This is where you specify your version of Astro Runtime, which is a runtime software based on Apache Airflow that is built and maintained by Astronomer. The CLI generates new Astro projects with the latest version of Runtime, which is equivalent to the latest version of Airflow. For advanced use cases, you can also configure this file with Docker-based commands to run locally at build time.
 
 ## Step 2: Start Airflow
@@ -88,7 +88,7 @@ astro config set postgres.port <available-port>
 
 ## Step 3: Log in to the Airflow UI
 
-The [Airflow UI](https://www.astronomer.io/guides/airflow-ui/) is essential for managing Airflow. It contains information about your current DAG runs and is the best place to create and update Airflow connections to third-party data services.
+The [Airflow UI](airflow-ui.md) is essential for managing Airflow. It contains information about your current DAG runs and is the best place to create and update Airflow connections to third-party data services.
 
 To access the Airflow UI, open `http://localhost:8080/` in a browser and log in with `admin` for both your username and password.
 
@@ -118,7 +118,7 @@ These circles represent different [states](https://airflow.apache.org/docs/apach
 
 ## Step 5: Explore the Airflow UI
 
-The navigation bar in the Airflow UI contains 5 tabs, each with different information about your Airflow environment. For more information about what you can find in each tab, see [The Airflow UI](https://www.astronomer.io/guides/airflow-ui/).
+The navigation bar in the Airflow UI contains 5 tabs, each with different information about your Airflow environment. For more information about what you can find in each tab, see [The Airflow UI](airflow-ui.md).
 
 Let's explore the available views in the **DAGs** page. To access different DAG views for `example-dag-basic`:
 
@@ -236,7 +236,7 @@ Now that we can run DAGs and navigate the UI, let's write our own DAG and run it
 
     This notation is unique to Airflow. It both defines and visualizes the dependencies between tasks. `t1` is **upstream** of `t2`. meaning that `t1` must finish before `t2` can start.
 
-    There are multiple ways to define dependencies in Airflow, but this is one of the simplest. For more options on how to define task dependencies, see [Managing Dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies).
+    There are multiple ways to define dependencies in Airflow, but this is one of the simplest. For more options on how to define task dependencies, see [Managing Dependencies in Apache Airflow](managing-dependencies.md).
 
 7. Save your code.
 
@@ -301,7 +301,7 @@ has the same dependency structure as:
 extract_bitcoin_price >> process_data >> store_data
 ```
 
-If this style of DAG writing feels more intuitive to you, read more about it in the [Airflow Decorators guide](https://www.astronomer.io/guides/airflow-decorators/).
+If this style of DAG writing feels more intuitive to you, read more about it in the [Airflow Decorators guide](airflow-decorators.md).
 
 ## Next steps
 
@@ -309,11 +309,11 @@ Astronomer offers a variety of resources like this tutorial to learn more about 
 
 - [Astronomer Webinars](https://www.astronomer.io/events/webinars/) cover concepts and use cases in-depth and offer the possibility to ask us questions live on air.
 - [Live with Astronomer](https://www.astronomer.io/events/live/) are hands-on and code focussed live walkthroughs of specific Airflow features.
-- [Astronomer Guides](https://www.astronomer.io/guides/) cover both entry and expert level concepts in Airflow.
+- [Astronomer Guides](https:/docs.astronomer.io/learn/) cover both entry and expert level concepts in Airflow.
 - [Astronomer Academy](https://academy.astronomer.io/) offers many video tutorials and the option to purchase full length Airflow courses and to take exams to get certified.
 
 Don't know where to start? For beginners, the next resources we recommend are:
 
-- [Managing connections in Airflow](https://www.astronomer.io/guides/connections/): Learn how to connect Airflow to third party products and services.
+- [Managing connections in Airflow](connections.md): Learn how to connect Airflow to third party products and services.
 - [Develop a project](https://docs.astronomer.io/astro/develop-project): Learn about all of the ways you can configure your Astro project and local Airflow environment.
-- [DAG Writing Best Practices](https://www.astronomer.io/guides/dag-best-practices?search=best): Learn how to write efficient, secure, and scalable DAGs.
+- [DAG Writing Best Practices](dag-best-practices.md?search=best): Learn how to write efficient, secure, and scalable DAGs.

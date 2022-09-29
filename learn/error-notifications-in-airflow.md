@@ -13,8 +13,8 @@ In this guide, you'll learn the basics of Airflow notifications and how to set u
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
-- Task dependencies. See [Managing dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies/).
+- Airflow DAGs. See [Introduction to Airflow DAGs](dags.md).
+- Task dependencies. See [Managing dependencies in Apache Airflow](managing-dependencies.md).
 
 ## Airflow notification basics
 

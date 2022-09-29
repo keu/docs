@@ -15,8 +15,8 @@ In this guide, you'll learn about datasets in Airflow and how to use them to imp
 
 To get the most out of this guide, you should have an existing knowledge of:
 
-- Airflow scheduling concepts. See [Scheduling and Timetables in Airflow](https://www.astronomer.io/guides/scheduling-in-airflow/).
-- Creating dependencies between DAGs. See [Cross-DAG Dependencies](https://www.astronomer.io/guides/cross-dag-dependencies/).
+- Airflow scheduling concepts. See [Scheduling and Timetables in Airflow](scheduling-in-airflow.md).
+- Creating dependencies between DAGs. See [Cross-DAG Dependencies](cross-dag-dependencies.md).
 - The Astro Python SDK. See [Using the Astro Python SDK](https://docs.astronomer.io/tutorials/astro-python-sdk).
 
 ## Dataset concepts

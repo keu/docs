@@ -13,13 +13,13 @@ In this guide, we'll describe the core components of Airflow and managing Airflo
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
 
 ## Core components
 
 The following Apache Airflow core components are running at all times: 
 
-- **Webserver:** A Flask server running with Gunicorn that serves the [Airflow UI](https://www.astronomer.io/guides/airflow-ui/).
+- **Webserver:** A Flask server running with Gunicorn that serves the [Airflow UI](airflow-ui.md).
 - **[Scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html):** A Daemon responsible for scheduling jobs. This is a multi-threaded Python process that determines what tasks need to be run, when they need to be run, and where they are run.
 - **[Database](https://airflow.apache.org/docs/apache-airflow/stable/howto/set-up-database.html):** A database where all DAG and task metadata are stored. This is typically a Postgres database, but MySQL, MsSQL, and SQLite are also supported.
 - **[Executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/index.html):** The mechanism for running tasks. An executor is running within the scheduler whenever Airflow is operational.
@@ -29,7 +29,7 @@ If you run Airflow locally using the [Astro CLI](https://docs.astronomer.io/astr
 In addition to these core components, there are a few situational components that are used only to run tasks or make use of certain features:
 
 - **Worker:** The process that executes tasks, as defined by the executor. Depending on which executor you choose, you may or may not have workers as part of your Airflow infrastructure.
-- **[Triggerer](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html):** A separate process which supports [deferrable operators](https://www.astronomer.io/guides/deferrable-operators). This component is optional and must be run separately. It is needed only if you plan to use deferrable (or "asynchronous") operators. 
+- **[Triggerer](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html):** A separate process which supports [deferrable operators](deferrable-operators.md). This component is optional and must be run separately. It is needed only if you plan to use deferrable (or "asynchronous") operators. 
 
 The following diagram illustrates component interaction:
 

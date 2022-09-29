@@ -15,7 +15,7 @@ Throughout this guide, the term project is used to denote any set of DAGs and su
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
 
 ## Project structure
 

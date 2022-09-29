@@ -18,7 +18,7 @@ All code used in this tutorial is located in the [Astronomer Registry](https://g
 To get the most out of this guide, you should have an understanding of:
 
 - XComs basics. See the [Airflow documentation on XComs](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html?highlight=xcom#xcoms).
-- Passing data between tasks. See [Passing data between Airflow tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks/).
+- Passing data between tasks. See [Passing data between Airflow tasks](airflow-passing-data-between-tasks.md).
 - The TaskFlow API. See [the TaskFlow API in Airflow 2.0](https://www.astronomer.io/events/webinars/taskflow-api-airflow-2.0/)
 
 ## When to use custom XCom backends
@@ -38,7 +38,7 @@ An XCom backend is a good solution when you want to pass information between you
 
 XComs were designed to pass messages between your tasks, such as metadata or other small amounts of data. If you want to pass large amounts of data between tasks, Astronomer recommends using an external processing framework such as Apache Spark, and using Airflow only for orchestration. 
 
-For more information on these concepts, see [Passing Data Between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks).
+For more information on these concepts, see [Passing Data Between Airflow Tasks](airflow-passing-data-between-tasks.md).
 
 ### Example use case: Great Expectations
 
@@ -46,7 +46,7 @@ Using [Great Expectations](https://greatexpectations.io/) with Airflow is an ide
 
 The `GreatExpectationsOperator` can be used in Airflow DAGs to perform data quality checks before moving to downstream tasks. The operator returns various results from the tests that were run on your data. Because these results are not returned in a JSON serializable format, the only way to use them with the default XCom backend is to enable XCom pickling. Given the security implications of pickling, this is not ideal for a production environment. You can resolve this shortcoming by implementing a custom XCom backend to programmatically process the results and save them to an external file system.
 
-For more information about using Great Expectations with Airflow, see [Integrating Airflow and Great Expectations](https://www.astronomer.io/guides/airflow-great-expectations).
+For more information about using Great Expectations with Airflow, see [Integrating Airflow and Great Expectations](airflow-great-expectations.md).
 
 ## Set up an XCom backend
 

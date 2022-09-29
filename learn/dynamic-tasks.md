@@ -15,9 +15,9 @@ In this guide, you'll learn about dynamic task mapping and complete an example i
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow Operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- How to use Airflow decorators to define tasks. See [Introduction to Airflow Decorators](https://www.astronomer.io/guides/airflow-decorators/).
-- XComs in Airflow. See [Passing Data Between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks/).
+- Airflow Operators. See [Operators 101](what-is-an-operator.md).
+- How to use Airflow decorators to define tasks. See [Introduction to Airflow Decorators](airflow-decorators.md).
+- XComs in Airflow. See [Passing Data Between Airflow Tasks](airflow-passing-data-between-tasks.md).
 
 ## Dynamic task concepts
 

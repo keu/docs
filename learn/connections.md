@@ -18,9 +18,9 @@ In this tutorial you'll:
 
 To get the most out of this tutorial, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow/).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-- Airflow hooks. See [Hooks 101](https://www.astronomer.io/guides/what-is-a-hook/).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow hooks. See [Hooks 101](what-is-a-hook.md).
 
 ## Airflow connection basics
 
@@ -28,7 +28,7 @@ An Airflow connection is a set of configurations that send requests to the API o
 
 Airflow connections can be created by using one of the following methods:
 
-- The [Airflow UI](https://www.astronomer.io/guides/airflow-ui/)
+- The [Airflow UI](airflow-ui.md)
 - [Environment variables](https://airflow.apache.org/docs/apache-airflow/stable/cli-and-env-variables-ref.html#environment-variables)
 - The [Airflow REST API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html#tag/Connection)
 - A [secrets backend](https://airflow.apache.org/docs/apache-airflow/stable/security/secrets/secrets-backend/index.html) (a system for managing secrets external to Airflow)
@@ -37,7 +37,7 @@ Airflow connections can be created by using one of the following methods:
 
 This tutorial focuses on adding connections using the Airflow UI and environment variables. For more in-depth information on configuring connections using other methods, see the [REST API reference](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html#tag/Connection), [Managing Connections](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html) and [Secrets Backend](https://airflow.apache.org/docs/apache-airflow/stable/security/secrets/secrets-backend/index.html).
 
-Each connection has a unique `conn_id` which can be provided to operators and [hooks](https://www.astronomer.io/guides/what-is-a-hook/) that require a connection.
+Each connection has a unique `conn_id` which can be provided to operators and [hooks](what-is-a-hook.md) that require a connection.
 
 To standardize connections, Airflow includes many different connection types. There are general connection types for connecting to large clouds, such as `aws_default` and `gcp_default`, as well as connection types for specific services like `azure_service_bus_default`.
 

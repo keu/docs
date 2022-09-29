@@ -19,8 +19,8 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of [Amazon S3](https://aws.amazon.com/s3/getting-started/) and [Amazon SageMaker](https://aws.amazon.com/sagemaker/getting-started/).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow connections. See [Managing your Connections in Apache Airflow](connections.md).
 
 ## SageMaker modules
 
@@ -65,7 +65,7 @@ To implement the complete pipeline, you have to implement the following steps:
 
 3. Upload the inference results to Redshift using the `S3toRedshiftOperator`.
 
-    `SageMakerTransformOperator` requires XCom pickling to work successfully because it returns a `datetime` object that is not JSON serializable. To turn on XCom pickling, set `AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True` in your Airflow environment. To use the operator without pickling, consider implementing a [custom XCom backend](https://www.astronomer.io/guides/custom-xcom-backends).
+    `SageMakerTransformOperator` requires XCom pickling to work successfully because it returns a `datetime` object that is not JSON serializable. To turn on XCom pickling, set `AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True` in your Airflow environment. To use the operator without pickling, consider implementing a [custom XCom backend](custom-xcom-backends.md).
 
 The full DAG code looks like this:
 

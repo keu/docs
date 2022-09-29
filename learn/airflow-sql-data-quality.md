@@ -17,8 +17,8 @@ All code used in this tutorial is located in the [Astronomer Registry](https://g
 
 To get the most out of this tutorial, you should have an understanding of:
 
-- How to design a data quality process. See [Data quality and Airflow](https://www.astronomer.io/guides/data-quality).
-- Running SQL from Airflow. See [Using Airflow to execute SQL](https://www.astronomer.io/guides/airflow-sql-tutorial/).
+- How to design a data quality process. See [Data quality and Airflow](data-quality.md).
+- Running SQL from Airflow. See [Using Airflow to execute SQL](airflow-sql-tutorial.md).
 
 ## SQL Check operators
 
@@ -50,7 +50,7 @@ The `SQLCheckOperator`, `SQLIntervalCheckOperator`, `SQLValueCheckOperator` and 
 
 ### Database connection
 
-The SQL Check operators work with any database that can be queried using SQL. You have to define your [connection](https://www.astronomer.io/guides/connections/) in the Airflow UI and then pass the connection id to the operator's `conn_id` parameter.
+The SQL Check operators work with any database that can be queried using SQL. You have to define your [connection](connections.md) in the Airflow UI and then pass the connection id to the operator's `conn_id` parameter.
 
 Currently the operators cannot support BigQuery `job_id`s.
 
@@ -113,7 +113,7 @@ The resulting values can be compared to an expected value using any of the follo
 
 If you are using floats or integers, you can add a tolerance to the comparisons in the form of a fraction (0.1 = 10% tolerance).
 
-If the resulting boolean value is `True` the check passes, otherwise it fails. [Airflow generates logs](https://www.astronomer.io/guides/logging/) that show the set of returned records for every check that passes and the full query and result for checks that failed.
+If the resulting boolean value is `True` the check passes, otherwise it fails. [Airflow generates logs](logging.md) that show the set of returned records for every check that passes and the full query and result for checks that failed.
 
 The following example shows the output of 3 successful checks that ran on the `DATE` column of a table in Snowflake using `SQLColumnCheckOperator`. The checks concerned the minimum value, the maximum value, and the amount of null values in the column.
 

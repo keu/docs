@@ -21,8 +21,8 @@ In this guide, you'll learn everything you need to know about the Airflow metada
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
-- Airflow core components. See [Airflow's components](https://www.astronomer.io/guides/airflow-components/).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
+- Airflow core components. See [Airflow's components](airflow-components.md).
 
 ## Database specifications
 
@@ -61,9 +61,9 @@ A set of tables store information about Airflow users, including their [permissi
 DAGs can retrieve and use a variety of information from the metadata database such as:
 
 - [Variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html).
-- [Connections](https://www.astronomer.io/guides/connections).
-- [XComs](https://www.astronomer.io/guides/airflow-passing-data-between-tasks).
-- [Pools](https://www.astronomer.io/guides/airflow-pools/).
+- [Connections](connections.md).
+- [XComs](airflow-passing-data-between-tasks.md).
+- [Pools](airflow-pools.md).
 
 The information in these tables can be viewed and modified under the **Admin** tab in the Airflow UI.
 
@@ -76,8 +76,8 @@ The scheduler depends on the Airflow metadata database to keep track of past and
 - **Audit logs** shows events of various types that were logged to the metadata database (for example, DAGs being paused or tasks being run).
 - **Task Instances** contains a record of every task run with a variety of attributes such as the priority weight, duration, or the URL to the task log.
 - **Task Reschedule** lists tasks that have been rescheduled.
-- **Triggers** shows all currently running [triggers](https://www.astronomer.io/guides/deferrable-operators).
-- **SLA Misses** keeps track of tasks that missed their [SLA](https://www.astronomer.io/guides/error-notifications-in-airflow/#airflow-slas).
+- **Triggers** shows all currently running [triggers](deferrable-operators.md).
+- **SLA Misses** keeps track of tasks that missed their [SLA](error-notifications-in-airflow.md#airflow-slas).
 
 ### Other tables
 

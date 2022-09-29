@@ -17,7 +17,7 @@ In this guide, you'll learn how to rerun tasks or DAGs and trigger historical DA
 
 To get the most out of this guide, you should have an understanding of:
 
-- DAG scheduling. See [Scheduling and timetables in Airflow](https://www.astronomer.io/guides/scheduling-in-airflow)
+- DAG scheduling. See [Scheduling and timetables in Airflow](scheduling-in-airflow.md)
 
 ## Rerun tasks
 

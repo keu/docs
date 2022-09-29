@@ -29,7 +29,7 @@ Airflow leverages [Jinja](https://jinja.palletsprojects.com), a Python templatin
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 - Jinja templating. See [Jinja basics](https://jinja.palletsprojects.com/en/3.1.x/api/#basics). 
 
 ## Runtime variables in Airflow

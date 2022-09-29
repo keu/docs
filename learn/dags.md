@@ -13,8 +13,8 @@ In this tutorial, you'll learn DAG basics and about DAG parameters and how to de
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 
 ## What is a DAG?
 

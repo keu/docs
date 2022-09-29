@@ -18,8 +18,8 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of ADX. See [Quickstart: Create an Azure Data Explorer cluster and database](https://docs.microsoft.com/en-us/azure/data-explorer/create-cluster-database-portal).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow connections. See [Managing your Connections in Apache Airflow](connections.md).
 
 ## Configuring ADX to work with Airflow
 

@@ -22,9 +22,9 @@ This guide covers:
 
 To get the most out of this guide, you should have knowledge of:
 
-- What Airflow is and when to use it. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+- What Airflow is and when to use it. See [Introduction to Apache Airflow](intro-to-airflow.md).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow connections. See [Managing your Connections in Apache Airflow](connections.md).
 - Relational databases. See [Relational database on Wikipedia](https://en.wikipedia.org/wiki/Relational_database).
 
 ## Data quality essentials
@@ -70,9 +70,9 @@ The following DAG graph shows the typical locations for data quality checks:
 
 ![Different locations for data quality checks in an ETL pipeline](/img/guides/dq_checks_locations_example_graph.png)
 
-It's common to use the results of data quality checks (`post_check_action_1` and `post_check_action_2`) to define further downstream tasks or [`callbacks`](https://airflow.apache.org/docs/apache-airflow/stable/logging-monitoring/callbacks.html). Typically, these tasks alert data professionals with [error notifications](https://www.astronomer.io/guides/error-notifications-in-airflow/), such as an email or a Slack message, of a data quality issue. It is also possible to create a downstream task that only runs when all data quality checks are successful. For example, the successful checking event for reporting purposes.
+It's common to use the results of data quality checks (`post_check_action_1` and `post_check_action_2`) to define further downstream tasks or [`callbacks`](https://airflow.apache.org/docs/apache-airflow/stable/logging-monitoring/callbacks.html). Typically, these tasks alert data professionals with [error notifications](error-notifications-in-airflow.md), such as an email or a Slack message, of a data quality issue. It is also possible to create a downstream task that only runs when all data quality checks are successful. For example, the successful checking event for reporting purposes.
 
-When implementing data quality checks, consider how a check success or failure should influence downstream dependencies. [Trigger Rules](https://www.astronomer.io/guides/managing-dependencies/#trigger-rules) are especially useful for managing operator dependencies.
+When implementing data quality checks, consider how a check success or failure should influence downstream dependencies. [Trigger Rules](managing-dependencies.md#trigger-rules) are especially useful for managing operator dependencies.
 
 ## When to implement data quality checks
 
@@ -87,12 +87,12 @@ You might need to implement data quality checks in the following circumstances:
 
 There are multiple open source tools that can be used to check data quality from an Airflow DAG. While this guide lists the most commonly used tools here, it focuses on the two tools that also integrate with OpenLineage:
 
-- **[SQL Check operators](https://www.astronomer.io/guides/airflow-sql-data-quality-tutorial)**: A group of operators that you can use to define data quality checks in Python dictionaries and SQL from within your DAGs.
-- **[Great Expectations](https://www.astronomer.io/guides/airflow-great-expectations/)**: An open source data validation framework where checks are defined in JSON. Airflow offers a provider package including the `GreatExpectationsOperator` for easy integration.
+- **[SQL Check operators](airflow-sql-data-quality.md)**: A group of operators that you can use to define data quality checks in Python dictionaries and SQL from within your DAGs.
+- **[Great Expectations](airflow-great-expectations.md)**: An open source data validation framework where checks are defined in JSON. Airflow offers a provider package including the `GreatExpectationsOperator` for easy integration.
 
 Other tools that can be used for data quality checks include:
 
-- **[Soda](https://www.astronomer.io/guides/soda-data-quality/)**: An open source data validation framework that uses YAML to define checks which can be run in Airflow using the `BashOperator`. Soda also offers the ability to write any custom checks using SQL.
+- **[Soda](soda-data-quality.md)**: An open source data validation framework that uses YAML to define checks which can be run in Airflow using the `BashOperator`. Soda also offers the ability to write any custom checks using SQL.
 - **[dbt test](https://docs.getdbt.com/docs/building-a-dbt-project/tests)**: A testing framework for models using the `dbt test` CLI command, which you can run in Airflow with the `BashOperator` or `PythonOperator`.
 
 ### Choosing a tool
@@ -116,9 +116,9 @@ Currently only SQL Check operators and the `GreatExpectationsOperator` offer dat
 
 ### SQL Check operators
 
-> **Note**: You can find more details and examples on SQL Check operators as well as example logs in the [Airflow Data Quality Checks with SQL Operators](https://www.astronomer.io/guides/airflow-sql-data-quality-tutorial/) guide.
+> **Note**: You can find more details and examples on SQL Check operators as well as example logs in the [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality-tutorial.md) guide.
 
-SQL Check operators execute a SQL statement that results in a set of booleans. A result of `True` leads to the check passing and the task being labeled as successful. A result of `False`, or any error when the statement is executed, leads to a failure of the task. Before using any of the operators, you need to define the [connection](https://www.astronomer.io/guides/connections/) to your data storage from the Airflow UI or with an external secrets manager.
+SQL Check operators execute a SQL statement that results in a set of booleans. A result of `True` leads to the check passing and the task being labeled as successful. A result of `False`, or any error when the statement is executed, leads to a failure of the task. Before using any of the operators, you need to define the [connection](connections.md) to your data storage from the Airflow UI or with an external secrets manager.
 
 The SQL Check operators work with any backend solution that accepts SQL queries and supports Airflow, and differ in what kind of data quality checks they can perform and how they are defined.
 
@@ -131,7 +131,7 @@ The `SQLColumnCheckOperator` and `SQLTableCheckOperator` are part of the [Common
 - [`SQLValueCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlvaluecheckoperator): Compares the result of a SQL query against a value with or without a tolerance window.
 - [`SQLThresholdCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlthresholdcheckoperator): Compares the result of a SQL query against upper and lower thresholds which may also be described as SQL queries.
 
-The logs from SQL Check operators can be found in the regular Airflow task logs. For more details and examples of SQL Check operators and logs, see [Airflow Data Quality Checks with SQL Operators](https://www.astronomer.io/guides/airflow-sql-data-quality-tutorial/).
+The logs from SQL Check operators can be found in the regular Airflow task logs. For more details and examples of SQL Check operators and logs, see [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality-tutorial.md).
 
 ### Great Expectations
 
@@ -149,13 +149,13 @@ The Great Expectations documentation offers a [step-by-step tutorial](https://do
 
 When using Great Expectations, Airflow task logs show only whether the Expectation Suite passed or failed. To get a [detailed report](https://docs.greatexpectations.io/docs/terms/data_docs/) on the checks that were run and their results, you can view the HTML files located in the `great_expecations/uncommitted/data_docs/local_site/validations` directory in any browser.
 
-You can find more information on how to use Great Expectations with Airflow in the [Integrating Airflow and Great Expectations](https://www.astronomer.io/guides/airflow-great-expectations/) guide.
+You can find more information on how to use Great Expectations with Airflow in the [Integrating Airflow and Great Expectations](airflow-great-expectations.md) guide.
 
 ## Data lineage and data quality
 
 In complex data ecosystems, lineage can be a powerful addition to data quality checks, especially for investigating what data from which origins caused a check to fail.
 
-> **Note**: For more information on data lineage and setting up OpenLineage with Airflow, see [OpenLineage and Airflow](https://www.astronomer.io/guides/airflow-openlineage/).
+> **Note**: For more information on data lineage and setting up OpenLineage with Airflow, see [OpenLineage and Airflow](airflow-openlineage.md).
 
 Both SQL Check operators and the `GreatExpectationsOperator` have OpenLineage extractors. If you are working with open source tools, you can view the resulting lineage from the extractors using Marquez.
 
@@ -419,7 +419,7 @@ For each of the checks in this example, an Expectation Suite already exists. Thi
 }
 ```
 
-The corresponding DAG code shows how all checks are run within one task using the `GreatExpectationsOperator`. Only the root directory of the data context and the checkpoint name have to be provided. To use XComs with the `GreatExpectationsOperator` you must enable XCOM pickling as described in the [Great Expectations](https://www.astronomer.io/guides/airflow-great-expectations/) guide.
+The corresponding DAG code shows how all checks are run within one task using the `GreatExpectationsOperator`. Only the root directory of the data context and the checkpoint name have to be provided. To use XComs with the `GreatExpectationsOperator` you must enable XCOM pickling as described in the [Great Expectations](airflow-great-expectations.md) guide.
 
 ```python
 from airflow import DAG

@@ -17,7 +17,7 @@ To view all of the available Airflow operators, go to the [Astronomer Registry](
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
 - Basic Python. See the [Python Documentation](https://docs.python.org/3/tutorial/index.html).
 
 ## Operator basics
@@ -37,11 +37,11 @@ Operators typically only require a few parameters. Keep the following considerat
 
 - The [Astronomer Registry](https://registry.astronomer.io/modules?types=operators) is the best resource for learning what operators are available and how they are used.
 - The core Airflow package includes basic operators such as the `PythonOperator` and `BashOperator`. These operators are automatically available in your Airflow environment. All other operators are part of provider packages, which you must install separately. For example, the `SnowflakeOperator` is part of the [Snowflake provider package](https://registry.astronomer.io/providers/snowflake).
-- If an operator exists for your specific use case, you should use it instead of your own Python functions or [hooks](https://www.astronomer.io/guides/what-is-a-hook). This makes your DAGs easier to read and maintain.
+- If an operator exists for your specific use case, you should use it instead of your own Python functions or [hooks](what-is-a-hook.md). This makes your DAGs easier to read and maintain.
 - If an operator doesn't exist for your use case, you can extend an operator to meet your needs. For more information about customizing operators, see the video [Anatomy of an Operator](https://www.astronomer.io/events/webinars/anatomy-of-an-operator).
-- [Sensors](https://www.astronomer.io/guides/what-is-a-sensor) are a type of operator that waits for something to happen. They can be used to make your DAGs more event-driven.
-- [Deferrable Operators](https://www.astronomer.io/guides/deferrable-operators) are a type of operator that releases their worker slot while waiting for their work to be completed. This can result in cost savings and greater scalability. Astronomer recommends using deferrable operators whenever one exists for your use case and your task takes longer than a minute. You must be using Airflow 2.2 or later and have a triggerer running to use deferrable operators.
-- Any operator that interacts with a service external to Airflow typically requires a connection so that Airflow can authenticate to that external system. For more information about setting up connections, see [Managing your connections in Apache Airflow](https://www.astronomer.io/guides/connections/) or in the examples to follow.
+- [Sensors](what-is-a-sensor.md) are a type of operator that waits for something to happen. They can be used to make your DAGs more event-driven.
+- [Deferrable Operators](deferrable-operators.md) are a type of operator that releases their worker slot while waiting for their work to be completed. This can result in cost savings and greater scalability. Astronomer recommends using deferrable operators whenever one exists for your use case and your task takes longer than a minute. You must be using Airflow 2.2 or later and have a triggerer running to use deferrable operators.
+- Any operator that interacts with a service external to Airflow typically requires a connection so that Airflow can authenticate to that external system. For more information about setting up connections, see [Managing your connections in Apache Airflow](connections.md) or in the examples to follow.
 
 ## Example implementation
 
@@ -52,7 +52,7 @@ The code for this example is available in the [Astronomer Registry](https://regi
 The following operators are used in this example:
 
 - [EmptyOperator](https://registry.astronomer.io/providers/apache-airflow/modules/dummyoperator): Organizes the flow of tasks in the DAG. Included with Airflow.
-- [PythonDecoratedOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator): Executes a Python function. It is functionally the same as the PythonOperator, but it is instantiated using the `@task` [decorator](https://www.astronomer.io/guides/airflow-decorators/). Included with Airflow.
+- [PythonDecoratedOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator): Executes a Python function. It is functionally the same as the PythonOperator, but it is instantiated using the `@task` [decorator](airflow-decorators.md). Included with Airflow.
 - [LocalFilesystemToS3Operator](https://registry.astronomer.io/providers/amazon/modules/localfilesystemtos3operator): Uploads a file from a local file system to Amazon S3. Included with the [AWS provider package](https://registry.astronomer.io/providers/amazon).
 - [S3ToRedshiftOperator](https://registry.astronomer.io/providers/amazon/modules/s3toredshiftoperator): Transfers data from Amazon S3 to Redshift. Included with the [AWS provider package](https://registry.astronomer.io/providers/amazon).
 - [PostgresOperator](https://registry.astronomer.io/providers/postgres/modules/postgresoperator): Executes a query against a Postgres database. Included with the [Postgres provider package](https://registry.astronomer.io/providers/postgres).

@@ -5,7 +5,7 @@ description: "How to schedule DAGs"
 id: scheduling-in-airflow
 ---
 
-One of the fundamental features of Apache Airflow is the ability to schedule jobs. Historically, Airflow users scheduled their DAGs by specifying a `schedule` with a cron expression, a timedelta object, or a preset Airflow schedule. Timetables, released in Airflow 2.2, allow users to create their own custom schedules using Python, effectively eliminating the limitations of cron. With timetables, you can now schedule DAGs to run at any time. Datasets, introduced in Airflow 2.4, let you schedule your DAGs on updates to a dataset rather than a time-based schedule. For more information about datasets, see [Datasets and Data-Aware Scheduling in Airflow](https://www.astronomer.io/guides/airflow-datasets/).
+One of the fundamental features of Apache Airflow is the ability to schedule jobs. Historically, Airflow users scheduled their DAGs by specifying a `schedule` with a cron expression, a timedelta object, or a preset Airflow schedule. Timetables, released in Airflow 2.2, allow users to create their own custom schedules using Python, effectively eliminating the limitations of cron. With timetables, you can now schedule DAGs to run at any time. Datasets, introduced in Airflow 2.4, let you schedule your DAGs on updates to a dataset rather than a time-based schedule. For more information about datasets, see [Datasets and Data-Aware Scheduling in Airflow](airflow-datasets.md).
 
 In this guide, you'll learn Airflow scheduling concepts and the different ways you can schedule a DAG with a focus on timetables. For a video overview of these concepts, see [Scheduling in Airflow webinar](https://www.astronomer.io/events/webinars/trigger-dags-any-schedule).  
 
@@ -15,8 +15,8 @@ All code used in this guide is available in the [airflow-scheduling-tutorial rep
 
 To get the most out of this guide, you should have an existing knowledge of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
-- Configuring Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
+- Configuring Airflow DAGs. See [Introduction to Airflow DAGs](dags.md).
 - Date and time modules in Python3. See the [Python documentation on the `datetime` package](https://docs.python.org/3/library/datetime.html).
 
 ## Scheduling concepts
@@ -322,4 +322,4 @@ In the Airflow UI, the DAG now has a schedule of **Dataset** and the **Next Run*
 
 ![Dataset dependent DAG](/img/guides/2_4_DatasetDependentDAG.png)
 
-To learn more about datasets and data driven scheduling, see [Datasets and Data-Aware Scheduling in Airflow](https://www.astronomer.io/guides/airflow-datasets/) guide.
+To learn more about datasets and data driven scheduling, see [Datasets and Data-Aware Scheduling in Airflow](airflow-datasets.md) guide.

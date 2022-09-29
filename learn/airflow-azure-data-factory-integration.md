@@ -16,8 +16,8 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of Azure Data Factory. See [Introduction to Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/introduction).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow connections. See [Managing your Connections in Apache Airflow](connections.md).
 
 ## Why use Airflow with ADF
 
@@ -141,7 +141,7 @@ with DAG(
 
 ![Graph View](/img/guides/multiple_adf_pipeline_graph.png)
 
-Note that this DAG requires an `azure_data_factory` [Airflow connection](https://www.astronomer.io/guides/connections). The connection requires the following information:
+Note that this DAG requires an `azure_data_factory` [Airflow connection](connections.md). The connection requires the following information:
 
 - **Login:** Your Azure Client ID
 - **Password:** Your Azure Client secret

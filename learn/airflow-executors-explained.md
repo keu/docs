@@ -17,13 +17,13 @@ This guide will help you:
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
 
 ## What is an executor?
 
 After a DAG is defined, the following needs to happen in order for the tasks within that DAG to execute and be completed:
 
-- The [Metadata Database](https://www.astronomer.io/guides/airflow-database) keeps a record of all tasks within a DAG and their corresponding status (`queued`, `scheduled`, `running`, `success`, `failed`, and so on) behind the scenes.
+- The [Metadata Database](airflow-database.md) keeps a record of all tasks within a DAG and their corresponding status (`queued`, `scheduled`, `running`, `success`, `failed`, and so on) behind the scenes.
 
 - The scheduler reads from the metadata database to check on the status of each task and decide what needs to get done and when.
 

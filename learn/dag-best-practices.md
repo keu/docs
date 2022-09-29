@@ -18,8 +18,8 @@ For an in-depth walk through and examples of some of the concepts covered in thi
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
 
 ## Review idempotency
 
@@ -60,7 +60,7 @@ A better way of implementing this is by using an Airflow variable:
 yesterday = {{ yesterday_ds_nodash }}
 ```
 
-You can use one of the Airflow built-in [variables and macros](https://airflow.apache.org/docs/apache-airflow/stable/macros-ref.html), or you can create your own templated field to pass information at runtime. For more information on this topic, see [templating and macros in Airflow](https://www.astronomer.io/guides/templating).
+You can use one of the Airflow built-in [variables and macros](https://airflow.apache.org/docs/apache-airflow/stable/macros-ref.html), or you can create your own templated field to pass information at runtime. For more information on this topic, see [templating and macros in Airflow](templating.md).
 
 ### Incremental record filtering
 
@@ -111,7 +111,7 @@ with DAG('bad_practices_dag_1',
         )
 ```
 
-When the scheduler parses this DAG, it will use the `hook` and `result` variables to query the `grocery_list` table to construct the operators in the DAG. This query is run on every Scheduler heartbeat, which can cause performance issues. A better implementation leverages [dynamic task mapping](https://www.astronomer.io/guides/dynamic-tasks) to have a task that gets the required information from the `grocery_list` table and dynamically maps downstream tasks based on the result. Dynamic task mapping is available in Airflow 2.3 and later.
+When the scheduler parses this DAG, it will use the `hook` and `result` variables to query the `grocery_list` table to construct the operators in the DAG. This query is run on every Scheduler heartbeat, which can cause performance issues. A better implementation leverages [dynamic task mapping](dynamic-tasks.md) to have a task that gets the required information from the `grocery_list` table and dynamically maps downstream tasks based on the result. Dynamic task mapping is available in Airflow 2.3 and later.
 
 ### Treat your DAG file like a config file
 
@@ -251,7 +251,7 @@ Astronomer recommends that you consider the size of your data now and in the fut
 
 - Ensure your Airflow infrastructure has the necessary resources.
 - Use the Kubernetes Executor to isolate task processing and have more control over resources at the task level.
-- Use a [custom XCom backend](https://www.astronomer.io/guides/custom-xcom-backends) if you need to pass any data between the tasks so you don't overload your metadata database.
+- Use a [custom XCom backend](custom-xcom-backends.md) if you need to pass any data between the tasks so you don't overload your metadata database.
 
 ### Use intermediary data storage
 

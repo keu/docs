@@ -26,16 +26,16 @@ All code used in this  is available in the [cross-dag-dependencies-tutorial regi
 
 To get the most out of this guide, you should have an understanding of:
 
-- Dependencies in Airflow. See [Managing Dependencies in Apache Airflow](https://www.astronomer.io/guides/managing-dependencies/).
-- Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Airflow sensors. See [Sensors 101](https://www.astronomer.io/guides/what-is-a-sensor/).
+- Dependencies in Airflow. See [Managing Dependencies in Apache Airflow](managing-dependencies.md).
+- Airflow DAGs. See [Introduction to Airflow DAGs](dags.md).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow sensors. See [Sensors 101](what-is-a-sensor.md).
 
 ## Implement cross-DAG dependencies
 
 There are multiple ways to implement cross-DAG dependencies in Airflow, including:
 
-- [Dataset driven scheduling](https://www.astronomer.io/guides/airflow-datasets/).
+- [Dataset driven scheduling](airflow-datasets.md).
 - The [TriggerDagRunOperator](https://registry.astronomer.io/providers/apache-airflow/modules/triggerdagrunoperator).
 - The [ExternalTaskSensor](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor).
 - The [Airflow API](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html).
@@ -85,7 +85,7 @@ In the Airflow UI, the **Next Run** column for the downstream DAG shows dataset 
 
 ![DAG Dependencies View](/img/guides/2_4_DatasetDependentDAG.png)
 
-See [Datasets and Data-Aware Scheduling in Airflow](https://www.astronomer.io/guides/airflow-datasets/) to learn more.
+See [Datasets and Data-Aware Scheduling in Airflow](airflow-datasets.md) to learn more.
 
 ### TriggerDagRunOperator
 
@@ -163,7 +163,7 @@ This method of creating cross-DAG dependencies is especially useful when you hav
 
 For example, you could have upstream tasks modifying different tables in a data warehouse and one downstream DAG running one branch of data quality checks for each of those tables. You can use one ExternalTaskSensor at the start of each branch to make sure that the checks running on each table only start after the update to the specific table is finished.
 
-In Airflow 2.2 and later, a deferrable version of the ExternalTaskSensor is available, the [ExternalTaskSensorAsync](https://registry.astronomer.io/providers/astronomer-providers/modules/externaltasksensorasync). For more info on deferrable operators and their benefits, see [Deferrable Operators](https://www.astronomer.io/guides/deferrable-operators/)
+In Airflow 2.2 and later, a deferrable version of the ExternalTaskSensor is available, the [ExternalTaskSensorAsync](https://registry.astronomer.io/providers/astronomer-providers/modules/externaltasksensorasync). For more info on deferrable operators and their benefits, see [Deferrable Operators](deferrable-operators.md)
 
 The following example DAG uses three ExternalTaskSensors at the start of three parallel branches in the same DAG.
 
@@ -343,7 +343,7 @@ To use the SimpleHttpOperator to trigger another DAG, you need to define the fol
 
 - `endpoint`: This should be of the form `'/api/v1/dags/<dag-id>/dagRuns'` where `<dag-id>` is the ID of the DAG you want to trigger.
 - `data`: To trigger a DAG run using this endpoint, you must provide an execution date. In the example above, we use the `execution_date` of the upstream DAG, but this can be any date of your choosing. You can also specify other information about the DAG run as described in the API documentation linked above.
-- `http_conn_id`: This should be an [Airflow connection](https://www.astronomer.io/guides/connections/) of [type HTTP](https://airflow.apache.org/docs/apache-airflow-providers-http/stable/connections/http.html), with your Airflow domain as the Host. Any authentication should be provided either as a Login/Password (if using Basic auth) or as a JSON-formatted Extra. In the example below, we use an authorization token.
+- `http_conn_id`: This should be an [Airflow connection](connections.md) of [type HTTP](https://airflow.apache.org/docs/apache-airflow-providers-http/stable/connections/http.html), with your Airflow domain as the Host. Any authentication should be provided either as a Login/Password (if using Basic auth) or as a JSON-formatted Extra. In the example below, we use an authorization token.
 
 ![Http Connection](/img/guides/http_connection.png)
 

@@ -11,8 +11,8 @@ With Airflow 2.2 and later, you can use deferrable operators to run tasks in you
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator).
-- Airflow sensors. See [Sensors 101](https://www.astronomer.io/guides/what-is-a-sensor/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow sensors. See [Sensors 101](what-is-a-sensor.md).
 
 ## Terms and concepts
 

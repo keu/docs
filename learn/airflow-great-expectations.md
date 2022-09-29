@@ -21,8 +21,8 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of Great Expectations. See [Getting started with Great Expectations](https://docs.greatexpectations.io/docs/tutorials/getting_started/tutorial_overview).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow connections. See [Managing your Connections in Apache Airflow](connections.md).
 
 ## Great Expectations concepts
 
@@ -120,7 +120,7 @@ For more information about possible parameters and examples, see the [README in 
 
 ### Connections and backends
 
-The `GreatExpectationsOperator` can run a checkpoint on a dataset stored in any backend compatible with Great Expectations. For example, BigQuery, MSSQL, MySQL, PostgreSQL, Redshift, Snowflake, SQLite, Athena, and so on. All that’s needed to get the Operator to point at an external dataset is to set up an [Airflow Connection](https://www.astronomer.io/guides/connections) to the `datasource`, and add the connection to your Great Expectations project [using the CLI to add a Postgres backend](https://docs.greatexpectations.io/docs/guides/connecting_to_your_data/database/postgres). Then, if using a `DataContextConfig` or `CheckpointConfig`, ensure that the `"datasources"` field refers to your backend connection name.
+The `GreatExpectationsOperator` can run a checkpoint on a dataset stored in any backend compatible with Great Expectations. For example, BigQuery, MSSQL, MySQL, PostgreSQL, Redshift, Snowflake, SQLite, Athena, and so on. All that’s needed to get the Operator to point at an external dataset is to set up an [Airflow Connection](connections.md) to the `datasource`, and add the connection to your Great Expectations project [using the CLI to add a Postgres backend](https://docs.greatexpectations.io/docs/guides/connecting_to_your_data/database/postgres). Then, if using a `DataContextConfig` or `CheckpointConfig`, ensure that the `"datasources"` field refers to your backend connection name.
 
 ## Next steps
 

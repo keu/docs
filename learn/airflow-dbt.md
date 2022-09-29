@@ -26,8 +26,8 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 - The basics of dbt. See [Getting started with dbt Cloud](https://docs.getdbt.com/guides/getting-started).
 - Airflow fundamentals, such as writing DAGs and defining tasks. See [Get started with Apache Airflow](get-started-with-airflow.md).
-- Airflow operators. See [Operators 101](https://www.astronomer.io/guides/what-is-an-operator/).
-- Airflow connections. See [Managing your Connections in Apache Airflow](https://www.astronomer.io/guides/connections/).
+- Airflow operators. See [Operators 101](what-is-an-operator.md).
+- Airflow connections. See [Managing your Connections in Apache Airflow](connections.md).
 
 ## dbt Cloud
 
@@ -412,7 +412,7 @@ The sample code you provided in the previous section demonstrates how to loop th
 
 - The parser takes the dbt project path containing the `dbt_project.yml` file, as well as the path to the `profiles.yml` file, as inputs. Note that this setup assumes that you have a single repo that contains both your dbt project and Airflow code.
 - By providing a "dbt_tag" parameter, you can select a subset of models to run. This means you can specify multiple DAGs for different subsets of the dbt models, for example to run them on different schedules, as described in [Part 2](https://www.astronomer.io/blog/airflow-dbt-2) of our blog series.
-- The utility returns a [task group](https://www.astronomer.io/guides/task-groups) containing all `dbt run` tasks for the models in the specified dbt DAG, and optionally another task group for all test tasks.
+- The utility returns a [task group](task-groups.md) containing all `dbt run` tasks for the models in the specified dbt DAG, and optionally another task group for all test tasks.
 
 When used as shown in the sample code below, the utility provides a shortcut to creating Airflow task groups for dbt models. Note that this code snippet only shows part of the DAG file; you can find the whole file in [the demo repo](https://github.com/astronomer/airflow-dbt-demo).
 

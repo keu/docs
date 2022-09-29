@@ -17,7 +17,7 @@ All code used in this tutorial is located in the [Astronomer Registry](https://g
 
 To get the most out of this guide, you should have an understanding of:
 
-- Airflow DAGs. See [Introduction to Airflow DAGs](https://www.astronomer.io/guides/dags/).
+- Airflow DAGs. See [Introduction to Airflow DAGs](dags.md).
 
 ## Single-file methods
 

@@ -22,13 +22,13 @@ In this guide you'll learn about the many ways you can implement dependencies in
 
 To view a video presentation of these concepts, see [Manage Dependencies Between Airflow Deployments, DAGs, and Tasks](https://www.astronomer.io/events/webinars/manage-dependencies-between-airflow-deployments-dags-tasks/). 
 
-The focus of this guide is dependencies between tasks in the same DAG. If you need to implement dependencies between DAGs, see [Cross-DAG dependencies](https://www.astronomer.io/guides/cross-dag-dependencies).
+The focus of this guide is dependencies between tasks in the same DAG. If you need to implement dependencies between DAGs, see [Cross-DAG dependencies](cross-dag-dependencies.md).
 
 ## Assumed knowledge
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
 
 ## Basic dependencies
 
@@ -150,7 +150,7 @@ This image shows the resulting DAG:
 
 ## Task group dependencies
 
-[Task groups](https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html#taskgroups) are a UI-based grouping concept available in Airflow 2.0 and later. For more information on task groups, including how to create them and when to use them, see [Using Task Groups in Airflow](https://www.astronomer.io/guides/task-groups).
+[Task groups](https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html#taskgroups) are a UI-based grouping concept available in Airflow 2.0 and later. For more information on task groups, including how to create them and when to use them, see [Using Task Groups in Airflow](task-groups.md).
 
 When working with task groups, it is important to note that dependencies can be set both inside and outside of the group. For example, in the following DAG code there is a start task, a task group with two dependent tasks, and an end task that needs to happen sequentially. The dependencies between the two tasks in the task group are set within the task group's context (`t1 >> t2`). The dependencies between the task group and the start and end tasks are set within the DAG's context (`t0 >> tg1 >> t3`).
 

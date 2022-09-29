@@ -13,7 +13,7 @@ This guide focuses on [Airflow 2.0 and later](https://www.astronomer.io/events/w
 
 To get the most out of this guide, you should have an understanding of:
 
-- Basic Airflow concepts. See [Introduction to Apache Airflow](https://www.astronomer.io/guides/intro-to-airflow).
+- Basic Airflow concepts. See [Introduction to Apache Airflow](intro-to-airflow.md).
 
 ## DAGs don't appear in the Airflow UI
 
@@ -63,8 +63,8 @@ Your DAG is visible in the Airflow UI, but your tasks don't run when you trigger
     In Airflow 2.2 and later, paused DAGs are unpaused automatically when you manually trigger them.
 
 - Ensure your DAG has a start date that is in the past. If your start date is in the future, triggering the DAG results in a successful DAG run even though no tasks ran.
-- A DAG run is automatically triggered when you unpause the DAG if the start date and end of the data interval are both in the past, and `catchup=True`. For more details on data intervals and DAG scheduling, see [Scheduling and Timetables in Airflow](https://www.astronomer.io/guides/scheduling-in-airflow).
-- If you are using a [custom timetable](https://www.astronomer.io/guides/scheduling-in-airflow), ensure that the data interval for your DAG run does not precede the DAG start date.
+- A DAG run is automatically triggered when you unpause the DAG if the start date and end of the data interval are both in the past, and `catchup=True`. For more details on data intervals and DAG scheduling, see [Scheduling and Timetables in Airflow](scheduling-in-airflow.md).
+- If you are using a [custom timetable](scheduling-in-airflow.md), ensure that the data interval for your DAG run does not precede the DAG start date.
 - If your tasks stay in a `scheduled` or `queued` state, ensure your scheduler is running properly. If needed, restart the scheduler or increase scheduler resources in your Airflow infrastructure.
 - If you added tasks to an existing DAG that has `depends_on_past=True`, those newly added tasks won't run until their state is set for prior task runs.
 
@@ -82,7 +82,7 @@ The task logs provide information about the error that caused the failure.
 
 ![Error Log](/img/guides/error_log.png)
 
-To help identify and resolve task failures, you can set up error notifications. See [Error Notifications in Airflow](https://www.astronomer.io/guides/error-notifications-in-airflow).
+To help identify and resolve task failures, you can set up error notifications. See [Error Notifications in Airflow](error-notifications-in-airflow.md).
 
 Task failures in newly developed DAGs with error messages such as `Task exited with return code Negsignal.SIGKILL` or containing a `-9` error code are often caused by a lack of memory. Increase the resources for your scheduler, webserver, or pod, depending on whether you're running the Local, Celery, or Kubernetes executors respectively.
 
@@ -92,7 +92,7 @@ When you check your task logs to debug a failure, you may not see any logs. On t
 
 Generally, logs fail to appear when a process dies in your scheduler or worker and communication is lost. The following are some debugging steps you can try:
 
-- Try rerunning the task by [clearing the task instance](https://www.astronomer.io/guides/rerunning-dags#rerunning-tasks) to see if the logs appear during the rerun.
+- Try rerunning the task by [clearing the task instance](rerunning-dags.md#rerun-tasks) to see if the logs appear during the rerun.
 - Increase your `log_fetch_timeout_sec` parameter to greater than the 5 second default. This parameter controls how long the webserver waits for the initial handshake when fetching logs from the worker machines, and having extra time here can sometimes resolve issues.
 - Increase the resources available to your workers (if using the Celery executor) or scheduler (if using the local executor).
 - If you're using the Kubernetes executor and a task fails very quickly (in less than 15 seconds), the pod running the task spins down before the webserver has a chance to collect the logs from the pod. If possible, try building in some wait time to your task depending on which operator you're using. If that isn't possible, try to diagnose what could be causing a near-immediate failure in your task. This is often related to either lack of resources or an error in the task configuration.
@@ -121,6 +121,6 @@ The following are some debugging steps you can try:
 
 If you've made any changes to your code, make sure to redeploy and use the code view in the Airflow UI to make sure that your changes have been captured by Airflow.
 
-To rerun your DAG or a specific task after you've made changes, see [Rerunning Tasks](https://www.astronomer.io/guides/rerunning-dags#rerunning-tasks). 
+To rerun your DAG or a specific task after you've made changes, see [Rerunning Tasks](rerunning-dags.md#rerun-tasks). 
 
 The information provided here should help you resolve the most common issues. For help with more complex issues, consider joining the [Apache Airflow Slack](https://airflow.apache.org/community/) or [contact Astronomer support](https://www.astronomer.io/get-astronomer/).
