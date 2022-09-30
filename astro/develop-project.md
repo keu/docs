@@ -228,7 +228,7 @@ variables:
     variable_value: <my-variable-value-2>
 ```
 
-Once you save these values in your `airflow_settings.yaml`, start your local environment and run: 
+Save the modified `airflow_settings.yaml` file, start your local environment, and then run: 
 
 ```sh
 astro dev object import

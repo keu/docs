@@ -5,7 +5,7 @@ id: astro-dev-object-import
 description: Reference documentation for astro dev object import
 ---
 
-Import Ariflow variables, connections, and pools to a locally running environment from a YAML configuration file.
+Import Airflow variables, connections, and pools to a locally running environment from a YAML configuration file.
 
 ## Usage 
 

@@ -5,7 +5,7 @@ id: astro-dev-object-export
 description: Reference documentation for astro dev object export
 ---
 
-Export Ariflow variables, connections, and pools from a locally running environment to a file and format of your choice. 
+Export Airflow variables, connections, and pools from a locally running environment to a file and format of your choice. 
 
 ## Usage 
 
@@ -22,7 +22,7 @@ By default, the command exports all variables, connections, and pools as YAML co
 | Option              | Description                                                                                                        | Possible Values             |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------- |
 | `-c`,`--connections` | Export connections to a given local file | ``|
-| `-e`,`--env`            | Location of the file to export Airflow objects to as Astro environment variables. Use this flag only with `--env-export`. The default file path is `env`.                                                                          | Any valid filepath                 |
+| `-e`,`--env`            | Location of the file to export Airflow objects to as Astro environment variables. Use this option only with `--env-export`. The default file path is `env`.                                                                          | Any valid filepath                 |
 | `-n`,`--env-export`            | Export Airflow objects as Astro environment variables.                                                                                  | ``                 |
 | `-p`,`--pools`            | Export pools to a given local file | ``                 |
 | `-s`,`--settings-file`            | Location of the file to export Airflow objects to as YAML configuration. The default file path is `airflow_settings.yaml`.                                 | Any valid filepath              |
