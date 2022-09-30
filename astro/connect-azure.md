@@ -37,9 +37,9 @@ When you use publicly accessible endpoints to connect Astro and Azure, traffic m
 
 <TabItem value="VNet peering">
 
-Every Astro cluster runs in a dedicated Virtual Private Network (VPC). To set up a private connection between an Astro VPC and an Azure Virtual Network (VNet), you can create a VPC peering connection. VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
+Every Astro cluster runs in a dedicated Virtual Network (VNet). To set up a private connection between an Astro VNet and an Azure VNet, you can create a VNet peering connection. VNet peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
 
-To create a VPC peering connection between an Astro VPC and an Azure VNet, contact [Astronomer support](https://cloud.astronomer.io/support) and provide the following information:
+To create a VNet peering connection between an Astro VNet and an Azure VNet, contact [Astronomer support](https://cloud.astronomer.io/support) and provide the following information:
 
 - Astro cluster ID and name
 - Azure TenantID and Subscription ID of the target VNet
@@ -47,7 +47,7 @@ To create a VPC peering connection between an Astro VPC and an Azure VNet, conta
 - VNet ID of the target VNet
 - Classless Inter-Domain Routing (CIDR) block of the target VNet
 
-After receiving your request, Astronomer support initiates a peering request that must be accepted by the owner of the target VNet in your organization. After the VPC peering connection is established, the owner of the target VNet works with Astronomer support to update the routing tables of the VPC and the VNet to allow multidirectional traffic.
+After receiving your request, Astronomer support initiates a peering request that must be accepted by the owner of the target VNet in your organization. After the VNet peering connection is established, the owner of the target VNet works with Astronomer support to update the VNet routing tables to allow multidirectional traffic.
 
 </TabItem>
 
@@ -55,9 +55,7 @@ After receiving your request, Astronomer support initiates a peering request tha
 
 Use Azure Private Link to create private connections from Astro to your Azure services without exposing your data to the public internet.
 
-Astro clusters are pre-configured with the following Azure private endpoints:
-
-- Blob
+Astro clusters are pre-configured with the Azure blob private endpoint.
 
 To request additional endpoints, or assistance connecting to other Azure services, contact [Astronomer support](https://cloud.astronomer.io/support).
 
