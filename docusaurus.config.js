@@ -102,14 +102,8 @@ module.exports = {
           ],
         },
         {
-          to: '/concepts/',
-          label: 'Concepts',
-          position: 'left',
-          activeClassName: 'navbar__link--active',
-        },
-        {
-          to: '/tutorials/',
-          label: 'Tutorials',
+          to: '/learn/',
+          label: 'Learn',
           position: 'left',
           activeClassName: 'navbar__link--active',
         },
@@ -204,7 +198,7 @@ module.exports = {
             },
             {
               label: 'Airflow Guides',
-              href: 'https://www.astronomer.io/guides/',
+              href: 'https:/docs.astronomer.io/learn/',
             },
             {
               label: 'Docs on GitHub',
@@ -274,45 +268,24 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'tutorials',
-        routeBasePath: 'tutorials',
+        id: 'learn',
+        routeBasePath: 'learn',
         editUrl: ({ docPath }) =>
-          `https://github.com/astronomer/docs/blob/main/tutorials/${docPath}`,
+          `https://github.com/astronomer/docs/blob/main/learn/${docPath}`,
         editCurrentVersion: true,
-        sidebarPath: require.resolve('./sidebarsTutorials.js'),
-        path: 'tutorials',
+        sidebarPath: require.resolve('./sidebarsLearn.js'),
+        path: 'learn',
       },
     ],
     [
       '@docusaurus/plugin-sitemap',
       {
-        id: 'tutorials',
+        id: 'learn',
         changefreq: 'daily',
         ignorePatterns: ['/software/0.29/**', '/software/0.28/**', '/software/0.27/**', '/software/0.26/**', '/software/0.25/**', '/software/0.23/**', '/software/0.16/**'],
         filename: 'sitemap.xml',
       },
     ],
-    [
-    '@docusaurus/plugin-content-docs',
-    {
-      id: 'concepts',
-      routeBasePath: 'concepts',
-      editUrl: ({ docPath }) =>
-        `https://github.com/astronomer/docs/blob/main/concepts/${docPath}`,
-      editCurrentVersion: true,
-      sidebarPath: require.resolve('./sidebarsConcepts.js'),
-      path: 'concepts',
-    },
-  ],
-  [
-    '@docusaurus/plugin-sitemap',
-    {
-      id: 'concepts',
-      changefreq: 'daily',
-      ignorePatterns: ['/software/0.29/**', '/software/0.28/**', '/software/0.27/**', '/software/0.26/**', '/software/0.25/**', '/software/0.23/**', '/software/0.16/**'],
-      filename: 'sitemap.xml',
-    },
-  ],
 ],
   scripts: [
     {
