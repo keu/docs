@@ -121,7 +121,7 @@ module.exports = {
           link: {
             type:'generated-index',
             title: 'Connect Astro to external data sources',
-            description: 'Connect Astro to external data sources.'
+            description: 'Connect Astro to external data sources. A connection to AWS, Azure, or GCP allows Astro to access data stored on your AWS, Azure, or GCP instances and is a necessary step to running pipelines in a production environment.'
           },
           items: [
             'connect-aws',
