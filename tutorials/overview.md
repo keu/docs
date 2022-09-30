@@ -24,5 +24,5 @@ Learn how to write data pipelines and become an expert on data orchestration. Th
 Don't know where to start? For beginners, the next resources we recommend are:
 
 - [Managing connections in Airflow](https://www.astronomer.io/guides/connections/): Learn how to connect Airflow to third party products and services.
-- [Develop a project](develop-project.md): Learn about all of the ways you can configure your Astro project and local Airflow environment.
+- [Develop a project](https://docs.astronomer.io/astro/develop-project): Learn about all of the ways you can configure your Astro project and local Airflow environment.
 - [DAG Writing Best Practices](https://www.astronomer.io/guides/dag-best-practices?search=best): Learn how to write efficient, secure, and scalable DAGs.

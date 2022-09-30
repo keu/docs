@@ -26,6 +26,15 @@ For more information about managing Google Cloud projects, see [GCP documentatio
 - A minimum [CPU](https://cloud.google.com/compute/quotas#cpu_quota) quota of 36. To adjust your project's quota limits up or down, see [Managing your quota using the Cloud console](https://cloud.google.com/docs/quota#managing_your_quota_console).
 - A minimum [N2_CPU](https://cloud.google.com/compute/quotas#cpu_quota) quota of 24. To adjust your project's quota limits up or down, see [Managing your quota using the Cloud console](https://cloud.google.com/docs/quota#managing_your_quota_console).
 - A subscription to the [Astro Status Page](https://status.astronomer.io). This ensures that you're alerted when an incident occurs or scheduled maintenance is required.
+- The following domains added to your organization's allowlist:
+    - `https://cloud.astronomer.io/`
+    - `https://astro-<your-org>.datakin.com/`
+    - `https://<your-org>.astronomer.run/`
+    - `https://api.astronomer.io/`
+    - `https://images.astronomer.cloud/`
+    - `https://auth.astronomer.io/`
+    - `https://updates.astronomer.io/`
+    - `https://install.astronomer.io/`
 
 For more information about the resources required to run Astro on GCP, see [GCP Resource Reference](resource-reference-gcp.md).
 
@@ -45,7 +54,7 @@ Astro uses 4 different CIDR blocks for creating the infrastructure for your Astr
 
 ## Step 1: Access Astro
 
-To get started with Astro, create an account at https://cloud.astronomer.io/.
+Go to https://cloud.astronomer.io/ and create an account.
 
 When you first authenticate to Astro, you can sign in with a Google account, a GitHub account, or an email and password.
 
@@ -62,8 +71,6 @@ After completing your initial installation, we recommend [setting up an identity
 ## Step 2: Activate the data plane
 
 The data plane is a collection of infrastructure components for Astro that run in your cloud and are fully managed by Astronomer. This includes a central database, storage for Airflow tasks logs, and the resources required for task execution.
-
-To activate the data plane on your GCP project:
 
 1. Run the following commands in your Google Cloud Shell:
 
@@ -134,8 +141,6 @@ When Astronomer confirms that your Astro cluster has been created, you are ready
 ![Cloud UI New Deployment screen](/img/docs/create-new-deployment-select-cluster.png)
 
 ## Next steps
-
-Now that you have an Astro cluster up and running, take a look at the docs below for information on how to start working in Astro:
 
 - [Set up an identity provider](configure-idp.md)
 - [Install the Astro CLI](cli/overview.md)

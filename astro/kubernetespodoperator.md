@@ -105,8 +105,6 @@ By default, the KubernetesPodOperator expects to pull a Docker image that's host
 
 ### Prerequisites
 
-To complete this setup, you need:
-
 - An [Astro project](create-project.md).
 - An [Astro Deployment](configure-deployment-resources.md).
 - Access to a private Docker registry.
