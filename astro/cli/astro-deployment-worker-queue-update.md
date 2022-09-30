@@ -26,6 +26,7 @@ astro deployment worker-queue update
 | `-n`,`--name`    | The name of the worker queue     |Any string |
 | `-t`,`--worker-type`          | The worker type of the worker queue          | Any worker type enabled on the Deployment |
 
+## Examples
 
 ```sh
 astro deployment worker-queue update --deployment-id cl03oiq7d80402nwn7fsl3dmv --name="Updated name"
