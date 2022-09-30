@@ -128,7 +128,7 @@ If you have System Admin permissions and are using Astronomer Software version 0
 
 ### End of maintenance date
 
-Maintenance is discontinued the last day of the month for a given version. For example, if the maintenance window for a version of Astronomer Certified is January - June of a given year, that version will be maintained by Astronomer until the last day of June.
+Maintenance is discontinued on the last day of the month for a given version. For example, if the maintenance window for a version of Astronomer Certified is January - June of a given year, that version is maintained by Astronomer until the last day of June.
 
 ## Astronomer Certified lifecycle schedule
 
