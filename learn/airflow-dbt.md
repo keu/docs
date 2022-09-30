@@ -1,7 +1,7 @@
 ---
-title: "Integrating Airflow and dbt"
-sidebar_label: "Integrating Airflow and dbt"
-description: "Run dbt models in your Airflow DAGs."
+title: "Orchestrate dbt with Airflow"
+sidebar_label: "dbt"
+description: "Orchestrate dbt models with your Airflow DAGs."
 id: airflow-dbt
 keywords: [DAGs, Integrations]
 ---

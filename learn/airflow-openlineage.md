@@ -1,7 +1,7 @@
 ---
-title: "OpenLineage and Airflow"
+title: "Integrate OpenLineage and Airflow"
 sidebar_label: "OpenLineage"
-description: "Using OpenLineage and Marquez to get lineage data from your Airflow DAGs."
+description: "Use OpenLineage and Marquez to get lineage data from your Airflow DAGs."
 id: airflow-openlineage
 tags: [Lineage]
 ---
