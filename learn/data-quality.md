@@ -116,7 +116,7 @@ Currently only SQL Check operators and the `GreatExpectationsOperator` offer dat
 
 ### SQL Check operators
 
-> **Note**: You can find more details and examples on SQL Check operators as well as example logs in the [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality-tutorial.md) guide.
+> **Note**: You can find more details and examples on SQL Check operators as well as example logs in the [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality.md) guide.
 
 SQL Check operators execute a SQL statement that results in a set of booleans. A result of `True` leads to the check passing and the task being labeled as successful. A result of `False`, or any error when the statement is executed, leads to a failure of the task. Before using any of the operators, you need to define the [connection](connections.md) to your data storage from the Airflow UI or with an external secrets manager.
 
@@ -131,7 +131,7 @@ The `SQLColumnCheckOperator` and `SQLTableCheckOperator` are part of the [Common
 - [`SQLValueCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlvaluecheckoperator): Compares the result of a SQL query against a value with or without a tolerance window.
 - [`SQLThresholdCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlthresholdcheckoperator): Compares the result of a SQL query against upper and lower thresholds which may also be described as SQL queries.
 
-The logs from SQL Check operators can be found in the regular Airflow task logs. For more details and examples of SQL Check operators and logs, see [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality-tutorial.md).
+The logs from SQL Check operators can be found in the regular Airflow task logs. For more details and examples of SQL Check operators and logs, see [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality.md).
 
 ### Great Expectations
 
