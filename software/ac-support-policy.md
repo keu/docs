@@ -105,7 +105,6 @@ To fix bugs, Astronomer provides patch releases as new images and recommends tha
 
 For each `major.minor` pair, only the latest patch and hot-fix combination is supported at any given time. If you report an issue with an Astronomer Certified patch or hot-fix version that is not latest, the Astronomer Support team will always ask that you upgrade as a first step to resolution. For example, if Astronomer Certified 2.2.3 is the latest patch in the 2.2.x series, the Support team would encourage any user who reports an issue with Astronomer Certified 2.2.2 to first upgrade to 2.2.3 before starting to troubleshoot the issue. 
 
-
 Within the maintenance window of each Astronomer Certified version, the following is true:
 
 - A Python wheel and set of Docker images corresponding to that version are available for download via [Quay.io](http://quay.io), PyPi and [Downloads](https://www.astronomer.io/downloads).
@@ -120,6 +119,12 @@ When the maintenance window for a version of AC ends, the following is true:
 - In the latest version of the Astro CLI,  a warning appears when a user pushes a Docker image to Astronomer that corresponds to that version.
 
 To ensure reliability, service is not interrupted when Astronomer Deployments are running unsupported versions of AC. You can use the Astro CLI to access unsupported AC versions for local development and testing.
+
+:::info
+
+If you have System Admin permissions and are using Astronomer Software version 0.27 or later, you can create Deployments with deprecated AC versions.
+
+:::
 
 ### End of Maintenance Date
 
