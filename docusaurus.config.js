@@ -53,30 +53,25 @@ module.exports = {
           className: 'docs__title'
         },
         {
-          type: 'dropdown',
           to: '/astro/',
           label: 'Astro',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          items: [
-            {
-              label: 'Cloud',
-              to: '/astro/',
-              activeBaseRegex: 'astro(?!\/cli)',
-            },
-            {
-              label: 'Astro CLI',
-              to: 'astro/cli/overview',
-              activeBaseRegex: 'astro/cli+',
-            },
-          ],
+          activeBaseRegex: 'astro(?!\/cli)',
+        },
+        {
+          to: '/astro/cli/overview',
+          label: 'Astro CLI',
+          position: 'left',
+          activeClassName: 'navbar__link--active',
+          activeBaseRegex: 'astro/cli+',
         },
         {
           type: 'dropdown',
           label: 'Software',
           to: 'software/',
           activeBaseRegex: 'software',
-          position: 'right',
+          position: 'left',
           activeClassName: 'navbar__link--active',
           items: [
             {
