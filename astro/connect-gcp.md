@@ -58,9 +58,9 @@ Private Service Connect allows Astro to access GCP data that belongs to differen
 
 </Tabs>
 
-## Authentication options
+## Authorization options
 
-Authentication is the process of verifying a user's identity before allowing them access to organizational applications and resources. The authentication option that you choose is determined by the requirements of your organization and your existing infrastructure. Astronomer recommends that you review all of the available authentication options before selecting one for your organization.
+Authorization is the process of verifying a user or service's permissions before allowing them access to organizational applications and resources. Astro clusters must be authorized to access external resources from your cloud. Which authorization option that you choose is determined by the requirements of your organization and your existing infrastructure. Astronomer recommends that you review all of the available authorization options before selecting one for your organization.
 
 <Tabs
     defaultValue="Workload Identity"

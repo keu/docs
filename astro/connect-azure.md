@@ -67,9 +67,9 @@ You'll incur additional Azure infrastructure costs for every Azure private endpo
 
 </Tabs>
 
-## Authentication options
+## Authorization options
 
-Authentication is the process of verifying a user's identity before allowing them access to organizational applications and resources.
+Authorization is the process of verifying a user or service's permissions before allowing them access to organizational applications and resources. Astro clusters must be authorized to access external resources from your cloud.
 
 ### Azure account access keys
 
