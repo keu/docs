@@ -59,7 +59,7 @@ Astro clusters are pre-configured with the Azure blob private endpoint.
 
 To request additional endpoints, or assistance connecting to other Azure services, contact [Astronomer support](https://cloud.astronomer.io/support).
 
-When Astronomer support adds an Azure private endpoint, a corresponding private DNS zone and Canonical Name (CNAME) records are also created to allow you to address the service by its private link name.  In some circumstances, you might need to modify your DAGs to address the service by its private link name. For example, `StorageAccountA.privatelink.blob.core.windows.net` instead of `StorageAccountA.blob.core.windows.net`.
+When Astronomer support adds an Azure private endpoint, a corresponding private DNS zone and Canonical Name (CNAME) records are also created to allow you to address the service by its private link name. In some circumstances, you might need to modify your DAGs to address the service by its private link name. For example, `StorageAccountA.privatelink.blob.core.windows.net` instead of `StorageAccountA.blob.core.windows.net`.
 
 You'll incur additional Azure infrastructure costs for every Azure private endpoint that you use. See [Azure Private Link pricing](https://azure.microsoft.com/en-us/pricing/details/private-link/).
 

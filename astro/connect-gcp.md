@@ -37,7 +37,7 @@ When you use publicly accessible endpoints to connect Astro and GCP, traffic mov
 
 <TabItem value="VPC peering">
 
-Every Astro cluster runs in a dedicated Virtual Private Network (VPC). To set up a private connection between an Astro VPC and a GCP VPC, you can create a VPC peering connection. VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
+Every Astro cluster runs in a dedicated Virtual Private Cloud (VPC). To set up a private connection between an Astro VPC and a GCP VPC, you can create a VPC peering connection. VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
 
 To create a VPC peering connection between an Astro VPC and a GCP VPC, contact [Astronomer support](https://cloud.astronomer.io/support) and provide the following information:
 
@@ -90,23 +90,14 @@ To grant a Deployment on Astro access to external data services on GCP, such as 
     ```text
     astro-nuclear-science-2730@astronomer-prod.iam.gserviceaccount.com
     ```
-    :::info
+  :::info
 
-    GCP has a 30-character limit for service account names. For Deployment namespaces which are longer than 24 characters, use only the first 24 characters when determining your service account name.
+  GCP has a 30-character limit for service account names. For Deployment namespaces which are longer than 24 characters, use only the first 24 characters when determining your service account name.
 
-    For example, if your Google Cloud project is named `astronomer-prod` and your Deployment namespace is `nuclear-scintillation-2730`, the service account name is:
+  For example, if your Google Cloud project is named `astronomer-prod` and your Deployment namespace is `nuclear-scintillation-2730`, the service account name is:
 
-    ```text
-    astro-nuclear-scintillation-27@astronomer-prod.iam.gserviceaccount.com
-    ```
-
-    To determine if your Deployment namespace meets or exceeds the character limitations, run the following command:
-
-    ```
-    echo astro-$(echo <deployment-namespace> | cut -c -24)
-    ```
-
-    :::
+  ```text
+  astro-nuclear-scintillation-27@astronomer-prod.iam.gserviceaccount.com
 
 3. Grant the Google service account for your Astro Deployment an IAM role that has access to your external data service. With the Google Cloud CLI, run:
 
