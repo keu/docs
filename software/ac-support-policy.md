@@ -34,7 +34,7 @@ All releases of AC are considered stable. The LTS release channel is a subset of
 
 For users that want to keep up with the latest Astronomer and Airflow features on an incremental basis, we recommend upgrading to new versions of AC as soon as they are made generally available. This should be regardless of release channel. New versions of AC are issued regularly and depend on the Apache Airflow community release schedule.
 
-For customers looking for less frequent upgrades and functional changes, we recommend following the LTS release channel exclusively.
+If your organization prefers less frequent upgrades and functional changes, Astronomer recommends following the LTS release channel exclusively.
 
 ## Versioning scheme
 
@@ -82,15 +82,15 @@ Earlier versions of Astronomer Certified might use different formatting in their
 
 For the smoothest, out-of-the-box Airflow experience, we strongly recommend and default to `buster-onbuild` images in your project's `Dockerfile`. These images incorporate Docker ONBUILD commands to copy and scaffold your Astro project directory so you can more easily pass those files to the containers running each core Airflow component.
 
-For complex use cases that require customizing AC base image, read [Customize your Airflow image on Astronomer](customize-image.md).
+For complex use cases that require customizing AC base image, see [Customize your Airflow image on Astronomer](customize-image.md).
 
 ## Backport policy for bug and security fixes
 
-If a major stability bug in Astronomer Certified is identified by Astronomer, a fix will be backported to all LTS versions and only the latest stable version. For users on a stable version that is not latest, our team will recommend that you upgrade. Major issues in this category may result in significant delays in task scheduling as well as potential data loss.
+If a major stability bug in Astronomer Certified is identified by Astronomer, a fix is backported to all LTS versions and only the latest stable version. For users on a stable version that is not latest, Astronomer support will recommend that you upgrade. Major issues in this category may result in significant delays in task scheduling as well as potential data loss.
 
 If a major security issue is identified, a fix will be backported and made available as a new AC hotfix version for _all_ available stable and LTS releases. Major issues in this category are classified by a combination of impact and exploitability.
 
-In rare instances, the Astronomer team may make an exception and backport a bug or security fix to a release that is beyond the commitment stated above. To submit a request for consideration, please reach out to your customer success manager.
+In rare instances, Astronomer support might make an exception and backport a bug or security fix to a release that is beyond the stated commitment. To submit a request for consideration, contact your customer success manager.
 
 ## Astronomer Certified maintenance policy
 
@@ -134,7 +134,7 @@ Maintenance is discontinued the last day of the month for a given version. For e
 
 <!--- Version-specific -->
 
-The following tables contain the exact lifecycle for each published version of Astronomer Certified. These timelines are based on the LTS and Stable release channel maintenance policies.
+The following tables list the lifecycles for each published version of Astronomer Certified. These timelines are based on the LTS and Stable release channel maintenance policies.
 
 ### Stable releases
 
@@ -154,4 +154,4 @@ The following tables contain the exact lifecycle for each published version of A
 | [2.3](https://github.com/astronomer/ap-airflow/blob/master/2.3.0/CHANGELOG.md)       | April 30, 2022 | October 2023            |
 
 
-If you have any questions or concerns, reach out to [Astronomer support](https://support.astronomer.io).
+If you have any questions or concerns, contact [Astronomer support](https://support.astronomer.io).
