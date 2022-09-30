@@ -18,7 +18,7 @@ All code used in this tutorial is located in the [Astronomer Registry](https://g
 To get the most out of this tutorial, you should have an understanding of:
 
 - How to design a data quality process. See [Data quality and Airflow](data-quality.md).
-- Running SQL from Airflow. See [Using Airflow to execute SQL](airflow-sql-tutorial.md).
+- Running SQL from Airflow. See [Using Airflow to execute SQL](airflow-sql.md).
 
 ## SQL Check operators
 

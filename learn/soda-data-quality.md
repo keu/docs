@@ -21,7 +21,7 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 - How to design a data quality process. See [Data quality and Airflow](data-quality.md).
 - The basics of Soda Core. See [How Soda Core works](https://docs.soda.io/soda-core/how-core-works.html).
-- How to use the BashOperator. See [Using the BashOperator](scripts-bash-operator.md).
+- How to use the BashOperator. See [Using the BashOperator](bashoperator.md).
 - Relational Databases. See [IBM's "Relational Databases Explained"](https://www.ibm.com/cloud/learn/relational-databases).
 - Familiarity with writing YAML configurations. See [yaml.org](https://yaml.org/).
 

@@ -73,7 +73,7 @@ When authoring DAGs, you use operators. An operator is an abstraction over Pytho
 
 The following are the primary operator categories:
 
-- **Action operators**: Execute a function. For example, the [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator) or the [BashOperator](scripts-bash-operator.md).
+- **Action operators**: Execute a function. For example, the [PythonOperator](https://registry.astronomer.io/providers/apache-airflow/modules/pythonoperator) or the [BashOperator](bashoperator.md).
 - **Transfer operators**: Move data from a source to a destination. For example, the [S3ToRedshiftOperator](https://registry.astronomer.io/providers/amazon/modules/s3toredshiftoperator).
 - **[Sensors](what-is-a-sensor.md)**: Wait for something to happen. For example, the [ExternalTaskSensor](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor) or the [HttpSensorAsync](https://registry.astronomer.io/providers/astronomer-providers/modules/httpsensorasync).
 

@@ -11,7 +11,7 @@ In this tutorial you'll learn about the best practices for executing SQL from yo
 
 :::info
 
-All code used in this tutorial is located in the [Astronomer GitHub](https://github.com/astronomer/airflow-sql-tutorial).
+All code used in this tutorial is located in the [Astronomer GitHub](https://github.com/astronomer/airflow-sql).
 
 :::
 
