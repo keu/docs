@@ -19,12 +19,13 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Additional improvements 
 
-- You can now access tooltips for worker queues from more places across the Cloud UI.
-- Organization Owners can now [push code](deploy-code.md) to a Deployment even if they aren't explicit members of the Deployment's Workspace. 
+- All worker queue configurations in the **Worker Queues** tab of the Cloud UI now have tooltips.
+- The **Worker CPU** and **Worker Memory** metrics in the **Analytics** tab of the Cloud UI now show metrics only for the default worker queue instead of an average across queues. Improved worker queue metrics coming soon.
 
 ### Bug fixes 
 
 - Values in the Organization **Settings** page no longer overlap with other UI elements. 
+- Organization Owners can now [push code](deploy-code.md) to a Deployment even if they aren't explicit members of the Deployment's Workspace. 
 
 ## September 21, 2022
 
