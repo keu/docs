@@ -18,7 +18,9 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 ### Support for Apache Airflow 2.4.1
 
-Astro Runtime 6.0.2 includes Airflow 2.4.1, which includes only bug fixes. For a complete list of commits, see the [Apache Airflow 2.4.1 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-4-1-2022-09-30)).
+Astro Runtime 6.0.2 includes support for Airflow 2.4.1, which includes only bug fixes.
+
+For a complete list of commits, see the [Apache Airflow 2.4.1 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-4-1-2022-09-30).
 
 ### Backported bug fixes from Apache Airflow 2.4.2
 
