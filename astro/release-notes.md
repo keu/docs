@@ -11,7 +11,7 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
-**Latest Astro Runtime Version**: 6.0.0 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 6.0.1 ([Release notes](runtime-release-notes.md))
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
@@ -42,7 +42,6 @@ This new UI moves the **Analytics** and **Logs** from the left sidebar to the ma
 Astronomer has modified the default resource usage of Astro clusters to improve infrastructure cost for Astro customers. In addition to minor improvements to node autoscaling behavior:
 
 - New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
-- Astro clusters on Google Cloud Platform (GCP) now use `e2-standard-4` instance types for the Airflow and data plane system node pools instead of `n2-standard-4`.
 
 ### New Account Dashboard
 
