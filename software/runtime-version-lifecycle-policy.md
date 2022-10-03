@@ -85,6 +85,7 @@ The following table contains the exact lifecycle for each published version of A
 ### Long-term support (LTS) releases 
 
 | Runtime Version                                     | Apache Airflow version | Release Date       | End of Maintenance Date |
+| --------------------------------------------------- | ---------------------- | ------------------ | ----------------------- |
 | [4.2.x](runtime-release-notes.md#astro-runtime-420) | 2.2.4-2.2.5            | March 10, 2022     | September 2023          |
 | [6.0.x](runtime-release-notes.md#astro-runtime-600) | 2.4.0-2.4.1            | September 19, 2022 | March 2024              |
 
