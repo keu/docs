@@ -208,7 +208,6 @@ module.exports = {
       'cli/astro-context-delete',
       'cli/astro-context-list',
       'cli/astro-context-switch',
-      'cli/astro-completion',
       'cli/astro-deploy',
       'cli/astro-deployment-create',
       'cli/astro-deployment-delete',
