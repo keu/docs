@@ -117,12 +117,11 @@ If you haven't created a Deployment, see [Create a Deployment](create-deployment
 
 ### Edit worker queue settings
 
-1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
-2. Select a Deployment.
-3. Click **Worker Queues** 
-4. Click **Edit** for the worker queue you want to edit.
-5. Edit the worker queue's settings. See [Worker queue settings](#worker-queue-settings).
-6. Click **Update Queue**.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Worker Queues** tab.
+3. Click **Edit** for the worker queue you want to edit.
+4. Edit the worker queue's settings. See [Worker queue settings](#worker-queue-settings).
+5. Click **Update Queue**.
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
@@ -136,10 +135,9 @@ Astronomer recommends changing the worker type of an existing worker queue only 
 
 ### Edit scheduler settings 
 
-1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
-2. Select a Deployment.
-3. Click **Configuration**.
-4. Click **Edit Configuration**. 
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Configuration** tab.
+3. Click **Edit Configuration**. 
 4. Edit the scheduler resource settings. See [Scheduler resources](#scheduler-resources).
 5. Click **Update**.
 
@@ -149,7 +147,7 @@ Astronomer recommends changing the worker type of an existing worker queue only 
 
 When you delete a Deployment, all infrastructure resources assigned to the Deployment are immediately deleted from your data plane. However, the Kubernetes namespace and metadata database for the Deployment are retained for 30 days. Deleted Deployments can't be restored. If you accidentally delete a Deployment, contact [Astronomer support](https://cloud.astronomer.io/support).
 
-1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
+1. In the Cloud UI, select a Workspace.
 2. Click the **Options** menu of the Deployment you want to delete, and select **Delete Deployment**.
 
     ![Options menu](/img/docs/delete-deployment.png)

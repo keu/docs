@@ -27,7 +27,7 @@ If you prefer to work with the Astro CLI, you can create and update environment 
 
 1. In the Cloud UI, select a Workspace and then select a Deployment.
 
-2. Click **Variables**
+2. Click the **Variables** tab.
 
 3. Click **Edit Variables**.
 
@@ -43,7 +43,7 @@ After you set an environment variable key, only the environment variable value c
 
 1. In the Cloud UI, select a Workspace and then select a Deployment.
 
-2. Click **Variables**
+2. Click the **Variables** tab.
 
 3. Click **Edit Variables**.
 
