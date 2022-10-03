@@ -18,6 +18,9 @@
 # redirect renamed pages
 /runtime-versioning /astro/runtime-version-lifecycle-policy 301
 
+# deprecated docs
+/astro/known-limitations /astro 301
+
 # redirect base domain cloud links to astro path
 /add-user /astro/add-user 301
 /airflow-alerts /astro/airflow-alerts 301
