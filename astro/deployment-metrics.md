@@ -9,17 +9,9 @@ The Cloud UI exposes a suite of observability metrics that show real-time data r
 
 ## Deployment analytics
 
-Located in the Workspace view of the Cloud UI, the **Analytics** page contains a suite of metrics for your Deployments. This page includes metrics that give you insight into the performance of both your data pipelines and infrastructure. Because metrics are collected in real time, you can use this page to detect irregularities in your pipelines or infrastructure as they happen.
+The **Analytics** page contains a suite of metrics for a given Deployment. This page includes metrics that give you insight into the performance of both your data pipelines and infrastructure. Because metrics are collected in real time, you can use this page to detect irregularities in your pipelines or infrastructure as they happen.
 
-To view metrics for a given Deployment, click the **Analytics** button in the left-hand menu. From here, you can select a Deployment and a time range for your metrics:
-
-![Analytics menu location](/img/docs/access-analytics.png)
-
-You can also access analytics for a specific Deployment from the Deployment's page:
-
-![Analytics menu location](/img/docs/access-analytics-deployments.png)
-
-The following topics contain information about each available metric.
+To view metrics for a Deployment, open the Deployment in the Cloud UI and click **Analytics**. The following topics contain information about each available metric.
 
 ### DAG and task runs
 
@@ -104,11 +96,11 @@ Deployment health can have one of two statuses:
     - Your Deployment was recently created and the Airflow webserver and scheduler are still spinning up.
     - Your Deployment's webserver and/or scheduler are restarting or otherwise not in a healthy, running state.
 
-If your Deployment is unhealthy, we recommend checking the status of your tasks and waiting for a few minutes. If your Deployment is unhealthy for more than 5 minutes, we recommend [reviewing scheduler logs](scheduler-logs.md) in the Cloud UI or reaching out to [Astronomer support](https://support.astronomer.io).
+If your Deployment is unhealthy, check the status of your tasks and wait for a few minutes. If your Deployment is unhealthy for more than five minutes, [review the scheduler logs](view-logs.md#view-airflow-scheduler-logs) in the Cloud UI or contact [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Deployment overview
 
-Each Deployment includes four high-level performance charts which you can view from both the **Deployments** menu and individual Deployment pages. They include:
+Each Deployment includes four high-level performance charts which you can view from both the **Deployments** menu and a Deployment's **Analytics** page. They include:
 
 - DAG runs
 - Task Instances
@@ -196,6 +188,14 @@ Astro does not export any [service checks](https://docs.datadoghq.com/integratio
 4. Click **Save variable**.
 
 After you complete this setup, Astro automatically launches a sidecar container in your Deployment that runs [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/?tab=hostagent). This container works with your Deployment's existing infrastructure to export Airflow metrics to the Datadog instance associated with your API key.
+
+#### View metrics in Datadog
+
+1. In the Datadog UI, go to **Metrics** > **Summary**.
+2. Search for metrics starting with `airflow` and open any Airflow metric.
+3. In the **Tags** table, check the values for the `namespace` tag key. The namespaces of the Deployments you configured to export logs should appear as tag values.
+
+To check the health of a Deployment's DogStatsD container, open the `datadog.dogstatsd.running` metric in the Datadog UI. If the Deployment's namespace appears under the metric's `host` tag key, its DogStatsD container is healthy and exporting metrics to Datadog.
 
 ## Astro usage
 

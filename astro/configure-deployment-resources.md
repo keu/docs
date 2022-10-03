@@ -40,7 +40,7 @@ Worker queues support the following settings:
 
 Your organization can enable up to 10 different worker types per cluster. Once a worker type is enabled for an Astro cluster, the worker type becomes available to any Deployment in that cluster and appears in the **Worker Type** menu of the Cloud UI.
 
-To request a new worker type for your cluster, reach out to [Astronomer support](https://support.astronomer.io) or see [Modify a cluster](modify-cluster.md). For a list of supported worker types, see the [AWS](resource-reference-aws.md#node-instance-type), [GCP](resource-reference-gcp.md#node-instance-type), and [Azure](resource-reference-azure.md#node-instance-type) resource references.
+To request a new worker type for your cluster, reach out to [Astronomer support](https://cloud.astronomer.io/support) or see [Modify a cluster](modify-cluster.md). For a list of supported worker types, see the [AWS](resource-reference-aws.md#node-instance-type), [GCP](resource-reference-gcp.md#node-instance-type), and [Azure](resource-reference-azure.md#node-instance-type) resource references.
 
 :::
 
@@ -106,7 +106,7 @@ These calculations are computed by KEDA every 10 seconds. For more information o
 
 ## Scheduler resources
 
-The [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html) is responsible for monitoring task execution and triggering downstream tasks once dependencies have been met. By adjusting the **Scheduler Count** slider in the Cloud UI, you can configure up to 4 schedulers, each of which will be provisioned with the AU specified in **Scheduler Resources**.
+The [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html) is responsible for monitoring task execution and triggering downstream tasks when the dependencies are met. By adjusting the **Scheduler Count** slider in the **Configuration** tab of the Cloud UI, you can configure up to 4 schedulers, each of which will be provisioned with the AU specified in **Resources**.
 
 For example, if you set scheduler resources to 10 AU and **Scheduler Count** to 2, your Deployment will run with 2 Airflow schedulers using 10 AU each.
 
@@ -116,18 +116,14 @@ If you experience delays in task execution, which you can track via the Gantt Ch
 
 If you haven't created a Deployment, see [Create a Deployment](create-deployment.md).
 
+### Edit worker queue settings
+
 1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
 2. Select a Deployment.
-3. Based on the resource setting you want to change, click one of the following buttons:
-
-    ![Location of all Deployment resource setting buttons](/img/docs/deployment-settings.png)
-
-    - To create a new worker queue, click **Add Worker Queue**.
-    - To change an existing worker queue, click the **Edit** button next to that worker queue's entry in the table in the **Worker Queues** section.
-    - To change scheduler resources, click the **Edit** button in the **Scheduler Settings** section.
-
-4. Edit the Deployment resource settings. For more information about these settings, review the content in this topic.
-5. Click **Update Deployment**.
+3. Click **Worker Queues** 
+4. Click **Edit** for the worker queue you want to edit.
+5. Edit the worker queue's settings. See [Worker queue settings](#worker-queue-settings).
+6. Click **Update Queue**.
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
@@ -139,9 +135,20 @@ Astronomer recommends changing the worker type of an existing worker queue only 
 
 :::
 
+### Edit scheduler settings 
+
+1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
+2. Select a Deployment.
+3. Click **Configuration**.
+4. Click **Edit Configuration**. 
+4. Edit the scheduler resource settings. See [Scheduler resources](#scheduler-resources).
+5. Click **Update**.
+
+    The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
+
 ## Delete a Deployment
 
-When you delete a Deployment, all infrastructure resources assigned to the Deployment are immediately deleted from your data plane. However, the Kubernetes namespace and metadata database for the Deployment are retained for 30 days. Deleted Deployments can't be restored. If you accidentally delete a Deployment, contact [Astronomer support](https://support.astronomer.io).
+When you delete a Deployment, all infrastructure resources assigned to the Deployment are immediately deleted from your data plane. However, the Kubernetes namespace and metadata database for the Deployment are retained for 30 days. Deleted Deployments can't be restored. If you accidentally delete a Deployment, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
 2. Click the **Options** menu of the Deployment you want to delete, and select **Delete Deployment**.

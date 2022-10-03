@@ -1,8 +1,8 @@
 ---
-sidebar_label: 'Get started'
-title: 'Get started with Apache Airflow '
-id: get-started
-description: Install Apache Airflow and deploy your first local project with the Astro CLI.
+title: 'Get started with Apache Airflow'
+sidebar_label: 'Get started with Airflow'
+id: get-started-with-airflow
+description: 'Use tutorials and guides to make the most out of Airflow and Astronomer.'
 ---
 
 Getting started with Apache Airflow locally is easy with the Astro CLI.
@@ -33,7 +33,7 @@ To complete this tutorial, you'll need to know:
 - A terminal that accepts bash commands. This is pre-installed on most operating systems.
 - [Python 3](https://www.python.org/downloads/).
 - [Docker Desktop](https://docs.docker.com/get-docker/) (v18.09 or higher).
-- The [Astro CLI](cli/configure-cli.md).
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/install-cli).
 - An integrated development environment (IDE) for Python development, such as [VSCode](https://code.visualstudio.com/).
 
 ## Step 1: Create an Astro project
@@ -246,7 +246,7 @@ To view your new DAG in the Airflow UI, enter `http://localhost:8080/` in your b
 
 When your new DAG appears in the Airflow UI, you can run it to test it.
 
-1. Start the new DAG and trigger a run like you did in [Step 4](#step-4-trigger-a-dag-run).
+1. Start the new DAG and trigger a run like you did in [Step 4](getting-started.md#step-4-trigger-a-dag-run).
 2. Click the name of your new DAG and open the **Graph** view. After your DAG runs, there should be a dark green border around the tasks in the graph showing that your run was successful.
 
 ## Step 8: View task logs
@@ -315,5 +315,5 @@ Astronomer offers a variety of resources like this tutorial to learn more about 
 Don't know where to start? For beginners, the next resources we recommend are:
 
 - [Managing connections in Airflow](https://www.astronomer.io/guides/connections/): Learn how to connect Airflow to third party products and services.
-- [Develop a project](develop-project.md): Learn about all of the ways you can configure your Astro project and local Airflow environment.
+- [Develop a project](https://docs.astronomer.io/astro/develop-project): Learn about all of the ways you can configure your Astro project and local Airflow environment.
 - [DAG Writing Best Practices](https://www.astronomer.io/guides/dag-best-practices?search=best): Learn how to write efficient, secure, and scalable DAGs.

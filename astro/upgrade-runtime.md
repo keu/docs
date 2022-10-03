@@ -24,7 +24,7 @@ To stay up to date on the latest versions of Astro Runtime, see [Astro Runtime r
 
 - An [Astro project](create-project.md).
 - An [Astro Deployment](create-deployment.md).
-- The [Astro CLI](cli/configure-cli.md#install-the-cli).
+- The [Astro CLI](cli/install-cli.md).
 
 :::info
 
@@ -45,7 +45,7 @@ If you're upgrading a local Airflow environment, you don't need an Astro Deploym
 
 ## Step 2: Test Astro Runtime locally
 
-We strongly recommend testing new versions of Astro Runtime locally before upgrading a Deployment on Astro.  To test your upgrade locally:
+Astronomer recommends testing new versions of Astro Runtime locally before upgrading a Deployment on Astro.
 
 1. Save the changes to your `Dockerfile`.
 2. Open your project directory in your terminal and run `astro dev restart`. This restarts the Docker containers for the Airflow webserver, scheduler, triggerer, and Postgres metadata database.
@@ -80,21 +80,29 @@ Once you upgrade to a Deployment on Astro to a new version of Astro Runtime, you
 
     You will also see an **Image tag** for your deploy. This tag is shown only for Deployments on Astro and is not generated for changes in a local environment.
 
-## Version-specific upgrade considerations
+## Version upgrade considerations
 
-This topic contains information about upgrading to specific versions of Astro Runtime. This includes notes on breaking changes, database migrations, and other considerations that might depend on your use case.
+This topic contains information about upgrading to specific versions of Astro Runtime. This includes breaking changes, database migrations, and other considerations.
 
 ### Runtime 5 (Airflow 2.3)
 
-Astro Runtime 5, based on Airflow 2.3, includes changes to the schema of the Airflow metadata database. When you first upgrade to Runtime 5, consider the following:
+### Incompatibility with dbt-core provider package
 
-- Upgrading to Runtime 5 can take 10 to 30 minutes or more depending on the number of task instances that have been recorded in the metadata database throughout the lifetime of your Deployment on Astro.
+The `dbt-core` provider package is currently incompatible with Runtime 5.0.0 and later. The root cause for this issue is not yet known. If `dbt-core` is listed in your Astro project `requirements.txt` file when you attempt to upgrade to Runtime 5.0.0 or later, the upgrade fails.
+
+To continue with the upgrade to Runtime 5.0.0 or later, remove `dbt-core` from your `requirements.txt` file. To continue running dbt Core jobs with Airflow, don't upgrade your current Runtime version or upgrade to Runtime version 4.2.x and wait until a fix is announced. 
+
+### Changes to the Airflow metadata database 
+
+Astro Runtime 5.0.0, based on Airflow 2.3, includes changes to the schema of the Airflow metadata database. When you first upgrade to Runtime 5.0.0, consider the following:
+
+- Upgrading to Runtime 5.0.0 can take 10 to 30 minutes or more depending on the number of task instances that have been recorded in the metadata database throughout the lifetime of your Deployment on Astro.
 - Once you upgrade successfully to Runtime 5, you might see errors in the Airflow UI that warn you of incompatible data in certain tables of the database. For example:
 
     ```txt
     Airflow found incompatible data in the `dangling_rendered_task_instance_fields` table in your metadata database, and moved...
     ```
 
-    These warnings have no impact on your tasks or DAGs and can be ignored. If you want to remove these warning messages from the Airflow UI, reach out to [Astronomer support](https://support.astronomer.io). If requested, Astronomer can drop incompatible tables from your metadata database.
+    These warnings have no impact on your tasks or DAGs and can be ignored. If you want to remove these warning messages from the Airflow UI, reach out to [Astronomer support](https://cloud.astronomer.io/support). If requested, Astronomer can drop incompatible tables from your metadata database.
 
 For more information on Airflow 2.3, see ["Apache Airflow 2.3.0 is here"](https://airflow.apache.org/blog/airflow-2.3.0/) or the [Airflow 2.3.0 changelog](https://airflow.apache.org/docs/apache-airflow/2.3.0/release_notes.html#airflow-2-3-0-2022-04-30).

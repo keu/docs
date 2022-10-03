@@ -15,7 +15,7 @@ Before you can run pipelines on Astro with real data, you first need to make you
 - AWS IAM roles
 - Workload Identity (_Google Cloud Platform (GCP) only_)
 
-If you need to connect to a type of data service that requires a connectivity method that is not documented here, reach out to [Astronomer support](https://support.astronomer.io).
+If you need to connect to a type of data service that requires a connectivity method that is not documented here, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Public endpoints
 
@@ -34,13 +34,13 @@ Some data services, including Snowflake and Databricks, require that you identif
 
 On Astro, each cluster has two unique external IP addresses that persist throughout the lifetime of the cluster. These IP addresses are assigned for network address translation, which means that they are responsible for all outbound traffic from your Astro cluster to the internet.
 
-To retrieve the IP addresses of an Astro cluster, contact [Astronomer support](https://support.astronomer.io) and request them. Then, allowlist these IP addresses in your data service provider. If you have more than one cluster, you will need to allowlist each cluster individually.
+To retrieve the IP addresses of an Astro cluster, contact [Astronomer support](https://cloud.astronomer.io/support) and request them. Then, allowlist these IP addresses in your data service provider. If you have more than one cluster, you will need to allowlist each cluster individually.
 
 ## VPC/VNet peering
 
 Each cluster on Astro runs in a dedicated Virtual Private Network (VPC/VNet). To set up private connectivity between an Astro VPC/VNet and another VPC/VNet, you can set up a VPC peering connection. VPC peering ensures private and secure connectivity, reduced network transit costs, and simplified network layouts.
 
-To create a VPC peering connection between an Astro VPC and a target VPC, reach out to [Astronomer support](https://support.astronomer.io) and provide the following information:
+To create a VPC peering connection between an Astro VPC and a target VPC, reach out to [Astronomer support](https://cloud.astronomer.io/support) and provide the following information:
 
 - Astro cluster ID and name
 - AWS Account ID or Google Cloud project ID or Azure TenantID and Subscription ID of the target VPC/VNet
@@ -60,7 +60,7 @@ If your target VPC resolves DNS hostnames using **DNS Hostnames** and **DNS Reso
 
 If your target VPC resolves DNS hostnames using [private hosted zones](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html), then you must associate your Route53 private hosted zone with the Astro VPC using instructions provided in [AWS Documentation](https://aws.amazon.com/premiumsupport/knowledge-center/route53-private-hosted-zone/).
 
-To retrieve the ID of any Astro VPC, contact [Astronomer support](https://support.astronomer.io). If you have more than one Astro cluster, request the VPC ID of each cluster.
+To retrieve the ID of any Astro VPC, contact [Astronomer support](https://cloud.astronomer.io/support). If you have more than one Astro cluster, request the VPC ID of each cluster.
 
 ## AWS Transit Gateway
 
@@ -70,11 +70,11 @@ AWS Transit Gateway is an alternative to VPC Peering on AWS. Instead of having t
 
 While it can be more costly, AWS Transit Gateway requires less configuration and is often recommended for organizations connecting a larger number of VPCs. For more information, see [AWS Transit Gateway](https://aws.amazon.com/transit-gateway/).
 
-AWS Transit Gateway doesn't provide built-in support for DNS resolution. If you need DNS integration, Astronomer recommends that you use the Route 53 Resolver service. For assistance integrating the Route 53 Resolver service with your Astronomer VPC, contact [Astronomer support](https://support.astronomer.io).
+AWS Transit Gateway doesn't provide built-in support for DNS resolution. If you need DNS integration, Astronomer recommends that you use the Route 53 Resolver service. For assistance integrating the Route 53 Resolver service with your Astronomer VPC, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 :::info
 
-If your transit gateway is in a different region than your Astro cluster, contact [Astronomer support](https://support.astronomer.io). Astronomer support can create a new transit gateway in your AWS account for Astro and set up a cross-region peering connection with your existing transit gateway.
+If your transit gateway is in a different region than your Astro cluster, contact [Astronomer support](https://cloud.astronomer.io/support). Astronomer support can create a new transit gateway in your AWS account for Astro and set up a cross-region peering connection with your existing transit gateway.
 
 If Astronomer creates a new transit gateway in your AWS account for Astro, keep in mind that your organization will incur additional AWS charges for the new transit gateway as well as the inter-region transfer costs.
 
@@ -90,10 +90,10 @@ If Astronomer creates a new transit gateway in your AWS account for Astro, keep 
 
 1. In the Cloud UI, click the **Clusters** tab and copy the **Account ID** for your Astro cluster. This is an AWS account ID.
 2. Create a resource share in AWS RAM with the account ID from step 1. See [Creating a resource share in AWS RAM](https://docs.aws.amazon.com/ram/latest/userguide/working-with-sharing-create.html).
-3. Contact [Astronomer support](https://support.astronomer.io) and provide the CIDR block of the target VPC or on-premises network that you want to connect your Astro cluster with. From here, Astronomer approves the resource sharing request and creates a transit gateway peering attachment request to your network.
+3. Contact [Astronomer support](https://cloud.astronomer.io/support) and provide the CIDR block of the target VPC or on-premises network that you want to connect your Astro cluster with. From here, Astronomer approves the resource sharing request and creates a transit gateway peering attachment request to your network.
 4. Accept the transit gateway peering attachment request from your network. See [Accept or reject a peering attachment request](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-peering.html#tgw-peering-accept-reject).
 5. Create a static route from your CIDR block to the transit gateway. See [Add a route to the transit gateway route table](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-peering.html#tgw-peering-add-route).
-6. Contact [Astronomer support](https://support.astronomer.io) to confirm that you have created the static route. Astronomer support will update the Astro VPC routing table to send traffic from your CIDR block through the transit gateway.
+6. Contact [Astronomer support](https://cloud.astronomer.io/support) to confirm that you have created the static route. Astronomer support will update the Astro VPC routing table to send traffic from your CIDR block through the transit gateway.
 7. Optional. Repeat the steps for each Astro cluster that you want to connect to your transit gateway.
 
 ## AWS PrivateLink
@@ -108,7 +108,7 @@ Astro clusters are pre-configured with the following AWS PrivateLink endpoint se
 - Elastic Load Balancing (ELB)  - Interface Endpoint
 - AWS Security Token Service (AWS STS) - Interface Endpoint
 
-To request additional endpoints, or assistance connecting to other AWS services, contact [Astronomer support](https://support.astronomer.io).
+To request additional endpoints, or assistance connecting to other AWS services, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 By default, Astronomer support activates the **Enable DNS Name** option on supported AWS PrivateLink endpoint services.  With this option enabled, you can make requests to the default public DNS service name instead of the public DNS name that is automatically generated by the VPC endpoint service. For example, `*.notebook.us-east-1.sagemaker.aws` instead of `vpce-xxx.notebook.us-east-1.vpce.sagemaker.aws`.
 

@@ -2,8 +2,8 @@
 sidebar_label: "AWS"
 title: "Astro Clusters on AWS"
 id: resource-reference-aws
-description: Reference of all supported configurations for new Astro clusters on Amazon Web Services (AWS).
-sidebar_custom_props: { icon: 'img/aws.png' }
+description: Reference of all supported configurations for new clusters on Astro in AWS.
+sidebar_custom_props: { icon: "img/aws.png" }
 ---
 
 Unless otherwise specified, new clusters on Astro are created with a set of default AWS resources that should be suitable for most use cases.
@@ -61,13 +61,13 @@ Astro supports the following AWS regions:
 - `us-west-1` - US West (N. California)
 - `us-west-2` - US West (Oregon)
 
-Modifying the region of an existing cluster on Astro is not supported. If you're interested in an AWS region that is not on this list, reach out to [Astronomer support](https://support.astronomer.io).
+Modifying the region of an existing cluster on Astro is not supported. If you're interested in an AWS region that is not on this list, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 ### RDS instance type
 
 Every Astro cluster on AWS is created with and requires an [RDS instance](https://aws.amazon.com/rds/). RDS serves as a primary relational database for the data plane and powers the metadata database of each Astro Deployment within a single cluster. During the cluster creation process, you'll be asked to specify an RDS instance type according to your use case and expected workload, but it can be modified at any time.
 
-Astro supports a variety of AWS RDS instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, reach out to [Astronomer support](https://support.astronomer.io).
+Astro supports a variety of AWS RDS instance types. Instance types comprise of varying combinations of CPU, memory, storage, and networking capacity. For detailed information on each instance type, reference [AWS documentation](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 #### db.r5
 
@@ -95,7 +95,7 @@ Astro supports a variety of AWS RDS instance types. Instance types comprise of v
 
 A node pool is a group of nodes within a cluster that all have the same configuration. On Astro, worker nodes are responsible for running the Pods that execute Airflow tasks. Each worker node pool can be configured with a node instance type and a maximum node count. All Astro clusters have one worker node pool by default, but you can configure additional node pools for advanced configurability.
 
-If your cluster has multiple worker node pools with different worker node instance types, users in your organization can configure tasks to run on those worker types using [worker queues](configure-deployment-resources.md#worker-queues). To enable a new worker type for your cluster, contact [Astronomer support](https://support.astronomer.io) with a request to create a new node pool or modify an existing node pool.
+If your cluster has multiple worker node pools with different worker node instance types, users in your organization can configure tasks to run on those worker types using [worker queues](configure-deployment-resources.md#worker-queues). To enable a new worker type for your cluster, contact [Astronomer support](https://cloud.astronomer.io/support) with a request to create a new node pool or modify an existing node pool.
 
 Astronomer monitors your usage and the number of nodes deployed in your cluster. As your usage of Airflow increases, Astronomer support might contact you and provide recommendations for updating your node pools to optimize your infrastructure spend or increase the efficiency of your tasks.
 
@@ -107,51 +107,58 @@ Each worker in a worker node pool runs a single worker Pod. A worker Pod's actua
 
 The following table lists all available instance types for worker node pools, as well as the Pod size that is supported for each instance type. As the system requirements of Astro change, these values can increase or decrease.
 
-| Worker Node Type | CPU       | Memory       |
-|--------------------|-----------|--------------|
-| m5.xlarge          | 3 CPUs    | 13 GiB MEM   |
-| m5.2xlarge         | 7 CPUs    | 29 GiB MEM   |
-| m5.4xlarge         | 15 CPUs   | 61 GiB MEM   |
-| m5.8xlarge         | 31 CPUs   | 125 GiB MEM  |
-| m5.12xlarge        | 47 CPUs   | 189 GiB MEM  |
-| m5.16xlarge        | 63 CPUs   | 253 GiB MEM  |
-| m5.24xlarge        | 95 CPUs   | 381 Gib MEM  |
-| m5.metal           | 95 CPUs   | 381 Gib MEM  |
-| m5d.xlarge         | 3 CPUs    | 13 GiB MEM   |
-| m5d.2xlarge        | 7 CPUs    | 29 GiB MEM   |
-| m5d.4xlarge        | 15 CPUs   | 61 GiB MEM   |
-| m5d.8xlarge        | 31 CPUs   | 125 GiB MEM  |
-| m5d.12xlarge       | 47 CPUs   | 189 GiB MEM  |
-| m5d.16xlarge       | 63 CPUs   | 253 GiB MEM  |
-| m5d.24xlarge       | 95 CPUs   | 381 Gib MEM  |
-| m5d.metal          | 95 CPUs   | 381 Gib MEM  |
-| m6i.xlarge         | 3 CPUs    | 13 GiB MEM   |
-| m61.2xlarge        | 7 CPUs    | 29 GiB MEM   |
-| m6i.4xlarge        | 15 CPUs   | 61 GiB MEM   |
-| m6i.8xlarge        | 31 CPUs   | 125 GiB MEM  |
-| m6i.12xlarge       | 47 CPUs   | 189 GiB MEM  |
-| m6i.16xlarge       | 63 CPUs   | 253 GiB MEM  |
-| m6i.24xlarge       | 95 CPUs   | 381 Gib MEM  |
-| m6i.metal          | 95 CPUs   | 381 Gib MEM  |
-| r6i.xlarge         | 3 CPUs    | 29 GiB MEM   |
-| r61.2xlarge        | 7 CPUs    | 61 GiB MEM   |
-| r6i.4xlarge        | 15 CPUs   | 125 GiB MEM  |
-| r6i.8xlarge        | 31 CPUs   | 253 GiB MEM  |
-| r6i.12xlarge       | 47 CPUs   | 381 GiB MEM  |
-| r6i.16xlarge       | 63 CPUs   | 509 GiB MEM  |
-| r6i.24xlarge       | 95 CPUs   | 765 Gib MEM  |
-| r6i.metal          | 95 CPUs   | 1021 Gib MEM |
-| c6i.xlarge         | 3 CPUs    | 5 GiB MEM    |
-| c61.2xlarge        | 7 CPUs    | 13 GiB MEM   |
-| c6i.4xlarge        | 15 CPUs   | 29 GiB MEM   |
-| c6i.8xlarge        | 31 CPUs   | 61 GiB MEM   |
-| c6i.12xlarge       | 47 CPUs   | 93 GiB MEM   |
-| c6i.16xlarge       | 63 CPUs   | 125 GiB MEM  |
-| c6i.24xlarge       | 95 CPUs   | 189 Gib MEM  |
-| c6i.metal          | 95 CPUs   | 189 Gib MEM  |
-| t3.xlarge          | 3 CPUs    | 13 GiB MEM   |
-| t3.2xlarge         | 7 CPUs    | 29 GiB MEM   |
-
+| Worker Node Type | CPU     | Memory       |
+| ---------------- | ------- | ------------ |
+| m5.xlarge        | 3 CPUs  | 13 GiB MEM   |
+| m5.2xlarge       | 7 CPUs  | 29 GiB MEM   |
+| m5.4xlarge       | 15 CPUs | 61 GiB MEM   |
+| m5.8xlarge       | 31 CPUs | 125 GiB MEM  |
+| m5.12xlarge      | 47 CPUs | 189 GiB MEM  |
+| m5.16xlarge      | 63 CPUs | 253 GiB MEM  |
+| m5.24xlarge      | 95 CPUs | 381 GiB MEM  |
+| m5.metal         | 95 CPUs | 381 GiB MEM  |
+| m5d.xlarge       | 3 CPUs  | 13 GiB MEM   |
+| m5d.2xlarge      | 7 CPUs  | 29 GiB MEM   |
+| m5d.4xlarge      | 15 CPUs | 61 GiB MEM   |
+| m5d.8xlarge      | 31 CPUs | 125 GiB MEM  |
+| m5d.12xlarge     | 47 CPUs | 189 GiB MEM  |
+| m5d.16xlarge     | 63 CPUs | 253 GiB MEM  |
+| m5d.24xlarge     | 95 CPUs | 381 GiB MEM  |
+| m5d.metal        | 95 CPUs | 381 GiB MEM  |
+| m6i.xlarge       | 3 CPUs  | 13 GiB MEM   |
+| m61.2xlarge      | 7 CPUs  | 29 GiB MEM   |
+| m6i.4xlarge      | 15 CPUs | 61 GiB MEM   |
+| m6i.8xlarge      | 31 CPUs | 125 GiB MEM  |
+| m6i.12xlarge     | 47 CPUs | 189 GiB MEM  |
+| m6i.16xlarge     | 63 CPUs | 253 GiB MEM  |
+| m6i.24xlarge     | 95 CPUs | 381 GiB MEM  |
+| m6i.metal        | 95 CPUs | 381 GiB MEM  |
+| m6id.xlarge      | 3 CPUs  | 13 GiB MEM   |
+| m61d.2xlarge     | 7 CPUs  | 29 GiB MEM   |
+| m6id.4xlarge     | 15 CPU  | 61 GiB MEM   |
+| m6id.8xlarge     | 31 CPU  | 125 GiB MEM  |
+| m6id.12xlarge    | 47 CPU  | 189 GiB MEM  |
+| m6id.16xlarge    | 63 CPU  | 253 GiB MEM  |
+| m6id.24xlarge    | 95 CPU  | 381 GiB MEM  |
+| m6id.metal       | 127 CPU | 509 GiB MEM  |
+| r6i.xlarge       | 3 CPUs  | 29 GiB MEM   |
+| r61.2xlarge      | 7 CPUs  | 61 GiB MEM   |
+| r6i.4xlarge      | 15 CPUs | 125 GiB MEM  |
+| r6i.8xlarge      | 31 CPUs | 253 GiB MEM  |
+| r6i.12xlarge     | 47 CPUs | 381 GiB MEM  |
+| r6i.16xlarge     | 63 CPUs | 509 GiB MEM  |
+| r6i.24xlarge     | 95 CPUs | 765 GiB MEM  |
+| r6i.metal        | 95 CPUs | 1021 GiB MEM |
+| c6i.xlarge       | 3 CPUs  | 5 GiB MEM    |
+| c61.2xlarge      | 7 CPUs  | 13 GiB MEM   |
+| c6i.4xlarge      | 15 CPUs | 29 GiB MEM   |
+| c6i.8xlarge      | 31 CPUs | 61 GiB MEM   |
+| c6i.12xlarge     | 47 CPUs | 93 GiB MEM   |
+| c6i.16xlarge     | 63 CPUs | 125 GiB MEM  |
+| c6i.24xlarge     | 95 CPUs | 189 GiB MEM  |
+| c6i.metal        | 95 CPUs | 189 GiB MEM  |
+| t3.xlarge        | 3 CPUs  | 13 GiB MEM   |
+| t3.2xlarge       | 7 CPUs  | 29 GiB MEM   |
 
 :::info
 
@@ -169,4 +176,4 @@ Each Astro cluster has a limit on how many nodes it can run at once. This maximu
 
 The default maximum node count for all nodes across your cluster is 20. A cluster's node count is most affected by the number of worker Pods that are executing Airflow tasks. See [Worker autoscaling logic](configure-deployment-resources.md#worker-autoscaling-logic).
 
-If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://support.astronomer.io).
+If the node count for your cluster reaches the maximum node count, new tasks might not run or get scheduled. Astronomer monitors maximum node count and is responsible for contacting your organization if it is reached. To check your cluster's current node count, contact [Astronomer Support](https://cloud.astronomer.io/support).

@@ -19,21 +19,19 @@ There are many benefits to deploying DAGs and other changes to Airflow via a CI/
 
 ## Prerequisites
 
-To set up CI/CD for a given Deployment, you need:
-
 - A [Deployment API key ID and secret](api-keys.md)
 - A CI/CD management tool, such as [GitHub Actions](https://docs.github.com/en/actions).
 - An [Astro project](create-project.md) that is hosted in a place that your CI/CD tool can access.
 
 ## CI/CD templates
 
-The following section provides basic templates for configuring individual CI pipelines using popular CI/CD tools. Each template can be implemented as-is to produce a simple CI/CD pipeline, but we recommend reconfiguring the templates to work with your own directory structures, workflows, and best practices. More templates are coming soon.
+The following section provides basic templates for configuring individual CI pipelines using popular CI/CD tools. Each template can be implemented as-is to produce a simple CI/CD pipeline, but Astronomer recommends reconfiguring the templates to work with your own directory structures, workflows, and best practices. More templates are coming soon.
 
 At a high level, these CI/CD pipelines will:
 
-1. Access Deployment API key credentials. These credentials must be set as OS-level environment variables called `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
-2. Install the latest version of the Astro CLI.
-3. Run `astro deploy`. This creates a Docker image for your Astro project, authenticates to Astro using your Deployment API key, and pushes the image to your Deployment.
+- Access Deployment API key credentials. These credentials must be set as OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
+- Install the latest version of the Astro CLI.
+- Run `astro deploy`. This creates a Docker image for your Astro project, authenticates to Astro using your Deployment API key, and pushes the image to your Deployment.
 
 This workflow is equivalent to the following bash script:
 
@@ -51,7 +49,7 @@ $ astro deploy
 
 :::info
 
-The following templates use [Astro CLI v1.0+](cli/release-notes.md) to deploy via CI/CD. These templates will not work if you use the `astrocloud` executable. To upgrade, see [Install the Astro CLI](cli/configure-cli.md).
+The following templates use [Astro CLI v1.0+](cli/release-notes.md) to deploy via CI/CD. These templates will not work if you use the `astrocloud` executable. To upgrade, see [Install the Astro CLI](cli/install-cli.md).
 
 :::
 

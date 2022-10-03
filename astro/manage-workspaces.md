@@ -35,17 +35,13 @@ To to enter your Workspace, click the Workspace in the **Overview** tab. When yo
 
 As a Workspace Admin, you can add or remove users from your Workspace at any time. Before adding a user, make sure that the user is an existing member of your Organization. If the user is not, [invite them to Astro](add-user.md#add-a-user-to-an-organization) before following the steps below.
 
-To add a user to a Workspace:
-
 1. In the Workspace view, go to the **Access** page.
 2. Click **Add member**.
 3. Specify the user's email and role within the Workspace. For more information about Workspace roles and permissions, see [User permissions](user-permissions.md).
 
-Once added, the user will see the Workspace listed on the **Overview** page of the Cloud UI. They will also appear as an active Workspace member in the **Access** tab. For more information about inviting users to Astronomer, see [Add a user](add-user.md).
+After adding the user, the user will see the Workspace listed on the **Overview** page of the Cloud UI. They will also appear as an active Workspace member in the **Access** tab. For more information about inviting users to Astronomer, see [Add a user](add-user.md).
 
 ### Update or Remove a Workspace User
-
-To update a Workspace user's access to the Workspace:
 
 1. In the Workspace view, go to the **Access** page.
 2. Click the **Edit** button next to the user's entry in the **Member** table:

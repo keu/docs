@@ -202,7 +202,7 @@ If you received a certificate from a private CA, follow these steps instead:
 An SMTP service is required for sending and accepting email invites from Astronomer. If you're running Astronomer Software with `publicSignups` disabled (which is the default), you'll need to configure SMTP as a way for your users to receive and accept invites to the platform via email. To integrate your SMTP service with Astronomer, fetch your SMTP service's URI and store it in a Kubernetes secret:
 
 ```sh
-kubectl create secret generic astronomer-smtp --from-literal=connection=smtp://USERNAME:PASSWORD@HOST/?requireTLS=true -n astronomer
+kubectl create secret generic astronomer-smtp --from-literal connection="smtp://USERNAME:PASSWORD@HOST/?requireTLS=true" -n astronomer
 ```
 
 In general, an SMTP URI will take the following form:
@@ -487,7 +487,7 @@ curl -v -k -X POST https://houston.BASEDOMAIN/v1 -H "Authorization: Bearer <toke
 Next, to make sure the registry is accepted by Astronomer's local docker client, try authenticating to Astronomer with the Astro CLI:
 
 ```sh
-astro auth login <your-astronomer-base-domain>
+astro login <your-astronomer-base-domain>
 ```
 
 If you can log in, then your Docker client trusts the registry. If Docker does not trust the Astronomer registry, run the following and restart Docker:

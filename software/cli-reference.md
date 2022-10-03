@@ -207,10 +207,13 @@ If you run `astro deploy` without specifying `your-deployment-release-name`, the
 
 | Flag             | Value Type | Usage                                                                               |
 | ---------------- | ---------- | ----------------------------------------------------------------------------------- |
+| `--deployment-name`        | String       | The Airflow Deployment on Astronomer where the Airflow project is pushed.                                |
+| `--env`        |String       | The location of the file containing pytest environment variables. The default value is `.env`.                                |
 | `--force`        | None       | Forces deploy even if there are uncommitted changes.                                |
+| `--help`        | None       | Displays the available options and descriptions for `astro deploy`.                                |
 | `--prompt`       | None       | Forces prompt for choosing a target Deployment.                                     |
-| `--pytest`       | None       | Deploy code to Astro only if the specified Pytests are passed.                      |
-| `--save`         | None       | Saves this directory/Deployment combination for future deploys.                     |
+| `--pytest`       | None       | Deploy code to Astro only if the specified pytests are passed.                      |
+| `--save`         | None       | Saves the directory and Deployment combination for future deploys.                     |
 | `--test`         | None       | A valid filepath within your Astro project to an alternative pytest file or directory. |
 | `--workspace-id` | String     | Lists available Deployments in your Workspace and prompts you to pick one.          |
 | `--no-cache`     | None       | Do not use any images from the container engine's cache when building your project. |
@@ -497,7 +500,7 @@ Updates various parts of an Airflow Deployment on Astronomer, including metadata
 
 Run `astro deployment update <your-deployment-id> [flags]` to update a Deployment. The Deployment ID can be found by running `astro deployment list`.
 
-> **Note:** Only the `--cloud-role` flag is specified with a `--`. Additional flags should be written without a leading `--`.
+> **Note:** Some flags such as `--cloud-role` are specified with a double-dash `--`. Additional flags should be written without a leading double-dash `--`.
 
 ### Flags
 
