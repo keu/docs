@@ -384,6 +384,24 @@ This command installs the most recent patch version of Astronomer Software. To i
 
 After you run the previous commands, a set of Kubernetes pods are generated in your namespace. These pods power the individual services required to run the Astronomer platform, including the Software UI and Houston API.
 
+:::info Alternative ArgoCD installation
+
+You can install Astronomer with ArgoCD as an alternative to using `helm install`. Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, this process requires some additional steps compared to the standard ArgoCD workflow:
+
+1. Add `enableArgoCDAnnotation: true` to your `config.yaml` file
+2. Create a new ArgoCD app. When creating the app, configure the following:
+
+    - **Path**: The filepath of your `config.yaml` file
+    - **Namespace**: `astronomer`
+    - **Cluster**: The Kubernetes cluster in which you're installing Astronomer 
+    - **Repository URL**: `https://github.com/astronomer/astronomer`
+
+3. Sync the application with every component of the Astronomer platform selected. Once you see `astronomer-houston-db-migrations`, terminate the sync.
+4. Sync the application a second time, but this time unselect `astronomer-alertmanager` while keeping all other components selected. Wait for this sync to finish completely.
+5. Sync the application a third time with every component of the Astronomer platform selected. 
+
+:::
+
 ## Step 10: Verify all pods are up
 
 To verify all pods are up and running, run:

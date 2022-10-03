@@ -116,6 +116,18 @@ If you do not specify a patch version above, the script will automatically pull 
 
 :::
 
+:::info Alternative ArgoCD upgrade
+
+You can upgrade Astronomer with ArgoCD as an alternative to using `helm upgrade`. Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, this process requires some additional steps compared to the standard ArgoCD workflow:
+
+1. Make sure `enableArgoCDAnnotation: true` is set in your `config.yaml` file.
+2. In your ArgoCD application, choose the version of Astronomer Software you want to upgrade to from `astronomer/astronomer`.
+3. Sync the application with every component of the Astronomer platform selected. Once you see `astronomer-houston-db-migrations`, terminate the sync.
+4. Sync the application a second time, but this time unselect `astronomer-alertmanager` while keeping all other components selected. Wait for this sync to finish completely.
+5. Sync the application a third time with every component of the Astronomer platform selected. 
+
+:::
+
 ## Step 8: Confirm that the installation was successful
 
 If the upgrade was successful, you should be able to:
