@@ -15,6 +15,18 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
+## September 28, 2022 
+
+### Additional improvements 
+
+- All worker queue configurations in the **Worker Queues** tab of the Cloud UI now have tooltips.
+- The **Worker CPU** and **Worker Memory** metrics in the **Analytics** tab of the Cloud UI now show metrics only for the default worker queue instead of an average across queues. Improved worker queue metrics coming soon.
+
+### Bug fixes 
+
+- Values in the Organization **Settings** page no longer overlap with other UI elements. 
+- Organization Owners can now [push code](deploy-code.md) to a Deployment even if they aren't explicit members of the Deployment's Workspace. 
+
 ## September 21, 2022
 
 ### A simpler Deployment page
@@ -431,7 +443,7 @@ For a reference of all node instance types Astro supports and their correspondin
 
 The Cloud UI now includes a dedicated **Analytics** page that contains various Deployment-level metrics. These metrics are collected in real time and can provide insight into how your data pipelines are performing over time:
 
-![Analytics menu location](/img/docs/access-analytics.png)
+![Analytics menu location](/img/release-notes/access-analytics.png)
 
 For more information about accessing the **Analytics** page and the available metrics, see [Deployment Analytics](deployment-metrics.md#deployment-analytics).
 
@@ -839,7 +851,7 @@ All user configurations can be found by clicking your user profile picture in th
 - The name of your Astro Deployment now appears on the main DAGs view of the Airflow UI.
 - You can now see the health status for each Deployment in your Workspace on the table view of the **Deployments** page in the Cloud UI:
 
-   ![Deployment Health statuses visible in the Deployments table view](/img/docs/health-status-table.png)
+   ![Deployment Health statuses visible in the Deployments table view](/img/release-notes/health-status-table.png)
 
 - In the Cloud UI, you can now access the Airflow UI for Deployments via the **Deployments** page's card view:
 

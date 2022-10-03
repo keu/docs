@@ -143,10 +143,15 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
-        'known-limitations',
-        'runtime-image-architecture',
-        'runtime-version-lifecycle-policy',
         'astro-support',
+        {
+          type: 'category',
+          label: 'Astro Runtime',
+          items: [
+          'runtime-image-architecture',
+          'runtime-version-lifecycle-policy',
+          ],
+        },
         {
           type: 'category',
           label: 'Cloud configuration reference',
@@ -221,7 +226,6 @@ module.exports = {
       'cli/astro-context-delete',
       'cli/astro-context-list',
       'cli/astro-context-switch',
-      'cli/astro-completion',
       'cli/astro-deploy',
       'cli/astro-deployment-create',
       'cli/astro-deployment-delete',
