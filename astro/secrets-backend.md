@@ -226,7 +226,7 @@ In this section, you'll learn how to use [AWS Systems Manager (SSM) Parameter St
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/overview.md).
 - An [Astro project](create-project.md) with version 5.1.0+ of `apache-airflow-providers-amazon`. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
-- An IAM role with access to the [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-access.html) that your Astro cluster can assume. See [AWS IAM roles](connect-external-services.md#aws-iam-roles).
+- An IAM role with access to the [Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-access.html) that your Astro cluster can assume. See [AWS IAM roles](connect-aws.md#AWS-IAM-roles).
 
 #### Step 1: Create Airflow secrets directories in Parameter Store
 
@@ -280,7 +280,7 @@ This topic provides setup steps for configuring [AWS Secrets Manager](https://aw
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/overview.md).
 - An [Astro project](create-project.md) with `apache-airflow-providers-amazon` version 5.1.0 or later. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
-- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [AWS IAM roles](connect-external-services.md#aws-iam-roles).
+- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [AWS IAM roles](connect-aws.md#AWS-IAM-roles).
 
 #### Step 1: Add Airflow secrets to Secrets Manager
 
