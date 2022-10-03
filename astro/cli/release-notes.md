@@ -39,6 +39,7 @@ To use these commands, you must be authenticated to your primary Organization th
 
 ### Additional improvements 
 
+- The Astro CLI for Windows is now distributed as an `.exe` file.
 - You can now define connections in the `conn_extra` field of `airflow_settings.yaml` as YAML blocks instead of stringified JSON objects. 
 - You can now use the `--settings-file` flag with `astro dev start` to load and update Airflow objects in your environment from the configuration file of your choosing. 
 

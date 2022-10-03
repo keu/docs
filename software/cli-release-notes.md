@@ -23,6 +23,7 @@ You can use the new `astro dev object` commands to better manage Airflow connect
 ### Additional improvements 
 
 - You can now define connections in the `conn_extra` field of `airflow_settings.yaml` as YAML blocks instead of stringified JSON objects. 
+- The Astro CLI for Windows is now distributed as an `.exe` file.
 
 ### Bug fixes 
 
