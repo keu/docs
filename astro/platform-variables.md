@@ -44,5 +44,11 @@ The following environment
 | `AIRFLOW__WEBSERVER__INSTANCE_NAME`        | Shows the name of your Deployment in the Home view of the Airflow UI                                                 | `<Deployment-Name>`                     |
 | `AIRFLOW__CELERY__WORKER_CONCURRENCY`      | Determines how many tasks each Celery worker can run at any given time and is the basis of worker auto-scaling logic | `<Max-Tasks-Per-Worker>`                |
 | `AIRFLOW__WEBSERVER__NAVBAR_COLOR`         | The color of the main navigation bar in the Airflow UI                                                               | `#4a4466`                               |
-| `AWS_SECRET_ACCESS_KEY`   (_AWS clusters only_)      | The key secret for accessing Astro's managed S3 bucket          |
-| `AWS_ACCESS_KEY_ID` (_AWS clusters only_)  | The key ID for accessing Astro's managed S3 bucket |
+| `AWS_SECRET_ACCESS_KEY`       | The key secret for accessing Astro's managed S3 bucket¹           |
+| `AWS_ACCESS_KEY_ID`  | The key ID for accessing Astro's managed S3 bucket¹ |
+
+:::info 
+
+¹ `AWS_SECRET_ACCESS_KEY` and `AWS_ACCESS_KEY_ID` are set only for AWS clusters. There are no restrictions for setting these environment variables on GCP and Azure clusters.
+
+:::
