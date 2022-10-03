@@ -17,7 +17,7 @@ By default, all tasks run in a default worker queue that does not require any ad
 
 See the following sections for more details on configuring worker queues.
 
-### Example worker queue setup
+## Example worker queue setup
 
 By configuring multiple worker queues and assigning tasks to these queues based on the requirements of the tasks, you can enhance the performance, reliability, and throughput of your Deployment. For example, consider the following scenario:
 
@@ -27,7 +27,7 @@ By configuring multiple worker queues and assigning tasks to these queues based 
 
 You can assign Task A to a worker queue that is configured to use the [`c6i.4xlarge`](https://aws.amazon.com/ec2/instance-types/c6i/) worker type that's optimized for compute. Then, you can assign Task B to a worker queue that is configured to use the [`m5.xlarge`](https://aws.amazon.com/ec2/instance-types/m5) worker type that is smaller and optimized for general usage.
 
-### Worker queue settings
+## Worker queue settings
 
 Worker queues support the following settings:
 
@@ -44,7 +44,7 @@ To request a new worker type for your cluster, reach out to [Astronomer support]
 
 :::
 
-#### Default worker queue
+### Default worker queue
 
 Each Deployment requires a worker queue named `default` to run tasks. Tasks that are not assigned to a worker queue in your DAG code are executed by workers in the default worker queue. You do not have to assign tasks to the default worker queue in your DAG code.
 
@@ -55,17 +55,23 @@ If you don’t change any settings in the default worker queue:
 
 You can change all settings of the default worker queue except for its name.
 
-#### Create a worker queue
+### Create a worker queue
+
+:::cli
+If you prefer, you can also run the `astro deployment worker-queue create` command in the Astro CLI to create a worker queue. See the [CLI Command Reference](cli/astro-deployment-worker-queue-create.md).
+:::
 
 Running multiple worker queues improves resource usage efficiency and enables dependent tasks with different computational requirements to coexist on the same Deployment.
 
-1. Log in to the Cloud UI.
-2. Select a Deployment.
-3. Click **Create Worker Queue**.
-4. Configure the worker queue’s settings. Note that you cannot change the name of a worker queue once you create it.
-5. Click **Update Queue**.
+1. In to the Cloud UI, select a Workspace and then select a Deployment.
 
-#### Assign tasks to a worker queue
+2. Click the **Worker Queues** tab and then click **Worker Queue**.
+
+3. Configure the worker queue’s settings. You can't change the name of a worker queue after you create it.
+
+4. Click **Create Queue**.
+
+### Assign tasks to a worker queue
 
 By default, all tasks run in the default worker queue. To run tasks on a different worker queue, assign the task to the worker queue in your DAG code.
 
@@ -86,6 +92,41 @@ feature_engineering = DatabricksSubmitRunOperator(
 If a task is assigned to a queue that does not exist or is not referenced properly, the task might get stuck in a `queued` state and fail to execute. Make sure that the name of the queue in your DAG code matches the exact name of the queue in the Cloud UI.
 
 :::
+
+### Update a worker queue
+
+:::cli
+If you prefer, you can also run the `astro deployment worker-queue update` command in the Astro CLI to update a worker queue. See the [CLI Command Reference](cli/astro-deployment-worker-queue-update.md).
+:::
+
+1. In to the Cloud UI, select a Workspace and then select a Deployment.
+
+2. Click the **Worker Queues** tab.
+
+3. Click **Edit** for the worker queue that you want to update.
+
+4. Update the worker queue settings, and then click **Update Queue**.
+
+
+### Delete a worker queue
+
+:::cli
+If you prefer, you can also run the `astro deployment worker-queue delete` command in the Astro CLI to delete a worker queue. See the [CLI Command Reference](cli/astro-deployment-worker-queue-delete.md).
+:::
+
+:::info
+
+All tasks assigned to a worker queue after it's deleted remain in the queue and won't execute. To modify the settings of a worker queue, update the worker queue instead of deleting it.
+
+:::
+
+1. In to the Cloud UI, select a Workspace and then select a Deployment.
+
+2. Click the **Worker Queues** tab.
+
+3. Click **Delete** for the worker queue that you want to delete.
+
+4. Enter `Delete <worker-queue-name>` and then click **Yes, Continue**.
 
 ### Worker autoscaling logic
 
