@@ -63,7 +63,7 @@ If you prefer, you can also run the `astro deployment worker-queue create` comma
 
 Running multiple worker queues improves resource usage efficiency and enables dependent tasks with different computational requirements to coexist on the same Deployment.
 
-1. In to the Cloud UI, select a Workspace and then select a Deployment.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
 
 2. Click the **Worker Queues** tab and then click **Worker Queue**.
 
@@ -99,7 +99,7 @@ If a task is assigned to a queue that does not exist or is not referenced proper
 If you prefer, you can also run the `astro deployment worker-queue update` command in the Astro CLI to update a worker queue. See the [CLI Command Reference](cli/astro-deployment-worker-queue-update.md).
 :::
 
-1. In to the Cloud UI, select a Workspace and then select a Deployment.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
 
 2. Click the **Worker Queues** tab.
 
@@ -120,7 +120,7 @@ All tasks assigned to a worker queue after it's deleted remain in the queue and 
 
 :::
 
-1. In to the Cloud UI, select a Workspace and then select a Deployment.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
 
 2. Click the **Worker Queues** tab.
 
