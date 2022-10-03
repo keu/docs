@@ -59,11 +59,10 @@ You can change all settings of the default worker queue except for its name.
 
 Running multiple worker queues improves resource usage efficiency and enables dependent tasks with different computational requirements to coexist on the same Deployment.
 
-1. Log in to the Cloud UI.
-2. Select a Deployment.
-3. Click **Create Worker Queue**.
-4. Configure the worker queue’s settings. Note that you cannot change the name of a worker queue once you create it.
-5. Click **Update Queue**.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Worker Queues** tab and then click **Worker Queue**.
+3. Configure the worker queue’s settings. You can't change the name of a worker queue after you create it.
+4. Click **Create Queue**.
 
 #### Assign tasks to a worker queue
 
@@ -110,7 +109,7 @@ The [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/co
 
 For example, if you set scheduler resources to 10 AU and **Scheduler Count** to 2, your Deployment will run with 2 Airflow schedulers using 10 AU each.
 
-If you experience delays in task execution, which you can track via the Gantt Chart view of the Airflow UI, we recommend increasing the AU allocated towards the scheduler. The default resource allocation is 10 AU.
+If you experience delays in task execution, which you can track with the Gantt Chart view of the Airflow UI, Astronomer recommends increasing the AU allocated towards the scheduler. The default resource allocation is 10 AU.
 
 ## Edit Deployment resource settings
 
