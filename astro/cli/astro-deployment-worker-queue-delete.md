@@ -5,7 +5,7 @@ id: astro-deployment-worker-queue-delete
 description: Reference documentation for astro deployment worker-queue delete.
 ---
 
-Update the settings for an existing [worker queue](configure-deployment-resources.md#worker-queues).
+Delete an existing [worker queue](configure-deployment-resources.md#worker-queues) in a Deployment on Astro.
 
 ## Usage
 
@@ -22,3 +22,9 @@ astro deployment worker-queue delete
 | `-f` `--force` | Skip prompting the user to confirm the deletion | `` |
 | `-n`,`--name`    | The name of the worker queue to delete     |Any string |
 
+
+
+## Related commands 
+
+- [`astro deployment worker-queue update`](cli/astro-deployment-worker-queue-update.md)
+- [`astro deployment worker-queue create`](cli/astro-deployment-worker-queue-create.md)

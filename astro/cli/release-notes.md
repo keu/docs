@@ -49,7 +49,7 @@ To use these commands, you must be authenticated to your primary Organization th
 
 ### Bug fixes 
 
-- Fixed an issue where the Astro CLI generated incorrect URLs for accessing Deployments
+- Fixed an issue where the Astro CLI generated incorrect URLs for the Deployment dashboard
 - Improved error handling and messaging when the Astro CLI doesn't recognize the image in a project's Dockerfile
 
 ## Astro CLI 1.5.1

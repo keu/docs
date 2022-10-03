@@ -5,14 +5,14 @@ id: astro-dev-object-import
 description: Reference documentation for astro dev object import
 ---
 
-Import Airflow variables, connections, and pools to a locally running environment from a YAML configuration file.
+Import Airflow variables, connections, and pools from a configuration file to a locally running Airflow environment. 
 
 ## Usage 
 
 After starting your local Airflow environment with `astro dev start`, run:
 
 ```sh
-astro dev object import [flags]
+astro dev object import
 ```
 
 By default, the command imports all variables, connections, and pools from `airflow_settings.yaml` to your project. You do not need to restart your environment for these changes to take effect. 
@@ -36,3 +36,9 @@ astro dev object import --pools
 astro dev object import --settingsfile="myairflowobjects.yaml"
 # Imports all Airflow objects from `myairflowobjects.yaml` to a locally running Airflow environment
 ```
+
+## Related commands 
+
+- [`astro dev object export`](cli/astro-dev-object-export.md)
+- [`astro deployment variable create`](cli/astro-deployment-variable-create.md)
+- [`astro deployment variable update`](cli/astro-deployment-variable-update.md)

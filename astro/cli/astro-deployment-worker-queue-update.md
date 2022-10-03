@@ -5,7 +5,7 @@ id: astro-deployment-worker-queue-update
 description: Reference documentation for astro deployment worker-queue update.
 ---
 
-Update the settings for an existing [worker queue](configure-deployment-resources.md#worker-queues).
+Update the settings for an existing [worker queue](configure-deployment-resources.md#worker-queues) in a Deployment on Astro. This is functionally identical to updating the settings of a worker queue in the Cloud UI.
 
 ## Usage
 
@@ -24,7 +24,7 @@ astro deployment worker-queue update
 | `--max-count`                  |        The maximum worker count of the worker queue                                                          | Any integer from 0 to 30       |
 | `--min-count`                  |        The minimum worker count of the worker queue                                                          | Any integer from 0 to 30       |
 | `-n`,`--name`    | The name of the worker queue     |Any string |
-| `-t`,`--worker-type`          | The worker type of the worker queue          | Any worker type enabled on the Deployment |
+| `-t`,`--worker-type`          | The worker type of the worker queue          | Any worker type enabled on the cluster in which the Deployment exists |
 
 ## Examples
 
@@ -33,5 +33,10 @@ astro deployment worker-queue update --deployment-id cl03oiq7d80402nwn7fsl3dmv -
 # Update a worker queue's name in a specified Deployment.
 
 astro deployment worker-queue update --concurrency 20 --max-count 10 --min-count 2 --name "My worker queue" --worker-type "m5d.8xlarge"
-# Update a new worker queue in a Deployment, CLI prompts you to specify a Deployment and worker queue to update
+# Update a new worker queue in a Deployment. The CLI prompts you to specify a Deployment and worker queue to update
 ```
+
+## Related commands 
+
+- [`astro deployment worker-queue create`](cli/astro-deployment-worker-queue-create.md)
+- [`astro deployment worker-queue delete`](cli/astro-deployment-worker-queue-delete.md)

@@ -59,7 +59,7 @@ You can change all settings of the default worker queue except for its name.
 
 :::cli 
 
-You can alternatively create worker queues using the Astro CLI. See [`astro deployment worker-queue create`](cli/astro-deployment-worker-queue-create.md).
+If you prefer, you can also create worker queues using the Astro CLI. See [`astro deployment worker-queue create`](cli/astro-deployment-worker-queue-create.md).
 
 :::
 
