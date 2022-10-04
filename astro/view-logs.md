@@ -46,7 +46,7 @@ You can access the past 24 hours of scheduler logs for any Deployment on its **L
 
 1. In the Cloud UI, select a Workspace and then a Deployment.
 
-2. Click **Logs**.
+2. Click the **Logs** tab.
 
 3. Optional. Select one or more options in the **Log Level** menu and click **Apply**. These are the available options:
 
