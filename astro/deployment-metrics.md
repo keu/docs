@@ -36,17 +36,24 @@ These metrics contain information about your Deployment's DAG runs and task runs
 
 ### Airflow workers and schedulers
 
-These metrics contain information about the Kubernetes Pods running your workers and schedulers. Different worker and scheduler Pods will appear on these charts as differently colored lines. Hover over the lines to see a legend for each color.
+These metrics contain information about the Kubernetes Pods running your workers and schedulers. Different worker and scheduler Pods will appear on these charts as differently colored lines. 
+
+Hover over the graph to view a graph legend. If a given worker queue spins a worker down and back up again within a given interval, the newly spun up worker appears in a new color on the graph. 
 
 ![Worker analytics in the Cloud UI](/img/docs/analytics-workers.png)
 
 #### Available metrics
 
-- **CPU Usage Per Pod (%)**: This metric graphs a worker's peak CPU usage over a given time interval.  Different worker/ scheduler Pods will appear on this chart as differently colored lines. For scheduler metrics, the maximum allowed CPU per scheduler Pod as defined in the **Details** tab appears as a dotted red line.
+- **CPU Usage Per Pod (%)**: This metric graphs the peak CPU usage for all workers and schedulers over a given time interval. Different worker/ scheduler Pods will appear on this chart as differently colored lines. For scheduler metrics, the maximum allowed CPU per scheduler Pod as defined in the **Details** tab appears as a dotted red line.
+- **Memory Usage Per Pod (MB)**: This metric graphs the peak memory usage for all workers and schedulers over a given time interval. Different worker/ scheduler Pods will appear on this chart as differently colored lines. This metric should be at or below 50% of your total allowed memory at any given time. For scheduler metrics, the maximum allowed memory per scheduler Pod as defined in the **Details** tab appears as a dotted red line.
 
-    This metric should be at or below 90% at any given time. If a Pod surpasses 90% usage, the line in the graph will turn red.  
+:::info
 
-- **Memory Usage Per Pod (MB)**: This metric graphs a worker's peak memory usage over a given time interval. Different worker/ scheduler Pods will appear on this chart as differently colored lines. This metric should be at or below 50% of your total allowed memory at any given time. For scheduler metrics, the maximum allowed memory per scheduler Pod as defined in the **Details** tab appears as a dotted red line.
+  The number of workers per Deployment autoscales based on a combination of worker concurrency and the number of `running` and `queued` tasks, which means that the total available CPU and memory for a single Deployment may change at any given time.
+
+:::
+
+
 - **Network Usage Per Pod (MB)**: This metric graphs each worker/ scheduler Pod's peak network usage over time. Sudden, irregular spikes in this metric should be investigated as a possible error in your project code.
 - **Pod Count per Status**: This metric graphs the number of worker/ scheduler Pods in a given Kubernetes container state. Because Astro operates on a one-container-per-pod model, the state of the container state is also the Pod state. For more information about container states, read the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-states).
 
