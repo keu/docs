@@ -11,8 +11,6 @@ Not all tasks have the same requirements. On Astro, you can create optimized exe
 
 By default, all tasks run in a default worker queue that does not require any additional configuration or code. To enable additional worker types or configurations for different groups of tasks, you can create additional worker queues in the Cloud UI and assign tasks to queues in your DAG code.
 
-See the following sections for more details on configuring worker queues.
-
 ## Example worker queue setup
 
 By configuring multiple worker queues and assigning tasks to these queues based on the requirements of the tasks, you can enhance the performance, reliability, and throughput of your Deployment. For example, consider the following scenario:
