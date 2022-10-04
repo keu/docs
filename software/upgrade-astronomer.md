@@ -116,17 +116,23 @@ If you do not specify a patch version above, the script will automatically pull 
 
 :::
 
-:::info Alternative ArgoCD upgrade
+### Upgrade with ArgoCD
 
-You can upgrade Astronomer with ArgoCD as an alternative to using `helm upgrade`. Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, this process requires some additional steps compared to the standard ArgoCD workflow:
+You can upgrade Astronomer with ArgoCD, which is an open source continuous delivery tool for Kubernetes, as an alternative to using `helm upgrade`. 
 
-1. Make sure `enableArgoCDAnnotation: true` is set in your `config.yaml` file.
+Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, upgrading Astronomer requires some additional steps compared to the standard ArgoCD workflow:
+
+1. Make sure `enableArgoCDAnnotation: true` and `astronomer.houston.upgradeDeployments.enabled=false` are set in your `config.yaml` file.
+   
 2. In your ArgoCD application, choose the version of Astronomer Software you want to upgrade to from `astronomer/astronomer`.
-3. Sync the application with every component of the Astronomer platform selected. Once you see `astronomer-houston-db-migrations`, terminate the sync.
-4. Sync the application a second time, but this time unselect `astronomer-alertmanager` while keeping all other components selected. Wait for this sync to finish completely.
-5. Sync the application a third time with every component of the Astronomer platform selected. 
-
-:::
+   
+3. Sync the ArgoCD app with every component of the Astronomer platform selected. See [Sync (Deploy) the Application](https://argo-cd.readthedocs.io/en/stable/getting_started/#7-sync-deploy-the-application).
+   
+4. Stop the sync when you see that `astronomer-houston-db-migrations` has completed in the Argo UI. 
+   
+5. Sync the application a second time, but this time clear `astronomer-alertmanager` in the Argo UI while keeping all other components selected. Wait for this sync to finish completely.
+   
+6. Sync the ArgoCD app a third time with all Astronomer platform components selected.
 
 ## Step 8: Confirm that the installation was successful
 
