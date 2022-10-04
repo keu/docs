@@ -102,7 +102,7 @@ Use your existing Amazon SES instance to send Airflow alerts by email.
     - Click **Download Credentials** or copy them and store them in a safe place.
     - Click **Close Window**.
 
-7. Log in to the Cloud UI, click **Deployments**, and then select an existing Deployment.
+7. In the Cloud UI, select a Workspace and then select a Deployment.
 
 8. In the environment variables area, click **Edit Variables** and add these variables:
     - `ENV AIRFLOW__SMTP__SMTP_HOST`: Enter the value you copied in step 5

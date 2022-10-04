@@ -59,11 +59,10 @@ You can change all settings of the default worker queue except for its name.
 
 Running multiple worker queues improves resource usage efficiency and enables dependent tasks with different computational requirements to coexist on the same Deployment.
 
-1. Log in to the Cloud UI.
-2. Select a Deployment.
-3. Click **Create Worker Queue**.
-4. Configure the worker queue’s settings. Note that you cannot change the name of a worker queue once you create it.
-5. Click **Update Queue**.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Worker Queues** tab and then click **Worker Queue**.
+3. Configure the worker queue’s settings. You can't change the name of a worker queue after you create it.
+4. Click **Create Queue**.
 
 #### Assign tasks to a worker queue
 
@@ -110,7 +109,7 @@ The [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/co
 
 For example, if you set scheduler resources to 10 AU and **Scheduler Count** to 2, your Deployment will run with 2 Airflow schedulers using 10 AU each.
 
-If you experience delays in task execution, which you can track via the Gantt Chart view of the Airflow UI, we recommend increasing the AU allocated towards the scheduler. The default resource allocation is 10 AU.
+If you experience delays in task execution, which you can track with the Gantt Chart view of the Airflow UI, Astronomer recommends increasing the AU allocated towards the scheduler. The default resource allocation is 10 AU.
 
 ## Edit Deployment resource settings
 
@@ -118,12 +117,11 @@ If you haven't created a Deployment, see [Create a Deployment](create-deployment
 
 ### Edit worker queue settings
 
-1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
-2. Select a Deployment.
-3. Click **Worker Queues** 
-4. Click **Edit** for the worker queue you want to edit.
-5. Edit the worker queue's settings. See [Worker queue settings](#worker-queue-settings).
-6. Click **Update Queue**.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Worker Queues** tab.
+3. Click **Edit** for the worker queue you want to edit.
+4. Edit the worker queue's settings. See [Worker queue settings](#worker-queue-settings).
+5. Click **Update Queue**.
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
@@ -137,10 +135,9 @@ Astronomer recommends changing the worker type of an existing worker queue only 
 
 ### Edit scheduler settings 
 
-1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
-2. Select a Deployment.
-3. Click **Configuration**.
-4. Click **Edit Configuration**. 
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Configuration** tab.
+3. Click **Edit Configuration**. 
 4. Edit the scheduler resource settings. See [Scheduler resources](#scheduler-resources).
 5. Click **Update**.
 
@@ -150,7 +147,7 @@ Astronomer recommends changing the worker type of an existing worker queue only 
 
 When you delete a Deployment, all infrastructure resources assigned to the Deployment are immediately deleted from your data plane. However, the Kubernetes namespace and metadata database for the Deployment are retained for 30 days. Deleted Deployments can't be restored. If you accidentally delete a Deployment, contact [Astronomer support](https://cloud.astronomer.io/support).
 
-1. Log in to the [Cloud UI](https://cloud.astronomer.io) and select a Workspace.
+1. In the Cloud UI, select a Workspace.
 2. Click the **Options** menu of the Deployment you want to delete, and select **Delete Deployment**.
 
     ![Options menu](/img/docs/delete-deployment.png)

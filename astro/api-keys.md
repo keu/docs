@@ -22,11 +22,11 @@ When using Deployment API keys, keep in mind the following:
 
 ## Create an API key
 
-1. In the Cloud UI, open your Deployment.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
 
-2. Click **API Keys**.
+2. Click the **API Keys** tab.
 
-3. Click **+ API Key**:
+3. Click **API Key**:
 
     ![Add API key button](/img/docs/add-api-key.png)
 
@@ -34,7 +34,7 @@ When using Deployment API keys, keep in mind the following:
 
     ![Create API key button](/img/docs/create-api-key.png)
 
-From here, you can copy the API key ID and secret for use in API calls and CI/CD pipelines. Make sure to save the key secret securely, as this is the only time you will have access to see it in plain text.
+5. Optional. Copy the API key ID and secret for use in API calls and CI/CD pipelines and then click **I've saved the Key Secret**. Make sure you save the key secret securely, as this is the only time you will have access to see it in plain text.
 
 :::tip
 
@@ -70,13 +70,13 @@ If you delete an API key, make sure that no existing CI/CD pipelines are using i
 
 1. In the Cloud UI, select a Workspace and then select a Deployment.
 
-2. Click **API Keys**
+2. Click the **API Keys** tab.
 
 3. Click **Edit** next to your API key.
 
     ![Edit API key button](/img/docs/edit-api-key.png)
 
-3. Click **Delete API Key**, enter `Delete`, and then click **Yes, Continue**.
+4. Click **Delete API Key**, enter `Delete`, and then click **Yes, Continue**.
 
 
 ## Related documentation

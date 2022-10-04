@@ -75,7 +75,7 @@ To allow data pipelines running on GCP to access Google Cloud services in a secu
 
 To grant a Deployment on Astro access to external data services on GCP, such as BigQuery:
 
-1. In the Cloud UI, select a Deployment and then copy the value in the **Namespace** field.
+1. In the Cloud UI, select a Workspace, select a Deployment, and then copy the value in the **Namespace** field.
 
 2. Use the Deployment namespace value and the name of your Google Cloud project to identify the Google service account for your Deployment.
 
