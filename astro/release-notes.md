@@ -15,6 +15,44 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
+## Octover 4, 2022 
+
+### New permissions boundaries for managed AWS clusters
+
+The Astronomer remote management role for AWS clusters now has new [permissions boundaries](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) to limit the actions it can perform to a subset of its default `AdministratorAccess` permissions. The remote management role is now limited to the following actions across all contexts:
+
+- `autoscaling:*`
+- `cloudformation:*`
+- `cloudwatch:*`
+- `ec2:*`
+- `ecr:*`
+- `eks:*`
+- `elasticloadbalancing:*`
+- `iam:*OpenID*`
+- `kms:DescribeKey`
+- `lambda:*`
+- `logs:*`
+- `route53:AssociateVPCWithHostedZone`
+- `s3:*`
+- `secretsmanager:*`
+- `servicequotas:*`
+- `ssm:*`
+- `tag:*`
+
+These permissions might change in the future to enable new Astro features or to further fine-tune Astronomer's permissions within specific contexts. 
+
+### Additional imporvements 
+
+- `AIRFLOW__WEBSERVER__EXPOSE_CONFIG=NON-SENSITIVE-ONLY` is now set in the data plane so that sensitive webserver configurations cannot be viewed in the Airflow UI.
+- In the Cloud UI, the maximum time window for Deployment metrics has been extended from 24 hours to 7 days.
+- The [Deployment overview metrics](deployment-metrics.md#deployment-overview) now show metrics only for the `default` worker queue instead of an aggregate of all worker queues.
+
+### Bug fixes 
+
+- Added the global environment variable `AIRFLOW__LOGGING__DAG_PROCESSOR_LOG_TARGET=stdout` so that a scheduler's logs don't overcrowd its local storage
+- Moved `AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER` configurations from Astro Runtime to the control plane
+- Removed misleading maximum CPU/ Memory lines from Deployment metric graphs
+
 ## September 28, 2022 
 
 ### Additional improvements 

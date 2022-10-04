@@ -9,6 +9,7 @@ As part of the Astro architecture, certain environment variables have preset val
 
 |Environment Variable | Description | Value |
 |---------------------|-------|------------|
+|`AIRFLOW__LOGGING__DAG_PROCESSOR_LOG_TARGET`| Routes scheduler logs to stdout | `stdout` |
 | `AIRFLOW__LOGGING__REMOTE_LOGGING`| Enables remote logging | `True` |
 | `AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER`| Location of remote logging storage | `baseLogFolder`|
 | `AIRFLOW__LOGGING__REMOTE_LOG_CONN_ID` | Airflow connection ID to access remote logging storage   | `astro_s3_logging` |
@@ -34,3 +35,4 @@ As part of the Astro architecture, certain environment variables have preset val
 | `AIRFLOW__WEBSERVER__INSTANCE_NAME` | Shows the name of your Deployment in the Home view of the Airflow UI | `<Deployment-Name>` |
 | `AIRFLOW__CELERY__WORKER_CONCURRENCY` | Determines how many tasks each Celery worker can run at any given time and is the basis of worker auto-scaling logic | `<Max-Tasks-Per-Worker>` |
 | `AIRFLOW__WEBSERVER__NAVBAR_COLOR` | The color of the main navigation bar in the Airflow UI | `#4a4466` |
+| `AIRFLOW__WEBSERVER__EXPOSE_CONFIG=NON-SENSITIVE-ONLY` | Determines whether sensitive infomration about webserver configurations is exposed in the Airflow UI | `NON-SENSITIVE-ONLY` |
