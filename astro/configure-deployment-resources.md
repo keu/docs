@@ -116,7 +116,7 @@ If you prefer, you can also run the `astro deployment worker-queue delete` comma
 
 :::info
 
-All tasks assigned to a worker queue after it's deleted remain in the queue and won't execute. To modify the settings of a worker queue, update the worker queue instead of deleting it.
+All tasks assigned to a worker queue after it's deleted remain in the queue and won't execute. To avoid stalled task runs, ensure that you reassign all tasks from a worker queue before deleting it.
 
 :::
 
