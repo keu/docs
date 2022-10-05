@@ -17,7 +17,7 @@ astro user invite <user-email> <flags>
 
 | Option              | Description                                                                                   | Possible Values                                 |
 | ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `--r`, `--role` | Force the user to manually access the Cloud UI to log in instead of opening the browser automatically from the CLI.           | `ORGANIZATION_MEMBER`, `ORGANIZATION_BILLING_ADMIN`, `ORGANIZATION_OWNER`|
+| `-r`, `--role` | Force the user to manually access the Cloud UI to log in instead of opening the browser automatically from the CLI.           | `ORGANIZATION_MEMBER`, `ORGANIZATION_BILLING_ADMIN`, `ORGANIZATION_OWNER`|
 
 ## Examples
 

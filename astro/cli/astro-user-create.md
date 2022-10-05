@@ -1,0 +1,27 @@
+---
+sidebar_label: 'astro user create'
+title: 'astro user create'
+id: astro-user-create
+description: Reference documentation for astro user create.
+---
+
+:::info 
+
+This command is available only if you're authenticated to an Astronomer Software installation. 
+
+:::
+
+Create a new user profile on Astronoemr Software. 
+
+## Usage 
+
+```
+astro user invite
+```
+
+## Options 
+
+| Option              | Description                                                                                   | Possible Values                                 |
+| ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `-e`, `--email` | The email for the user           | Any valid email address |
+| `-p`, `--password` | The password for the user           | Any string |
