@@ -15,15 +15,11 @@ For example, if you set scheduler resources to 10 AU and **Scheduler Count** to 
 
 If you experience delays in task execution, which you can track with the Gantt Chart view of the Airflow UI, Astronomer recommends increasing the AU allocated towards the scheduler. The default resource allocation is 10 AU.
 
-## Edit Deployment resource settings
-
-If you haven't created a Deployment, see [Create a Deployment](create-deployment.md).
-
 ### Edit scheduler settings 
 
 1. In the Cloud UI, select a Workspace and then select a Deployment.
-2. Click the **Configuration** tab.
-3. Click **Edit Configuration**. 
+2. Click the **Details** tab.
+3. Click **Edit Details**. 
 4. Edit the scheduler resource settings. See [Scheduler resources](#scheduler-resources).
 5. Click **Update**.
 
