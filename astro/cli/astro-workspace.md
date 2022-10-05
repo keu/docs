@@ -3,6 +3,7 @@ sidebar_label: "astro workspace"
 title: "astro workspace"
 id: astro-workspace
 description: Reference documentation for astro workspace.
+hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs';
@@ -224,6 +225,10 @@ You can retrieve a Team's ID in one of two ways:
 - Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
 - Run [`astro workspace team list`](#astro-workspace-team-list) and copy the value in the `ID` column.
 
+#### Related documentation 
+
+- [Import identity provider groups into Astronomer Software](https://docs.astronomer.io/software/import-idp-groups).
+
 #### Options
 
 | Option                        | Description                       | Possible Values                                                                   |
@@ -242,8 +247,6 @@ Updates some of the basic information for your current Workspace.
 
 At least one flag must be specified.
 
-> **Note:** Unlike other commands, do not specify flags for this command with a leading `--`.
-
 #### Flags
 
 | Option          | Description                     | Possible Values |
@@ -251,18 +254,19 @@ At least one flag must be specified.
 | `--label`       | The ID for the Workspace        | Any string      |
 | `--description` | A description for the Workspace | Any string      |
 
-### Related documentation
+#### Related documentation
 
 - [Manage Workspaces and Deployments on Astronomer](https://docs.astronomer.io/software/manage-workspaces)
-## astro workspace user add
+
+### astro workspace user add
 
 Creates a new user in your current Workspace. If the user has already authenticated to Astronomer, they will automatically be granted access to the Workspace. If the user does not have an account on Astronomer, they will receive an invitation to the platform via email.
 
-### Usage
+#### Usage
 
 `astro workspace user add --email <user-email-address> [flags]`
 
-### Flags
+#### Flags
 
 | Option                 | Description                                                                                                                                           | Possible Values                                                                                                         |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -270,12 +274,12 @@ Creates a new user in your current Workspace. If the user has already authentica
 | `--workspace-id`       | The Workspace that the user is added to. Specify this flag if you want to create a user in a Workspace that is different than your current Workspace. | Any valid Workspace ID                                                                                                  |
 | `--role`               | The role assigned to the user.                                                                                                                        | Possible values are `WORKSPACE_VIEWER`, `WORKSPACE_EDITOR`, and `WORKSPACE_ADMIN`. Default value is `WORKSPACE_VIEWER`. |
 
-### Related documentation
+#### Related documentation
 
 - [Manage Workspaces and Deployments on Astronomer](https://docs.astronomer.io/software/manage-workspaces)
 - [Manage User Permissions on Astronomer](https://docs.astronomer.io/software/workspace-permissions)
 
-## astro workspace user remove
+### astro workspace user remove
 
 Removes an existing user from your current Workspace.
 
@@ -283,26 +287,26 @@ Removes an existing user from your current Workspace.
 
 `astro workspace user remove --email <user-email-address>`
 
-### Flags
+#### Flags
 
 | Option                 | Description       | Possible Values         |
 | ---------------------- | ----------------- | ----------------------- |
 | `--email` (_Required_) | The user's email. | Any valid email address |
 
-### Related documentation
+#### Related documentation
 
 - [Manage Workspaces and Deployments on Astronomer](https://docs.astronomer.io/software/manage-workspaces)
 - [Manage User Permissions on Astronomer](https://docs.astronomer.io/software/workspace-permissions)
 
-## astro workspace user list
+### astro workspace user list
 
 Outputs a list of all users with access to your current Workspace.
 
-### Usage
+#### Usage
 
 `astro workspace user list [flags]`
 
-### Flags
+#### Flags
 
 | Option           | Description                                                                                                                                             | Possible Values        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
@@ -313,27 +317,27 @@ Outputs a list of all users with access to your current Workspace.
 | `--page-size`    | The page size for paginated lists.                                                                                                                      | Any integer            |
 
 
-### Related documentation
+#### Related documentation
 
 - [Manage Workspaces and Deployments on Astronomer](https://docs.astronomer.io/software/manage-workspaces)
 - [Manage User Permissions on Astronomer](https://docs.astronomer.io/software/workspace-permissions)
 
-## astro workspace user update
+### astro workspace user update
 
 Updates a user's role in your current Workspace.
 
-### Usage
+#### Usage
 
 `astro workspace user update --email <user-email-address> [flags]`
 
-### Flags
+#### Flags
 
 | Option    | Description                           | Possible Values                                                                                                       |
 | --------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `--email` | The user's email.                     | Any valud email address                                                                                               |
 | `--role`  | The role you're updating the user to. | Possible values are `WORKSPACE_VIEWER`, `WORKSPACE_EDITOR`, or `WORKSPACE_ADMIN`. Default value is `WORKSPACE_VIEWER` |
 
-### Related documentation
+#### Related documentation
 
 - [Manage Workspaces and Deployments on Astronomer](https://docs.astronomer.io/software/manage-workspaces)
 - [Manage User Permissions on Astronomer](https://docs.astronomer.io/software/workspace-permissions)

@@ -3,6 +3,7 @@ sidebar_label: "astro deploy"
 title: "astro deploy"
 id: astro-deploy
 description: Reference documentation for astro deploy.
+hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs';

@@ -3,6 +3,7 @@ sidebar_label: "astro dev start"
 title: "astro dev start"
 id: astro-dev-start
 description: Reference documentation for astro dev start.
+hide_table_of_contents: true
 ---
 
 Build your Astro project into a Docker image and spin up a local Docker container for each Airflow component.

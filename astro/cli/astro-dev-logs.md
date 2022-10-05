@@ -3,6 +3,7 @@ sidebar_label: "astro dev logs"
 title: "astro dev logs"
 id: astro-dev-logs
 description: Reference documentation for astro dev logs.
+hide_table_of_contents: true
 ---
 
 Show webserver, scheduler, and triggerer logs from your local Airflow environment.

@@ -3,6 +3,7 @@ sidebar_label: "astro dev restart"
 title: "astro dev restart"
 id: astro-dev-restart
 description: Reference documentation for astro dev restart.
+hide_table_of_contents: true
 ---
 
 Stop your Airflow environment, rebuild your Astro project into a Docker image, and restart your Airflow environment with the new Docker image.

@@ -3,6 +3,7 @@ sidebar_label: "astro deployment list"
 title: "astro deployment list"
 id: astro-deployment-list
 description: Reference documentation for astro deployment list.
+hide_table_of_contents: true
 ---
 
 List all Deployments within your current Workspace.

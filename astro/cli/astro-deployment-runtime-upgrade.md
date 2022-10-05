@@ -3,6 +3,7 @@ sidebar_label: "astro deployment runtime upgrade"
 title: "astro deployment runtime upgrade"
 id: astro-deployment-runtime-upgrade
 description: Reference documentation for astro deployment runtime upgrade.
+hide_table_of_contents: true
 ---
 
 :::info 

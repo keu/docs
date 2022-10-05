@@ -3,6 +3,7 @@ sidebar_label: "astro deployment logs"
 title: "astro deployment logs"
 id: astro-deployment-logs
 description: Reference documentation for astro deployment logs.
+hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs';

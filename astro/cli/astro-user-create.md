@@ -3,6 +3,7 @@ sidebar_label: 'astro user create'
 title: 'astro user create'
 id: astro-user-create
 description: Reference documentation for astro user create.
+hide_table_of_contents: true
 ---
 
 :::info 

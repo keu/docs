@@ -3,6 +3,7 @@ sidebar_label: "astro deployment service-account"
 title: "astro deployment service-account"
 id: astro-deployment-service-account
 description: Reference documentation for astro deployment service-account
+hide_table_of_contents: true
 ---
 
 :::info 
@@ -17,9 +18,16 @@ Manage Deployment-level service accounts, which you can use to configure a CI/CD
 
 This command includes three subcommands: `create`, `delete`, and `list`
 
-`astro deployment service-account create --deployment-id=<your-deployment-id> --label=<your-service-account-label> [flags]`
-`astro deployment service-account delete <your-service-account-label> [flags]`
-`astro deployment service-account list`
+```sh
+# Creates a Deployment-level service account
+astro deployment service-account create --deployment-id=<your-deployment-id> --label=<your-service-account-label> 
+
+# Deletes a Deployment-level service account
+astro deployment service-account delete <your-service-account-label> 
+
+# Shows the name, ID, and API key for each service account in a specific Deployment.
+astro deployment service-account list
+```
 
 ## Options
 

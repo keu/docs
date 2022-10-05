@@ -3,6 +3,7 @@ sidebar_label: "astro deployment update"
 title: "astro deployment update"
 id: astro-deployment-update
 description: Reference documentation for astro deployment update.
+hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs';

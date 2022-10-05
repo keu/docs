@@ -3,6 +3,7 @@ sidebar_label: "astro deployment airflow upgrade"
 title: "astro deployment airflow upgrade"
 id: astro-deployment-airflow-upgrade
 description: Reference documentation for astro deployment airflow upgrade.
+hide_table_of_contents: true
 ---
 
 :::info 

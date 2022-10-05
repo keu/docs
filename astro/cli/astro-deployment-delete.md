@@ -3,6 +3,7 @@ sidebar_label: "astro deployment delete"
 title: "astro deployment delete"
 id: astro-deployment-delete
 description: Reference documentation for astro deployment delete.
+hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs';

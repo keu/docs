@@ -3,6 +3,7 @@ sidebar_label: 'astro user invite'
 title: 'astro user invite'
 id: astro-user-invite
 description: Reference documentation for astro user invite.
+hide_table_of_contents: true
 ---
 
 Invite a new user to the Organization you're currently authenticated to. You must have Organization Owner permissions to run this command.  

@@ -3,6 +3,7 @@ sidebar_label: "astro dev bash"
 title: "astro dev bash"
 id: astro-dev-bash
 description: Reference documentation for astro dev bash.
+hide_table_of_contents: true
 ---
 
 Run a bash command in a locally running Docker container for an Airflow component. This command is equivalent to running `docker exec -it <container-id>`.
