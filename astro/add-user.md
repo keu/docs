@@ -19,7 +19,7 @@ For more information on user roles, see [Manage user permissions on Astro](user-
 
 You can invite a user to an Organization only if their email address' domain is in your Organization's allowlist. To add a domain to your Organization's allowlist, contact [Astronomer support](https://cloud.astronomer.io/support).
 
-1. In the Cloud UI's Organization view, open the **People** tab.
+1. In the Cloud UI Organization view, click the **People** tab.
 
 2. Click **Invite member**:
 
