@@ -40,7 +40,7 @@ To request a new worker type for your cluster, reach out to [Astronomer support]
 
 ### Default worker queue
 
-Each Deployment requires a worker queue named `default` to run tasks. Tasks that are not assigned to a worker queue in your DAG code are executed by workers in the default worker queue. You do not have to assign tasks to the default worker queue in your DAG code.
+Each Deployment requires a worker queue named `default` to run tasks. Tasks that are not assigned to a worker queue in your DAG code are executed by workers in the default worker queue. 
 
 If you don’t change any settings in the default worker queue:
 
@@ -137,7 +137,7 @@ If you prefer, you can also run the `astro deployment worker-queue delete` comma
 
 :::info
 
-All tasks assigned to a worker queue after it's deleted remain in the queue and won't execute. To modify the settings of a worker queue, update the worker queue instead of deleting it.
+All tasks assigned to a worker queue after it's deleted remain in the queue and won't execute. To avoid stalled task runs, ensure that you reassign all tasks from a worker queue before deleting it.
 
 :::
 

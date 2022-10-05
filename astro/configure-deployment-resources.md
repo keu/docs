@@ -7,6 +7,9 @@ description: Learn how to create and configure Astro Deployment resources.
 
 After you create an Astro Deployment, you can modify its resource settings to make sure that your tasks have the CPU and memory required to complete successfully.
 
+## Worker queues 
+
+Worker queues are a set of configurations that apply to a group of workers in your Deployment. Each Deployment includes a required `default` worker queue for running tasks, but you can configure additional worker queues to define CPU and memory limits for your tasks. See [Configure worker queues](configure-worker-queues.md).
 ## Scheduler resources
 
 The [Airflow scheduler](https://airflow.apache.org/docs/apache-airflow/stable/concepts/scheduler.html) is responsible for monitoring task execution and triggering downstream tasks when the dependencies are met. By adjusting the **Scheduler Count** slider in the **Configuration** tab of the Cloud UI, you can configure up to 4 schedulers, each of which will be provisioned with the AU specified in **Resources**.
