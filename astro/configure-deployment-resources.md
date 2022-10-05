@@ -25,6 +25,28 @@ If you experience delays in task execution, which you can track with the Gantt C
 
     The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
+## Update a Deployment name and description
+
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Details** tab.
+3. Click **Edit Details**.
+4. Update the Deployment name or description. 
+5. Click **Update**.
+
+## Add or delete a Deployment alert email
+
+The alert email assigned to a Deployment is used to notify recipients of Deployment issues.
+
+1. In the Cloud UI, select a Workspace and then select a Deployment.
+2. Click the **Details** tab.
+3. To add an alert email:
+    - Click **Edit Emails** in the **Alert Emails** area.
+    - Enter an email address and then click **Add**.
+4. To delete an alert email address:
+    - Click **Edit Emails** in the **Alert Emails** area.
+    - Click **Delete** next to the email you want to delete.
+    - Click **Yes, Continue**.
+
 ## Delete a Deployment
 
 When you delete a Deployment, all infrastructure resources assigned to the Deployment are immediately deleted from your data plane. However, the Kubernetes namespace and metadata database for the Deployment are retained for 30 days. Deleted Deployments can't be restored. If you accidentally delete a Deployment, contact [Astronomer support](https://cloud.astronomer.io/support).
