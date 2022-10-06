@@ -12,22 +12,19 @@ This command is available only if you're authenticated to an Astronomer Software
 
 :::
 
-Initializes the Runtime version upgrade process on any Deployment on Astronomer.
+Initializes the Runtime version upgrade process on any Deployment on Astronomer Software.
 
 ### Usage
 
-Run `astro deployment runtime upgrade --deployment-id` to initialize the Runtime upgrade process. To finalize the Runtime upgrade process, complete all of the steps as described in [Upgrade Apache Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
-
-If you do not specify `--desired-runtime-version`, this command creates a list of available Runtime versions that you can select. The Astro CLI lists only the available Runtime versions that are later than the version currently specified in your `Dockerfile`.
-
+Run `astro deployment runtime upgrade --deployment-id=<deployment-id>` to initialize the Runtime upgrade process. To finalize the Runtime upgrade process, complete all of the steps as described in [Upgrade Apache Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
 
 ### Options
 
-| Option                        | Description                                                                                                                    | Possible values
-| --------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `--cancel` | Cancel the upgrade                                                                | None | 
-| `--deployment-id`           | The ID of the Deployment for which you want to upgrade Runtime. To find your Deployment ID, run `astro deployment list`.     | Any Deployment ID |
-| `--desired-runtime-version` | The Runtime version you're upgrading to (for example, `2.2.0`).                                                                | Any supported Runtime version | 
+| Option                         | Description                                                                                                              | Possible values               |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| `--cancel`                     | Cancel the upgrade                                                                                                       | None                          |
+| `--deployment-id` (_Required_) | The ID of the Deployment for which you want to upgrade Runtime. To find your Deployment ID, run `astro deployment list`. | Any Deployment ID             |
+| `--desired-runtime-version`    | The Runtime version you're upgrading to (for example, `2.2.0`).                                                          | Any supported Runtime version |
 
 
 
