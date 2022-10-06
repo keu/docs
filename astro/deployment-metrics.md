@@ -38,18 +38,18 @@ These metrics contain information about your Deployment's DAG runs and task runs
 
 These metrics contain information about the Kubernetes Pods running your workers and schedulers. Different worker and scheduler Pods will appear on these charts as differently colored lines. 
 
-Hover over the graph to view a graph legend. If a given worker queue spins a worker down and back up again within a given interval, the newly spun up worker appears in a new color on the graph. 
+Hover over the graph to view a graph legend. If a given worker queue spins a worker down and back up again within a given interval, the newly spun up worker appears as a new color on the graph. 
 
 ![Worker analytics in the Cloud UI](/img/docs/analytics-workers.png)
 
 #### Available metrics
 
-- **CPU Usage Per Pod (%)**: This metric graphs the peak CPU usage for all workers and schedulers over a given time interval. Different worker/ scheduler Pods will appear on this chart as differently colored lines. For scheduler metrics, the maximum allowed CPU per scheduler Pod as defined in the **Details** tab appears as a dotted red line.
-- **Memory Usage Per Pod (MB)**: This metric graphs the peak memory usage for all workers and schedulers over a given time interval. Different worker/ scheduler Pods will appear on this chart as differently colored lines. This metric should be at or below 50% of your total allowed memory at any given time. For scheduler metrics, the maximum allowed memory per scheduler Pod as defined in the **Details** tab appears as a dotted red line.
+- **CPU Usage Per Pod (%)**: This metric graphs the peak CPU usage for all workers and schedulers for a given interval. Different worker and scheduler Pods appear as differently colored lines on this chart. For scheduler metrics, the maximum allowable CPU for each scheduler Pod appears as a dotted red line.
+- **Memory Usage Per Pod (MB)**: This metric graphs the peak memory usage for all workers and schedulers for a given interval. Different worker and scheduler Pods will appear as differently colored lines on this chart. This metric should be at or below 50% of your total allowed memory at any given time. For scheduler metrics, the maximum allowable memory for each scheduler Pod appears as a dotted red line.
 
 :::info
 
-  The number of workers per Deployment autoscales based on a combination of worker concurrency and the number of `running` and `queued` tasks, which means that the total available CPU and memory for a single Deployment may change at any given time.
+  The number of workers per Deployment autoscales based on a combination of worker concurrency and the number of `running` and `queued` tasks. This means that the total available CPU and memory for a single Deployment may change at any time.
 
 :::
 
@@ -111,7 +111,7 @@ The data in these four charts is recorded hourly and is displayed in both UTC an
 
 The data for the most recent hour is for the hour to date. For example, if you are looking at this page at 16:30, then the bar for the `16:00-17:00` hour interval would show data for `16:00-16:30`.
 
-These charts serve as high-level reports for your `default` worker queue and are intended to be viewed at a glance. For example, you might notice failed task instances in the Cloud UI and then open the **Analytics** page to investigate further.
+These charts serve as high-level reports for your `default` worker queue that you can investigate further.
 
 The following sections describe each of the 4 available charts.
 
