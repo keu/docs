@@ -4,7 +4,6 @@ title: 'astro login'
 id: astro-login
 description: Reference documentation for astro login.
 hide_table_of_contents: true
-hide_table_of_contents: true
 ---
 
 import Tabs from '@theme/Tabs';
