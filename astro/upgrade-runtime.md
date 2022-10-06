@@ -72,7 +72,7 @@ Once you upgrade to a Deployment on Astro to a new version of Astro Runtime, you
 
 ## Step 4: Confirm your upgrade on Astro
 
-1. In the Cloud UI, go to **Your Workspaces** > **Deployments** and select your Deployment.
+1. In the Cloud UI, select a Workspace and then select a Deployment.
 2. Click **Open Airflow**.
 3. In the Airflow UI, scroll to the bottom of any page. You should see your new Runtime version in the footer:
 
@@ -88,9 +88,15 @@ This topic contains information about upgrading to specific versions of Astro Ru
 
 ### Incompatibility with dbt-core provider package
 
-The `dbt-core` provider package is currently incompatible with Runtime 5.0.0 and later. The root cause for this issue is not yet known. If `dbt-core` is listed in your Astro project `requirements.txt` file when you attempt to upgrade to Runtime 5.0.0 or later, the upgrade fails.
+The `dbt-core` provider package is currently incompatible with Runtime 5.0.0 and later. If dbt-core is listed in the `requirements.txt` file of your Astro project when you attempt to upgrade to Runtime 5.0.0 or later, the upgrade fails.
 
-To continue with the upgrade to Runtime 5.0.0 or later, remove `dbt-core` from your `requirements.txt` file. To continue running dbt Core jobs with Airflow, don't upgrade your current Runtime version or upgrade to Runtime version 4.2.x and wait until a fix is announced. 
+To upgrade to Runtime 5.0.0 or later, you can do one of the following:
+
+- List `dbt-core==1.3.0b2` in your `requirements.txt` file. This version of the provider is in beta and has not been tested by Astronomer.
+- Install the dbt Cloud provider package by adding `apache-airflow-providers-dbt-cloud` to your Astro project. This will work only if you use dbt Cloud.
+- Use the KubernetesPodOperator or the ExternalPythonOperator to isolate `dbt-core` from the rest of your dependencies.
+
+If any of these options are not suitable for your team, don't upgrade your current Runtime version or upgrade to Runtime version 4.2.x and wait until a fix is announced.
 
 ### Changes to the Airflow metadata database 
 

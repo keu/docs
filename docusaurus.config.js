@@ -171,8 +171,8 @@ module.exports = {
               href: 'https://support.astronomer.io',
             },
             {
-              label: 'Status',
-              href: 'https://cloud-status.astronomer.io',
+              label: 'Astro Status',
+              href: 'https://status.astronomer.io',
             },
             {
               label: 'Astronomer Registry',
