@@ -380,7 +380,7 @@ You can install Astronomer with [ArgoCD](https://argo-cd.readthedocs.io/en/stabl
 
 Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, installing Astronomer requires some additional steps compared to the standard ArgoCD workflow:
 
-1. Add `enableArgoCDAnnotation: true` to your `config.yaml` file.
+1. Under the `global` section of your `config.yaml` file, add `enableArgoCDAnnotation: true`.
    
 2. Create a new ArgoCD app. When creating the app, configure the following:
 
