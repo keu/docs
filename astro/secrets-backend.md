@@ -50,7 +50,7 @@ Setting Airflow connections via secrets requires knowledge of how to generate Ai
 ## Setup
 
 <Tabs
-    defaultValue="hashicorp"
+    defaultValue="secretsmanager"
     groupId= "setup"
     values={[
         {label: 'Hashicorp Vault', value: 'hashicorp'},
@@ -59,6 +59,92 @@ Setting Airflow connections via secrets requires knowledge of how to generate Ai
         {label: 'Google Cloud Secret Manager', value: 'gcp'},
         {label: 'Azure Key Vault', value: 'azure'},
     ]}>
+    
+<TabItem value="secretsmanager">
+
+This topic provides setup steps for configuring [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) as a secrets backend on Astro.
+
+#### Prerequisites
+
+- A [Deployment](create-deployment.md).
+- The [Astro CLI](cli/overview.md).
+- An [Astro project](create-project.md) with `apache-airflow-providers-amazon` version 5.1.0 or later. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
+- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [AWS IAM roles](connect-aws.md#AWS-IAM-roles).
+
+#### Step 1: Add Airflow secrets to Secrets Manager
+
+Create directories for Airflow variables and connections in AWS Secrets Manager that you want to store as secrets. You can use real or test values.
+
+- When setting the secret type, choose `Other type of secret` and select the `Plaintext` option.
+- If creating a connection URI or a non-dict variable as a secret, remove the brackets and quotations that are pre-populated in the plaintext field.
+- The secret name is assigned after providing the plaintext value and clicking `Next`.
+
+Secret names must correspond with the `connections_prefix` and `variables_prefix` set below in step 2. Specifically:
+
+- If you use `"variables_prefix": "airflow/variables"`, you must set Airflow variable names as:
+
+    ```text
+    airflow/variables/<variable-key>
+    ```
+
+- The `<variable-key>` is how you will retrieve that variable's value in a DAG. For example:
+    ```python
+    my_var = Variable.get("variable-key>")
+    ```
+
+- If you use `"connections_prefix": "airflow/connections"`, you must set Airflow connections as:
+
+    ```text
+    airflow/connections/<connection-id>
+    ```
+
+- The `<connection-id>` is how you will retrieve that connection's URI in a DAG. For example:
+
+    ```python
+    conn = BaseHook.get_connection(conn_id="<connection-id>")
+    ```
+
+- Be sure to not include a leading `/` at the beginning of your variable or connection name
+
+For more information on adding secrets to Secrets Manager, see [AWS documentation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html).
+
+#### Step 2: Configure your Astro project
+
+1. Add the following lines to your `Dockerfile`:
+
+    ```dockerfile
+    ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
+    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $SECRETS_BACKEND_ARN, "region_name": $SECRETS_BACKEND_REGION}
+    ```
+
+2. Add the following lines to your `.env` file:
+
+    ```text
+    SECRETS_BACKEND_ARN=<your-role-arn>
+    SECRETS_BACKEND_REGION=<your-aws-region>
+    ```
+
+
+#### Step 3: Deploy to Astro
+
+1. Run the following command to deploy the contents of your `.env` file to your Cloud UI:
+
+    ```sh
+    astro deployment variable create --deployment-id <your-deployment-id> --load --env .env
+    ```
+
+2. Run the following command to deploy your Astro project and implement your Dockerfile changes:
+
+    ```sh
+    astro deploy
+    ```
+
+The Dockerfile contains the core configuration for your secrets backend. Because your AWS IAM role and region are set as Astro environment variables, you can now configure multiple roles and environments to use the same secrets backend without needing to redeploy changes to your Dockerfile.
+
+To further customize the Airflow and AWS SSM Parameter Store integration, see the [full list of available kwargs](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/_api/airflow/providers/amazon/aws/secrets/systems_manager/index.html).
+
+</TabItem>
+    
 <TabItem value="hashicorp">
 
 This topic provides steps for using [Hashicorp Vault](https://www.vaultproject.io/) as a secrets backend for both local development and on Astro. To do this, you will:
@@ -254,91 +340,6 @@ For instructions, see the [AWS Systems Manager Console](https://docs.aws.amazon.
 #### Step 3: Deploy to Astro
 
 1. Run the following command to deploy the contents of your `.env` file directly to your Cloud UI
-
-    ```sh
-    astro deployment variable create --deployment-id <your-deployment-id> --load --env .env
-    ```
-
-2. Run the following command to deploy your Astro project and implement your Dockerfile changes:
-
-    ```sh
-    astro deploy
-    ```
-
-The Dockerfile contains the core configuration for your secrets backend. Because your AWS IAM role and region are set as Astro environment variables, you can now configure multiple roles and environments to use the same secrets backend without needing to redeploy changes to your Dockerfile.
-
-To further customize the Airflow and AWS SSM Parameter Store integration, see the [full list of available kwargs](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/_api/airflow/providers/amazon/aws/secrets/systems_manager/index.html).
-
-</TabItem>
-
-<TabItem value="secretsmanager">
-
-This topic provides setup steps for configuring [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) as a secrets backend on Astro.
-
-#### Prerequisites
-
-- A [Deployment](create-deployment.md).
-- The [Astro CLI](cli/overview.md).
-- An [Astro project](create-project.md) with `apache-airflow-providers-amazon` version 5.1.0 or later. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
-- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [AWS IAM roles](connect-aws.md#AWS-IAM-roles).
-
-#### Step 1: Add Airflow secrets to Secrets Manager
-
-Create directories for Airflow variables and connections in Parameter Store that you want to store as secrets. You can use real or test values.
-
-- When setting the secret type, choose `Other type of secret` and select the `Plaintext` option.
-- If creating a connection URI or a non-dict variable as a secret, remove the brackets and quotations that are pre-populated in the plaintext field.
-- The secret name is assigned after providing the plaintext value and clicking `Next`.
-
-Secret names must correspond with the `connections_prefix` and `variables_prefix` set below in step 2. Specifically:
-
-- If you use `"variables_prefix": "airflow/variables"`, you must set Airflow variable names as:
-
-    ```text
-    airflow/variables/<variable-key>
-    ```
-
-- The `<variable-key>` is how you will retrieve that variable's value in a DAG. For example:
-    ```python
-    my_var = Variable.get("variable-key>")
-    ```
-
-- If you use `"connections_prefix": "airflow/connections"`, you must set Airflow connections as:
-
-    ```text
-    airflow/connections/<connection-id>
-    ```
-
-- The `<connection-id>` is how you will retrieve that connection's URI in a DAG. For example:
-
-    ```python
-    conn = BaseHook.get_connection(conn_id="<connection-id>")
-    ```
-
-- Be sure to not include a leading `/` at the beginning of your variable or connection name
-
-For more information on adding secrets to Secrets Manager, see [AWS documentation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/manage_create-basic-secret.html).
-
-#### Step 2: Configure your Astro project
-
-1. Add the following lines to your `Dockerfile`:
-
-    ```dockerfile
-    ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
-    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $SECRETS_BACKEND_ARN, "region_name": $SECRETS_BACKEND_REGION}
-    ```
-
-2. Add the following lines to your `.env` file:
-
-    ```text
-    SECRETS_BACKEND_ARN=<your-role-arn>
-    SECRETS_BACKEND_REGION=<your-aws-region>
-    ```
-
-
-#### Step 3: Deploy to Astro
-
-1. Run the following command to deploy the contents of your `.env` file to your Cloud UI:
 
     ```sh
     astro deployment variable create --deployment-id <your-deployment-id> --load --env .env
