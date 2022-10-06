@@ -40,17 +40,17 @@ module.exports = {
       title: 'Docs',
       logo: {
         alt: 'Astronomer',
-        src: 'img/LogoPrimaryDarkMode.svg',
+        src: 'img/AstroMonogram.svg',
         href: 'https://www.astronomer.io/',
         target: '_self',
       },
       items: [
         {
-          to: '/astro/',
-          label: 'Docs',
+          to: '/',
+          label: 'Home',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          className: 'docs__title'
+          activeBaseRegex: '(?!)',
         },
         {
           to: '/astro/',
@@ -281,7 +281,7 @@ module.exports = {
         filename: 'sitemap.xml',
       },
     ],
-],
+  ],
   scripts: [
     {
       src: './scripts/segment.js',
