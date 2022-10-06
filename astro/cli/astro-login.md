@@ -17,7 +17,7 @@ astro login
 
 | Option              | Description                                                                                   | Possible Values                                 |
 | ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `--l`, `--login-link` | Force the user to manually access the Cloud UI to log in instead of opening the browser automatically from the CLI.           | ``|
+| `-l`, `--login-link` | Force the user to manually access the Cloud UI to log in instead of opening the browser automatically from the CLI.           | ``|
 | `-t`, `--token-login` | Force the user to manually enter a token generated in the Cloud UI. This flag is used primarily for browserless login.                                        | ``    |
 
 ## Examples
