@@ -17,9 +17,9 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## Octover 4, 2022 
 
-### New permissions boundaries for managed AWS clusters
+### New permissions boundary for managed AWS Accounts
 
-The Astronomer remote management role for AWS clusters now has new [permissions boundaries](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) to limit the actions it can perform to a subset of its default `AdministratorAccess` permissions. The remote management role is now limited to the following actions across all contexts:
+The operational roles that Astronomer assumes on dedicated customer AWS accounts now have new [permissions boundaries](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) that limit the roles to a subset of their permissions. The remote management role is now limited to the following actions across all contexts:
 
 - `autoscaling:*`
 - `cloudformation:*`
@@ -39,19 +39,18 @@ The Astronomer remote management role for AWS clusters now has new [permissions 
 - `ssm:*`
 - `tag:*`
 
-These permissions might change in the future to enable new Astro features or to further fine-tune Astronomer's permissions within specific contexts. 
+These permissions might change in the future to enable new Astro features or to refine permissions for specific contexts. 
 
-### Additional imporvements 
+### Additional improvements 
 
-- `AIRFLOW__WEBSERVER__EXPOSE_CONFIG=NON-SENSITIVE-ONLY` is now set in the data plane so that sensitive webserver configurations cannot be viewed in the Airflow UI.
-- In the Cloud UI, the maximum time window for Deployment metrics has been extended from 24 hours to 7 days.
-- The [Deployment overview metrics](deployment-metrics.md#deployment-overview) now show metrics only for the `default` worker queue instead of an aggregate of all worker queues.
+- Users with the required permissions can now access a **Configuration** tab in the **Admin** menu of the Airflow UI. This page no longer shows sensitive values in plain-text and can be used to verify all configurations running on your Deployment.
+- In the Cloud UI, the maximum time for Deployment metrics has been extended from 24 hours to 7 days.
+- The [Deployment metrics overview](deployment-metrics.md#deployment-overview) now shows metrics for the `default` worker queue instead of an aggregate of all worker queues. Improved worker queue metrics coming soon.
 
 ### Bug fixes 
 
 - Added the global environment variable `AIRFLOW__LOGGING__DAG_PROCESSOR_LOG_TARGET=stdout` so that a scheduler's logs don't overcrowd its local storage
-- Moved `AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER` configurations from Astro Runtime to the control plane
-- Removed misleading maximum CPU/ Memory lines from Deployment metric graphs
+- Removed misleading maximum CPU and memory lines from Deployment metric graphs
 
 ## September 28, 2022 
 
