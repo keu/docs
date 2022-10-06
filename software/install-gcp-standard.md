@@ -378,7 +378,7 @@ After you run the previous commands, a set of Kubernetes pods are generated in y
 
 You can install Astronomer with [ArgoCD](https://argo-cd.readthedocs.io/en/stable/), which is an open source continuous delivery tool for Kubernetes, as an alternative to using `helm install`. 
 
-Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, installing Astrnonomer requires some additional steps compared to the standard ArgoCD workflow:
+Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, installing Astronomer requires some additional steps compared to the standard ArgoCD workflow:
 
 1. Add `enableArgoCDAnnotation: true` to your `config.yaml` file.
    
