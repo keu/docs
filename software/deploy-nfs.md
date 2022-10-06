@@ -83,4 +83,4 @@ Create and mount an Azure file share to deploy DAGs to an Airflow Deployment on 
 
 6. Click **Deploy Changes**.
 
-7. Add your dags to the NFS share.
+7. Add your DAGs to the NFS share.
