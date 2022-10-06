@@ -23,6 +23,10 @@
 /tutorials/get-started-with-airflow /learn/get-started-with-airflow
 /tutorials/astro-python-sdk /learn/astro-python-sdk
 
+# CLI migration redirects 
+
+/software/cli-reference /astro/cli/reference
+
 # redirect base domain cloud links to astro path
 /add-user /astro/add-user 301
 /airflow-alerts /astro/airflow-alerts 301
