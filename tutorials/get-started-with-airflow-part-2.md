@@ -182,9 +182,9 @@ Next, the DAG context is instantiated using the `DAG` class. The DAG has the ID 
 with DAG(
     dag_id="my_second_dag",
     start_date=datetime(2022, 9, 1),
-    schedule_interval="0 9 * * *",
+    schedule="0 9 * * *",
     catchup=False
-) as dag:
+):
 ```
 
 The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been to your GitHub repository. It utilizes the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is quite long at 7 days, which can impact performance if left unchanged in DAGs that run on a higher frequency.
