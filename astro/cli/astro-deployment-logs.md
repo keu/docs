@@ -23,7 +23,6 @@ The behavior and format of this command differs depending on what Astronomer pro
     ]}>
 <TabItem value="astro">
 
-
 ## Description
 
 Show [scheduler logs](scheduler-logs.md) over the last 24 hours for a given Deployment on Astro. These scheduler logs are the same logs that appear in the **Logs** tab of the Cloud UI.
@@ -40,9 +39,9 @@ astro deployment logs
 | ------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
 | `<deployment-id>`   | The ID of the Deployment to show logs for                                                | Any valid Deployment ID               |
 | `--deployment-name` | The name of the Deployment to show logs for. Use as an alternative to `<deployment-id>`. | Any valid Deployment name             |
-| `-e`,`--error`      | Show only logs with a log level of `ERROR`                                               | ``                                    |
-| `-w`,`--warn`       | Show only logs with a log level of `WARNING`                                             | ``                                    |
-| `-i`,`--info`       | Show only logs with a log level of `INFO`                                                | ``                                    |
+| `-e`,`--error`      | Show only logs with a log level of `ERROR`                                               | None                                    |
+| `-w`,`--warn`       | Show only logs with a log level of `WARNING`                                             | None                                    |
+| `-i`,`--info`       | Show only logs with a log level of `INFO`                                                | None                                    |
 | `-c`,`--log-count`  | The number of log lines to show. The default is `500`                                    | Any integer less than or equal to 500 |
 | `--workspace-id`    | Specify a Workspace to show logs for a Deployment outside of your current Workspace      | Any valid Workspace ID                |
 
@@ -51,8 +50,10 @@ astro deployment logs
 ```sh
 $ astro deployment logs
 # CLI prompts you for a Deployment to view logs for
+
 $ astro deployment logs cl03oiq7d80402nwn7fsl3dmv
 # View logs for a specific Deployment
+
 $ astro deployment logs --deployment-name="My Deployment" --error --log-count=25
 # Show only the last 25 error-level logs
 ```
@@ -60,7 +61,6 @@ $ astro deployment logs --deployment-name="My Deployment" --error --log-count=25
 </TabItem>
 
 <TabItem value="software">
-
 
 Show Airflow component logs over the last 24 hours for a given Deployment. These logs are the same logs that appear in the **Logs** tab of the Software UI.
 
@@ -73,11 +73,11 @@ Run one of the following commands depending on which logs you want to stream:
 - `astro deployment logs <deployment-id> workers`
 - `astro deployment logs <deployment-id> triggerer`
 
-### Flags
+### Options
 
-| Flag                              | Description                                                         | Possible values                                         |
+| Option                              | Description                                                         | Possible values                                         |
 | --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
-| `<deployment-id>` (_Required)     | The ID of the Deployment for which you want to view logs            | Any valide Deployment ID                                |
+| `<deployment-id>` (_Required)     | The ID of the Deployment for which you want to view logs            | Any valid Deployment ID                                 |
 | `<airflow-component>` (_Required) | The Airflow component for which you want to view logs               | `scheduler`, `webserver`, `workers`, or `triggerer`     |
 | `--follow`                        | Subscribes to watch more logs.                                      | None                                                    |
 | `--search`                        | Searches for the specified string within the logs you're following. | Any string                                              |
@@ -97,13 +97,12 @@ $ astro deployment logs workers example-deployment-uuid --follow --search "some 
 $ astro deployment logs webserver example-deployment-uuid --since 25m
 ```
 
-
 </TabItem>
-
-<Tabs>
+</Tabs>
 
 ## Related Commands
 
 - [`astro dev logs`](cli/astro-dev-logs.md)
 - [`astro dev run`](cli/astro-dev-run.md)
 - [`astro dev ps`](cli/astro-dev-ps.md)
+

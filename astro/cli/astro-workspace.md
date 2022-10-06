@@ -56,7 +56,7 @@ Creates a new Workspace.
 
 `astro workspace create --label=<new-workspace-name> `
 
-#### Flags
+#### Options
 
 | Option                 | Description | Possible Values                        |
 | ---------------------- | ----------- | -------------------------------------- |
@@ -99,7 +99,7 @@ Creates a service account for a given Workspace.
 
 `astro workspace service-account create --workspace-id=<your-workspace> --label=<your-label>`
 
-#### Flags
+#### Options
 
 | Option                      | Description                                                     | Possible Values                                                                                                            |
 | --------------------------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -121,7 +121,7 @@ Deletes a service account for a given Workspace.
 
 `astro workspace service-account delete <your-service-account-id>`
 
-#### Flags
+#### Options
 
 | Option           | Description                                                                                                                                                                                                                               | Possible Values        |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
@@ -140,7 +140,7 @@ Shows the name, ID, and API key for each service account on a given Workspace.
 
 Run `astro deployment service-account get <service-account-id> --workspace-id=<your-workspace-id>` to get information on a single service account within a Workspace. To see a list of all service accounts on a Workspace, run `astro deployment service-account get --workspace-id=<your-workspace-id>`.
 
-#### Flags
+#### Options
 
 | Option           | Description                                                                                                                       | Possible Values        |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
@@ -177,7 +177,7 @@ You can retrieve a Team's ID in one of two ways:
 - Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
 - Run [`astro workspace team list`](#astro-workspace-team-list) and copy the value in the `ID` column.
 
-#### Flags
+#### Options
 
 | Option                        | Description                       | Possible Values                                                                   |
 | ----------------------------- | --------------------------------- | --------------------------------------------------------------------------------- |
@@ -206,7 +206,7 @@ You can retrieve a Team's ID in one of two ways:
 - Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID would be `cl4iqjamcnmfgigl4852flfgulye`.
 - Run [`astro workspace team list`](#astro-workspace-team-list) and copy the value in the `ID` column.
 
-#### Flags
+#### Options
 
 | Option                        | Description                | Possible Values        |
 | ----------------------------- | -------------------------- | ---------------------- |
@@ -247,7 +247,7 @@ Updates some of the basic information for your current Workspace.
 
 At least one flag must be specified.
 
-#### Flags
+#### Options
 
 | Option          | Description                     | Possible Values |
 | --------------- | ------------------------------- | --------------- |
@@ -266,7 +266,7 @@ Creates a new user in your current Workspace. If the user has already authentica
 
 `astro workspace user add --email <user-email-address> [flags]`
 
-#### Flags
+#### Options
 
 | Option                 | Description                                                                                                                                           | Possible Values                                                                                                         |
 | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -287,7 +287,7 @@ Removes an existing user from your current Workspace.
 
 `astro workspace user remove --email <user-email-address>`
 
-#### Flags
+#### Options
 
 | Option                 | Description       | Possible Values         |
 | ---------------------- | ----------------- | ----------------------- |
@@ -306,7 +306,7 @@ Outputs a list of all users with access to your current Workspace.
 
 `astro workspace user list [flags]`
 
-#### Flags
+#### Options
 
 | Option           | Description                                                                                                                                             | Possible Values        |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
@@ -330,7 +330,7 @@ Updates a user's role in your current Workspace.
 
 `astro workspace user update --email <user-email-address> [flags]`
 
-#### Flags
+#### Options
 
 | Option    | Description                           | Possible Values                                                                                                       |
 | --------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
@@ -341,3 +341,6 @@ Updates a user's role in your current Workspace.
 
 - [Manage Workspaces and Deployments on Astronomer](https://docs.astronomer.io/software/manage-workspaces)
 - [Manage User Permissions on Astronomer](https://docs.astronomer.io/software/workspace-permissions)
+
+</TabItem>
+</Tabs>

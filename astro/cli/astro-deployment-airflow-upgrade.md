@@ -12,18 +12,17 @@ This command is available only if you're authenticated to an Astronomer Software
 
 :::
 
-Initializes the Airflow version upgrade process on any Airflow Deployment on Astronomer.
+Initializes the Airflow version upgrade process on any Airflow Deployment on Astronomer. See [Upgrade Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions)
 
 ### Usage
 
-Run `astro deployment airflow upgrade --deployment-id` to initialize the Airflow upgrade process. To finalize the Airflow upgrade process, complete all of the steps as described in [Upgrade Apache Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
+Run `astro deployment airflow upgrade --deployment-id` to initialize the Airflow upgrade process. To finalize the Airflow upgrade process, complete all of the steps as described in [Upgrade Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
 
 If you do not specify `--desired-airflow-version`, this command creates a list of available Airflow versions that you can select. The Astro CLI lists only the available Airflow versions that are later than the version currently specified in your `Dockerfile`.
 
+### Options
 
-### Flags
-
-| Flag                        | Description                                                                                                                    | Possible values
+| Option                        | Description                                                                                                                    | Possible values
 | --------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `--cancel` | Cancel the upgrade                                                                | None | 
 | `--deployment-id`           | The ID of the Deployment for which you want to upgrade Airflow. To find your Deployment ID, run `astro deployment list`.     | Any Deployment ID |

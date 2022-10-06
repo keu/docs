@@ -21,9 +21,9 @@ Run `astro deployment runtime upgrade --deployment-id` to initialize the Runtime
 If you do not specify `--desired-runtime-version`, this command creates a list of available Runtime versions that you can select. The Astro CLI lists only the available Runtime versions that are later than the version currently specified in your `Dockerfile`.
 
 
-### Flags
+### Options
 
-| Flag                        | Description                                                                                                                    | Possible values
+| Option                        | Description                                                                                                                    | Possible values
 | --------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `--cancel` | Cancel the upgrade                                                                | None | 
 | `--deployment-id`           | The ID of the Deployment for which you want to upgrade Runtime. To find your Deployment ID, run `astro deployment list`.     | Any Deployment ID |

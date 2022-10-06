@@ -96,7 +96,6 @@ When you run `astro deploy`, you'll be prompted to select from a list of all Dep
 | `-f`,`--force`            | Force deploy even if your project contains errors or uncommitted changes                       | None                                                     |
 | `-p`,`--prompt`           | Force the Deployment selection prompt even if a Deployment ID is specified                     | None                                                     |
 | `-s`,`--save`             | Save the current Deployment and working directory combination for future deploys               | None                                                     |
-| `-t`,`--test`             | The filepath to an alternative pytest file or directory                                        | Valid filepath within your Astro project               |
 | `--no-cache`     | None       | Do not use any images from the container engine's cache when building your project. |
 | `--workspace-id <string>` | In the prompt to select a Deployment, only show Deployments within this Workspace              | Any valid Workspace ID                                 |
 
