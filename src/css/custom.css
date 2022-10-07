@@ -546,6 +546,12 @@ html .DocSearch {
   width: 100%;
 }
 
+@media screen and (max-width: 997px) {
+  .DocSearch-Button-Keys, .DocSearch-Button-Placeholder {
+    display: none !important;
+  }
+}
+
 aside.theme-doc-sidebar-container {
   border-right: 4px solid var(--gray-100);
   margin-right: 1rem;
