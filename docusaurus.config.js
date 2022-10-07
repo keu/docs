@@ -105,6 +105,24 @@ module.exports = {
         },
       ],
     },
+    sidebarNav: {
+      bottomNav: {
+        items: [
+          {
+            label: 'Get a demo',
+            href: 'https://www.astronomer.io/events/weekly-demo/?utm_source=docs-sidebar',
+          },
+          {
+            label: 'Watch a webinar',
+            href: 'https://www.astronomer.io/events/webinars/?utm_source=docs-sidebar',
+          },
+          {
+            label: 'Astro status',
+            href: 'https://status.astronomer.io/?utm_source=docs-sidebar',
+          }
+        ]
+      }
+    },
     footer: {
       logo: {
         alt: "Astronomer logo",

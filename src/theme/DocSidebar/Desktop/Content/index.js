@@ -30,7 +30,9 @@ export default function DocSidebarDesktopContent({ path, sidebar, className }) {
   const softwareNavItems = useSoftwareNavItems();
   return (
     <>
-      <SelectNav items={softwareNavItems} label="Select Software Version" />
+      {path.indexOf('/software') > -1 && (
+        <SelectNav items={softwareNavItems} label="Select Software Version" />
+      )}
       <nav
         className={clsx(
           'menu thin-scrollbar',
@@ -41,17 +43,19 @@ export default function DocSidebarDesktopContent({ path, sidebar, className }) {
         <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list')}>
           <DocSidebarItems items={sidebar} activePath={path} level={1} />
         </ul>
-        <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list', styles.menu__listBottom)}>
-          <li>
-            <a href="https://www.astronomer.io/events/weekly-demo/?utm_source=docs-sidebar">Get a demo</a>
-          </li>
-          <li>
-            <a href="https://www.astronomer.io/events/webinars/?utm_source=docs-sidebar">Watch a webinar</a>
-          </li>
-          <li>
-            <a href="https://status.astronomer.io/?utm_source=docs-sidebar">Astro status</a>
-          </li>
-        </ul>
+        {!path.indexOf('/software') > -1 && (
+          <ul className={clsx(ThemeClassNames.docs.docSidebarMenu, 'menu__list', styles.menu__listBottom)}>
+            <li>
+              <a href="https://www.astronomer.io/events/weekly-demo/?utm_source=docs-sidebar">Get a demo</a>
+            </li>
+            <li>
+              <a href="https://www.astronomer.io/events/webinars/?utm_source=docs-sidebar">Watch a webinar</a>
+            </li>
+            <li>
+              <a href="https://status.astronomer.io/?utm_source=docs-sidebar">Astro status</a>
+            </li>
+          </ul>
+        )}
       </nav>
     </>
   );
