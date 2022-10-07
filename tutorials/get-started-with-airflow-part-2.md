@@ -7,7 +7,7 @@ id: get-started-with-airflow-part-2
 
 Learn core Apache Airflow concepts in this hands-on tutorial using the Astro CLI.
 
-Use this tutorial after completing the [Get started with Apache Airflow](https://docs.astronomer.io/astro/cli/get-started) tutorial to learn about how to connect Airflow to external systems.
+Use this tutorial after completing the [Get started with Apache Airflow](https://docs.astronomer.io/tutorials/get-started-with-airflow) tutorial to learn about how to connect Airflow to external systems.
 
 After you complete this tutorial, you'll be able to:
 
@@ -25,7 +25,7 @@ This tutorial takes approximately 1 hour to complete.
 
 To complete this tutorial, you'll need to know:
 
-- How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/astro/cli/get-started).
+- How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/tutorials/get-started-with-airflow).
 - The basics of git. See the [tutorial on Git’s official webpage](https://git-scm.com/docs/gittutorial).
 
 ## Prerequisites
@@ -73,12 +73,12 @@ To run data pipelines on Astro, you first need to create an Astro project, which
 ## Step 2: Create your DAG
 
 1. Create a new Python file in the `/dags` directory of your Astro project called `my_second_dag.py`.
-2. Copy the [Tutorial DAG: Airflow Connections](https://registry.astronomer.io/dags/get-started-tutorial-2-dag) from the Astronomer Registry.
+2. Copy the code from the **< > Code** tab of the [Tutorial DAG: Airflow Connections](https://registry.astronomer.io/dags/get-started-tutorial-2-dag) from the Astronomer Registry.
 3. Paste the code into `my_second_dag.py`.
 
 ## Step 3: Add a provider package
 
-1 Open the Airflow UI to confirm that your DAG was pushed to your environment. On the **DAGs** page, you should see a "DAG Import Error" like the one shown here:
+1. Open the Airflow UI to confirm that your DAG was pushed to your environment. On the **DAGs** page, you should see a "DAG Import Error" like the one shown here:
 
 ![Import Error](/img/tutorials/T2_ImportError.png)
 
