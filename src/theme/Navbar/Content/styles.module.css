@@ -80,6 +80,10 @@ a.navbar__logolink::before {
   background-color: var(--gray-100);
 }
 
+html[data-theme="dark"] .navbar__bottom {
+  background-color: var(--purple-900);
+}
+
 @media screen and (min-width: 1000px) {
   .navbar__top .colorModeToggle,
   .navbar__bottom .button {

@@ -42,6 +42,16 @@
   background: var(--blue-300);
 }
 
+html[data-theme="dark"] .button__outline {
+  color: var(--purple-300);
+  border-color: var(--purple-300);
+}
+
+html[data-theme="dark"] .button__outline:hover {
+  background: var(--purple-300);
+  color: var(--purple-600);
+}
+
 a.navbar__logolink {
   font-weight: 600;
   color: var(--purple-400);

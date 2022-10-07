@@ -24,3 +24,12 @@
   font-weight: 400;
   font-size: 13px;
 }
+
+html[data-theme="dark"] .selectNav__label {
+  color: var(--gray-300);
+}
+
+html[data-theme="dark"] .selectNav__select {
+  background: var(--gray-600);
+  color: var(--gray-100);
+}
