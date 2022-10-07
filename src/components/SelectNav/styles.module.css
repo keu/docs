@@ -1,0 +1,25 @@
+.selectNav {
+  display: grid;
+  gap: 5px;
+  padding: 0.5rem 0.75rem 0.5rem 0.5rem;
+}
+
+.selectNav__label {
+  text-transform: uppercase;
+  color: #6E6F73;
+  font-weight: 500;
+  font-size: 11.5px;
+  line-height: 14px;
+}
+
+.selectNav__select {
+  background: #ffffff;
+  border: 1px solid #DADBE0;
+  border-radius: 6px;
+  padding: 8px 10px 8px 8px;
+}
+
+.selectNav__option {
+  font-weight: 400;
+  font-size: 13px;
+}

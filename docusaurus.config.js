@@ -67,40 +67,41 @@ module.exports = {
           activeBaseRegex: 'astro/cli+',
         },
         {
-          type: 'dropdown',
           label: 'Software',
           to: 'software/',
           activeBaseRegex: 'software',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          items: [
-            {
-              label: '0.30 (Latest)',
-              to: '/software/',
-              activeBaseRegex: `software(?!(\/${versions.join('|\\/')}))`,
-            },
-            {
-              label: '0.29',
-              to: '/software/0.29/overview',
-              activeBaseRegex: '(software\/0.29)+',
-            },
-            {
-              label: '0.28',
-              to: '/software/0.28/overview',
-              activeBaseRegex: '(software\/0.28)+',
-            },
-            {
-              label: '0.25',
-              to: '/software/0.25/overview',
-              activeBaseRegex: '(software\/0.25)+',
-            },
-          ],
         },
         {
           to: '/learn/',
           label: 'Learn',
           position: 'left',
           activeClassName: 'navbar__link--active',
+        },
+      ],
+    },
+    softwareNav: {
+      items: [
+        {
+          label: '0.30 (Latest)',
+          to: '/software/',
+          activeBaseRegex: `software(?!(\/${versions.join('|\\/')}))`,
+        },
+        {
+          label: '0.29',
+          to: '/software/0.29/overview',
+          activeBaseRegex: '(software\/0.29)+',
+        },
+        {
+          label: '0.28',
+          to: '/software/0.28/overview',
+          activeBaseRegex: '(software\/0.28)+',
+        },
+        {
+          label: '0.25',
+          to: '/software/0.25/overview',
+          activeBaseRegex: '(software\/0.25)+',
         },
       ],
     },

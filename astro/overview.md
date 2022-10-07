@@ -1,9 +1,9 @@
 ---
 sidebar_label: 'Overview'
-title: 'Astro documentation'
+title: 'Astro Documentation'
 id: overview
 slug: /
-description: Learn about Astro, the managed service that makes data pipelines easy to write, run, and monitor.
+description: Everything you need to know about Astronomer’s modern data orchestration tool for the cloud, powered by Apache Airflow.
 ---
 
 Astro is a managed software service that offers a next-generation experience for modern data teams running Apache Airflow, the open source industry standard for data orchestration.
