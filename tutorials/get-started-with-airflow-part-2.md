@@ -40,7 +40,7 @@ If you do not have a GitHub account, you can create one for free on the [GitHub 
 
 ## Step 1: Create your Astro project
 
-To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial].
+To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial](https://docs.astronomer.io/tutorials/get-started-with-airflow).
 
 1. Create a new directory for your Astro project:
 
