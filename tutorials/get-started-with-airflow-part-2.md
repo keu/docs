@@ -1,6 +1,6 @@
 ---
-title: "Get started with Apache Airflow - Part 2"
-sidebar_label: "Get started with Airflow - Part 2"
+title: "Get started with Airflow, Part 2: Providers, connections, and variables"
+sidebar_label: "Part 2: Providers, connections, and variables"
 description: "Learn the core Apache Airflow concepts of using providers and connections."
 id: get-started-with-airflow-part-2
 ---
