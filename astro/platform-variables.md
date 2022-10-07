@@ -5,17 +5,20 @@ id: platform-variables
 description: A list of environment variables that are set globally on Astro and should not be modified.
 ---
 
-As part of the Astro architecture, certain environment variables have preset values that should not be overridden by your organization. The following table provides information about each global environment variable set by Astronomer.
+In Astro, certain environment variables have preset values that are required and should not be overridden by your organization. The following table provides information about each global environment variable set by Astronomer.
+
+For information on setting your own environment variables, see [Environment variables](environment-variables.md).
 
 :::danger 
 
-Attempting to set these variables can result in unexpected behavior on your Deployments and clusters. If you need to set one of these variables for a specific use case, reach out to [Astronomer support](https://cloud.astronomer.io/support).
+The Cloud UI does not currently prevent you from setting these environment variables, but attempting to set them can result in unexpected behavior that can include access problems, missing task logs, and failed tasks.
+
+If you need to set one of these variables for a particular use case, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 :::
 
 ## System environment variables
 
-The following environment 
 
 | Environment Variable                       | Description                                                                                                          | Value                                   |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
@@ -49,6 +52,8 @@ The following environment
 
 :::info 
 
-¹ `AWS_SECRET_ACCESS_KEY` and `AWS_ACCESS_KEY_ID` are set only for AWS clusters. There are no restrictions for setting these environment variables on GCP and Azure clusters.
+¹ The `AWS_SECRET_ACCESS_KEY` and `AWS_ACCESS_KEY_ID` environment variables are required only for Deployments running on AWS. For any Deployment running on an AWS cluster, they should not be overridden.
+
+There are no restrictions with setting these values for Deployments running on GCP and Azure.
 
 :::
