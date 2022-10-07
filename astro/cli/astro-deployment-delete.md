@@ -41,12 +41,12 @@ astro deployment delete
 
 ## Options
 
-| Option            | Description                                                         | Possible Values         |
-| ----------------- | ------------------------------------------------------------------- | ----------------------- |
-| `<deployment-id>` | The ID of the Deployment to delete         | Any valid Deployment ID |
-| `-f`,`--force`    | Do not include a confirmation prompt before deleting the Deployment | None                      |
-| `--workspace-id` | Specify a Workspace to delete a Deployment outside of your current Workspace | Any valid Workspace ID                                            |
-| `--deployment-name` | The name of the Deployment to delete. Use as an alternative to `<deployment-id>`. | Any valid Deployment name                                            |
+| Option              | Description                                                                       | Possible Values           |
+| ------------------- | --------------------------------------------------------------------------------- | ------------------------- |
+| `<deployment-id>`   | The ID of the Deployment to delete                                                | Any valid Deployment ID   |
+| `-f`,`--force`      | Do not include a confirmation prompt before deleting the Deployment               | None                      |
+| `--workspace-id`    | Specify a Workspace to delete a Deployment outside of your current Workspace      | Any valid Workspace ID    |
+| `--deployment-name` | The name of the Deployment to delete. Use as an alternative to `<deployment-id>`. | Any valid Deployment name |
 
 ## Examples
 
@@ -73,10 +73,10 @@ astro deployment delete
 
 ## Options
 
-| Option            | Description                                                         | Possible Values         |
-| ----------------- | ------------------------------------------------------------------- | ----------------------- |
-| `<deployment-id>` (_Required_) | The ID of the Deployment to delete         | Any valid Deployment ID |
-| `-h`,`--hard`    | Deletes all infrastructure and records for this Deployment. See [Hard delete a Deployment](https://docs.astronomer.io/software/configure-deployment#hard-delete-a-deployment) | None                      |
+| Option                         | Description                                                                                                                                                                   | Possible Values         |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| `<deployment-id>` (_Required_) | The ID of the Deployment to delete                                                                                                                                            | Any valid Deployment ID |
+| `-h`,`--hard`                  | Deletes all infrastructure and records for this Deployment. See [Hard delete a Deployment](https://docs.astronomer.io/software/configure-deployment#hard-delete-a-deployment) | None                    |
 
 </TabItem>
 </Tabs>

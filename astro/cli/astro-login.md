@@ -34,10 +34,10 @@ astro login
 
 ## Options
 
-| Option              | Description                                                                                   | Possible Values                                 |
-| ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `-l`, `--login-link` | Force the user to manually access the Cloud UI to log in instead of opening the browser automatically from the CLI.           | None |
-| `-t`, `--token-login` | Force the user to manually enter a token generated in the Cloud UI. This flag is used primarily for browserless login.                                        | None    |
+| Option                | Description                                                                                                            | Possible Values |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------- | --------------- |
+| `-l`, `--login-link`  | Force the user to manually access the Cloud UI to log in instead of opening the browser automatically from the CLI.    | None            |
+| `-t`, `--token-login` | Force the user to manually enter a token generated in the Cloud UI. This flag is used primarily for browserless login. | None            |
 
 ## Examples
 
@@ -66,10 +66,10 @@ astro login <basedomain>
 
 ## Options
 
-| Option              | Description                                                                                   | Possible Values                                 |
-| ------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `--l`, `--login-link` | Generate a login link to login on a separate device for cloud CLI login          | None|
-| `-o`, `--oauth` | Skip the prompt for local authentication, proceed directly to OAuth token authentication                         | None    |
+| Option                | Description                                                                              | Possible Values |
+| --------------------- | ---------------------------------------------------------------------------------------- | --------------- |
+| `--l`, `--login-link` | Generate a login link to login on a separate device for cloud CLI login                  | None            |
+| `-o`, `--oauth`       | Skip the prompt for local authentication, proceed directly to OAuth token authentication | None            |
 
 
 ## Examples

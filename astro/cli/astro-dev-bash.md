@@ -22,19 +22,20 @@ By default, the command execs into the scheduler container and prompts you to ru
 
 | Option              | Description                                           | Possible Values |
 | ------------------- | ----------------------------------------------------- | --------------- |
-| `-p`, `--postgres`    | Run a bash command in the metadata database container | ``              |
-| `-s`,`--scheduler`  | Run a bash command in the scheduler container         | ``              |
-| `-t`, `--triggerer` | Run a bash command in the triggerer container         | ``              |
-| `-w`, `--webserver` | Run a bash command in the webserver container         | ``              |
+| `-p`, `--postgres`  | Run a bash command in the metadata database container | None            |
+| `-s`,`--scheduler`  | Run a bash command in the scheduler container         | None            |
+| `-t`, `--triggerer` | Run a bash command in the triggerer container         | None            |
+| `-w`, `--webserver` | Run a bash command in the webserver container         | None            |
 
 ## Examples
 
 ```sh
 $ astro dev bash --webserver
-ls -al
+$ ls -al
 # View all files in the webserver container
+
 $ astro dev bash --scheduler
-pip-freeze | grep pymongo
+$ pip-freeze | grep pymongo
 # Check the version of the pymongo package running in the scheduler
 ```
 

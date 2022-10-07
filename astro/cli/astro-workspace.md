@@ -54,7 +54,9 @@ Creates a new Workspace.
 
 #### Usage
 
-`astro workspace create --label=<new-workspace-name> `
+```sh
+astro workspace create --label=<new-workspace-name>
+```
 
 #### Options
 
@@ -97,7 +99,9 @@ Creates a service account for a given Workspace.
 
 #### Usage
 
-`astro workspace service-account create --workspace-id=<your-workspace> --label=<your-label>`
+```sh
+astro workspace service-account create --workspace-id=<your-workspace> --label=<your-label>
+```
 
 #### Options
 
@@ -119,7 +123,9 @@ Deletes a service account for a given Workspace.
 
 #### Usage
 
-`astro workspace service-account delete <your-service-account-id>`
+```sh
+astro workspace service-account delete <your-service-account-id>
+```
 
 #### Options
 
@@ -157,7 +163,9 @@ Switches the Workspace in which you're working.
 
 #### Usage
 
-`astro workspace switch <workspace-id>`
+```sh
+astro workspace switch <workspace-id>
+```
 
 | Option         | Description                                                                                      | Possible Values |
 | -------------- | ------------------------------------------------------------------------------------------------ | --------------- |
@@ -191,7 +199,9 @@ View a list of all Teams in a Workspace.
 
 #### Usage
 
-`astro workspace team list`
+```sh
+astro workspace team list
+```
 
 #### astro workspace team remove
 
@@ -199,7 +209,9 @@ Update a Team from a given Workspace.
 
 #### Usage
 
-`astro workspace team remove <team-id> --workspace-id <workspace-id>`
+```sh
+astro workspace team remove <team-id> --workspace-id <workspace-id>
+```
 
 You can retrieve a Team's ID in one of two ways:
 
@@ -218,7 +230,9 @@ Update a Team's permissions in a given Workspace.
 
 #### Usage
 
-`astro workspace team update <team-id> --workspace-id <workspace-id> --role=<system-role>`
+```sh
+astro workspace team update <team-id> --workspace-id <workspace-id> --role=<system-role>
+```
 
 You can retrieve a Team's ID in one of two ways:
 
@@ -243,7 +257,9 @@ Updates some of the basic information for your current Workspace.
 
 #### Usage
 
-`astro workspace update [flags]`
+```sh
+astro workspace update 
+```
 
 At least one flag must be specified.
 
@@ -264,7 +280,9 @@ Creates a new user in your current Workspace. If the user has already authentica
 
 #### Usage
 
-`astro workspace user add --email <user-email-address> [flags]`
+```sh
+astro workspace user add --email <user-email-address> 
+```
 
 #### Options
 
@@ -285,7 +303,9 @@ Removes an existing user from your current Workspace.
 
 #### Usage
 
-`astro workspace user remove --email <user-email-address>`
+```sh
+astro workspace user remove --email <user-email-address>
+```
 
 #### Options
 
@@ -304,7 +324,9 @@ Outputs a list of all users with access to your current Workspace.
 
 #### Usage
 
-`astro workspace user list [flags]`
+```sh
+astro workspace user list
+```
 
 #### Options
 
@@ -328,7 +350,9 @@ Updates a user's role in your current Workspace.
 
 #### Usage
 
-`astro workspace user update --email <user-email-address> [flags]`
+```sh
+astro workspace user update --email <user-email-address>
+```
 
 #### Options
 

@@ -23,8 +23,6 @@ The behavior and format of this command differs depending on what Astronomer pro
     ]}>
 <TabItem value="astro">
 
-## Description
-
 Show [scheduler logs](scheduler-logs.md) over the last 24 hours for a given Deployment on Astro. These scheduler logs are the same logs that appear in the **Logs** tab of the Cloud UI.
 
 ## Usage
@@ -64,16 +62,18 @@ $ astro deployment logs --deployment-name="My Deployment" --error --log-count=25
 
 Show Airflow component logs over the last 24 hours for a given Deployment. These logs are the same logs that appear in the **Logs** tab of the Software UI.
 
-### Usage
+## Usage
 
 Run one of the following commands depending on which logs you want to stream:
 
-- `astro deployment logs <deployment-id> scheduler`
-- `astro deployment logs <deployment-id> webserver`
-- `astro deployment logs <deployment-id> workers`
-- `astro deployment logs <deployment-id> triggerer`
+```sh
+astro deployment logs <deployment-id> scheduler
+astro deployment logs <deployment-id> webserver
+astro deployment logs <deployment-id> workers
+astro deployment logs <deployment-id> triggerer
+```
 
-### Options
+## Options
 
 | Option                            | Description                                                        | Possible values                                         |
 | --------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------- |

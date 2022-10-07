@@ -18,15 +18,17 @@ Manage Deployment-level Teams on Astronomer Software.
 
 This command includes three subcommands: `create`, `delete`, and `list`
 
-`astro deployment team add --deployment-id=<your-deployment-id> <team-id>`
-`astro deployment team list <deployment-id>`
-`astro deployment team --deployment-id=<your-deployment-id> <team-id> [flags]`
-`astro deployment team remove --deployment-id=<your-deployment-id> <team-id>`
+```sh
+astro deployment team add --deployment-id=<your-deployment-id> <team-id>
+astro deployment team list <deployment-id>
+astro deployment team --deployment-id=<your-deployment-id> <team-id> 
+astro deployment team remove --deployment-id=<your-deployment-id> <team-id>
+```
 
 You can retrieve a Team's ID in one of two ways:
 
 - Access the Team in the Software UI and copy the last part of the URL in your web browser. For example, if your Team is located at `BASEDOMAIN.astronomer.io/w/cx897fds98csdcsdafasdot8g7/team/cl4iqjamcnmfgigl4852flfgulye`, your Team ID is `cl4iqjamcnmfgigl4852flfgulye`.
-- Run [`astro workspace team list`](#astro-workspace-team-list) and copy the value in the `ID` column.
+- Run [`astro workspace team list`](cli/astro-workspace.md#astro-workspace-team-list) and copy the value in the `ID` column.
 
 ## Options 
 
