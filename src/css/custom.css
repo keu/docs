@@ -588,6 +588,8 @@ html[data-theme="dark"] aside.theme-doc-sidebar-container {
   font-size: 15px;
   line-height: 24px;
   color: #1A1C1F;
+  margin-left: -2px;
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (max-width: 996px) {
