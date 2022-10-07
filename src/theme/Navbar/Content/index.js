@@ -60,6 +60,7 @@ export default function NavbarContent() {
             // Ask the user to add the respective navbar items => more flexible
             <>
               <NavbarItems items={rightItems} />
+              <NavbarColorModeToggle className={styles.colorModeToggle} />
               <a className={cn(styles.button, styles.button__outline)} href="https://www.astronomer.io/?utm_source=docs-nav-button" target="_blank">Learn About Astronomer</a>
               <a className={styles.button} href="https://www.astronomer.io/get-started/?utm_source=docs-nav-button" target="_blank">Try Astro</a>
             </>
@@ -79,6 +80,7 @@ export default function NavbarContent() {
             // Ask the user to add the respective navbar items => more flexible
             <>
               <NavbarColorModeToggle className={styles.colorModeToggle} />
+              <a className={styles.button} href="https://www.astronomer.io/get-started/?utm_source=docs-nav-button" target="_blank">Try Astro</a>
             </>
           }
         />

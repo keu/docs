@@ -141,6 +141,7 @@
 
   --ifm-navbar-item-padding-horizontal: 1.25rem;
   --ifm-navbar-height: 8rem;
+  --ifm-navbar-sidebar-width: 100vw;
 }
 
 html[data-theme="dark"] {
@@ -568,4 +569,100 @@ aside.theme-doc-sidebar-container {
   font-size: 15px;
   line-height: 24px;
   color: #1A1C1F;
+}
+
+@media screen and (max-width: 996px) {
+  html .DocSearch {
+    --docsearch-searchbox-background: transparent;
+    border: 1px solid var(--purple-400);
+    border-radius: 50px;
+  }
+  html .DocSearch-Button .DocSearch-Search-Icon {
+    color: white;
+  }
+
+  [class*='navbar__bottom'] a.navbar__link:not(.navbar__link--active) {
+    display: none;
+  }
+
+  [class*='navbar__bottom'] a.navbar__link--active,
+  [class*='navbar__bottom'] a.navbar__link--active:hover,
+  [class*='navbar__bottom'] a.navbar__link--active:focus {
+    border: none;
+    padding-left: 0;
+  }
+}
+
+.navbar-sidebar__brand {
+  height: calc(var(--ifm-navbar-height)/2);
+}
+
+a.navbar-sidebar__logolink {
+  font-weight: 600;
+  color: var(--purple-400);
+  font-size: 15px;
+  position: relative;
+}
+
+a.navbar-sidebar__logolink::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -14px;
+  height: 32px;
+  width: 2px;
+  background-color: var(--purple-600);
+}
+
+.navbar-sidebar__items {
+  display: grid;
+  height: auto;
+}
+
+.navbar-sidebar__item.menu.primaryMenu {
+  padding: 0;
+}
+
+.navbar-sidebar__item.menu.primaryMenu .menu__list {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--gray-300);
+  padding: 0 0.75rem;
+}
+
+.navbar-sidebar__item.menu.primaryMenu .menu__list-item {
+  margin-top: 0;
+  border-radius: 0;
+  font-weight: 600;
+}
+
+.navbar-sidebar__item.menu.primaryMenu .menu__list-item a.navbar__link  {
+  border-bottom: 4px solid transparent;
+  padding: 1rem 8px;
+}
+
+.navbar-sidebar__item.menu.primaryMenu .menu__link,
+.navbar-sidebar__item.menu.primaryMenu .menu__list-item a.navbar__link {
+  border-radius: 0;
+  padding: 1rem 8px;
+}
+
+.navbar-sidebar__item.menu.primaryMenu .menu__link:hover,
+.navbar-sidebar__item.menu.primaryMenu .menu__list-item a.navbar__link--active {
+  border-bottom: 4px solid var(--purple-600);
+  background-color: transparent;
+}
+
+.navbar-sidebar__item.menu.bottomButtons {
+  background-color: var(--mint-100);
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.navbar-sidebar__item.menu.bottomButtons a {
+  flex: 1 1 auto;
+  text-align: center;
 }
