@@ -42,18 +42,26 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
 
 For more information about the resources required to run Astro on Azure, see [Azure Resource Reference](resource-reference-azure.md).
 
-### VPC peering prerequisites (Optional)
+### VNet peering prerequisites (Optional)
 
-If any Azure resources are on a private network, you can choose one of the following options:
+To give Astro access to any Azure resources on a private network, you must create a VNet peering connection between Astronomer's VNet and the VNets for your broader network. 
 
-- Use the public internet and allow-lists for communication.
-- Create a VPC Peering connection between the Astronomer VPC and your network VPCs.
+To create a VNet peering connection, contact [Astronomer Support](https://support.astronomer.io/) and provide the following details:
 
-To implement the second option, you'll additionally need:
+- Azure TenantID of the target VNet
+- Subscription ID of the target VNet
+- Region of the target VNet
+- VNet ID of the target VNet
+- ResourceGroup of the target VNet
+- A CIDR block (RFC 1918 IP Space) no smaller than a `/19` range. This CIDR block can't overlap with any Azure VNet(s) that you will peer with later. The default CIDR range is `172.20.0.0/19`.
+- ResourceID, for example: `/subscriptions/<Subscription Id>/resourceGroups/myResourceGroupA/providers/Microsoft.Network/virtualNetworks/myVnetA`. You can find the resource ID in the Azure portal by following step 7 in [Create peering - Azure portal](https://docs.microsoft.com/en-us/azure/virtual-network/create-peering-different-subscriptions#portal).
 
-- A CIDR block (RFC 1918 IP Space) no smaller than a `/19` range. You must ensure it does not overlap with the AWS VPC(s) that you will be peering with later. The default CIDR range is `172.20.0.0/19`.
-- VPC Name / ID for peering with Astronomer.
-- The IP addresses of your DNS servers.
+Additionally, ensure that your Azure AD user has at least one of the following role assignments: 
+
+-  Network Contributor: This permission is required for any VNet deployed through Resource Manager.
+-  Classic Network Contributor: This permission is required for any VNet deployed through the classic deployment model.
+  
+From here, Astronomer support will set up the VNet connection to Astro.
 
 ## Step 1: Access Astro
 

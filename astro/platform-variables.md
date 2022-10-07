@@ -21,6 +21,7 @@ If you need to set one of these variables for a particular use case, contact [As
 
 | Environment Variable                       | Description                                                                                                          | Value                                   |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+|`AIRFLOW__LOGGING__DAG_PROCESSOR_LOG_TARGET`| Routes scheduler logs to stdout                                                                                      | `stdout`                                |
 | `AIRFLOW__LOGGING__REMOTE_LOGGING`         | Enables remote logging                                                                                               | `True`                                  |
 | `AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER` | Location of remote logging storage                                                                                   | `baseLogFolder`                         |
 | `AIRFLOW_CONN_ASTRO_S3_LOGGING`            | Connection URI for writing task logs to Astro's managed S3 bucket                                                    | `<Connection-URI>`                      |
@@ -45,8 +46,9 @@ If you need to set one of these variables for a particular use case, contact [As
 | `AIRFLOW__WEBSERVER__INSTANCE_NAME`        | Shows the name of your Deployment in the Home view of the Airflow UI                                                 | `<Deployment-Name>`                     |
 | `AIRFLOW__CELERY__WORKER_CONCURRENCY`      | Determines how many tasks each Celery worker can run at any given time and is the basis of worker auto-scaling logic | `<Max-Tasks-Per-Worker>`                |
 | `AIRFLOW__WEBSERVER__NAVBAR_COLOR`         | The color of the main navigation bar in the Airflow UI                                                               | `#4a4466`                               |
-| `AWS_SECRET_ACCESS_KEY`       | The key secret for accessing Astro's managed S3 bucket¹           |
-| `AWS_ACCESS_KEY_ID`  | The key ID for accessing Astro's managed S3 bucket¹ |
+| `AIRFLOW__WEBSERVER__EXPOSE_CONFIG`        | Exposes the **Configuration** tab of the Airflow UI and hides sensitive values                                       |  `NON-SENSITIVE-ONLY`                   |
+| `AWS_SECRET_ACCESS_KEY`                    | The key secret for accessing Astro's managed S3 bucket¹                                                              | `<s3-aws-access-key-secret>`            |
+| `AWS_ACCESS_KEY_ID`                        | The key ID for accessing Astro's managed S3 bucket¹                                                                  | `<s3-aws-access-key-id>`                |
 
 :::info 
 

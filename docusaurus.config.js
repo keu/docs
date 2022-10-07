@@ -41,7 +41,7 @@ module.exports = {
       logo: {
         alt: 'Astronomer',
         src: 'img/LogoPrimaryDarkMode.svg',
-        href: 'https://www.astronomer.io/',
+        href: 'https://docs.astronomer.io/astro',
         target: '_self',
       },
       items: [
@@ -171,8 +171,8 @@ module.exports = {
               href: 'https://support.astronomer.io',
             },
             {
-              label: 'Status',
-              href: 'https://cloud-status.astronomer.io',
+              label: 'Astro Status',
+              href: 'https://status.astronomer.io',
             },
             {
               label: 'Astronomer Registry',
