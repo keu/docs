@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info  
 
-The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change between product contexts. 
+The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change product contexts. 
 
 :::
 
@@ -82,7 +82,7 @@ astro deployment delete
 </Tabs>
 
 
-## Related Commands
+## Related commands
 
 - [`astro deployment create`](cli/astro-deployment-create.md)
 - [`astro deployment list`](cli/astro-deployment-list.md)

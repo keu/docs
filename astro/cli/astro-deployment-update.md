@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info  
 
-The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change between product contexts. 
+The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change product contexts. 
 
 :::
 
@@ -85,22 +85,22 @@ astro deployment update <deployment-id>
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `<deployment-id>` (_Required_) | The ID for the Deployment to update | Any valid Deployment ID |
 | `-a`,`--airflow-version`      | The version of Astronomer Certified to use for the Deployment                                                                                                      | Any supported version of Astronomer Certified                                                                                        |  |
-| `-c`, `--cloud-role`          | An AWS or GCP IAM role to append to your Deployment's webserver, scheduler, and worker Pods.                                                                       | Any string                                                                                                                           |
-| `-t`, `--dag-deployment-type` | The DAG deploy method for the Deployment.                                                                                                                          | Can be either `image`, `git_sync`, or `volume`. The default is `image`.                                                              |
+| `-c`, `--cloud-role`          | An AWS or GCP IAM role to append to your Deployment's webserver, scheduler, and worker Pods                                                                      | Any string                                                                                                                           |
+| `-t`, `--dag-deployment-type` | The DAG deploy method for the Deployment                                                                                                                         | Can be either `image`, `git_sync`, or `volume`. The default is `image`                                                             |
 | `-d`,`--description`          | The description for the Deployment                                                                                                                                 | Any string. Multiple-word descriptions should be specified in quotations (`"`)                                                       |
-| `-e`, `--executor`            | The executor type for the Deployment.                                                                                                                              | `local`, `celery`, or `kubernetes`. The default value is `celery`                                                                    |
+| `-e`, `--executor`            | The executor type for the Deployment                                                                                                                              | `local`, `celery`, or `kubernetes`. The default value is `celery`                                                                    |
 | `-b`, `--git-branch-name`     | The branch name of the git repo to sync your Deployment from. Must be specified with `--dag-deployment-type=git_sync`                                              | Any valid git branch name                                                                                                            |  |
 | `-u`, `--git-repository-url`  | The URL for the git repository to sync your Deployment from. Must be specified with `--dag-deployment-type=git_sync`                                               | Any valid git repository URL                                                                                                         |
 | `-v`, `--git-revision`        | The commit reference of the branch that you want to sync with your Deployment. Must be specified with `--dag-deployment-type=git_sync`                             | Any valid git revision                                                                                                               |
 | `--known-hosts`               | The public key for your Git provider, which can be retrieved using `ssh-keyscan -t rsa <provider-domain>`. Must be specified with `--dag-deployment-type=git_sync` | Any valid public key                                                                                                                 |
 | `-l`,`--label`                | The label for your Deployment                                                                                                                                      | Any string                                                                                                                           |
-| `-n`,`--nfs-location`         | The location for an NFS volume mount. Must be specified with `--dag-deployment-type=volume`.                                                                       | An NFS volume mount specified as: `<IP>:/<path>`. Input is automatically prepended with `nfs:/` - do not include this in your input. |
+| `-n`,`--nfs-location`         | The location for an NFS volume mount. Must be specified with `--dag-deployment-type=volume`                                                                       | An NFS volume mount specified as: `<IP>:/<path>`. Input is automatically prepended with `nfs:/` - do not include this in your input |
 | `-r`,`--release-name`         | A custom release name for the Deployment. See [Customize release names](https://docs.astronomer.io/software/configure-deployment#customize-release-names)          | Any string of alphanumeric and hyphen characters                                                                                     |
-| `--runtime-version`           | The Astro Runtime version for the Deployment                                                                                                                       | Any supported version of Astro Runtime. Major, minor, and patch versions must be specified.                                          |
+| `--runtime-version`           | The Astro Runtime version for the Deployment                                                                                                                       | Any supported version of Astro Runtime. Major, minor, and patch versions must be specified                                          |
 | `--ssh-key`                   | The SSH private key for your Git repository. Must be specified with `--dag-deployment-type=git_sync`                                                               | Any valid SSH key                                                                                                                    |
 | `-s`,`--sync-interval`        | The time interval between checks for updates in your Git repository, in seconds. Must be specified with `--dag-deployment-type=git_sync`                           | Any integer                                                                                                                          |
-| `-t`,`--triggerer-replicas`   | Number of replicas to use for the Airflow triggerer                                                                                                                | Any integer between 0 - 2. The default value is 1.`                                                                                  |
-| `--workspace-id`              | The Workspace in which to create a Deployment. If not specified, your current Workspace is assumed.                                                                | Any valid Workspace ID                                                                                                               |
+| `-t`,`--triggerer-replicas`   | Number of replicas to use for the Airflow triggerer                                                                                                                | Any integer between 0 - 2. The default value is 1                                                                                 |
+| `--workspace-id`              | The Workspace in which to create a Deployment. If not specified, your current Workspace is assumed                                                                | Any valid Workspace ID                                                                                                               |
 
 ## Examples
 
@@ -115,7 +115,7 @@ $ astro deployment update telescopic-sky-4599 -l="My Deployment label" --workspa
 </TabItem>
 </Tabs>
 
-## Related Commands
+## Related commands
 
 - [`astro deployment delete`](cli/astro-deployment-delete.md)
 - [`astro deployment list`](cli/astro-deployment-list.md)

@@ -16,7 +16,7 @@ Initializes the Airflow version upgrade process on any Airflow Deployment on Ast
 
 ### Usage
 
-Run `astro deployment airflow upgrade --deployment-id` to initialize the Airflow upgrade process. To finalize the Airflow upgrade process, complete all of the steps as described in [Upgrade Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
+Run `astro deployment airflow upgrade --deployment-id` to initialize the Airflow upgrade process. To finalize the Airflow upgrade process, complete all of the steps in [Upgrade Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
 
 If you do not specify `--desired-airflow-version`, this command creates a list of available Airflow versions that you can select. The Astro CLI lists only the available Airflow versions that are later than the version currently specified in your `Dockerfile`.
 
@@ -25,8 +25,8 @@ If you do not specify `--desired-airflow-version`, this command creates a list o
 | Option                        | Description                                                                                                                    | Possible values
 | --------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `--cancel` | Cancel the upgrade                                                                | None | 
-| `--deployment-id`           | The ID of the Deployment for which you want to upgrade Airflow. To find your Deployment ID, run `astro deployment list`.     | Any Deployment ID |
-| `--desired-airflow-version` | The Airflow version you're upgrading to (for example, `2.2.0`).                                                                | Any supported Airflow version | 
+| `--deployment-id`           | The ID of the Deployment that you want to upgrade the Airflow version. Run `astro deployment list` to retrieve your Deployment ID.     | Any Deployment ID |
+| `--desired-airflow-version` | The Airflow version you're upgrading to. For example, `2.2.0`.                                                                | Any supported Airflow version | 
 
 
 

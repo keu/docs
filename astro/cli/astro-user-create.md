@@ -12,7 +12,7 @@ This command is available only if you're authenticated to an Astronomer Software
 
 :::
 
-Create a new user profile on Astronoemr Software. 
+Create a new user profile on Astronomer Software. 
 
 ## Usage 
 

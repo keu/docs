@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info  
 
-The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change between product contexts. 
+The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change product contexts. 
 
 :::
 
@@ -42,7 +42,7 @@ astro deployment logs
 | `-e`,`--error`      | Show only logs with a log level of `ERROR`                                               | None                                    |
 | `-w`,`--warn`       | Show only logs with a log level of `WARNING`                                             | None                                    |
 | `-i`,`--info`       | Show only logs with a log level of `INFO`                                                | None                                    |
-| `-c`,`--log-count`  | The number of log lines to show. The default is `500`                                    | Any integer less than or equal to 500 |
+| `-c`,`--log-count`  | The number of log lines to show. The default is `500`                                    | Any integer less than or equal to 500. |
 | `--workspace-id`    | Specify a Workspace to show logs for a Deployment outside of your current Workspace      | Any valid Workspace ID                |
 
 ## Examples
@@ -79,9 +79,9 @@ Run one of the following commands depending on which logs you want to stream:
 | --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
 | `<deployment-id>` (_Required)     | The ID of the Deployment for which you want to view logs            | Any valid Deployment ID                                 |
 | `<airflow-component>` (_Required) | The Airflow component for which you want to view logs               | `scheduler`, `webserver`, `workers`, or `triggerer`     |
-| `--follow`                        | Subscribes to watch more logs.                                      | None                                                    |
-| `--search`                        | Searches for the specified string within the logs you're following. | Any string                                              |
-| `--since`                         | Limits past logs to those generated in the lookback window.         | Lookback time in `h` or `m` (for example, `5m` or `2h`) |
+| `--follow`                        | Subscribes to watch more logs                                     | None                                                    |
+| `--search`                        | Searches for the specified string within the logs you're following | Any string                                              |
+| `--since`                         | Limits past logs to those generated in the lookback window        | Lookback time in `h` or `m` (for example, `5m` or `2h`) |
 
 
 ## Examples
@@ -100,7 +100,7 @@ $ astro deployment logs webserver example-deployment-uuid --since 25m
 </TabItem>
 </Tabs>
 
-## Related Commands
+## Related commands
 
 - [`astro dev logs`](cli/astro-dev-logs.md)
 - [`astro dev run`](cli/astro-dev-run.md)

@@ -16,15 +16,15 @@ Initializes the Runtime version upgrade process on any Deployment on Astronomer 
 
 ### Usage
 
-Run `astro deployment runtime upgrade --deployment-id=<deployment-id>` to initialize the Runtime upgrade process. To finalize the Runtime upgrade process, complete all of the steps as described in [Upgrade Apache Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
+Run `astro deployment runtime upgrade --deployment-id=<deployment-id>` to initialize the Runtime upgrade process. To finalize the Runtime upgrade process, complete all of the steps in [Upgrade Apache Airflow on Astronomer Software](https://docs.astronomer.io/software/manage-airflow-versions).
 
 ### Options
 
 | Option                         | Description                                                                                                              | Possible values               |
 | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
 | `--cancel`                     | Cancel the upgrade                                                                                                       | None                          |
-| `--deployment-id` (_Required_) | The ID of the Deployment for which you want to upgrade Runtime. To find your Deployment ID, run `astro deployment list`. | Any Deployment ID             |
-| `--desired-runtime-version`    | The Runtime version you're upgrading to (for example, `2.2.0`).                                                          | Any supported Runtime version |
+| `--deployment-id` (_Required_) | The ID of the Deployment for which you want to upgrade Runtime. Run `astro deployment list ` to retrieve the Deployment ID. | Any Deployment ID             |
+| `--desired-runtime-version`    | The Runtime version you're upgrading to. For example, `2.2.0`.                                                          | Any supported Runtime version |
 
 
 

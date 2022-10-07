@@ -86,17 +86,17 @@ $ astro deploy --image-name my-custom-runtime-image
 
 This command bundles all files in your Astro project and pushes them to Astronomer Software. 
 
-When you run `astro deploy`, you'll be prompted to select from a list of all Deployments that you have access to across Workspaces. To bypass this prompt, you can also specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also find a Deployment's ID by running `astro deployment list`.
+When you run `astro deploy`, you'll be prompted to select from a list of all Deployments that you can access in all Workspaces. To bypass this prompt, you can specify a Deployment ID in the command. To retrieve a Deployment ID, go to your Deployment's information page in the Cloud UI and copy the value after the last `/` in the URL. You can also run `astro deployment list` to retrieve a Deployment ID .
 
 ## Options
 
 | Option                    | Description                                                                                    | Possible Values                                        |
 | ------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| `<deployment-id>`         | Specify the Deployment to deploy to, bypass Deployment selection prompt                        | Any valid Deployment ID                                |
+| `<deployment-id>`         | Specify the Deployment to deploy to and bypass the Deployment selection prompt                        | Any valid Deployment ID                                |
 | `-f`,`--force`            | Force deploy even if your project contains errors or uncommitted changes                       | None                                                     |
 | `-p`,`--prompt`           | Force the Deployment selection prompt even if a Deployment ID is specified                     | None                                                     |
 | `-s`,`--save`             | Save the current Deployment and working directory combination for future deploys               | None                                                     |
-| `--no-cache`     | None       | Do not use any images from the container engine's cache when building your project. |
+| `--no-cache`     | None       | Do not use any images from the container engine's cache when building your project |
 | `--workspace-id <string>` | In the prompt to select a Deployment, only show Deployments within this Workspace              | Any valid Workspace ID                                 |
 
 ## Examples
@@ -115,7 +115,7 @@ $ astro deploy ckvvfp9tf509941drl4vela81n --save
 </TabItem>
 </Tabs>
 
-## Related Commands
+## Related commands
 
 - [`astro login`](cli/astro-login.md)
 - [`astro deployment list`](cli/astro-deployment-list.md)

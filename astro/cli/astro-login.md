@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info  
 
-The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change between product contexts. 
+The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change product contexts. 
 
 :::
 
@@ -86,7 +86,7 @@ astro login mycompany.astromomer.io -o
 </TabItem>
 </Tabs>
 
-### Related Commands
+### Related commands
 
 - [`astro logout`](cli/astro-logout.md)
 - [`astro deploy`](cli/astro-deploy.md)

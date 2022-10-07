@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info  
 
-The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change between product contexts. 
+The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change product contexts. 
 
 :::
 
@@ -37,12 +37,12 @@ astro deployment create
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
 | `-c`, `--cluster-id`        | The cluster in which you want to create a Deployment                                                                           | The name of any cluster that you can create Deployments in                                  |
 | `-d`,`--description`        | The description for the Deployment                                                                                             | Any string. Multiple-word descriptions should be specified in quotations (`"`)              |
-| `-n`,`--name`               | The Deployment's name                                                                                                          | Any string. Multiple-word descriptions should be specified in quotations                    |
+| `-n`,`--name`               | The name of the Deployment                                                                                                          | Any string. Multiple-word descriptions should be specified in quotations                    |
 | `-v`,`--runtime-version`    | The Astro Runtime version for the Deployment                                                                                   | Any supported version of Astro Runtime. Major, minor, and patch versions must be specified. |
 | `-s`,`--scheduler-au`       | The number of AU to allocate towards the Deployment's Scheduler(s). The default is`5`.                                         | Integer between `0` and `24`                                                                |
 | `-a`,`--worker-au`          | The number of AU to allocate towards the Deployment's worker(s). The default is `10`.                                          | Integer between `0` and `175`                                                               |
 | `-r`,`--scheduler-replicas` | The number of scheduler replicas for the Deployment. The default is `1`.                                                       | Integer between `0` and `4`                                                                 |
-| `--wait`                    | Waits until the new Deployment has a [healthy](deployment-metrics.md#deployment-health) status before completing the command . | None                                                                                        |
+| `--wait`                    | The time to wait for the new Deployment to have a [healthy](deployment-metrics.md#deployment-health) status before completing the command . | None                                                                                        |
 | `--workspace-id`            | The Workspace in which to create a Deployment. If not specified, your current Workspace is assumed.                            | Any valid Workspace ID                                                                      |
 
 ## Examples
@@ -74,8 +74,8 @@ astro deployment create
 
 | Option                        | Description                                                                                                                                                        | Possible Values                                                                                                                      |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `-a`,`--airflow-version`      | The version of Astronomer Certified to use for the Deployment                                                                                                      | Any supported version of Astronomer Certified                                                                                        |  |
-| `-c`, `--cloud-role`          | An AWS or GCP IAM role to append to your Deployment's webserver, scheduler, and worker Pods.                                                                       | Any string                                                                                                                           |
+| `-a`,`--airflow-version`      | The Astronomer Certified version to use for the Deployment                                                                                                      | Any supported version of Astronomer Certified                                                                                        |  |
+| `-c`, `--cloud-role`          | An AWS or GCP IAM role to append to your Deployment's webserver, scheduler, and worker Pods                                                                     | Any string                                                                                                                           |
 | `-t`, `--dag-deployment-type` | The DAG deploy method for the Deployment.                                                                                                                          | Can be either `image`, `git_sync`, or `volume`. The default is `image`.                                                              |
 | `-d`,`--description`          | The description for the Deployment                                                                                                                                 | Any string. Multiple-word descriptions should be specified in quotations (`"`)                                                       |
 | `-e`, `--executor`            | The executor type for the Deployment.                                                                                                                              | `local`, `celery`, or `kubernetes`. The default value is `celery`                                                                    |
@@ -105,7 +105,7 @@ $ astro deployment create -l="My Deployment label" --workspace-id="ckwqkz3620014
 </TabItem>
 </Tabs>
 
-## Related Commands
+## Related commands
 
 - [`astro deployment delete`](cli/astro-deployment-delete.md)
 - [`astro deployment list`](cli/astro-deployment-list.md)

@@ -33,9 +33,9 @@ astro deployment service-account list
 
 | Option              | Description                                                                              | Possible Values                       |
 | ------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
-| `--category`                 | The category for the new service account as displayed in the Software UI.     |  Any string. The default value is `default`. |
-| `--deployment-id` (Required for `create` and `delete`) | The Deployment you're creating a service account for.              | Any Deployment ID                                                             |
-| `--label` (Required for `create`)         |The name or label for the new service account.       | Any string                                                                           |
-| `--role`                     |  The User Role for the new service account. | Can be either `viewer`, `editor`, or `admin`. The default is `viewer`.                |
+| `--category`                 | The category for the new service account as displayed in the Software UI    |  Any string. The default value is `default`. |
+| `--deployment-id` (Required for `create` and `delete`) | The Deployment you're creating a service account for             | Any Deployment ID                                                             |
+| `--label` (Required for `create`)         |The name or label for the new service account       | Any string                                                                           |
+| `--role`                     |  The User Role for the new service account | Can be either `viewer`, `editor`, or `admin`. The default is `viewer`.                |
 
 

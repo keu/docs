@@ -11,7 +11,7 @@ import TabItem from '@theme/TabItem';
 
 :::info  
 
-The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change between product contexts. 
+The behavior and format of this command differs depending on what Astronomer product you're using. Use the following tabs to change product contexts. 
 
 :::
 
@@ -60,7 +60,7 @@ Creates a new Workspace.
 
 | Option                 | Description | Possible Values                        |
 | ---------------------- | ----------- | -------------------------------------- |
-| `--label` (_required_) |   The label/name for the new Workspace.  | Any string |
+| `--label` (_required_) |   The label or name for the new Workspace.  | Any string |
 | `--description`        | The description for the new Workspace. | Any string |
 
 #### Related documentation
