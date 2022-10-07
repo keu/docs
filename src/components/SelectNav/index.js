@@ -14,7 +14,7 @@ export default function SelectNav({ label, items }) {
   };
 
   useEffect(() => {
-    setCurrentVersion(document.querySelector(`option[value='${path.pathname}']`).text);
+    setCurrentVersion(document.querySelector(`option[value*='${path.pathname}']`).text);
   }, [currentVersion]);
 
   return (
@@ -27,7 +27,7 @@ export default function SelectNav({ label, items }) {
       <select id="selectNav" name="selectNav" className={styles.selectNav__select} onChange={navigateOnChange} placeholer={currentVersion} value={currentVersion}>
         <option>{currentVersion} </option>
         {items.map((item, i) => (
-          <option key={i} className={styles.selectNav__option} value={item.to} hidden={currentVersion === item.label}>{item.label}</option>
+          <option key={i} className={styles.selectNav__option} value={item.to} hidden={currentVersion.indexOf(item.label) > -1}>{item.label}</option>
         ))}
       </select>
     </div>
