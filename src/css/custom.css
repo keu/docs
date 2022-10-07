@@ -602,7 +602,7 @@ html[data-theme="dark"] aside.theme-doc-sidebar-container {
     color: white;
   }
 
-  [class*='navbar__bottom'] a.navbar__link:not(.navbar__link--active) {
+  .navbar--fixed-top a.navbar__link:not(.navbar__link--active) {
     display: none;
   }
 
