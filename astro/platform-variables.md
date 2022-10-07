@@ -19,7 +19,6 @@ If you need to set one of these variables for a particular use case, contact [As
 
 ## System environment variables
 
-
 | Environment Variable                       | Description                                                                                                          | Value                                   |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
 | `AIRFLOW__LOGGING__REMOTE_LOGGING`         | Enables remote logging                                                                                               | `True`                                  |
