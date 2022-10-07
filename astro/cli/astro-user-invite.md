@@ -25,6 +25,7 @@ astro user invite <user-email> <flags>
 ```sh
 $ astro user invite
 # CLI prompts you for a user's email and assigns them the `ORGANIZATION_MEMBER` role by default
+
 $ astro user invite user@company.com --role ORGANIZATION_BILLING_ADMIN
 # Invite a user as an Organization Billing Admin
 ```

@@ -17,9 +17,7 @@ This command is helpful for users interacting with the CLI on a regular basis.
 If you're running the CLI MacOS, install [Bash Completion](https://github.com/scop/bash-completion) before creating autocompletion scripts. To do this with Homebrew, run:
 
 ```sh
-
  brew install bash-completion
-
 ```
 
 :::

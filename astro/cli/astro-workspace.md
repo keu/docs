@@ -283,7 +283,7 @@ Creates a new user in your current Workspace. If the user has already authentica
 
 Removes an existing user from your current Workspace.
 
-### Usage
+#### Usage
 
 `astro workspace user remove --email <user-email-address>`
 

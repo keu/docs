@@ -34,3 +34,8 @@ Run `astro deployment runtime upgrade --deployment-id=<deployment-id>` to initia
 # Upgrade to Runtime 6.0.0
 $ astro deployment runtime --deployment-id telescopic-sky-4599 --desired-runtime-version 6.0.0
 ```
+
+## Related commands 
+
+- [`astro deployment airflow upgrade`](astro-deployment-airflow-upgrade.md)
+- [`astro deployment runtime migrate`](astro-deployment-runtime-migrate.md)

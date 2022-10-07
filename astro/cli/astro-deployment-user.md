@@ -24,15 +24,17 @@ Give an existing user in a Workspace access to a Deployment within that Workspac
 
 #### Usage
 
-`astro deployment user add --email=<user-email-address> --deployment-id=<user-deployment-id> --role<user-role>`
+```sh
+astro deployment user add --email=<user-email-address> --deployment-id=<user-deployment-id> --role<user-role>
+```
 
 #### Options
 
-| Option                              | Description                                                         | Possible values                                         |
-| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
-| `--deployment-id` (_Required_) |The ID for the Deployment that the user is added to     | Any valid Deployment ID                       |
-| `-e`,`--email` (_Required_)         | The user's email                                                                                                                          | Any valid email address |
-| `--role` (_Required_)          | The role assigned to the user | Possible values are `DEPLOYMENT_VIEWER`, `DEPLOYMENT_EDITOR`, or `DEPLOYMENT_ADMIN`. The default value is `DEPLOYMENT_VIEWER` |
+| Option                         | Description                                         | Possible values                                                                                                               |
+| ------------------------------ | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `--deployment-id` (_Required_) | The ID for the Deployment that the user is added to | Any valid Deployment ID                                                                                                       |
+| `-e`,`--email` (_Required_)    | The user's email                                    | Any valid email address                                                                                                       |
+| `--role` (_Required_)          | The role assigned to the user                       | Possible values are `DEPLOYMENT_VIEWER`, `DEPLOYMENT_EDITOR`, or `DEPLOYMENT_ADMIN`. The default value is `DEPLOYMENT_VIEWER` |
 
 #### Related documentation
 
@@ -44,13 +46,15 @@ Remove access to a Deployment for an existing Workspace user. To grant that same
 
 #### Usage
 
-`astro deployment user remove --deployment-id=<deployment-id> --email=<user-email-address>`
+```sh
+astro deployment user remove --deployment-id=<deployment-id> --email=<user-email-address>
+```
 
 #### Options
 
-| Option                              | Description                                                         | Possible values                                         |
-| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
-| `--email` (Required)         | The user's email                            | Any valid email address
+| Option                       | Description                                  | Possible values         |
+| ---------------------------- | -------------------------------------------- | ----------------------- |
+| `--email` (Required)         | The user's email                             | Any valid email address |
 | `--deployment-id` (Required) | The Deployment from which to remove the user | Any valid Deployment ID |
 
 #### Related documentation
@@ -63,15 +67,17 @@ View a list of all Workspace users who have access to a given Deployment.
 
 #### Usage
 
-`astro deployment user list --deployment-id=<deployment-id> [flags]`
+```sh
+astro deployment user list --deployment-id=<deployment-id> 
+```
 
 #### Options
 
-| Option                              | Description                                                         | Possible values                                         |
-| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
+| Option                       | Description                                 | Possible values         |
+| ---------------------------- | ------------------------------------------- | ----------------------- |
 | `--deployment-id` (Required) | The Deployment that you're searching in     | Any valid Deployment ID |
-| `--email`                    |  The email for the user you're searching for | Any valid email address |
-| `--name`                     | The name of the user to search for          | Any string |
+| `--email`                    | The email for the user you're searching for | Any valid email address |
+| `--name`                     | The name of the user to search for          | Any string              |
 
 #### Related documentation
 
@@ -83,14 +89,16 @@ Update a user's role in a given Deployment.
 
 #### Usage
 
-`astro deployment user update --deployment-id=<deployment-id> [flags]`
+```sh
+astro deployment user update --deployment-id=<deployment-id>
+```
 
 #### Options
 
-| Option                              | Description                                                         | Possible values                                         |
-| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
-| `--deployment-id` (Required)  | The Deployment that you're searching  | Any valid Deployment ID.                                                                                                                                                           |
-| `--role`                     | The role for the user. | Possible values are `DEPLOYMENT_VIEWER`, `DEPLOYMENT_EDITOR`, or `DEPLOYMENT_ADMIN`. The default value is `DEPLOYMENT_VIEWER`. |  
+| Option                       | Description                          | Possible values                                                                                                                |
+| ---------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `--deployment-id` (Required) | The Deployment that you're searching | Any valid Deployment ID.                                                                                                       |
+| `--role`                     | The role for the user.               | Possible values are `DEPLOYMENT_VIEWER`, `DEPLOYMENT_EDITOR`, or `DEPLOYMENT_ADMIN`. The default value is `DEPLOYMENT_VIEWER`. |
 
 #### Related documentation
 

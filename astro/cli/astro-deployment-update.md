@@ -54,7 +54,7 @@ After setting the variables, this command works for a Deployment and you don't n
 | `-s`,`--scheduler-au`          | The number of AU to allocate towards the Deployment's Scheduler(s). The default is`5`. | Integer between `0` and `24`                                                   |
 | `-a`,`--worker-au`             | The number of AU to allocate towards the Deployment's worker(s). The default is `10`.  | Integer between `0` and `175`                                                  |
 | `-r`,`--scheduler-replicas`    | The number of scheduler replicas for the Deployment. The default is `1`.               | Integer between `0` and `4`                                                    |
-| `-f`,`--force`          | Force a Deployment update                             | ``                                                                             |
+| `-f`,`--force`          | Force a Deployment update                             | None                                                                             |
 | `-w`,`--workspace-id`          | Specify a Workspace to update a Deployment outside of your current Workspace           | Any valid Workspace ID                                                         |
 
 ## Examples

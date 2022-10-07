@@ -35,15 +35,15 @@ astro deployment logs
 
 ## Options
 
-| Option              | Description                                                                              | Possible Values                       |
-| ------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
-| `<deployment-id>`   | The ID of the Deployment to show logs for                                                | Any valid Deployment ID               |
-| `--deployment-name` | The name of the Deployment to show logs for. Use as an alternative to `<deployment-id>`. | Any valid Deployment name             |
-| `-e`,`--error`      | Show only logs with a log level of `ERROR`                                               | None                                    |
-| `-w`,`--warn`       | Show only logs with a log level of `WARNING`                                             | None                                    |
-| `-i`,`--info`       | Show only logs with a log level of `INFO`                                                | None                                    |
+| Option              | Description                                                                              | Possible Values                        |
+| ------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------- |
+| `<deployment-id>`   | The ID of the Deployment to show logs for                                                | Any valid Deployment ID                |
+| `--deployment-name` | The name of the Deployment to show logs for. Use as an alternative to `<deployment-id>`. | Any valid Deployment name              |
+| `-e`,`--error`      | Show only logs with a log level of `ERROR`                                               | None                                   |
+| `-w`,`--warn`       | Show only logs with a log level of `WARNING`                                             | None                                   |
+| `-i`,`--info`       | Show only logs with a log level of `INFO`                                                | None                                   |
 | `-c`,`--log-count`  | The number of log lines to show. The default is `500`                                    | Any integer less than or equal to 500. |
-| `--workspace-id`    | Specify a Workspace to show logs for a Deployment outside of your current Workspace      | Any valid Workspace ID                |
+| `--workspace-id`    | Specify a Workspace to show logs for a Deployment outside of your current Workspace      | Any valid Workspace ID                 |
 
 ## Examples
 
@@ -75,13 +75,13 @@ Run one of the following commands depending on which logs you want to stream:
 
 ### Options
 
-| Option                              | Description                                                         | Possible values                                         |
-| --------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------- |
-| `<deployment-id>` (_Required)     | The ID of the Deployment for which you want to view logs            | Any valid Deployment ID                                 |
-| `<airflow-component>` (_Required) | The Airflow component for which you want to view logs               | `scheduler`, `webserver`, `workers`, or `triggerer`     |
-| `--follow`                        | Subscribes to watch more logs                                     | None                                                    |
+| Option                            | Description                                                        | Possible values                                         |
+| --------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------- |
+| `<deployment-id>` (_Required)     | The ID of the Deployment for which you want to view logs           | Any valid Deployment ID                                 |
+| `<airflow-component>` (_Required) | The Airflow component for which you want to view logs              | `scheduler`, `webserver`, `workers`, or `triggerer`     |
+| `--follow`                        | Subscribes to watch more logs                                      | None                                                    |
 | `--search`                        | Searches for the specified string within the logs you're following | Any string                                              |
-| `--since`                         | Limits past logs to those generated in the lookback window        | Lookback time in `h` or `m` (for example, `5m` or `2h`) |
+| `--since`                         | Limits past logs to those generated in the lookback window         | Lookback time in `h` or `m` (for example, `5m` or `2h`) |
 
 
 ## Examples
