@@ -9,7 +9,7 @@ In Astro, certain environment variables have preset values that are required and
 
 For information on setting your own environment variables, see [Environment variables](environment-variables.md).
 
-:::danger 
+:::warning 
 
 The Cloud UI does not currently prevent you from setting these environment variables, but attempting to set them can result in unexpected behavior that can include access problems, missing task logs, and failed tasks.
 
