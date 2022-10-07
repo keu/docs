@@ -172,7 +172,6 @@ module.exports = {
       items: [
       'system-components',
       'support',
-      'cli-reference',
       'version-compatibility-reference',
       'release-lifecycle-policy',
       'documentation-archive',
