@@ -40,17 +40,17 @@ module.exports = {
       title: 'Docs',
       logo: {
         alt: 'Astronomer',
-        src: 'img/LogoPrimaryDarkMode.svg',
+        src: 'img/AstroMonogram.svg',
         href: 'https://www.astronomer.io/',
         target: '_self',
       },
       items: [
         {
-          to: '/astro/',
-          label: 'Docs',
+          to: '/',
+          label: 'Home',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          className: 'docs__title'
+          activeBaseRegex: '(?!)',
         },
         {
           to: '/astro/',
@@ -67,34 +67,11 @@ module.exports = {
           activeBaseRegex: 'astro/cli+',
         },
         {
-          type: 'dropdown',
           label: 'Software',
           to: 'software/',
           activeBaseRegex: 'software',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          items: [
-            {
-              label: '0.30 (Latest)',
-              to: '/software/',
-              activeBaseRegex: `software(?!(\/${versions.join('|\\/')}))`,
-            },
-            {
-              label: '0.29',
-              to: '/software/0.29/overview',
-              activeBaseRegex: '(software\/0.29)+',
-            },
-            {
-              label: '0.28',
-              to: '/software/0.28/overview',
-              activeBaseRegex: '(software\/0.28)+',
-            },
-            {
-              label: '0.25',
-              to: '/software/0.25/overview',
-              activeBaseRegex: '(software\/0.25)+',
-            },
-          ],
         },
         {
           to: '/learn/',
@@ -103,6 +80,48 @@ module.exports = {
           activeClassName: 'navbar__link--active',
         },
       ],
+    },
+    softwareNav: {
+      items: [
+        {
+          label: '0.30 (Latest)',
+          to: '/software/',
+          activeBaseRegex: `software(?!(\/${versions.join('|\\/')}))`,
+        },
+        {
+          label: '0.29',
+          to: '/software/0.29/overview',
+          activeBaseRegex: '(software\/0.29)+',
+        },
+        {
+          label: '0.28',
+          to: '/software/0.28/overview',
+          activeBaseRegex: '(software\/0.28)+',
+        },
+        {
+          label: '0.25',
+          to: '/software/0.25/overview',
+          activeBaseRegex: '(software\/0.25)+',
+        },
+      ],
+    },
+    sidebarNav: {
+      bottomNav: {
+        items: [
+          {
+            label: 'Get a demo',
+            href: 'https://www.astronomer.io/events/weekly-demo/?utm_source=docs-sidebar',
+          },
+          {
+            label: 'Watch a webinar',
+            href: 'https://www.astronomer.io/events/webinars/?utm_source=docs-sidebar',
+          },
+          {
+            label: 'Astro status',
+            href: 'https://status.astronomer.io/?utm_source=docs-sidebar',
+          }
+        ]
+      }
     },
     footer: {
       logo: {
@@ -281,7 +300,7 @@ module.exports = {
         filename: 'sitemap.xml',
       },
     ],
-],
+  ],
   scripts: [
     {
       src: './scripts/segment.js',
