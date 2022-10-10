@@ -57,7 +57,7 @@ module.exports = {
           label: 'Astro',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          activeBaseRegex: '/(astro(?!(\/cli)))/',
+          activeBaseRegex: '^(\/astro)(?!(\/cli))',
         },
         {
           to: '/astro/cli/overview',
