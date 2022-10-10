@@ -15,7 +15,7 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
-## Octover 4, 2022 
+## October 4, 2022 
 
 ### New permissions boundary for managed AWS Accounts
 
