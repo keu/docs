@@ -21,7 +21,7 @@ export default function SelectNav({ label, items }) {
     <div className={styles.selectNav} id="selectNav">
       {label && (
         <label htmlFor="selectNav" className={styles.selectNav__label}>
-          {label} {currentVersion}
+          {label}
         </label>
       )}
       <select id="selectNav" name="selectNav" className={styles.selectNav__select} onChange={navigateOnChange} placeholer={currentVersion} value={currentVersion}>
