@@ -105,7 +105,18 @@ module.exports = {
         description: 'Step-by-step guides for writing DAGs and running Airflow.'
       },
       items: [
-        'get-started-with-airflow',
+        {
+          type: 'category',
+          label: 'Get started with Apache Airflow',
+          link: {
+                type: 'doc',
+                id: 'get-started-with-airflow',
+           },
+          items: [
+            'get-started-with-airflow',
+            'get-started-with-airflow-part-2',
+          ],
+        },
         'astro-python-sdk',
         {
           type: 'category',

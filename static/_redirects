@@ -21,6 +21,7 @@
 # tutorial redirects 
 
 /tutorials/get-started-with-airflow /learn/get-started-with-airflow
+/tutorials/get-started-with-airflow-part-2 /learn/get-started-with-airflow-part-2
 /tutorials/astro-python-sdk /learn/astro-python-sdk
 
 # CLI migration redirects 
