@@ -15,6 +15,27 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
+## October 11, 2022 
+
+### Improved lineage tab in the Cloud UI
+
+The **Lineage** tab has been updated with both a more intuitive user experience and a new look and feel to match the Astronomer Cloud UI. Specifically: 
+
+- Opening the **Lineage** tab no longer refreshes your web browser, nor does it change the design of surrounding tabs.
+- Then you click a run in the lineage graph, the lineage path through the run is now animated to help illustrate the flow of data through your pipeline.
+- The **Compare** feature is now easier to use, with new visual icons and color changes to help show which two runs are being compared.
+- You can now search for runs and datasets directly from the **Runs** and **Datasets** page respectively..
+
+![New lineage tab](/img/release-notes/updated-lineage.png)
+
+### Additional improvements 
+
+- New worker node pools on Azure and Google Cloud Platform (GCP) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
+
+### Bug fixes 
+
+- Fixed an issue where worker queues with a minimum worker count of 0 would appear with a minimum worker count of 1 in the Cloud UI.
+
 ## October 4, 2022 
 
 ### New permissions boundary for managed AWS Accounts
