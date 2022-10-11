@@ -122,7 +122,7 @@ module.exports = {
           items: [
             {
               label: 'Log In',
-              href: 'https://cloud.astronomer.io/login',
+              href: 'https://cloud.astronomer.io/',
             },
             {
               label: 'Install on AWS',

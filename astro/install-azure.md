@@ -67,7 +67,7 @@ From here, Astronomer support will set up the VNet connection to Astro.
 
 1. Go to https://cloud.astronomer.io/ and create an Astronomer account.
 
-2. Go to `https://cloud.astronomer.io/login`, enter your email address, and then click **Continue**.
+2. Go to `https://cloud.astronomer.io`, enter your email address, and then click **Continue**.
 
 3. Select one of the following options to access the Cloud UI:
 
