@@ -5,10 +5,31 @@ id: cli-release-notes
 description: Release notes for the Astro CLI.
 ---
 
-This document provides a summary of all changes made to the [Astro CLI](install-cli.md) for the v0.29.x series of Astronomer Software. For general product release notes, see [Astronomer Software Release Notes](release-notes.md).
+This document provides a summary of all changes made to the [Astro CLI](install-cli.md) for the v0.30.x series of Astronomer Software. For general product release notes, see [Astronomer Software Release Notes](release-notes.md).
 
 If you have any questions or a bug to report, contact [Astronomer Support](https://support.astronomer.io).
 
+## Astro CLI 1.6.0 
+
+Release date: September 28, 2022 
+
+### New commands to manage Airflow objects 
+
+You can use the new `astro dev object` commands to better manage Airflow connections, variables, and pools between your local testing environment and Astro Deployments. 
+
+- `astro dev object import` imports connections, variables, and pools from your Astro project `airflow_settings.yaml` into your locally running Airflow environment without restarting it. 
+- `astro dev object export` exports connections, variables, and pools from your local airflow database to a file of your choosing.
+
+### Additional improvements 
+
+- You can now define connections in the `conn_extra` field of `airflow_settings.yaml` as YAML blocks instead of stringified JSON objects. 
+- The Astro CLI for Windows is now distributed as an `.exe` file.
+
+### Bug fixes 
+
+- Fixed an issue where `astro dev start` did not properly load Airflow object configurations from `airflow_settings.yaml` 
+- Fixed an issue where `astro deployment user list` listed incorrect roles for some users
+  
 ## Astro CLI 1.5.0
 
 Release date: September 2, 2022
@@ -75,6 +96,7 @@ Several new commands have been introduced to help you manage Teams on Astronomer
 
 - If Docker isn't already running, the CLI automatically starts it after you run `astro dev start`. Note that this feature only works on Mac OS.
 - The Airflow webserver now automatically opens in your default web browser after you run `astro dev start`.
+<<<<<<< HEAD
 
 ## Astro CLI v1.3.0
 
@@ -172,3 +194,5 @@ For more information, see the [CLI Reference Guide](https://docs.astronomer.io/a
 ### Additional improvements
 
 - When running `astro dev start`, the containers running Airflow components now include your project directory in their names.
+=======
+>>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a

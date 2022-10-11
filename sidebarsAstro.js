@@ -56,6 +56,7 @@ module.exports = {
       label: 'Manage Deployments',
       items: [
         'configure-deployment-resources',
+        'configure-worker-queues',
         'api-keys',
         'environment-variables',
         'secrets-backend',
@@ -113,7 +114,20 @@ module.exports = {
             'view-clusters',
             'create-cluster',
             'modify-cluster',
-            'connect-external-services',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Connect Astro',
+          link: {
+            type:'generated-index',
+            title: 'Connect Astro to external data sources',
+            description: 'Connect Astro to external data sources. A connection to AWS, Azure, or GCP allows Astro to access data stored on your AWS, Azure, or GCP instances and is a necessary step to running pipelines in a production environment.'
+          },
+          items: [
+            'connect-aws',
+            'connect-azure',
+            'connect-gcp',
           ],
         },
       ],
@@ -130,10 +144,15 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
-        'known-limitations',
-        'runtime-image-architecture',
-        'runtime-version-lifecycle-policy',
         'astro-support',
+        {
+          type: 'category',
+          label: 'Astro Runtime',
+          items: [
+          'runtime-image-architecture',
+          'runtime-version-lifecycle-policy',
+          ],
+        },
         {
           type: 'category',
           label: 'Cloud configuration reference',
