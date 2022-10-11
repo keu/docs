@@ -40,13 +40,8 @@ module.exports = {
       title: 'Docs',
       logo: {
         alt: 'Astronomer',
-<<<<<<< HEAD
         src: 'img/AstroMonogram.svg',
         href: 'https://www.astronomer.io/',
-=======
-        src: 'img/LogoPrimaryDarkMode.svg',
-        href: 'https://docs.astronomer.io/astro',
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a
         target: '_self',
       },
       items: [
