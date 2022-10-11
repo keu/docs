@@ -113,7 +113,21 @@ module.exports = {
           items: [
             'view-clusters',
             'create-cluster',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Configure cluster resources',
+          link: {
+            type:'generated-index',
+            title: 'Configure cluster resources',
+            description: 'Configure your AWS, Azure, or GCP cluster resources on Astro. Unless otherwise specified, new clusters on Astro are created with a set of default resources that should be suitable for most use cases.<br/>'
+          },
+          items: [
             'modify-cluster',
+            'resource-reference-aws',
+            'resource-reference-azure',
+            'resource-reference-gcp',
           ],
         },
         {
@@ -151,21 +165,6 @@ module.exports = {
           items: [
           'runtime-image-architecture',
           'runtime-version-lifecycle-policy',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Cloud configuration reference',
-          link: {
-            type:'generated-index',
-            title: 'Cloud configuration reference',
-            description: 'Learn about the default and supported Astro cloud configurations.'
-
-          },
-          items: [
-            'resource-reference-aws',
-            'resource-reference-azure',
-            'resource-reference-gcp',
           ],
         },
         'platform-variables',
