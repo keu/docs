@@ -18,27 +18,31 @@ For example, you can:
 - Add a user to a Workspace
 - Make a user a System Administrator
 
-Anything you can do via the Software UI, you can do programmatically via Astronomer's Houston API. Read below for guidelines.
+Anything you can do with the Software UI, you can do programmatically with the Astronomer Houston API.
+
+:::info
+
+If you're using the Astronomer Houston API and you're migrating from Astronomer Certified (AC) to Astro Runtime, you'll need to replace `airflowVersion` arguments with `runtimeVersion` arguments in your scripts. For more information about migrating a Deployment from Astronomer Certified to Astro Runtime, see [Migrate a Deployment from Astronomer Certified to Astro Runtime](migrate-to-runtime.md).
+
+:::
 
 ## Getting started
 
-Astronomer's Houston API is made available via a [GraphQL Playground](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/), "a graphical, interative, in-browser GraphQL IDE, created by [Prisma](https://www.prisma.io/) and based on GraphiQL." [GraphQL](https://graphql.org/) itself is an open source query language for APIs that makes for an easy and simple way to manage data.
+The Astronomer Houston API is available in a [GraphQL Playground](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/), "a graphical, interative, in-browser GraphQL IDE, created by [Prisma](https://www.prisma.io/) and based on GraphiQL." [GraphQL](https://graphql.org/) itself is an open source query language for APIs that makes for an easy and simple way to manage data.
 
 In short, the Playground is a portal that allows you to write GraphQL queries directly against the API within your browser.
 
-> **Note:** For more information on Playground features applicable to the wider GraphQL community, check out [GraphQL Playground's Github](https://github.com/prisma/GraphQL-playground).
+For more information about the Playground features applicable to the wider GraphQL community, see [GraphQL Playground's Github](https://github.com/prisma/GraphQL-playground).
 
 ### Access the GraphQL playground
 
 The URL at which you can reach Houston's GraphQL playground depends on the platform you're running. For your installation of Astronomer, it will be `https://houston.BASEDOMAIN/v1/`.
 
-E.g. If you're a Software customer and your basedomain were `Astronomer`, you would navigate to https://houston.astronomer/v1/.
+For example, if you're a Software customer and your basedomain is `Astronomer`, you would navigate to https://houston.astronomer/v1/.
 
 ### Authenticate
 
-To query our API, you must first authenticate as an Astronomer user.
-
-To authenticate:
+To query the Astronomer Houston API, you must first authenticate as an Astronomer user.
 
 1. Go to https://app.BASEDOMAIN/token and copy the API token. Alternatively, note the **API Key** of a [service account](ci-cd.md#step-1-create-a-service-account).
 2. Open Astronomer's Houston API GraphQL Playground at `https://houston.BASEDOMAIN/v1`.
