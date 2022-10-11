@@ -212,9 +212,9 @@ Now that we can run DAGs and navigate the UI, let's write our own DAG and run it
 
     ```
 
-    An operator is a Python class containing the logic to define the work to be completed by a single task. The first task (`t1`) uses the [BashOperator](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator) to run a bash command that prints the `MY_NAME` variable to the terminal. The second task  (`task_id`) defines the name of the task that appears in the Airflow UI. Each task requires a unique `task_id`.
+    An operator is a Python class containing the logic to define the work to be completed by a single task. The first task (`t1`) uses the [BashOperator](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator) to run a bash command that prints the `MY_NAME` variable to the terminal. The first parameter of the task (`task_id`) defines the name of the task that appears in the Airflow UI. Each task requires a unique `task_id`.
 
-5. Add a second operator to your DAG:
+5. Add a second task to your DAG:
 
     ```python
     t2 = PythonOperator(
