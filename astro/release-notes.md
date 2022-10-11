@@ -72,7 +72,7 @@ All of a Deployment's configurations, including analytics, API keys, environment
 
 ![New organization of Deployment-level pages in the Cloud UI](/img/release-notes/deployment-tabs.png)
 
-This new UI moves the **Analytics** and **Logs** from the left sidebar to the main Deployment page so that you longer have to filter those views separately by Deployment. The left sidebar now exclusively contains Workspace-level menus.
+This new UI moves the **Analytics** and **Logs** from the left sidebar to the main Deployment page so that you no longer have to filter those views separately by Deployment. The left sidebar now exclusively contains Workspace-level menus.
 
 ### Data plane cost tuning
 
@@ -706,7 +706,7 @@ The **Scheduler Logs** tab in the Cloud UI has been updated to make logs easier 
 
 ### Removal of worker termination grace period
 
-The **Worker Termination Grace Period** setting is no longer available in the Cloud UI or API. Previously, users could set this to anywhere between 1 minute and 24 hours per Deployment. This was to prevent running tasks from being interrupted by a code push. Today, however, existing Celery workers don't have to terminate in order for new workers to spin up and start executing tasks. Instead, existing workers will continue to execute running tasks while a new set of workers gets spun up concurrently to start executing most recent code.
+The **Worker Termination Grace Period** setting is no longer available in the Cloud UI or API. Previously, users could set this to anywhere between 1 minute and 24 hours per Deployment. This was to prevent running tasks from being interrupted by a code push. Today, however, existing Celery workers don't have to terminate in order for new workers to spin up and start executing tasks. Instead, existing workers will continue to execute running tasks while a new set of workers gets spun up concurrently to start executing the most recent code.
 
 To simplify Deployment configuration and reflect current functionality:
 
@@ -837,7 +837,7 @@ To start, the homepage is now a global view. From here, you can now see all Work
 
 ![New global menu in the UI](/img/docs/ui-release-note1.png)
 
-You can now also select specific Workspaces to work in. When you click in to a Workspace, you'll notice the lefthand menu bar is now entirely dedicated to Workspace actions:
+You can now also select specific Workspaces to work in. When you click in to a Workspace, you'll notice the left menu bar is now entirely dedicated to Workspace actions:
 
 - The Rocket icon brings you to the **Deployments** menu.
 - The People icon brings you to the **Workspace Access** menu.
@@ -847,7 +847,7 @@ To return to the global menu, you can either click the Astro "A" or click the Wo
 
 ![New Workspace menu in the UI](/img/docs/ui-release-note2.png)
 
-All user configurations can be found by clicking your user profile picture in the upper righthand corner of the UI. From the dropdown menu that appears, you can both configure user settings and access other Astronomer resources such as documentation and the Astronomer Registry.
+All user configurations can be found by clicking your user profile picture in the upper right corner of the UI. From the dropdown menu that appears, you can both configure user settings and access other Astronomer resources such as documentation and the Astronomer Registry.
 
 ![New profile menu in the UI](/img/docs/ui-release-note3.png)
 
@@ -927,7 +927,7 @@ This release introduces a breaking change to code deploys via the Astro CLI. Sta
 
 ### Support for Deployment API keys
 
-Astro now officially supports Deployment API keys, which you can use to automate code pushes to Astro and integrate your environment with a CI/CD tool such as GitHub Actions. For more information on creating and managing Deployment API keys, see [Deployment API keys](api-keys.md). For more information on using Deployment API keys to programmatically deploy code, see [CI/CD](ci-cd.md). Support making requests to Airflow's REST API using API keys is coming soon.
+Astro now officially supports Deployment API keys, which you can use to automate code pushes to Astro and integrate your environment with a CI/CD tool such as GitHub Actions. For more information on creating and managing Deployment API keys, see [Deployment API keys](api-keys.md). For more information on using Deployment API keys to programmatically deploy code, see [CI/CD](ci-cd.md). Support for making requests to Airflow's REST API using API keys is coming soon.
 
 ## September 3, 2021
 
