@@ -22,9 +22,9 @@ Anything you can do with the Software UI, you can do programmatically with the A
 
 :::info
 
-  If you're using the Astronomer Houston API and you're migrating from Astronomer Certified (AC) to Astro Runtime, you'll need to replace `airflowVersion` arguments with `runtimeVersion` arguments in your scripts. For more information about migrating a Deployment from Astronomer Certified to Astro Runtime, see [Migrate a Deployment from Astronomer Certified to Astro Runtime](migrate-to-runtime.md).
+If you're using the Astronomer Houston API and you're migrating from Astronomer Certified (AC) to Astro Runtime, you'll need to replace `airflowVersion` arguments with `runtimeVersion` arguments in your scripts. For more information about migrating a Deployment from Astronomer Certified to Astro Runtime, see [Migrate a Deployment from Astronomer Certified to Astro Runtime](migrate-to-runtime.md).
 
-  :::
+:::
 
 ## Getting started
 
