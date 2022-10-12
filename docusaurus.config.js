@@ -132,81 +132,21 @@ module.exports = {
       },
       links: [
         {
-          title: 'Astro',
-          items: [
-            {
-              label: 'Log In',
-              href: 'https://cloud.astronomer.io/',
-            },
-            {
-              label: 'Install Astro',
-              href: 'https://docs.astronomer.io/astro/category/install-astro',
-            },
-            {
-              label: 'Install the Astro CLI',
-              to: 'astro/cli/get-started',
-            },
-            {
-              label: 'Create a project',
-              to: 'astro/create-project',
-            },
-            {
-              label: 'Deploy code',
-              to: 'astro/deploy-code',
-            },
-          ],
+          label: 'Legal',
+          href: 'https://www.astronomer.io/legal/',
         },
         {
-          title: 'Astronomer Software',
-          items: [
-            {
-              label: 'Overview',
-              to: 'software/',
-            },
-            {
-              label: 'Release Notes',
-              to: 'software/release-notes',
-            },
-          ],
+          label: 'Privacy',
+          href: 'https://www.astronomer.io/privacy/',
         },
         {
-          title: 'Additional resources',
-          items: [
-            {
-              label: 'Support',
-              href: 'https://support.astronomer.io',
-            },
-            {
-              label: 'Astro Status',
-              href: 'https://status.astronomer.io',
-            },
-            {
-              label: 'Astronomer Registry',
-              to: 'https://registry.astronomer.io/',
-            },
-            {
-              label: 'Privacy Policy',
-              to: 'https://www.astronomer.io/privacy/',
-            },
-            {
-              label: 'Cookie Preferences',
-              to: '#',
-              id: 'cookiePref',
-            },
-          ],
+          label: 'Security',
+          href: 'https://www.astronomer.io/security/',
         },
         {
-          title: 'More',
-          items: [
-            {
-              label: 'Astronomer Homepage',
-              to: 'https://www.astronomer.io',
-            },
-            {
-              label: 'Docs on GitHub',
-              href: 'https://github.com/astronomer/docs',
-            },
-          ],
+          label: 'Cookie Preferences',
+          to: '#',
+          id: 'cookiePref',
         },
       ],
       copyright: '© Astronomer 2022. Various trademarks held by their respective owners.',
