@@ -139,15 +139,11 @@ module.exports = {
               href: 'https://cloud.astronomer.io/',
             },
             {
-              label: 'Install on AWS',
-              to: 'astro/install-aws',
+              label: 'Install Astro',
+              href: 'https://docs.astronomer.io/astro/category/install-astro',
             },
             {
-              label: 'Install on GCP',
-              to: 'astro/install-gcp',
-            },
-            {
-              label: 'Install the CLI',
+              label: 'Install the Astro CLI',
               to: 'astro/cli/get-started',
             },
             {
@@ -168,17 +164,13 @@ module.exports = {
               to: 'software/',
             },
             {
-              label: 'Install on AWS',
-              to: 'software/install-aws',
-            },
-            {
               label: 'Release Notes',
               to: 'software/release-notes',
             },
           ],
         },
         {
-          title: 'Product Resources',
+          title: 'Additional resources',
           items: [
             {
               label: 'Support',
@@ -209,10 +201,6 @@ module.exports = {
             {
               label: 'Astronomer Homepage',
               to: 'https://www.astronomer.io',
-            },
-            {
-              label: 'Airflow Guides',
-              href: 'https:/docs.astronomer.io/learn/',
             },
             {
               label: 'Docs on GitHub',
