@@ -35,7 +35,7 @@ For a complete list of the AWS resources that Astronomer support provisions in y
 
    See [Creating an administrator IAM user and user group (console)](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html#getting-started_create-admin-group-console).
 - A subscription to the [Astro Status Page](https://status.astronomer.io/). This will ensure that you're alerted in the case of an incident or scheduled maintenance.
-- The following domains added to your organization's allowlist:
+- The following domains added to your organization's allowlist for any user and CI/CD environments:
     - `https://cloud.astronomer.io/`
     - `https://astro-<your-org>.datakin.com/`
     - `https://<your-org>.astronomer.run/`
