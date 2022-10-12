@@ -26,7 +26,7 @@ Astro Runtime 4.2.7 includes the following bug fixes from later Apache Airflow r
 
 ### Bug fixes 
 
-- Fixed the following CVEs:
+- Fixed the following vulnerabilities:
 
     - [CVE-2022-40023](https://avd.aquasec.com/nvd/2022/cve-2022-40023/)
     - [CVE-2022-2309](https://avd.aquasec.com/nvd/2022/cve-2022-2309/)
