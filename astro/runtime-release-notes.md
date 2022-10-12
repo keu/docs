@@ -18,7 +18,7 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 ### Backported Airflow bug fixes
 
-Astro Runtime 4.2.7 includes the following bug fixes from future Apache Airflow releases:
+Astro Runtime 4.2.7 includes the following bug fixes from later Apache Airflow releases:
 
 - Make sure finalizers are not skipped during exception handling ([#22475](https://github.com/apache/airflow/pull/22475))
 - Fix `email_on_failure` with `render_template_as_native_obj` ([#22770](https://github.com/apache/airflow/pull/22770))

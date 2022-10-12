@@ -13,12 +13,12 @@ For upgrade instructions, see [Upgrade Airflow on Astronomer Software](manage-ai
 
 ## Astro Runtime 4.2.7
 
-- Release date: October 12, 2022
+- Release date: October 11, 2022
 - Airflow version: 2.2.5
 
 ### Backported Airflow bug fixes
 
-Astro Runtime 4.2.7 includes the following bug fixes from future Apache Airflow releases:
+Astro Runtime 4.2.7 includes the following bug fixes from later Apache Airflow releases:
 
 - Make sure finalizers are not skipped during exception handling ([#22475](https://github.com/apache/airflow/pull/22475))
 - Fix `email_on_failure` with `render_template_as_native_obj` ([#22770](https://github.com/apache/airflow/pull/22770))
