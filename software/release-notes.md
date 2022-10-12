@@ -65,6 +65,7 @@ As part of this change, you can now configure `jwt.authDuration` in your [Housto
 
 ### Bug fixes
 
+- Fixed an issue where `updateRuntimeCheck.enabled:false` did not properly stop an Astronomer Software installation from checking for Runtime updates. 
 - Fixed an issue where applying an IAM role to a Deployment would reset the Deployment's **Extra Capacity** setting back to the default of 0 AU.
 - Fixed an issue where System Admins could receive an error when trying to view a Team imported from a different IdP than their current one.
 - When a System Admin makes a change to a Team, that change now appears in the UI without needing to refresh the page.
