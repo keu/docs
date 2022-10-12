@@ -26,7 +26,7 @@ If you don't have a cluster on Astro, see [Install Astro](install-astro.md). If 
 
 ## Request and confirm a cluster change
 
-Before you request a change to a cluster, make sure it's supported. See [Cluster configurations](https://docs.astronomer.io/astro/category/cluster-configuration-reference). After you've confirmed the change you want to make is supported, contact [Astronomer support](https://cloud.astronomer.io/support).
+Before you request a change to a cluster, make sure it's supported. To view the default and supported cluster configuration values, see [AWS cluster configurations](resource-reference-aws.md), [Microsoft Azure cluster configurations](resource-reference-azure.md), or [GCP cluster configurations](resource-reference-gcp.md). After you've confirmed the change you want to make is supported, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 When Astronomer support receives your change request, it will be reviewed and you'll be notified before it's implemented. Most modifications to an existing cluster take only a few minutes to complete and don't require downtime. In these cases, the Airflow UI and Cloud UI continue to be available and your Airflow tasks are not interrupted.
 
