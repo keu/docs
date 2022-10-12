@@ -11,7 +11,7 @@ The following are some of the cluster and Deployment-level modifications that re
 
 - [Create a new cluster](create-cluster.md).
 - Delete a cluster.
-- Create a new node pool. This enables a new worker type for all Deployments in the cluster. See resource references for [AWS](resource-reference-aws.md#worker-node-pools), [Azure](resource-reference-azure.md#deployment-worker-node-pools), and [GCP](resource-reference-gcp.md#deployment-worker-node-pools).
+- Create a new node pool. This enables a new worker type for all Deployments in the cluster. See [AWS worker node pools](resource-reference-aws.md#worker-node-pools), [Azure worker node pools](resource-reference-azure.md#deployment-worker-node-pools), and [GCP worker node pools](resource-reference-gcp.md#deployment-worker-node-pools).
 - Update an existing worker node pool, including its node instance type or maximum node count.
 - Create a VPC connection or a transit gateway connection between a cluster and a target VPC. See [Connect Astro to external data sources](https://docs.astronomer.io/astro/category/connect-astro).
 
