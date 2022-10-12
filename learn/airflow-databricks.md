@@ -10,7 +10,11 @@ tags: [Integrations, DAGs]
 
 Astronomer has many customers who use Databricks to run jobs as part of complex pipelines. This can easily be accomplished by leveraging the [Databricks provider](https://registry.astronomer.io/providers/databricks), which includes Airflow hooks and operators that are actively maintained by the Databricks and Airflow communities. In this guide, you'll learn about the hooks and operators available for interacting with Databricks clusters and run jobs, and how to use both available operators in an Airflow DAG.
 
-> **Note**: All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/databricks-tutorial).
+:::note
+
+All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/databricks-tutorial).
+
+:::
 
 ## Assumed knowledge
 
@@ -25,7 +29,11 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 The Databricks provider package includes many hooks and operators that allow users to accomplish most common Databricks-related use cases without writing a ton of code.
 
-> **Note:** In Airflow 2.0, provider packages are separate from the core of Airflow. If you are running 2.0, you may need to install the `apache-airflow-providers-databricks` provider package to use the hooks, operators, and connections described here. In an Astronomer project this can be accomplished by adding the packages to your `requirements.txt` file. To learn more, see [Provider Packages](https://airflow.apache.org/docs/apache-airflow-providers/index.html).
+:::info
+
+In Airflow 2.0, provider packages are separate from the core of Airflow. If you are running 2.0, you may need to install the `apache-airflow-providers-databricks` provider package to use the hooks, operators, and connections described here. In an Astronomer project this can be accomplished by adding the packages to your `requirements.txt` file. To learn more, see [Provider Packages](https://airflow.apache.org/docs/apache-airflow-providers/index.html).
+
+:::
 
 ### Hooks
 

@@ -10,7 +10,11 @@ tags: ["Integrations", "Azure", "DAGs"]
 
 You can use the ADX [Hook](https://registry.astronomer.io/providers/microsoft-azure/modules/azuredataexplorerhook) and [Operator](https://registry.astronomer.io/providers/microsoft-azure/modules/azuredataexplorerqueryoperator) which are part of the Azure provider package, to integrate ADX queries into your DAGs. In this guide, you'll learn how to make your ADX cluster work with Airflow and walk through an example DAG that runs a query against a database in that cluster.
 
-> **Note:** All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-data-explorer-tutorial).
+:::note
+
+All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-data-explorer-tutorial).
+
+:::
 
 ## Assumed knowledge
 
@@ -29,7 +33,11 @@ To allow Airflow to communicate with your ADX database, you need to configure se
 
 Once you have your ADX cluster running and service principal authentication configured, you can get started querying a database with Airflow.
 
-> Note: In Airflow 2.0, provider packages are separate from the core of Airflow. If you are running 2.0 with Astronomer, the [Microsoft Provider](https://registry.astronomer.io/providers/microsoft-azure) package is already included in our Airflow Certified Image; if you are not using Astronomer you may need to install this package separately to use the hooks, operators, and connections described here.
+:::info
+
+In Airflow 2.0, provider packages are separate from the core of Airflow. If you are running 2.0 with Astronomer, the [Microsoft Provider](https://registry.astronomer.io/providers/microsoft-azure) package is already included in our Airflow Certified Image; if you are not using Astronomer you may need to install this package separately to use the hooks, operators, and connections described here.
+
+::: 
 
 First, set up an Airflow connection to your ADX cluster. If you do this using the Airflow UI, it should look something like this:
 
