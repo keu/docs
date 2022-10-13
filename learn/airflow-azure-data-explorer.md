@@ -10,7 +10,7 @@ tags: ["Integrations", "Azure", "DAGs"]
 
 You can use the ADX [Hook](https://registry.astronomer.io/providers/microsoft-azure/modules/azuredataexplorerhook) and [Operator](https://registry.astronomer.io/providers/microsoft-azure/modules/azuredataexplorerqueryoperator) which are part of the Azure provider package, to integrate ADX queries into your DAGs. In this guide, you'll learn how to make your ADX cluster work with Airflow and walk through an example DAG that runs a query against a database in that cluster.
 
-:::note
+:::info
 
 All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-data-explorer-tutorial).
 

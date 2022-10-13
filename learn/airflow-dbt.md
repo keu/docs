@@ -18,7 +18,7 @@ In this guide, you'll:
     - At the [model](https://docs.getdbt.com/docs/building-a-dbt-project/building-models) level. 
 - Learn how to extend the model-level use case by automating changes to a dbt model.
 
-:::note
+:::info
 
 The dbt Core sections of this guide summarize some of the key practices and findings from our blog series with [Updater](https://updater.com/) and [Sam Bail](https://sambail.com/) about using dbt in Airflow. For more information, check out [Part 1](https://www.astronomer.io/blog/airflow-dbt-1), [Part 2](https://www.astronomer.io/blog/airflow-dbt-2), and [Part 3](https://www.astronomer.io/blog/airflow-dbt-3) of the series.
 
@@ -103,7 +103,7 @@ dag = check_before_running_dbt_cloud_job()
 
 In the `DbtCloudRunJobOperator` you must provide the dbt connection ID as well as the `job_id` of the job you are triggering.
 
-:::note
+:::info
 
 The full code for this example, along with other DAGs that implement the dbt Cloud Provider, can be found on the [Astronomer Registry](https://registry.astronomer.io/dags?providers=dbt+Cloud&page=1).
 
@@ -241,7 +241,7 @@ for node in data["nodes"].keys():
                 dbt_tasks[upstream_node] >> dbt_tasks[node]
 ```
 
-:::note
+:::info
 
 The code for this example can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/dbt-advanced).
 
@@ -410,7 +410,7 @@ To add this functionality, you can take a group of models defined by some select
            dbt_tasks[edge[0]] >> dbt_tasks[edge[1]]
   ```
 
-:::note
+:::info
 
 The functions in the DAG file above have been split out for simplicity, but the logic can be found in the [dbt_advanced.py DAG](https://github.com/astronomer/airflow-dbt-demo/blob/master/dags/dbt_advanced.py).
 

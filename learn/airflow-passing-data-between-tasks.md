@@ -10,7 +10,7 @@ Sharing data between tasks is a very common use case in Airflow. If you've been 
 
 There are a few methods you can use to implement data sharing between your Airflow tasks. In this tutorial, you'll walk through the two most commonly used methods, learn when to use them, and use some example DAGs to understand how they can be implemented.
 
-:::note
+:::info
 
 All code in this guide can be found in [the Github repo](https://github.com/astronomer/airflow-guide-passing-data-between-tasks).
 
