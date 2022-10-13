@@ -3,7 +3,7 @@ title: 'Learn'
 sidebar_label: 'Overview'
 id: overview
 slug: /
-description: 'Explore tutorials and concepts to learn everything you need to know about Apache Airflow and Astronomer'
+description: 'Use tutorials and concepts to learn everything you need to know about Apache Airflow and Astro'
 hide_table_of_contents: true
 ---
 
@@ -11,7 +11,7 @@ import LinkCardGrid from '@site/src/components/LinkCardGrid';
 import LinkCard from '@site/src/components/LinkCard';
 import AstroCard from '@site/src/components/AstroCard';
 
-<AstroCard />
+<p class="DocItem__header-description">Use tutorials and concepts to learn everything you need to know about Apache Airflow and Astro.</p>
 
 ## New to Airflow?
 
@@ -35,3 +35,6 @@ import AstroCard from '@site/src/components/AstroCard';
   <LinkCard label="Data quality and Airflow" description="Learn data quality best practices and compare data quality tools." href="/learn/data-quality" truncate />
   <LinkCard label="Dynamic Tasks in Airflow" description="Generate tasks dynamically at runtime." href="/learn/dynamic-tasks" truncate />
 </LinkCardGrid>
+
+<AstroCard />
+
