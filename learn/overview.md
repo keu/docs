@@ -11,25 +11,25 @@ import AstroCard from '@site/src/components/AstroCard';
 
 <AstroCard />
 
-## Not sure where to start?
+## New to Airflow?
 
 <LinkCardGrid>
-  <LinkCard label="Get started with Apache Airflow" description="Learn how to run Apache Airflow locally with open source tools." href="/learn/get-started-with-airflow" icon="/img/airflow-logo.png" />
-  <LinkCard label="Write a DAG with the Astro Python SDK" description="Learn how to write an ETL pipeline with the Astro Python SDK." href="/learn/astro-python-sdk" icon="/img/astro-monogram.svg" />
+  <LinkCard label="Get started with Apache Airflow" description="Set up Airflow and run your first DAG in under an hour." href="/learn/get-started-with-airflow" icon="/img/airflow-logo.png" />
+  <LinkCard label="Write a DAG with the Astro Python SDK" description="Build a production-ready ETL pipeline with the Astro Python SDK." href="/learn/astro-python-sdk" icon="/img/astro-monogram.svg" />
 </LinkCardGrid>
 
 ## Featured tutorials
 
 <LinkCardGrid>
-  <LinkCard label="Get started with Apache Airflow" description="Learn how to run Apache Airflow locally with open source tools." href="/learn/get-started-with-airflow" truncate />
-  <LinkCard label="Get started with Apache Airflow" description="Learn how to run Apache Airflow locally with open source tools." href="/learn/get-started-with-airflow" truncate />
-  <LinkCard label="Get started with Apache Airflow" description="Learn how to run Apache Airflow locally with open source tools." href="/learn/get-started-with-airflow" truncate />
+  <LinkCard label="Get started with Apache Airflow, Part 2" description="Use providers and connect your Airflow instance to external tools." href="/learn/get-started-with-airflow" truncate />
+  <LinkCard label="Orchestrate Snowflake with Airflow" description="Get enhanced observability and compute savings while orchestrating your Snowflake jobs." href="/learn/airflow-snowflake" truncate />
+  <LinkCard label="Integrate OpenLineage and Airflow" description="Get lineage data from your DAGs using OpenLineage and Marquez." href="/learn/airflow-openlineage" truncate />
 </LinkCardGrid>
 
 ## Featured Airflow concepts
 
 <LinkCardGrid>
-  <LinkCard label="Get started with Apache Airflow" description="Learn how to run Apache Airflow locally with open source tools." href="/learn/get-started-with-airflow" truncate />
-  <LinkCard label="Get started with Apache Airflow" description="Learn how to run Apache Airflow locally with open source tools." href="/learn/get-started-with-airflow" truncate />
-  <LinkCard label="Get started with Apache Airflow" description="Learn how to run Apache Airflow locally with open source tools." href="/learn/get-started-with-airflow" truncate />
+  <LinkCard label="Datasets and Data-Aware Scheduling in Airflow" description="Learn how to use datasets in Airflow 2.4." href="/learn/airflow-datasets" truncate />
+  <LinkCard label="Data quality and Airflow" description="Learn data quality best practices and compare data quality tools." href="/learn/data-quality" truncate />
+  <LinkCard label="Dynamic Tasks in Airflow" description="Generate tasks dynamically at runtime." href="/learn/dynamic-tasks" truncate />
 </LinkCardGrid>

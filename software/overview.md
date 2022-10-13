@@ -22,8 +22,8 @@ The following diagram shows how you can run Airflow in your private cloud using 
 
 ## Get Started
 <LinkCardGrid>
-  <LinkCard truncate label="Installation guides" description="Step-by-step guides to install the system on your cloud service." href="/astro/cli/release-notes" />
-  <LinkCard truncate label="Customizing your installation" description="Explore guides for most common customizations." href="/astro/cli/install-cli" />
+  <LinkCard truncate label="Installation guides" description="Step-by-step guides to install Astronomer Software on your cloud." href="/software/category/install" />
+  <LinkCard truncate label="Integrate an auth system" description="Set up enterprise-grade user authentication on Astronomer Software." href="/software/integrate-auth-system" />
   <LinkCard truncate label="Administration" description="There are many tools for administering Astronomer" href="/astro/cli/reference" />
 </LinkCardGrid>
 

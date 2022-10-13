@@ -3,6 +3,7 @@ sidebar_label: 'Azure'
 title: 'Install Astronomer Software on Azure AKS'
 id: install-azure
 description: Install Astronomer Software on Azure Kubernetes Service (AKS).
+sidebar_custom_props: { icon: 'img/azure.png' }
 ---
 
 Install Astronomer Software on Azure to deploy and scale [Apache Airflow](https://airflow.apache.org/) on a [Microsoft Azure Kubernetes Service](https://azure.microsoft.com/en-us/services/kubernetes-service/) (AKS) cluster.

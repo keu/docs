@@ -28,20 +28,20 @@ The Astro CLI is open source and built for data practitioners everywhere. The bi
 ## Astro CLI Features
 
 <LinkCardGrid>
-  <LinkCard label="Built-in Astro project directory" description="Includes all the files required to run Airflow, including dedicated folders for your DAGs, packages, and unit tests." />
-  <LinkCard label="Advanced commands" description="Using the CLI, you can run a local Airflow environment, apply code changes, and view logs for all Airflow components." />
-  <LinkCard label="Example pytests and DAGs" description="Examples showcase important Airflow best practices and can help your team learn quickly and identify errors in your DAGs ahead of time." />
-  <LinkCard label="Browser-based authentication" description="Easy and secure browser-based authentication for Astro and Astronomer Software." />
-  <LinkCard label="Astro Cloud UI compatable" description="A robust set of commands to match functionality in the Cloud UI, including Deployment creation and environment variable modifications." />
-  <LinkCard label="CI/CD" description="Support for Deployment API keys, which you can use to automate commands as part of CI/CD workflows." />
+  <LinkCard label="Built-in Astro project directory" description="An Astro project includes all of the files required to run Airflow, including dedicated folders for your DAGs, packages, and unit tests." />
+  <LinkCard label="Advanced commands" description="Using the Astro CLI, you can run a local Airflow environment, apply code changes, and view logs for all Airflow components." />
+  <LinkCard label="Example pytests and DAGs" description="The Astro CLI includes example DAGs which showcase important Airflow best practices and help your team learn quickly." />
+  <LinkCard label="Browser-based authentication" description="Access browser-based authentication for Astro and Astronomer Software." />
+  <LinkCard label="Astro Cloud UI compatible" description="A robust set of commands matches functionality in the Cloud UI, including Deployment creation and user management." />
+  <LinkCard label="CI/CD" description="Configure Deployment API keys to automate CLI commands as part of CI/CD workflows." />
 </LinkCardGrid>
 
 ## Featured CLI docs
 
 <LinkCardGrid>
-  <LinkCard truncate label="Release Notes" description="Astro CLI release notes" href="/astro/cli/release-notes" />
-  <LinkCard truncate label="Install the Astro CLI" description="This is where you'll find information about installing, upgrading, and uninstalling the Astro CLI." href="/astro/cli/install-cli" />
-  <LinkCard truncate label="Astro CLI command reference" description="This document contains information about all commands and settings available in the Astro CLI, including examples and flags. To get started with the Astro CLI, see Get Started." href="/astro/cli/reference" />
+  <LinkCard truncate label="Release Notes" description="A record of all changes to the Astro CLI." href="/astro/cli/release-notes" />
+  <LinkCard truncate label="Install the Astro CLI" description="Documentation for installing the CLI on all operating systems." />
+  <LinkCard truncate label="Astro CLI command reference" description="Reference information about every available CLI command and option." href="/astro/cli/reference" />
 </LinkCardGrid>
 
 <AstroCard />

@@ -49,7 +49,7 @@ html[data-theme="dark"] .linkCard[href]:hover {
   margin-bottom: 0;
 }
 
-[data-truncate='true'] .linkCard__description {
+[data-truncate='false'] .linkCard__description {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
