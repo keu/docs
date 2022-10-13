@@ -21,7 +21,7 @@ import AstroCard from '@site/src/components/AstroCard';
 ## Featured tutorials
 
 <LinkCardGrid>
-  <LinkCard label="Get started with Apache Airflow, Part 2" description="Use providers and connect your Airflow instance to external tools." href="/learn/get-started-with-airflow" truncate />
+  <LinkCard label="Get started with Apache Airflow, Part 2" description="Use providers and connect your Airflow instance to external tools." href="/learn/get-started-with-airflow-part-2" truncate />
   <LinkCard label="Orchestrate Snowflake with Airflow" description="Get enhanced observability and compute savings while orchestrating your Snowflake jobs." href="/learn/airflow-snowflake" truncate />
   <LinkCard label="Integrate OpenLineage and Airflow" description="Get lineage data from your DAGs using OpenLineage and Marquez." href="/learn/airflow-openlineage" truncate />
 </LinkCardGrid>
