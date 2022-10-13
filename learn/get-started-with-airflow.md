@@ -112,7 +112,7 @@ To provide a basic demonstration of an ETL pipeline, this DAG creates an example
 
 After you press **Play**, the **Runs** and **Recent Tasks** sections for the DAG start to populate with data.
 
-![DAG running in the Airflow UI](/img/docs/tutorial-run-dag.png)
+    ![DAG running in the Airflow UI](/img/docs/tutorial-run-dag.png)
 
 These circles represent different [states](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#task-instances) that your DAG and task runs can be in. However, these are only high-level summaries of your runs that won't make much sense until you learn more about how Airflow works. To get a better picture of how your DAG is running, let's explore some other views in Airflow.
 
@@ -301,7 +301,7 @@ has the same dependency structure as:
 extract_bitcoin_price >> process_data >> store_data
 ```
 
-If this style of DAG writing feels more intuitive to you, read more about it in the [Airflow Decorators guide](airflow-decorators.md).
+If this style of DAG writing feels more intuitive to you, read more about it on the [Airflow Decorators concept page](airflow-decorators.md).
 
 ## Next steps
 
@@ -309,11 +309,11 @@ Astronomer offers a variety of resources like this tutorial to learn more about 
 
 - [Astronomer Webinars](https://www.astronomer.io/events/webinars/) cover concepts and use cases in-depth and offer the possibility to ask us questions live on air.
 - [Live with Astronomer](https://www.astronomer.io/events/live/) are hands-on and code focussed live walkthroughs of specific Airflow features.
-- [Astronomer Guides](https:/docs.astronomer.io/learn/) cover both entry and expert level concepts in Airflow.
+- [Astronomer Learn](https:/docs.astronomer.io/learn/) covers both entry and expert level concepts in Airflow.
 - [Astronomer Academy](https://academy.astronomer.io/) offers many video tutorials and the option to purchase full length Airflow courses and to take exams to get certified.
 
 Don't know where to start? For beginners, the next resources we recommend are:
 
 - [Managing connections in Airflow](connections.md): Learn how to connect Airflow to third party products and services.
 - [Develop a project](https://docs.astronomer.io/astro/develop-project): Learn about all of the ways you can configure your Astro project and local Airflow environment.
-- [DAG Writing Best Practices](dag-best-practices.md?search=best): Learn how to write efficient, secure, and scalable DAGs.
+- [DAG Writing Best Practices](dag-best-practices.md): Learn how to write efficient, secure, and scalable DAGs.

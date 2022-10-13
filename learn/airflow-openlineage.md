@@ -12,7 +12,11 @@ It follows that data lineage has a natural integration with Apache Airflow. Airf
 
 In this tutorial, you’ll define data lineage, review the OpenLineage standard and core lineage concepts, describe why you would want data lineage with Airflow, and implement an example local integration of Airflow and OpenLineage for tracking data movement in Postgres.
 
-> Note: This guide focuses on using OpenLineage with Airflow 2. Some topics may differ if you are using it with earlier versions of Airflow.
+:::info
+
+This guide focuses on using OpenLineage with Airflow 2. Some topics may differ if you are using it with earlier versions of Airflow.
+
+::: 
 
 ## Assumed knowledge
 

@@ -148,7 +148,7 @@ Click **Test** to test the connection.
 
 The last step is writing the DAG using the `SnowflakeToSlackOperator` to run a SQL query on a Snowflake table and post the result as a message to a Slack channel. The `SnowflakeToSlackOperator` requires both the connection id for the Snowflake connection (`snowflake_conn_id`) and the connection id for the Slack connection (`slack_conn_id`).
 
-```Python
+```python
 from airflow import DAG
 from datetime import datetime
 from airflow.providers.snowflake.transfers.snowflake_to_slack import (

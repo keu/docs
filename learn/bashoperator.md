@@ -68,7 +68,7 @@ In this example, you run two bash commands in a single task:
 
 The second command uses an environment variable from the Airflow environment, `AIRFLOW_HOME`. This is only possible because `append_env` is set to `True`.
 
-```Python
+```python
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime
@@ -134,8 +134,7 @@ Astronomer recommends running this command in your Dockerfile for production bui
 
 After making the script available to Airflow, you only have to provide the path to the script in the `bash_command` parameter. Be sure to add a space character at the end of the filepath, or else the task will fail with a Jinja exception!
 
-
-```Python
+```python
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime
@@ -181,7 +180,7 @@ nodejs
 
 The following JavaScript file contains code for sending a GET request to the `/iss-now` path at `api.open-notify.org` and returning the results to `stdout`, which will both be printed to the console and pushed to XCom by the BashOperator.
 
-```JavaScript
+```javascript
 // specify that a http API is queried
 const http = require('http');
 
@@ -214,7 +213,7 @@ req.end();
 
 The second task runs a script written in R that uses a regex to filter and print the longitude and latitude information from the API response.
 
-```R
+```r
 # print outputs to the console
 options(echo = TRUE)
 
@@ -236,7 +235,7 @@ To run these scripts using the BashOperator, ensure that they are accessible to 
 
 The DAG uses the BashOperator to execute both files defined above sequentially.
 
-```Python
+```python
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from datetime import datetime

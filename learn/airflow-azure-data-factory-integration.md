@@ -8,7 +8,11 @@ tags: ["Integrations", "Azure"]
 
 Azure Data Factory (ADF) is a commonly used service for constructing data pipelines and jobs. With a little preparation, it can be used in combination with Airflow to leverage the best of both tools. In this guide, we'll discuss why you might want to use these two tools together, how Airflow can be used to execute ADF jobs, and a simple example tutorial showing how it all fits together.
 
-> **Note:** All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-data-factory-dag).
+:::note
+
+All code in this guide can be found on [the Astronomer Registry](https://registry.astronomer.io/dags/azure-data-factory-dag).
+
+:::
 
 ## Assumed knowledge
 
@@ -48,7 +52,12 @@ This example shows how to use ADF operators and sensors to orchestrate multiple 
 
 Before you can orchestrate your ADF pipelines with Airflow, you have to make the pipelines runnable. 
 
-> **Note:** If you do not currently have an ADF pipeline in your Azure account and are new to ADF, check out the [ADF quick start docs](https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal) for help getting started.
+:::info
+
+If you do not currently have an ADF pipeline in your Azure account and are new to ADF, check out the [ADF quick start docs](https://docs.microsoft.com/en-us/azure/data-factory/quickstart-create-data-factory-portal) for help getting started.
+
+:::
+
 
 To make your ADF pipeline accessible by Airflow you will need to register an App with Azure Active Directory to get a Client ID and Client Secret (API Key) for your Data Factory. First, go to Azure Active Directory and click **Registered Apps** to see a list of registered apps. If you created a Resource group, you should already have an app registered with the same name.
 

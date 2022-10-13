@@ -43,15 +43,27 @@ When you're learning about task execution, you'll want to be familiar with these
 
 - `worker_concurrency`: Determines how many tasks each worker can run at any given time. The CeleryExecutor for example, will [by default](https://github.com/apache/airflow/blob/main/airflow/config_templates/default_airflow.cfg#L723) run a max of 16 tasks concurrently. Think of it as "How many tasks each of my workers can take on at any given time." This number will naturally be limited by `dag_concurrency`. If you have 1 worker and want it to match your deployment's capacity, worker\_concurrency = parallelism. `ENV AIRFLOW__CELERY__WORKER_CONCURRENCY=9`
 
-  > Note: Parallelism and concurrency are somewhat co-dependent. You're encouraged to keep them in line with one another.
+:::tip
+
+Parallelism and concurrency are somewhat co-dependent. You're encouraged to keep them in line with one another.
+
+:::
 
 - Pool: Configurable in the Airflow UI and are used to limit the _parallelism_ on any particular set of tasks. You could use it to give some tasks priority over others, or to put a cap on execution for things like hitting a third party API that has rate limits on it, for example.
 
 - `parsing_processes`: Determines how many linear scheduling processes the scheduler can handle in parallel at any given time. The default value is 2, but adjusting this number gives you some control over CPU usage - the higher the value, the more resources you'll need.
 
-  > Note: In Airflow 1.10.13 and prior versions, this setting is called max_threads.
+:::info
 
-  > Note: Rather than trying to find one set of configurations that work for _all_ jobs, Astronomer recommends grouping jobs by their type as much as you can.
+In Airflow 1.10.13 and prior versions, this setting is called max_threads.
+
+:::
+
+:::tip
+
+Rather than trying to find one set of configurations that work for _all_ jobs, Astronomer recommends grouping jobs by their type as much as you can.
+
+:::
 
 ## Local executor
 
@@ -90,7 +102,11 @@ If a worker node is ever down or goes offline, the Celery executor quickly adapt
 
 If you're running native Airflow, adopting a Celery executor means you'll have to set up an underlying database to support it (RabbitMQ/Redis).
 
-> Note: When running Celery on top of a managed Kubernetes service, if a node that contains a Celery worker goes down, Kubernetes will reschedule the work. When the pod comes back up, it'll reconnect to [Redis](https://redis.io/) and continue processing tasks.
+:::info
+
+When running Celery on top of a managed Kubernetes service, if a node that contains a Celery worker goes down, Kubernetes will reschedule the work. When the pod comes back up, it'll reconnect to [Redis](https://redis.io/) and continue processing tasks.
+
+:::
 
 ### Worker termination grace period
 
@@ -159,7 +175,11 @@ Using the Kubernetes "Watcher" API, the scheduler reads event logs for anything 
 
 The Kubernetes executor offers extraordinary capabilities. If you're familiar with Kubernetes and want to give it a shot, Astronomer recommends doing so to be at the forefront of the modern Apache Airflow configuration.
 
-> Note: If you have a high quantity of tasks that are intended to finish executing particularly quickly, note the extra handful of seconds it takes for each individual Pod to spin up might slow those tasks down.
+:::tip
+
+If you have a high quantity of tasks that are intended to finish executing particularly quickly, note the extra handful of seconds it takes for each individual Pod to spin up might slow those tasks down.
+
+:::
 
 ## Honorable mention
 

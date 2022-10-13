@@ -235,7 +235,7 @@ task_1 >> task_2 >> [task_3, task_4]
 
 To get the most out of Airflow, leverage built-in features and the broader Airflow ecosystem, namely provider packages for third-party integrations, to fulfill specific use cases. Using Airflow in this way makes it easier to scale and pull in the right tools based on your needs.
 
-### Make Use of provider packages
+### Make use of provider packages
 
 One of the best aspects of Airflow is its robust and active community, which has resulted in integrations between Airflow and other tools known as [provider packages](https://airflow.apache.org/docs/apache-airflow-providers/). 
 

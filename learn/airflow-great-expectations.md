@@ -33,7 +33,11 @@ Typically, using Great Expectations is a two-step process:
 
 First, a user creates test suites, or “Expectation Suites”, using [Great Expectations methods](https://docs.greatexpectations.io/docs/reference/expectations/). These suites are usually stored in JSON and can be checked into version control, just like regular tests. The suites are then loaded by the Great Expectations framework at test runtime. For example, when processing a new batch of data in a pipeline.
 
-> For a step-by-step guide on how to configure a simple Great Expectations project, see the [“Getting started” tutorial](https://docs.greatexpectations.io/en/latest/guides/tutorials.html).
+:::tip
+
+For a step-by-step guide on how to configure a simple Great Expectations project, see the [“Getting started” tutorial](https://docs.greatexpectations.io/en/latest/guides/tutorials.html).
+
+:::
 
 ## Setup
 
@@ -48,7 +52,11 @@ If you want to use your own Great Expectations project along with this guide, en
 
 If you set up a project manually, you will see a `great_expectations` directory which contains several sub-directories, as well as the `great_expectations.yml` configuration file. If you cloned the demo repository, the `great_expectations` directory can be found under `include/`.
 
-> Note: The `GreatExpectationsOperator` requires Airflow 2.1 or later, and you will need to change the value of `enable_xcom_pickling` to `true` in your airflow.cfg. If you are using an Astronomer project structure, add `ENV AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True` to your Dockerfile. If you are working from the demo repository, this step has already been completed for you.
+:::info
+
+The `GreatExpectationsOperator` requires Airflow 2.1 or later, and you will need to change the value of `enable_xcom_pickling` to `true` in your `airflow.cfg` file. If you are using an Astronomer project structure, add `ENV AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True` to your Dockerfile. If you are working from the demo repository, this step has already been completed for you.
+
+:::
 
 ## Use Case: Great Expectations operator
 
