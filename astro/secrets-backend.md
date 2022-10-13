@@ -53,11 +53,11 @@ Setting Airflow connections via secrets requires knowledge of how to generate Ai
     defaultValue="secretsmanager"
     groupId= "setup"
     values={[
-        {label: 'Hashicorp Vault', value: 'hashicorp'},
-        {label: 'AWS Parameter Store', value: 'paramstore'},
         {label: 'AWS Secrets Manager', value: 'secretsmanager'},
+        {label: 'Hashicorp Vault', value: 'hashicorp'},
         {label: 'Google Cloud Secret Manager', value: 'gcp'},
         {label: 'Azure Key Vault', value: 'azure'},
+        {label: 'AWS Parameter Store', value: 'paramstore'},
     ]}>
     
 <TabItem value="secretsmanager">
@@ -68,8 +68,8 @@ This topic provides setup steps for configuring [AWS Secrets Manager](https://aw
 
 - A [Deployment](create-deployment.md).
 - The [Astro CLI](cli/overview.md).
-- An [Astro project](create-project.md) with `apache-airflow-providers-amazon` version 5.1.0 or later. See [Add Python and OS-level packages](develop-projec.mdt#add-python-and-os-level-packages).
-- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [AWS IAM roles](connect-aws.md#AWS-IAM-roles).
+- An [Astro project](create-project.md) with `apache-airflow-providers-amazon` version 5.1.0 or later. See [Add Python and OS-level packages](develop-project.md#add-python-and-os-level-packages).
+- An IAM role with the `SecretsManagerReadWrite` policy that your Astro cluster can assume. See [AWS IAM roles](https://docs.astronomer.io/astro/connect-aws?tab=AWS%20IAM%20roles#authorization-options).
 
 #### Step 1: Add Airflow secrets to Secrets Manager
 

@@ -1,6 +1,6 @@
 ---
 sidebar_label: "AWS"
-title: "Astro Clusters on AWS"
+title: "AWS cluster configurations"
 id: resource-reference-aws
 description: Reference of all supported configurations for new clusters on Astro in AWS.
 sidebar_custom_props: { icon: "img/aws.png" }
