@@ -31,6 +31,6 @@ import AstroCard from '@site/src/components/AstroCard';
 
 <LinkCardGrid>
   <LinkCard truncate label="Astro Python SDK" description="Simplify ELT pipeline writing using a new SDK from Astronomer." href="/learn/astro-python-sdk" />
-  <LinkCard truncate label="Worker queues" description="Run tasks in worker queues which are optimized for their execution" href="/astro/configure-worker-queues" />
-  <LinkCard truncate label="Release notes" description="A complete record of the latest changes to Astro" href="/astro/release-notes" />
+  <LinkCard truncate label="Worker queues" description="Run tasks in worker queues which are optimized for their execution." href="/astro/configure-worker-queues" />
+  <LinkCard truncate label="Release notes" description="A complete record of the latest changes to Astro." href="/astro/release-notes" />
 </LinkCardGrid>
