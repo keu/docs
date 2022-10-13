@@ -17,16 +17,6 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## October 11, 2022 
 
-### Improved lineage tab in the Cloud UI
-
-The following changes have been made to the **Lineage** tab in the Cloud UI to provide a more intuitive user experience: 
-
-- Opening the **Lineage** tab no longer refreshes your browser or changes the appearance of the surrounding tabs.
-- When you click a run in the lineage graph, the lineage path through the run is now animated to illustrate the flow of data through your pipeline.
-- Icons and color have been added to the **Compare** feature to make it easier to identify the individual runs being compared.
-- You can now search for runs and datasets directly in the **Runs** and **Datasets** pages.
-
-![New lineage tab](/img/release-notes/updated-lineage.png)
 
 ### Additional improvements 
 
