@@ -25,6 +25,7 @@ This tutorial takes approximately 1 hour to complete.
 
 To complete this tutorial, you'll need to know:
 
+
 - How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/learn/get-started-with-airflow).
 - The basics of git. See the [tutorial on Git’s official webpage](https://git-scm.com/docs/gittutorial).
 

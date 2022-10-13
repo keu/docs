@@ -90,7 +90,7 @@ module.exports = {
           href: "https://www.astronomer.io/get-started?utm_source=docs-what-astro-banner"
         },
         secondary: {
-          label: "LEARN ABOUT ASTRONOMER",
+          label: "Learn about Astronomer",
           href: "https://www.astronomer.io/?utm_source=docs-what-astro-banner"
         }
       }
