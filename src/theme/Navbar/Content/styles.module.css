@@ -29,7 +29,8 @@
   color: var(--gray-800);
 }
 
-.button__outline {
+.button__outline,
+.button__outline:visited {
   color: var(--purple-300);
   border-color: var(--purple-300);
   background: none;
