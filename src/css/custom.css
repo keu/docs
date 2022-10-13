@@ -459,6 +459,25 @@ table::-webkit-scrollbar-thumb {
   );
 }
 
+.alert--highlight {
+  --ifm-alert-background-color: #ECEFFD;
+  padding: 1.5rem;
+}
+
+.alert--highlight a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transition: color var(--ifm-transition-fast) var(--ifm-transition-timing-default);
+}
+
+html[data-theme='dark'] .alert--highlight {
+  --ifm-alert-background-color: var(--purple-700);
+}
+
+.alert--highlight [class*='admonitionHeading'] {
+  display: none;
+}
+
 html[data-theme='light'] .alert--cli {
   --ifm-alert-background-color-highlight: hsl(
     var(--purple-200),
@@ -491,34 +510,30 @@ html[data-theme='dark'] .alert--cli {
 }
 
 .footer {
-  /* font-family: var(--font-sans-heading); */
   background-color: var(--purple-900);
-  padding: 4rem 0;
+  padding: 0.5rem 0;
 }
 
-.footer__title {
-  font-size: 1rem;
-  border-bottom: 1px solid var(--purple-500);
-  margin-bottom: .5rem;
-  padding-bottom: .5rem;
-  text-transform: uppercase;
-  color: var(--white);
+.footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
-.footer__items > * + * {
-  margin-top: 0.5rem;
+@media screen and (min-width: 655px) {
+  .footer .container {
+    justify-content: space-between;
+  }
 }
 
-.footer__links {
-  text-align: left;
-  margin-top: 0.5rem;
-}
+/* .footer__links {
+  margin: 0;
+} */
 
-.footer__bottom {
-  margin-top: 4rem;
-  color: var(--white);
-  font-size: 1rem;
-  text-align: left;
+.footer__copyright {
+  font-size: 0.8rem;
 }
 
 .dropdown--right > a {
@@ -592,7 +607,7 @@ html[data-theme="dark"] aside.theme-doc-sidebar-container {
   font-weight: 400;
   font-size: 15px;
   line-height: 24px;
-  color: #1A1C1F;
+  color: inherit;
   margin-left: -2px;
   margin-bottom: 0.5rem;
 }
@@ -708,4 +723,27 @@ html[data-theme="dark"] .navbar-sidebar__item.menu.primaryMenu .menu__link {
 html[data-theme="dark"] .navbar-sidebar__item.menu.primaryMenu .menu__link:hover,
 html[data-theme="dark"] .navbar-sidebar__item.menu.primaryMenu .menu__list-item a.navbar__link--active {
   border-bottom-color: var(--purple-300);
+}
+
+.DocItem__header-description {
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+
+/* Quick fix to allow main content to fill more space when not using the sidebar column */
+.main-wrapper [class*="docItemCol"] {
+  max-width: 958px !important;
+  margin-left: 0 !important;
+}
+
+.main-wrapper .col--3 {
+  display: none !important;
+}
+
+/* Quick fix for homepage width, most likely there is a better way to do this */
+.main-wrapper .col.col--8 {
+  max-width: 1000px;
+  width: 100%;
+  flex: 1 1 100%;
 }

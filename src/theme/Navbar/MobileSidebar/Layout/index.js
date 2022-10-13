@@ -18,7 +18,7 @@ export default function NavbarMobileSidebarLayout({
       </div>
       <div className="navbar-sidebar__item menu bottomButtons">
         <a className={cn(styles.button, styles.button__outline)} href="https://www.astronomer.io/?utm_source=docs-nav-button" target="_blank">
-          Learn About Astronomer
+          Learn about Astronomer
         </a>
         <a className={styles.button} href="https://www.astronomer.io/get-started/?utm_source=docs-nav-button" target="_blank">
           Try Astro
