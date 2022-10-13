@@ -32,7 +32,11 @@ def choose_branch(**kwargs, result):
 
 In general, the `BranchPythonOperator` is a good choice if your branching logic can be easily implemented in a simple Python function.
 
-> Note: The full example code in this section, as well as other examples using the `BranchPythonOperator`, can be found on the [Astronomer Registry](https://registry.astronomer.io/dags/example-branch-operator).
+:::info
+
+The full example code in this section, as well as other examples using the `BranchPythonOperator`, can be found on the [Astronomer Registry](https://registry.astronomer.io/dags/example-branch-operator).
+
+:::
 
 Looking at how to use this operator in a DAG, consider the following example:
 
@@ -134,7 +138,11 @@ with DAG(
 
 ```
 
-> Note: The full example code in this section, as well as other examples using the `ShortCircuitOperator`, can be found on the [Astronomer Registry](https://registry.astronomer.io/dags/example-short-circuit-operator).
+:::info
+
+The full example code in this section, as well as other examples using the `ShortCircuitOperator`, can be found on the [Astronomer Registry](https://registry.astronomer.io/dags/example-short-circuit-operator).
+
+:::
 
 In this DAG we have two short circuits, one which will always return `True` and one which will return `False`. When we run the DAG, we can see that tasks downstream of the `True` condition operator ran, while tasks downstream of the `False` condition operator were skipped.
 

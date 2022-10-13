@@ -116,7 +116,11 @@ Currently only SQL Check operators and the `GreatExpectationsOperator` offer dat
 
 ### SQL Check operators
 
-> **Note**: You can find more details and examples on SQL Check operators as well as example logs in the [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality.md) guide.
+:::info
+
+You can find more details and examples on SQL Check operators as well as example logs in the [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality.md) guide.
+
+:::
 
 SQL Check operators execute a SQL statement that results in a set of booleans. A result of `True` leads to the check passing and the task being labeled as successful. A result of `False`, or any error when the statement is executed, leads to a failure of the task. Before using any of the operators, you need to define the [connection](connections.md) to your data storage from the Airflow UI or with an external secrets manager.
 
@@ -155,7 +159,11 @@ You can find more information on how to use Great Expectations with Airflow in t
 
 In complex data ecosystems, lineage can be a powerful addition to data quality checks, especially for investigating what data from which origins caused a check to fail.
 
-> **Note**: For more information on data lineage and setting up OpenLineage with Airflow, see [OpenLineage and Airflow](airflow-openlineage.md).
+:::info
+
+For more information on data lineage and setting up OpenLineage with Airflow, see [OpenLineage and Airflow](airflow-openlineage.md).
+
+:::
 
 Both SQL Check operators and the `GreatExpectationsOperator` have OpenLineage extractors. If you are working with open source tools, you can view the resulting lineage from the extractors using Marquez.
 
