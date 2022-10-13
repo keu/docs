@@ -22,23 +22,23 @@ The following diagram shows how you can run Airflow in your private cloud using 
 
 ## Get Started
 <LinkCardGrid>
-  <LinkCard truncate label="Installation guides" description="Step-by-step guides to install the system on your cloud service." href="/astro/cli/release-notes" />
-  <LinkCard truncate label="Customizing your installation" description="Explore guides for most common customizations." href="/astro/cli/install-cli" />
-  <LinkCard truncate label="Administration" description="There are many tools for administering Astronomer" href="/astro/cli/reference" />
+  <LinkCard truncate label="Installation guides" description="Install Astronomer Software on your cloud." href="/software/category/install" />
+  <LinkCard truncate label="Integrate an auth system" description="Set up enterprise-grade user authentication on Astronomer Software." href="/software/integrate-auth-system" />
+  <LinkCard truncate label="CI/CD and automation" description="Use the Houston API and CI/CD tools to automate code deploys and changes to your platform." href="/software/ci-cd" />
 </LinkCardGrid>
 
 ## Astronomer Software features
 <LinkCardGrid>
-  <LinkCard label="Push-button Deployments" description="Deploy an instance of Apache Airflow wih the push of a button." />
-  <LinkCard label="Role-based access control" description="(RBAC) for configurable and secure user management." />
-  <LinkCard label="Configurations via Helm" description="Cloud, network, third party provider, and system component configurations via Helm" />
-  <LinkCard label="Grafana & Kibana integrations" description="System logging, monitoring, and alerts via Grafana and Kibana" />
-  <LinkCard label="Docker images" description="Astronomer Certified and Astro Runtime,a differentiated data orchestration experience." />
+  <LinkCard label="Push-button Deployments" description="Deploy an Airflow instance with the push of a button." />
+  <LinkCard label="Role-based access control" description="Use an extensive RBAC system for configurable and secure user management." />
+  <LinkCard label="Configurations via Helm" description="Manage cloud, network, third party provider, and system component configurations using Helm." />
+  <LinkCard label="Grafana & Kibana integrations" description="System logging, monitoring, and alerts are available through Grafana and Kibana." />
+  <LinkCard label="Astronomer Docker images" description="Run versions of Airflow with extended support lifecycles and additional bug testing." />
 </LinkCardGrid>
 
 ## Most popular software docs
 <LinkCardGrid>
-  <LinkCard truncate label="Lorem Ipsum" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud." href="/astro/cli/release-notes" />
-  <LinkCard truncate label="Lorem Ipsum" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud." href="/astro/cli/install-cli" />
-  <LinkCard truncate label="Lorem Ipsum" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud." href="/astro/cli/reference" />
+  <LinkCard truncate label="Release notes" description="A list of all changes in the latest version of Astronomer Software." href="/software/release-notes" />
+  <LinkCard truncate label="Customize image" description="Guides and considerations for customizing your Astro project and fine-tuning Airflow." href="/software/customize-image" />
+  <LinkCard truncate label="Create a project" description="Create all of the necessary files to run Airflow locally or on Astronomer Software." href="/software/create-project" />
 </LinkCardGrid>

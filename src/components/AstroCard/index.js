@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.module.css';
-import cn from 'classnames';
+import cn from 'clsx';
 import { useThemeConfig } from '@docusaurus/theme-common';
 
 function useAstroCardConfig() {

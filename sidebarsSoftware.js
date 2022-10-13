@@ -54,6 +54,11 @@ module.exports = {
         {
         type: 'category',
         label: 'Install',
+        link: {
+          type:'generated-index',
+          title: 'Install Astronomer Software',
+          description: 'Install the Astro platform in your cloud.'
+        },
         items: [
         'install-aws',
         'install-azure',

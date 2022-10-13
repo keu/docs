@@ -22,15 +22,15 @@ import AstroCard from '@site/src/components/AstroCard';
 ## Getting started
 
 <LinkCardGrid>
-  <LinkCard topIcon label="Install the Astro CLI" description="The Astro CLI is the command line interface for data orchestration. It's the easiest way to get started with Apache Airflow and can be used with all Astronomer products." href="/learn/get-started-with-airflow" icon="/img/code-icon.svg" />
-  <LinkCard topIcon label="Understand Key Airflow Concepts" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud." href="/learn/astro-python-sdk" icon="/img/airflow-logo-85x85.png" />
-  <LinkCard topIcon label="Explore Step-by-step Tutorials" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud." href="/learn/astro-python-sdk" icon="/img/doc-icon.svg" />
+  <LinkCard topIcon label="Get started with the Astro CLI" description="The Astro CLI is the command line interface for data orchestration. It's the easiest way to get started with Apache Airflow and can be used with all Astronomer products." href="/cli/overview" icon="/img/code-icon.svg" />
+  <LinkCard topIcon label="Understand Airflow concepts" description="Learn about the fundamentals of how Airflow works and best practices for running it at scale." href="/learn/category/concepts" icon="/img/airflow-logo-85x85.png" />
+  <LinkCard topIcon label="Explore tutorials" description="Follow step-by-step instructions to get Airflow up and running for any use case." href="/learn/category/tutorials" icon="/img/doc-icon.svg" />
 </LinkCardGrid>
 
 ## What's new?
 
 <LinkCardGrid>
-  <LinkCard truncate label="Use the Astro Python SDK" description="Write a DAG with the Astro Python SDK" href="/learn/get-started-with-airflow" />
-  <LinkCard truncate label="Deploy code" description="Deploy Code to Astro" href="/learn/get-started-with-airflow" />
-  <LinkCard truncate label="Release notes" description="Astro CLI release notes" href="/learn/get-started-with-airflow" />
+  <LinkCard truncate label="Astro Python SDK" description="Simplify ELT pipeline writing using a new SDK from Astronomer." href="/learn/astro-python-sdk" />
+  <LinkCard truncate label="Worker queues" description="Run tasks in worker queues which are optimized for their execution." href="/astro/configure-worker-queues" />
+  <LinkCard truncate label="Release notes" description="A complete record of the latest changes to Astro." href="/astro/release-notes" />
 </LinkCardGrid>

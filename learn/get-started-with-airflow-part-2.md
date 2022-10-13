@@ -7,7 +7,7 @@ id: get-started-with-airflow-part-2
 
 Learn core Apache Airflow concepts in this hands-on tutorial using the Astro CLI.
 
-Use this tutorial after completing the [Get started with Apache Airflow](https://docs.astronomer.io/tutorials/get-started-with-airflow) tutorial to learn about how to connect Airflow to external systems.
+Use this tutorial after completing the [Get started with Apache Airflow](https://docs.astronomer.io/learn/get-started-with-airflow) tutorial to learn about how to connect Airflow to external systems.
 
 After you complete this tutorial, you'll be able to:
 
@@ -25,7 +25,8 @@ This tutorial takes approximately 1 hour to complete.
 
 To complete this tutorial, you'll need to know:
 
-- How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/tutorials/get-started-with-airflow).
+
+- How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/learn/get-started-with-airflow).
 - The basics of git. See the [tutorial on Git’s official webpage](https://git-scm.com/docs/gittutorial).
 
 ## Prerequisites
@@ -40,7 +41,7 @@ If you do not have a GitHub account, you can create one for free on the [GitHub 
 
 ## Step 1: Create your Astro project
 
-To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial](https://docs.astronomer.io/tutorials/get-started-with-airflow).
+To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial](https://docs.astronomer.io/learn/get-started-with-airflow).
 
 1. Create a new directory for your Astro project:
 
@@ -66,7 +67,7 @@ To run data pipelines on Astro, you first need to create an Astro project, which
     astro dev start
     ```
 
-    Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
+    Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
 
 5. Log in to the Airflow UI with `admin` for both your username and password.
 
@@ -187,7 +188,7 @@ with DAG(
 ):
 ```
 
-The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been to your GitHub repository. It utilizes the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is quite long at 7 days, which can impact performance if left unchanged in DAGs that run on a higher frequency.
+The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been added to your GitHub repository. It utilizes the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is quite long at 7 days, which can impact performance if left unchanged in DAGs that run on a higher frequency.
 
 ```python
     tag_sensor = GithubTagSensor(

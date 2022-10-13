@@ -166,11 +166,11 @@ To avoid extended service disruptions, Astronomer recommends upgrading Astronome
 
 ### Upgrading to 0.30
 
-#### Running the 0.30 upgrade script with --no-hook
+#### Running the 0.30 upgrade script with --no-hooks
 
-Using the `--no-hook` flag in [Step 7](#step-7-run-astronomers-upgrade-script) results in the upgrade script skipping a necessary database migration job. Because of this, you should not specify this flag when running the upgrade script.
+Using the `--no-hooks` flag in [Step 7](#step-7-run-astronomers-upgrade-script) results in the upgrade script skipping a necessary database migration job. Because of this, you should not specify this flag when running the upgrade script.
 
-If you do specify the `--no-hook` flag, the upgrade script will return a success message even though it failed, resulting in broken behavior in your upgraded environment.
+If you do specify the `--no-hooks` flag, the upgrade script will return a success message even though it failed, resulting in broken behavior in your upgraded environment.
 
 #### Upgrading to 0.30 when using Azure Database for PostgreSQL
 
