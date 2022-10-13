@@ -19,22 +19,22 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Improved lineage tab in the Cloud UI
 
-The **Lineage** tab has been updated with both a more intuitive user experience and a new look and feel to match the Astronomer Cloud UI. Specifically: 
+The following changes have been made to the **Lineage** tab in the Cloud UI to provide a more intuitive user experience: 
 
-- Opening the **Lineage** tab no longer refreshes your web browser, nor does it change the design of surrounding tabs.
-- Then you click a run in the lineage graph, the lineage path through the run is now animated to help illustrate the flow of data through your pipeline.
-- The **Compare** feature is now easier to use, with new visual icons and color changes to help show which two runs are being compared.
-- You can now search for runs and datasets directly from the **Runs** and **Datasets** page respectively..
+- Opening the **Lineage** tab no longer refreshes your browser or changes the appearance of the surrounding tabs.
+- When you click a run in the lineage graph, the lineage path through the run is now animated to illustrate the flow of data through your pipeline.
+- Icons and color have been added to the **Compare** feature to make it easier to identify the individual runs being compared.
+- You can now search for runs and datasets directly in the **Runs** and **Datasets** pages.
 
 ![New lineage tab](/img/release-notes/updated-lineage.png)
 
 ### Additional improvements 
 
-- New worker node pools on Azure and Google Cloud Platform (GCP) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
+- New worker node pools on Azure and Google Cloud Platform (GCP) clusters can now scale to zero. When you set your minimum worker count to 0, you don't incur costs for enabling a new worker type for your cluster until it's used in a Deployment.
 
 ### Bug fixes 
 
-- Fixed an issue where worker queues with a minimum worker count of 0 would appear with a minimum worker count of 1 in the Cloud UI.
+- Fixed an issue where worker queues with a minimum worker count of zero would appear with a minimum worker count of one in the Cloud UI.
 
 ## October 4, 2022 
 
