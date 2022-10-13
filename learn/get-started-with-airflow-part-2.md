@@ -146,7 +146,7 @@ You should now have two connections as shown in the following screenshot:
 
 ## Step 7: Test your DAG
 
-1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run automatically starts, and the `tag_sensor` starts waiting for the `v1.0` tag to be added to your GitHub repository. You will see two light green circles in the **DAGs** view which indicate that the DAG run is in progress and the `example_tag_sensor` task is running.
+1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run automatically starts, and the `tag_sensor` starts waiting for the `v1.0` tag to be added to your GitHub repository. You will see two light green circles in the **DAGs** view which indicates that the DAG run is in progress and the `example_tag_sensor` task is running.
 
     ![DAG running](/img/guides/T2_GraphView.png)
 
