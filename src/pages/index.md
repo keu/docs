@@ -30,7 +30,7 @@ import AstroCard from '@site/src/components/AstroCard';
 ## What's new?
 
 <LinkCardGrid>
-  <LinkCard truncate label="Use the Astro Python SDK" description="Write a DAG with the Astro Python SDK" href="/learn/get-started-with-airflow" />
-  <LinkCard truncate label="Deploy code" description="Deploy Code to Astro" href="/learn/get-started-with-airflow" />
-  <LinkCard truncate label="Release notes" description="Astro CLI release notes" href="/learn/get-started-with-airflow" />
+  <LinkCard truncate label="Astro Python SDK" description="Simplify ELT pipeline writing using a new SDK from Astronomer." href="/learn/astro-python-sdk" />
+  <LinkCard truncate label="Worker queues" description="Run tasks in worker queues which are optimized for their execution" href="/astro/configure-worker-queues" />
+  <LinkCard truncate label="Release notes" description="A complete record of the latest changes to Astro" href="/astro/release-notes" />
 </LinkCardGrid>
