@@ -40,5 +40,5 @@ The following diagram shows how you can run Airflow in your private cloud using 
 <LinkCardGrid>
   <LinkCard truncate label="Release notes" description="A list of all changes in the latest version of Astronomer Software." href="/software/release-notes" />
   <LinkCard truncate label="Customize image" description="Guides and considerations for customizing your Astro project and fine-tuning Airflow." href="/software/customize-image" />
-  <LinkCard truncate label="Create a project" description="Crete all of the necessary files to run Airflow locally or on Astronomer Software." href="/software/create-project" />
+  <LinkCard truncate label="Create a project" description="Create all of the necessary files to run Airflow locally or on Astronomer Software." href="/software/create-project" />
 </LinkCardGrid>
