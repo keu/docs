@@ -29,7 +29,7 @@ import AstroCard from '@site/src/components/AstroCard';
 ## Featured Airflow concepts
 
 <LinkCardGrid>
-  <LinkCard label="Datasets and Data-Aware Scheduling in Airflow" description="Learn how to use datasets in Airflow 2.4." href="/learn/airflow-datasets" truncate />
+  <LinkCard label="Datasets and Data-Aware Scheduling in Airflow" description="Master the datasets feature in Airflow 2.4." href="/learn/airflow-datasets" truncate />
   <LinkCard label="Data quality and Airflow" description="Learn data quality best practices and compare data quality tools." href="/learn/data-quality" truncate />
   <LinkCard label="Dynamic Tasks in Airflow" description="Generate tasks dynamically at runtime." href="/learn/dynamic-tasks" truncate />
 </LinkCardGrid>
