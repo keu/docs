@@ -27,6 +27,8 @@
 # CLI migration redirects 
 
 /software/cli-reference /astro/cli/reference
+/software/cli-reference* /astro/cli/reference
+
 
 # deprecated docs
 /astro/known-limitations /astro 301
