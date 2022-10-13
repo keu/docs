@@ -598,11 +598,6 @@ html[data-theme="dark"] aside.theme-doc-sidebar-container {
   display: none !important;
 }
 
-.table-of-contents,
-.theme-doc-toc-mobile {
-  display: none;
-}
-
 .theme-doc-version-badge {
   font-weight: 400;
   font-size: 15px;
@@ -728,17 +723,6 @@ html[data-theme="dark"] .navbar-sidebar__item.menu.primaryMenu .menu__list-item 
 .DocItem__header-description {
   font-size: 21px;
   line-height: 1.5;
-}
-
-
-/* Quick fix to allow main content to fill more space when not using the sidebar column */
-.main-wrapper [class*="docItemCol"] {
-  max-width: 958px !important;
-  margin-left: 0 !important;
-}
-
-.main-wrapper .col--3 {
-  display: none !important;
 }
 
 /* Quick fix for homepage width, most likely there is a better way to do this */
