@@ -31,7 +31,7 @@ import AstroCard from '@site/src/components/AstroCard';
 ## Featured Astro docs
 
 <LinkCardGrid>
-  <LinkCard truncate label="Create a project" description="Crete all of the necessary files to run Airflow locally or on Astro." href="/astro/create-project" />
+  <LinkCard truncate label="Create a project" description="Create all of the necessary files to run Airflow locally or on Astro." href="/astro/create-project" />
   <LinkCard truncate label="CI/CD" description="Automate code deploys to Astro using templates for popular CI/CD tools." href="/astro/ci-cd" />
   <LinkCard truncate label="Add and remove Astro users" description="Manage your team's roles and permissions on Astro." href="/astro/add-user" />
 </LinkCardGrid>

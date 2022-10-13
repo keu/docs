@@ -40,7 +40,7 @@ The Astro CLI is open source and built for data practitioners everywhere. The bi
 
 <LinkCardGrid>
   <LinkCard truncate label="Release Notes" description="A record of all changes to the Astro CLI." href="/astro/cli/release-notes" />
-  <LinkCard truncate label="Install the Astro CLI" description="Documentation for installing the CLI on all operating systems." />
+  <LinkCard truncate label="Install the Astro CLI" description="Documentation for installing the CLI on all operating systems." href="/astro/cli/install-cli" />
   <LinkCard truncate label="Astro CLI command reference" description="Reference information about every available CLI command and option." href="/astro/cli/reference" />
 </LinkCardGrid>
 
