@@ -1,5 +1,5 @@
 ---
-title: "Get started with Airflow, Part 2: Providers, connections, and variables"
+title: "Get started with Apache Airflow, Part 2: Providers, connections, and variables"
 sidebar_label: "Part 2: Providers, connections, and variables"
 description: "Learn the core Apache Airflow concepts of using providers and connections."
 id: get-started-with-airflow-part-2
@@ -7,11 +7,7 @@ id: get-started-with-airflow-part-2
 
 Learn core Apache Airflow concepts in this hands-on tutorial using the Astro CLI.
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-Use this tutorial after completing the [Get started with Apache Airflow](https://docs.astronomer.io/guides/get-started-with-airflow) tutorial to learn about how to connect Airflow to external systems.
-=======
-Use this tutorial after completing the [Get started with Apache Airflow](https://docs.astronomer.io/tutorials/get-started-with-airflow) tutorial to learn about how to connect Airflow to external systems.
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
+Use this tutorial after completing the [Get started with Apache Airflow](get-started-with-airflow.md) tutorial to learn about how to connect Airflow to external systems.
 
 After you complete this tutorial, you'll be able to:
 
@@ -29,11 +25,7 @@ This tutorial takes approximately 1 hour to complete.
 
 To complete this tutorial, you'll need to know:
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-- How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/guides/get-started-with-airflow).
-=======
-- How to write DAGs and run Airflow. See [Get started with Apache Airflow](https://docs.astronomer.io/tutorials/get-started-with-airflow).
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
+- How to write DAGs and run Airflow. See [Get started with Apache Airflow](get-started-with-airflow.md).
 - The basics of git. See the [tutorial on Git’s official webpage](https://git-scm.com/docs/gittutorial).
 
 ## Prerequisites
@@ -48,11 +40,7 @@ If you do not have a GitHub account, you can create one for free on the [GitHub 
 
 ## Step 1: Create your Astro project
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial](https://docs.astronomer.io/guides/get-started-with-airflow).
-=======
-To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial](https://docs.astronomer.io/tutorials/get-started-with-airflow).
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
+To run data pipelines on Astro, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally. For more information on the Astro project, see Part 1 of the [Get started with Apache Airflow tutorial](get-started-with-airflow.md).
 
 1. Create a new directory for your Astro project:
 
@@ -78,11 +66,7 @@ To run data pipelines on Astro, you first need to create an Astro project, which
     astro dev start
     ```
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-    Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
-=======
     Once your local environment is ready, the CLI automatically opens a new tab or window in your default web browser to the Airflow UI at `https://localhost:8080`.
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
 
 5. Log in to the Airflow UI with `admin` for both your username and password.
 
@@ -96,11 +80,7 @@ To run data pipelines on Astro, you first need to create an Astro project, which
 
 1. Open the Airflow UI to confirm that your DAG was pushed to your environment. On the **DAGs** page, you should see a "DAG Import Error" like the one shown here:
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-![Import Error](/img/guides/T2_ImportError.png)
-=======
-![Import Error](/img/tutorials/T2_ImportError.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
+    ![Import Error](/img/tutorials/T2_ImportError.png)
 
 Provider packages are Python packages maintained separately from core Airflow that contain hooks and operators for interacting with external services. You can browse all available providers in the [Astronomer Registry](https://registry.astronomer.io/).
 
@@ -108,11 +88,7 @@ Provider packages are Python packages maintained separately from core Airflow th
 
 2. Open the [GitHub provider page](https://registry.astronomer.io/providers/github) in the Astronomer Registry.
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-    ![GitHub Provider](/img/guides/T2_GitHubProvider.png)
-=======
     ![GitHub Provider](/img/tutorials/T2_GitHubProvider.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
 
 3. Copy the provider name and version from **Quick Install**.
 4. Paste the provider name and version into the `requirements.txt` file of your Astro project. Make sure to only add `apache-airflow-providers-github=<version>` without `pip install`.
@@ -124,19 +100,11 @@ After restarting your Airflow instance, you should not see the same DAG import e
 
 1. Go to **Admin** > **Variables** to open the list of Airflow variables. It will be empty.
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-    ![Admin Variables](/img/guides/T2_AdminVariables.png)
-
-2. Click on the **+** sign to open the form for adding a new variable. Set the **Key** for the variable as `my_github_repo` and set the **Val** as a GitHub repository you have administrator access to. Make sure the **Val** is in the format `github_account_name/repository_name` (for example `apache/airflow`). The repository can be private.
-
-    ![Add new variable](/img/guides/T2_AddNewVariable.png)
-=======
     ![Admin Variables](/img/tutorials/T2_AdminVariables.png)
 
 2. Click on the **+** sign to open the form for adding a new variable. Set the **Key** for the variable as `my_github_repo` and set the **Val** as a GitHub repository you have administrator access to. Make sure the **Val** is in the format `github_account_name/repository_name` (for example `apache/airflow`). The repository can be private.
 
     ![Add new variable](/img/tutorials/T2_AddNewVariable.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
 
 3. Click **Save**.
 
@@ -150,24 +118,16 @@ In your example DAG, you used two operators that interact with two external syst
 
 1. In the Airflow UI, go to **Admin** > **Connections**.
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-    ![Admin Connections](/img/guides/T2_AdminConnections.png)
-=======
     ![Admin Connections](/img/tutorials/T2_AdminConnections.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
 
 2. Click **+** to open the form for adding a new Airflow connection.
 3. Name the connection `my_github_connection` and set its **Connection Type** to `GitHub`. Note that you can only select connection types that are available from either core Airflow or an installed provider package. If you are missing the connection type `GitHub`, double check that you installed the `GitHub` provider correctly in Step 3.
 4. Enter your **GitHub Access Token** in the GitHub Access Token field. If you need to create a token, you can follow the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 5. Test your connection by clicking **Test**. You should see a green banner indicating that your connection was successfully tested.
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-    ![GitHub Connection](/img/guides/T2_GitHubConnection.png)
-=======
     ![GitHub Connection](/img/tutorials/T2_GitHubConnection.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
 
-    Note that the option to test connections was added in Airflow 2.2. If you are running an older version of Airflow, you can skip this step.
+Note that the option to test connections was added in Airflow 2.2. If you are running an older version of Airflow, you can skip this step.
 
 6. Save the connection by clicking the `Save` button.
 
@@ -178,31 +138,19 @@ In your example DAG, you used two operators that interact with two external syst
 3. Enter the host URL for the API you want to query in the **Host** field. For this tutorial we use the Catfact API, which returns a random fact about cats for every `GET` request. The host for this API is `http://catfact.ninja/fact`.
 4. Test your connection by pressing the **Test** button.
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-![HTTP Connection](/img/guides/T2_HTTPConnection.png)
-=======
-![HTTP Connection](/img/tutorials/T2_HTTPConnection.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
+    ![HTTP Connection](/img/tutorials/T2_HTTPConnection.png)
 
 5. Click **Save**.
 
 You should now have two connections as shown in the following screenshot:
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-![Connection List](/img/guides/T2_TwoConnections.png)
-=======
-![Connection List](/img/tutorials/T2_TwoConnections.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
+    ![Connection List](/img/tutorials/T2_TwoConnections.png)
 
 ## Step 7: Test your DAG
 
 1. Go to the Airflow UI and unpause the DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run automatically starts, and the `tag_sensor` starts waiting for the `v1.0` tag to be added to your GitHub repository. You will see two light green circles in the **DAGs** view which indicate that the DAG run is in progress and the `example_tag_sensor` task is running.
 
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
-![DAG running](/img/guides/T2_GraphView.png)
-=======
-![DAG running](/img/tutorials/T2_GraphView.png)
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
+    ![DAG running](/img/tutorials/T2_GraphView.png)
 
 2. Add the tag `v1.0` to your GitHub repository by configuring it in the GitHub UI or running `git tag v1.0 && git push --tags` in your local repository clone.
 3. Watch for the `example_tag_sensor` task to finish successfully. The `query_api` task should now start.
@@ -278,8 +226,4 @@ Congratulations on finishing this tutorial! You now know how to:
 - Configure Airflow connections.
 - Add Airflow variables.
 - Use the `GithubTagSensor` and the `SimpleHTTPOperator`.
-<<<<<<< HEAD:learn/get-started-with-airflow-part-2.md
 - Get a near infinite supply of cat facts.
-=======
-- Get a near infinite supply of cat facts.
->>>>>>> 4a34afab8884b1e281d73bbb1fc7f4aacd488d3a:tutorials/get-started-with-airflow-part-2.md
