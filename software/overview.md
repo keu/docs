@@ -14,6 +14,8 @@ import LinkCard from '@site/src/components/LinkCard';
 
 import AstroCard from '@site/src/components/AstroCard';
 
+<AstroCard title="Need a managed Airflow solution?" />
+
 ## Run Airflow in your private cloud using Astronomer Software
 
 The following diagram shows how you can run Airflow in your private cloud using Astronomer Software:
