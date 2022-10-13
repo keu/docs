@@ -4,7 +4,9 @@ sidebar_label: 'Overview'
 id: overview
 slug: /
 description: 'Documentation for how to run Airflow at enterprise scale with Astronomer Software.'
+hide_table_of_contents: true
 ---
+
 import LinkCardGrid from '@site/src/components/LinkCardGrid';
 import LinkCard from '@site/src/components/LinkCard';
 

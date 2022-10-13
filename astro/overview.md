@@ -4,7 +4,9 @@ title: 'Astro Documentation'
 id: overview
 slug: /
 description: Everything you need to know about Astronomer’s modern data orchestration tool for the cloud, powered by Apache Airflow.
+hide_table_of_contents: true
 ---
+
 import LinkCardGrid from '@site/src/components/LinkCardGrid';
 import LinkCard from '@site/src/components/LinkCard';
 import AstroCard from '@site/src/components/AstroCard';

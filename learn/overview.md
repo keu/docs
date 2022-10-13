@@ -4,7 +4,9 @@ sidebar_label: 'Overview'
 id: overview
 slug: /
 description: 'Explore tutorials and concepts to learn everything you need to know about Apache Airflow and Astronomer'
+hide_table_of_contents: true
 ---
+
 import LinkCardGrid from '@site/src/components/LinkCardGrid';
 import LinkCard from '@site/src/components/LinkCard';
 import AstroCard from '@site/src/components/AstroCard';

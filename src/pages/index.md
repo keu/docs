@@ -3,6 +3,7 @@ title: 'Astronomer Docs'
 id: home
 slug: /
 description: 'Learn everything you need to know about Astro and Apache Airflow™'
+hide_table_of_contents: true
 ---
 
 import LinkCardGrid from '@site/src/components/LinkCardGrid';
