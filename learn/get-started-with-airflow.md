@@ -202,7 +202,7 @@ Now that we can run DAGs and navigate the UI, let's write our own DAG and run it
     - `tags`: Defines the **Tags** that appear in the **DAGs** page of the Airflow UI. These can help you organize DAGs in more complex projects.
     - `default_args`: A list of configurations for the DAG's behavior. In this DAG, these arguments change the owner of the DAG, give the DAG a maximum of two retries in case of failure, and tell the DAG to wait five minutes before retrying. Many more arguments can be passed to a DAG at instantiation. See [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/dag/index.html) for a complete list.
 
-4. Add an operator to your DAG:
+4. Add a task to your DAG:
 
     ```python
     t1 = BashOperator(
@@ -212,9 +212,9 @@ Now that we can run DAGs and navigate the UI, let's write our own DAG and run it
 
     ```
 
-    An operator is a Python class containing the logic to define the work to be completed by a single task. The first task (`t1`) uses the [BashOperator](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator) to run a bash command that prints the `MY_NAME` variable to the terminal. The second task  (`task_id`) defines the name of the task that appears in the Airflow UI. Each task requires a unique `task_id`.
+    An operator is a Python class containing the logic to define the work to be completed by a single task. The first task (`t1`) uses the [BashOperator](https://registry.astronomer.io/providers/apache-airflow/modules/bashoperator) to run a bash command that prints the `MY_NAME` variable to the terminal. The first parameter of the task (`task_id`) defines the name of the task that appears in the Airflow UI. Each task requires a unique `task_id`.
 
-5. Add a second operator to your DAG:
+5. Add a second task to your DAG:
 
     ```python
     t2 = PythonOperator(
