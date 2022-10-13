@@ -21,5 +21,8 @@ export default function useAlgoliaContextualFacetFilters() {
 } else if (currentPath.includes('astro')) {
   tagsFilter = ['docusaurus_tag:docs-default-current', 'docusaurus_tag:docs-tutorials-current']
  }
+ else if (currentPath.includes('learn')) {
+  tagsFilter = ['docusaurus_tag:docs-default-current', 'docusaurus_tag:docs-tutorials-current']
+ }
   return [languageFilter, tagsFilter];
 }
