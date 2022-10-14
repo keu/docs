@@ -54,6 +54,11 @@ module.exports = {
         {
         type: 'category',
         label: 'Install',
+        link: {
+          type:'generated-index',
+          title: 'Install Astronomer Software',
+          description: 'Install the Astro platform in your cloud.'
+        },
         items: [
         'install-aws',
         'install-azure',
@@ -176,9 +181,13 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
+      {
+          type: 'link',
+          label: 'Astro CLI command reference',
+          href: 'https://docs.astronomer.io/astro/cli/reference',
+      },
       'system-components',
       'support',
-      'cli-reference',
       'version-compatibility-reference',
       'release-lifecycle-policy',
       'documentation-archive',

@@ -350,4 +350,4 @@ If you want to store this connection and access it programmatically, you're also
 
 ## What's next
 
-For a list of handy queries to reference, check out [Useful SQL queries for Apache Airflow](https://www.astronomer.io/guides/airflow-queries).
+For a list of handy queries to reference, check out [Useful SQL queries for Apache Airflow](https://docs.astronomer.io/learn/airflow-queries).
