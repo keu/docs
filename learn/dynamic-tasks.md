@@ -317,6 +317,57 @@ The add_nums task will have three mapped instances with the following results:
 - Map index 1: `1202` (2+1000+200)
 - Map index 2: `2300` (1000+1000+300)
 
+### Transform outputs with .map
+
+There are use cases in which you might want to transform the output of an upstream task before another task dynamically maps over it. For example when the upstream traditional operator returns its output in a fixed format or if when you want to skip certain mapped task instances based on a logical condition.
+
+The `.map()` method was added in Airflow 2.4 and allows you to use a Python function to transform an iterable input before a task dynamically maps over it.
+
+You can call `.map()` directly on a task using the TaskFlow API (`my_upstream_task_flow_task().map(mapping_function)`) or on the outputs object of a traditional operator (`my_upstream_traditional_operator.output.map(mapping_function)`).
+
+The downstream task id dynamically mapped over the object created by the `.map()` method using either `.expand()` for a single keyword argument or `.expand_kwargs()` for lists of dictionaries of sets of keyword arguments.
+
+The code snippet below shows how to use `.map()` to skip specific mapped tasks based on a logical condition.
+
+- `list_strings` is the upstream task returning a list of strings.
+- `skip_strings_starting_with_skip` is a mapping function transforming the list of strings into a list of strings and `AirflowSkipException`s. This function will not show up as an Airflow task.
+- `mapped_printing_function` dynamically maps over the `transformed_list` object created by using the `.map()` method with the mapping function (`skip_strings_starting_with_skip`) as an argument on the upstream task `list_strings`.
+
+```python
+# an upstream task returns a list of outputs in a fixed format
+@task
+def list_strings():
+    return ["skip_hello", "hi", "skip_hallo", "hola", "hey"]
+
+# the function used to transform the upstream output before 
+# a downstream task is dynamically mapped over it
+def skip_strings_starting_with_skip(string):
+    if len(string) < 4:
+        return string + "!"
+    elif string[:4] == "skip":
+        raise AirflowSkipException(
+            f"Skipping {string}; as I was told!"
+        )
+    else:
+        return string + "!"
+        
+# transforming the output of the first task with the map function
+# for non-TaskFlow operators use 
+# my_upstream_traditional_operator.output.map(mapping_function)
+transformed_list = list_strings().map(skip_strings_starting_with_skip)
+
+# the task using dynamic task mapping on the transformed list of strings
+@task
+def mapped_printing_function(string):
+    return "Say " + string 
+
+mapped_printing_function.partial().expand(string=transformed_list)
+```
+
+In the grid view you can see how the mapped task instances 0 and 2 have been skipped.
+
+![Skipped Mapped Tasks](/img/guides/skip_mapped_tasks.png)
+
 ## Example implementation
 
 For this example, you'll implement one of the most common use cases for dynamic tasks: processing files in Amazon S3. In this scenario, you'll use an ELT framework to extract data from files in Amazon S3, load the data into Snowflake, and transform the data using Snowflake's built-in compute. It's assumed that the files will be dropped daily, but it's unknown how many will arrive each day. You'll leverage dynamic task mapping to create a unique task for each file at runtime. This gives you the benefit of atomicity, better observability, and easier recovery from failures.
