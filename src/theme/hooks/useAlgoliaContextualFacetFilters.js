@@ -24,5 +24,8 @@ export default function useAlgoliaContextualFacetFilters() {
  else if (currentPath.includes('learn')) {
   tagsFilter = ['docusaurus_tag:docs-default-current', 'docusaurus_tag:docs-learn-current']
  }
+ else {
+  tagsFilter = ['docusaurus_tag:docs-default-current', 'docusaurus_tag:docs-learn-current']
+ }
   return [languageFilter, tagsFilter];
 }
