@@ -141,8 +141,8 @@ Note that the option to test connections was added in Airflow 2.2. If you are ru
 5. Click **Save**.
 
 You should now have two connections as shown in the following screenshot:
-
-    ![Connection List](/img/guides/T2_TwoConnections.png)
+    
+![Connection List](/img/guides/T2_TwoConnections.png)
 
 ## Step 7: Test your DAG
 
