@@ -22,7 +22,7 @@ All Astronomer Software versions are tested for scale, reliability and security 
 
 ## 0.25.15
 
-Release date: September 21, 2022
+Release date: October 14, 2022
 
 ### Bug fixes 
 
