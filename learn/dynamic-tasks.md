@@ -319,7 +319,7 @@ The add_nums task will have three mapped instances with the following results:
 - Map index 1: `1202` (2+1000+200)
 - Map index 2: `2300` (1000+1000+300)
 
-### Transform outputs with .map
+## Transform outputs with .map
 
 There are use cases in which you want to transform the output of an upstream task before another task dynamically maps over it. For example, if the upstream traditional operator returns its output in a fixed format or if you want to skip certain mapped task instances based on a logical condition.
 
