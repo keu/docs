@@ -15,6 +15,16 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
+## October 11, 2022 
+
+### Additional improvements 
+
+- New worker node pools on Azure and Google Cloud Platform (GCP) clusters can now scale to zero. When you set your minimum worker count to 0, you don't incur costs for enabling a new worker type for your cluster until it's used in a Deployment.
+
+### Bug fixes 
+
+- Fixed an issue where worker queues with a minimum worker count of zero would appear with a minimum worker count of one in the Cloud UI.
+
 ## October 4, 2022 
 
 ### New permissions boundary for managed AWS Accounts
