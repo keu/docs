@@ -321,18 +321,18 @@ The add_nums task will have three mapped instances with the following results:
 
 ### Transform outputs with .map
 
-There are use cases in which you might want to transform the output of an upstream task before another task dynamically maps over it. For example when the upstream traditional operator returns its output in a fixed format or if when you want to skip certain mapped task instances based on a logical condition.
+There are use cases in which you want to transform the output of an upstream task before another task dynamically maps over it. For example, if the upstream traditional operator returns its output in a fixed format or if you want to skip certain mapped task instances based on a logical condition.
 
-The `.map()` method was added in Airflow 2.4 and allows you to use a Python function to transform an iterable input before a task dynamically maps over it.
+The `.map()` method was added in Airflow 2.4 and allows you to use any Python function to transform an iterable input before a task dynamically maps over it.
 
-You can call `.map()` directly on a task using the TaskFlow API (`my_upstream_task_flow_task().map(mapping_function)`) or on the outputs object of a traditional operator (`my_upstream_traditional_operator.output.map(mapping_function)`).
+You can call `.map()` directly on a task using the TaskFlow API (`my_upstream_task_flow_task().map(mapping_function)`) or on the output object of a traditional operator (`my_upstream_traditional_operator.output.map(mapping_function)`).
 
-The downstream task id dynamically mapped over the object created by the `.map()` method using either `.expand()` for a single keyword argument or `.expand_kwargs()` for lists of dictionaries of sets of keyword arguments.
+The downstream task is dynamically mapped over the object created by the `.map()` method using either `.expand()` for a single keyword argument or `.expand_kwargs()` for list of dictionaries containing sets of keyword arguments.
 
 The code snippet below shows how to use `.map()` to skip specific mapped tasks based on a logical condition.
 
 - `list_strings` is the upstream task returning a list of strings.
-- `skip_strings_starting_with_skip` is a mapping function transforming the list of strings into a list of strings and `AirflowSkipException`s. This function will not show up as an Airflow task.
+- `skip_strings_starting_with_skip` is a mapping function transforming the list of strings into a list of modified strings and `AirflowSkipException`s. This function will not show up as an Airflow task.
 - `mapped_printing_function` dynamically maps over the `transformed_list` object created by using the `.map()` method with the mapping function (`skip_strings_starting_with_skip`) as an argument on the upstream task `list_strings`.
 
 ```python
