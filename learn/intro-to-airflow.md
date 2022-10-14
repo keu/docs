@@ -14,11 +14,7 @@ This guide offers an introduction to Apache Airflow and its core concepts. You'l
 - When you should use Airflow.
 - Core Airflow concepts.
 
-:::info
-
-For a hands-on introduction to Airflow using the Astro CLI check out the [Get started with Apache Airflow tutorial](get-started-with-airflow.md).
-
-:::
+For a hands-on introduction to Airflow using the Astro CLI, see [Get started with Apache Airflow](get-started-with-airflow.md).
 
 ## Assumed knowledge
 
