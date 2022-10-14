@@ -14,6 +14,8 @@ This guide offers an introduction to Apache Airflow and its core concepts. You'l
 - When you should use Airflow.
 - Core Airflow concepts.
 
+For a hands-on introduction to Airflow using the Astro CLI, see [Get started with Apache Airflow](get-started-with-airflow.md).
+
 ## Assumed knowledge
 
 To get the most out of this guide, you should have an understanding of:
@@ -115,6 +117,6 @@ To learn more about the Airflow infrastructure, see [Airflow Components](airflow
 - [Astro CLI](https://docs.astronomer.io/astro/cli/get-started)
 - [Astronomer Webinars](https://www.astronomer.io/events/webinars/)
 - [LIVE with Astronomer](https://www.astronomer.io/events/live/)
-- [Astronomer Guides](https:/docs.astronomer.io/learn/)
+- [Astronomer Learn](https:/docs.astronomer.io/learn/)
 - [Astronomer Academy](https://academy.astronomer.io/)
 - [Official Airflow Documentation](https://airflow.apache.org/docs/)
