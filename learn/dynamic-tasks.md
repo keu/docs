@@ -333,7 +333,7 @@ The code snippet below shows how to use `.map()` to skip specific mapped tasks b
 
 - `list_strings` is the upstream task returning a list of strings.
 -`skip_strings_starting_with_skip` transforms a list of strings into a list of modified strings and `AirflowSkipExceptions`. In this DAG, the function transforms `list_strings` into a new list called `transformed_list`. This function will not appear as an Airflow task.
-- `mapped_printing_function` dynamically maps over the `transformed_list` object.
+- `mapped_printing_task` dynamically maps over the `transformed_list` object.
 
 ```python
 # an upstream task returns a list of outputs in a fixed format
@@ -360,10 +360,10 @@ transformed_list = list_strings().map(skip_strings_starting_with_skip)
 
 # the task using dynamic task mapping on the transformed list of strings
 @task
-def mapped_printing_function(string):
+def mapped_printing_task(string):
     return "Say " + string 
 
-mapped_printing_function.partial().expand(string=transformed_list)
+mapped_printing_task.partial().expand(string=transformed_list)
 ```
 
 In the grid view you can see how the mapped task instances 0 and 2 have been skipped.
