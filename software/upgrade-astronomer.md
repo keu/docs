@@ -28,7 +28,7 @@ The [Upgrade considerations](upgrade-astronomer.md#upgrade-considerations) secti
 
 You need Astronomer System Admin permissions to complete version upgrades. To confirm that you're a System Admin, check that you have access to the **System Admin** menu in the Software UI:
 
-![System Admin panel](https://assets2.astronomer.io/main/docs/enterprise_quickstart/admin_panel.png)
+![System Admin panel](/img/docs/admin_panel.png)
 
 You also need permissions to create Kubernetes resources. To confirm that you have the required permissions, run the following commands:
 
