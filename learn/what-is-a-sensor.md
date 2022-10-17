@@ -7,7 +7,7 @@ id: what-is-a-sensor
 
 [Apache Airflow sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/sensors.html) are a special kind of operator that are designed to wait for something to happen. When sensors run, they check to see if a certain condition is met before they are marked successful and let their downstream tasks execute. When used properly, they can be a great tool for making your DAGs more event driven.
 
-In this guide, you'll learn how sensors are used in Airflow, best practices for implementing sensors in production, and learn about smart sensors and deferrable operators. For more information about implementing sensors, see the video [Create Powerful Data Pipelines by Mastering Sensors](https://www.astronomer.io/events/webinars/creating-data-pipelines-using-master-sensors/).
+In this guide, you'll learn how sensors are used in Airflow, best practices for implementing sensors in production, and how to use deferrable versions of sensors. For more information about implementing sensors, see the video [Create Powerful Data Pipelines by Mastering Sensors](https://www.astronomer.io/events/webinars/creating-data-pipelines-using-master-sensors/).
 
 ## Assumed knowledge
 
@@ -105,57 +105,8 @@ When using sensors, keep the following in mind to avoid potential performance is
 - If your `poke_interval` is very short (less than about 5 minutes), use the `poke` mode. Using `reschedule` mode in this case can overload your scheduler.
 - Define a meaningful `poke_interval` based on your use case. There is no need for a task to check a condition every 30 seconds (the default) if you know the total amount of wait time will be 30 minutes.
 
-## Smart sensors
-
-Smart sensors were deprecated in Airflow 2.2.4. They are complex to implement and not widely used. Astronomer recommends using deferrable operators instead.
-
-[Smart sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/smart-sensors.html) are a relatively new feature released with Airflow 2.0, where sensors are executed in batches using a centralized process. This eliminates a major drawback of classic sensors, which use one process for each sensor and therefore can consume considerable resources at scale for longer running tasks. With smart sensors, sensors in your DAGs are registered to the metadata database, and then a separate DAG fetches those sensors and manages processing them. 
-
-![Smart Sensors](/img/guides/smart_sensors_architecture.png)
-
-To use smart sensors with an applicable Airflow version:
-
-1. Update your Airflow config with the following environment variables. If you're using Astronomer, you can add them to your Dockerfile with the code below.
-
-    ```bash
-    ENV AIRFLOW__SMART_SENSOR__USE_SMART_SENSOR=True
-    ENV AIRFLOW__SMART_SENSOR__SHARD_CODE_UPPER_LIMIT=10000
-    ENV AIRFLOW__SMART_SENSOR__SHARDS=1
-    ENV AIRFLOW__SMART_SENSOR__SENSORS_ENABLED=SmartExternalTaskSensor
-    ```
-
-    The `SHARD_CODE_UPPER_LIMIT` parameter helps determine how your sensors are distributed amongst your smart sensor jobs. The `SHARDS` parameters determine how many smart sensor jobs will run concurrently in your Airflow environment. This should be scaled up as you have more sensors. Finally, the `SENSORS_ENABLED` parameter should specify the Python class you will create to tell Airflow that certain sensors should be treated as smart sensors (more on this in Step 2).
-
-2. Create your smart sensor class. Create a file in your `plugins/` directory and define a class for each type of sensor you want to make smart. In this example, smart sensors are implemented with the `FileSensor`, and the class looks like this:
-
-    ```python
-    from airflow.sensors.filesystem import FileSensor
-    from airflow.utils.decorators import apply_defaults
-    from typing import Any
-
-    class SmartFileSensor(FileSensor):
-        poke_context_fields = ('filepath', 'fs_conn_id') # <- Required
-
-        @apply_defaults
-        def __init__(self,  **kwargs: Any):
-            super().__init__(**kwargs)
-
-        def is_smart_sensor_compatible(self): # <- Required
-            result = (
-                not self.soft_fail
-                and super().is_smart_sensor_compatible()
-            )
-            return result
-    ```
-
-    The class should inherit from the sensor class you are updating. For example, `FileSensor`. It must include `poke_context_fields`, which specifies the arguments needed by your sensor, and the `is_smart_sensor_compatible` method, which tells Airflow this type of sensor is a smart sensor. When using smart sensors you cannot use soft fail or any callbacks.
-
-    The implementation of this class varies depending on which sensor you are using. For an example with the more complicated `ExternalTaskSensor`, see the [webinar-sensors repo](https://github.com/marclamberti/webinar-sensors).
-
-3. Deploy your code to Airflow and turn on the `smart_sensor_group_shard_0` DAG to run your smart sensors. You might have more than one smart sensor DAG if you set your `SHARDS` parameter to greater than one. 
-
 ## Deferrable operators
 
-[Deferrable operators](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html) (sometimes referred to as asynchronous operators) were released with Airflow 2.2 and are designed to eliminate the problem of any operator or sensor taking up a full worker slot for the entire time they are running. In other words, they solve the same problems as smart sensors, but for a much wider range of use cases. 
+[Deferrable operators](deferrable-operators.md) (sometimes referred to as asynchronous operators) were released with Airflow 2.2 and are designed to eliminate the problem of any operator or sensor taking up a full worker slot for the entire time they are running. Deferrable versions of many sensors exist in open source Airflow and in the [Astronomer Providers package](https://github.com/astronomer/astronomer-providers). Astronomer recommends using these in most cases to reduce resource costs.
 
-For DAG authors, using built-in deferrable operators is no different from using regular operators. You need to ensure you have a `triggerer` process running in addition to your Scheduler. Currently, the `DateTimeSensorAsync` and `TimeDeltaSensorAsync` sensors are built-in to OSS Airflow. Additional deferrable operators will be released in future Airflow versions. For more on writing your own deferrable operators, see [Smart Sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html#smart-sensors).
+For DAG authors, using deferrable sensors is no different from using regular sensors. All you need is to do is run a `triggerer` process in Airflow and replace the names of all sensors in your DAG code with their deferrable counterparts.  For more details, see [Deferrable operators](deferrable-operators.md). 
