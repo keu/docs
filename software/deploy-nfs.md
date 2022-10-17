@@ -62,7 +62,7 @@ Workspace editors can configure a new or existing Airflow Deployment to use a pr
 
 ## Create and mount an Azure file share
 
-Create and mount an Azure file share to deploy DAGs to an Airflow Deployment on Astronomer. For additional information about this process, see [Premium File Storage](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-how-to-create-nfs-shares?tabs=azure-portal).
+Create and mount an Azure file share to deploy DAGs from an NFS volume to an Astronomer installation on Azure. For additional information about this process, see [Premium File Storage](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-how-to-create-nfs-shares?tabs=azure-portal).
 
 1. Update your `config.yaml` file with the following values:
 
@@ -73,7 +73,8 @@ Create and mount an Azure file share to deploy DAGs to an Airflow Deployment on 
                 configureDagDeployment: true
                 nfsMountDagDeployment: true
   ```
-2. Save the `config.yaml` file and push the configuration change to your platform. See [Apply a config change](apply-platform-config.md). THis process only needs to be completed once for each Software installation.
+
+2. Save the `config.yaml` file and push the configuration change to your platform. See [Apply a config change](apply-platform-config.md). This process only needs to be completed once for each Software installation.
 
 3. In the Software UI, select a workspace and then the Deployment where you want to add the NFS volume to deploy DAGs.
 
