@@ -1,6 +1,6 @@
 ---
 title: "Execute a Jupyter notebook with Airflow"
-description: "Run a parameterized Jupyter Notebook using Airflow and the Astro CLI."
+description: "Run a parameterized Jupyter notebook using Airflow and the Astro CLI."
 sidebar_label: "Jupyter notebook"
 id: execute-notebooks
 ---
@@ -9,10 +9,10 @@ Jupyter notebooks are a popular open source notebook tool for quickly developing
 
 After you complete this tutorial, you'll be able to:
 
-- Add a Jupyter notebook to your Astro CLI project
-- Run your Jupyter notebook from an Airflow DAG
-- Pass parameters to your Jupyter notebook from Airflow
-- Understand what use cases are ideal for orchestrating Jupyter notebooks with Airflow
+- Add a Jupyter notebook to your Astro CLI project.
+- Run your Jupyter notebook from an Airflow DAG.
+- Pass parameters to your Jupyter notebook from Airflow.
+- Understand what use cases are ideal for orchestrating Jupyter notebooks with Airflow.
 
 ## Time to complete
 
@@ -62,24 +62,23 @@ Create a Jupyter notebook called `example_notebook.ipynb` and save it to the `in
 
 Parameterize any cells in your notebook as needed. If you need to pass any information to your notebook at run time, tag the cell in your notebook as described in the [Papermill usage documentation](https://papermill.readthedocs.io/en/latest/usage-parameterize.html).
 
-    The following notebook prints a simple statement with the current date. The second cell is parameterized so that the `execution_date` is dynamic.
+The following notebook prints a simple statement with the current date. The second cell is parameterized so that the `execution_date` is dynamic.
 
-    ![Notebook param](/img/guides/parameterized_notebook.png)
+![Notebook param](/img/guides/parameterized_notebook.png)
 
 ## Step 4: Install supporting packages
 
-Install the Papermill provider and supporting packages required to run the notebook kernel. The `PapermillOperator` is designed to run a notebook locally, so you need to supply a kernel engine for your Airflow environment to execute the notebook code. For this tutorial we use the `ipykernel` package to run the kernel, but there are other options available such as the `jupyter` package.
+Install the Papermill provider and supporting packages required to run the notebook kernel. The `PapermillOperator` is designed to run a notebook locally, so you need to supply a kernel engine for your Airflow environment to execute the notebook code. This tutorial uses the `ipykernel` package to run the kernel, but there are other options available such as the `jupyter` package.
 
 Add the following to the `requirements.txt` file of your Astro project:
 
-    ```text
-    apache-airflow-providers-papermill
-    ipykernel
-    ```
+```text
+apache-airflow-providers-papermill
+ipykernel
 
 ## Step 5: Create your DAG
 
-Create your DAG with the `PapermillOperator` to execute your notebook. Use your favorite code editor or text editor to copy-paste the following code into a .py file in your project's `dags/` directory:
+Create your DAG with the `PapermillOperator` to execute your notebook. Use your favorite code editor or text editor to copy-paste the following code into a `.py` file in your project's `dags/` directory:
 
 ```python
 from datetime import datetime, timedelta
@@ -113,13 +112,13 @@ The `PapermillOperator` requires the following arguments:
 - `output_nb`: The path to your output notebook (i.e. the notebook which shows the results of the notebook execution).
 - `parameters`: A JSON dictionary of any parameters you are passing to your notebook.
 
-Note that the built-in `execution_date` Airflow variable is used so that the DAG is idempotent. Parameters for your notebook can come from anywhere, but we highly recommend using Airflow macros and environment variables to avoid hard-coding values in your DAG file.
+Note that the built-in `execution_date` Airflow variable is used so that the DAG is idempotent. Parameters for your notebook can come from anywhere, but Astronomer recommends using Airflow macros and environment variables to avoid hard-coding values in your DAG file.
 
 ## Step 6: Run your DAG to execute your notebook
 
-Trigger your DAG to executes the `example_notebook.ipynb` and generate an output notebook named with the execution date. Open the output notebook in your `include/` directory to see the results of the run:
+Trigger your DAG to execute the `example_notebook.ipynb` and generate an output notebook with a name that includes the execution date. Open the output notebook in your `include/` directory to see the results of the run:
 
-    ![Output notebook](/img/guides/notebook_output.png)
+![Output notebook](/img/guides/notebook_output.png)
 
 :::info
 
