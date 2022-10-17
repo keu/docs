@@ -30,7 +30,7 @@ To create a service account using the Software UI:
 
 1. Log in to the Software UI.
 2. Go to **Deployment** > **Service Accounts**.
-   ![New Service Account](/img/docs/ci-cd/ci-cd-new-service-account.png)
+   ![New Service Account](/img/docs/ci-cd-new-service-account.png)
 3. Give your service account a **Name**, **User Role**, and **Category** (_Optional_).
    > **Note:** In order for a service account to have permission to push code to your Airflow Deployment, it must have either the Editor or Admin role. For more information on Workspace roles, refer to [Roles and Permissions](workspace-permissions.md).
 

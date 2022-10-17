@@ -65,7 +65,7 @@ In the `airflow_db` connection object:
     ```
 Your connection should look something like:
 
-![Local Connections Details Page](/img/docs/query-postgres/query-postgres-connection-details.png)
+![Local Connections Details Page](/img/docs/query-postgres-connection-details.png)
 
 The port will be set to 5432 by default but if you’ve set a custom port, you’ll need to update that here as well.
 
