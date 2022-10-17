@@ -1,6 +1,6 @@
 ---
 sidebar_label: "Azure"
-title: "Astro Clusters on Microsoft Azure"
+title: "Microsoft Azure cluster configurations"
 id: resource-reference-azure
 description: Reference of all supported configurations for new Astro clusters on Microsoft Azure.
 sidebar_custom_props: { icon: 'img/azure.png' }
@@ -63,10 +63,10 @@ The following table lists all available instance types for worker node pools, as
 
 | Node Instance Type               | CPU      | Memory      |
 | -------------------------------- | -------- | ----------- |
-| Standard_D4_v5 - 4/16            | 2.5 CPUs | 9.3 GiB MEM |
-| Standard_D8_v5 - 8/32            | 6.4 CPUs | 24 GiB MEM  |
-| Standard_D4d_v5 - 4/16 (Default) | 2.5 CPUs | 9.3 GiB MEM |
-| Standard_D8d_v5 - 8/32           | 6.4 CPUs | 24 GiB MEM  |
+| Standard_D4_v5           | 2.5 CPUs | 9.3 GiB MEM |
+| Standard_D8_v5         | 6.4 CPUs | 24 GiB MEM  |
+| Standard_D4d_v5 | 2.5 CPUs | 9.3 GiB MEM |
+| Standard_D8d_v5         | 6.4 CPUs | 24 GiB MEM  |
 
 If your Organization needs an instance type that supports a larger worker size, contact [Astronomer support](https://support.astronomer.io). For more information about configuring worker size on Astro, see [Configure a Deployment](configure-deployment-resources.md).
 

@@ -1,6 +1,6 @@
 ---
 sidebar_label: "AWS"
-title: "Astro Clusters on AWS"
+title: "AWS cluster configurations"
 id: resource-reference-aws
 description: Reference of all supported configurations for new clusters on Astro in AWS.
 sidebar_custom_props: { icon: "img/aws.png" }
@@ -157,6 +157,7 @@ The following table lists all available instance types for worker node pools, as
 | c6i.16xlarge     | 63 CPUs | 125 GiB MEM  |
 | c6i.24xlarge     | 95 CPUs | 189 GiB MEM  |
 | c6i.metal        | 95 CPUs | 189 GiB MEM  |
+| t2.xlarge        | 3 CPUs  | 13 GiB MEM   |
 | t3.xlarge        | 3 CPUs  | 13 GiB MEM   |
 | t3.2xlarge       | 7 CPUs  | 29 GiB MEM   |
 
@@ -166,7 +167,7 @@ With the exception of `m5d` nodes, all supported node types have a maximum of 20
 
 The ability to provision ephemeral storage for all node instance types is coming soon.
 
-If you need to pass significant data between Airflow tasks, Astronomer recommends using an [XCom backend](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) such as [AWS S3](https://aws.amazon.com/s3/) or [Google Cloud Storage (GCS)](https://cloud.google.com/storage). For more information and best practices, see the Airflow Guide on [Passing Data Between Airflow Tasks](https://www.astronomer.io/guides/airflow-passing-data-between-tasks).
+If you need to pass significant data between Airflow tasks, Astronomer recommends using an [XCom backend](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html) such as [AWS S3](https://aws.amazon.com/s3/) or [Google Cloud Storage (GCS)](https://cloud.google.com/storage). For more information and best practices, see the Airflow Guide on [Passing Data Between Airflow Tasks](https://docs.astronomer.io/learn/airflow-passing-data-between-tasks).
 
 :::
 

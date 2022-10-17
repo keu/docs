@@ -15,6 +15,53 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
+## October 11, 2022 
+
+### Additional improvements 
+
+- New worker node pools on Azure and Google Cloud Platform (GCP) clusters can now scale to zero. When you set your minimum worker count to 0, you don't incur costs for enabling a new worker type for your cluster until it's used in a Deployment.
+
+### Bug fixes 
+
+- Fixed an issue where worker queues with a minimum worker count of zero would appear with a minimum worker count of one in the Cloud UI.
+
+## October 4, 2022 
+
+### New permissions boundary for managed AWS Accounts
+
+The operational roles that Astronomer assumes on dedicated customer AWS accounts now have new [permissions boundaries](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) that limit the roles to a subset of their permissions. The remote management role is now limited to the following actions across all contexts:
+
+- `autoscaling:*`
+- `cloudformation:*`
+- `cloudwatch:*`
+- `ec2:*`
+- `ecr:*`
+- `eks:*`
+- `elasticloadbalancing:*`
+- `iam:*OpenID*`
+- `kms:DescribeKey`
+- `lambda:*`
+- `logs:*`
+- `route53:AssociateVPCWithHostedZone`
+- `s3:*`
+- `secretsmanager:*`
+- `servicequotas:*`
+- `ssm:*`
+- `tag:*`
+
+These permissions might change in the future to enable new Astro features or to refine permissions for specific contexts. 
+
+### Additional improvements 
+
+- Users with the required permissions can now access a **Configuration** tab in the **Admin** menu of the Airflow UI. This page no longer shows sensitive values in plain-text and can be used to verify all configurations running on your Deployment.
+- In the Cloud UI, the maximum time for Deployment metrics has been extended from 24 hours to 7 days.
+- The [Deployment metrics overview](deployment-metrics.md#deployment-overview) now shows metrics for the `default` worker queue instead of an aggregate of all worker queues. Improved worker queue metrics coming soon.
+
+### Bug fixes 
+
+- Added the global environment variable `AIRFLOW__LOGGING__DAG_PROCESSOR_LOG_TARGET=stdout` so that a scheduler's logs don't overcrowd its local storage
+- Removed misleading maximum CPU and memory lines from Deployment metric graphs
+
 ## September 28, 2022 
 
 ### Additional improvements 
@@ -35,7 +82,7 @@ All of a Deployment's configurations, including analytics, API keys, environment
 
 ![New organization of Deployment-level pages in the Cloud UI](/img/release-notes/deployment-tabs.png)
 
-This new UI moves the **Analytics** and **Logs** from the left sidebar to the main Deployment page so that you longer have to filter those views separately by Deployment. The left sidebar now exclusively contains Workspace-level menus.
+This new UI moves the **Analytics** and **Logs** from the left sidebar to the main Deployment page so that you no longer have to filter those views separately by Deployment. The left sidebar now exclusively contains Workspace-level menus.
 
 ### Data plane cost tuning
 
@@ -465,7 +512,7 @@ A few additional notes about this upgrade:
 - Because Astronomer is upgrading each customer individually over time, the exact date that you will start seeing these logs will vary.
 - When you push code to a Deployment on Runtime 4.2.0+ and trigger this update, all other Deployments on Runtime 4.2.0+ in the same Workspace will also restart in order to receive the lineage backend update. If you plan to push code to any Deployment affected by this change, then we recommend doing so at a time where you can tolerate some Airflow components restarting. For more information about expected behavior, see [What Happens During a Code Deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
-For more information about what to expect when lineage tools go live, read Astronomer's [OpenLineage and Airflow guide](https://www.astronomer.io/guides/airflow-openlineage).
+For more information about what to expect when lineage tools go live, read Astronomer's [OpenLineage and Airflow guide](https://docs.astronomer.io/learn/airflow-openlineage).
 
 ### New AWS regions available
 
@@ -669,7 +716,7 @@ The **Scheduler Logs** tab in the Cloud UI has been updated to make logs easier 
 
 ### Removal of worker termination grace period
 
-The **Worker Termination Grace Period** setting is no longer available in the Cloud UI or API. Previously, users could set this to anywhere between 1 minute and 24 hours per Deployment. This was to prevent running tasks from being interrupted by a code push. Today, however, existing Celery workers don't have to terminate in order for new workers to spin up and start executing tasks. Instead, existing workers will continue to execute running tasks while a new set of workers gets spun up concurrently to start executing most recent code.
+The **Worker Termination Grace Period** setting is no longer available in the Cloud UI or API. Previously, users could set this to anywhere between 1 minute and 24 hours per Deployment. This was to prevent running tasks from being interrupted by a code push. Today, however, existing Celery workers don't have to terminate in order for new workers to spin up and start executing tasks. Instead, existing workers will continue to execute running tasks while a new set of workers gets spun up concurrently to start executing the most recent code.
 
 To simplify Deployment configuration and reflect current functionality:
 
@@ -800,7 +847,7 @@ To start, the homepage is now a global view. From here, you can now see all Work
 
 ![New global menu in the UI](/img/docs/ui-release-note1.png)
 
-You can now also select specific Workspaces to work in. When you click in to a Workspace, you'll notice the lefthand menu bar is now entirely dedicated to Workspace actions:
+You can now also select specific Workspaces to work in. When you click in to a Workspace, you'll notice the left menu bar is now entirely dedicated to Workspace actions:
 
 - The Rocket icon brings you to the **Deployments** menu.
 - The People icon brings you to the **Workspace Access** menu.
@@ -810,7 +857,7 @@ To return to the global menu, you can either click the Astro "A" or click the Wo
 
 ![New Workspace menu in the UI](/img/docs/ui-release-note2.png)
 
-All user configurations can be found by clicking your user profile picture in the upper righthand corner of the UI. From the dropdown menu that appears, you can both configure user settings and access other Astronomer resources such as documentation and the Astronomer Registry.
+All user configurations can be found by clicking your user profile picture in the upper right corner of the UI. From the dropdown menu that appears, you can both configure user settings and access other Astronomer resources such as documentation and the Astronomer Registry.
 
 ![New profile menu in the UI](/img/docs/ui-release-note3.png)
 
@@ -890,7 +937,7 @@ This release introduces a breaking change to code deploys via the Astro CLI. Sta
 
 ### Support for Deployment API keys
 
-Astro now officially supports Deployment API keys, which you can use to automate code pushes to Astro and integrate your environment with a CI/CD tool such as GitHub Actions. For more information on creating and managing Deployment API keys, see [Deployment API keys](api-keys.md). For more information on using Deployment API keys to programmatically deploy code, see [CI/CD](ci-cd.md). Support making requests to Airflow's REST API using API keys is coming soon.
+Astro now officially supports Deployment API keys, which you can use to automate code pushes to Astro and integrate your environment with a CI/CD tool such as GitHub Actions. For more information on creating and managing Deployment API keys, see [Deployment API keys](api-keys.md). For more information on using Deployment API keys to programmatically deploy code, see [CI/CD](ci-cd.md). Support for making requests to Airflow's REST API using API keys is coming soon.
 
 ## September 3, 2021
 
