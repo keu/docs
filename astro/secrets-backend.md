@@ -167,7 +167,7 @@ This topic provides steps for using [Hashicorp Vault](https://www.vaultproject.i
 If you do not already have a Vault server deployed but would like to test this feature, Astronomer recommends that you either:
 
 - Sign up for a Vault trial on [Hashicorp Cloud Platform (HCP)](https://cloud.hashicorp.com/products/vault) or
-- Deploy a local Vault server using the instructions in the [Hashicorp integration tutorial](https://docs.astronomer.io/learn/airflow-and-hashicorp-vault).
+- Deploy a local Vault server.
 
 #### Step 1: Create a Policy and AppRole in Vault
 
