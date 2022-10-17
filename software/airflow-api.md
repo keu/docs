@@ -189,12 +189,6 @@ As of its momentous [2.0 release](https://www.astronomer.io/blog/introducing-air
 - Implements CRUD (Create, Read, Update, Delete) operations on *all* Airflow resources.
 - Includes authorization capabilities.
 
-:::tip
-
-To get started with Airflow 2 locally, read [Get started with Apache Airflow 2.0](https://docs.astronomer.io/learn/get-started-airflow-2). To upgrade an Airflow Deployment on Astronomer to 2.0, make sure you've first upgraded to both Astronomer Software v0.23 and Airflow 1.10.15. For questions, reach out to [Astronomer support](https://support.astronomer.io).
-
-:::
-
 ### Make a request
 
 To convert a call from the Airflow experimental API, simply update the URL to use the endpoint specified in the [Airflow Stable REST API reference](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html).
