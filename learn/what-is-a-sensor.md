@@ -7,7 +7,7 @@ id: what-is-a-sensor
 
 [Apache Airflow sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/sensors.html) are a special kind of operator that are designed to wait for something to happen. When sensors run, they check to see if a certain condition is met before they are marked successful and let their downstream tasks execute. When used properly, they can be a great tool for making your DAGs more event driven.
 
-In this guide, you'll learn how sensors are used in Airflow, best practices for implementing sensors in production, and learn about deferrable versions of sensors. For more information about implementing sensors, see the video [Create Powerful Data Pipelines by Mastering Sensors](https://www.astronomer.io/events/webinars/creating-data-pipelines-using-master-sensors/).
+In this guide, you'll learn how sensors are used in Airflow, best practices for implementing sensors in production, and how to use deferrable versions of sensors. For more information about implementing sensors, see the video [Create Powerful Data Pipelines by Mastering Sensors](https://www.astronomer.io/events/webinars/creating-data-pipelines-using-master-sensors/).
 
 ## Assumed knowledge
 
@@ -107,6 +107,6 @@ When using sensors, keep the following in mind to avoid potential performance is
 
 ## Deferrable operators
 
-[Deferrable operators](deferrable-operators.md) (sometimes referred to as asynchronous operators) were released with Airflow 2.2 and are designed to eliminate the problem of any operator or sensor taking up a full worker slot for the entire time they are running. Deferrable versions of many sensors exist in OSS Airflow and in the [Astronomer Providers package](https://github.com/astronomer/astronomer-providers), and using these is recommended to reduce resource costs.
+[Deferrable operators](deferrable-operators.md) (sometimes referred to as asynchronous operators) were released with Airflow 2.2 and are designed to eliminate the problem of any operator or sensor taking up a full worker slot for the entire time they are running. Deferrable versions of many sensors exist in open source Airflow and in the [Astronomer Providers package](https://github.com/astronomer/astronomer-providers). Astronomer recommends using these in most cases to reduce resource costs.
 
-For DAG authors, using deferrable sensors is no different from using regular sensors. Ensure you have a `triggerer` process running in addition to your scheduler, and replace the name of your sensors in your DAG file with their deferrable counterpart.  For more details, see [Deferrable Operators](deferrable-operators.md). 
+For DAG authors, using deferrable sensors is no different from using regular sensors. All you need is to do is run a `triggerer` process in Airflow and replace the names of all sensors in your DAG code with their deferrable counterparts.  For more details, see [Deferrable operators](deferrable-operators.md). 
