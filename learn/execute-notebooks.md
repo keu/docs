@@ -32,7 +32,7 @@ To complete this tutorial, you need:
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 - The [Jupyter Notebook](https://jupyter.org/install) package.
 
-## Step 1: Create an Astro project
+## Step 1: Create an Astro project and a Jupyter notebook
 
 To run a DAG that executes a Jupyter notebook, you first need to create an Astro project, which contains the set of files necessary to run Airflow locally.
 
@@ -54,11 +54,9 @@ To run a DAG that executes a Jupyter notebook, you first need to create an Astro
     astro dev init
     ```
 
-## Step 2: Create a Jupyter notebook
+Next, create a Jupyter notebook called `example_notebook.ipynb` and save it to the `include/` directory of the Astro project you created.
 
-Create a Jupyter notebook called `example_notebook.ipynb` and save it to the `include/` directory of the Astro project you created in Step 1.
-
-## Step 3: Parameterize your Jupyter notebook (optional)
+## Step 2: Parameterize your Jupyter notebook (optional)
 
 Parameterize any cells in your notebook as needed. If you need to pass any information to your notebook at run time, tag the cell in your notebook as described in the [Papermill usage documentation](https://papermill.readthedocs.io/en/latest/usage-parameterize.html).
 
@@ -66,17 +64,20 @@ The following notebook prints a simple statement with the current date. The seco
 
 ![Notebook param](/img/guides/parameterized_notebook.png)
 
-## Step 4: Install supporting packages
+## Step 3: Install supporting packages
 
-Install the Papermill provider and supporting packages required to run the notebook kernel. The `PapermillOperator` is designed to run a notebook locally, so you need to supply a kernel engine for your Airflow environment to execute the notebook code. This tutorial uses the `ipykernel` package to run the kernel, but there are other options available such as the `jupyter` package.
+Install the Papermill provider and supporting packages required to run the notebook kernel.
 
 Add the following to the `requirements.txt` file of your Astro project:
 
 ```text
 apache-airflow-providers-papermill
 ipykernel
+```
 
-## Step 5: Create your DAG
+The `PapermillOperator` is designed to run a notebook locally, so you need to supply a kernel engine for your Airflow environment to execute the notebook code. This tutorial uses the `ipykernel` package to run the kernel, but there are other options available such as the `jupyter` package.
+
+## Step 4: Create your DAG
 
 Create your DAG with the `PapermillOperator` to execute your notebook. Use your favorite code editor or text editor to copy-paste the following code into a `.py` file in your project's `dags/` directory:
 
@@ -114,7 +115,7 @@ The `PapermillOperator` requires the following arguments:
 
 Note that the built-in `execution_date` Airflow variable is used so that the DAG is idempotent. Parameters for your notebook can come from anywhere, but Astronomer recommends using Airflow macros and environment variables to avoid hard-coding values in your DAG file.
 
-## Step 6: Run your DAG to execute your notebook
+## Step 5: Run your DAG to execute your notebook
 
 Trigger your DAG to execute the `example_notebook.ipynb` and generate an output notebook with a name that includes the execution date. Open the output notebook in your `include/` directory to see the results of the run:
 
