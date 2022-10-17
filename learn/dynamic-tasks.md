@@ -50,6 +50,8 @@ When you work with mapped tasks, keep the following in mind:
 - You can have a mapped task that results in no task instances. For example, when your upstream task that generates the mapping values returns an empty list. In this case, the mapped task is marked skipped, and downstream tasks are run according to the trigger rules you set. By default, downstream tasks are also skipped.
 - Some parameters can't be mapped. For example, `task_id`, `pool`, and many `BaseOperator` arguments.
 - `expand()` only accepts keyword arguments.
+- The maximum amount of mapped task instances is determined by the `max_map_length` parameter in the [Airflow configuration](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html). By default it is set to 1024.
+- You can limit the number of mapped task instances for a particular task that run in parallel across all DAG runs by setting the `max_active_tis_per_dag` parameter in your dynamically mapped task.
 
 For additional examples of how to apply dynamic task mapping functions, see [Dynamic Task Mapping](https://airflow.apache.org/docs/apache-airflow/2.3.0/concepts/dynamic-task-mapping.html).
 
@@ -316,6 +318,57 @@ The add_nums task will have three mapped instances with the following results:
 - Map index 0: `111` (1+10+100)
 - Map index 1: `1202` (2+1000+200)
 - Map index 2: `2300` (1000+1000+300)
+
+## Transform outputs with .map
+
+There are use cases where you want to transform the output of an upstream task before another task dynamically maps over it. For example, if the upstream traditional operator returns its output in a fixed format or if you want to skip certain mapped task instances based on a logical condition.
+
+The `.map()` method was added in Airflow 2.4. It accepts a Python function and uses it to transform an iterable input before a task dynamically maps over it.
+
+You can call `.map()` directly on a task using the TaskFlow API (`my_upstream_task_flow_task().map(mapping_function)`) or on the output object of a traditional operator (`my_upstream_traditional_operator.output.map(mapping_function)`).
+
+The downstream task is dynamically mapped over the object created by the `.map()` method using either `.expand()` for a single keyword argument or `.expand_kwargs()` for list of dictionaries containing sets of keyword arguments.
+
+The code snippet below shows how to use `.map()` to skip specific mapped tasks based on a logical condition.
+
+- `list_strings` is the upstream task returning a list of strings.
+-`skip_strings_starting_with_skip` transforms a list of strings into a list of modified strings and `AirflowSkipExceptions`. In this DAG, the function transforms `list_strings` into a new list called `transformed_list`. This function will not appear as an Airflow task.
+- `mapped_printing_task` dynamically maps over the `transformed_list` object.
+
+```python
+# an upstream task returns a list of outputs in a fixed format
+@task
+def list_strings():
+    return ["skip_hello", "hi", "skip_hallo", "hola", "hey"]
+
+# the function used to transform the upstream output before 
+# a downstream task is dynamically mapped over it
+def skip_strings_starting_with_skip(string):
+    if len(string) < 4:
+        return string + "!"
+    elif string[:4] == "skip":
+        raise AirflowSkipException(
+            f"Skipping {string}; as I was told!"
+        )
+    else:
+        return string + "!"
+        
+# Transforming the output of the first task with the map function.
+# For non-TaskFlow operators, use 
+# my_upstream_traditional_operator.output.map(mapping_function)
+transformed_list = list_strings().map(skip_strings_starting_with_skip)
+
+# the task using dynamic task mapping on the transformed list of strings
+@task
+def mapped_printing_task(string):
+    return "Say " + string 
+
+mapped_printing_task.partial().expand(string=transformed_list)
+```
+
+In the grid view you can see how the mapped task instances 0 and 2 have been skipped.
+
+![Skipped Mapped Tasks](/img/guides/skip_mapped_tasks.png)
 
 ## Example implementation
 

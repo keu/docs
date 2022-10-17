@@ -50,7 +50,7 @@ module.exports = {
           label: 'Home',
           position: 'left',
           activeClassName: 'navbar__link--active',
-          activeBaseRegex: '(?!)',
+          activeBaseRegex: '^[\/]+$',
         },
         {
           to: '/astro/',
