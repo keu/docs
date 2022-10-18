@@ -15,6 +15,13 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
+## October 18, 2022 
+
+### Additional improvements 
+
+- The **Access** menu is now a tab in the **Workspace Settings** menu.
+- The **Workspace Settings** is now visible to all Workspace members.
+
 ## October 11, 2022 
 
 ### Additional improvements 
