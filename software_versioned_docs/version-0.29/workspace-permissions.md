@@ -73,7 +73,7 @@ To add a Team to a Workspace:
 3. Under **Team Name**, enter the name of your IdP group.
 4. Select a **Workspace Role** for the Team. If your Workspace has existing Deployments, you can also configure the Team's permissions to those Deployments on this page:
 
-    ![Screen for adding a Team to a Workspace](/img/docs/add-team-workspace.png)
+    ![Screen for adding a Team to a Workspace](/img/software/add-team-workspace.png)
 
 5. Click **Add**.
 
@@ -135,7 +135,7 @@ To add a team to a Deployment:
 2. In the search bar that appears, search for your Team's name.
 3. When your Team appears, select a Deployment-level role for the Team and click the **+** button:
 
-    ![Screen for adding a Team to a Deployment](/img/docs/add-team-deployment.png)
+    ![Screen for adding a Team to a Deployment](/img/software/add-team-deployment.png)
 
 :::caution
 

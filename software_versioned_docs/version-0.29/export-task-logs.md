@@ -82,10 +82,10 @@ Add Airflow task logs from your Astronomer Deployment to an existing Elasticsear
 1. In your browser, go to `https://cloud.elastic.co/` and create a new Elastic Cloud deployment. See [Create a deployment](https://www.elastic.co/guide/en/cloud/current/ec-create-deployment.html#ec-create-deployment).
 2. Copy and save your Elastic Cloud deployment credentials when the **Save the deployment credentials** screen appears.
 3. On the Elastic dashboard, click the **Gear** icon for your Deployment.
-  ![Elastic Gear icon location](/img/docs/elasticsearch-gear-icon.png)
+  ![Elastic Gear icon location](/img/software/elasticsearch-gear-icon.png)
 4. Click **Copy endpoint** next to **Elasticsearch**.
 
-    ![Elastic Copy Endpoint location](/img/docs/elasticsearch-copy-endpoint.png)
+    ![Elastic Copy Endpoint location](/img/software/elasticsearch-copy-endpoint.png)
 
 5. Optional. Test the Elastic Cloud deployment endpoint:
     - Open a new browser window, paste the endpoint you copied in step 4 in the **Address** bar, and then press **Enter**.
