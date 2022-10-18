@@ -49,7 +49,7 @@ To query the Astronomer Houston API, you must first authenticate as an Astronome
 3. Expand the `HTTP Headers` section on the bottom left of the page.
 4. Paste the API token you acquired from Step 1 in the following format: `{"authorization": "<api-token>"}`
 
-![Headers](software/headers.png)
+![Headers](img/software/headers.png)
 
 > **Note:** As you work with our API, you'll be restricted to actions allowed by both your existing role within the platform (e.g. SysAdmin or not) and your permissions within any particular Workspace (e.g. Viewer, Editor, Admin).
 
