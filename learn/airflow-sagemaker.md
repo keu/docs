@@ -11,7 +11,7 @@ This tutorial demonstrates how to orchestrate a full ML pipeline including creat
 
 ## Time to complete
 
-This tutorial takes approximately 1 hour to complete.
+This tutorial takes approximately 30 minutes to complete.
 
 ## Assumed knowledge
 
@@ -31,53 +31,283 @@ To complete this tutorial, you need:
     - Access to [AWS SageMaker](https://aws.amazon.com/sagemaker/). If you don't already use SageMaker, Amazon offers a free tier for the first month.
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 
+## Step 1: Create a role to access SageMaker
 
-## Step 1: Set up SageMaker
+For this tutorial, you will need to access SageMaker from your Airflow environment. There are multiple ways to do this, but for this tutorial you will create an AWS role that can access SageMaker, and create temporary credentials for that role.
+
+1. From the AWS web console, go to Amazon SageMaker, then `Getting started`.
+
+2.  
+
+## Step 2: Create an S3 bucket
+
+Create an S3 bucket that will be used for storing data and model training results. Make sure that your bucket is accessible by the role you created in Step 1. For more instructions, see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
+
+## Step 3: Configure your Astro project
+
+Now that you have your AWS resources configured, you can move on to Airflow setup. Using the Astro CLI:
+
+1. Create a new Astro project:
+
+    ```sh
+    $ mkdir astro-sagemaker-tutorial && cd astro-sagemaker-tutorial
+    $ astro dev init
+    ```
+
+2. Add the following line to the `requirements.txt` file of your Astro project:
+
+    ```text
+    apache-airflow-providers-amazon>=5.1.0
+    ```
+
+    This installs the AWS provider package that contains all of the relevant SageMaker modules. If you use an older version of the AWS provider, some of the DAG configuration in later steps may need to be modified.
+
+3. Add the following environment variables to the `.env` file of your project:
+
+    ```text
+    AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
+    AWS_DEFAULT_REGION=<your AWS region>
+    ```
+
+    These variables ensure that all SageMaker operators will work in your Airflow environment. Some require XCom pickling to be turned on in order to work because they return objects that are not JSON serializable. 
+
+4. Run the following command to start your project in a local environment:
+
+    ```sh
+    astro dev start
+    ```
+
+## Step 3: Add Airflow Variables
+
+Add two Airflow variables that will be used by your DAG. In the Airflow UI, go to **Admin** -> **Variables**.
+
+1. Add a variable with the ARN of the role you created in Step 1.
+
+```text
+Key: role
+Val: <your-role-arn>
+```
+
+2. Add a variable with the name of the S3 bucket you created in Step 2.
+
+```text
+Key: s3_bucket
+Val: <your-s3-bucket-name>
+```
+
+## Step 4: Add an Airflow connection to SageMaker
+
+Add a connection that Airflow will use to connect to SageMaker and S3. In the Airflow UI, go to **Admin** -> **Connections**.
+
+Create a new connection named `aws-sagemaker` and choose the `Amazon Web Services` connection type. Fill in the `AWS Access Key ID` and `AWS Secret Access Key` with your personal access key ID and token. 
+
+In the `Extra` field, provide your region name and AWS session token generated in Step 1 like this:
+
+```text
+{
+    "region_name": "your-region",
+    "aws_session_token": "your-session-token"
+}
+```
+
+Your connection should look like this:
+
+SCREENSHOT
+
+:::note
+
+As mentioned in Step 1, there are multiple ways of connecting Airflow to AWS resources. If you are using a method other than the one described in this tutorial, such as having your Airflow environment assume an IAM role, you will need to update your connection accordingly. 
+
+:::
+
+## Step 5: Create your DAG
+
+In your Astro project, create a new file called `sagemaker-pipeline.py` in your `dags` folder. Paste the following code into the file:
+
+```python
+from airflow import DAG
+from airflow.decorators import task
+from airflow.providers.amazon.aws.operators.sagemaker import (
+    SageMakerModelOperator,
+    SageMakerTrainingOperator,
+    SageMakerTransformOperator,
+)
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+
+from datetime import datetime, timedelta
+import requests
+import io
+import pandas as pd
+import numpy as np
+
+"""
+This DAG shows an example implementation of machine learning model orchestration using Airflow
+and AWS SageMaker. Using the AWS provider's SageMaker operators, Airlfow orchestrates getting data
+from an API endpoint and pre-processing it (task-decorated function), training the model (SageMakerTrainingOperator),
+creating the model with the training results (SageMakerModelOperator), and testing the model using
+a batch transform job (SageMakerTransformOperator).
+
+The example use case shown here is using a built-in SageMaker K-nearest neighbors algorithm to make
+predictions on the Iris dataset. To use the DAG, add Airflow variables for `s3_bucket` (S3 Bucket used with SageMaker 
+instance) and `role` (Role ARN to execute SageMaker jobs) then fill in the information directly below with the target
+AWS S3 locations, and model and training job names.
+"""
+
+# Define variables used in configs
+data_url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"  # URL for Iris data API
+date = "{{ ts_nodash }}"  # Date for transform job name
+
+input_s3_key = 'iris/processed-input-data'  # Train and test data S3 path
+output_s3_key = 'iris/results'  # S3 path for output data
+model_name = "Iris-KNN-{}".format(date)  # Name of model to create
+training_job_name = 'train-iris-{}'.format(date)  # Name of training job
+
+with DAG('sagemaker_pipeline',
+         start_date=datetime(2021, 7, 31),
+         max_active_runs=1,
+         schedule_interval=None,
+         default_args={
+             'retries': 0,
+             'retry_delay': timedelta(minutes=1),
+             'aws_conn_id': 'aws-sagemaker'
+         },
+         catchup=False,
+         ) as dag:
+    @task
+    def data_prep(data_url, s3_bucket, input_s3_key):
+        """
+        Grabs the Iris dataset from API, splits into train/test splits, and saves CSV's to S3 using S3 Hook
+        """
+        # Get data from API
+        iris_response = requests.get(data_url).content
+        columns = ['sepal_length', 'sepal_width', 'petal_length', 'petal_width', 'species']
+        iris = pd.read_csv(io.StringIO(iris_response.decode('utf-8')), names=columns)
+
+        # Process data
+        iris['species'] = iris['species'].replace({'Iris-virginica': 0, 'Iris-versicolor': 1, 'Iris-setosa': 2})
+        iris = iris[['species', 'sepal_length', 'sepal_width', 'petal_length', 'petal_width']]
+
+        # Split into test and train data
+        iris_train, iris_test = np.split(iris.sample(frac=1, random_state=np.random.RandomState()),
+                                         [int(0.7 * len(iris))])
+        iris_test.drop(['species'], axis=1, inplace=True)
+
+        # Save files to S3
+        iris_train.to_csv('iris_train.csv', index=False, header=False)
+        iris_test.to_csv('iris_test.csv', index=False, header=False)
+        s3_hook = S3Hook(aws_conn_id='aws-sagemaker')
+        s3_hook.load_file('iris_train.csv', '{0}/train.csv'.format(input_s3_key), bucket_name=s3_bucket, replace=True)
+        s3_hook.load_file('iris_test.csv', '{0}/test.csv'.format(input_s3_key), bucket_name=s3_bucket, replace=True)
 
 
-## Step 2: Configure your Astro project
+    data_prep = data_prep(data_url, "{{ var.value.get('s3_bucket') }}", input_s3_key)
 
-Create project and add env vars (s3_bucket and role)
+    train_model = SageMakerTrainingOperator(
+        task_id='train_model',
+        config={
+            "AlgorithmSpecification": {
+                "TrainingImage": "404615174143.dkr.ecr.us-east-2.amazonaws.com/knn",
+                "TrainingInputMode": "File"
+            },
+            "HyperParameters": {
+                "predictor_type": "classifier",
+                "feature_dim": "4",
+                "k": "3",
+                "sample_size": "150"
+            },
+            "InputDataConfig": [
+                {"ChannelName": "train",
+                 "DataSource": {
+                     "S3DataSource": {
+                         "S3DataType": "S3Prefix",
+                         "S3Uri": "s3://{0}/{1}/train.csv".format("{{ var.value.get('s3_bucket') }}", input_s3_key)
+                     }
+                 },
+                 "ContentType": "text/csv",
+                 "InputMode": "File"
+                 }
+            ],
+            "OutputDataConfig": {
+                "S3OutputPath": "s3://{0}/{1}".format("{{ var.value.get('s3_bucket') }}", output_s3_key)
+            },
+            "ResourceConfig": {
+                "InstanceCount": 1,
+                "InstanceType": "ml.m5.large",
+                "VolumeSizeInGB": 1
+            },
+            "RoleArn": "{{ var.value.get('role') }}",
+            "StoppingCondition": {
+                "MaxRuntimeInSeconds": 6000
+            },
+            "TrainingJobName": training_job_name
+        },
+        wait_for_completion=True
+    )
 
-## Step 3: Add a connection to SageMaker
+    create_model = SageMakerModelOperator(
+        task_id='create_model',
+        config={
+            "ExecutionRoleArn": "{{ var.value.get('role') }}",
+            "ModelName": model_name,
+            "PrimaryContainer": {
+                "Mode": "SingleModel",
+                "Image": "404615174143.dkr.ecr.us-east-2.amazonaws.com/knn",
+                "ModelDataUrl": "{{ ti.xcom_pull(task_ids='train_model')['Training']['ModelArtifacts']['S3ModelArtifacts'] }}"
+            },
+        }
+    )
 
-## Step 4: Create your DAG
+    test_model = SageMakerTransformOperator(
+        task_id='test_model',
+        config={
+            "TransformJobName": "test-knn-{0}".format(date),
+            "TransformInput": {
+                "DataSource": {
+                    "S3DataSource": {
+                        "S3DataType": "S3Prefix",
+                        "S3Uri": "s3://{0}/{1}/test.csv".format("{{ var.value.get('s3_bucket') }}", input_s3_key)
+                    }
+                },
+                "SplitType": "Line",
+                "ContentType": "text/csv",
+            },
+            "TransformOutput": {
+                "S3OutputPath": "s3://{0}/{1}".format("{{ var.value.get('s3_bucket') }}", output_s3_key)
+            },
+            "TransformResources": {
+                "InstanceCount": 1,
+                "InstanceType": "ml.m5.large"
+            },
+            "ModelName": model_name
+        },
+    )
 
-## Step 5: Update your model info (optional)
+    data_prep >> train_model >> create_model >> test_model
+```
 
-This example uses KNN to make predictions on Iris dataset. If you want to change, update these ...
+This DAG uses a decorated PythonOperator and several SageMaker operators to get data from an API endpoint, train a model, create a model in SageMaker, and test the model.  See [How it works](#how-it-works) for more information about each task in the DAG and how the different SageMaker operators work.
 
-## Step 6: Run your DAG to train the model
+## Step 6: Update your model info (optional)
+
+
+## Step 7: Run your DAG to train the model
 
 
 
 
 ## How it works
 
-All code used in this tutorial is located in the [Astronomer Registry](https://registry.astronomer.io/dags/sagemaker-run-model).
+This example DAG acquires and pre-processes data, trains a model, creates a model from the training results, and evaluates the model on test data using a batch transform job. This example uses the [Iris dataset](https://archive.ics.uci.edu/ml/datasets/iris), and trains a built-in SageMaker K-Nearest Neighbors (KNN) model. The general steps in the DAG are:
 
+1. Using a `PythonOperator`, grab the data from the API, complete some pre-processing so the data is compliant with KNN requirements, split into train and test sets, and save them to S3 using the `S3Hook`.
 
-The following use cases demonstrate how to use some of these operators, but they generally all have similar requirements, such as an input configuration for the job being executed. Documentation on what should be included in each configuration can be found in the Actions section of the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations.html).
-
-:::info
-
-In addition to the modules shown in this tutorial, the [AWS provider](https://registry.astronomer.io/providers/amazon) contains multiple other SageMaker operators and sensors that are built on the [SageMaker API](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations_Amazon_SageMaker_Service.html) and cover a wide range of SageMaker features.
-
-:::
-
-
-## Use case 2: Orchestrate a full ML pipeline
-
-For this example, you'll use the [Iris dataset](https://archive.ics.uci.edu/ml/datasets/iris), and train a built-in SageMaker K-Nearest Neighbors (KNN) model. The general steps in the DAG are:
-
-1. Using a `PythonOperator` to pull the data from the API, complete some pre-processing so the data is compliant with KNN requirements, split into train and test sets, and save them to S3 using the `S3Hook`.
-2. Train the KNN algorithm on the data using the `SageMakerTrainingOperator`. The configuration for this operator requires: 
+2. Train the KNN algorithm on the data using the `SageMakerTrainingOperator`. The configuration for this operator requires:
 
     - Information about the algorithm being used
     - Any required hyper parameters
     - The input data configuration
     - The output data configuration
-    - Resource specifications for the machine running the training job 
+    - Resource specifications for the machine running the training job
     - The Role ARN for execution
 
     For more information about submitting a training job, check out the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html).
@@ -87,28 +317,27 @@ For this example, you'll use the [Iris dataset](https://archive.ics.uci.edu/ml/d
     - A name for the model
     - The Role ARN for execution
     - The image containing the algorithm (in this case the pre-built SageMaker image for KNN)
-    - The S3 path to the model training artifact 
-    
+    - The S3 path to the model training artifact
+
     For more information on creating a model, check out the API documentation [here](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html).
-4. Evaluate the model on the test data created in Step 1 using the `SageMakerTransformOperator`. This step runs a batch transform to get inferences on the test data from the model created in Step 3. The configuration for this operator requires:
+
+4. Evaluate the model on the test data created in task 1 using the `SageMakerTransformOperator`. This step runs a batch transform to get inferences on the test data from the model created in task 3. The configuration for this operator requires:
 
     - Information about the input data source
     - The output results path
     - Resource specifications for the machine running the training job
-    - The name of the model 
-    
+    - The name of the model
+
     For more information on submitting a batch transform job, check out the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html).
 
-The DAG code looks like this:
+:::info
 
+To clone the entire repo used to create this tutorial as well as an additional DAG that performs batch inference using an existing SageMaker model, check out the [Astronomer Registry](https://registry.astronomer.io/dags/sagemaker-pipeline).
 
-The graph view of the DAG should look similar to this:
+:::
 
-![SageMaker Pipeline](/img/guides/sagemaker_pipeline.png)
+In addition to the modules shown in this tutorial, the [AWS provider](https://registry.astronomer.io/providers/amazon) contains multiple other SageMaker operators and sensors that are built on the [SageMaker API](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations_Amazon_SageMaker_Service.html) and cover a wide range of SageMaker features. In general, documentation on what should be included in the configuration of each operator can be found in the corresponding Actions section of the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Operations.html).
 
-When using this DAG, there are a couple of other things to be aware of for your Airflow environment:
+## Conclusion
 
-- Some SageMaker operators may require the `AWS_DEFAULT_REGION` to be set in your Airflow environment in addition to a region being specified in the AWS connection. If you're using Astro, you can set this variable in the Cloud UI or in your Dockerfile (`ENV AWS_DEFAULT_REGION=us-east-2`).
--Some SageMaker operators require XCom pickling to be turned on in order to work because they return objects that are not JSON serializable. To enable XCom pickling, set `AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True`
-
-You've learned how you can use Airflow with SageMaker to automate an end-to-end ML pipeline. A natural next step would be to deploy this model to a SageMaker endpoint using the `SageMakerEndpointConfigOperator` and `SageMakerEndpointOperator`, which provisions resources to host the model. In general, the SageMaker modules in the AWS provider allow for many possibilities when using Airflow to orchestrate ML pipelines.
+In this tutorial, you learned how to use Airflow with SageMaker to automate an end-to-end ML pipeline. A natural next step would be to deploy this model to a SageMaker endpoint using the `SageMakerEndpointConfigOperator` and `SageMakerEndpointOperator`, which provisions resources to host the model. In general, the SageMaker modules in the [AWS provider](https://registry.astronomer.io/providers/amazon) allow for many possibilities when using Airflow to orchestrate ML pipelines.
