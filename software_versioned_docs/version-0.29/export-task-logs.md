@@ -191,10 +191,10 @@ After you've created an Elastic deployment and endpoint, you have two options to
 ### View Airflow task logs in Elastic
 
 1. On the Elastic dashboard in the **Elastichsearch Service** area, click the Deployment name.
-  ![ElasticDeployment name location](/img/docs/elasticsearch-deployment-name.png)
+  ![ElasticDeployment name location](/img/software/elasticsearch-deployment-name.png)
 2. Click **Menu** > **Discover**. The **Create index pattern** screen appears.
 
-    ![Discover menu location](/img/docs/elasticsearch-discover.png)
+    ![Discover menu location](/img/software/elasticsearch-discover.png)
 
 3. Enter `fluentd.*` in the **Name** field, enter `@timestamp` in the **Timestamp field**, and then click **Create index pattern**.
 4. Click **Menu** > **Dashboard** to view all of the Airflow task logs for your Deployment on Astronomer.

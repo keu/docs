@@ -118,7 +118,7 @@ From there, head over to 'Authentication' to:
 
 Example:
 
-![authentication.png](/img/software/azure-autentication.png)
+![authentication.png](/img/software/azure-authentication.png)
 
 ### Enable Azure AD in your config.yaml file
 
