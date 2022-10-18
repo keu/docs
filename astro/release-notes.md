@@ -84,12 +84,6 @@ All of a Deployment's configurations, including analytics, API keys, environment
 
 This new UI moves the **Analytics** and **Logs** from the left sidebar to the main Deployment page so that you no longer have to filter those views separately by Deployment. The left sidebar now exclusively contains Workspace-level menus.
 
-### Data plane cost tuning
-
-Astronomer has modified the default resource usage of Astro clusters to improve infrastructure cost for Astro customers. In addition to minor improvements to node autoscaling behavior:
-
-- New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
-
 ### New Account Dashboard
 
 You can now access your Account Dashboard to manage your user account settings and find links to helpful resources. Access this page by going to `account.astronomer.io` in your browser or by clicking **Profile** > **Manage your Astro Account** in the Cloud UI. You must be authenticated to Astro.
@@ -99,6 +93,7 @@ You can now access your Account Dashboard to manage your user account settings a
 ### Additional improvements
 
 - You can now use the `m6id` worker node type series for Deployments on AWS clusters. This worker type is general purpose and includes significant storage as well as up to 15% better performance compared to `m5d` nodes. For more information, see [Worker instance types](resource-reference-aws.md#worker-node-types).
+- New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
 
 ### Bug fixes
 
