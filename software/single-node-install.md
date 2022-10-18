@@ -334,4 +334,4 @@ To confirm that you successfully installed Apache Airflow, open `http://localhos
 
 Log in with your `admin` user. From there, you should see Airflow's primary 'DAGs' view:
 
-![Empty Airflow UI](/img/docs/ac-install.png)
+![Empty Airflow UI](/img/docs/software/ac-install.png)
