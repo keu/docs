@@ -10,13 +10,9 @@
 module.exports = {
   cloud: [
     {
-      type: 'doc',
-      label: 'Home',
-      id: 'overview'
-    },
-    {
       type: 'Category',
-      label: 'Astro overview',
+      label: 'Overview',
+      link: { type: 'doc', id: 'overview' },
       items: [
         'features',
         'astro-architecture',
