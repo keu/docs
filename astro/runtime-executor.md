@@ -13,6 +13,12 @@ The Runtime executor can work as a direct replacement for the Celery executor wi
 - Set environment-level strategies how resources should be allocated between tasks that don't have specific resource requests.
 - View metrics for task completion states and resource usage.
 
+:::info
+
+This functionality is early access and under active development. If you have any questions or feedback about this feature, contact [Astronomer support](https://support.astronomer.io/).
+
+:::
+
 ## Enable the Runtime executor in a Deployment
 
 To enable the Runtime executor in a Deployment, set an environment variable with a key of `ASTRO_RUNTIME_EXECUTOR` and a value of `True`. See [Environment variables](environment-variables.md).
