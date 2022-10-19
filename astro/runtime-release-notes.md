@@ -83,9 +83,8 @@ For a complete list of commits, see the [Apache Airflow 2.4.0 release notes](htt
 
 ### Bug fixes
 
-- Revert “Cache the custom secrets backend so the same instance gets re-used” (#25556)
-- Remove TaskFail duplicates check (#26714)
-- Fix faulty executor config serialization logic (#26191)
+- Revert “Cache the custom secrets backend so the same instance gets re-used” ([#25556](https://github.com/apache/airflow/pull/25556))
+- Fixed faulty Kubernetes executor config serialization logic
 
 ## Astro Runtime 5.0.9
 
