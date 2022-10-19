@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Features'
 title: 'Astro features'
-id: environment-variables
+id: features
 description: Set environment variables on Astro to specify Airflow configurations and custom logic.
 ---
 
