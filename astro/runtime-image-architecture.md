@@ -88,9 +88,40 @@ Astro Runtime supports Python 3.9. This is the only version of Python that Astro
 
 In Airflow, the executor is responsible for determining how and where a task is completed.
 
-In all local environments created with the Astro CLI, Astro Runtime runs the [Local executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/local.html). On Astro, Astro Runtime exclusively supports the [Celery executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html).
+In all local environments created with the Astro CLI, Astro Runtime runs the [Local executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/local.html). On Astro, Astro Runtime supports both the [Celery executor](https://airflow.apache.org/docs/apache-airflow/stable/executor/celery.html) and the Astronomer-developed Runtime executor.
 
-Soon, Astronomer will provide a new executor with intelligent worker packing, task-level resource requests, improved logging, and Kubernetes-like task isolation.
+### Runtime executor
+
+The Runtime executor is exclusive to Astro Runtime and is optimized for resilience and observability.
+
+This executor is a direct replacement for the local and Celery executors. Any DAGs that run using the Celery executor can also run using the Runtime executor.
+
+Additionally you can use the Runtime executor to:
+
+- Specify resource requests for CPU, memory, and concurrency slots within your tasks.
+- Set system-level strategies how resources should be allocated between tasks that don't have specific resource requests.
+- View metrics for task resource usage.
+
+See [Run tasks with the Runtime executor](runtime-executor.md) for setup steps and usage.
+
+### Runtime executor architecture and execution flow
+
+The Runtime executor has a similar execution framework to the Celery executor, but it relies on a few new and existing Airflow components to run tasks:
+
+- The **scheduler** logs the task instance and its allocation requests for newly scheduled tasks in the **Airflow metadata DB**.
+- Allocation is a wrapper around a task instance that indicates its resource requirements, it’s created after the task instance
+- The **Airflow metadata DB** stores both assigned and unassigned allocation requests. The Runtime executor’s DB tables are built in complete parallel and isolation to existing tables. This means that no open source tables in Airflow need to be modified in order for the executor to work.
+- The **allocator** queries the metadata DB for unassigned allocation requests. It then determines how the allocation requests should be handled and submits assignments for the runners back to the DB.
+- **Runners** run tasks. To start running a task, a runner queries the metadata DB to look for new assignment. If it’s been assigned a task, the runner starts completing the work. Currently, there is only one type of runner called a **SubprocessRunner**, which runs tasks within the same cluster as your Airflow environment.
+
+![Runtime executor architecture](/img/docs/runtime-executor-architecture.png)
+
+After a task is scheduled:
+
+- The scheduler logs information about the task and its configured resource requests in Airflow's metadata DB. The task's allocation status is "Unassigned".
+- The allocator looks for any unassigned tasks in the metadata db. When it finds an unassigned task, the allocator determines how to best run the task. It calculates this based on the tasks own resource requests, the configured system-level allocation strategies
+- The allocator choses a runner and assigns the task to the runner for execution. After the task is assigned, its allocation status in the metadata db is updated to "Assigned".
+- The task runs to completion (success or failure) and marks itself as succeeded or failed. Its allocation status in the metadata db is updated to "Completed".
 
 ## Distribution
 

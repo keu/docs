@@ -57,6 +57,7 @@ module.exports = {
       items: [
         'configure-deployment-resources',
         'configure-worker-queues',
+        'runtime-executor',
         'api-keys',
         'environment-variables',
         'secrets-backend',

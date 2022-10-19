@@ -2,10 +2,10 @@
 sidebar_label: "Runtime executor"
 title: "Run tasks with the Runtime executor"
 id: runtime-executor
-description: Configure your Airflow environment and tasks to take advantage of Runtime's Runtime Executor.
+description: Learn how to your Airflow environment and tasks to take advantage of the Runtime executor, available exclusively in Astro Runtime.
 ---
 
-The Runtime executor is Runtime's component for executing Airflow tasks. It provides the same functionality as the Celery executor, as well as new features and configurations which make task execution more reliable and observable. See [Runtime Image Architecture](https://www.notion.so/astronomerio/runtime-architecture.md) for more information about the benefits of Runtime and how it works.
+The Runtime executor is Runtime's component for executing Airflow tasks. It provides the same functionality as the Celery executor, as well as new features and configurations which make task execution more reliable and observable. See [Runtime image architecture](runtime-architecture.md#runtime-executor) for more information about the benefits of the Runtime executor and how it works.
 
 The Runtime executor can work as a direct replacement for the Celery executor without any additional configuration. You can also use Runtime executor to control task execution to a greater degree than with the Celery executor. For example, you can:
 
@@ -15,7 +15,7 @@ The Runtime executor can work as a direct replacement for the Celery executor wi
 
 ## Enable the Runtime executor in a Deployment
 
-In the Deployment, set an environment variable with a key of `ASTRO_RUNTIME_EXECUTOR` and a value of `True`. See [Environment variables](environment-variables.md).
+To enable the Runtime executor in a Deployment, set an environment variable with a key of `ASTRO_RUNTIME_EXECUTOR` and a value of `True`. See [Environment variables](environment-variables.md).
 
 After you set this variable, all tasks in the Deployment will run with the Runtime executor. To revert back to using the Celery executor, delete the environment variable from your Deployment. 
 
