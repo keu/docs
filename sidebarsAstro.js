@@ -11,8 +11,16 @@ module.exports = {
   cloud: [
     {
       type: 'doc',
-      label: 'Overview',
+      label: 'Home',
       id: 'overview'
+    },
+    {
+      type: 'Category',
+      label: 'Astro overview',
+      items: [
+        'features',
+        'astro-architecture',
+      ],
     },
     {
       type: 'category',
