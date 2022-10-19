@@ -10,7 +10,7 @@
 module.exports = {
   cloud: [
     {
-      type: 'Category',
+      type: 'category',
       label: 'Overview',
       link: { type: 'doc', id: 'overview' },
       items: [
