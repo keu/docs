@@ -45,6 +45,7 @@ module.exports = {
             'airflow-passing-data-between-tasks',
             'airflow-branch-operator',
             'airflow-importing-custom-hooks-operators',
+            'astro-python-sdk-etl',
             'debugging-dags',
             'subdags',
             'task-groups',
