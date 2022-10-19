@@ -244,6 +244,8 @@ module.exports = {
       'cli/astro-dev-init',
       'cli/astro-dev-kill',
       'cli/astro-dev-logs',
+      'cli/astro-dev-object-export',
+      'cli/astro-dev-object-import',
       'cli/astro-dev-parse',
       'cli/astro-dev-ps',
       'cli/astro-dev-pytest',
