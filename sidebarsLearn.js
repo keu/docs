@@ -34,7 +34,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Pipelines',
+          label: 'DAGs',
           link: {
             type: 'generated-index',
             title: 'DAGs',
