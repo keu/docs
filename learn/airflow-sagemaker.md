@@ -33,11 +33,11 @@ To complete this tutorial, you need:
 
 ## Step 1: Create a role to access SageMaker
 
-For this tutorial, you will need to access SageMaker from your Airflow environment. There are multiple ways to do this, but for this tutorial you will create an AWS role that can access SageMaker, and create temporary credentials for that role.
+For this tutorial, you will need to access SageMaker from your Airflow environment. There are multiple ways to do this, but for this tutorial you will create an AWS role that can access SageMaker and create temporary credentials for that role.
 
-1. From the AWS web console, go to Amazon SageMaker, then `Getting started`.
+1. From the AWS web console, go to **IAM** service page and create a new execution role for SageMaker by following the **Create execution role** [instructions](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
 
-2.  
+2. Using the ARN of the role you just created, generate temporary security credentials for your role. There are multiple methods for generating the credentials. For detailed instructions, see [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html). You will need the access key ID, secret access key, and session token in a later step.  
 
 ## Step 2: Create an S3 bucket
 
@@ -116,13 +116,13 @@ SCREENSHOT
 
 :::note
 
-As mentioned in Step 1, there are multiple ways of connecting Airflow to AWS resources. If you are using a method other than the one described in this tutorial, such as having your Airflow environment assume an IAM role, you will need to update your connection accordingly. 
+As mentioned in Step 1, there are multiple ways of connecting Airflow to AWS resources. If you are using a method other than the one described in this tutorial, such as having your Airflow environment assume an IAM role, you may need to update your connection accordingly. 
 
 :::
 
 ## Step 5: Create your DAG
 
-In your Astro project, create a new file called `sagemaker-pipeline.py` in your `dags` folder. Paste the following code into the file:
+In your Astro project `dags/` folder, create a new file called `sagemaker-pipeline.py`. Paste the following code into the file:
 
 ```python
 from airflow import DAG
