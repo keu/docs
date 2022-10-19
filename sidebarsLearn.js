@@ -6,7 +6,7 @@ module.exports = {
       label: 'Concepts',
       link: {
         type:'generated-index',
-        title: 'Concepts',
+        title: 'Airflow concepts',
         description: 'Learn about the fundamentals of Apache Airflow.'
       },
       items: [
@@ -37,7 +37,7 @@ module.exports = {
           label: 'Pipelines',
           link: {
             type: 'generated-index',
-            title: 'Pipelines',
+            title: 'DAGs',
             description: 'Learn about how to construct and manage data pipelines to be reliable and performant.',
           },
           items: [
