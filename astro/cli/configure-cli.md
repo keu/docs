@@ -5,8 +5,8 @@ id: configure-cli
 ---
 
 <head>
-  <meta name="description" content="Learn how to modify project-level settings by updating the .astro/config.yaml file. Modifying project-level settings can help you debug and troubleshoot the behavior of Airflow components in your local environment.">
-  <meta name="og:description" content="Learn how to modify project-level settings by updating the .astro/config.yaml file. Modifying project-level settings can help you debug and troubleshoot the behavior of Airflow components in your local environment.">
+  <meta name="description" content="Learn how to modify project-level settings by updating the .astro/config.yaml file. Modifying project-level settings can help you debug and troubleshoot the behavior of Airflow components in your local environment." />
+  <meta name="og:description" content="Learn how to modify project-level settings by updating the .astro/config.yaml file. Modifying project-level settings can help you debug and troubleshoot the behavior of Airflow components in your local environment." />
 </head>
 
 import Tabs from '@theme/Tabs';

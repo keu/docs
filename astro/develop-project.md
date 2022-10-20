@@ -5,8 +5,8 @@ id: develop-project
 ---
 
 <head>
-  <meta name="description" content="Learn how to add Airflow dependencies and customize an Astro project to meet the unique requirements of your organization.">
-  <meta name="og:description" content="Learn how to add Airflow dependencies and customize an Astro project to meet the unique requirements of your organization.">
+  <meta name="description" content="Learn how to add Airflow dependencies and customize an Astro project to meet the unique requirements of your organization." />
+  <meta name="og:description" content="Learn how to add Airflow dependencies and customize an Astro project to meet the unique requirements of your organization." />
 </head>
 
 import {siteVariables} from '@site/src/versions';

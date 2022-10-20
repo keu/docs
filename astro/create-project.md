@@ -5,8 +5,8 @@ id: 'create-project'
 ---
 
 <head>
-  <meta name="description" content="Learn how to create an Astro project and run it locally with the Astro command-line interface (CLI). You need an Astro project to run Airflow pipelines on Astro.">
-  <meta name="og:description" content="Learn how to create an Astro project and run it locally with the Astro command-line interface (CLI). You need an Astro project to run Airflow pipelines on Astro.">
+  <meta name="description" content="Learn how to create an Astro project and run it locally with the Astro command-line interface (CLI). You need an Astro project to run Airflow pipelines on Astro." />
+  <meta name="og:description" content="Learn how to create an Astro project and run it locally with the Astro command-line interface (CLI). You need an Astro project to run Airflow pipelines on Astro." />
 </head>
 
 import {siteVariables} from '@site/src/versions';

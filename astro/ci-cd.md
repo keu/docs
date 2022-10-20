@@ -5,8 +5,8 @@ id: ci-cd
 ---
 
 <head>
-  <meta name="description" content="Learn how to create a continuous integration and continuous delivery (CI/CD) pipeline that triggers a deployment to Astro when your Airflow DAGs are modified.">
-  <meta name="og:description" content="Learn how to create a continuous integration and continuous delivery (CI/CD) pipeline that triggers a deployment to Astro when your Airflow DAGs are modified.">
+  <meta name="description" content="Learn how to create a continuous integration and continuous delivery (CI/CD) pipeline that triggers a deployment to Astro when your Airflow DAGs are modified." />
+  <meta name="og:description" content="Learn how to create a continuous integration and continuous delivery (CI/CD) pipeline that triggers a deployment to Astro when your Airflow DAGs are modified." />
 </head>
 
 import Tabs from '@theme/Tabs';

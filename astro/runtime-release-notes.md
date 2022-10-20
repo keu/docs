@@ -5,8 +5,8 @@ id: runtime-release-notes
 ---
 
 <head>
-  <meta name="description" content="This where you’ll find information about the latest Astro Runtime features and functionality. Astro Runtime is a Docker image built by Astronomer that provides a differentiated Apache Airflow experience and execution framework.">
-  <meta name="og:description" content="his where you’ll find information about the latest Astro Runtime features and functionality. Astro Runtime is a Docker image built by Astronomer that provides a differentiated Apache Airflow experience and execution framework.">
+  <meta name="description" content="This where you’ll find information about the latest Astro Runtime features and functionality. Astro Runtime is a Docker image built by Astronomer that provides a differentiated Apache Airflow experience and execution framework." />
+  <meta name="og:description" content="his where you’ll find information about the latest Astro Runtime features and functionality. Astro Runtime is a Docker image built by Astronomer that provides a differentiated Apache Airflow experience and execution framework." />
 </head>
 
 <!--version-specific-->

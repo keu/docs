@@ -5,8 +5,8 @@ id: environment-variables
 ---
 
 <head>
-  <meta name="description" content="Learn how you can set environment variables on Astro to specify Airflow configurations and custom logic that better meet the requirements of your organization.">
-  <meta name="og:description" content="Learn how you can set environment variables on Astro to specify Airflow configurations and custom logic that better meet the requirements of your organization.">
+  <meta name="description" content="Learn how you can set environment variables on Astro to specify Airflow configurations and custom logic that better meet the requirements of your organization." />
+  <meta name="og:description" content="Learn how you can set environment variables on Astro to specify Airflow configurations and custom logic that better meet the requirements of your organization." />
 </head>
 
 import {siteVariables} from '@site/src/versions';

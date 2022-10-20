@@ -5,8 +5,8 @@ id: test-and-troubleshoot-locally
 ---
 
 <head>
-  <meta name="description" content="Learn how to test and troubleshoot DAGs in a local Apache Airflow environment with the Astro command-line interface (CLI).">
-  <meta name="og:description" content="Learn how to test and troubleshoot DAGs in a local Apache Airflow environment with the Astro command-line interface (CLI).">
+  <meta name="description" content="Learn how to test and troubleshoot DAGs in a local Apache Airflow environment with the Astro command-line interface (CLI)." />
+  <meta name="og:description" content="Learn how to test and troubleshoot DAGs in a local Apache Airflow environment with the Astro command-line interface (CLI)." />
 </head>
 
 As you develop data pipelines on Astro, Astronomer recommends running and testing your DAGs locally before deploying your project to a Deployment on Astro. This document provides information about testing and troubleshooting DAGs in a local Apache Airflow environment with the Astro CLI.

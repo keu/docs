@@ -5,8 +5,8 @@ id: install-cli
 ---
 
 <head>
-  <meta name="description" content="Instructions for installing, upgrading, and uninstalling the Astro command-line interface (CLI). The Astro CLI lets you get started with Apache Airflow quickly and it can be used with all Astronomer products.">
-  <meta name="og:description" content="Instructions for installing, upgrading, and uninstalling the Astro command-line interface (CLI). The Astro CLI lets you get started with Apache Airflow quickly and it can be used with all Astronomer products.">
+  <meta name="description" content="Instructions for installing, upgrading, and uninstalling the Astro command-line interface (CLI). The Astro CLI lets you get started with Apache Airflow quickly and it can be used with all Astronomer products." />
+  <meta name="og:description" content="Instructions for installing, upgrading, and uninstalling the Astro command-line interface (CLI). The Astro CLI lets you get started with Apache Airflow quickly and it can be used with all Astronomer products." />
 </head>
 
 import Tabs from '@theme/Tabs';

@@ -5,8 +5,8 @@ id: secrets-backend
 ---
 
 <head>
-  <meta name="description" content="Learn how you can configure a secrets backend on Astro to store Airflow variables and connections in a secure, centralized location that complies with your organization's security requirements.">
-  <meta name="og:description" content="LLearn how you can configure a secrets backend on Astro to store Airflow variables and connections in a secure, centralized location that complies with your organization's security requirements.">
+  <meta name="description" content="Learn how you can configure a secrets backend on Astro to store Airflow variables and connections in a secure, centralized location that complies with your organization's security requirements." />
+  <meta name="og:description" content="LLearn how you can configure a secrets backend on Astro to store Airflow variables and connections in a secure, centralized location that complies with your organization's security requirements." />
 </head>
 
 import Tabs from '@theme/Tabs';
