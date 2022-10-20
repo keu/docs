@@ -41,21 +41,28 @@ After adding the user, the user will see the Workspace listed on the **Overview*
 
 ### Update or Remove a Workspace User
 
-1. Open a Workspace and click **Workspace Settings**.
-2. Click the **Edit** button next to the user's entry in the **Member** table:
+1. In the Cloud UI, select a Workspace.
+   
+2. Click **Workspace Settings**.
+
+3. Click **Edit** next to the user name:
 
     ![Edit Workspace user button](/img/docs/edit-workspace-user.png)
 
-From here, you can either update a user's Workspace role or remove the user from the Workspace.
-
+4. Edit the user's name or role and then click **Update Member**.
+   
 ## Update Workspace details
 
-1. Open the Workspace in the Cloud UI
-2. Click **Workspace Settings**, then click **Details**.
-3. Click **Edit Details** and make changes. To save your changes, click **Update**.
+1. In the Cloud UI, select a Workspace.
+2. Click **Workspace Settings** and then click the **Details** tab.
+3. Click **Edit Details**, update the Workspace name or description, and then click **Update**.
 
 ### Delete a Workspace
 
-To delete a Workspace, click **Delete Workspace** in the **Workspace Settings** page. Note that you can delete a Workspace only if there are no active Deployments in the Workspace.
+1.  In the Cloud UI, select a Workspace.
+2. Click the option menu at the top of the page and select **Delete Workspace**. This option isn't available when there are active Deployments in the Workspace.
 
-![Delete Workspace button](/img/docs/delete-workspace.png)
+    ![Delete Workspace button](/img/docs/delete-workspace.png)
+
+3. In the confirmation dialog, enter `delete` and then click **Yes, Continue**.
+

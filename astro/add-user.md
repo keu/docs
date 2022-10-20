@@ -37,15 +37,15 @@ You can invite a user to an Organization only if their email address' domain is 
 
 1. In the Cloud UI, select a Workspace.
 
-2. Click **Workspace Settings.**
-
+2. Click **Workspace Settings**.
+   
 3. In the **Access** tab, click **Add Member**.
 
     ![Workspace user invite button](/img/docs/add-workspace-member.png)
 
-4. Enter the user's email.
-
-5. Set a Workspace role for the user. For a list of available roles and their permissions, see [Workspace roles](user-permissions.md#workspace-roles).
+4. Select the user's name and email address in the **Organization Member** list.
+   
+5. Select a role for the user and then click **Add Member**.
 
 6. Click **Add member**.
 
@@ -57,8 +57,8 @@ You can invite a user to an Organization only if their email address' domain is 
 
 2. Click **Workspace Settings**.
 
-3. In the **Access** tab, click **Edit** next to the user's information.
-
+3. In the **Access** tab, click **Edit** next to the user you want to remove.
+   
 4. Click **Remove member**.
 
 5. Click **Yes, Continue** to confirm the removal.
