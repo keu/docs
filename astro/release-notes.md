@@ -19,7 +19,8 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ### Additional improvements 
 
-- In the Cloud UI, **Access** has been moved from the left menu to a tab on the **Workspace Settings** page.- In the Cloud UI, **Workspace Settings** in the left menu is now available to all Workspace members.
+- In the Cloud UI, **Access** has been moved from the left menu to a tab on the **Workspace Settings** page.
+- In the Cloud UI, **Workspace Settings** in the left menu is now available to all Workspace members.
 
 ### New Azure regions
 
