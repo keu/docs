@@ -54,15 +54,20 @@ After adding the user, the user will see the Workspace listed on the **Overview*
 ## Update Workspace details
 
 1. In the Cloud UI, select a Workspace.
+   
 2. Click **Workspace Settings** and then click the **Details** tab.
+   
 3. Click **Edit Details**, update the Workspace name or description, and then click **Update**.
 
 ### Delete a Workspace
 
-1.  In the Cloud UI, select a Workspace.
-2. Click the option menu at the top of the page and select **Delete Workspace**. This option isn't available when there are active Deployments in the Workspace.
+1. In the Cloud UI, select a Workspace.
+   
+2. Click **Workspace Settings**.
+   
+3. Click the option menu at the top of the page and select **Delete Workspace**. This option isn't available when there are active Deployments in the Workspace.
 
     ![Delete Workspace button](/img/docs/delete-workspace.png)
 
-3. In the confirmation dialog, enter `delete` and then click **Yes, Continue**.
+4. In the confirmation dialog, enter `delete` and then click **Yes, Continue**.
 
