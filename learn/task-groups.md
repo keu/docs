@@ -1,9 +1,13 @@
 ---
 title: "Airflow task groups"
 sidebar_label: "Task groups"
-description: "Use task groups to build modular Airflow workflows."
 id: task-groups
 ---
+
+<head>
+  <meta name="description" content="Follow Astronomer’s step-by-step guide to to use task groups for organizing tasks within the graph view of the Airflow user interface." />
+  <meta name="og:description" content="Follow Astronomer’s step-by-step guide to to use task groups for organizing tasks within the graph view of the Airflow user interface." />
+</head>
 
 Use [task groups](https://airflow.apache.org/docs/apache-airflow/stable/concepts/dags.html#taskgroups) to organize tasks in the Airflow UI DAG graph view.
 

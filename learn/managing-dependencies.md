@@ -1,9 +1,13 @@
 ---
 title: "Manage DAG and task dependencies in Airflow"
 sidebar_label: "Manage DAG and task dependencies"
-description: "An overview of Airflow dependencies and triggers."
 id: managing-dependencies
 ---
+
+<head>
+  <meta name="description" content="Learn how to manage dependencies between tasks and TaskGroups in Apache Airflow, including how to set dynamic dependencies." />
+  <meta name="og:description" content="Learn how to manage dependencies between tasks and TaskGroups in Apache Airflow, including how to set dynamic dependencies." />
+</head>
 
 [Dependencies](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#relationships) are a powerful and popular Airflow feature. In Airflow, your pipelines are defined as Directed Acyclic Graphs (DAGs). Each task is a node in the graph and dependencies are the directed edges that determine how to move through the graph. Because of this, dependencies are key to following data engineering best practices because they help you define flexible pipelines with atomic tasks.
 
