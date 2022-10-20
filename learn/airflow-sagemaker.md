@@ -11,7 +11,7 @@ This tutorial demonstrates how to orchestrate a full ML pipeline including creat
 
 ## Time to complete
 
-This tutorial takes approximately 30 minutes to complete.
+This tutorial takes approximately 60 minutes to complete.
 
 ## Assumed knowledge
 
@@ -27,7 +27,7 @@ To get the most out of this tutorial, make sure you have an understanding of:
 To complete this tutorial, you need:
 
 - An AWS account with:
-    - An S3 [storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html). If you don't already have an account, Amazon offers 5GB of free storage in S3 for 12 months. This should be more than enough for this tutorial.
+    - Access to an S3 [storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html). If you don't already have an account, Amazon offers 5GB of free storage in S3 for 12 months. This should be more than enough for this tutorial.
     - Access to [AWS SageMaker](https://aws.amazon.com/sagemaker/). If you don't already use SageMaker, Amazon offers a free tier for the first month.
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 
@@ -35,13 +35,17 @@ To complete this tutorial, you need:
 
 For this tutorial, you will need to access SageMaker from your Airflow environment. There are multiple ways to do this, but for this tutorial you will create an AWS role that can access SageMaker and create temporary credentials for that role.
 
-1. From the AWS web console, go to **IAM** service page and create a new execution role for SageMaker by following the **Create execution role** [instructions](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
+1. From the AWS web console, go to **IAM** service page and create a new execution role for SageMaker by following the **Create execution role** [instructions](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) in the SageMaker documentation.
 
-2. Using the ARN of the role you just created, generate temporary security credentials for your role. There are multiple methods for generating the credentials. For detailed instructions, see [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html). You will need the access key ID, secret access key, and session token in a later step.  
+2. Add your AWS user as a trusted entity to the role you just created. See [Editing the trust relationship for an existing role](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html) for more instructions. Note that this step may not be necessary depending on how IAM roles are managed for your organization's AWS account.
+
+3. Using the ARN of the role you just created, generate temporary security credentials for your role. There are multiple methods for generating the credentials. For detailed instructions, see [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html). You will need the access key ID, secret access key, and session token in a later step.
 
 ## Step 2: Create an S3 bucket
 
-Create an S3 bucket that will be used for storing data and model training results. Make sure that your bucket is accessible by the role you created in Step 1. For more instructions, see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
+Create an S3 bucket in the `us-east-2` region that will be used for storing data and model training results. Make sure that your bucket is accessible by the role you created in Step 1. For more instructions, see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
+
+Note that if you need to create a bucket in a different region than `us-east-2`, you will need to modify the region specified in the environment variables created in Step 3 and in the DAG code in Step 6.
 
 ## Step 3: Configure your Astro project
 
@@ -66,7 +70,7 @@ Now that you have your AWS resources configured, you can move on to Airflow setu
 
     ```text
     AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
-    AWS_DEFAULT_REGION=<your AWS region>
+    AWS_DEFAULT_REGION=us-east-2
     ```
 
     These variables ensure that all SageMaker operators will work in your Airflow environment. Some require XCom pickling to be turned on in order to work because they return objects that are not JSON serializable. 
@@ -77,7 +81,7 @@ Now that you have your AWS resources configured, you can move on to Airflow setu
     astro dev start
     ```
 
-## Step 3: Add Airflow Variables
+## Step 4: Add Airflow Variables
 
 Add two Airflow variables that will be used by your DAG. In the Airflow UI, go to **Admin** -> **Variables**.
 
@@ -95,24 +99,23 @@ Key: s3_bucket
 Val: <your-s3-bucket-name>
 ```
 
-## Step 4: Add an Airflow connection to SageMaker
+## Step 5: Add an Airflow connection to SageMaker
 
 Add a connection that Airflow will use to connect to SageMaker and S3. In the Airflow UI, go to **Admin** -> **Connections**.
 
-Create a new connection named `aws-sagemaker` and choose the `Amazon Web Services` connection type. Fill in the `AWS Access Key ID` and `AWS Secret Access Key` with your personal access key ID and token. 
+Create a new connection named `aws-sagemaker` and choose the `Amazon Web Services` connection type. Fill in the `AWS Access Key ID` and `AWS Secret Access Key` with the access key ID and secret access key you generated in Step 1. 
 
-In the `Extra` field, provide your region name and AWS session token generated in Step 1 like this:
+In the `Extra` field, provide your AWS session token generated in Step 1 like this:
 
 ```text
 {
-    "region_name": "your-region",
     "aws_session_token": "your-session-token"
 }
 ```
 
 Your connection should look like this:
 
-SCREENSHOT
+![SageMaker Connection](/img/guides/sagemaker_connection.png)
 
 :::note
 
@@ -120,7 +123,7 @@ As mentioned in Step 1, there are multiple ways of connecting Airflow to AWS res
 
 :::
 
-## Step 5: Create your DAG
+## Step 6: Create your DAG
 
 In your Astro project `dags/` folder, create a new file called `sagemaker-pipeline.py`. Paste the following code into the file:
 
@@ -285,15 +288,23 @@ with DAG('sagemaker_pipeline',
     data_prep >> train_model >> create_model >> test_model
 ```
 
+The graph view of the DAG should look similar to this:
+
+![SageMaker DAG Graph](/img/guides/sagemaker_pipeline.png)
+
 This DAG uses a decorated PythonOperator and several SageMaker operators to get data from an API endpoint, train a model, create a model in SageMaker, and test the model.  See [How it works](#how-it-works) for more information about each task in the DAG and how the different SageMaker operators work.
 
-## Step 6: Update your model info (optional)
+## Step 6: Run your DAG to train the model
 
+Go to the Airflow UI, unpause your `sagemaker_pipeline` DAG, and trigger it to train, create and test the model in SageMaker. Note that the `train_model` and `test_model` tasks may take up to 10 minutes each to complete. 
 
-## Step 7: Run your DAG to train the model
+In the SageMaker console, you should see your completed training job.
 
+![SageMaker Training Job](/img/guides/sagemaker_training_job.png)
 
+In your S3 bucket, you will have a folder called `processed-input-data/` containing the processed data from the `data_prep` task, and a folder called `results/` that contains a `model.tar.gz` file with the trained model and a csv with the output of the model testing.
 
+![SageMaker Results](/img/guides/sagemaker_s3_results.png)
 
 ## How it works
 
