@@ -288,7 +288,7 @@ with DAG('sagemaker_pipeline',
 
 The graph view of the DAG should look similar to this:
 
-![SageMaker DAG Graph](/img/guides/sagemaker_pipeline.png)
+![SageMaker DAG graph](/img/guides/sagemaker_pipeline.png)
 
 This DAG uses a decorated PythonOperator and several SageMaker operators to get data from an API endpoint, train a model, create a model in SageMaker, and test the model.  See [How it works](#how-it-works) for more information about each task in the DAG and how the different SageMaker operators work.
 
@@ -298,11 +298,11 @@ Go to the Airflow UI, unpause your `sagemaker_pipeline` DAG, and trigger it to t
 
 In the SageMaker console, you should see your completed training job.
 
-![SageMaker Training Job](/img/guides/sagemaker_training_job.png)
+![SageMaker training job](/img/guides/sagemaker_training_job.png)
 
 In your S3 bucket, you will have a folder called `processed-input-data/` containing the processed data from the `data_prep` task, and a folder called `results/` that contains a `model.tar.gz` file with the trained model and a csv with the output of the model testing.
 
-![SageMaker Results](/img/guides/sagemaker_s3_results.png)
+![SageMaker results](/img/guides/sagemaker_s3_results.png)
 
 ## How it works
 
