@@ -76,7 +76,7 @@ This is where you'll find information about installing the Astro CLI on a Window
 
 <TabItem value="windows with winget">
 
-Starting with Astro CLI version 1.6, you can use the winget command line tool to install the Astro CLI. If you're installing an older version of the Astro CLI, you'll need to follow the [alternate Windows installation process](https://docs.astronomer.io/astro/cli/install-cli?tab=windows#install-the-astro-cli).
+Starting with Astro CLI version 1.6, you can use the winget command line tool to install the Astro CLI. To install an older version of the Astro CLI, you'll need to follow the [alternate Windows installation process](https://docs.astronomer.io/astro/cli/install-cli?tab=windows#install-the-astro-cli).
 
 The winget command line tool is supported on Windows 10 1709 (build 16299) or later, and is bundled with Windows 11 and modern versions of Windows 10 by default as the App Installer. If you're running an earlier version of Windows 10 and you don't have the App Installer installed, you can download it from the [Microsoft Store](https://apps.microsoft.com/store/detail/app-installer/9NBLGGH4NNS1?hl=en-ca&gl=ca). If you've installed the App Installer previously, make sure you're using the latest version before running commands.
 
@@ -91,13 +91,13 @@ The winget command line tool is supported on Windows 10 1709 (build 16299) or la
 
 #### Installation
 
-Open Windows PowerShell and then run the following command:
+Open Windows PowerShell as an administrator and then run the following command:
 
 ```sh
 winget install -e --id Astronomer.Astro
 ```
 
-To install a specific version of the Astro CLI, specify the version you want to install at the end of the command. For example:
+To install a specific version of the Astro CLI, specify the version you want to install at the end of the command. For example, running the following command installs Astro CLI version 1.6:
 
 ```sh
 winget install -e --id Astronomer.Astro -v 1.6.0
@@ -142,6 +142,7 @@ If you specify only a major version, this command installs the latest minor or p
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},
+        {label: 'Windows with winget', value: 'windows with winget'},
         {label: 'Linux', value: 'linux'},
     ]}>
 <TabItem value="mac">
@@ -170,6 +171,18 @@ brew install astro
 
 </TabItem>
 
+<TabItem value="windows with winget">
+
+Starting with Astro CLI version 1.6, you can use the winget command line tool to upgrade the Astro CLI. To upgrade an older version of the Astro CLI, you'll need to follow the [alternate Windows upgrade process](https://docs.astronomer.io/astro/cli/install-cli?tab=windows#upgrade-the-cli).
+
+To upgrade the Astro CLI to the latest version, open Windows PowerShell as an administrator and run the following command:
+
+```sh
+winget install -e --id Astronomer.Astro
+```
+
+</TabItem>
+
 <TabItem value="linux">
 
 To upgrade the Astro CLI to the latest version, run the following command:
@@ -190,6 +203,7 @@ curl -sSL install.astronomer.io | sudo bash -s
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},
+        {label: 'Windows with winget', value: 'windows with winget'},
         {label: 'Linux', value: 'linux'},
     ]}>
 <TabItem value="mac">
@@ -208,6 +222,18 @@ To uninstall the Astro CLI on Windows:
 
 1. Delete the filepath for `astro.exe` from your Windows PATH environment variable.
 2. Delete `astro.exe`.
+
+</TabItem>
+
+<TabItem value="windows with winget">
+
+Starting with Astro CLI version 1.6, you can use the winget command line tool to uninstall the Astro CLI. To uninstall an older version of the Astro CLI, you'll need to follow the [alternate Windows uninstall process](https://docs.astronomer.io/astro/cli/install-cli?tab=windows#uninstall-the-cli).
+
+To uninstall the Astro CLI, open Windows PowerShell as an administrator and run the following command:
+
+```sh
+winget uninstall -e --id Astronomer.Astro
+```
 
 </TabItem>
 
