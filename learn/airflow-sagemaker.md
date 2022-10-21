@@ -312,30 +312,30 @@ This example DAG acquires and pre-processes data, trains a model, creates a mode
 
 2. Train the KNN algorithm on the data using the `SageMakerTrainingOperator`. The configuration for this operator requires:
 
-    - Information about the algorithm being used
-    - Any required hyper parameters
-    - The input data configuration
-    - The output data configuration
-    - Resource specifications for the machine running the training job
-    - The Role ARN for execution
+    - Information about the algorithm being used.
+    - Any required hyper parameters.
+    - The input data configuration.
+    - The output data configuration.
+    - Resource specifications for the machine running the training job.
+    - The Role ARN for execution.
 
     For more information about submitting a training job, check out the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTrainingJob.html).
 
 3. Create a SageMaker model based on the training results using the `SageMakerModelOperator`. This step creates a model artifact in SageMaker that can be called on demand to provide inferences. The configuration for this operator requires:
 
-    - A name for the model
-    - The Role ARN for execution
-    - The image containing the algorithm (in this case the pre-built SageMaker image for KNN)
-    - The S3 path to the model training artifact
+    - A name for the model.
+    - The Role ARN for execution.
+    - The image containing the algorithm (in this case the pre-built SageMaker image for KNN).
+    - The S3 path to the model training artifact.
 
     For more information on creating a model, check out the API documentation [here](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html).
 
 4. Evaluate the model on the test data created in task 1 using the `SageMakerTransformOperator`. This step runs a batch transform to get inferences on the test data from the model created in task 3. The configuration for this operator requires:
 
-    - Information about the input data source
-    - The output results path
-    - Resource specifications for the machine running the training job
-    - The name of the model
+    - Information about the input data source.
+    - The output results path.
+    - Resource specifications for the machine running the training job.
+    - The name of the model.
 
     For more information on submitting a batch transform job, check out the [API documentation](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateTransformJob.html).
 
