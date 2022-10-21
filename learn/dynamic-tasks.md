@@ -52,7 +52,7 @@ When you work with mapped tasks, keep the following in mind:
 - `expand()` only accepts keyword arguments.
 - The maximum amount of mapped task instances is determined by the `max_map_length` parameter in the [Airflow configuration](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html). By default it is set to 1024.
 - You can limit the number of mapped task instances for a particular task that run in parallel across all DAG runs by setting the `max_active_tis_per_dag` parameter in your dynamically mapped task.
-- XComs created by mapped task instances are stored in a list and can be accessed by using the map index of a specific mapped task instances as an index. For example, to access the XComs created by the third mapped task instance (map index of 2) of the task `my_mapped_task` use `ti.xcom_pull(task_ids=['my_mapped_task'])[2]`.
+- XComs created by mapped task instances are stored in a list and can be accessed by using the map index of a specific mapped task instance. For example, to access the XComs created by the third mapped task instance (map index of 2) of `my_mapped_task`, use `ti.xcom_pull(task_ids=['my_mapped_task'])[2]`.
 
 For additional examples of how to apply dynamic task mapping functions, see [Dynamic Task Mapping](https://airflow.apache.org/docs/apache-airflow/2.3.0/concepts/dynamic-task-mapping.html).
 
