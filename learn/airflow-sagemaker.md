@@ -89,8 +89,8 @@ Add two Airflow variables that will be used by your DAG. In the Airflow UI, go t
 
 1. Add a variable with the ARN of the role you created in Step 1.
 
-    - **Key**: role
-    - **Val**: <your-role-arn>
+    - **Key**: `role`
+    - **Val**: `<your-role-arn>`
 
 2. Add a variable with the name of the S3 bucket you created in Step 2.
 
