@@ -1,6 +1,5 @@
 ---
 title: "Using the BashOperator"
-description: "Use the BashOperator in Airflow to execute bash commands and scripts"
 id: bashoperator
 sidebar_label: BashOperator
 ---
