@@ -1,7 +1,7 @@
 ---
-title: "Train an ML model with SageMaker and Airflow"
+title: "Train a machine learning model with SageMaker and Airflow"
 sidebar_label: "Amazon SageMaker"
-description: "Use Airflow to orchestrate training and testing a SageMaker model."
+description: "Follow a step-by-step tutorial for using Airflow to orchestrate the training and testing of a SageMaker model."
 id: airflow-sagemaker
 ---
 
@@ -27,23 +27,25 @@ To get the most out of this tutorial, make sure you have an understanding of:
 To complete this tutorial, you need:
 
 - An AWS account with:
+
     - Access to an S3 [storage bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/GetStartedWithS3.html). If you don't already have an account, Amazon offers 5GB of free storage in S3 for 12 months. This should be more than enough for this tutorial.
     - Access to [AWS SageMaker](https://aws.amazon.com/sagemaker/). If you don't already use SageMaker, Amazon offers a free tier for the first month.
+    
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 
 ## Step 1: Create a role to access SageMaker
 
 For this tutorial, you will need to access SageMaker from your Airflow environment. There are multiple ways to do this, but for this tutorial you will create an AWS role that can access SageMaker and create temporary credentials for that role.
 
-1. From the AWS web console, go to **IAM** service page and create a new execution role for SageMaker by following the **Create execution role** [instructions](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html) in the SageMaker documentation.
+1. From the AWS web console, go to **IAM** service page and create a new execution role for SageMaker. See [Create execution roles](https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html#sagemaker-roles-create-execution-role) in the AWS documentation.
 
-2. Add your AWS user as a trusted entity to the role you just created. See [Editing the trust relationship for an existing role](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html) for more instructions. Note that this step may not be necessary depending on how IAM roles are managed for your organization's AWS account.
+2. Add your AWS user as a trusted entity to the role you just created. See [Editing the trust relationship for an existing role](https://docs.aws.amazon.com/directoryservice/latest/admin-guide/edit_trust.html). Note that this step might not be necessary depending on how IAM roles are managed for your organization's AWS account.
 
-3. Using the ARN of the role you just created, generate temporary security credentials for your role. There are multiple methods for generating the credentials. For detailed instructions, see [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html). You will need the access key ID, secret access key, and session token in a later step.
+3. Using the ARN of the role you just created, generate temporary security credentials for your role. There are multiple methods for generating the credentials. For detailed instructions, see [Using temporary credentials with AWS resources](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_use-resources.html). You will need the access key ID, secret access key, and session token in Step 5.
 
 ## Step 2: Create an S3 bucket
 
-Create an S3 bucket in the `us-east-2` region that will be used for storing data and model training results. Make sure that your bucket is accessible by the role you created in Step 1. For more instructions, see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
+Create an S3 bucket in the `us-east-2` region that will be used for storing data and model training results. Make sure that your bucket is accessible by the role you created in Step 1. See [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
 
 Note that if you need to create a bucket in a different region than `us-east-2`, you will need to modify the region specified in the environment variables created in Step 3 and in the DAG code in Step 6.
 
@@ -87,29 +89,25 @@ Add two Airflow variables that will be used by your DAG. In the Airflow UI, go t
 
 1. Add a variable with the ARN of the role you created in Step 1.
 
-```text
-Key: role
-Val: <your-role-arn>
-```
+    - **Key**: role
+    - **Val**: <your-role-arn>
 
 2. Add a variable with the name of the S3 bucket you created in Step 2.
 
-```text
-Key: s3_bucket
-Val: <your-s3-bucket-name>
-```
+    - **Key**: `s3_bucket`
+    - **Val**: `<your-s3-bucket-name>`
 
 ## Step 5: Add an Airflow connection to SageMaker
 
 Add a connection that Airflow will use to connect to SageMaker and S3. In the Airflow UI, go to **Admin** -> **Connections**.
 
-Create a new connection named `aws-sagemaker` and choose the `Amazon Web Services` connection type. Fill in the `AWS Access Key ID` and `AWS Secret Access Key` with the access key ID and secret access key you generated in Step 1. 
+Create a new connection named `aws-sagemaker` and choose the `Amazon Web Services` connection type. Fill in the **AWS Access Key ID** and **AWS Secret Access Key** with the access key ID and secret access key you generated in Step 1. 
 
-In the `Extra` field, provide your AWS session token generated in Step 1 like this:
+In the **Extra** field, provide your AWS session token generated in Step 1 using the following format:
 
 ```text
 {
-    "aws_session_token": "your-session-token"
+    "aws_session_token": "<your-session-token>"
 }
 ```
 
@@ -117,7 +115,7 @@ Your connection should look like this:
 
 ![SageMaker Connection](/img/guides/sagemaker_connection.png)
 
-:::note
+:::info
 
 As mentioned in Step 1, there are multiple ways of connecting Airflow to AWS resources. If you are using a method other than the one described in this tutorial, such as having your Airflow environment assume an IAM role, you may need to update your connection accordingly. 
 
@@ -145,7 +143,7 @@ import numpy as np
 
 """
 This DAG shows an example implementation of machine learning model orchestration using Airflow
-and AWS SageMaker. Using the AWS provider's SageMaker operators, Airlfow orchestrates getting data
+and AWS SageMaker. Using the AWS provider's SageMaker operators, Airflow orchestrates getting data
 from an API endpoint and pre-processing it (task-decorated function), training the model (SageMakerTrainingOperator),
 creating the model with the training results (SageMakerModelOperator), and testing the model using
 a batch transform job (SageMakerTransformOperator).
