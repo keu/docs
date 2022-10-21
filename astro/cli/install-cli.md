@@ -51,7 +51,7 @@ If you specify only a major version, this command installs the latest minor or p
 
 <TabItem value="windows">
 
-This is where you'll find information about installing the Astro CLI on a Windows operating system.
+This is where you'll find information about installing the Astro CLI on a Windows operating system. Starting with Astro CLI version 1.6, you can use the Windows Package Manager winget command-line tool to install the Astro CLI. See [Windows with winget](https://deploy-preview-1375--gallant-neumann-56599d.netlify.app/astro/cli/install-cli?tab=windows%20with%20winget#install-the-astro-cli).
 
 #### Prerequisites
 
@@ -76,7 +76,7 @@ This is where you'll find information about installing the Astro CLI on a Window
 
 <TabItem value="windows with winget">
 
-Starting with Astro CLI version 1.6, you can use the winget command line tool to install the Astro CLI. To install an older version of the Astro CLI, you'll need to follow the [alternate Windows installation process](https://docs.astronomer.io/astro/cli/install-cli?tab=windows#install-the-astro-cli).
+Starting with Astro CLI version 1.6, you can use the Windows Package Manager winget command-line tool to install the Astro CLI. To install an older version of the Astro CLI, you'll need to follow the [alternate Windows installation process](https://docs.astronomer.io/astro/cli/install-cli?tab=windows#install-the-astro-cli).
 
 The winget command line tool is supported on Windows 10 1709 (build 16299) or later, and is bundled with Windows 11 and modern versions of Windows 10 by default as the App Installer. If you're running an earlier version of Windows 10 and you don't have the App Installer installed, you can download it from the [Microsoft Store](https://apps.microsoft.com/store/detail/app-installer/9NBLGGH4NNS1?hl=en-ca&gl=ca). If you've installed the App Installer previously, make sure you're using the latest version before running commands.
 
