@@ -19,7 +19,7 @@ This is where you'll find information about installing, upgrading, and uninstall
     values={[
         {label: 'Mac', value: 'mac'},
         {label: 'Windows', value: 'windows'},
-        {label: 'Windows with winget', value: 'windows with winget'},
+        {label: 'Windows with winget', value: 'windowswithwinget'},
         {label: 'Linux', value: 'linux'},
     ]}>
 <TabItem value="mac">
@@ -51,7 +51,7 @@ If you specify only a major version, this command installs the latest minor or p
 
 <TabItem value="windows">
 
-This is where you'll find information about installing the Astro CLI on a Windows operating system. Starting with Astro CLI version 1.6, you can use the Windows Package Manager winget command-line tool to install the Astro CLI. See [Windows with winget](https://deploy-preview-1375--gallant-neumann-56599d.netlify.app/astro/cli/install-cli?tab=windows%20with%20winget#install-the-astro-cli).
+This is where you'll find information about installing the Astro CLI on a Windows operating system. Starting with Astro CLI version 1.6, you can use the Windows Package Manager winget command-line tool to install the Astro CLI. See [Windows with winget](install-cli.md?tab=windows%20with%20winget#install-the-astro-cli).
 
 #### Prerequisites
 
@@ -74,7 +74,7 @@ This is where you'll find information about installing the Astro CLI on a Window
 
 </TabItem>
 
-<TabItem value="windows with winget">
+<TabItem value="windowswithwinget">
 
 Starting with Astro CLI version 1.6, you can use the Windows Package Manager winget command-line tool to install the Astro CLI. To install an older version of the Astro CLI, you'll need to follow the [alternate Windows installation process](https://docs.astronomer.io/astro/cli/install-cli?tab=windows#install-the-astro-cli).
 
