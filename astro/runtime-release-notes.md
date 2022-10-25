@@ -16,9 +16,9 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 - Release date: October 24, 2022
 - Airflow version: 2.4.2
 
-### Airflow 2.4.1
+### Airflow 2.4.2
 
-Astro Runtime 6.0.2 includes same-day support for Airflow 2.4.2, which includes a collection of bug fixes. Fixes include:
+Astro Runtime 6.0.2 includes same-day support for Airflow 2.4.2 and the following bug fixes:
 
 - Handle mapped tasks in task duration chart ([#26722](https://github.com/apache/airflow/pull/26722))
 - Make tracebacks opt-in ([#27059](https://github.com/apache/airflow/pull/27059)
@@ -27,7 +27,7 @@ For a complete list of commits, see the [Apache Airflow 2.4.2 release notes](htt
 
 ### Additional improvements  
 
-- Upgraded `openlineage-airflow` to 0.15.1, which aa dedicated development environment for Airflow. You can now continually make and test changes to custom OpenLineage extractors in an Airflow environment without needing to rebuild your Docker images. For more information, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
+- Upgraded `openlineage-airflow` to 0.15.1, which is a dedicated Airflow development environment. You can now create and test changes to custom OpenLineage extractors in an Airflow environment without needing to rebuild your Docker images. For more information, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
 
 ## Astro Runtime 6.0.2
 
