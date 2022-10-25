@@ -83,17 +83,10 @@ compute_resources = k8s.V1ResourceRequirements(
 namespace = conf.get("kubernetes", "NAMESPACE")
 
 KubernetesPodOperator(
-    namespace=namespace,
     image="<your-docker-image>",
     cmds=["<commands-for-image>"],
     arguments=["<arguments-for-image>"],
-    labels={"<pod-label>": "<label-name>"},
-    name="<pod-name>",
-    is_delete_operator_pod=True,
-    in_cluster=True,
-    resources=compute_resources,
     task_id="<task-name>",
-    get_logs=True,
 )
 ```
 
