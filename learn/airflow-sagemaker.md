@@ -67,7 +67,7 @@ Now that you have your AWS resources configured, you can move on to Airflow setu
     astronomer-providers[amazon]>=1.11.0
     ```
 
-    This installs the AWS provider package which contains relevant S3 and SageMaker modules. It also installs the Astronomer providers package, which contains [deferrable](deferrable-operators.md) versions of some SageMaker modules that can help you save costs for long-running jobs. If you use an older version of the AWS provider, some of the DAG configuration in later steps may need to be modified. Deferrable SageMaker operators are not available in older versions of the Astronomer providers package.
+    This installs the AWS provider package which contains relevant S3 and SageMaker modules. It also installs the `astronomer-providers` package, which contains [deferrable](deferrable-operators.md) versions of some SageMaker modules that can help you save costs for long-running jobs. If you use an older version of the AWS provider, some of the DAG configuration in later steps may need to be modified. Deferrable SageMaker operators are not available in older versions of the `astronomer-providers` package.
 
 3. Add the following environment variables to the `.env` file of your project:
 
@@ -332,7 +332,7 @@ This example DAG acquires and pre-processes data, trains a model, creates a mode
 
     For more information on creating a model, check out the API documentation [here](https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateModel.html).
 
-4. Evaluate the model on the test data created in task 1 using the `SageMakerTransformOperatorAsync`. This step runs a batch transform to get inferences on the test data from the model created in task 3. We use a deferrable version of this operator to save resources on potentially long-running transform jobs. The configuration for this operator requires:
+4. Evaluate the model on the test data created in task 1 using the `SageMakerTransformOperatorAsync`. This step runs a batch transform to get inferences on the test data from the model created in task 3. The DAG uses a deferrable version of `SageMakerTransformOperator` to save resources on potentially long-running transform jobs. The configuration for this operator requires:
 
     - Information about the input data source.
     - The output results path.
