@@ -27,7 +27,7 @@ For a complete list of commits, see the [Apache Airflow 2.4.2 release notes](htt
 
 ### Additional improvements  
 
-- Upgraded `openlineage-airflow` to 0.15.1, which is a dedicated Airflow development environment. You can now create and test changes to custom OpenLineage extractors in an Airflow environment without needing to rebuild your Docker images. For more information, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
+- Upgraded `openlineage-airflow` to 0.15.1, which includes a dedicated Airflow development environment. You can now create and test changes to custom OpenLineage extractors in an Airflow environment without needing to rebuild your Docker images. For more information, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
 
 ## Astro Runtime 6.0.2
 
