@@ -3,7 +3,7 @@ module.exports = {
     'overview',
     {
       type: 'category',
-      label: 'Concepts',
+      label: 'Airflow Concepts',
       link: {
         type:'generated-index',
         title: 'Airflow concepts',
