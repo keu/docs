@@ -219,4 +219,4 @@ This methodology works with any Deployment in any Astro Workspace or cluster.
 
 3. Store the API key and secret API key from Deployment A on Deployment B.
 
-4. Use the Astro access returned in the response in step 1 to make the Airflow API call.
+4. Use the Astro access token returned in the response in step 1 to trigger the DAG run. See [Trigger a DAG run](#trigger-a-dag-run).
