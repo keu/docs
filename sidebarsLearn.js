@@ -54,6 +54,7 @@ module.exports = {
             'managing-airflow-code',
             'templating',
             'cross-dag-dependencies',
+            'error-notifications-in-airflow',
           ],
         },
         {
