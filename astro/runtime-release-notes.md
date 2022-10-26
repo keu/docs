@@ -18,7 +18,7 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 ### Airflow 2.4.2
 
-Astro Runtime 6.0.3 includes same-day support for Airflow 2.4.2.
+Astro Runtime 6.0.3 includes same-day support for Airflow 2.4.2. Some changes in Airflow 2.4.2 include:
 
 - Handle mapped tasks in task duration chart ([#26722](https://github.com/apache/airflow/pull/26722))
 - Make tracebacks opt-in ([#27059](https://github.com/apache/airflow/pull/27059)
