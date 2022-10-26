@@ -1,9 +1,8 @@
 ---
-title: "Run an Azure Data Explorer Query with Airflow"
+title: "Run an Azure Data Explorer query with Airflow"
 sidebar_label: "Azure Data Explorer"
 description: "Learn how to orchestrate Azure Data Explorer queries with your Apache Airflow DAGs."
 id: airflow-azure-data-explorer
-tags: ["Integrations", "Azure", "DAGs"]
 ---
 
 [Azure Data Explorer](https://azure.microsoft.com/en-us/services/data-explorer/) (ADX) is a managed data analytics service used for performing real-time analysis of large volumes of streaming data. It's particularly useful for IoT applications, big data logging platforms, and SaaS applications.
@@ -46,7 +45,7 @@ Populate your ADX database with demo data. See [Quickstart: Ingest sample data i
 
 ## Step 3: Configure your Astro project
 
-Now that you have your Azure resources configured, you can move on to Airflow setup. Using the Astro CLI:
+Now that you have your Azure resources configured, you can move on to setting up Airflow.
 
 1. Create a new Astro project:
 
