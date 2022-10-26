@@ -204,7 +204,7 @@ When you need to trigger DAGs in multiple Deployments, you can use the Airflow A
 
 This methodology works with any Deployment in any Astro Workspace or cluster. 
 
-1. In each task in Deployment A, run the following command to retrieve an Astro access token:
+1. In each task in Deployment A, run the following API request with the Deployment API key ID and secret to retrieve an Astro access token:
 
     ```sh
         curl --location --request POST "https://auth.astronomer.io/oauth/token" \
