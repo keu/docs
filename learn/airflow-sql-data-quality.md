@@ -69,7 +69,7 @@ This check is useful for:
 
 In the example below, 5 checks are performed on 3 different columns using the `SQLColumnCheckOperator`:
 
-- "MY_DATE_COL" is checked to ensure that it contains only _unique_ dates.
+- "MY_DATE_COL" is checked to ensure that it contains only unique dates.
 - "MY_TEXT_COL" is checked to ensure it has at least 10 distinct values and no `NULL` values.
 - "MY_NUM_COL" is checked to ensure it contains a minimum value of less than 10 and a maximum value of 100 with a 10% tolerance (maximum values between 90 and 110 are accepted).
 
