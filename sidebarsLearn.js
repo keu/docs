@@ -3,7 +3,7 @@ module.exports = {
     'overview',
     {
       type: 'category',
-      label: 'Airflow Concepts',
+      label: 'Airflow concepts',
       link: {
         type:'generated-index',
         title: 'Airflow concepts',
@@ -76,7 +76,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Management',
+          label: 'Advanced',
           link: {
             type: 'generated-index',
             title: 'Management',
