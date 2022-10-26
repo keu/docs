@@ -198,3 +198,32 @@ response = requests.patch(
 print(response.json())
 # Prints data about the DAG with id <dag-id>
 ```
+## Trigger DAG runs across Deployments
+
+When you need to trigger DAGs in multiple Deployments, you can use the use the Airflow API. This methodology works with any Deployment in any Astro Workspace or cluster. 
+
+1. Run the following command to retrieve an access token and Deployment URL for Deployment A:
+
+    ```sh
+    curl --location --request POST "https://auth.astronomer.io/oauth/token" \
+            --header "content-type: application/json" \
+            --data-raw '{
+                "client_id": "<api-key-id>",
+                "client_secret": "<api-key-secret>",
+                "audience": "astronomer-ee",
+                "grant_type": "client_credentials"}'
+    ```
+2. Store the access token for Deployment A in Deployment B.
+
+3. In each task in Deployment B, run the following command to call the OAuth handshake:
+
+    ```sh
+        curl --location --request POST "https://auth.astronomer.io/oauth/token" \
+                --header "content-type: application/json" \
+                --data-raw '{
+                    "client_id": "<api-key-id>",
+                    "client_secret": "<api-key-secret>",
+                    "audience": "astronomer-ee",
+                    "grant_type": "client_credentials"}'
+    ```
+4. Use the token in the response to make the Airflow API call.
