@@ -3,7 +3,7 @@ module.exports = {
     'overview',
     {
       type: 'category',
-      label: 'Concepts',
+      label: 'Airflow concepts',
       link: {
         type:'generated-index',
         title: 'Airflow concepts',
@@ -54,6 +54,7 @@ module.exports = {
             'managing-airflow-code',
             'templating',
             'cross-dag-dependencies',
+            'error-notifications-in-airflow',
           ],
         },
         {
@@ -76,7 +77,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Management',
+          label: 'Advanced',
           link: {
             type: 'generated-index',
             title: 'Management',
