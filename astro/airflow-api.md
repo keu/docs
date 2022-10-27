@@ -198,3 +198,54 @@ response = requests.patch(
 print(response.json())
 # Prints data about the DAG with id <dag-id>
 ```
+
+## Example DAG Implementation of Cross-Deployment API Interaction
+
+1. Create an API key on the deployment whose API you want to interact with (the targe deployment). Store the KEY_ID and KEY_SECRET as secret environment variables on the deployment whose DAG will call the API (the triggering deployment).
+2. The following DAG implements starting a DAG Run on the target deployment from the triggering deployment
+
+```python
+import requests
+from datetime import datetime
+import os
+
+from airflow.decorators import dag, task
+
+
+KEY_ID = os.environ.get("KEY_ID")
+KEY_SECRET = os.environ.get("KEY_SECRET")
+AIRFLOW_URL = "<Target Deployment URL>"
+
+
+@dag(schedule="@daily",
+     start_date=datetime(2022, 1, 1),
+     catchup=False)
+def triggering_dag():
+    @task
+    def get_token():
+        response = requests.post("https://auth.astronomer.io/oauth/token",
+                                 json={"audience": "astronomer-ee",
+                                       "grant_type": "client_credentials",
+                                       "client_id": KEY_ID,
+                                       "client_secret": KEY_SECRET})
+
+        return response.json()["access_token"]
+
+    @task
+    def trigger_external_dag(token):
+        dag_id = "target"
+        response = requests.post(
+            url=f"{AIRFLOW_URL}/api/v1/dags/{dag_id}/dagRuns",
+            headers={
+                "Authorization": f"Bearer {token}",
+                "Content-Type": "application/json"
+            },
+            data='{"logical_date": "' + datetime.utcnow().isoformat().split(".")[0] + 'Z"}'
+        )
+        print(response.json())
+
+    trigger_external_dag(get_token())
+
+
+a = triggering_dag()
+```
