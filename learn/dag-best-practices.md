@@ -121,6 +121,7 @@ The following example DAG demonstrates what you shouldn't do. A SQL query is pro
 
 ```python
 from airflow import DAG
+from airflow.operators.empty import EmptyOperator
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 from datetime import datetime, timedelta
 
@@ -143,7 +144,7 @@ with DAG('bad_practices_dag_2',
          catchup=False
          ) as dag:
 
-    t0 = DummyOperator(task_id='start')  
+    t0 = EmptyOperator(task_id='start')  
 
     #Bad example with SQL query directly in the DAG file
     query_1 = PostgresOperator(
