@@ -204,7 +204,7 @@ When you need to trigger DAGs in multiple Deployments, you can use the Airflow A
 
 This methodology works with any Deployment in any Astro Workspace or cluster. 
 
-1. In each task in Deployment A, run the following API request with the Deployment API key ID and secret to retrieve an Astro access token:
+1. On the target Deployment, run the following API request to retrieve the Astro access token:
 
     ```sh
         curl --location --request POST "https://auth.astronomer.io/oauth/token" \
@@ -215,8 +215,42 @@ This methodology works with any Deployment in any Astro Workspace or cluster.
                     "audience": "astronomer-ee",
                     "grant_type": "client_credentials"}'
     ```
-2. Save the API key ID and API key secret as `KEY_ID` and `KEY_SECRET` environment variables. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md)
+2. On the trigger Deployment, save the API key ID and API key secret as `KEY_ID` and `KEY_SECRET` environment variables. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md)
 
-3. Store the API key and secret API key from Deployment A on Deployment B.
+3. Create and then run the following DAG to start a DAG run on the target Deployment from the triggering Deployment:
 
-4. Use the Astro access token returned in the response in step 1 to trigger the DAG run. See [Trigger a DAG run](#trigger-a-dag-run).
+    ````python
+    import requests
+    from datetime import datetime
+    import os
+    from airflow.decorators import dag, task
+    KEY_ID = os.environ.get("KEY_ID")
+    KEY_SECRET = os.environ.get("KEY_SECRET")
+    AIRFLOW_URL = "<Target Deployment URL>"
+    @dag(schedule="@daily",
+        start_date=datetime(2022, 1, 1),
+        catchup=False)
+    def triggering_dag():
+        @task
+        def get_token():
+            response = requests.post("https://auth.astronomer.io/oauth/token",
+                                    json={"audience": "astronomer-ee",
+                                        "grant_type": "client_credentials",
+                                        "client_id": KEY_ID,
+                                        "client_secret": KEY_SECRET})
+            return response.json()["access_token"]
+        @task
+        def trigger_external_dag(token):
+            dag_id = "target"
+            response = requests.post(
+                url=f"{AIRFLOW_URL}/api/v1/dags/{dag_id}/dagRuns",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "Content-Type": "application/json"
+                },
+                data='{"logical_date": "' + datetime.utcnow().isoformat().split(".")[0] + 'Z"}'
+            )
+            print(response.json())
+        trigger_external_dag(get_token())
+    a = triggering_dag()
+    ```
