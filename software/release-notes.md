@@ -24,15 +24,15 @@ Release date: October 26, 2022
 
 ### Bug fixes
 
-- Fixed an issue where upgrading Astronomer Software with a custom `houston.deployments.components` value in Helm could break the Software UI.
-- Fixed an issue where the Software UI the Software UI did not show the correct value for **Extra Capacity**.
-- Fixed an issue where upgrading a Deployment from Airflow 1.10.15 to 2.3 can prevent you from configuring the Deployment's resources in the Software UI.
-- Added protections for using Arm-based Runtime images in Software Deployments 
-- Fixed an issue where some Deployments could fail when pulling secrets from a private Docker registry
-- Fixed an issue where some email alerts for unhealthy Deployments would not send if `namespaceFreeFormEntry: true` was set in `config.yaml`
-- Fixed an issue where you could not view Deployment-level service accounts in the Software UI
-- Fixed an issue where token refreshing could break if the token did not have a properly formatted date
-- Suppressed some extraneous ElasticSearch logs that made it difficult to parse logs for relevant information
+- Fixed an issue where upgrading Astronomer Software with a custom `houston.deployments.components` value in Helm could make the Software UI unavailable.
+- Fixed an issue where the Software UI didn't show the correct value for **Extra Capacity**.
+- Fixed an issue where upgrading a Deployment from Airflow 1.10.15 to 2.3 prevented you from configuring Deployment resources in the Software UI.
+- Added protections for using Arm-based Runtime images in Software Deployments.
+- Fixed an issue where some Deployments failed when pulling secrets from a private Docker registry.
+- Fixed an issue where some email alerts for unhealthy Deployments would not send if `namespaceFreeFormEntry: true` was set in `config.yaml`.
+- Fixed an issue where you could not view Deployment-level service accounts in the Software UI.
+- Fixed an issue where token refreshing could break when the token didn't have a properly formatted date.
+- Suppressed some extraneous ElasticSearch logs that made parsing logs for relevant information difficult.
 - Fixed the following vulnerabilities:
     - [CVE-2022-40674](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-40674)
     - [CVE-2022-41816](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-41816)
