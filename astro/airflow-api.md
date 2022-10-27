@@ -215,7 +215,7 @@ This methodology works with any Deployment in any Astro Workspace or cluster.
                     "audience": "astronomer-ee",
                     "grant_type": "client_credentials"}'
     ```
-2. Save the Astro access token as an environment variable.
+2. Save the API key ID and API key secret as `KEY_ID` and `KEY_SECRET` environment variables. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md)
 
 3. Store the API key and secret API key from Deployment A on Deployment B.
 
