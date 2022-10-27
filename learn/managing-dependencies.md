@@ -279,8 +279,7 @@ The following options are available:
 - none_failed: The task runs only when all upstream tasks have succeeded or been skipped.
 - none_failed_min_one_success: The task runs only when all upstream tasks have not failed or upstream_failed, and at least one upstream task has succeeded.
 - none_skipped: The task runs only when no upstream task is in a skipped state.
-- always: The task runs at any time. 
-- dummy: Dependencies are just for show, trigger at will.
+- always: The task runs at any time.
 
 ### Branching and trigger rules
 
