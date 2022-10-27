@@ -39,8 +39,6 @@ Release date: October 27, 2022
     - [CVE-2022-2900](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-2900)
     - [CVE-2022-3224](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-3224)
 
-
-
 ## 0.30.2
 
 Release date: September 22, 2022
