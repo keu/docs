@@ -204,18 +204,9 @@ When you need to trigger DAGs in multiple Deployments, you can use the Airflow A
 
 This methodology works with any Deployment in any Astro Workspace or cluster. 
 
-1. On the target Deployment, run the following API request to retrieve the Astro access token:
+1. On the target Deployment, create an API key ID and API key secret. See [Set environment variables on Astro](api-keys.md#create-an-api-key).
 
-    ```sh
-        curl --location --request POST "https://auth.astronomer.io/oauth/token" \
-                --header "content-type: application/json" \
-                --data-raw '{
-                    "client_id": "<api-key-id>",
-                    "client_secret": "<api-key-secret>",
-                    "audience": "astronomer-ee",
-                    "grant_type": "client_credentials"}'
-    ```
-2. On the trigger Deployment, save the API key ID and API key secret as `KEY_ID` and `KEY_SECRET` environment variables. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md)
+2. On the trigger Deployment, save the API key ID and API key secret as `KEY_ID` and `KEY_SECRET` environment variables. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md).
 
 3. Create and then run the following DAG to start a DAG run on the target Deployment from the triggering Deployment:
 
@@ -226,7 +217,7 @@ This methodology works with any Deployment in any Astro Workspace or cluster.
     from airflow.decorators import dag, task
     KEY_ID = os.environ.get("KEY_ID")
     KEY_SECRET = os.environ.get("KEY_SECRET")
-    AIRFLOW_URL = "<Target Deployment URL>"
+    AIRFLOW_URL = "<target-deployment-url>"
     @dag(schedule="@daily",
         start_date=datetime(2022, 1, 1),
         catchup=False)
