@@ -202,9 +202,9 @@ print(response.json())
 
 When you need to trigger DAGs in multiple Deployments, you can use the Airflow API. Triggering DAGS in multiple Deployments is sometimes necessary when you're using multiple Deployments to separate team workflows.
 
-This methodology works with any Deployment in any Astro Workspace or cluster. 
+This methodology works with any Deployment in any Astro Workspace or cluster. DAGs similar to the one provided can be created for any operation supported by the Airflow API.
 
-1. On the target Deployment, create an API key ID and API key secret. See [Set environment variables on Astro](api-keys.md#create-an-api-key).
+1. On the target Deployment, create an API key ID and API key secret. See [Create an API key](api-keys.md#create-an-api-key).
 
 2. On the trigger Deployment, save the API key ID and API key secret as `KEY_ID` and `KEY_SECRET` environment variables. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md).
 
