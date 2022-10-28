@@ -1,6 +1,6 @@
 ---
 title: "Manage DAG and task dependencies in Airflow"
-sidebar_label: "Manage DAG and task dependencies"
+sidebar_label: "Task dependencies"
 id: managing-dependencies
 ---
 
