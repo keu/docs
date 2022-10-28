@@ -9,7 +9,7 @@ import {siteVariables} from '@site/src/versions';
 
 Astro Runtime builds on the reliability of Astronomer Certified (AC) with new features that center on usability and performance.
 
-Apache Airflow 2.3 will be the last Airflow version supported by AC. To avoid future disruptions, Astronomer recommends migrating Deployments from AC to Astro Runtime as soon as your organization is ready.
+Apache Airflow 2.5 will be the last Airflow version supported by AC. To avoid future disruptions, Astronomer recommends migrating Deployments from AC to Astro Runtime as soon as your organization is ready.
 
 Migrating a Deployment to Astro Runtime is similar to the standard upgrade process. There are no known disruptions when migrating a Deployment from AC to the equivalent version of Astro Runtime.
 
@@ -30,6 +30,10 @@ Astro Runtime includes additional features which are not available in AC images,
 See [Runtime Architecture](runtime-image-architecture.md) for more detailed information about Runtime's distribution and features.
 
 All versions of AC have an equivalent version of Astro Runtime. To see the equivalent version of Astro Runtime for a Deployment running AC, open the Deployment in the Software UI and go to **Settings**. The equivalent version of Astro Runtime is shown in the **Migrate to Runtime-[Version number]** button.
+
+## Astronomer Houston API migration considerations 
+
+If you're using the Astronomer Houston API and you're migrating from AC to Astro Runtime, you'll need to replace `airflowVersion` arguments with `runtimeVersion` arguments in your scripts. You can use the [GraphQL Playground](https://www.apollographql.com/docs/apollo-server/testing/graphql-playground/) to evaluate the API calls in your scripts. To access the Houston GraphQL playground, go to `https://houston.BASEDOMAIN/v1/`.
 
 ## Step 1: Start the migration process
 

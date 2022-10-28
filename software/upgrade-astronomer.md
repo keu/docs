@@ -12,6 +12,7 @@ Follow this guide to upgrade to any version of Astronomer Software. For informat
 A few notes before you get started:
 - The upgrade process will not affect running Airflow tasks as long as `upgradeDeployments.enabled=false` is set in your upgrade script.
 - Updates will not cause any downtime to Astronomer services, including the Software UI, the Astro CLI, and the Houston API.
+- To avoid potential complications, perform Astronomer Software upgrades in order and include all minor versions in your upgrade sequence. 
 
 :::info Upgrading Kubernetes
 
@@ -21,13 +22,13 @@ To avoid extended service disruptions, Astronomer recommends upgrading Astronome
 
 ## Step 1: Review upgrade considerations
 
-The [Upgrade considerations](upgrade-astronomer.md#upgrade-considerations) section of this document contains upgrade information for specific Astronomer versions. Review these notes before starting the upgrade process.
+The [Upgrade considerations](upgrade-astronomer.md#upgrade-considerations) section of this document contains upgrade information for specific Astronomer versions. Review these notes before starting the upgrade process. To avoid potential complications, perform Astronomer Software upgrades in order and include all minor versions in your upgrade sequence. 
 
 ## Step 2: Check permissions
 
 You need Astronomer System Admin permissions to complete version upgrades. To confirm that you're a System Admin, check that you have access to the **System Admin** menu in the Software UI:
 
-![System Admin panel](https://assets2.astronomer.io/main/docs/enterprise_quickstart/admin_panel.png)
+![System Admin panel](/img/software/admin_panel.png)
 
 You also need permissions to create Kubernetes resources. To confirm that you have the required permissions, run the following commands:
 
@@ -115,6 +116,24 @@ If you do not specify a patch version above, the script will automatically pull 
 
 :::
 
+### Upgrade with ArgoCD
+
+You can upgrade Astronomer with ArgoCD, which is an open source continuous delivery tool for Kubernetes, as an alternative to using `helm upgrade`. 
+
+Because ArgoCD doesn't support sync wave dependencies for [app of apps](https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern) structures, upgrading Astronomer requires some additional steps compared to the standard ArgoCD workflow:
+
+1. Make sure `enableArgoCDAnnotation: true` and `astronomer.houston.upgradeDeployments.enabled=false` are set in your `config.yaml` file.
+   
+2. In your ArgoCD application, choose the version of Astronomer Software you want to upgrade to from `astronomer/astronomer`.
+   
+3. Sync the ArgoCD app with every component of the Astronomer platform selected. See [Sync (Deploy) the Application](https://argo-cd.readthedocs.io/en/stable/getting_started/#7-sync-deploy-the-application).
+   
+4. Stop the sync when you see that `astronomer-houston-db-migrations` has completed in the Argo UI. 
+   
+5. Sync the application a second time, but this time clear `astronomer-alertmanager` in the Argo UI while keeping all other components selected. Wait for this sync to finish completely.
+   
+6. Sync the ArgoCD app a third time with all Astronomer platform components selected.
+
 ## Step 8: Confirm that the installation was successful
 
 If the upgrade was successful, you should be able to:
@@ -165,11 +184,11 @@ If you're upgrading to Astronomer Software 0.29 or later and Kubernetes 1.22 at 
 
 ### Upgrade to Astronomer Software 0.30
 
-#### Run the 0.30 upgrade script with --no-hook
+#### Running the 0.30 upgrade script with --no-hooks
 
-Using the `--no-hook` flag in [Step 7](#step-7-run-astronomers-upgrade-script) results in the upgrade script skipping a necessary database migration job. Because of this, you should not specify this flag when running the upgrade script.
+Using the `--no-hooks` flag in [Step 7](#step-7-run-astronomers-upgrade-script) results in the upgrade script skipping a necessary database migration job. Because of this, you should not specify this flag when running the upgrade script.
 
-If you do specify the `--no-hook` flag, the upgrade script will return a success message even though it failed, resulting in broken behavior in your upgraded environment.
+If you do specify the `--no-hooks` flag, the upgrade script will return a success message even though it failed, resulting in broken behavior in your upgraded environment.
 
 #### Upgrading to 0.30 when using Azure Database for PostgreSQL
 
@@ -200,14 +219,12 @@ As part of the 0.29 release, Astronomer deprecated its usage of [kubed](https://
 When upgrading to 0.29 from any earlier minor version, run the following command between Steps 2 and 3 in the standard procedure to annotate the certificate secret:
 
 ```bash
-kubectl -n <your-platform-namespace> annotate secret astronomer-houston-jwt-signing-certificate "astronomer.io/commander-sync"="platform=astronomer"
+kubectl -n <astronomer-platform-release-namespace> annotate secret <astronomer-platform-release-name>-houston-jwt-signing-certificate "astronomer.io/commander-sync"="platform=astronomer"
 ```
 
 If you upgraded to Astronomer Software 0.29 without annotating this secret, run the following command to complete the synchronization:
 
-```bash
-kubectl create job -n <your-platform-namespace> --from=cronjob/astronomer-config-syncer upgrade-config-synchronization
-```
+kubectl create job -n <astronomer-platform-release-namespace> --from=cronjob/<astronomer-platform-release-name>-config-syncer upgrade-config-synchronization
 
 ### Upgrade to Astronomer Software 0.28
 

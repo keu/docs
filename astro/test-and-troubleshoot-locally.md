@@ -5,11 +5,11 @@ id: test-and-troubleshoot-locally
 description: A guide to running an Astro project locally and diagnosing common problems.
 ---
 
-As you develop data pipelines on Astro, we strongly recommend running and testing your DAGs locally before deploying your project to a Deployment on Astro. This document provides information about testing and troubleshooting DAGs in a local Apache Airflow environment with the Astro CLI.
+As you develop data pipelines on Astro, Astronomer recommends running and testing your DAGs locally before deploying your project to a Deployment on Astro. This document provides information about testing and troubleshooting DAGs in a local Apache Airflow environment with the Astro CLI.
 
 ## Run a project locally
 
-To test your code, the first step is always to start a local Airflow environment. To run your project in a local Airflow environment, follow the steps in [Build and run a project](develop-project.md#build-and-run-a-project-locally).
+To test your code, the first step is always to start a local Airflow environment. To run your project in a local Airflow environment, see [Build and run a project](develop-project.md#build-and-run-a-project-locally).
 
 ## Test DAGs with the Astro CLI
 
@@ -145,7 +145,7 @@ For example, if your `packages.txt` file contains the openjdk-8-jdk, gcc, g++, o
 
 5. Open the `requirements.txt` and `packages.txt` files for your project and add the package references you removed in step 1.
 
-## Override the CLI's Docker Compose file
+## Override the CLI Docker Compose file
 
 The Astro CLI uses a default set of [Docker Compose](https://docs.docker.com/compose/) configurations to define and run local Airflow components. For advanced testing cases, you might need to override these default configurations. For example:
 
@@ -157,8 +157,6 @@ The Astro CLI uses a default set of [Docker Compose](https://docs.docker.com/com
 The Astro CLI does not support overrides to environment variables that are required globally. For the list of environment variables that Astro enforces, see [Global environment variables](platform-variables.md). To learn more about environment variables, read [Environment variables](environment-variables.md).
 
 :::
-
-To override default configurations:
 
 1. Reference the Astro CLI's default [Docker Compose file](https://github.com/astronomer/astro-cli/blob/main/airflow/include/composeyml.go) (`composeyml.go`) and determine one or more configurations to override.
 2. Add a `docker-compose.override.yml` file to your Astro project.
@@ -199,9 +197,9 @@ If your Astro project contains many DAGs or tasks, then you might experience per
 To improve the performance of your environment, you can:
 
  - Adjust CPU and memory resource allocation in your Docker configuration. Be aware that increasing Docker resource allocation might decrease the performance of your computer.
- - Modify Airflow-level environment variables, including concurrency and parallelism. See [Scaling out Airflow](https://www.astronomer.io/guides/airflow-scaling-workers).
+ - Modify Airflow-level environment variables, including concurrency and parallelism. See [Scaling out Airflow](https://docs.astronomer.io/learn/airflow-scaling-workers).
 
-Generating DAGs dynamically can also decrease the performance of your local Airflow environment, though it's a common authoring pattern for advanced use cases. For more information, see [Dynamically Generating DAGs in Airflow](https://www.astronomer.io/guides/dynamically-generating-dags/). If your DAGs continue to run slowly and you can't scale Docker or Airflow any further, Astronomer recommends pushing your project to a Deployment on Astro that's dedicated to testing.
+Generating DAGs dynamically can also decrease the performance of your local Airflow environment, though it's a common authoring pattern for advanced use cases. For more information, see [Dynamically Generating DAGs in Airflow](https://docs.astronomer.io/learn/dynamically-generating-dags/). If your DAGs continue to run slowly and you can't scale Docker or Airflow any further, Astronomer recommends pushing your project to a Deployment on Astro that's dedicated to testing.
 
 :::tip
 

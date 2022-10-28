@@ -9,17 +9,9 @@ The Cloud UI exposes a suite of observability metrics that show real-time data r
 
 ## Deployment analytics
 
-Located in the Workspace view of the Cloud UI, the **Analytics** page contains a suite of metrics for your Deployments. This page includes metrics that give you insight into the performance of both your data pipelines and infrastructure. Because metrics are collected in real time, you can use this page to detect irregularities in your pipelines or infrastructure as they happen.
+The **Analytics** page contains a suite of metrics for a given Deployment. This page includes metrics that give you insight into the performance of both your data pipelines and infrastructure. Because metrics are collected in real time, you can use this page to detect irregularities in your pipelines or infrastructure as they happen.
 
-To view metrics for a given Deployment, click the **Analytics** button in the left-hand menu. From here, you can select a Deployment and a time range for your metrics:
-
-![Analytics menu location](/img/docs/access-analytics.png)
-
-You can also access analytics for a specific Deployment from the Deployment's page:
-
-![Analytics menu location](/img/docs/access-analytics-deployments.png)
-
-The following topics contain information about each available metric.
+To view metrics for a Deployment, open the Deployment in the Cloud UI and click **Analytics**. The following topics contain information about each available metric.
 
 ### DAG and task runs
 
@@ -44,25 +36,23 @@ These metrics contain information about your Deployment's DAG runs and task runs
 
 ### Airflow workers and schedulers
 
-These metrics contain information about the Kubernetes Pods running your workers and schedulers. Different worker and scheduler Pods will appear on these charts as differently colored lines.
+These metrics contain information about the Kubernetes Pods running your workers and schedulers. Different worker and scheduler Pods will appear on these charts as differently colored lines. 
+
+Hover over the graph to view a graph legend. If a given worker queue spins a worker down and back up again within a given interval, the newly spun up worker appears as a new color on the graph. 
 
 ![Worker analytics in the Cloud UI](/img/docs/analytics-workers.png)
 
 #### Available metrics
 
-- **CPU Usage Per Pod (%)**: This metric graphs a worker's peak CPU usage over a given time interval. The maximum allowed CPUs per Pod as defined in **Worker Resources** appears as a dotted red line. Different worker/ scheduler Pods will appear on this chart as differently colored lines.
+- **CPU Usage Per Pod (%)**: This metric graphs the peak CPU usage for all workers and schedulers for a given interval. Different worker and scheduler Pods appear as differently colored lines on this chart. For scheduler metrics, the maximum allowable CPU for each scheduler Pod appears as a dotted red line.
+- **Memory Usage Per Pod (MB)**: This metric graphs the peak memory usage for all workers and schedulers for a given interval. Different worker and scheduler Pods will appear as differently colored lines on this chart. This metric should be at or below 50% of your total allowed memory at any given time. For scheduler metrics, the maximum allowable memory for each scheduler Pod appears as a dotted red line.
 
-    This metric should be at or below 90% at any given time. If a Pod surpasses 90% usage, the line in the graph will turn red.  
+:::info
 
-- **Memory Usage Per Pod (MB)**: This metric graphs a worker's peak memory usage over a given time interval. The maximum allowed memory per Pod as defined in **Worker Resources** appears as a dotted red line. Different worker/ scheduler Pods will appear on this chart as differently colored lines. This metric should be at or below 50% of your total allowed memory at any given time.
+  The number of workers per Deployment autoscales based on a combination of worker concurrency and the number of `running` and `queued` tasks. This means that the total available CPU and memory for a single Deployment may change at any time.
 
-    This metric should be at or below 90% at any given time. If a Pod surpasses 90% usage, the line in the graph will turn red.  
+:::
 
-  :::info
-
-  The number of Celery workers per Deployment autoscales based on a combination of worker concurrency and the number of `running` and `queued` tasks, which means that the total available CPU and memory for a single Deployment may change at any given time.
-
-  :::
 
 - **Network Usage Per Pod (MB)**: This metric graphs each worker/ scheduler Pod's peak network usage over time. Sudden, irregular spikes in this metric should be investigated as a possible error in your project code.
 - **Pod Count per Status**: This metric graphs the number of worker/ scheduler Pods in a given Kubernetes container state. Because Astro operates on a one-container-per-pod model, the state of the container state is also the Pod state. For more information about container states, read the [Kubernetes documentation](https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-states).
@@ -104,11 +94,11 @@ Deployment health can have one of two statuses:
     - Your Deployment was recently created and the Airflow webserver and scheduler are still spinning up.
     - Your Deployment's webserver and/or scheduler are restarting or otherwise not in a healthy, running state.
 
-If your Deployment is unhealthy, we recommend checking the status of your tasks and waiting for a few minutes. If your Deployment is unhealthy for more than 5 minutes, we recommend [reviewing scheduler logs](scheduler-logs.md) in the Cloud UI or reaching out to [Astronomer support](https://support.astronomer.io).
+If your Deployment is unhealthy, check the status of your tasks and wait for a few minutes. If your Deployment is unhealthy for more than five minutes, [review the scheduler logs](view-logs.md#view-airflow-scheduler-logs) in the Cloud UI or contact [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Deployment overview
 
-Each Deployment includes four high-level performance charts which you can view from both the **Deployments** menu and individual Deployment pages. They include:
+Each Deployment includes four high-level performance charts about the `default` worker queue which you can view from both the **Deployments** menu and a Deployment's **Analytics** page. They include:
 
 - DAG runs
 - Task Instances
@@ -121,7 +111,7 @@ The data in these four charts is recorded hourly and is displayed in both UTC an
 
 The data for the most recent hour is for the hour to date. For example, if you are looking at this page at 16:30, then the bar for the `16:00-17:00` hour interval would show data for `16:00-16:30`.
 
-These charts show the same data that's available from the **Analytics** page. They serve as high-level reports that are intended to be viewed at a glance. For example, you might notice failed task instances in the Cloud UI and then open the **Analytics** page to investigate further.
+These charts serve as high-level reports for your `default` worker queue that you can investigate further.
 
 The following sections describe each of the 4 available charts.
 
@@ -177,9 +167,9 @@ To access the **DAGs** page, you can either click the DAGs icon in the UI or cli
 
 ![DAGs page](/img/docs/dags-page.png)
 
-## Export Airflow Deployment metrics to Datadog
+## Export Airflow metrics to Datadog
 
-You can export metrics about a Deployment's Airflow environment to Datadog by adding a Datadog API key to your Deployment. Datadog Agent collects metrics that are available in the Astro UI as well as more specific metrics about your environment's performance. See the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected) for a complete list of exported metrics.
+Export over 40 Airflow metrics related to the state and performance of your Astro Deployment to [Datadog](https://www.datadoghq.com/) by adding a Datadog API key to your Deployment. These metrics include most information that is available in the Cloud UI as well as additional metrics that Datadog automatically collects, including number of queued tasks, DAG processing time, frequency of import errors, and more. For a complete list of supported metrics, see [Data Collected](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected) in Datadog documentation.
 
 :::info
 
@@ -187,11 +177,23 @@ Astro does not export any [service checks](https://docs.datadoghq.com/integratio
 
 :::
 
-1. Create a new Datadog API key or copy an existing API key. See [Datadog documentation](https://docs.datadoghq.com/account_management/api-app-keys/).
-2. [Create a new environment variable](environment-variable.md) in your Deployment. Specify the variable key as `DATADOG_API_KEY` and its value as your Datadog API key. Select the **Secret** checkbox.
-3. Save the environment variable.
+1. Create a new Datadog API key or copy an existing API key. See [API and Application Keys](https://docs.datadoghq.com/account_management/api-app-keys/).
+2. In the Cloud UI, select a Workspace and then select an Astro Deployment for which you want to export metrics.
+3. Create a new [environment variable](environment-variables.md#set-environment-variables-in-the-cloud-ui) in your Deployment with the Datadog API key from step 1:
+   - **Key:** `DATADOG_API_KEY`
+   - **Value:** `<Your-Datadog-API-key>`.
+   Select the **Secret?** checkbox. This ensures that your Datadog API key is saved securely and is not available to Workspace users in plain text.
+4. Click **Save variable**.
 
-After you configure the API key, Astro automatically launches a sidecar container in your Deployment that runs [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/?tab=hostagent). This container works with your Deployment's existing StatsD infrastructure to export Airflow metrics to the Datadog instance associated with your API key.
+After you complete this setup, Astro automatically launches a sidecar container in your Deployment that runs [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/?tab=hostagent). This container works with your Deployment's existing infrastructure to export Airflow metrics to the Datadog instance associated with your API key.
+
+#### View metrics in Datadog
+
+1. In the Datadog UI, go to **Metrics** > **Summary**.
+2. Search for metrics starting with `airflow` and open any Airflow metric.
+3. In the **Tags** table, check the values for the `namespace` tag key. The namespaces of the Deployments you configured to export logs should appear as tag values.
+
+To check the health of a Deployment's DogStatsD container, open the `datadog.dogstatsd.running` metric in the Datadog UI. If the Deployment's namespace appears under the metric's `host` tag key, its DogStatsD container is healthy and exporting metrics to Datadog.
 
 ## Astro usage
 

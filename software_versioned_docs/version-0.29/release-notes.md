@@ -10,21 +10,66 @@ description: Astronomer Software release notes.
 
 This document includes all release notes for Astronomer Software version 0.29.
 
-0.29 is the latest stable version of Astronomer Software, while 0.28 remains  the latest LTS long-term support (LTS) version of Astronomer Software. To upgrade to 0.29, read [Upgrade Astronomer](upgrade-astronomer.md). For more information about Software release channels, read [Release and lifecycle policies](release-lifecycle-policy.md). To read release notes specifically for the Astro CLI, see [Astro CLI release notes](cli-release-notes.md).
+0.30 is the latest long-term support (LTS) version of Astronomer Software. To upgrade to 0.30, see [Upgrade Astronomer](upgrade-astronomer.md). For more information about Astronomer Software release channels, see [Release and lifecycle policies](release-lifecycle-policy.md). For more Astronomer Software release notes, see:
 
-We're committed to testing all Astronomer Software versions for scale, reliability and security on Amazon EKS, Google GKE and Azure AKS. If you have any questions or an issue to report, don't hesitate to [reach out to us](https://support.astronomer.io).
+- [Astro CLI release notes](cli-release-notes.md)
+- [Astro Runtime release notes](runtime-release-notes.md)
+- [Astronomer Software 0.29 release notes](https://docs.astronomer.io/software/0.29/release-notes)
+- [Astronomer Software 0.28 release notes](https://docs.astronomer.io/software/0.28/release-notes)
+- [Astronomer Software 0.25 release notes](https://docs.astronomer.io/software/0.25/release-notes)
 
-## v0.29.3
-
-Release date: August 5, 2022
+Astronomer tests all Astronomer Software versions for scale, reliability, and security on Amazon EKS, Google GKE, and Azure AKS. If you have questions or an issue to report, contact [Astronomer support](https://support.astronomer.io).
 
 :::danger Breaking change
 
-There is an [unresolved Kubernetes bug](https://github.com/kubernetes/kubernetes/issues/65106) that occurs when upgrading Helm charts that include duplicate keys in an `env` array. If you have a Helm chart with duplicate keys and upgrade to Astronomer Software 0.29.3, all key-value pairs with the duplicate key are removed from your environment.
+There is an [unresolved Kubernetes bug](https://github.com/kubernetes/kubernetes/issues/65106) that occurs when upgrading Helm charts that include duplicate keys in an `env` array. If you have a Helm chart with duplicate keys and upgrade to Astronomer Software 0.29.3+, all key-value pairs with the duplicate key are removed from your environment.
 
 To preserve duplicate keys in your Helm chart, you can either reapply the values after upgrading, or you can use the `--reset-values` flag when running the upgrade script as described in [Upgrade Astronomer](upgrade-astronomer.md).
 
 :::
+
+## v0.29.5
+
+Release date: October 11, 2022
+
+### Additional improvements
+
+- Improved the startup time for the platform NATS server.
+- You can now configure a `livenessProbe` and `readinessProbe` specific to Prometheus in the Prometheus Helm chart.
+- You can now configure a specific `securityContext` for Fluentd Pods and containers in the Fluentd Helm chart.
+
+### Bug fixes 
+
+- Fixed an issue where upgrading Astronomer Software with a custom `houston.deployments.components` value in Helm could break the Software UI.
+- Fixed an issue where upgrading a Deployment from Airflow 1.10.15 to 2.3 can prevent you from configuring the Deployment's resources in the Software UI.
+- Fixed the following CVEs:
+
+    - [CVE-2022-40674](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-40674)
+    - [CVE-2022-3224](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-3224)
+
+## v0.29.4
+
+Release date: September 13, 2022
+
+### Additional improvements
+
+- You can now specify `authUrlParams` for your identity provider (IdP) in `config.yaml`
+- Added error handling for upgrading a Software installation on an unsupported upgrade path
+
+### Bug fixes
+
+- Fixed an issue where you could not create Deployments with unsupported Airflow versions when `enableSystemAdminCanCreateDeprecatedAirflows: true`
+- Fixed the following vulnerabilities:
+
+    - [CVE-2022-1996](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-1996)
+    - [CVE-2022-21698](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-21698)
+    - [CVE-2022-35949](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-35949)
+    - [CVE-2022-35948](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-35948)
+    - [CVE-2022-37434](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-37434)
+
+## v0.29.3
+
+Release date: August 5, 2022
 
 ### Additional improvements
 
@@ -113,6 +158,7 @@ The process for configuring namespace pools has been simplified. As an alternati
 
 ### Bug fixes
 
+- Fixed an issue in Deployments running Airflow 2.3+ where logs for dynamically mapped tasks did not have a correct `log_id`
 - Fixed a typo in the `loadBalancerIP` key in the Nginx Helm chart
 - Fixed an issue where Azure AD connect sync did not work with Astronomer's Teams feature
 - Fixed an issue where upgrades would fail if you had changed `networkNSLabels` from `true` to `false` in `config.yaml`

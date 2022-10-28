@@ -12,7 +12,7 @@ Deploying Astro Runtime is a requirement if your organization is using Astro. As
 - Timely support for new patch, minor, and major versions of Apache Airflow. This includes bug fixes that have not been released by the open source project but are backported to Astro Runtime and available to users earlier.
 - Exclusive features to enrich the task execution experience, including smart task concurrency defaults and high availability configurations.
 - The `astronomer-providers` package. This package is an open source collection of Apache Airflow providers and modules maintained by Astronomer. It includes deferrable versions of popular operators such as `ExternalTaskSensor`, `DatabricksRunNowOperator`, and `SnowflakeOperator`. See [Astronomer deferrable operators](deferrable-operators.md#astronomer-deferrable-operators).
-- The `openlineage-airflow` package. [OpenLineage](https://openlineage.io/) standardizes the definition of data lineage, the metadata that forms lineage data, and how data lineage data is collected from external systems. This package enables data lineage on Astro. See [OpenLineage and Airflow](https://www.astronomer.io/guides/airflow-openlineage/).
+- The `openlineage-airflow` package. [OpenLineage](https://openlineage.io/) standardizes the definition of data lineage, the metadata that forms lineage data, and how data lineage data is collected from external systems. This package enables data lineage on Astro. See [OpenLineage and Airflow](https://docs.astronomer.io/learn/airflow-openlineage/).
 - A custom logging module that ensures Airflow task logs are reliably available to the Astro data plane.
 - A custom security manager that enforces user roles and permissions as defined by Astro. See [User permissions](user-permissions.md).
 - A custom Airflow UI that includes links to Astronomer resources and exposes the currently running Docker image tag in the footer of all UI pages.
@@ -24,8 +24,8 @@ For more information about the features that are available in Astro Runtime rele
 Astro Runtime versions are released regularly and use [semantic versioning](https://semver.org/). Astronomer ships major, minor, and patch releases of Astro Runtime in the format of `major.minor.patch`.
 
 - **Major** versions are released for significant feature additions. This includes new major or minor versions of Apache Airflow as well as API or DAG specification changes that are not backwards-compatible.
-- **Minor** versions are released for functional changes. This includes new patch versions of Apache Airflow as well as API or DAG specification changes that are backwards-compatible.
-- **Patch** versions are released for bug and security fixes that resolve unwanted behavior. This includes new patch versions of `astronomer-providers` and `openlineage-airflow`.
+- **Minor** versions are released for functional changes. This includes API or DAG specification changes that are backwards-compatible.
+- **Patch** versions are released for bug and security fixes that resolve unwanted behavior. This includes new patch versions of Apache Airflow, `astronomer-providers`, and `openlineage-airflow`.
 
 Every version of Astro Runtime correlates to an Apache Airflow version. All Deployments on Astro must run only one version of Astro Runtime, but you can run different versions of Astro Runtime on different Deployments within a given cluster or Workspace. See [Create a Deployment](create-deployment.md#create-a-deployment).
 
@@ -42,6 +42,7 @@ This table lists Astro Runtime releases and their associated Apache Airflow vers
 | 4.1.x         | 2.2.4                  |
 | 4.2.x         | 2.2.4-2.2.5            |
 | 5.0.x         | 2.3.0-2.3.4            |
+| 6.0.x         | 2.4.0-2.4.1            |
 
 :::info
 Each Runtime version in a given minor series supports only a single version of Apache Airflow. For specific version compatibility information, see [Runtime release notes](runtime-release-notes.md).
@@ -52,14 +53,18 @@ Each Runtime version in a given minor series supports only a single version of A
 All Astro Runtime images have the following open source provider packages pre-installed:
 
 - Amazon [`apache-airflow-providers-amazon`](https://pypi.org/project/apache-airflow-providers-amazon/)
+- Apache Hive [`apache-airflow-providers-apache-hive`](https://pypi.org/project/apache-airflow-providers-apache-hive/)
+- Apache Livy [`apache-airflow-providers-apache-livy`](https://pypi.org/project/apache-airflow-providers-apache-livy/)
+- Databricks [`apache-airflow-providers-databricks`](https://pypi.org/project/apache-airflow-providers-databricks/)
 - Elasticsearch [`apache-airflow-providers-elasticsearch`](https://pypi.org/project/apache-airflow-providers-elasticsearch/)
 - Celery [`apache-airflow-providers-celery`](https://pypi.org/project/apache-airflow-providers-celery/)
 - Google [`apache-airflow-providers-google`](https://pypi.org/project/apache-airflow-providers-google/)
-- Password [`apache-airflow-password`](https://pypi.org/project/apache-airflow/)
+- HTTP [`apache-airflow-providers-http`](https://pypi.org/project/apache-airflow-providers-http/)
 - Cloud Native Computing Foundation (CNCF) Kubernetes [`apache-airflow-cncf.kubernetes`](https://pypi.org/project/apache-airflow-providers-cncf-kubernetes/)
 - PostgreSQL (Postgres) [`apache-airflow-providers-postgres`](https://pypi.org/project/apache-airflow-providers-postgres/)
 - Redis [`apache-airflow-providers-redis`](https://pypi.org/project/apache-airflow-providers-redis/)
 - StatsD [`apache-airflow-statsd`](https://pypi.org/project/statsd/)
+- Snowflake [`apache-airflow-snowflake`](https://pypi.org/project/apache-airflow-snowflake/)
 - Virtualenv [`apache-airflow-virtualenv`](https://pypi.org/project/virtualenv/)
 - OpenLineage with Airflow [`openlineage-airflow`](https://pypi.org/project/openlineage-airflow/)
 - Astronomer Providers [`astronomer-providers`](https://pypi.org/project/astronomer-providers/)
@@ -77,7 +82,7 @@ docker run --rm {image} pip freeze | grep <provider>
 
 ## Python versioning
 
-Astro Runtime supports Python 3.9. This is the only version of Python that Astro Runtime supports. If your data pipelines require an unsupported Python version, Astronomer recommends that you use the KuberentesPodOperator. See [Run the KubernetesPodOperator on Astro](kubernetespodoperator.md).
+Astro Runtime supports Python 3.9. This is the only version of Python that Astro Runtime supports. If your data pipelines require an unsupported Python version, Astronomer recommends that you use the KubernetesPodOperator. See [Run the KubernetesPodOperator on Astro](kubernetespodoperator.md).
 
 ## Executors
 

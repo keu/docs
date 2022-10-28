@@ -44,7 +44,7 @@ Deploying code changes to a custom image registry requires triggering a GraphQL 
 1. Create a secret for the container repository credentials in your Astronomer namespace:
 
     ```bash
-    kubectl -n <your-namespace> create secret docker-registry <name-of-secret> --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-password> --docker-email=<your-email>
+    kubectl -n <astronomer-platform-namespace> create secret docker-registry <name-of-secret> --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-password> --docker-email=<your-email>
     ```
 
     To have Astronomer Software sync the registry credentials to all Deployment namespaces, add the following annotation:

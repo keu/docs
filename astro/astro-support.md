@@ -8,14 +8,14 @@ description: Get Astro support when you need it.
 In addition to product documentation, the following resources are available to help you resolve issues:
 
 - [Astronomer Forum](https://forum.astronomer.io)
-- [Airflow Guides](https://www.astronomer.io/guides/)
+- [Airflow Guides](https:/docs.astronomer.io/learn/)
 
 If you're experiencing an issue or have a question that requires Astronomer expertise, or if you want to [modify a cluster configuration](modify-cluster.md), use one of the following methods to contact Astronomer support:
 
-- Submit a support request in the [Cloud UI](astro-support.md#submit-a-support-request-in-the-cloud-ui)
-- Submit a support request on the [Astronomer support portal](https://support.astronomer.io/hc/en-us)
-- Send an email to [support@astronomer.io](mailto:support@astronomer.io)
-- Call +1 (831) 777-2768
+- Submit a support request in the [Cloud UI](https://cloud.astronomer.io/support).
+- Submit a support request on the [Astronomer support portal](https://support.astronomer.io/hc/en-us).
+- Send an email to [support@astronomer.io](mailto:support@astronomer.io).
+- Call +1 (831) 777-2768.
 
 ## Best practices for support request submissions
 
@@ -76,6 +76,8 @@ If you've already copied task logs or Airflow component logs, send them as a par
 1. In the Cloud UI, click **Help** > **Submit Support Request**.
 
     ![Submit Support Request menu location](/img/docs/support-request-location.png)
+
+    Alternatively, you can directly access the support form by going to `https://cloud.astronomer.io/support`.
 
 2. Complete the following fields:
 

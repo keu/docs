@@ -48,8 +48,6 @@ KubernetesPodOperator(
     arguments=["<arguments-for-image>"],
     labels={"<pod-label>": "<label-name>"},
     name="<pod-name>",
-    is_delete_operator_pod=True,
-    in_cluster=True,
     task_id="<task-name>",
     get_logs=True,
 )
@@ -59,8 +57,6 @@ For each instantiation of the KubernetesPodOperator, you must specify the follow
 
 - `namespace = conf.get("kubernetes", "NAMESPACE")`: Every Deployment runs on its own Kubernetes namespace within a cluster. Information about this namespace can be programmatically imported as long as you set this variable.
 - `image`: This is the Docker image that the operator will use to run its defined task, commands, and arguments. The value you specify is assumed to be an image tag that's publicly available on [Docker Hub](https://hub.docker.com/). To pull an image from a private registry, see [Pull images from a Private Registry](kubernetespodoperator.md#run-images-from-a-private-registry).
-- `in_cluster=True`: When this value is set, your task will run within the cluster from which it's instantiated on Astro. This ensures that the Kubernetes Pod running your task has the correct permissions within the cluster. To run a KubernetesPodOperator task in a Kubernetes cluster outside of the Astro data plane, set `in_cluster=False`.
-- `is_delete_operator_pod=True`: This setting ensures that once a KubernetesPodOperator task is complete, the Kubernetes Pod that ran that task is terminated. This ensures that there are no unused Pods in your cluster taking up resources.
 
 This is the minimum configuration required to run tasks with the KubernetesPodOperator on Astro. To further customize the way your tasks are run, see the topics below.
 
@@ -89,8 +85,6 @@ KubernetesPodOperator(
     arguments=["<arguments-for-image>"],
     labels={"<pod-label>": "<label-name>"},
     name="<pod-name>",
-    is_delete_operator_pod=True,
-    in_cluster=True,
     resources=compute_resources,
     task_id="<task-name>",
     get_logs=True,
@@ -105,8 +99,6 @@ By default, the KubernetesPodOperator expects to pull a Docker image that's host
 
 ### Prerequisites
 
-To complete this setup, you need:
-
 - An [Astro project](create-project.md).
 - An [Astro Deployment](configure-deployment-resources.md).
 - Access to a private Docker registry.
@@ -119,7 +111,7 @@ To run Docker images from a private registry on Astro, a Kubernetes Secret that 
 1. Log in to your Docker registry and follow the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#log-in-to-docker-hub) to produce a `/.docker/config.json` file.
 2. In the Cloud UI, select a Workspace and then select the Deployment you want to use the KubernetesPodOperator with.
 3. Copy the value in the **NAMESPACE** field.
-4. Contact [Astronomer support](https://support.astronomer.io) and provide the namespace of the Deployment.
+4. Contact [Astronomer support](https://cloud.astronomer.io/support) and provide the namespace of the Deployment.
 
 Astronomer Support will give you instructions on how to securely send the output of your `/.docker/config.json` file. Do not send this file by email, as it contains sensitive credentials to your registry. Astronomer will use this file to create a Kubernetes secret and inject it into your Deployment's namespace.
 
@@ -140,8 +132,6 @@ KubernetesPodOperator(
     arguments=["<arguments-for-image>"],
     labels={"<pod-label>": "<label-name>"},
     name="<pod-name>",
-    is_delete_operator_pod=True,
-    in_cluster=True,
     task_id="<task-name>",
     get_logs=True,
 )
@@ -185,4 +175,4 @@ If your Docker image is hosted in an Amazon ECR repository, add a permissions po
 ## Related documentation
 
 - [How to use cluster ConfigMaps, Secrets, and Volumes with Pods](https://airflow.apache.org/docs/apache-airflow-providers-cncf-kubernetes/stable/operators.html#how-to-use-cluster-configmaps-secrets-and-volumes-with-pod)
-- [KubernetesPodOperator Airflow Guide](https://www.astronomer.io/guides/kubepod-operator/)
+- [KubernetesPodOperator Airflow Guide](https://docs.astronomer.io/learn/kubepod-operator/)

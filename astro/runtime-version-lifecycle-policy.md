@@ -37,7 +37,7 @@ Within the maintenance window of each Astro Runtime version, the following is tr
 
 - A set of Docker images corresponding to that version are available for download on [Quay.io](https://quay.io/repository/astronomer/astro-runtime?tab=tags) and PyPi.
 - Astronomer will regularly publish bug or security fixes identified as high priority.
-- Support for paying customers running a maintained version of Astro Runtime is provided by [Astronomer Support](https://support.astronomer.io).
+- Support for paying customers running a maintained version of Astro Runtime is provided by [Astronomer Support](https://cloud.astronomer.io/support).
 - A user can create a new Deployment with the Cloud UI, API, or Astro CLI with any supported `major.minor` version pair of Runtime. For new Deployments, the Cloud UI assumes the latest patch.
 
 When the maintenance window for a given version of Runtime ends, the following is true:
@@ -77,17 +77,26 @@ The following table contains the exact lifecycle for each published version of A
 
 ### Stable releases
 
-| Runtime Version                                     | Apache Airflow version | Release Date      | End of Maintenance Date |
-| --------------------------------------------------- | ---------------------- | ----------------- | ----------------------- |
-| [4.1.x](runtime-release-notes.md#astro-runtime-410) | 2.2.4                  | February 22, 2022 | August 2022             |
-| [4.2.x](runtime-release-notes.md#astro-runtime-420) | 2.2.4-2.2.5            | March 10, 2022    | September 2022          |
-| [5.0.x](runtime-release-notes.md#astro-runtime-500) | 2.3.0-2.3.4            | April 30, 2022    | October 2022            |
+| Runtime Version                                     | Apache Airflow version | Release Date       | End of Maintenance Date |
+| --------------------------------------------------- | ---------------------- | ------------------ | ----------------------- |
+| [4.1.x](runtime-release-notes.md#astro-runtime-410) | 2.2.4                  | February 22, 2022  | August 2022             |
+| [4.2.x](runtime-release-notes.md#astro-runtime-420) | 2.2.4-2.2.5            | March 10, 2022     | September 2023          |
+| [5.0.x](runtime-release-notes.md#astro-runtime-500) | 2.3.0-2.3.4            | April 30, 2022     | October 2022            |
+| [6.0.x](runtime-release-notes.md#astro-runtime-600) | 2.4.0-2.4.1            | September 19, 2022 | March 2024              |
+
+### Long-term support (LTS) releases 
+
+| Runtime Version                                     | Apache Airflow version | Release Date       | End of Maintenance Date |
+| --------------------------------------------------- | ---------------------- | ------------------ | ----------------------- |
+| [4.2.x](runtime-release-notes.md#astro-runtime-420) | 2.2.4-2.2.5            | March 10, 2022     | September 2023          |
+| [6.0.x](runtime-release-notes.md#astro-runtime-600) | 2.4.0-2.4.1            | September 19, 2022 | March 2024              |
+
 
 :::info
 Each Runtime version in a given minor series supports only a single version of Apache Airflow. For specific version compatibility information, see [Runtime release notes](runtime-release-notes.md).
 :::
 
-If you have any questions or concerns, contact [Astronomer support](https://support.astronomer.io).
+If you have any questions or concerns, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Related documentation
 

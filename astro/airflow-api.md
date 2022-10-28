@@ -2,8 +2,12 @@
 title: 'Make requests to the Airflow REST API'
 sidebar_label: 'Airflow REST API'
 id: airflow-api
-description: Make requests to the Airflow REST API with Astro Deployment API keys.
 ---
+
+<head>
+  <meta name="description" content="Learn how to make requests to the Airflow REST API and how you can use the Airflow REST API to automate Airflow workflows in your Deployments. Common examples of API requests are provided." />
+  <meta name="og:description" content="Learn how to make requests to the Airflow REST API and how you can use the Airflow REST API to automate Airflow workflows in your Deployments. Common examples of API requests are provided." />
+</head>
 
 This guide explains how to make requests to Airflow's REST API for your Deployments.
 
@@ -13,8 +17,6 @@ You can use Airflow's [REST API](https://airflow.apache.org/docs/apache-airflow/
 To test Airflow API calls in a local Airflow environment running with the Astro CLI, see [Test and Troubleshoot Locally](test-and-troubleshoot-locally.md#make-requests-to-the-airflow-rest-api).
 
 ## Prerequisites
-
-To make an Airflow API request, you need:
 
 - A [Deployment API key](api-keys.md).
 - A Deployment on Astro.

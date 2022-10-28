@@ -9,7 +9,91 @@ description: Release notes for Astro Runtime, the differentiated Apache Airflow 
 
 Astro Runtime is a Docker image built and published by Astronomer that extends the Apache Airflow project to provide a differentiated data orchestration experience. This document provides a summary of changes made to each available version of Astro Runtime. Note that some changes to Runtime might be omitted based on their availability in Astronomer Software.
 
-For instructions on how to upgrade, read [Upgrade Airflow on Astronomer Software](manage-airflow-versions.md). For general product release notes, go to [Software release notes](release-notes.md). If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
+For upgrade instructions, see [Upgrade Airflow on Astronomer Software](manage-airflow-versions.md). For general product release notes, go to [Software release notes](release-notes.md). If you have any questions or a bug to report, contact [Astronomer support](https://support.astronomer.io).
+
+## Astro Runtime 6.0.3
+
+- Release date: October 24, 2022
+- Airflow version: 2.4.2
+
+### Airflow 2.4.2
+
+Astro Runtime 6.0.3 includes same-day support for Airflow 2.4.2. Some changes in Airflow 2.4.2 include:
+
+- Handle mapped tasks in task duration chart ([#26722](https://github.com/apache/airflow/pull/26722))
+- Make tracebacks opt-in ([#27059](https://github.com/apache/airflow/pull/27059)
+
+For a complete list of commits, see the [Apache Airflow 2.4.2 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-4-2-2022-10-23.
+
+### Additional improvements  
+
+- Upgraded `openlineage-airflow` to 0.15.1, which includes a dedicated Airflow development environment. You can now create and test changes to custom OpenLineage extractors in an Airflow environment without needing to rebuild your Docker images. For more information, see the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
+
+## Astro Runtime 6.0.2
+
+- Release date: September 30, 2022
+- Airflow version: 2.4.1
+
+### Support for Apache Airflow 2.4.1
+
+Astro Runtime 6.0.2 includes Airflow 2.4.1, which includes only bug fixes. For a complete list of commits, see the [Apache Airflow 2.4.1 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-4-1-2022-09-30)).
+
+### Backported bug fixes from Apache Airflow 2.4.2
+
+Astro Runtime 6.0.2 includes the following bug fixes:
+
+- Remove DAG parsing from StandardTaskRunner ([#26750](https://github.com/apache/airflow/pull/26750))
+- Fix airflow tasks run --local when dags_folder differs from that of processor ([#26509](https://github.com/apache/airflow/pull/26509))
+- Add fixture for CLI tests requiring sample dags ([#26536](https://github.com/apache/airflow/pull/26536))
+
+These changes were backported from Apache Airflow 2.4.2, which is not yet generally available.
+
+### Additional improvements
+
+- Upgraded `astronomer-providers` to 1.10.0, which includes `SFTPSensorAsync` and `ExternalDeploymentTaskSensorAsync` as new deferrable operators. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#1100-2022-09-30).
+
+## Astro Runtime 6.0.1
+
+- Release date: September 26, 2022
+- Airflow version: 2.4.0
+
+### Bug fixes 
+
+- Fixed an issue where Astro users could not access task logs on Deployments using Runtime 6.0.0
+- Backported a fix to correct an issue where logs were not loading from Celery workers ([#26493](https://github.com/apache/airflow/pull/26493))
+- Fixed [CVE-2022-40674](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-40674)
+
+## Astro Runtime 5.0.9
+
+- Release date: September 20, 2022
+- Airflow version: 2.3.4
+
+### Backported fixes from Apache Airflow 2.4
+
+- Fixed an issue where logs were not loading from Celery workers ([#26337](https://github.com/apache/airflow/pull/26337) and [#26493](https://github.com/apache/airflow/pull/26493))
+- Fixed CVE-2022-40754 ([#26409](https://github.com/apache/airflow/pull/26409))
+- Fixed the Airflow UI not auto-refreshing when scheduled tasks are running. This bug was introduced in Airflow 2.3.4 ([#25950](https://github.com/apache/airflow/pull/25950))
+- Fixed an issue where the scheduler could crash when queueing dynamically mapped tasks ([#25788](https://github.com/apache/airflow/pull/25788))
+
+### Additional improvements
+
+- Set `AIRFLOW__CELERY__STALLED_TASK_TIMEOUT=600` by default. This means that tasks that are in `queued` state for more than 600 seconds (10 minutes) will fail. This environment variable can be overridden on Astro but will help prevent tasks from getting stuck in a queued state.
+- Upgraded `astronomer-providers` to 1.8.1, which includes various bug fixes. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#181-2022-09-01).
+- Upgraded `openlineage-airflow` to 0.13.0, which includes fixes for Spark integrations. See the [Astronomer Providers changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md#0141---2022-09-07).
+
+## Astro Runtime 6.0.0
+
+- Release date: September 19, 2022
+- Airflow version: 2.4.0
+
+### Support for Airflow 2.4 and data-aware scheduling
+
+Astro Runtime 6.0.0 provides support for [Airflow 2.4.0](https://airflow.apache.org/blog/airflow-2.4.0/), which delivers significant new features for DAG scheduling. The most notable new features in Airflow 2.4.0 are:
+
+- [Data-aware scheduling](https://airflow.apache.org/docs/apache-airflow/2.4.0/concepts/datasets.html), which is a new method for scheduling a DAG based on when an upstream DAG modifies a specific dataset.
+- The [ExternalPythonOperator](https://airflow.apache.org/docs/apache-airflow/2.4.0/howto/operator/python.html#externalpythonoperator), which can execute Python code in a virtual environment with different Python libraries and dependencies than your core Airflow environment.
+- Automatic DAG registration. You no longer need to specify `as dag` when defining a DAG object.
+- Support for [zipping](https://airflow.apache.org/docs/apache-airflow/2.4.0/concepts/dynamic-task-mapping.html#combining-upstream-data-aka-zipping) dynamically mapped tasks.
 
 ## Astro Runtime 5.0.8
 
@@ -173,6 +257,40 @@ Astro Runtime 5.0.0 provides support for [Airflow 2.3.0](https://airflow.apache.
 - The ability to [reuse a decorated task function](https://airflow.apache.org/docs/apache-airflow/2.3.0/tutorial_taskflow_api.html#reusing-a-decorated-task) between DAGs.
 
 For more information on Airflow 2.3, see ["Apache Airflow 2.3 — Everything You Need to Know"](https://www.astronomer.io/blog/apache-airflow-2-3-everything-you-need-to-know) by Astronomer.
+
+
+## Astro Runtime 4.2.7
+
+- Release date: October 11, 2022
+- Airflow version: 2.2.5
+
+### Backported Airflow bug fixes
+
+Astro Runtime 4.2.7 includes the following bug fixes from later Apache Airflow releases:
+
+- Make sure finalizers are not skipped during exception handling ([#22475](https://github.com/apache/airflow/pull/22475))
+- Fix `email_on_failure` with `render_template_as_native_obj` ([#22770](https://github.com/apache/airflow/pull/22770))
+- Do not log the hook connection details even at DEBUG level ([#22627](https://github.com/apache/airflow/pull/22627))
+
+### Bug fixes 
+
+- Fixed the following CVEs:
+
+    - [CVE-2022-40023](https://avd.aquasec.com/nvd/2022/cve-2022-40023/)
+    - [CVE-2022-2309](https://avd.aquasec.com/nvd/2022/cve-2022-2309/)
+    - [CVE-2022-40674](https://avd.aquasec.com/nvd/2022/cve-2022-40674/)
+    - [CVE-2022-1586](https://avd.aquasec.com/nvd/2022/cve-2022-1586/)
+    - [CVE-2022-1587](https://avd.aquasec.com/nvd/2022/cve-2022-1587/)
+    - [CVE-2022-3999](https://avd.aquasec.com/nvd/2022/cve-2022-3999/)
+    - [CVE-2022-37434](https://avd.aquasec.com/nvd/2022/cve-2022-37434/)
+    - [CVE-2022-5197](https://avd.aquasec.com/nvd/2022/cve-2022-5197/)
+    - [CVE-2022-2509](https://avd.aquasec.com/nvd/2022/cve-2022-2509/)
+    - [CVE-2022-46828](https://avd.aquasec.com/nvd/2022/cve-2022-46828/)
+    - [CVE-2022-1664](https://avd.aquasec.com/nvd/2022/cve-2022-1664/)
+    - [CVE-2022-29155](https://avd.aquasec.com/nvd/2022/cve-2022-29155/)
+    - [CVE-2022-2068](https://avd.aquasec.com/nvd/2022/cve-2022-2068/)
+    - [CVE-2022-1292](https://avd.aquasec.com/nvd/2022/cve-2022-1292/)
+    - [CVE-2022-1552](https://avd.aquasec.com/nvd/2022/cve-2022-1552/)
 
 ## Astro Runtime 4.2.6
 

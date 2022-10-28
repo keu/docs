@@ -9,30 +9,142 @@ description: A real-time reference of the latest features and bug fixes in Astro
 
 Astronomer is committed to continuous delivery of both features and bug fixes to Astro. To keep your team up to date on what's new, this document will provide a regular summary of all changes released to Astro.
 
-If you have any questions or a bug to report, reach out to [Astronomer support](https://support.astronomer.io).
+If you have any questions or a bug to report, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
-**Latest Astro Runtime Version**: 5.0.8 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 6.0.1 ([Release notes](runtime-release-notes.md))
 
-**Latest CLI Version**: 1.4.0 ([Release notes](cli/release-notes.md))
+**Latest CLI Version**: 1.6.0 ([Release notes](cli/release-notes.md))
 
-## August 31, 2022
+## October 18, 2022 
 
-### New integration for exporting Deployment metrics to Datadog
+### Additional improvements 
 
-You can use a new Astronomer-supported integration to export Airflow Deployment metrics to Datadog. After you configure this feature, your Deployment exports all available metrics to Datadog. For more information about the type of metrics you can export, see the [Datadog documentation](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
+- In the Cloud UI, **Access** has been moved from the left menu to a tab on the **Workspace Settings** page.
+- In the Cloud UI, **Workspace Settings** in the left menu is now available to all Workspace members.
 
-To configure this feature, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-deployment-metrics-to-datadog).
+### New Azure regions
+
+You can now [create an Astro cluster on Azure](create-cluster.md) in the following regions:
+
+- `japaneast` 
+- `southafricanorth` 
+- `southcentralus` 
+  
+## October 11, 2022 
+
+### Additional improvements 
+
+- New worker node pools on Azure and Google Cloud Platform (GCP) clusters can now scale to zero. When you set your minimum worker count to 0, you don't incur costs for enabling a new worker type for your cluster until it's used in a Deployment.
+
+### Bug fixes 
+
+- Fixed an issue where worker queues with a minimum worker count of zero would appear with a minimum worker count of one in the Cloud UI.
+
+## October 4, 2022 
+
+### New permissions boundary for managed AWS Accounts
+
+The operational roles that Astronomer assumes on dedicated customer AWS accounts now have new [permissions boundaries](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html) that limit the roles to a subset of their permissions. The remote management role is now limited to the following actions across all contexts:
+
+- `autoscaling:*`
+- `cloudformation:*`
+- `cloudwatch:*`
+- `ec2:*`
+- `ecr:*`
+- `eks:*`
+- `elasticloadbalancing:*`
+- `iam:*OpenID*`
+- `kms:DescribeKey`
+- `lambda:*`
+- `logs:*`
+- `route53:AssociateVPCWithHostedZone`
+- `s3:*`
+- `secretsmanager:*`
+- `servicequotas:*`
+- `ssm:*`
+- `tag:*`
+
+These permissions might change in the future to enable new Astro features or to refine permissions for specific contexts. 
+
+### Additional improvements 
+
+- Users with the required permissions can now access a **Configuration** tab in the **Admin** menu of the Airflow UI. This page no longer shows sensitive values in plain-text and can be used to verify all configurations running on your Deployment.
+- In the Cloud UI, the maximum time for Deployment metrics has been extended from 24 hours to 7 days.
+- The [Deployment metrics overview](deployment-metrics.md#deployment-overview) now shows metrics for the `default` worker queue instead of an aggregate of all worker queues. Improved worker queue metrics coming soon.
+
+### Bug fixes 
+
+- Added the global environment variable `AIRFLOW__LOGGING__DAG_PROCESSOR_LOG_TARGET=stdout` so that a scheduler's logs don't overcrowd its local storage
+- Removed misleading maximum CPU and memory lines from Deployment metric graphs
+
+## September 28, 2022 
+
+### Additional improvements 
+
+- All worker queue configurations in the **Worker Queues** tab of the Cloud UI now have tooltips.
+- The **Worker CPU** and **Worker Memory** metrics in the **Analytics** tab of the Cloud UI now show metrics only for the default worker queue instead of an average across queues. Improved worker queue metrics coming soon.
+
+### Bug fixes 
+
+- Values in the Organization **Settings** page no longer overlap with other UI elements. 
+- Organization Owners can now [push code](deploy-code.md) to a Deployment even if they aren't explicit members of the Deployment's Workspace. 
+
+## September 21, 2022
+
+### A simpler Deployment page
+
+All of a Deployment's configurations, including analytics, API keys, environment variables, and resource configurations, are now organized as tabs within the Deployment's page in the Cloud UI.
+
+![New organization of Deployment-level pages in the Cloud UI](/img/release-notes/deployment-tabs.png)
+
+This new UI moves the **Analytics** and **Logs** from the left sidebar to the main Deployment page so that you no longer have to filter those views separately by Deployment. The left sidebar now exclusively contains Workspace-level menus.
+
+### New Account Dashboard
+
+You can now access your Account Dashboard to manage your user account settings and find links to helpful resources. Access this page by going to `account.astronomer.io` in your browser or by clicking **Profile** > **Manage your Astro Account** in the Cloud UI. You must be authenticated to Astro.
+
+![New user home page](/img/release-notes/user-home.png)
 
 ### Additional improvements
 
-- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers.
-- When you create a new worker queue, the Cloud UI now populates the **Worker type** field with a default worker type.
-- The Cloud UI now automatically validates worker queue names.
+- You can now use the `m6id` worker node type series for Deployments on AWS clusters. This worker type is general purpose and includes significant storage as well as up to 15% better performance compared to `m5d` nodes. For more information, see [Worker instance types](resource-reference-aws.md#worker-node-types).
+- New worker node pools on Amazon Web Services (AWS) clusters can now scale to zero. This means that enabling a new worker type for your cluster does not cost you until it's used in a Deployment.
+
+### Bug fixes
+
+- Fixed an issue where the Cloud UI Deployment metrics showed a maximum worker CPU and memory that was inconsistent with your configured worker queues.
+
+## September 14, 2022
+
+### Additional improvements
+
+- When you create a new worker queue, the default worker type in your cluster is now pre-selected in the **Worker Type** list.
+- You can now configure multiple instances of the same identity provider (IdP). See [Configure an identity provider](configure-idp.md).
+- You can now expand and collapse the **Workspace** menu in the Cloud UI.
+
+### Bug fixes
+
+- Fixed an issue where you could not open the Airflow UI from a Deployment.
+
+## August 31, 2022
+
+### Export Deployment metrics to Datadog
+
+You can now export over 40 Airflow metrics related to the state of your Astro Deployment to [Datadog](https://www.datadoghq.com/) by adding a Datadog API key to the Deployment. Metrics include task successes, DAG processing time, frequency of import errors, and more.
+
+For organizations already using the observability service, this integration allows your team to standardize on tooling and gain a more granular view of Deployment metrics in a single place. Once the integration is configured, Astro automatically exports all available metrics to Datadog. For a complete list of supported metrics, see [Data Collected](https://docs.datadoghq.com/integrations/airflow/?tab=host#data-collected).
+
+To learn more, see [Export Airflow metrics to Datadog](deployment-metrics.md#export-airflow-metrics-to-datadog).
+
+### Additional improvements
+
+- The Cloud UI now automatically ensures that worker queue names are valid as you type in real time.
 - The number of times that a user can enter the wrong credentials for Astro before being locked out has been reduced from 10 to 6.
-- The timestamp appended to the end of a Deployment's Runtime image tag is now updated when you update a Deployment's environment variables.
+- You can now configure [worker queues](configure-deployment-resources.md#worker-queues) to have a minimum **Worker count** of 0 workers. Note that depending on your cloud provider and Deployment configurations, some Deployments still might not be able to scale to 0 workers.
 
 ## Bug fixes
 
+- The timestamp shown in the **Updated** field of the Deployment view in the Cloud UI is now properly updated when you create or modify environment variables.
 - Fixed an issue where logging in to the Airflow UI with unrecognized credentials could freeze you on an error page.
 
 ## August 24, 2022
@@ -324,7 +436,7 @@ To learn more about data lineage and how you can configure it on Astro, see:
 
 :::info
 
-This functionality is still early access and under active development. If you have any questions or feedback about this feature, reach out to [Astronomer support](https://support.astronomer.io).
+This functionality is still early access and under active development. If you have any questions or feedback about this feature, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 :::
 
@@ -388,7 +500,7 @@ For a reference of all node instance types Astro supports and their correspondin
 
 The Cloud UI now includes a dedicated **Analytics** page that contains various Deployment-level metrics. These metrics are collected in real time and can provide insight into how your data pipelines are performing over time:
 
-![Analytics menu location](/img/docs/access-analytics.png)
+![Analytics menu location](/img/release-notes/access-analytics.png)
 
 For more information about accessing the **Analytics** page and the available metrics, see [Deployment Analytics](deployment-metrics.md#deployment-analytics).
 
@@ -410,7 +522,7 @@ A few additional notes about this upgrade:
 - Because Astronomer is upgrading each customer individually over time, the exact date that you will start seeing these logs will vary.
 - When you push code to a Deployment on Runtime 4.2.0+ and trigger this update, all other Deployments on Runtime 4.2.0+ in the same Workspace will also restart in order to receive the lineage backend update. If you plan to push code to any Deployment affected by this change, then we recommend doing so at a time where you can tolerate some Airflow components restarting. For more information about expected behavior, see [What Happens During a Code Deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
-For more information about what to expect when lineage tools go live, read Astronomer's [OpenLineage and Airflow guide](https://www.astronomer.io/guides/airflow-openlineage).
+For more information about what to expect when lineage tools go live, read Astronomer's [OpenLineage and Airflow guide](https://docs.astronomer.io/learn/airflow-openlineage).
 
 ### New AWS regions available
 
@@ -437,7 +549,7 @@ As of this release, **Maximum Node Count** is now a configurable setting for new
 
 Previously, maximum node count was a fixed, global setting that applied to all customers on Astro and could not be configured per cluster. Now, your organization can modify this setting as your workloads evolve and more Deployments are created. Once the limit is reached, your cluster will not be able to auto-scale and worker pods may fail to schedule.
 
-To update this setting for an existing cluster, reach out to [Astronomer support](https://support.astronomer.io) and provide the name of your cluster and the desired maximum node count.
+To update this setting for an existing cluster, reach out to [Astronomer support](https://cloud.astronomer.io/support) and provide the name of your cluster and the desired maximum node count.
 
 ### Additional improvements
 
@@ -475,7 +587,7 @@ While it is a good proxy, the tag shown in the Airflow UI does not forcibly repr
 
 This value is also distinct from the **Docker Image** that is shown in the Deployment view of the Cloud UI, which displays the image tag as specified in the Cloud API request that is triggered on `astro deploy`. The image tag in the Airflow UI can be interpreted to be a more accurate proxy to what is running on all components of your Deployment.
 
-If you ever have trouble verifying a code push to a Deployment on Astro, reach out to [Astronomer support](https://support.astronomer.io).
+If you ever have trouble verifying a code push to a Deployment on Astro, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
 :::
 
@@ -572,7 +684,7 @@ For more information about this feature read [Set up an identity provider](confi
 
 The Astro CLI (`astro`) is now generally available as the official command-line tool for Astro. It is a direct replacement of the previously released `astro` executable and comes with various significant improvements. We encourage all customers to upgrade.
 
-For more information on the Astro CLI, see [CLI Release Notes](cli/release-notes.md). For install instructions, read [Install the CLI](cli/get-started.md).
+For more information on the Astro CLI, see [CLI Release Notes](cli/release-notes.md). For install instructions, read [Install the CLI](cli/install-cli.md).
 
 ### Multiple authentication methods for a single user account
 
@@ -582,7 +694,7 @@ This also means that all Organizations now have GitHub, Google, and username/pas
 
 ### Additional improvements
 
-- Changed the default RDS instance type for new clusters from `db.r5.xlarge` to `db.r5.large`, which represents a monthly cost reduction of ~50% for newly provisioned clusters. Customers with existing clusters will need to request a downscale via [Astronomer support](https://support.astronomer.io)
+- Changed the default RDS instance type for new clusters from `db.r5.xlarge` to `db.r5.large`, which represents a monthly cost reduction of ~50% for newly provisioned clusters. Customers with existing clusters will need to request a downscale via [Astronomer support](https://cloud.astronomer.io/support)
 
 ## January 13, 2022
 
@@ -614,7 +726,7 @@ The **Scheduler Logs** tab in the Cloud UI has been updated to make logs easier 
 
 ### Removal of worker termination grace period
 
-The **Worker Termination Grace Period** setting is no longer available in the Cloud UI or API. Previously, users could set this to anywhere between 1 minute and 24 hours per Deployment. This was to prevent running tasks from being interrupted by a code push. Today, however, existing Celery workers don't have to terminate in order for new workers to spin up and start executing tasks. Instead, existing workers will continue to execute running tasks while a new set of workers gets spun up concurrently to start executing most recent code.
+The **Worker Termination Grace Period** setting is no longer available in the Cloud UI or API. Previously, users could set this to anywhere between 1 minute and 24 hours per Deployment. This was to prevent running tasks from being interrupted by a code push. Today, however, existing Celery workers don't have to terminate in order for new workers to spin up and start executing tasks. Instead, existing workers will continue to execute running tasks while a new set of workers gets spun up concurrently to start executing the most recent code.
 
 To simplify Deployment configuration and reflect current functionality:
 
@@ -682,7 +794,7 @@ For a full list of AWS regions supported on Astro, see [Resources required for A
 
 ### Additional improvements
 
-- You can now see your Deployment's **Namespace** in the **Deployments** menu and on the Deployment information screen in the Cloud UI. Namespace is a required argument to run tasks with the KubernetesPodOperator. It is also required to submit an issue to [Astronomer support](https://support.astronomer.io).
+- You can now see your Deployment's **Namespace** in the **Deployments** menu and on the Deployment information screen in the Cloud UI. Namespace is a required argument to run tasks with the KubernetesPodOperator. It is also required to submit an issue to [Astronomer support](https://cloud.astronomer.io/support).
 
     ![Deployment namespace available on a Deployment's information page](/img/docs/namespace.png)
 
@@ -745,7 +857,7 @@ To start, the homepage is now a global view. From here, you can now see all Work
 
 ![New global menu in the UI](/img/docs/ui-release-note1.png)
 
-You can now also select specific Workspaces to work in. When you click in to a Workspace, you'll notice the lefthand menu bar is now entirely dedicated to Workspace actions:
+You can now also select specific Workspaces to work in. When you click in to a Workspace, you'll notice the left menu bar is now entirely dedicated to Workspace actions:
 
 - The Rocket icon brings you to the **Deployments** menu.
 - The People icon brings you to the **Workspace Access** menu.
@@ -755,7 +867,7 @@ To return to the global menu, you can either click the Astro "A" or click the Wo
 
 ![New Workspace menu in the UI](/img/docs/ui-release-note2.png)
 
-All user configurations can be found by clicking your user profile picture in the upper righthand corner of the UI. From the dropdown menu that appears, you can both configure user settings and access other Astronomer resources such as documentation and the Astronomer Registry.
+All user configurations can be found by clicking your user profile picture in the upper right corner of the UI. From the dropdown menu that appears, you can both configure user settings and access other Astronomer resources such as documentation and the Astronomer Registry.
 
 ![New profile menu in the UI](/img/docs/ui-release-note3.png)
 
@@ -796,7 +908,7 @@ All user configurations can be found by clicking your user profile picture in th
 - The name of your Astro Deployment now appears on the main DAGs view of the Airflow UI.
 - You can now see the health status for each Deployment in your Workspace on the table view of the **Deployments** page in the Cloud UI:
 
-   ![Deployment Health statuses visible in the Deployments table view](/img/docs/health-status-table.png)
+   ![Deployment Health statuses visible in the Deployments table view](/img/release-notes/health-status-table.png)
 
 - In the Cloud UI, you can now access the Airflow UI for Deployments via the **Deployments** page's card view:
 
@@ -835,7 +947,7 @@ This release introduces a breaking change to code deploys via the Astro CLI. Sta
 
 ### Support for Deployment API keys
 
-Astro now officially supports Deployment API keys, which you can use to automate code pushes to Astro and integrate your environment with a CI/CD tool such as GitHub Actions. For more information on creating and managing Deployment API keys, see [Deployment API keys](api-keys.md). For more information on using Deployment API keys to programmatically deploy code, see [CI/CD](ci-cd.md). Support making requests to Airflow's REST API using API keys is coming soon.
+Astro now officially supports Deployment API keys, which you can use to automate code pushes to Astro and integrate your environment with a CI/CD tool such as GitHub Actions. For more information on creating and managing Deployment API keys, see [Deployment API keys](api-keys.md). For more information on using Deployment API keys to programmatically deploy code, see [CI/CD](ci-cd.md). Support for making requests to Airflow's REST API using API keys is coming soon.
 
 ## September 3, 2021
 

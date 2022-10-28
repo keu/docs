@@ -11,7 +11,7 @@ For all teams, incorporating an alerting framework is critical to the health of 
 - SLAs
 - Email alerts
 
-Slack alerts and SLAs do not require additional configuration on Astro. For best practices, see the Astronomer guide on [Airflow alerts](https://www.astronomer.io/guides/error-notifications-in-airflow).
+Slack alerts and SLAs do not require additional configuration on Astro. For best practices, see the Astronomer guide on [Airflow alerts](https://docs.astronomer.io/learn/error-notifications-in-airflow).
 
 This guide focuses on setting up email alerts on Astro with an SMTP service.
 
@@ -19,7 +19,7 @@ This guide focuses on setting up email alerts on Astro with an SMTP service.
 
 On Astro, setting up email alerts requires configuring an SMTP service for delivering each alert.
 
-If your team isn't already using an SMTP service, we recommend one of the following:
+If your organization isn't using an SMTP service currently, Astronomer recommends one of the following:
 
 - [SendGrid](https://sendgrid.com/)
 - [Amazon SES](https://aws.amazon.com/ses/)
@@ -29,8 +29,6 @@ The following topics provide setup steps for integrating each of these external 
 ### Integrate with SendGrid
 
 [SendGrid](https://sendgrid.com/) is an email delivery service that's easy to set up for Airflow alerts. A free SendGrid account grants users 40,000 free emails within the first 30 days of an account opening and 100 emails per day after that. This should be more than enough emails for most alerting use cases.
-
-To get started with SendGrid:
 
 1. [Create a SendGrid account](https://signup.sendgrid.com). Be prepared to disclose some standard information about yourself and your organization.
 
@@ -44,14 +42,21 @@ To get started with SendGrid:
 
 5. Verify your integration in SendGrid to confirm that the key was activated. If you get an error indicating that SendGrid can't find the test email, try rerunning the cURL code in your terminal before retrying the verification.
 
-6. In the Deployment view of the Cloud UI, create an environment variable with the following values:
+6. Add the following line to your Astro project `requirements.txt` file to install the [SendGrid Airflow provider](https://airflow.apache.org/docs/apache-airflow-providers-sendgrid/stable/index.html):
 
-    - **Key**: `AIRFLOW__EMAIL__EMAIL_BACKEND`
-    - **Value**: `airflow.providers.sendgrid.utils.emailer.send_email`
+    ```text
+    apache-airflow-providers-sendgrid
+    ```
 
-    For more information on this environment variable, see [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/howto/email-config.html#send-email-using-sendgrid).
+7. In the Deployment view of the Cloud UI, add the following environment variables:
 
-7. In the Airflow UI, [create an Airflow connection](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#creating-a-connection-with-the-ui) with the following values:
+    - `AIRFLOW__EMAIL__EMAIL_BACKEND` = `airflow.providers.sendgrid.utils.emailer.send_email`
+    - `AIRFLOW__EMAIL__EMAIL_CONN_ID` = `smtp_default`
+    - `SENDGRID_MAIL_FROM` = `<validated-sendgrid-sender-email-address>`
+
+    For more information about these environment variables, see [Send email using SendGrid](https://airflow.apache.org/docs/apache-airflow/stable/howto/email-config.html#send-email-using-sendgrid).
+
+8. In the Airflow UI, [create an Airflow connection](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#creating-a-connection-with-the-ui) with the following values:
 
     - **Connection ID**: `smtp_default`
     - **Connection Type:**: `Email`
@@ -60,9 +65,9 @@ To get started with SendGrid:
     - **Password**: `<your-sendgrid-api-key>`
     - **Port**: `587`
 
-8. Click **Save** to finalize your configuration.
+9. Click **Save** to finalize your configuration.
 
-9. To begin receiving Airflow alerts via email for task failures within a given DAG, configure the following values in the DAG's `default_args`:
+10. To receive email alerts for task failures within a given DAG, configure the following values in the DAG's `default_args`:
 
     ```python
     'email_on_failure': True,
@@ -97,7 +102,7 @@ Use your existing Amazon SES instance to send Airflow alerts by email.
     - Click **Download Credentials** or copy them and store them in a safe place.
     - Click **Close Window**.
 
-7. Log in to the Cloud UI, click **Deployments**, and then select an existing Deployment.
+7. In the Cloud UI, select a Workspace and then select a Deployment.
 
 8. In the environment variables area, click **Edit Variables** and add these variables:
     - `ENV AIRFLOW__SMTP__SMTP_HOST`: Enter the value you copied in step 5

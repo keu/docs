@@ -176,7 +176,7 @@ If you received a certificate from a private CA, follow these steps instead:
 An SMTP service is required for sending and accepting email invites from Astronomer. If you're running Astronomer Software with `publicSignups` disabled (which is the default), you'll need to configure SMTP as a way for your users to receive and accept invites to the platform via email. To integrate your SMTP service with Astronomer, fetch your SMTP service's URI and store it in a Kubernetes secret:
 
 ```sh
-kubectl create secret generic astronomer-smtp --from-literal=connection=smtp://USERNAME:PASSWORD@HOST/?requireTLS=true -n astronomer
+kubectl create secret generic astronomer-smtp --from-literal connection=smtp://USERNAME:PASSWORD@HOST/?requireTLS=true -n astronomer
 ```
 
 In general, an SMTP URI will take the following form:
@@ -443,7 +443,7 @@ prometheus.astro.mydomain.com
 ```
 
 Example wildcard CNAME record:
-![aws-elb](https://assets2.astronomer.io/main/docs/ee/route53.png)
+![aws-elb](/img/software/route53.png)
 
 ## Step 12: Verify you can access the Software UI
 
