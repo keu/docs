@@ -1,9 +1,13 @@
 ---
 title: "Manage Airflow DAG notifications"
 sidebar_label: "DAG alerts"
-description: "Methods for managing notifications in your Airflow DAGs."
 id: error-notifications-in-airflow
 ---
+
+<head>
+  <meta name="description" content="Master the basics of Apache Airflow notifications. Learn how to set up automatic email and Slack notifications to be alerted of events in your DAGs." />
+  <meta name="og:description" content="Master the basics of Apache Airflow notifications. Learn how to set up automatic email and Slack notifications to be alerted of events in your DAGs." />
+</head>
 
 When you're using a data orchestration tool, how do you know when something has gone wrong? Airflow users can check the Airflow UI to determine the status of their DAGs, but this is an inefficient way of managing errors systematically, especially if certain failures need to be addressed promptly or by multiple team members. Fortunately, Airflow has built-in notification mechanisms that can be leveraged to configure error notifications in a way that works for your organization. 
 
