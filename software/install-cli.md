@@ -122,7 +122,7 @@ Astro CLI Version: ${siteVariables.cliVersion}`}</code></pre>
     ]}>
 <TabItem value="mac">
 
-To upgrade the Astro CLI to the latest version, you can run the same command as you did to install the CLI for the first time:
+To upgrade the Astro CLI to the latest version, run the following command:
 
 ```sh
 brew install astro
@@ -136,11 +136,11 @@ To upgrade the Astro CLI on Windows:
 
 1. Delete the existing `astro.exe` file on your machine.
 
-2. Go to the [**Releases** page of the Astro CLI GitHub repository](https://github.com/astronomer/astro-cli/releases). Based on the version of the CLI you want and your CPU architecture, download one of the `.zip` files available on this page.
+2. Go to the [**Releases** page of the Astro CLI GitHub repository](https://github.com/astronomer/astro-cli/releases). Based on the version of the CLI you want and your CPU architecture, download one of the `.zip` files available in the **Assets** menu.
 
      For example, to upgrade to v1.0.0 of the Astro CLI on a Windows machine with an AMD 64 architecture, you download `astro_1.0.0-converged_windows_amd64.zip`.
 
-3. If the `.zip` file does not automatically unzip, run the following command to unzip the executable:
+3. If the `.zip` file isn't automatically extracted, run the following command to extract the executable:
 
     ```sh
     tar -xvzf .\astrocli.tar.gz
