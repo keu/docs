@@ -200,15 +200,17 @@ print(response.json())
 ```
 ## Trigger DAG runs across Deployments
 
-When you need to trigger DAGs in multiple Deployments, you can use the Airflow API. Triggering DAGS in multiple Deployments is sometimes necessary when you're using multiple Deployments to separate team workflows.
+You can use the Airflow REST API to make a request in one Deployment that triggers a DAG run in a different Deployment. This is sometimes necessary when you have interdependent workflows across multiple Deployments. On Astro, you can do this for any Deployment in any Workspace or cluster. 
 
-This methodology works with any Deployment in any Astro Workspace or cluster. DAGs similar to the one provided can be created for any operation supported by the Airflow API.
+This topic has guidelines on how to trigger a DAG run, but you can modify the example DAG provided to trigger any request that's supported in the Airflow REST API.
 
 1. On the target Deployment, create an API key ID and API key secret. See [Create an API key](api-keys.md#create-an-api-key).
 
-2. On the trigger Deployment, save the API key ID and API key secret as `KEY_ID` and `KEY_SECRET` environment variables. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md).
+2. On the triggering Deployment, set the API key ID and API key secret from the target Deployment as `KEY_ID` and `KEY_SECRET` environment variables in the Cloud UI. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md).
 
-3. Create and then run the following DAG to start a DAG run on the target Deployment from the triggering Deployment:
+3. In your DAG, write a task called `get-token` that uses your Deployment API key ID and secret to make a request to the Astronomer API that retrieves the access token that's required for authentication to the Airflow API. In another task called `trigger_external_dag`, use the access token to make a request to the `dagRuns` endpoint of the Airflow REST API. Make sure to replace `<target-deployment-url>` with your own value.
+
+Example:
 
     ````python
     import requests
@@ -227,8 +229,8 @@ This methodology works with any Deployment in any Astro Workspace or cluster. DA
             response = requests.post("https://auth.astronomer.io/oauth/token",
                                     json={"audience": "astronomer-ee",
                                         "grant_type": "client_credentials",
-                                        "client_id": KEY_ID,
-                                        "client_secret": KEY_SECRET})
+                                        "client_id": {KEY_ID},
+                                        "client_secret": {KEY_SECRET})
             return response.json()["access_token"]
         @task
         def trigger_external_dag(token):
