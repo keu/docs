@@ -1,9 +1,13 @@
 ---
 title: "Airflow operators"
 sidebar_label: "Operators"
-description: "An introduction to Airflow operators."
 id: what-is-an-operator
 ---
+
+<head>
+  <meta name="description" content="Learn the basics of operators, which are the building blocks of Airflow DAGs. See an example of how to implement several common operators available in Apache Airflow." />
+  <meta name="og:description" content="Learn the basics of operators, which are the building blocks of Airflow DAGs. See an example of how to implement several common operators available in Apache Airflow." />
+</head>
 
 Operators are the building blocks of Airflow DAGs. They contain the logic of how data is processed in a pipeline. Each task in a DAG is defined by instantiating an operator.
 

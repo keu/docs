@@ -1,10 +1,13 @@
 ---
 title: "Orchestrate dbt with Airflow"
 sidebar_label: "dbt"
-description: "Orchestrate dbt models with your Airflow DAGs."
 id: airflow-dbt
-keywords: [DAGs, Integrations]
 ---
+
+<head>
+  <meta name="description" content="Learn how to use the dbt Cloud Provider to orchestrate dbt Cloud with Airflow. Learn use cases for orchestrating dbt Core using the BashOperator." />
+  <meta name="og:description" content="Learn how to use the dbt Cloud Provider to orchestrate dbt Cloud with Airflow. Learn use cases for orchestrating dbt Core using the BashOperator." />
+</head>
 
 [dbt](https://getdbt.com/) is an open-source library for analytics engineering that helps users build interdependent SQL models for in-warehouse data transformation. As ephemeral compute becomes more readily available in data warehouses thanks to tools like [Snowflake](https://snowflake.com/), dbt has become a key component of the modern data engineering workflow. Now, data engineers can use dbt to write, organize, and run in-warehouse transformations of raw data.
 

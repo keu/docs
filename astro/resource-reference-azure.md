@@ -42,6 +42,9 @@ Astro supports the following Azure regions:
 - Canada Central
 - Central US
 - East US
+- Japan East
+- South Africa North
+- South Central US
 - West Europe
 - West US 3
 
