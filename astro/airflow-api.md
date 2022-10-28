@@ -208,9 +208,7 @@ This topic has guidelines on how to trigger a DAG run, but you can modify the ex
 
 2. On the triggering Deployment, set the API key ID and API key secret from the target Deployment as `KEY_ID` and `KEY_SECRET` environment variables in the Cloud UI. Make `KEY_SECRET` secret. See [Set environment variables on Astro](environment-variables.md).
 
-3. In your DAG, write a task called `get-token` that uses your Deployment API key ID and secret to make a request to the Astronomer API that retrieves the access token that's required for authentication to the Airflow API. In another task called `trigger_external_dag`, use the access token to make a request to the `dagRuns` endpoint of the Airflow REST API. Make sure to replace `<target-deployment-url>` with your own value.
-
-Example:
+3. In your DAG, write a task called `get-token` that uses your Deployment API key ID and secret to make a request to the Astronomer API that retrieves the access token that's required for authentication to the Airflow API. In another task called `trigger_external_dag`, use the access token to make a request to the `dagRuns` endpoint of the Airflow REST API. Make sure to replace `<target-deployment-url>` with your own value. For example:
 
     ````python
     import requests
