@@ -109,7 +109,6 @@ If the installation was successful, you should see the following output:
 <pre><code parentName="pre">{`% astro version
 Astro CLI Version: ${siteVariables.cliVersion}`}</code></pre>
 
-
 ## Upgrade the CLI
 
 <Tabs
