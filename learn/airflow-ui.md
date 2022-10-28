@@ -6,8 +6,8 @@ id: airflow-ui
 ---
 
 <head>
-  <meta name="description" content="Explore the Airflow UI, which helps with monitoring and troubleshooting your data pipelines. See some of its key features and visualizations." />
-  <meta name="og:description" content="Explore the Airflow UI, which helps with monitoring and troubleshooting your data pipelines. See some of its key features and visualizations." />
+  <meta name="description" content="Explore the Airflow UI, which helps you monitor and troubleshoot your data pipelines. Learn about some of its key features and visualizations." />
+  <meta name="og:description" content="Explore the Airflow UI, which helps you monitor and troubleshoot your data pipelines. Learn about some of its key features and visualizations." />
 </head>
 
 A notable feature of Apache Airflow is the [user interface (UI)](https://airflow.apache.org/docs/apache-airflow/stable/ui.html), which provides insights into your DAGs and DAG runs. The UI is a useful tool for understanding, monitoring, and troubleshooting your pipelines.
