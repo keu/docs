@@ -146,7 +146,7 @@ You now have a Python cell and a SQL cell, but there's no logic to determine whi
 
    ![Dependency graph in the Pipelines menu](/img/cloud-ide/configured-dependency.png)
 
-## Step 7: Make data references in your code
+## Step 8: Make data references in your code
 
 One of the most powerful features of the Astro Cloud IDE is that it can automatically detect data dependencies in your cell code and restructure your pipeline based on those dependencies. This works for both Python and SQL cells.
 
@@ -202,13 +202,13 @@ select * from {{my_dataframe}} -- my_dataframe is a Python cell
 where col_a > 10
 ```
 
-## Step 8: Run your pipeline
+## Step 9: Run your pipeline
 
 Now that you've completed your pipeline, click **Run** in the top right corner of your pipeline editing window to run it from beginning to end. Cells are executed in order based on their dependencies. During the run, the **Pipeline** page shows which cells have been executed and which are still pending.
 
 ![Run Pipeline](/img/cloud-ide/run-pipeline.png)
 
-## Step 9: Schedule your pipeline
+## Step 10: Schedule your pipeline
 
 After you've verified that your pipeline is working, you can schedule it to run regularly.
 
