@@ -165,6 +165,12 @@ The following table lists all available instance types for worker node pools, as
 | t3.xlarge        | 3 CPUs  | 13 GiB MEM   |
 | t3.2xlarge       | 7 CPUs  | 29 GiB MEM   |
 
+:::caution
+
+Astronomer doesn’t recommend using `t` series instance types in standard mode for production workloads, because CPU utilization for `t` instance types in standard mode can be throttled.
+
+:::
+
 :::info
 
 With the exception of `m5d` nodes, all supported node types have a maximum of 20GB of storage per node for system use only. If you need locally attached storage for task execution, Astronomer recommends modifying your cluster to run `m5d` nodes, which Astronomer provisions with NVMe SSD volumes.
