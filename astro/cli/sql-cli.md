@@ -27,7 +27,7 @@ Use Astro CLI SQL commands to run SQL workflows without writing Python code or s
 
 :::info 
 
-If you use Debian or Ubuntu as your operating system, download Docker on the [Snap Store](https://snapcraft.io/docker). Otherwise, you have to [install Docker from a package](https://docs.docker.com/engine/install/ubuntu/#install-from-a-package) and will only be able to store SQL projects in your `/tmp` directory.
+If you use Debian or Ubuntu as your operating system, Astronomer recommends to [install Docker from the upstream package](https://docs.docker.com/engine/install/ubuntu/#install-from-a-package). If you install Docker using [Snap Store](https://snapcraft.io/docker), you will not be able to create projects on the `/tmp` directory.
 
 :::
 
@@ -49,7 +49,7 @@ To roll back to a supported version of the CLI, run the following command to uni
 sudo rm /usr/local/bin/astro
 ```
 
-Then, see [Install the Astro CLI](cli/install-cli.md) for steps to install the latest supported version.
+Then, see [Install the Astro CLI](cli/install-cli.md) for steps to install the latest stable version.
 
 :::
 
