@@ -151,6 +151,7 @@ module.exports = {
       label: "Reference",
       items: [
         "astro-support",
+        "release-previews",
         {
           type: "category",
           label: "Astro Runtime",
