@@ -52,10 +52,6 @@ If you have any feedback, please submit it to the [Astro Cloud IDE product porta
 
 AWS clusters that use `m5d` and `m6id` worker types can now run tasks which require writing data to local storage. These worker types now have NVMe SSD volume mounts with 20 GB of storage. You can use this storage for simple operations such as a disk-based merge sort or checkpointing to prevent crashes. To use these worker types on your cluster, see [Modify a cluster](modify-cluster.md) and [Configure worker queues](configure-worker-queues.md).
 
-### New Deployment transfer functionality
-
-You can now transfer a Deployment from one Workspace to another in your Organization. This feature is helpful if you need to change the group of users that have access to a Deployment, or if you create a Deployment in the wrong Workspace. See [Transfer a Deployment to another Workspace](deploy-code.md#transfer-a-deployment-to-another-workspace).
-
 ### Additional improvements 
 
 - In the Cloud UI, cluster selection menus are now alphabetized.
