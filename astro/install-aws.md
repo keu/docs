@@ -263,7 +263,7 @@ The setup process assumes that you've already provided Astronomer support with t
 
 - Your preferred cluster installation region. See the supported region lists for [AWS](resource-reference-aws.md#aws-region).
 - Optional. Your preferred worker instance type for your first cluster. See [AWS cluster configurations](resource-reference-aws.md#worker-node-types).
-- Optional. Your VPC peering requirements for [AWS](install-aws.md#vpc-peering-prerequisites-optional).
+- Optional. Your VPC peering requirements for [AWS](install-aws.md?tab=byoc#vpc-peering-prerequisites-optional).
 - The email address of your first Astro user.
 
 If you haven't provided this information to Astronomer support, contact your Astronomer representative. 
