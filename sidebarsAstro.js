@@ -28,16 +28,7 @@ module.exports = {
       label: "Develop",
       items: [
         "develop-project",
-        {
-          type: "category",
-          label: "Write DAGs",
-          items: [
-            "astro-python-sdk",
-            "deferrable-operators",
-            "kubepodoperator-local",
-            "kubernetespodoperator",
-          ],
-        },
+        "kubernetespodoperator",
         {
           type: "category",
           label: "Cloud IDE",
@@ -160,14 +151,7 @@ module.exports = {
           ],
         },
         'platform-variables',
-        {
-          type: "category",
-          label: "Data lineage",
-          items: [
-            "data-lineage-support-and-compatibility",
-            "data-lineage-concepts",
-          ],
-        },
+        'data-lineage-support-and-compatibility',
         {
           type: "category",
           label: "Security",
