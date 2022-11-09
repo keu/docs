@@ -19,21 +19,17 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## November 8, 2022
 
-### New DAG deployment method
+### Deploy only DAGs with `astro deploy -—dags`
 
-Using Astro CLI 1.7, you can run `astro deploy -—dags` to push only the `dags` directory of your Astro project to a Deployment on Astro. This is an alternative to rebuilding your Astro project's Docker image every time you change your code.
+Using Astro CLI 1.7, you can run `astro deploy -—dags` to push only the `dags` directory of your Astro project to a Deployment on Astro. This is an additional option to `astro deploy` that makes for a faster development experience and gives you more flexibility in how you configure CI/CD processes.
 
-DAG-only deploys:
+For more information, see [Astro CLI 1.7](astro/cli/release-notes#deploy-only-dags-with-astro-deploy--dags) or [Deploy DAGs only](deploy-code.md#deploy-dags-only). For example CI/CD workflows with this feature enabled, see [CI/CD](ci-cd.md).
 
-- Are significantly faster than running `astro deploy` to rebuild your project.
-- Improve performance and reduce costs by removing the requirement to terminate and restart your workers every time you a change a DAG.
-- Allow the creation of separate CI/CD processes for DAG deploys and changes to Astro projects. See [CI/CD templates](ci-cd.md#ci-cd-templates) for examples. 
+### Transfer a Deployment
 
-For more information, see [Deploy DAGs only](deploy-code.md#deploy-dags-only).
+You can now transfer a Deployment from one Workspace to another in your Organization. This feature is helpful if you need to change the group of users that have access to a Deployment, or if you create a Deployment in the wrong Workspace.
 
-### New Deployment transfer functionality
-
-You can now transfer a Deployment from one Workspace to another in your Organization. This feature is helpful if you need to change the group of users that have access to a Deployment, or if you create a Deployment in the wrong Workspace. See [Transfer a Deployment to another Workspace](deploy-code.md#transfer-a-deployment-to-another-workspace).
+See [Transfer a Deployment to another Workspace](deploy-code.md#transfer-a-deployment-to-another-workspace).
 
 ### Additional improvements 
 
