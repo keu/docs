@@ -65,7 +65,7 @@ Setting Airflow connections via secrets requires knowledge of how to generate Ai
         {label: 'Azure Key Vault', value: 'azure'},
         {label: 'AWS Parameter Store', value: 'paramstore'},
     ]}>
-    
+
 <TabItem value="secretsmanager">
 
 This topic provides setup steps for configuring [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) as a secrets backend on Astro.
@@ -120,7 +120,7 @@ For more information on adding secrets to Secrets Manager, see [AWS documentatio
 
     ```dockerfile
     ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
-    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $SECRETS_BACKEND_ARN, "region_name": $SECRETS_BACKEND_REGION}
+    ENV AIRFLOW__SECRETS__BACKEND_KWARGS='{"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $SECRETS_BACKEND_ARN, "region_name": $SECRETS_BACKEND_REGION}'
     ```
 
 2. Add the following lines to your `.env` file:
@@ -150,7 +150,7 @@ The Dockerfile contains the core configuration for your secrets backend. Because
 To further customize the Airflow and AWS SSM Parameter Store integration, see the [full list of available kwargs](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/_api/airflow/providers/amazon/aws/secrets/systems_manager/index.html).
 
 </TabItem>
-    
+
 <TabItem value="hashicorp">
 
 This topic provides steps for using [Hashicorp Vault](https://www.vaultproject.io/) as a secrets backend for both local development and on Astro. To do this, you will:
@@ -173,7 +173,7 @@ This topic provides steps for using [Hashicorp Vault](https://www.vaultproject.i
 If you do not already have a Vault server deployed but would like to test this feature, Astronomer recommends that you either:
 
 - Sign up for a Vault trial on [Hashicorp Cloud Platform (HCP)](https://cloud.hashicorp.com/products/vault) or
-- Deploy a local Vault server. See [Starting the server](https://learn.hashicorp.com/tutorials/vault/getting-started-dev-server?in=vault/getting-started) in Hashicorp documentation. 
+- Deploy a local Vault server. See [Starting the server](https://learn.hashicorp.com/tutorials/vault/getting-started-dev-server?in=vault/getting-started) in Hashicorp documentation.
 
 #### Step 1: Create a Policy and AppRole in Vault
 
@@ -239,7 +239,7 @@ Then, add the following environment variables to your `Dockerfile`:
 ```dockerfile
 # Make sure to replace `<your-approle-id>` and `<your-approle-secret>` with your own values.
 ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.hashicorp.secrets.vault.VaultBackend
-ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_path": "connections", "variables_path": "variables", "config_path": null, "url": "http://host.docker.internal:8200", "auth_type": "approle", "role_id":"<your-approle-id>", "secret_id":"<your-approle-secret>"}
+ENV AIRFLOW__SECRETS__BACKEND_KWARGS='{"connections_path": "connections", "variables_path": "variables", "config_path": null, "url": "http://host.docker.internal:8200", "auth_type": "approle", "role_id":"<your-approle-id>", "secret_id":"<your-approle-secret>"}'
 ```
 
 This tells Airflow to look for variable and connection information at the `secret/variables/*` and `secret/connections/*` paths in your Vault server. In the next step, you'll test this configuration in a local Airflow environment.
@@ -332,7 +332,7 @@ For instructions, see the [AWS Systems Manager Console](https://docs.aws.amazon.
 
     ```dockerfile
     ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.systems_manager.SystemsManagerParameterStoreBackend
-    ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $PARAMETER_STORE_ARN, "region_name": $PARAMETER_STORE_REGION}
+    ENV AIRFLOW__SECRETS__BACKEND_KWARGS='{"connections_prefix": "/airflow/connections", "variables_prefix": "/airflow/variables",  "role_arn": $PARAMETER_STORE_ARN, "region_name": $PARAMETER_STORE_REGION}'
     ```
 
 2. Add the following lines to your `.env` file:
@@ -409,7 +409,7 @@ Then, add the following environment variables to your project's Dockerfile:
 
 ```dockerfile
 ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.google.cloud.secrets.secret_manager.CloudSecretManagerBackend
-ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "airflow-connections", "variables_prefix": "airflow-variables", "gcp_keyfile_dict": <your-key-file>}
+ENV AIRFLOW__SECRETS__BACKEND_KWARGS='{"connections_prefix": "airflow-connections", "variables_prefix": "airflow-variables", "gcp_keyfile_dict": "<your-key-file>"}'
 ```
 
 Make sure to paste your entire JSON service account key in place of `<your-key-file>`. In the next step, you'll test that this configuration is valid locally.
@@ -514,7 +514,7 @@ ENV AZURE_CLIENT_ID="<your-client-id>" # Found on App Registration page > 'Appli
 ENV AZURE_TENANT_ID="<your-tenant-id>" # Found on App Registration page > 'Directory (tenant) ID'
 ENV AZURE_CLIENT_SECRET="<your-client-secret>" # Found on App Registration Page > Certificates and Secrets > Client Secrets > 'Value'
 ENV AIRFLOW__SECRETS__BACKEND=airflow.providers.microsoft.azure.secrets.azure_key_vault.AzureKeyVaultBackend
-ENV AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "airflow-connections", "variables_prefix": "airflow-variables", "vault_url": "<your-vault-url>"}
+ENV AIRFLOW__SECRETS__BACKEND_KWARGS='{"connections_prefix": "airflow-connections", "variables_prefix": "airflow-variables", "vault_url": "<your-vault-url>"}'
 ```
 
 This tells Airflow to look for variable information at the `airflow/variables/*` path in Azure Key Vault and connection information at the `airflow/connections/*` path. In the next step, you'll run an example DAG to test this configuration locally.
