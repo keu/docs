@@ -17,6 +17,29 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.7.0 ([Release notes](cli/release-notes.md))
 
+## November 8, 2022
+
+### New DAG deployment method
+
+Using Astro CLI 1.7, you can run `astro deploy -—dags` to push only the `dags` directory of your Astro project to a Deployment on Astro. This is an alternative to rebuilding your Astro project's Docker image every time you change your code.
+
+DAG-only deploys:
+
+- Are significantly faster than running `astro deploy` to rebuild your project.
+- Improve performance and reduce costs by removing the requirement to terminate and restart your workers every time you a change a DAG.
+- Allow the creation of separate CI/CD processes for DAG deploys and changes to Astro projects. See [CI/CD templates](ci-cd.md#ci-cd-templates) for examples. 
+
+For more information, see [Deploy DAGs only](deploy-code.md#deploy-dags-only).
+
+### New Deployment transfer functionality
+
+You can now transfer a Deployment from one Workspace to another in your Organization. This feature is helpful if you need to change the group of users that have access to a Deployment, or if you create a Deployment in the wrong Workspace. See [Transfer a Deployment to another Workspace](deploy-code.md#transfer-a-deployment-to-another-workspace).
+
+### Additional improvements 
+
+- The Cloud UI now shows the user or API key that created a Deployment, as well as the user or API key that most recently updated a Deployment with configuration or project changes. View this information in your list of Deployments or in the header of a Deployment's information page. 
+- The Kubernetes API of your data plane is no longer exposed to the public internet. 
+
 ## November 1, 2022 
 
 ### Introducing the Astro Cloud IDE, a new Airflow development experience
