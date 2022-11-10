@@ -23,7 +23,7 @@ global:
 
 houston:
   cleanupTaskUsageData:
-	  olderThan: 90
+          olderThan: 90
 ```
 
 After you set this configuration, Astronomer Software begins to run a cron job for collecting task usage metrics, sending them to Astronomer Support, and displaying them in the Software UI.
