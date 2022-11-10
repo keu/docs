@@ -65,18 +65,13 @@ If you have any feedback, please submit it to the [Astro Cloud IDE product porta
 
 :::
 
-### Write to temporary storage on AWS clusters
-
-AWS clusters that use `m5d` and `m6id` worker types can now run tasks which require writing data to ephemeral storage. These worker types now have NVMe SSD volume mounts that can be utilized by tasks. See [Amazon EC2 M6i Instances](https://aws.amazon.com/ec2/instance-types/m6i/) and [Amazon EC2 M5 Instances](https://aws.amazon.com/ec2/instance-types/m5/) for the amount of available storage in each worker type.
-
-You can use this storage for simple operations such as a disk-based merge sort or checkpointing to prevent crashes. To use these worker types on your cluster, see [Modify a cluster](modify-cluster.md) and [Configure worker queues](configure-worker-queues.md). 
-
 ### Additional improvements 
 
 - In the Cloud UI, cluster selection menus are now alphabetized.
 
 ### Bug fixes 
 
+- Fixed an issue where the KubernetesPodOperator was not aware of available ephemeral storage in `m5d` and `m6id` worker nodes. This issue resulted in Pods being evicted to free up storage even when there was enough available storage for tasks.
 - Fixed an issue in the Cloud UI where you could select a worker type before selecting a cluster when creating a Deployment.
 - Fixed an issue where Deployments on Runtime 5.0.10 and earlier showed a nonfunctional **Configuration** tab in the Airflow UI.
 - Fixed [CVE-2022-32149](https://nvd.nist.gov/vuln/detail/CVE-2022-32149).
