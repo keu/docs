@@ -176,7 +176,7 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
         runs-on: ubuntu-latest
         steps:
         - name: checkout repo
-          uses: actions/checkout@v2.3.4
+          uses: actions/checkout@v3
         - name: Deploy to Astro
           run: |
             curl -sSL install.astronomer.io | sudo bash -s
@@ -227,7 +227,7 @@ This setup assumes the following prerequisites:
         runs-on: ubuntu-latest
         steps:
         - name: checkout repo
-          uses: actions/checkout@v2.3.4
+          uses: actions/checkout@v3
         - name: Deploy to Astro
           run: |
             curl -sSL install.astronomer.io | sudo bash -s
@@ -241,7 +241,7 @@ This setup assumes the following prerequisites:
         runs-on: ubuntu-latest
         steps:
         - name: checkout repo
-          uses: actions/checkout@v2.3.4
+          uses: actions/checkout@v3
         - name: Deploy to Astro
           run: |
             curl -sSL install.astronomer.io | sudo bash -s
@@ -285,7 +285,7 @@ To complete this setup, you need:
           ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRO_SECRET_ACCESS_KEY_DEV }}
         steps:
         - name: Check out the repo
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Create image tag
           id: image_tag
           run: echo ::set-output name=image_tag::astro-$(date +%Y%m%d%H%M%S)
@@ -325,7 +325,7 @@ To complete this setup, you need:
           ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRO_SECRET_ACCESS_KEY_DEV }}
         steps:
         - name: Check out the repo
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
         - name: Create image tag
           id: image_tag
           run: echo ::set-output name=image_tag::astro-$(date +%Y%m%d%H%M%S)
@@ -398,7 +398,7 @@ To automate code deploys to a Deployment using [GitHub Actions](https://github.c
         runs-on: ubuntu-latest
         steps:
         - name: checkout repo
-          uses: actions/checkout@v2.3.4
+          uses: actions/checkout@v3
           with:
             # Checkout as many commits as needed for the diff
             fetch-depth: 2
@@ -507,7 +507,7 @@ This setup assumes the following prerequisites:
         needs: deployment-type
         steps:
           - name: checkout repo
-            uses: actions/checkout@v2.3.4
+            uses: actions/checkout@v3
           # If only DAGs changed do a DAG Deploy
           - name: DAG Deploy to Astro
             if: needs.deployment-type.outputs.DAGS_DEPLOY == 'true' && needs.deployment-type.outputs.REGULAR_DEPLOY == 'false'
@@ -530,7 +530,7 @@ This setup assumes the following prerequisites:
         needs: job1
         steps:
           - name: checkout repo
-            uses: actions/checkout@v2.3.4
+            uses: actions/checkout@v3
           # If only DAGs changed do a DAG Deploy
           - name: DAG Deploy to Astro
             if: needs.deployment-type.outputs.DAGS_DEPLOY == 'true' && needs.deployment-type.outputs.REGULAR_DEPLOY == 'false'
@@ -579,7 +579,7 @@ If your Astro project requires additional build-time arguments to build an image
           ASTRONOMER_KEY_SECRET: ${{ secrets.ASTRO_SECRET_ACCESS_KEY_DEV }}
         steps:
         - name: Check out the repo
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
           with:
             # Checkout as many commits as needed for the diff
             fetch-depth: 2
