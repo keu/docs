@@ -102,6 +102,7 @@ module.exports = {
           'platform-alerts',
           'logs-to-s3',
           'export-task-logs',
+          'task-usage-metrics',
           ],
         },
         {
