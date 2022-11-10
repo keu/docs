@@ -100,7 +100,7 @@ If you want to force long-running tasks to terminate sooner than 24 hours, speci
 
 :::caution
 
-This feature is in Public Preview and it is available to all Astro customers. It is still in development, and features and functionality are subject to change.
+This feature in [Public Preview](feature-previews.md).
 
 :::
 

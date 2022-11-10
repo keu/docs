@@ -78,7 +78,7 @@ All image-only templates use [Astro CLI v1.0+](cli/release-notes.md) to deploy v
 
 :::caution
 
-The features used in this workflow are in Public Preview. They are still in development and features and functionality are subject to change.
+The features used in this workflow are in [Public Preview](feature-previews.md).
 
 :::
 
