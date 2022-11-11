@@ -171,7 +171,7 @@ In the following example, two instances of the run `analytics.delivery_times_7_d
 
 After clicking the dataset, the metrics window shows the message **CHANGES BETWEEN COMPARED RUNS** and a notification appears on the **Info** tab. After clicking the **Info** tab, the UI shows that the `discount_id` filed was changed from an `INTEGER` to a `VARCHAR` type.
 
-    ![Info tab when comparing two code sources](/img/docs/lineage-compare-example.png)
+![Info tab when comparing two code sources](/img/docs/lineage-compare-example.png)
 
 ## View a summary of issues across Deployments
 
