@@ -142,7 +142,7 @@ If you need to change the worker type of an existing worker queue, Astronomer re
 
 4. Update the worker queue settings, and then click **Update Queue**. 
 
-    The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
+    The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action does not impact running tasks that have 24 hours to complete before running workers are terminated.
 
 ## Delete a worker queue
 

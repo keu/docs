@@ -48,7 +48,7 @@ If you experience delays in task execution, which you can track with the Gantt C
 4. Edit the scheduler resource settings. See [Scheduler resources](#scheduler-resources).
 5. Click **Update**.
 
-    The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action is equivalent to deploying code to your Deployment and does not impact running tasks that have 24 hours to complete before running workers are terminated. See [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
+    The Airflow components of your Deployment automatically restart to apply the updated resource allocations. This action does not impact running tasks that have 24 hours to complete before running workers are terminated.
 
 ## Update a Deployment name and description
 

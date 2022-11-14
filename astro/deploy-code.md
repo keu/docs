@@ -71,31 +71,6 @@ After the deploy completes, Docker image information for your Deployment is avai
 
     ![Docker image information](/img/docs/image-tag-airflow-ui-astro.png)
 
-### What happens during a code deploy
-
-When you deploy code to Astro, your Astro project is built into a Docker image. This includes system-level dependencies, Python-level dependencies, and your `Dockerfile`. It does not include any of the metadata associated with your local Airflow environment, including task history and Airflow connections or variables that were set locally. This Docker image is then pushed to all containers running Apache Airflow on Astro. If the DAG-only deploy feature is enabled for your Deployment, the `/dags` directory is excluded from this Docker image and is pushed separately.
-
-![Deploy code](/img/docs/deploy-architecture.png)
-
-With the exception of the Airflow webserver and some Celery workers, Kubernetes gracefully terminates all containers during this process. This forces them to restart and begin running your latest code.
-
-If you deploy code to a Deployment that is running a previous version of your code, then the following happens:
-
-- Tasks that are `running` will continue to execute on existing Celery workers and will not be interrupted unless the task does not complete within 24 hours of the code deploy.
-- One or more new worker(s) will be created alongside your existing workers and immediately start executing scheduled tasks based on your latest code.
-
-    These new workers will execute downstream tasks of DAG runs that are in progress. For example, if you deploy to Astronomer when `Task A` of your DAG is running, `Task A` will continue to run on an old Celery worker. If `Task B` and `Task C` are downstream of `Task A`, they will both be scheduled on new Celery workers running your latest code.
-
-    This means that DAG runs could fail due to downstream tasks running code from a different source than their upstream tasks. DAG runs that fail this way need to be fully restarted from the Airflow UI so that all tasks are executed based on the same source code.
-
-Astronomer sets a grace period of 24 hours for all workers to allow running tasks to continue executing. This grace period is not configurable. If a task does not complete within 24 hours, its worker will be terminated. Airflow will mark the task as a [zombie](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks) and it will retry according to the task's retry policy. This is to ensure that our team can reliably upgrade and maintain Astro as a service.
-
-:::tip
-
-If you want to force long-running tasks to terminate sooner than 24 hours, specify an [`execution_timeout`](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#timeouts) in your DAG's task definition.
-
-:::
-
 ## Deploy DAGs only
 
 :::caution
@@ -134,6 +109,136 @@ Run the following command to deploy only your `dags` directory to a Deployment:
 ```sh
 astro deploy --dags
 ```
+
+## What happens during a code deploy
+
+The architecture for code deploys varies based on whether a Deployment has [DAG-only deploys](#deploy-dags-only) enabled. 
+
+### Deploy process before DAG deploys are enabled
+
+When you deploy code to Astro, the Astro CLI builds your entire Astro project into a Docker image. This includes system-level dependencies, Python-level dependencies, DAGs, and your `Dockerfile`. It does not include any of the metadata associated with your local Airflow environment, including task history and Airflow connections or variables that were set locally. This Docker image is then pushed to all containers running Apache Airflow on Astro. 
+
+```mermaid
+flowchart BT;
+classDef subgraph_padding fill:none,stroke:none
+classDef astro fill:#dbcdf6,stroke:#333,stroke-width:2px;
+    subgraph AstroCLI[Astro CLI]
+    subgraph subgraph_padding1 [ ]
+    id1
+    end
+    end
+    subgraph ControlPlane[Control plane]
+    id2[Astro API]:::astro
+    id4[(Docker registry)]:::astro
+    end
+    subgraph DataPlane ["Cluster in data plane"]
+    subgraph subgraph_padding3 [ ]
+    id5(("Airflow operator")):::astro
+    subgraph Deployment ["Deployment"]
+    subgraph subgraph_padding2 [ ]
+    id6["Airflow webserver"]:::astro
+    id7["Airflow scheduler"]:::astro
+    id8["Airflow workers"]:::astro
+    end
+    end
+    end
+    end
+    id1["Astro project,<br/> built as a Docker image"]:::astro-->|API request to <br/>update Docker image| id2;
+    id1-->|Docker push| id4
+    id4-->|Pull image|id5
+    id5-->|Update running image|id6 & id7 & id8
+    id5-->|Check for new image|id2
+    class subgraph_padding3 subgraph_padding
+    class subgraph_padding2 subgraph_padding
+    class subgraph_padding1 subgraph_padding
+    style ControlPlane fill:#bfeaff,stroke:#333,stroke-width:2px
+    style DataPlane fill:#bfeaff,stroke:#333,stroke-width:2px
+    style AstroCLI fill:#bfeaff,stroke:#333,stroke-width:2px
+    style Deployment fill:#bfeaff,stroke:#333,stroke-width:2px
+```
+
+#### Downtime after a code deploy
+
+With the exception of the Airflow webserver and some Celery workers, Kubernetes terminates all containers after a code deploy. This forces them to restart and begin running your latest code.
+
+If you deploy code to a Deployment that is running a previous version of your code, then the following happens:
+
+- Tasks that are `running` continue to execute on existing Celery workers and are be interrupted unless the task does not complete within 24 hours of the code deploy.
+- One or more new workers are created alongside your existing workers and start executing scheduled tasks based on your latest code.
+
+    These new workers execute downstream tasks of DAG runs that are in progress. For example, if you deploy to Astronomer when `Task A` of your DAG is running, `Task A` will continues to run on an old Celery worker. If `Task B` and `Task C` are downstream of `Task A`, they will both be scheduled on new Celery workers running your latest code.
+
+    This means that DAG runs could fail due to downstream tasks running code from a different source than their upstream tasks. DAG runs that fail this way need to be fully restarted from the Airflow UI so that all tasks are executed based on the same source code.
+
+Astronomer sets a grace period of 24 hours for all workers to allow running tasks to continue executing. This grace period is not configurable. If a task does not complete within 24 hours, its worker will be terminated. Airflow will mark the task as a [zombie](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks) and it will retry according to the task's retry policy. This is to ensure that our team can reliably upgrade and maintain Astro as a service.
+
+:::tip
+
+To force long-running tasks to terminate sooner than 24 hours, specify an [`execution_timeout`](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#timeouts) in your DAG's task definition.
+
+:::
+
+### Deploy process after DAG deploys are enabled
+
+If a Deployment has DAG deploys enabled, your Deployment has two additional components: 
+
+- An Azure Blob Storage and 
+- A sidecar for downloading DAGs attached to each Airflow component container.
+  
+When you run `astro deploy` with DAG deploys enabled, the Astro CLI still deploys parts of your project as a Docker image. However, simultaneously runs a different process for deploying DAGs.
+
+
+- The Astro CLI builds an image of your Astro project excluding the `dags` folder.
+- The Astro CLI uploads your `dags` folder to the Deployment's Azure Blob Storage.
+- The DAG downloader sidecars download the new DAGs from Azure Blob Storage.
+
+```mermaid
+flowchart BT;
+classDef subgraph_padding fill:none,stroke:none
+classDef astro fill:#dbcdf6,stroke:#333,stroke-width:2px;
+    subgraph AstroCLI[Astro CLI]
+    subgraph subgraph_padding1 [ ]
+    id10
+    id1
+    end
+    end
+    subgraph ControlPlane[Control plane]
+    id2[Astro API]:::astro
+    id4[(Docker registry)]:::astro
+    end
+    subgraph DataPlane ["Cluster in data plane"]
+    subgraph subgraph_padding3 [ ]
+    id5(("Airflow operator")):::astro
+    subgraph Deployment ["Deployment"]
+    subgraph subgraph_padding2 [ ]
+    id9[(Azure blob storage)]:::astro
+    id6["Airflow webserver </br> with DAG downloader"]:::astro
+    id7["Airflow scheduler </br> with DAG downloader"]:::astro
+    id8["Airflow workers </br> with DAG downloader"]:::astro
+    end
+    end
+    end
+    end
+    id1["Image of Astro project </br> excluding DAGs"]:::astro-->|API request to <br/>update Docker image| id2;
+    id10["'dags' folder"]:::astro-->|Upload DAGs|id9
+    id10-->|Retrieve Azure blob </br> storage URL and token|id2
+    id1-->|Docker push| id4
+    id4-->|Pull image|id5
+    id5-->id6 & id7 & id8
+    id5-->|Check for new images and </br> DAGs to download|id2
+    id9-->id6 & id7 & id8
+    class subgraph_padding3 subgraph_padding
+    class subgraph_padding2 subgraph_padding
+    class subgraph_padding1 subgraph_padding
+    style ControlPlane fill:#bfeaff,stroke:#333,stroke-width:2px
+    style DataPlane fill:#bfeaff,stroke:#333,stroke-width:2px
+    style AstroCLI fill:#bfeaff,stroke:#333,stroke-width:2px
+    style Deployment fill:#bfeaff,stroke:#333,stroke-width:2px
+```
+
+If you run `astro deploy` to deploy your entire Astro project, your Deployment's Airflow containers will restart as described in [Downtime after a code deploy](#downtime-after-a-code-deploy). 
+
+If you run `astro deploy --dags`, the CLI does not push a new Docker image of your project and only uploads the `dags` folder to Azure Blob Storage, meaning that no containers in your Deployment are terminated. Workers which are running at the time of the deploy complete their DAG runs using DAG code from before the deploy, while new workers use your latest DAG code.
 
 ## Related documentation
 
