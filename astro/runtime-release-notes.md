@@ -5,6 +5,8 @@ id: runtime-release-notes
 toc_min_heading_level: 2
 ---
 
+import {siteVariables} from '@site/src/versions';
+
 <head>
   <meta name="description" content="This is where you’ll find information about the latest Astro Runtime features and functionality. Astro Runtime is a Docker image built by Astronomer that provides a differentiated Apache Airflow experience and execution framework." />
   <meta name="og:description" content="This is where you’ll find information about the latest Astro Runtime features and functionality. Astro Runtime is a Docker image built by Astronomer that provides a differentiated Apache Airflow experience and execution framework." />
@@ -25,7 +27,7 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 :::caution
 
-To deploy a project using Astro Runtime 6.0.4 from an Apple M1 computer to Astro, you must use Astro CLI version 1.4.0 or later or else the deploy will fail. See [Install the CLI](install-cli.md).
+To deploy a project using Astro Runtime 6.0.4 from an Apple M1 computer to Astro, you must use Astro CLI version 1.4.0 or later or else the deploy will fail. See [The Astro CLI](cli/install-cli.md).
 
 :::
 
