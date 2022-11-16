@@ -36,8 +36,6 @@ module.exports = {
       type: 'category',
       label: 'Write DAGs',
       items: [
-      'deferrable-operators',
-      'kubepodoperator-local',
       'kubepodoperator',
       'kubernetes-executor',
         ],
@@ -99,6 +97,8 @@ module.exports = {
         type: 'category',
         label: 'Platform observability',
         items: [
+          'grafana-metrics',
+          'kibana-logging',
           'platform-alerts',
           'logs-to-s3',
           'export-task-logs',
@@ -132,8 +132,6 @@ module.exports = {
       type: 'category',
       label: 'Observability',
       items: [
-      'grafana-metrics',
-      'kibana-logging',
       'deployment-logs',
       'airflow-alerts',
       ],
@@ -173,7 +171,11 @@ module.exports = {
     label: 'Release notes',
     items: [
       'release-notes',
-      'cli-release-notes',
+      {
+        type: 'link',
+        label: 'Astro CLI',
+        href: 'https://docs.astronomer.io/astro/cli/release-notes',
+     },
       'runtime-release-notes',
     ],
     },
@@ -186,10 +188,12 @@ module.exports = {
           label: 'Astro CLI command reference',
           href: 'https://docs.astronomer.io/astro/cli/reference',
       },
+      'role-permission-reference',
       'system-components',
       'support',
       'version-compatibility-reference',
       'release-lifecycle-policy',
+      'faq',
       'documentation-archive',
       ],
     },
