@@ -51,7 +51,7 @@ Using the Astro Python SDK requires configuring a few things in your Airflow pro
     export AIRFLOW__ASTRO_SDK__SQL_SCHEMA=<snowflake_schema>
     ```
 
-    The `AIRFLOW__ASTRO_SDK__SQL_SCHEMA` variable should be the schema you want to store all intermediary tables in. To deploy a pipeline written with the Astro Python SDK to Astro, add these environment variables to your Deployment. See [Environment variables](environment-variables.md).
+    The `AIRFLOW__ASTRO_SDK__SQL_SCHEMA` variable should be the schema you want to store all intermediary tables in. To deploy a pipeline written with the Astro Python SDK to Astro, add these environment variables to your Deployment. See [Environment variables](https://docs.astronomer.io/astro/environment-variables).
 
 For a guided experience to get started, see the [Astro Python SDK tutorial](https://github.com/astronomer/astro-sdk/blob/main/docs/getting-started/GETTING_STARTED.md).
 
