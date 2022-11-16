@@ -48,18 +48,18 @@ For more information on upgrading Kubernetes versions, follow the guidelines off
 
 Astronomer Certified images have the following version dependencies:
 
-| Astronomer Certified | Postgres | MySQL     | Python                         | System Distribution  | Airflow Helm chart |
-| -------------------- | -------- | --------- | ------------------------------ | -------------------- | ------------------ |
-| 2.1.0                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8                  | Debian 10 (Buster)   | 0.18.6+            |
-| 2.1.1                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9             | Debian 10 (Buster)   | 0.18.6+            |
-| 2.1.3                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9             | Debian 10 (Buster)   | 0.18.6+            |
-| 2.1.4                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9             | Debian 10 (Buster)   | 0.18.6+            |
-| 2.3.0                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
-| 2.3.1                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
-| 2.3.2                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
-| 2.3.3                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
-| 2.3.4                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
-| 2.4.1                | 9.6+     | 8.0+      | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
+| Astronomer Certified | Postgres | MySQL | Python                         | System Distribution  | Airflow Helm chart |
+| -------------------- | -------- | ----- | ------------------------------ | -------------------- | ------------------ |
+| 2.1.0                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8                  | Debian 10 (Buster)   | 0.18.6+            |
+| 2.1.1                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9             | Debian 10 (Buster)   | 0.18.6+            |
+| 2.1.3                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9             | Debian 10 (Buster)   | 0.18.6+            |
+| 2.1.4                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9             | Debian 10 (Buster)   | 0.18.6+            |
+| 2.3.0                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
+| 2.3.1                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
+| 2.3.2                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
+| 2.3.3                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
+| 2.3.4                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
+| 2.4.1                | 9.6+     | 8.0+  | 3.6, 3.7, 3.8, 3.9 (_Default_) | Debian 11 (Bullseye) | 0.18.6+            |
 
 For more detail on each version of Astronomer Certified and upgrade instructions, see [Upgrade Apache Airflow](manage-airflow-versions.md).
 

@@ -13,7 +13,7 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
-**Latest Astro Runtime Version**: 6.0.3 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 6.0.4 ([Release notes](runtime-release-notes.md))
 
 **Latest CLI Version**: 1.7.0 ([Release notes](cli/release-notes.md))
 
@@ -25,11 +25,23 @@ Using Astro CLI 1.7, you can run `astro deploy -—dags` to push only the `dags`
 
 For more information, see [Astro CLI 1.7](astro/cli/release-notes#deploy-only-dags-with-astro-deploy--dags) or [Deploy DAGs only](deploy-code.md#deploy-dags-only). For example CI/CD workflows with this feature enabled, see [CI/CD](ci-cd.md).
 
+### Improved data lineage interface
+
+The **Lineage** tab has new features and is better integrated into the Cloud UI.
+
+![Updated lineage page](/img/release-notes/lineage-integrated.png)
+
+Specifically, the tab includes the following improvements:
+
+- The process for comparing runs uses a simpler interface and provides more information about the runs you're comparing. See [Compare lineage graphs from previous runs](data-lineage.md#compare-lineage-graphs-from-previous-runs).
+- Names for UI elements have been updated to more clearly represent Airflow resources. For example, **jobs** is now **runs**, and the **Explore** tab is now **Runs**.
+- Lineage graphs include new colors and animations to show the flow of data as it moves between runs and datasets. 
+
 ### Transfer a Deployment
 
 You can now transfer a Deployment from one Workspace to another in your Organization. This feature is helpful if you need to change the group of users that have access to a Deployment, or if you create a Deployment in the wrong Workspace.
 
-See [Transfer a Deployment to another Workspace](deploy-code.md#transfer-a-deployment-to-another-workspace).
+See [Transfer a Deployment to another Workspace](configure-deployment-resources.md#transfer-a-deployment-to-another-workspace).
 
 ### Additional improvements 
  
@@ -57,10 +69,7 @@ To create your first project in the Astro Cloud IDE, see the [Cloud IDE quicksta
 
 <!-- id to make it easier to remove: cloud-ide-preview-banner -->
 
-The Cloud IDE is currently in _Public Preview_ and it is available to all Astro customers. It is still in development and features and functionality are subject to change.
-
-If you have any feedback, please submit it to the [Astro Cloud IDE product portal](https://portal.productboard.com/75k8qmuqjacnrrnef446fggj).
-
+The Cloud IDE is currently in [Public Preview](feature-previews.md). If you have any feedback, submit it to the [Astro Cloud IDE product portal](https://portal.productboard.com/75k8qmuqjacnrrnef446fggj).
 
 :::
 
