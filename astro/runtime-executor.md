@@ -33,7 +33,18 @@ The Astro Runtime executor has a similar execution framework to the Celery execu
 - The **allocator** queries the metadata DB for unassigned allocation requests. It then determines how the allocation requests should be handled and submits assignments for the runners back to the DB.
 - **Runners** run tasks. To start running a task, a runner queries the metadata DB to look for a new assignment. If it’s been assigned a task, the runner starts completing the work. Currently, there is only one type of runner named **SubprocessRunner**, which runs tasks within the same cluster as your Airflow environment.
 
-![Astro Runtime executor architecture](/img/docs/runtime-executor-architecture.png)
+```mermaid 
+flowchart LR;
+classDef astro fill:#dbcdf6,stroke:#333,stroke-width:2px;
+    A[Scheduler]-->|Log new tasks/ allocation requests| B[(Metadata DB)];
+    C[Allocator]-->|Query for new allocations / Log new assignments| B;
+    D[Runners]-->|Query for new assignments/ log status|B;
+    E[Webserver]-->|Query for results of runners' work|B;
+    style ControlPlane fill:#bfeaff,stroke:#333,stroke-width:2px
+    style DataPlane fill:#bfeaff,stroke:#333,stroke-width:2px
+    style AstroCLI fill:#bfeaff,stroke:#333,stroke-width:2px
+    style Deployment fill:#bfeaff,stroke:#333,stroke-width:2px
+```
 
 After a task is scheduled:
 
