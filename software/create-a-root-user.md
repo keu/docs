@@ -21,7 +21,10 @@ After saving your changes, apply the configuration change. See [Apply a config c
 
 By default, Astronomer generates a password for your root user email address. This password and email address are stored as Kubernetes secrets on your Astronomer installation. After you apply the configuration change, Helm provides a command for how to retrieve these the values of these secrets. 
 
-## Rotate the root user's password
+## Customize the root user's password
+
+### Rotate the root user's password
+
 
 ## Limit System-level user creation
 
@@ -42,4 +45,4 @@ astronomer:
 
 After saving your changes, apply the configuration change. See [Apply a config change](apply-platform-config.md).
 
-You can add or remove any permissions from your root user. See [Customize permissions](manage-platform-users.md#customize-permissions).
+See [Customize role permissions](manage-platform-users.md#customize-role-permissions) for how to further customize role permissions.
