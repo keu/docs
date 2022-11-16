@@ -319,6 +319,7 @@ astronomer:
       email:
         enabled: true
         reply: "noreply@astronomer.io" # Emails will be sent from this address
+        smtpUrl: ~           # The SMTP server URL.         
       auth:
         github:
           enabled: true # Lets users authenticate with Github
