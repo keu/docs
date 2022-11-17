@@ -144,6 +144,7 @@ module.exports = {
         'airflow-talend-integration',
         'execute-notebooks',
         'soda-data-quality',
+        'airflow-kafka',
      ],
     },
   ],
