@@ -64,7 +64,7 @@ RUN pip install confluent-kafka
 RUN pip install airflow-provider-kafka
 ```
 
-This Dockerfile installs both the `confluent-kafka` and the `airflow-provider-kafka` package.
+This Dockerfile installs both the `confluent-kafka` and the [`airflow-provider-kafka` package](https://github.com/astronomer/airflow-provider-kafka).
 
 </TabItem>
 
@@ -81,7 +81,7 @@ RUN pip install confluent-kafka
 RUN pip install airflow-provider-kafka
 ```
 
-If you are using an M1 Mac you need to use a base image of the Astro Runtime allowing you to make changes as the root user. First the `librdkafka-dev` package is installed (needing root permissions), before the necessary environment variables are defined and the `confluent-kafka` and the `airflow-provider-kafka` package can be installed.
+If you are using an M1 Mac you need to use a base image of the Astro Runtime allowing you to make changes as the root user. First the `librdkafka-dev` package is installed (needing root permissions), before the necessary environment variables are defined and the `confluent-kafka` and the [`airflow-provider-kafka` package](https://github.com/astronomer/airflow-provider-kafka) can be installed.
 
 </TabItem>
 
