@@ -200,7 +200,7 @@ Use the external ID to create a cross-account IAM role for Astro. Astronomer rec
     }"
     ```
 
-    3. Run the following command to attach a managed policy to the Astronomer remote management role.
+3. Run the following command to attach a managed policy to the Astronomer remote management role.
     
     ```sh
     #!/bin/sh
@@ -293,7 +293,7 @@ If you're setting up your first cluster in any of these regions, you need to com
 
 :::
 
-### VPC peering prerequisites (optional)
+### Provide VPC peering information (optional)
 
 If you need to VPC peer with Astronomer, provide the following information to your Astronomer representative:
 
