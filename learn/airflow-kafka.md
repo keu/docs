@@ -1,6 +1,6 @@
 ---
-title: "Connect to Kafka topics with Airflow"
-sidebar_label: "Use Kafka with Airflow"
+title: "Use Kafka with Airflow"
+sidebar_label: "Kafka/Confluent"
 description: "How to produce to and consume from Kafka topics using the Airflow Kafka provider"
 id: airflow-kafka
 ---
