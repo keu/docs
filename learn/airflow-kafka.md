@@ -104,7 +104,7 @@ If you are using an M1 Mac you need to use a base image of the Astro Runtime all
 
 ## Step 2: Create a DAG with a producer task
 
-The Airflow Kafka provider package contains an operator allowing you to produce events directly to an existing Kafka topic, the ProduceToTopicOperator.
+The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provider-kafka) contains an operator allowing you to produce events directly to an existing Kafka topic, the ProduceToTopicOperator.
 
 1. Create a new Python file in your `dags` folder called `kafka_example_dag_1.py`.
 
