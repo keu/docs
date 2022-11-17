@@ -5,6 +5,9 @@ description: "How to produce to and consume from Kafka topics using the Airflow 
 id: airflow-kafka
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 Apache Kafka is an open source tool for handling event streaming. Combining Kafka and Airflow allows you to build powerful pipelines that integrate streaming data with batch processing.
 In this tutorial, you'll learn how to install and use the Airflow Kafka provider to interact directly with Kafka topics.
 
