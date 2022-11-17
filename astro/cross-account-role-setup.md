@@ -96,7 +96,7 @@ The following table lists the permissions required by Astro to manage the cross-
 | `ce:*`                                                 | Monitor costs.                                                                                                                |
 | `iam:Get* , iam:List* , iam:Tag*  , iam:Untag*`        | Enumerate and tag IAM objects, such as roles and policies.                                                                    |
 | `iam:OpenIDConnectProvider* `                          | Enable IAM Roles for Service Access.                                                                                          |
-| `iam:CreateRole iam:DeleteRole`                        | Create Operational Roles for the Astro cluster. This policy denies deletion of roles tagged with `customeraudit=TRUE`. |
+| `iam:CreateRole iam:DeleteRole`                        | Create Operational Roles for the Astro cluster. This policy denies deletion of roles tagged with `customeraudit=True`. |
 | iam:AttachRolePolicy , iam:PutRolePolicy , iam:Detach* | Create the Operational Boundary and Permissions Policy for operational roles used by Astro clusters.                              |
 | iam:*InstanceProfile                                   | Manage the instance profiles for cluster nodes.                                                                                   |
 | iam:CreateServiceLinkedRole  iam:PassRole              | Manage the internal roles used by AWS services.                                                                                   |
@@ -120,11 +120,9 @@ Astronomer recommends setting up a CloudTrail in the data plane account to monit
 | `AttachRolePolicy , DetachRolePolicy`    | `roleName = astronomer-remote-management`                        |
 | `SetPolicyVersion , CreatePolicyVersion` | `policyArn = "arn:aws:iam::*:policy/AstronomerCrossAccountRole"` |
 
-To use a CloudWatch CloudTrail to changes to the cross-account role policy, see [Creating CloudWatch alarms for CloudTrail events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html).
+To monitor changes to the cross-account role policy, create an Amazon CloudWatch alarm. See [Creating CloudWatch alarms for CloudTrail events](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudwatch-alarms-for-cloudtrail.html).  When you create the metric filter, on the Define pattern page, in Create filter pattern, enter the following for Filter pattern:
 
-Run the following command to apply a filter to your CloudWatch CloudTrail:
-
-```text
+```
 { ($.eventName = AttachRolePolicy || $.eventName = DetachRolePolicy || $.eventName = SetPolicyVersion || $.eventName = CreatePolicyVersion) && ($.requestParameters.policyArn = "*AstronomerCrossAccountRole"  || $.requestParameters.roleName = astronomer-remote-management) }
 ```
 
@@ -178,29 +176,7 @@ Use the external ID to create a cross-account IAM role for Astro. Astronomer rec
 <TabItem value="commandline">
 
 1. Create a command line-level environment variable named `EXTERNAL_ID` that contains the External ID you copied in step 2.
-2. Open the AWS CLI and run the following command to create a cross-account IAM Role:
-
-    ```bash
-    $ aws iam create-role --role-name astronomer-remote-management --assume-role-policy-document "{
-        \"Version\": \"2012-10-17\",
-        \"Statement\": [
-            {
-                \"Effect\": \"Allow\",
-                \"Principal\": {
-                    \"AWS\": \"arn:aws:iam::406882777402:root\"
-                },
-                \"Action\": \"sts:AssumeRole\",
-                \"Condition\": {
-                    \"StringEquals\": {
-                    \"sts:ExternalId\": \"$EXTERNAL_ID\"
-                    }
-                }
-            }
-        ]
-    }"
-    ```
-
-3. Run the following command to attach a managed policy to the Astronomer remote management role.
+2. Run the following command to create the Astronomer remote management role.
     
     ```sh
     #!/bin/sh
