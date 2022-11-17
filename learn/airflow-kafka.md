@@ -115,6 +115,8 @@ The Airflow Kafka provider package contains an operator allowing you to produce 
 
     import os
     import json
+    import logging
+    import functools
     from pendulum import datetime
 
     from airflow import DAG
@@ -124,7 +126,7 @@ The Airflow Kafka provider package contains an operator allowing you to produce 
     my_topic = os.environ["KAFKA_TOPIC_NAME"]
 
     # get Kafka configuration information
-    config_kwargs = {
+    connection_config = {
         "bootstrap.servers": os.environ["BOOSTRAP_SERVER"],
         "security.protocol": "SASL_SSL", # optional for local clusters
         "sasl.mechanism": "PLAIN", # optional for local clusters
@@ -149,7 +151,7 @@ The Airflow Kafka provider package contains an operator allowing you to produce 
             task_id=f"produce_to_{my_topic}",
             topic=my_topic,
             producer_function=producer_function, 
-            kafka_config=config_kwargs
+            kafka_config=connection_config
         )
     ```
 
@@ -176,4 +178,61 @@ With the ConsumeFromTopicOperator Airflow is able to consume messages from topic
     from airflow_provider_kafka.operators.consume_from_topic import ConsumeFromTopicOperator
     ```
 
-2. In the `kafka_example_dag_1` add the following  task below the `producer_task`.
+2. In the `kafka_example_dag_1` add the following code below the `producer_task`.
+
+    ```python
+    consumer_logger = logging.getLogger("airflow")
+    def consumer_function(message, prefix=None):
+        try:
+            key = json.loads(message.key())
+            value = json.loads(message.value())
+            consumer_logger.info(f"{prefix} {message.topic()} @ {message.offset()}; {key} : {value}")
+            return
+        except:
+            return
+
+    consumer_task = ConsumeFromTopicOperator(
+        task_id=f"consume_from_{my_topic}",
+        topics=[my_topic],
+        apply_function=functools.partial(consumer_function, prefix="consumed:::"),
+        consumer_config={
+            **connection_config
+            "group.id": "consume",
+            "enable.auto.commit": False,
+            "auto.offset.reset": "beginning",
+        },
+        max_messages=30,
+        max_batch_size=10,
+    )
+
+    producer_task >> consumer_task
+
+    ```
+
+    In this code snippet first a function is defined that reads from the topic defined as `my_topic` and prints the messages consumed to the Airflow task log. The ConsumeFromTopicOperator uses the same `connection_config` as the `producer_task` with added configurations specific to Kafka Consumers. 
+
+3. Run your DAG.
+
+4. View the consumed messages in your Airflow task logs.
+
+    ![Consumer log](/img/guides/kafka-consumer-logs.png)
+
+:::info
+
+A very common pattern is to directly connect an Amazon S3 bucket to your Kafka topic as a consumer. The ConsumeFromTopicOperator is for example helpful if you want to use Airflow features to schedule the consuming task. Instead of writing the messages retrieved to the Airflow logs you can write them to S3 using the [S3CreateObjectOperator](https://registry.astronomer.io/providers/amazon/modules/s3createobjectoperator).
+
+:::
+
+## Step 4: Listen for a message in the stream
+
+You might want to schedule a downstream task based on a specific message appearing in your Kafka topic. The AwaitKafkaMessageOperator is a deferrable operator that will listen to your Kafka topic for a message that fulfills a specific criteria.
+
+:::info
+
+A deferrable operator is a sensor that will go into a deferred state in between checking for its condition in the target system. While in the deferred state the operator does not take up a worker slot, offering a significant efficiency improvement. Using a deferrable operator necessitates the presence of the Triggerer component. Learn more about [Deferrable operators]((https://docs.astronomer.io/learn/deferrable-operators)).
+
+1. In `kafka_example_dag_1`, add the following import statement:
+
+    ```python
+    
+    ```
