@@ -209,7 +209,7 @@ With the ConsumeFromTopicOperator Airflow is able to consume messages from topic
 
     ```
 
-    In this code snippet first a function is defined that reads from the topic defined as `my_topic` and prints the messages consumed to the Airflow task log. The ConsumeFromTopicOperator uses the same `connection_config` as the `producer_task` with added configurations specific to Kafka Consumers. 
+    In this code snippet first a function is defined that reads from the topic defined as `my_topic` and prints the messages consumed to the Airflow task log. The ConsumeFromTopicOperator uses the same `connection_config` as the `producer_task` with added configurations specific to Kafka Consumers. You can read more about consumer configuration in Kafka in the official [Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
 
 3. Run your DAG.
 
@@ -231,8 +231,49 @@ You might want to schedule a downstream task based on a specific message appeari
 
 A deferrable operator is a sensor that will go into a deferred state in between checking for its condition in the target system. While in the deferred state the operator does not take up a worker slot, offering a significant efficiency improvement. Using a deferrable operator necessitates the presence of the Triggerer component. Learn more about [Deferrable operators]((https://docs.astronomer.io/learn/deferrable-operators)).
 
+:::
+
 1. In `kafka_example_dag_1`, add the following import statement:
 
     ```python
-    
+    from airflow_provider_kafka.operators.await_message import AwaitKafkaMessageOperator
     ```
+
+2. Copy and past the following code at the end of your DAG:
+
+    ```python
+    def await_function(message):
+        if isinstance(json.loads(message.value()), int):
+            if json.loads(message.value()) % 5 == 0:
+                return f" Got the following message: {json.loads(message.value())}"
+
+    await_message = AwaitKafkaMessageOperator(
+        task_id=f"awaiting_message_in_{my_topic}",
+        topics=[my_topic],
+        # the apply function needs to be passed with its location for the triggerer
+        apply_function="provider_example_code.await_function", 
+        kafka_config={
+            **connection_config
+            "group.id": "awaiting_message",
+            "enable.auto.commit": False,
+            "auto.offset.reset": "beginning",
+        },
+        xcom_push_key="retrieved_message",
+    )
+
+    consumer_task >> await_message
+    ```
+
+    In this code snippet an `await_function` is defined which will parse each message in the Kafka topic and return the message if the value is an integer divisible by 5. The AwaitKafkaMessageOperator using runs this function over messages polled from the Kafka topic. If no matching message is found it goes into a deferred state until it tries again.  
+
+3. Run the DAG. Notice how the task instance of the `await_message` task goes into a deferred state (purple square).
+
+    ![Kafka deferred state](/img/guides/kafka-deferred-state.png)
+
+4. (Optional) Add a downstream task to the `await_message` task, which only runs once `await_message` has completed successfully.
+
+
+## Conclusion
+
+The Airflow Kafka provider offers 3 easy to use operators to interact with topics and messages in Kafka. You know now how to use these operators to connect Kafka and Airflow. 
+
