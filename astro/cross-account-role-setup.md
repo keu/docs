@@ -141,7 +141,7 @@ Run the following command to apply a filter to your CloudWatch CloudTrail:
 
     If you're the first person in your Organization to authenticate, you'll be granted Organization owner permissions. You can create a Workspace and add other team members to the Workspace without the assistance of Astronomer support. See [Create a Workspace](manage-workspaces.md#create-a-workspace) and [Add a user](add-user.md). To integrate an identity provider (IdP) with Astro, see [Set up an identity provider](configure-idp.md).
 
-## Step 3:Retrieve an external ID from the Cloud UI
+## Step 3: Retrieve an external ID from the Cloud UI
 
 You must be an Organization Owner to view the external ID. If you are not an Organization Owner, the **AWS External ID** field will not appear in the Cloud UI.
 
