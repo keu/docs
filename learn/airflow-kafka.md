@@ -274,6 +274,62 @@ A deferrable operator is a sensor that will go into a deferred state in between 
 
 4. (Optional) Add a downstream task to the `await_message` task, which only runs once `await_message` has completed successfully.
 
+## How it works
+
+The `airflow-kafka-provider` contains three hooks:
+
+- `KafkaAdminClientHook`
+- `KafkaConsumerHook`
+- `KafkaProducerHook`
+
+as well as three operators and one trigger:
+
+- `ProduceToTopicOperator`
+- `ConsumeFromTopicOperator`
+- `AwaitKafkaMessageOperator`
+- `AwaitMessageTrigger`
+
+in this section we will provide more detailled information on the parameters of the operators. For more information on the other modules in this provider see the [`airflow-provider-kafka` source code](https://github.com/astronomer/airflow-provider-kafka).
+
+### ProduceToTopicOperator
+
+The ProduceToTopicOperator can be used create a Kafka producer to produce messages to a Kafka topic. You can define the following parameters:
+
+- `topic`: the Kafka topic you want to produce to.
+- `producer_function`: a Python function that returns a generator that will create key/value pairs to be produced to Kafka as messages.
+- `producer_function_args`: positional arguments for the `producer_function`.
+- `producer_function_kwargs`: keyword arguments for the `producer_function`.
+- `delivery_callback`: a custom function to be executed after each message that was produced to the Kafka topic (in case of success and failure). If no function is provided the ProduceToTopicOperator will log the produced record in case of success and an error message in case of failure.
+- `synchronous`: specifies if writing to Kafka should be fully synchronous. True by default.
+- `kafka_config`: the configuration for the Kafka client, including the connection information. For a full list of parameters please refer to the [librdkafka GitHub repository](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md).
+- `poll_timeout`: the delay between production to Kafka and calling [poll](https://docs.confluent.io/platform/current/clients/confluent-kafka-python/html/index.html#confluent_kafka.Producer.poll) on the producer.
+
+### ConsumeFromTopicOperator
+
+The ConsumeFromTopicOperator can be used create a Kafka consumer to read batches of messages and processes them. You can define the following parameters:
+
+- `topics`: a list of topics or regex patterns for the consumer to subscribe to i.e. read from.
+- `apply_function`: a Python function that is applied to all messages that are read.
+- `apply_function_args`: positional arguments for the `apply_function`.
+- `apply_function_kwargs`: keyword arguments for the `apply_function`.
+- `consumer_config`: the configuration for the Kafka client, including the connection information. For a full list of parameters please refer to the [librdkafka GitHub repository](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md).
+- `commit_cadence`: in which situations the Kafka consumer created should commit offsets. The 3 options `end_of_operator` (default), `never` and `end_of_batch` are available.
+- `max_messages`: maximum number of messages the Kafka consumer created by this instance of the ConsumeFromTopicOperator can read from its topics.
+- `max_batch_size`: maximum number of messages the Kafka consumer can read when polling. The default is 1000.
+- `poll_timeout`: how long the Kafka Consumer created should wait for potentially incoming messages after having read all currently available messages before ending its task. The default is 60 seconds.
+
+### AwaitKafkaMessageOperator
+
+The AwaitKafkaMessageOperator is a [deferrable operators]((https://docs.astronomer.io/learn/deferrable-operators)) that can be used to wait for a specific message to be published to one of more Kafka topics. You can define the following parameters:
+
+- `topics`: a list of topics or regex patterns to read from.
+- `apply_function`: a Python function that is applied to all messages that are read. If the function returns any data the task will be ended and marked as successful. The returned data will be pushed to XCom unless the BaseOperator argument `do_xcom_push` is set to `False`.
+- `apply_function_args`: positional arguments for the `apply_function`.
+- `apply_function_kwargs`: keyword arguments for the `apply_function`.
+- `kafka_config`: the configuration for the Kafka client, including the connection information. For a full list of parameters please refer to the [librdkafka GitHub repository](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md).
+- `poll_timeout`: the amount of time in seconds that the task should wait for a message in its active state.
+- `poll_interval`: the amonut of time in seconds that the task should wait in the deferred state.
+- `xcom_push_key`: the key under which to save the returned data to XCom.
 
 ## Conclusion
 
