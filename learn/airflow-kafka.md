@@ -8,7 +8,7 @@ id: airflow-kafka
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Apache Kafka is an open source tool for handling event streaming. Combining Kafka and Airflow allows you to build powerful pipelines that integrate streaming data with batch processing.
+[Apache Kafka](https://kafka.apache.org/documentation/) is an open source tool for handling event streaming. Combining Kafka and Airflow allows you to build powerful pipelines that integrate streaming data with batch processing.
 In this tutorial, you'll learn how to install and use the Airflow Kafka provider to interact directly with Kafka topics.
 
 ## Time to complete
@@ -155,7 +155,9 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
         )
     ```
 
-    The code above retrieves the environment variables you defined in Step 1 and packages them into a configuration dictionary that can be used by the ProduceToTopicOperator. Any Python function which returns a generator can be passed to the `producer_function` parameter of the ProduceToTopicOperator. Make sure your producer function returns a generator that contains key-value pairs where the value is in a format your Kafka topic accepts as input. In the example above the generator produces a JSON value. Additionally, if you have defined a schema for your Kafka topic, the generator needs to return compatible objects.
+    The code above retrieves the environment variables you defined in [Step 1](#step-1-configure-your-astro-project) and packages them into a configuration dictionary that can be used by the ProduceToTopicOperator. Any Python function which returns a generator can be passed to the `producer_function` parameter of the ProduceToTopicOperator. Make sure your producer function returns a generator that contains key-value pairs where the value is in a format your Kafka topic accepts as input. In the example above the generator produces a JSON value. Additionally, if you have defined a schema for your Kafka topic, the generator needs to return compatible objects.
+
+    If you are connecting to a local Kafka cluster you might need to adjust the `connection_config` dictionary by commenting out the fields for `sasl.username` and `sasl.password`.
 
 3. Run your DAG.
 
