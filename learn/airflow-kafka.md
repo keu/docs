@@ -155,7 +155,7 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
         )
     ```
 
-    The code above retrieves the environment variables you defined in Step 1 and packages them into a configuration dictionary that can be used by the ProduceToTopicOperator. Any Python function which returns a generator can be passed to the `producer_function` parameter of the ProduceToTopicOperator. Make sure your producer function returns a generator that contains key-value paris where the value is in a format your Kafka topic accepts as input. In the example above the generator produces a JSON value. Additionally, if you have defined a schema for your Kafka topic, the generator needs to return compatible objects.
+    The code above retrieves the environment variables you defined in Step 1 and packages them into a configuration dictionary that can be used by the ProduceToTopicOperator. Any Python function which returns a generator can be passed to the `producer_function` parameter of the ProduceToTopicOperator. Make sure your producer function returns a generator that contains key-value pairs where the value is in a format your Kafka topic accepts as input. In the example above the generator produces a JSON value. Additionally, if you have defined a schema for your Kafka topic, the generator needs to return compatible objects.
 
 3. Run your DAG.
 
@@ -219,13 +219,13 @@ With the ConsumeFromTopicOperator Airflow is able to consume messages from topic
 
 :::info
 
-A very common pattern is to directly connect an Amazon S3 bucket to your Kafka topic as a consumer. The ConsumeFromTopicOperator is for example helpful if you want to use Airflow features to schedule the consuming task. Instead of writing the messages retrieved to the Airflow logs you can write them to S3 using the [S3CreateObjectOperator](https://registry.astronomer.io/providers/amazon/modules/s3createobjectoperator).
+A very common pattern is to directly connect an Amazon S3 bucket to your Kafka topic as a consumer. The ConsumeFromTopicOperator is helpful if you want to use Airflow features to schedule the consuming task. Instead of writing the messages retrieved to the Airflow logs, you can write them to S3 using the [S3CreateObjectOperator](https://registry.astronomer.io/providers/amazon/modules/s3createobjectoperator).
 
 :::
 
 ## Step 4: Listen for a message in the stream
 
-You might want to schedule a downstream task based on a specific message appearing in your Kafka topic. The AwaitKafkaMessageOperator is a deferrable operator that will listen to your Kafka topic for a message that fulfills a specific criteria.
+A common use case is to run a downstream task when a specific message appears in your Kafka topic. The AwaitKafkaMessageOperator is a deferrable operator that will listen to your Kafka topic for a message that fulfills a specific criteria.
 
 :::info
 
