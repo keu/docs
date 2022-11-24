@@ -171,13 +171,13 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
 
 :::tip
 
-If you are using a Kafka cluster that is running locally on your machine you will need to adjust the `connection_config`. To connect to the [Kafka Quick start](https://kafka.apache.org/documentation/#quickstart) cluster use `localhost:9092` for `bootstrap.servers` if you are not running Airflow in Docker. If you are using the Astro CLI or otherwise running Airflow in a Docker container set the following protperties in your Kafka cluster's `server.properties` file:
+If you are using a Kafka cluster that is running locally on your machine you will need to adjust the `connection_config` parameter. To connect to the [Kafka quick start](https://kafka.apache.org/documentation/#quickstart) cluster when running Airflow in Docker, set the following properties in your Kafka cluster's `server.properties` file:
 
-listeners=PLAINTEXT://:9092,RMOFF_DOCKER_HACK://:19092
-advertised.listeners=PLAINTEXT://localhost:9092,RMOFF_DOCKER_HACK://host.docker.internal:19092
-listener.security.protocol.map=PLAINTEXT:PLAINTEXT,RMOFF_DOCKER_HACK:PLAINTEXT
+listeners=PLAINTEXT://:9092,DOCKER_HACK://:19092
+advertised.listeners=PLAINTEXT://localhost:9092,DOCKER_HACK://host.docker.internal:19092
+listener.security.protocol.map=PLAINTEXT:PLAINTEXT,DOCKER_HACK:PLAINTEXT
 
-while using `"bootstrap.servers":"host.docker.internal:19092"` and `"security.protocol": "PLAINTEXT"` as your `connection_config`.
+while using `"bootstrap.servers":"host.docker.internal:19092"` and `"security.protocol": "PLAINTEXT"` as your `connection_config`. Learn more in [Confluent's documentation](https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/#scenario-5).
 
 :::
 
