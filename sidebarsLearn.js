@@ -144,6 +144,7 @@ module.exports = {
         'airflow-redshift',
         'airflow-great-expectations',
         'airflow-talend-integration',
+        'airflow-mongodb',
         'execute-notebooks',
         'soda-data-quality',
      ],
