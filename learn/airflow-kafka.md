@@ -63,12 +63,11 @@ Refer to the [documentation of Confluent](https://developer.confluent.io/quickst
     ```text
     confluent-kafka==1.8.2
     airflow-provider-kafka
-
     ```
 
 :::info
 
-If you are running Airflow as a standalone application and using an M1 Mac please the modified installation instrustions in the README of the [`airflow-provider-kafka` package](https://github.com/astronomer/airflow-provider-kafka).
+If you are running Airflow as a standalone application and using an M1 Mac please the modified installation instrustions in the README of the [`airflow-provider-kafka`](https://github.com/astronomer/airflow-provider-kafka) package.
 
 :::
 
@@ -285,7 +284,7 @@ as well as three operators and one trigger:
 - `AwaitKafkaMessageOperator`
 - `AwaitMessageTrigger`
 
-in this section we will provide more detailled information on the parameters of the operators. For more information on the other modules in this provider see the [`airflow-provider-kafka` source code](https://github.com/astronomer/airflow-provider-kafka).
+in this section we will provide more detailled information on the parameters of the operators. For more information on the other modules in this provider see the [`airflow-provider-kafka`](https://github.com/astronomer/airflow-provider-kafka) source code.
 
 ### ProduceToTopicOperator
 
