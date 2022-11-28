@@ -40,10 +40,6 @@ classDef astro fill:#dbcdf6,stroke:#333,stroke-width:2px;
     C[Allocator]-->|Query for new allocations / Log new assignments| B;
     D[Runners]-->|Query for new assignments/ log status|B;
     E[Webserver]-->|Query for results of runners' work|B;
-    style ControlPlane fill:#bfeaff,stroke:#333,stroke-width:2px
-    style DataPlane fill:#bfeaff,stroke:#333,stroke-width:2px
-    style AstroCLI fill:#bfeaff,stroke:#333,stroke-width:2px
-    style Deployment fill:#bfeaff,stroke:#333,stroke-width:2px
 ```
 
 After a task is scheduled:
