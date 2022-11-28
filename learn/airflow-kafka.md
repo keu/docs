@@ -11,6 +11,12 @@ import TabItem from '@theme/TabItem';
 [Apache Kafka](https://kafka.apache.org/documentation/) is an open source tool for handling event streaming. Combining Kafka and Airflow allows you to build powerful pipelines that integrate streaming data with batch processing.
 In this tutorial, you'll learn how to install and use the Airflow Kafka provider to interact directly with Kafka topics.
 
+:::warning
+
+While it is possible to directly produce to and consume from a Kafka cluster in Airflow keep in mind that Airflow itself should not be used for streaming or low-latency processes. See the [Best practices](#best-practices) section for more information.
+
+:::
+
 ## Time to complete
 
 This tutorial takes approximately 1 hour to complete.
@@ -45,49 +51,28 @@ Refer to the [documentation of Confluent](https://developer.confluent.io/quickst
     $ astro dev init
     ```
 
-2. Open the Dockerfile that was created and replace its contents with:
+2. Add the following two packages to your `packages.txt` file:
 
-<Tabs
-    defaultValue="general"
-    groupId= "dockerfile"
-    values={[
-        {label: 'General', value: 'general'},
-        {label: 'M1 Mac', value: 'M1'},
-    ]}>
+    ```text
+    build-essential
+    librdkafka-dev
+    ```
 
-<TabItem value="general">
+3. Add the following two packages to your `requirements.txt` file:
 
-```dockerfile
-FROM quay.io/astronomer/astro-runtime:<version>
+    ```text
+    confluent-kafka==1.8.2
+    airflow-provider-kafka
 
-RUN pip install confluent-kafka
-RUN pip install airflow-provider-kafka
-```
+    ```
 
-This Dockerfile installs both the `confluent-kafka` and the [`airflow-provider-kafka` package](https://github.com/astronomer/airflow-provider-kafka).
+:::info
 
-</TabItem>
+If you are running Airflow as a standalone application and using an M1 Mac please the modified installation instrustions in the README of the [`airflow-provider-kafka` package](https://github.com/astronomer/airflow-provider-kafka).
 
-<TabItem value="M1">
+:::
 
-```dockerfile
-FROM quay.io/astronomer/astro-runtime:<version>-base
-
-RUN apt-get update
-RUN apt install librdkafka-dev -y
-ENV C_INCLUDE_PATH=/opt/homebrew/Cellar/librdkafka/1.8.2/include
-ENV LIBRARY_PATH=/opt/homebrew/Cellar/librdkafka/1.8.2/lib
-RUN pip install confluent-kafka
-RUN pip install airflow-provider-kafka
-```
-
-If you are using an M1 Mac you need to use a base image of the Astro Runtime allowing you to make changes as the root user. First the `librdkafka-dev` package is installed (needing root permissions), before the necessary environment variables are defined and the `confluent-kafka` and the [`airflow-provider-kafka` package](https://github.com/astronomer/airflow-provider-kafka) can be installed.
-
-</TabItem>
-
-</Tabs>
-
-3. In the .env file define the following environment variables. Provide your own Kafka topic name and boostrap server. If you are connecting to a cloud based Kafka cluster you will likely also need to provide an API Key and API Secret:
+4. In the .env file define the following environment variables. Provide your own Kafka topic name and boostrap server. If you are connecting to a cloud based Kafka cluster you will likely also need to provide an API Key and API Secret:
 
     ```text
     KAFKA_TOPIC_NAME=my_kafka_topic_name
@@ -96,7 +81,7 @@ If you are using an M1 Mac you need to use a base image of the Astro Runtime all
     KAFKA_API_SECRET=my_API_secret
     ```
 
-3. Run the following command to start your project in a local environment:
+5. Run the following command to start your project in a local environment:
 
     ```sh
     astro dev start
@@ -341,6 +326,19 @@ The AwaitKafkaMessageOperator is a [deferrable operators]((https://docs.astronom
 - `poll_timeout`: the amount of time in seconds that the task should wait for a message in its active state.
 - `poll_interval`: the amonut of time in seconds that the task should wait in the deferred state.
 - `xcom_push_key`: the key under which to save the returned data to XCom.
+
+## Best practices
+
+Apache Kafka is a tool optimized for streaming messages at high frequencies for example in an IoT application. Airflow is designed to handle orchestration of data pipelines in batches at a frequency of once per minute or less.
+
+Astronomer recommends to combine these two open sources tools by handling low-latency processes with Kafka and data orchestration with Airflow. 
+
+Common patterns include:
+
+- Configuring a Kafka cluster with a blob storage like S3 as a sink. Batch process data from S3 at regular intervals. 
+- Using the ProduceToTopicOperator in Airflow to produce messages to a Kafka cluster as one of several producers.
+- Consuming data from a Kafka cluster via the ConsumeFromTopicOperator in batches using the apply function to extract and load information to a blob storage or data warehouse.
+- Listening for specific messages in a data stream running through a Kafka cluster using the AwaitKafkaMessageOperator to trigger downstream tasks once the message appears.
 
 ## Conclusion
 
