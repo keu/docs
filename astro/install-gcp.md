@@ -108,15 +108,15 @@ The data plane is a collection of infrastructure components for Astro that run i
     ```sh
     export MY_PROJECT_ID=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectId)")
     curl https://raw.githubusercontent.com/astronomer/astro-roles/gcp-custom-role.yaml >! /tmp/gcp.yaml
-    gcloud iam roles create astro-custom-role  project=$MY_PROJECT_ID --file=/tmp/gcp.yaml
+    gcloud iam roles create astrocustomrole  --project=$MY_PROJECT_ID --file=/tmp/gcp.yaml
     ```
 
 3. Run the following commands in your Google Cloud Shell to apply this custom role to your project: 
 
     ```sh
     export MY_PROJECT_NUMBER=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectNumber)")
-    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:$MY_PROJECT_NUMBER@cloudservices.gserviceaccount.com --role=roles/astro-custom-role
-    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:astronomer@astro-remote-mgmt.iam.gserviceaccount.com --role=roles/astro-custom-role
+    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:$MY_PROJECT_NUMBER@cloudservices.gserviceaccount.com --role=roles/astrocustomrole
+    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:astronomer@astro-remote-mgmt.iam.gserviceaccount.com --role=roles/astrocustomrole
     ```
 
 #### Notification of changes to the custom role
