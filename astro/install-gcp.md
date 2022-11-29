@@ -16,7 +16,7 @@ This is where you'll find instructions for installing Astro on the Google Cloud 
 To complete the installation process, you'll:
 
 - Create an account on Astro.
-- Activate your Astro data plane by enabling Google Cloud APIs and adding service accounts to your project's IAM.
+- Activate your Astro data plane by enabling Google Cloud APIs, creating a custom IAM role and adding service accounts to your project.
 - Share information about your Google Cloud project with Astronomer.
 
 When you've completed the installation process, Astronomer will create a cluster within your Google Cloud project to host the resources and Apache Airflow components necessary to deploy DAGs and execute tasks.
@@ -104,13 +104,37 @@ The data plane is a collection of infrastructure components for Astro that run i
     --header 'Accept: application/json'   --compressed
     ```
 
-2. Run the following commands in your Google Cloud Shell:
+2. Run the following commands in your Google Cloud Shell to create a custom role for Astro:
+    ```sh
+    export MY_PROJECT_ID=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectId)")
+    curl https://raw.githubusercontent.com/astronomer/astro-roles/gcp-custom-role.yaml >! /tmp/gcp.yaml
+    gcloud iam roles create astro-custom-role  project=$MY_PROJECT_ID --file=/tmp/gcp.yaml
+    ```
+
+3. Run the following commands in your Google Cloud Shell to apply this custom role to your project: 
 
     ```sh
     export MY_PROJECT_NUMBER=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectNumber)")
-    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:$MY_PROJECT_NUMBER@cloudservices.gserviceaccount.com --role=roles/owner
-    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:astronomer@astro-remote-mgmt.iam.gserviceaccount.com --role=roles/owner
+    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:$MY_PROJECT_NUMBER@cloudservices.gserviceaccount.com --role=roles/astro-custom-role
+    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:astronomer@astro-remote-mgmt.iam.gserviceaccount.com --role=roles/astro-custom-role
     ```
+
+#### Notification of changes to the custom role
+Occasionally, Astronomer makes changes to its policies to ensure the continued operation and development of Astro.
+
+Users with an Organization Owner role will receive an email notification from Astronomer 14 days before any changes are made to the policies governing the custom role that expands user access. Notifications will include an explanation of the changes being made and why the change was necessary.
+
+Astronomer can reduce the access available to the custom without notification.
+
+#### Monitoring custom role for changes (Optional)
+You can use Logs Explorer to monitor changes to the custom role.  Access to Cloud Logging has been limited to prevent the accidental modification or deletion of Logs by Astronomer support. Use the following query in Logs Explorer to query for updates to the custom role:
+
+    ```sh
+    resource.type="iam_role"
+    log_id("cloudaudit.googleapis.com/activity")
+    resource.type=iam_role AND protoPayload.methodName=google.iam.admin.v1.UpdateRole AND protoPayload.resourceNameresourceName=~"projects/<your-project-id>/roles/astro-custom-role"
+    ```
+To monitor updates to the custom role, create a log-based alert. For instructions on how to create an alert, see [Configure log-based Alerts](https://cloud.google.com/logging/docs/alerting/log-based-alerts)
 
 ### Provide setup information to Astronomer
 
