@@ -116,7 +116,7 @@ The code deploy workflow varies based on whether a Deployment has [DAG-only depl
 
 ### Deploy process before DAG deploys are enabled
 
-When you deploy code to Astro, the Astro CLI builds your entire Astro project into a Docker image. This includes system-level dependencies, Python-level dependencies, DAGs, and your `Dockerfile`. It does not include any of the metadata associated with your local Airflow environment, including task history and Airflow connections or variables that were set locally. This Docker image is then pushed to all containers running Airflow on Astro. 
+When you deploy code to Astro, the Astro CLI builds your Astro project into a Docker image. This includes system-level dependencies, Python-level dependencies, DAGs, and your `Dockerfile`. It does not include files that are for local development only, such as `.env` and `airflow_settings.yaml`, or any of the metadata associated with your local Airflow environment, including task history, Airflow connections, and variables. This Docker image is then pushed to all containers running Airflow on Astro. 
 
 ```mermaid
 flowchart BT;
