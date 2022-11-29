@@ -129,11 +129,10 @@ Astronomer can reduce the access available to the custom without notification.
 #### Monitoring custom role for changes (Optional)
 You can use Logs Explorer to monitor changes to the custom role.  Access to Cloud Logging has been limited to prevent the accidental modification or deletion of Logs by Astronomer support. Use the following query in Logs Explorer to query for updates to the custom role:
 
-    ```sh
     resource.type="iam_role"
     log_id("cloudaudit.googleapis.com/activity")
     resource.type=iam_role AND protoPayload.methodName=google.iam.admin.v1.UpdateRole AND protoPayload.resourceNameresourceName=~"projects/<your-project-id>/roles/astro-custom-role"
-    ```
+
 To monitor updates to the custom role, create a log-based alert. For instructions on how to create an alert, see [Configure log-based Alerts](https://cloud.google.com/logging/docs/alerting/log-based-alerts)
 
 ### Provide setup information to Astronomer
