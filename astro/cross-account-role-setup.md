@@ -212,7 +212,6 @@ Use the external ID to create a cross-account IAM role for Astro. Astronomer rec
 </TabItem>
 </Tabs>
 
-
 ## Step 5: Provide setup information to Astronomer
 
 After creating the AWS account, provide Astronomer support with the following information:
@@ -245,7 +244,7 @@ If you need to VPC peer with Astronomer, provide the following information to yo
 - VPC Name/ID and region for peering with Astronomer. This is accessible through the [AWS VPC console](https://console.aws.amazon.com/vpc/).
 - The IPs of your DNS servers.
 
-## Step 5: Astronomer support creates the cluster
+## Step 6: Astronomer support creates the cluster
 
 After you've created the cross-account IAM role for Astro, contact [Astronomer support](https://cloud.astronomer.io/support). Astronomer support creates the cluster in your AWS account.
 
@@ -258,20 +257,13 @@ When VPC peering with Astronomer is complete, configure and validate the followi
 - Egress Routes on Astronomer Route Table
 - [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-tasks) and/or [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#working-with-security-groups) rules of your resources
 
+## Step 7: Create a Deployment and confirm the install
+
+When Astronomer support confirms that your Astro cluster has been created, Astronomer recommends that you create a Deployment and deploy DAGs. See [Create a Deployment](create-deployment.md). 
+
+To confirm a successful installation, in the Cloud UI select a Workspace and on the **Deployments** page click **Deployment**. The Astro cluster created by Astronomer support appears as an option in the **Cluster** list.
+
 ## Next steps
-
-Congratulations on installing Astro on AWS! Astronomer recommends completing some of the following actions to make the most of your new installation.
-
-### Create a Deployment
-
-When Astronomer support confirms that your Astro cluster has been created, you can create a Deployment and start deploying DAGs. See [Create a Deployment](create-deployment.md). When you create your Deployment, the Astro cluster created by Astronomer support appears as an option in the **Cluster** list as shown in the following image.
-
-![Cloud UI New Deployment screen](/img/docs/create-new-deployment-select-cluster.png)
-
-
-### Read the documentation
-
-The following documents include setup steps for key Astro features and tools: 
 
 - [Set up an identity provider](configure-idp.md)
 - [Install CLI](cli/overview.md)
