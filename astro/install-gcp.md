@@ -133,7 +133,7 @@ You can use Logs Explorer to monitor changes to the custom role.  Access to Clou
     log_id("cloudaudit.googleapis.com/activity")
     resource.type=iam_role AND protoPayload.methodName=google.iam.admin.v1.UpdateRole AND protoPayload.resourceNameresourceName=~"/roles/astro-custom-role"
 
-To monitor updates to the custom role, create a log-based alert. For instructions on how to create an alert, see [Configure log-based Alerts](https://cloud.google.com/logging/docs/alerting/log-based-alerts)
+For instructions on how to create a log-based alert to be notified of changes to this role, see [Configure log-based Alerts](https://cloud.google.com/logging/docs/alerting/log-based-alerts)
 
 ### Provide setup information to Astronomer
 
