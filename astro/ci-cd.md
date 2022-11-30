@@ -719,17 +719,17 @@ To automate code deploys across multiple Deployments using [Jenkins](https://www
               steps {
                   script {
                       if (env.GIT_BRANCH == 'main') {
-                          echo "The git branch is ${siteVariables.jenkinsenv}";
+                          echo "The git branch is ${env.GIT_BRANCH}";
                           env.ASTRONOMER_KEY_ID = env.PROD_ASTRONOMER_KEY_ID;
                           env.ASTRONOMER_KEY_SECRET = env.PROD_ASTRONOMER_KEY_SECRET;
                           env.ASTRONOMER_DEPLOYMENT_ID = env.PROD_DEPLOYMENT_ID;
                       } else if (env.GIT_BRANCH == 'dev') {
-                          echo "The git branch is ${siteVariables.jenkinsenv}";
+                          echo "The git branch is ${env.GIT_BRANCH}";
                           env.ASTRONOMER_KEY_ID = env.DEV_ASTRONOMER_KEY_ID;
                           env.ASTRONOMER_KEY_SECRET = env.DEV_ASTRONOMER_KEY_SECRET;
                           env.ASTRONOMER_DEPLOYMENT_ID = env.DEV_DEPLOYMENT_ID;
                       } else {
-                          echo "This git branch ${siteVariables.jenkinsenv} is not configured in this pipeline."
+                          echo "This git branch ${env.GIT_BRANCH} is not configured in this pipeline."
                       }
                   }
               }
@@ -865,7 +865,8 @@ To automate code deploys to a Deployment using [CircleCI](https://circleci.com/)
 
 2. Create a new YAML file in `.circleci/config.yml` that includes the following configuration:
 
-    <pre><code parentName="pre">{`# Use the latest 2.1 version of CircleCI pipeline process engine.
+    ```
+    # Use the latest CircleCI pipeline process engine version.
     # See: https://circleci.com/docs/2.0/configuration-reference
     version: 2.1
 
@@ -889,8 +890,8 @@ To automate code deploys to a Deployment using [CircleCI](https://circleci.com/)
           - run:
               name: "Setup custom environment variables"
               command: |
-                echo export ASTRONOMER_KEY_ID=${siteVariables.keyid} >> $BASH_ENV
-                echo export ASTRONOMER_KEY_SECRET=${siteVariables.keysecret} >> $BASH_ENV
+                echo export ASTRONOMER_KEY_ID=${ASTRONOMER_KEY_ID} >> $BASH_ENV
+                echo export ASTRONOMER_KEY_SECRET=${ASTRONOMER_KEY_SECRET} >> $BASH_ENV
           - run:
               name: "Deploy to Astro"
               command: |
@@ -910,7 +911,7 @@ To automate code deploys to a Deployment using [CircleCI](https://circleci.com/)
                 branches:
                   only:
                     - main
-    `}</code></pre>
+    ```
 
 ### Drone
 
@@ -932,7 +933,8 @@ This pipeline configuration requires:
 
 3. In the top level of your Git repository, create a file called `.drone.yml` that includes the following configuration:
 
-    <pre><code parentName="pre">{`---
+    ```
+    ---
     kind: pipeline
     type: docker
     name: deploy
@@ -984,7 +986,7 @@ This pipeline configuration requires:
       - main
       event:
       - push
-    `}</code></pre>
+    ```
 
 ### GitLab
 
@@ -1013,15 +1015,16 @@ To automate code deploys to a Deployment using [GitLab](https://gitlab.com/), co
 
 2. Go to the Editor option in your project's CI/CD section and commit the following:
 
-   <pre><code parentName="pre">{`---
+   ```
+   ---
     astro_deploy:
       stage: deploy
       image: docker:latest
       services:
        - docker:dind
       variables:
-         ASTRONOMER_KEY_ID: ${siteVariables.keyid}
-         ASTRONOMER_KEY_SECRET: ${siteVariables.keyid}
+         ASTRONOMER_KEY_ID: ${ASTRONOMER_KEY_ID}
+         ASTRONOMER_KEY_SECRET: ${ASTRONOMER_KEY_SECRET}
       before_script:
        - apk add --update curl && rm -rf /var/cache/apk/*
        - apk add bash
@@ -1030,7 +1033,7 @@ To automate code deploys to a Deployment using [GitLab](https://gitlab.com/), co
        - astro deploy -f
       only:
        - main
-   `}</code></pre>
+   ```
 
 </TabItem>
 
@@ -1053,15 +1056,16 @@ When you create environment variables that will be used in multiple branches, yo
 
 2. Go to the Editor option in your project's CI/CD section and commit the following:
 
-   <pre><code parentName="pre">{`---
+   ```
+   ---
       astro_deploy_dev:
         stage: deploy
         image: docker:latest
         services:
           - docker:dind
         variables:
-            ASTRONOMER_KEY_ID: ${siteVariables.devkeyid}
-            ASTRONOMER_KEY_SECRET: ${siteVariables.devkeysecret}
+            ASTRONOMER_KEY_ID: ${DEV_ASTRONOMER_KEY_ID}
+            ASTRONOMER_KEY_SECRET: ${DEV_ASTRONOMER_KEY_SECRET}
         before_script:
           - apk add --update curl && rm -rf /var/cache/apk/*
           - apk add bash
@@ -1077,8 +1081,8 @@ When you create environment variables that will be used in multiple branches, yo
         services:
           - docker:dind
         variables:
-            ASTRONOMER_KEY_ID: ${siteVariables.prodkeyid}
-            ASTRONOMER_KEY_SECRET: ${siteVariables.prodkeysecret}
+            ASTRONOMER_KEY_ID: ${PROD_ASTRONOMER_KEY_ID}
+            ASTRONOMER_KEY_SECRET: ${PROD_ASTRONOMER_KEY_SECRET}
         before_script:
           - apk add --update curl && rm -rf /var/cache/apk/*
           - apk add bash
@@ -1087,7 +1091,7 @@ When you create environment variables that will be used in multiple branches, yo
           - astro deploy -f
         only:
           - main
-   `}</code></pre>
+   ```
 
 
 
@@ -1105,7 +1109,7 @@ To automate code deploys to a Deployment using [Bitbucket](https://bitbucket.org
 
 2. Create a new YAML file in `bitbucket-pipelines.yml` at the root of the repository that includes the following configuration:
 
-    <pre><code parentName="pre">{`
+    ```
     pipelines:
       pull-requests: # The branch pattern under pull requests defines the *source* branch.
         dev:
@@ -1117,7 +1121,7 @@ To automate code deploys to a Deployment using [Bitbucket](https://bitbucket.org
                 - astro deploy
               services:
                 - docker
-    `}</code></pre>
+    ```
 
 
 ### Azure DevOps
@@ -1131,7 +1135,7 @@ To automate code deploys to a Deployment using [Azure DevOps](https://dev.azure.
 
 2. Create a new YAML file in `astro-devops-cicd.yaml` at the root of the repository that includes the following configuration:
 
-    <pre><code parentName="pre">{`
+    ```
     trigger:
     - main
 
@@ -1150,4 +1154,4 @@ To automate code deploys to a Deployment using [Azure DevOps](https://dev.azure.
           env:
             ASTRONOMER_KEY_ID: $(ASTRONOMER_KEY_ID)
             ASTRONOMER_KEY_SECRET: $(ASTRONOMER_KEY_SECRET)
-    `}</code></pre>
+    ```
