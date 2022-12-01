@@ -1,19 +1,16 @@
 ---
-title: "Use Kafka with Airflow"
-sidebar_label: "Kafka/Confluent"
+title: "Use Apache Kafka with Apache Airflow"
+sidebar_label: "Apache Kafka/Confluent"
 description: "How to produce to and consume from Kafka topics using the Airflow Kafka provider"
 id: airflow-kafka
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 [Apache Kafka](https://kafka.apache.org/documentation/) is an open source tool for handling event streaming. Combining Kafka and Airflow allows you to build powerful pipelines that integrate streaming data with batch processing.
 In this tutorial, you'll learn how to install and use the Airflow Kafka provider to interact directly with Kafka topics.
 
-:::warning
+:::caution
 
-While it is possible to directly produce to and consume from a Kafka cluster in Airflow keep in mind that Airflow itself should not be used for streaming or low-latency processes. See the [Best practices](#best-practices) section for more information.
+While it is possible to manage a Kafka cluster in Airflow, be aware that Airflow itself should not be used for streaming or low-latency processes. See the [Best practices](#best-practices) section for more information.
 
 :::
 
@@ -31,16 +28,10 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 ## Prerequisites
 
-To complete this tutorial, you need:
 
-- A Kafka cluster with a topic. In this tutorial we will use a cluster hosted by [Confluent Cloud](https://www.confluent.io/) (a free trial account is available).
+- A Kafka cluster with a topic. This tutorial uses a cluster hosted by [Confluent Cloud](https://www.confluent.io/), which has a free trial option. See the [Confluent documentation](https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/) for how to create a Kafka cluster and topic in Confluent Cloud.
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 
-:::info
-
-Refer to the [documentation of Confluent](https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/) for how to create a Kafka cluster and topic in the Confluent Cloud or to the [Kafka documentation](https://kafka.apache.org/quickstart) for how to do so locally.
-
-:::
 
 ## Step 1: Configure your Astro project
 
@@ -51,14 +42,14 @@ Refer to the [documentation of Confluent](https://developer.confluent.io/quickst
     $ astro dev init
     ```
 
-2. Add the following two packages to your `packages.txt` file:
+2. Add the following packages to your `packages.txt` file:
 
     ```text
     build-essential
     librdkafka-dev
     ```
 
-3. Add the following two packages to your `requirements.txt` file:
+3. Add the following packages to your `requirements.txt` file:
 
     ```text
     confluent-kafka==1.8.2
@@ -67,17 +58,17 @@ Refer to the [documentation of Confluent](https://developer.confluent.io/quickst
 
 :::info
 
-If you are running Airflow as a standalone application and using an M1 Mac please the modified installation instrustions in the README of the [`airflow-provider-kafka`](https://github.com/astronomer/airflow-provider-kafka) package.
+If you are running Airflow as a standalone application and using an M1 Mac, complete the additional setup in the [`airflow-provider-kafka` README](https://github.com/astronomer/airflow-provider-kafka#setup-on-m1-mac).
 
 :::
 
-4. In the .env file define the following environment variables. Provide your own Kafka topic name and boostrap server. If you are connecting to a cloud based Kafka cluster you will likely also need to provide an API Key and API Secret:
+4. Add the following environment variables in `.env`. Provide your own Kafka topic name and boostrap server. If you are connecting to a cloud based Kafka cluster, you might also need to provide an API Key and API Secret:
 
     ```text
-    KAFKA_TOPIC_NAME=my_kafka_topic_name
-    BOOSTRAP_SERVER=my_boostrap_server
-    KAFKA_API_KEY=my_api_key
-    KAFKA_API_SECRET=my_API_secret
+    KAFKA_TOPIC_NAME=<your-kafka-topic-name>
+    BOOSTRAP_SERVER=<your-bootstrap-server>
+    KAFKA_API_KEY=<your-api-key>
+    KAFKA_API_SECRET=<your-api-secret>
     ```
 
 5. Run the following command to start your project in a local environment:
@@ -88,9 +79,9 @@ If you are running Airflow as a standalone application and using an M1 Mac pleas
 
 ## Step 2: Create a DAG with a producer task
 
-The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provider-kafka) contains an operator allowing you to produce events directly to an existing Kafka topic, the ProduceToTopicOperator.
+The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provider-kafka) contains the ProduceToTopicOperator, which you can use to produce events directly to a Kafka topic.
 
-1. Create a new Python file in your `dags` folder called `kafka_example_dag_1.py`.
+1. Create a new file in your `dags` folder called `kafka_example_dag_1.py`.
 
 2. Copy and paste the following code into the file:
 
@@ -139,9 +130,8 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
         )
     ```
 
-    The code above retrieves the environment variables you defined in [Step 1](#step-1-configure-your-astro-project) and packages them into a configuration dictionary that can be used by the ProduceToTopicOperator. Any Python function which returns a generator can be passed to the `producer_function` parameter of the ProduceToTopicOperator. Make sure your producer function returns a generator that contains key-value pairs where the value is in a format your Kafka topic accepts as input. In the example above the generator produces a JSON value. Additionally, if you have defined a schema for your Kafka topic, the generator needs to return compatible objects.
+    The code above retrieves the environment variables you defined in [Step 1](#step-1-configure-your-astro-project) and packages them into a configuration dictionary that can be used by the ProduceToTopicOperator. Any Python function which returns a generator can be passed to the `producer_function` parameter of the ProduceToTopicOperator. Make sure your producer function returns a generator that contains key-value pairs where the value is in a format your Kafka topic accepts as input. In this example, the generator produces a JSON value. Additionally, if you have defined a schema for your Kafka topic, the generator needs to return compatible objects.
 
-    If you are connecting to a local Kafka cluster you might need to adjust the `connection_config` dictionary (see tip below).
 
 3. Run your DAG.
 
@@ -153,29 +143,29 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
 
     ![Producer logs](/img/guides/confluent-produced-tasks.png)
 
-:::tip
+:::info
 
-If you are using a Kafka cluster that is running locally on your machine you will need to adjust the `connection_config` parameter. To connect to the [Kafka quick start](https://kafka.apache.org/documentation/#quickstart) cluster when running Airflow in Docker, set the following properties in your Kafka cluster's `server.properties` file:
+If you are using a Kafka cluster that is running on your local machine, you will need to adjust the `connection_config` parameter in this example. To connect to the [Kafka quick start](https://kafka.apache.org/documentation/#quickstart) cluster when running Airflow in Docker, set the following properties in your Kafka cluster's `server.properties` file:
 
 listeners=PLAINTEXT://:9092,DOCKER_HACK://:19092
 advertised.listeners=PLAINTEXT://localhost:9092,DOCKER_HACK://host.docker.internal:19092
 listener.security.protocol.map=PLAINTEXT:PLAINTEXT,DOCKER_HACK:PLAINTEXT
 
-while using `"bootstrap.servers":"host.docker.internal:19092"` and `"security.protocol": "PLAINTEXT"` as your `connection_config`. Learn more in [Confluent's documentation](https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/#scenario-5).
+Then add `"bootstrap.servers":"host.docker.internal:19092"` and `"security.protocol": "PLAINTEXT"` to your `connection_config` parameter in the DAG.
 
 :::
 
 ## Step 3: Add a consumer task
 
-With the ConsumeFromTopicOperator Airflow is able to consume messages from topics. 
+The ConsumeFromTopicOperator enables Airflow to consume messages from topics. 
 
-1. Add the following import statement to the `kafka_example_dag_1`.
+1. Add the following import statement to `kafka_example_dag_1`.
 
     ```python
     from airflow_provider_kafka.operators.consume_from_topic import ConsumeFromTopicOperator
     ```
 
-2. In the `kafka_example_dag_1` add the following code below the `producer_task`.
+2. Add the following code after the `producer_task` in `kafka_example_dag_1`.
 
     ```python
     consumer_logger = logging.getLogger("airflow")
@@ -206,7 +196,7 @@ With the ConsumeFromTopicOperator Airflow is able to consume messages from topic
 
     ```
 
-    In this code snippet first a function is defined that reads from the topic defined as `my_topic` and prints the messages consumed to the Airflow task log. The ConsumeFromTopicOperator uses the same `connection_config` as the `producer_task` with added configurations specific to Kafka Consumers. You can read more about consumer configuration in Kafka in the official [Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
+   The `consumer_task` includes a function that reads from `my_topic` and prints the messages it consumes to the Airflow task log. The `consumer_task` uses the same `connection_config` as the `producer_task` with added configurations specific to Kafka Consumers. You can read more about consumer configuration in Kafka in the [Kafka documentation](https://kafka.apache.org/documentation/#consumerconfigs).
 
 3. Run your DAG.
 
@@ -214,9 +204,9 @@ With the ConsumeFromTopicOperator Airflow is able to consume messages from topic
 
     ![Consumer log](/img/guides/kafka-consumer-logs.png)
 
-:::info
+:::tip
 
-A very common pattern is to directly connect an Amazon S3 bucket to your Kafka topic as a consumer. The ConsumeFromTopicOperator is helpful if you want to use Airflow features to schedule the consuming task. Instead of writing the messages retrieved to the Airflow logs, you can write them to S3 using the [S3CreateObjectOperator](https://registry.astronomer.io/providers/amazon/modules/s3createobjectoperator).
+A common use case is to directly connect an Amazon S3 bucket to your Kafka topic as a consumer. The ConsumeFromTopicOperator is helpful if you want to use Airflow to schedule the consuming task. Instead of writing the messages retrieved to the Airflow logs, you can write them to S3 using the [S3CreateObjectOperator](https://registry.astronomer.io/providers/amazon/modules/s3createobjectoperator).
 
 :::
 
@@ -224,11 +214,7 @@ A very common pattern is to directly connect an Amazon S3 bucket to your Kafka t
 
 A common use case is to run a downstream task when a specific message appears in your Kafka topic. The AwaitKafkaMessageOperator is a deferrable operator that will listen to your Kafka topic for a message that fulfills a specific criteria.
 
-:::info
-
-A deferrable operator is a sensor that will go into a deferred state in between checking for its condition in the target system. While in the deferred state the operator does not take up a worker slot, offering a significant efficiency improvement. Using a deferrable operator necessitates the presence of the Triggerer component. Learn more about [Deferrable operators]((https://docs.astronomer.io/learn/deferrable-operators)).
-
-:::
+A deferrable operator is a sensor that will go into a deferred state in between checking for its condition in the target system. While in the deferred state the operator does not take up a worker slot, offering a significant efficiency improvement. See [Deferrable operators]((https://docs.astronomer.io/learn/deferrable-operators)).
 
 1. In `kafka_example_dag_1`, add the following import statement:
 
@@ -261,7 +247,7 @@ A deferrable operator is a sensor that will go into a deferred state in between 
     consumer_task >> await_message
     ```
 
-    In this code snippet an `await_function` is defined which will parse each message in the Kafka topic and return the message if the value is an integer divisible by 5. The AwaitKafkaMessageOperator using runs this function over messages polled from the Kafka topic. If no matching message is found it goes into a deferred state until it tries again.  
+    This code snippet includes an `await_function` which will parse each message in the Kafka topic and return the message if the value is an integer divisible by 5. The AwaitKafkaMessageOperator using runs this function over messages polled from the Kafka topic. If no matching message is found, it continues to poll in a deferred state until it finds one.
 
 3. Run the DAG. Notice how the task instance of the `await_message` task goes into a deferred state (purple square).
 
@@ -277,14 +263,14 @@ The `airflow-kafka-provider` contains three hooks:
 - `KafkaConsumerHook`
 - `KafkaProducerHook`
 
-as well as three operators and one trigger:
+It uses three operators and one trigger:
 
 - `ProduceToTopicOperator`
 - `ConsumeFromTopicOperator`
 - `AwaitKafkaMessageOperator`
 - `AwaitMessageTrigger`
 
-in this section we will provide more detailled information on the parameters of the operators. For more information on the other modules in this provider see the [`airflow-provider-kafka`](https://github.com/astronomer/airflow-provider-kafka) source code.
+The following section provides more detailed information on the parameters of each operator. For more information on the other modules in this provider see the [`airflow-provider-kafka`](https://github.com/astronomer/airflow-provider-kafka) source code.
 
 ### ProduceToTopicOperator
 
