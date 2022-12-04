@@ -28,7 +28,6 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 ## Prerequisites
 
-
 - A Kafka cluster with a topic. This tutorial uses a cluster hosted by [Confluent Cloud](https://www.confluent.io/), which has a free trial option. See the [Confluent documentation](https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/) for how to create a Kafka cluster and topic in Confluent Cloud.
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 
@@ -161,7 +160,6 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
 5. View the produced events in your Kafka cluster. The example screenshot below shows them in the Confluent Cloud.
 
     ![Producer logs](/img/guides/confluent-produced-tasks.png)
-
 
 ## Step 3: Add a consumer task
 
