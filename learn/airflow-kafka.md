@@ -10,7 +10,7 @@ In this tutorial, you'll learn how to install and use the Airflow Kafka provider
 
 :::caution
 
-While it is possible to manage a Kafka cluster in Airflow, be aware that Airflow itself should not be used for streaming or low-latency processes. See the [Best practices](#best-practices) section for more information.
+While it is possible to manage a Kafka cluster with Airflow, be aware that Airflow itself should not be used for streaming or low-latency processes. See the [Best practices](#best-practices) section for more information.
 
 :::
 
@@ -32,6 +32,19 @@ To get the most out of this tutorial, make sure you have an understanding of:
 - A Kafka cluster with a topic. This tutorial uses a cluster hosted by [Confluent Cloud](https://www.confluent.io/), which has a free trial option. See the [Confluent documentation](https://developer.confluent.io/quickstart/kafka-on-confluent-cloud/) for how to create a Kafka cluster and topic in Confluent Cloud.
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/get-started).
 
+:::info
+
+To connect a [local Kafka cluster](https://kafka.apache.org/documentation/#quickstart) to an Airflow instance running in Docker, set the following properties in your Kafka cluster's `server.properties` file before starting your Kafka cluster:
+
+```text
+listeners=PLAINTEXT://:9092,DOCKER_HACK://:19092
+advertised.listeners=PLAINTEXT://localhost:9092,DOCKER_HACK://host.docker.internal:19092
+listener.security.protocol.map=PLAINTEXT:PLAINTEXT,DOCKER_HACK:PLAINTEXT
+```
+
+You can learn more about connecting to local Kafka from within a Docker container in [Confluent's Documentation](https://www.confluent.io/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/#scenario-5).
+
+:::
 
 ## Step 1: Configure your Astro project
 
@@ -62,11 +75,12 @@ If you are running Airflow as a standalone application and using an M1 Mac, comp
 
 :::
 
-4. Add the following environment variables in `.env`. Provide your own Kafka topic name and boostrap server. If you are connecting to a cloud based Kafka cluster, you might also need to provide an API Key and API Secret:
+4. Add the following environment variables in `.env`. Provide your own Kafka topic name, boostrap server, API Key and API Secret.
 
     ```text
     KAFKA_TOPIC_NAME=<your-kafka-topic-name>
     BOOSTRAP_SERVER=<your-bootstrap-server>
+    SECURITY_PROTOCOL=SASL_SSL
     KAFKA_API_KEY=<your-api-key>
     KAFKA_API_SECRET=<your-api-secret>
     ```
@@ -76,6 +90,12 @@ If you are running Airflow as a standalone application and using an M1 Mac, comp
     ```sh
     astro dev start
     ```
+
+:::info
+
+If you are connecting to the local Kafka server created with the `server.properties` in the info box from the [Prerequisites](#prerequisites) section you will need to set `BOOTSTRAP_SERVER=host.docker.internal:19092`, `SECURITY_PROTOCOL=PLAINTEXT` and provide your topic name. You can set the API Key and API Secret to `None`.
+
+:::
 
 ## Step 2: Create a DAG with a producer task
 
@@ -103,10 +123,10 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
     # get Kafka configuration information
     connection_config = {
         "bootstrap.servers": os.environ["BOOSTRAP_SERVER"],
-        "security.protocol": "SASL_SSL", # adjust for local clusters
-        "sasl.mechanism": "PLAIN", #  adjust for local clusters
-        "sasl.username": os.environ["KAFKA_API_KEY"], # adjust for local clusters
-        "sasl.password": os.environ["KAFKA_API_SECRET"] # adjust for local clusters
+        "security.protocol": os.environ["SECURITY_PROTOCOL"],
+        "sasl.mechanism": "PLAIN",
+        "sasl.username": os.environ["KAFKA_API_KEY"],
+        "sasl.password": os.environ["KAFKA_API_SECRET"]
     }
 
     with DAG(
@@ -132,7 +152,6 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
 
     The code above retrieves the environment variables you defined in [Step 1](#step-1-configure-your-astro-project) and packages them into a configuration dictionary that can be used by the ProduceToTopicOperator. Any Python function which returns a generator can be passed to the `producer_function` parameter of the ProduceToTopicOperator. Make sure your producer function returns a generator that contains key-value pairs where the value is in a format your Kafka topic accepts as input. In this example, the generator produces a JSON value. Additionally, if you have defined a schema for your Kafka topic, the generator needs to return compatible objects.
 
-
 3. Run your DAG.
 
 4. View the logs of your task instance. The 5 produced events will be listed.
@@ -143,19 +162,6 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
 
     ![Producer logs](/img/guides/confluent-produced-tasks.png)
 
-:::info
-
-If you are using a Kafka cluster that is running on your local machine, you will need to adjust the `connection_config` parameter in this example. To connect to the [Kafka quick start](https://kafka.apache.org/documentation/#quickstart) cluster when running Airflow in Docker, set the following properties in your Kafka cluster's `server.properties` file:
-
-```text
-listeners=PLAINTEXT://:9092,DOCKER_HACK://:19092
-advertised.listeners=PLAINTEXT://localhost:9092,DOCKER_HACK://host.docker.internal:19092
-listener.security.protocol.map=PLAINTEXT:PLAINTEXT,DOCKER_HACK:PLAINTEXT
-```
-
-Then add `"bootstrap.servers":"host.docker.internal:19092"` and `"security.protocol": "PLAINTEXT"` to your `connection_config` parameter in the DAG.
-
-:::
 
 ## Step 3: Add a consumer task
 
