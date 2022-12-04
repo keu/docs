@@ -84,17 +84,17 @@ If you are running Airflow as a standalone application and using an M1 Mac, comp
     KAFKA_API_SECRET=<your-api-secret>
     ```
 
-5. Run the following command to start your project in a local environment:
-
-    ```sh
-    astro dev start
-    ```
-
 :::info
 
 If you are connecting to the local Kafka server created with the `server.properties` in the info box from the [Prerequisites](#prerequisites) section you will need to set `BOOTSTRAP_SERVER=host.docker.internal:19092`, `SECURITY_PROTOCOL=PLAINTEXT` and provide your topic name. You can set the API Key and API Secret to `None`.
 
 :::
+
+5. Run the following command to start your project in a local environment:
+
+    ```sh
+    astro dev start
+    ```
 
 ## Step 2: Create a DAG with a producer task
 
