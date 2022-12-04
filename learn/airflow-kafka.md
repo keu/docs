@@ -289,7 +289,7 @@ The ProduceToTopicOperator can be used create a Kafka producer to produce messag
 
 ### ConsumeFromTopicOperator
 
-The ConsumeFromTopicOperator can be used create a Kafka consumer to read batches of messages and processes them. You can define the following parameters:
+The ConsumeFromTopicOperator can be used to create a Kafka consumer to read batches of messages and processes them. You can define the following parameters:
 
 - `topics`: A list of topics or regex patterns for the consumer to subscribe to i.e. read from.
 - `apply_function`: A Python function that is applied to all messages that are read.
@@ -316,7 +316,7 @@ The AwaitKafkaMessageOperator is a [deferrable operators]((https://docs.astronom
 
 ## Best practices
 
-Apache Kafka is a tool optimized for streaming messages at high frequencies for example in an IoT application. Airflow is designed to handle orchestration of data pipelines in batches at a frequency of once per minute or less.
+Apache Kafka is a tool optimized for streaming messages at high frequencies, for example in an IoT application. Airflow is designed to handle orchestration of data pipelines in batches at a frequency of no more than once per minute.
 
 Astronomer recommends to combine these two open sources tools by handling low-latency processes with Kafka and data orchestration with Airflow. 
 
