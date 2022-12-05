@@ -17,7 +17,7 @@ astro deployment inspect
 When using the `--key` flag, specify the complete path of the key you want to return the value for, excluding `deployment`. For example, to return the `cluster_id` for a specific Deployment, you would run:
 
 ```sh
-deployment inspect <deployment-id> --key configuration.status
+astro deployment inspect <deployment-name> --key information.status
 ```
 
 See [Example output](#example-output) for all possible values to return. 
@@ -30,6 +30,10 @@ The following output is an example of what you receive when you run `astro deplo
 deployment:
     alert_emails: []
     astronomer_variables:
+        - is_secret: false
+          key: AWS_DEFAULT_REGION
+          updated_at: "2022-09-26T13:58:54.427Z"
+          value: us-east-1
         - is_secret: true
           key: AWS_ACCESS_KEY_ID
           updated_at: "2022-09-26T13:57:36.564Z"
@@ -38,10 +42,6 @@ deployment:
           key: AWS_SECRET_ACCESS_KEY
           updated_at: "2022-09-26T13:57:36.564Z"
           value: ""
-        - is_secret: false
-          key: AWS_DEFAULT_REGION
-          updated_at: "2022-09-26T13:58:54.427Z"
-          value: us-east-1
     configuration:
         cluster_id: cl66604ph00tx0s2tb3v313qu
         description: ""
