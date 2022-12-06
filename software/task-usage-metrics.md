@@ -28,7 +28,6 @@ houston:
 
 After you set this configuration, Astronomer Software begins to run a cron job for collecting task usage metrics, sending them to Astronomer Support, and displaying them in the Software UI.
 
-To manually send task usage metrics to Astronomer support instead, see [Export task usage metrics manually](#export-task-usage-metrics-manually).
 
 ## Set up task usage metrics on a Deployment (_Required only for Astronomer Certified and Astro Runtime < 6.1_)
 
