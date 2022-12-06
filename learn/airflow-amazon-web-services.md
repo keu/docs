@@ -49,27 +49,30 @@ Steps:
     ```yaml
     version: "3.1"
     services:
-    scheduler:
-        volumes:
-        - /home/odaneau/.aws:/home/astro/.aws:ro
-    webserver:
-        volumes:
-        - /home/odaneau/.aws:/home/astro/.aws:ro
-    triggerer:
-        volumes:
-        - /home/odaneau/.aws:/home/astro/.aws:ro
+        scheduler:
+            volumes:
+            - /home/odaneau/.aws:/home/astro/.aws:ro
+        webserver:
+            volumes:
+            - /home/odaneau/.aws:/home/astro/.aws:ro
+        triggerer:
+            volumes:
+            - /home/odaneau/.aws:/home/astro/.aws:ro
     ```
 
     For Windows:
     ```yaml
     version: "3.1"
     services:
-    scheduler:
-        volumes:
-        - /c/Users/<username>/.aws:/home/astro/.aws:ro
-    webserver:
-        volumes:
-        - /c/Users/<username>/.aws:/home/astro/.aws:ro
+        scheduler:
+            volumes:
+            - /c/Users/<username>/.aws:/home/astro/.aws:ro
+        webserver:
+            volumes:
+            - /c/Users/<username>/.aws:/home/astro/.aws:ro
+        triggerer:
+            volumes:
+            - /c/Users/<username>/.aws:/home/astro/.aws:ro
     ```
 
     For more information:
