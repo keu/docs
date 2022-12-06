@@ -5,7 +5,7 @@ id: task-usage-metrics
 description: Configure the Astronomer Software platform to record metrics about task usage.
 ---
 
-Task usage metrics provide a high level view of your Airflow task runs and can help you quickly identify Deployments where more tasks a running or failing than expected.
+Task usage metrics provide an overview of your Airflow task runs and can help you quickly identify Deployments where more tasks are running or failing than expected.
 
 If your organization's usage of Astronomer is priced based on successful task runs, you must configure task usage metrics so that you can export figures about your task runs to Astronomer.
 
