@@ -26,7 +26,7 @@ houston:
           olderThan: 90
 ```
 
-After you set this configuration, Astronomer Software begins to run a cron job for collecting task usage metrics, sending them to Astronomer Support, and displaying them in the Software UI.
+After you set this configuration, Astronomer Software begins to run a cron job for collecting task usage metrics at the 57th minute of every hour, sending them to Astronomer support, and displaying them in the Software UI every. By default Astronomer installation retains this data for 90 days. 
 
 
 ## Set up task usage metrics on a Deployment (_Required only for Astronomer Certified and Astro Runtime < 6.1_)
