@@ -1,66 +1,92 @@
-# Authenticate with User Credentials for local development (AWS)
+---
+title: "Authenticate to AWS through Apache Airflow"
+sidebar_label: "AWS"
+description: "Learn how to connect to a hosted environment on AWS from Apache Airflow. Use AWS credentials to access secrets backends and more from a locally running Airflow environment."
+id: airflow-amazon-web-services
+---
 
-It is possible to use local User credentials instead of Service Account Keys to authenticate to AWS.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+For simple testing use cases, running Airflow with test data and public APIs is enough. Once you start expanding your Airflow use with your organization, you might need to develop and test DAGs locally with data from your organization's cloud. For example, you might need to test your DAGs using environment variables stored in a secrets backend like AWS Secrets Manager.
+
+You could create access keys for each user developing locally, but service account keys are difficult to track and manage especially on larger teams. Instead, Astronomer recommends exporting credentials for your own AWS account and securely adding these credentials to Airflow. This way, you know which permissions Airflow has without needing to configure a separate access key. 
+
+By the end of this integration tutorial, you'll know: 
+
+- How to pull your user credentials from AWS using the AWS CLI
+- Mount your user credentials as a volume at runtime
+- Authenticate to AWS through Airflow environment variables that pull from your mounted volume
+- Test your credentials by pulling a secret from a secrets backend
 
 Using these credentials, it is also possible to configure a custom Secret Backend like AWS Secrets Manager for local development.
 
-Pre-requisites:
-- Install the AWS CLI: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+## Prerequisites
 
-Steps:
-1. Acquire user credentials with AWS CLI
+- An account on AWS.
+- The [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/overview)
+- Optional. Access to a secrets backend hosted on AWS, such as AWS Secrets Manager or AWS Parameter Store
+
+## Load user credentials locally
+
+Run the following command to obtain your user credentials locally:
     
-    The following command is used to obtain user access credentials via AWS Access Key ID and AWS Secret Access Key.
-    ```
-    aws configure
-    ```    
+```
+aws configure
+```    
 
-    The following command is used to obtain user access credentials via SSO.
-    ```
-    aws configure sso
-    ```
+This command prompts you for your Access Key Id, Secret Access Key, Region, and output format. If you log into AWS using single sign-on (SSO), run `aws configure sso` instead.
 
-    Running the command in your terminal will prompt you for four pieces of information: 
-      - Access key ID, 
-      - Secret access key, 
-      - AWS Region, 
-      - Output format
-    Once login is complete, it will store user credentials in your local AWS config folder.
+The AWS CLI then stores your credentials in two separate files:
     
-    The location of the AWS configuration folder depends on your operating system:
-    - Linux, macOS: `/home/<username>/.aws`
-    - Windows: `%UserProfile%/.aws`
+- `.aws/config`
+- `.aws/credentials`
 
-    Two files will be saved at this location: `config` and `credentials`.
+The location of these files depends on your operating system:
 
-    For more information:
-    [Configuring the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html)
-    [Configuration and credentials file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-    [Configuring the AWS CLI to use AWS IAM Identity Center (Single Sign-On)](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html)
+- Linux and Mac: `/home/<username>/.aws`
+- Windows: `%UserProfile%/.aws`
 
-2. Mount your AWS configuration folder as a volume and attach it to Airflow:
+## Configure your Airflow project
 
-    This step is done by overriding the CLI Docker Compose file.
-    Make sure that the source path matches the file location mentioned in step 1 above.
-    For the AWS configuration to be accessible to Airflow, you may beed to grand permission to read the config and credentials files. 
-    Airflow also needs access to read and write to the cache folder.
+The Astro CLI runs Airflow in a Docker-based environment. To give Airflow access to your credential files, you'll mount them as a volume in Docker.
 
-    For Linux, MacOS:
+1. Run the following commands to create an Astro project:
+
+    ```sh
+    $ mkdir aws-airflow && cd aws-airflow
+    $ astro dev init
+    ```
+
+2. Add a file named `docker-compose.override.yml` to your project with the following configuration: 
+
+
+<Tabs
+    defaultValue="linuxmac"
+    groupId= "configure-your-airflow-project"
+    values={[
+        {label: 'Linux/ Mac', value: 'linuxmac'},
+        {label: 'Windows', value: 'windows'},
+    ]}>
+<TabItem value="linuxmac">
+
     ```yaml
     version: "3.1"
     services:
         scheduler:
             volumes:
-            - /home/odaneau/.aws:/home/astro/.aws:ro
+            - /home/<username>/.aws:/home/astro/.aws:ro
         webserver:
             volumes:
-            - /home/odaneau/.aws:/home/astro/.aws:ro
+            - /home/<username>/.aws:/home/astro/.aws:ro
         triggerer:
             volumes:
-            - /home/odaneau/.aws:/home/astro/.aws:ro
+            - /home/<username>/.aws:/home/astro/.aws:ro
     ```
+</TabItem>
+<TabItem value="windows">
 
-    For Windows:
     ```yaml
     version: "3.1"
     services:
@@ -75,28 +101,69 @@ Steps:
             - /c/Users/<username>/.aws:/home/astro/.aws:ro
     ```
 
-    For more information:
-    [Override the CLI Docker Compose file](https://docs.astronomer.io/astro/test-and-troubleshoot-locally#override-the-cli-docker-compose-file)
+</TabItem>
+</Tabs>
 
-3. Configure the AWS_CONFIG_FILE and AWS_SHARED_CREDENTIALS_FILE environment variables:
 
-    Make sure that the path matches the file location mentioned in the Yaml override file above.
+3. In your project's `.env` file, add the following environment variables. Make sure that the volume path is the same as the one you configured in the previous step.
+
     ```
-    AWS_CONFIG_FILE=/home/astro/.aws/config
-    AWS_SHARED_CREDENTIALS_FILE=/home/astro/.aws/credentials
+    AWS_CONFIG_FILE=<volume-path>/config
+    AWS_SHARED_CREDENTIALS_FILE=<volume-path>/credentials
     ```
 
-4. Optional - Configure your Custom Secret Backend
-    For custom Airflow Secret Backend Only
+The next time you run Airflow, your DAGs will have the same permissions as the user account that you configured in the volume.
 
-    Follow the steps to configure an external secrets backend described here: https://docs.astronomer.io/astro/secrets-backend?tab=gcp#setup
+## (Optional) Test your credentials with a secrets backend
+
+Now that Airflow has access to your custom credentials, you can use them to connect to AWS services. Use the following example setup to test your credentials by pulling a variable from AWS Secrets Manager. 
+
+1. Create the following directories for Airflow variables and connections in AWS Secrets Manager:
+
+    - `airflow/variables`
+    - `airflow/connections`
+
+2. Add a secret to one of these directories. This can be a real or test value. When setting the secret type, choose `Other type of secret` and select the `Plaintext` option. If you're creating a connection URI or a non-dict variable as a secret, remove the brackets and quotations that are pre-populated in the plaintext field.
+
 
     Make sure to configure the AIRFLOW__SECRETS__BACKEND_KWARGS environment variables as follows:
     - Remove any mention of `role_arn`.
 
-    Example:
-    
-    ```
+3. Add the following environment variables to your Astro project `.env` file:
+
+    ```text
     AIRFLOW__SECRETS__BACKEND=airflow.providers.amazon.aws.secrets.secrets_manager.SecretsManagerBackend
     AIRFLOW__SECRETS__BACKEND_KWARGS={"connections_prefix": "airflow/connections", "variables_prefix": "airflow/variables", "region_name": "us-west-2"}
     ```
+
+4. Add a DAG  which uses the secrets backend to your Astro project `dags` directory. You can use the following example DAG to retrieve a value from `airflow/variables` and print it to the terminal:
+
+    ```python
+    from airflow import DAG
+    from airflow.hooks.base import BaseHook
+    from airflow.models import Variable
+    from airflow.operators.python import PythonOperator
+    from datetime import datetime
+    
+    def print_var():
+        my_var = Variable.get("<your-variable-key>")
+        print(f'My variable is: {my_var}')
+    
+        conn = BaseHook.get_connection(conn_id="<your-connection-key>")
+        print(conn.get_uri())
+    
+    with DAG('example_secrets_dag', start_date=datetime(2022, 1, 1), schedule_interval=None) as dag:
+    
+      test_task = PythonOperator(
+          task_id='test-task',
+          python_callable=print_var,
+    )
+    ```
+
+5. Run the following command to start Airflow locally:
+
+    ```sh
+    astro dev start
+    ```
+
+6. Access the Airflow UI at `localhost:8080`, unpause your DAG, and click **Play** to trigger a DAG run. 
