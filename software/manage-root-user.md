@@ -1,7 +1,7 @@
 ---
 title: 'Manage the root user on Astronomer Software'
 sidebar_label: 'Manage the root user'
-id: manage-the-root-user
+id: manage-root-user
 description: Learn how to manage the root user role with all permissions on Astronomer Software
 ---
 
