@@ -76,12 +76,6 @@ After configuring and importing user groups, Workspace Admins and Deployment Adm
 
 ## Disable individual user management 
 
-:::info
-
-This configuration requires setting up a root user. See [Create a root user](create-a-root-user.md).
-
-:::
-
 To use Teams as the only user management system on Astronomer Software, add the following entry to your `config.yaml` file:
 
 ```yaml
