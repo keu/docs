@@ -227,7 +227,17 @@ kubectl create secret generic astronomer-bootstrap \
 
 ## Step 8: Configure your Helm chart
 
-> **Note:** If you want to use a third-party ingress controller for Astronomer, complete the setup steps in [Third-Party Ingress Controllers](third-party-ingress-controllers.md) in addition to this configuration.
+:::info 
+
+To use a third-party ingress controller for Astronomer, see [Third-Party Ingress Controllers](third-party-ingress-controllers.md).
+
+:::
+
+:::info 
+
+By default, the first user to log in to your installation is assigned the System Admin role. To create a dedicated root user who is responsible for adding organization users to Astronomer, see [Create a root user](create-a-root-user.md).
+
+:::
 
 As a next step, create a file named `config.yaml` in an empty directory.
 
@@ -245,6 +255,12 @@ global:
 
   # Name of secret containing TLS certificate
   tlsSecret: astronomer-tls
+
+  # By default, the first user to log in to your installation is given System Admin permissions. 
+  # Configure this value to instead have a single root user that is responsible for inviting the first members of your 
+  # team to Astronomer Software.
+# rootAdmin:
+    # username:
 
   # Enable privateCaCerts only if your enterprise security team
   # generated a certificate from a private certificate authority.
@@ -336,10 +352,10 @@ helm repo update
 This ensures that you pull the latest image from the Astronomer Helm repository. Now, run:
 
 ```sh
-helm install -f config.yaml --version=0.30 --namespace=astronomer <your-platform-release-name> astronomer/astronomer
+helm install -f config.yaml --version=0.31 --namespace=astronomer <your-platform-release-name> astronomer/astronomer
 ```
 
-This command installs the most recent patch version of Astronomer Software. To install a different patch version, add the `--version=` flag and use the format `0.30.x`.  For example, to install Astronomer Software v0.30.0, you specify `--version=0.30.0`. For more information about the available patch versions, see the [Software Release Notes](release-notes.md).
+This command installs the most recent patch version of Astronomer Software. To install a different patch version, add the `--version=` flag and use the format `0.31.x`.  For example, to install Astronomer Software v0.31.0, you specify `--version=0.31.0`. For more information about the available patch versions, see the [Software Release Notes](release-notes.md).
 
 When you're defining `<your-platform-release-name>`, Astronomer recommends limiting the name to 12 characters to avoid operational issues.
 
