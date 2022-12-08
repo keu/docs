@@ -366,9 +366,9 @@ If you configured a fully custom OAuth flow, you should see a new **Log in with 
 
 You can see the name you configured in `AUTH__OPENID_CONNECT__CUSTOM__DISPLAY_NAME` when authenticating using the Astro CLI.
 
-## Manage users with SCIM
+## Manage users and Teams with SCIM
 
-Astronomer Software supports integration with the open standard System for Cross-Domain Identity Management (SCIM). Using the SCIM protocol with Astronomer Software allows you to automatically provision and deprovision users and Teams based on templates for access and permissions. It also provides better observability though your identity provider for when new users are created across your organization. 
+Astronomer Software supports integration with the open standard System for Cross-Domain Identity Management (SCIM). Using the SCIM protocol with Astronomer Software allows you to automatically provision and deprovision users and Teams based on templates for access and permissions. It also provides better observability through your identity provider for when users and Teams are created or modified across your organization.
 
 <Tabs
     groupId="scim"
