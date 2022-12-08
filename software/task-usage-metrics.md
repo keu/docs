@@ -17,13 +17,7 @@ To enable task usage metrics for your entire Astronomer installation, configure 
 global:
   taskUsageMetricsEnabled: true
 
-  populateHourlyTaskAuditMetrics:
-    # Populate the Software UI with the latest task usage metrics on the 57th minute of every hour https://crontab.guru/#57_*_*_*_*
-    schedule: "57 * * * *"
 
-houston:
-  cleanupTaskUsageData:
-          olderThan: 90
 ```
 
 After you set this configuration, Astronomer Software begins to run a cron job for collecting task usage metrics at the 57th minute of every hour, sending them to Astronomer support, and displaying them in the Software UI every. By default, your Astronomer installation retains this data for 90 days. 
