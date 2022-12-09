@@ -20,6 +20,7 @@ For upgrade instructions, see [Upgrade Airflow on Astronomer Software](manage-ai
 
 Astro Runtime 7.0.0 includes same-day support for Airflow 2.5.0, which includes a collection of new features, bug fixes, automatic changes, and deprecations. Key changes include:
 
+- User comments can be added to task instances and DAG runs in the Airflow UI ([#26457](https://github.com/apache/airflow/pull/26457))
 - Allow depth-first execution ([#27827](https://github.com/apache/airflow/pull/27827))
 - Add logic for XComArg to pull specific map indexes ([#27771](https://github.com/apache/airflow/pull/27771))
 - Metric for raw task return codes ([#27155](https://github.com/apache/airflow/pull/27155))
@@ -35,7 +36,7 @@ For a complete list of commits, see the [Apache Airflow 2.5.0 release notes](htt
 
 :::caution
 
-To deploy a project using Astro Runtime 6.0.4 from an Apple M1 computer to Astro, you must use Astro CLI version 1.4.0 or later or else the deploy will fail. See [Install the CLI](install-cli.md).
+To deploy a project using Astro Runtime 6.0.4 from an Apple M1 computer to Astro, you must use Astro CLI version 1.4.0 or later or else the deploy will fail. See [Install the CLI](https://docs.astronomer.io/astro/cli/install-cli).
 
 :::
 
