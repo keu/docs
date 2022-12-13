@@ -14,6 +14,18 @@ This document provides a summary of all changes made to the [Astro CLI](cli/over
 
 If you have any questions or a bug to report, contact [Astronomer support](https://cloud.astronomer.io/support).
 
+## Astro CLI 1.8.4
+
+Release date: December 12, 2022
+
+### Additional improvements
+
+- The default Astro project `.gitignore` file now includes `__pycache__/`.
+
+### Bug fixes
+
+- Fixed an issue where a SQL Alchemy deprecation warning was appearing in logs for locally running Airflow components.
+
 ## Astro CLI 1.8.3
 
 Release date: November 28, 2022
