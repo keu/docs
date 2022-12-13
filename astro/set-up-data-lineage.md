@@ -157,42 +157,57 @@ This guide outlines how to set up lineage collection for a Great Expectations pr
 
 #### Prerequisites
 
-- A [Great Expectations project](https://legacy.docs.greatexpectations.io/en/latest/guides/tutorials/getting_started.html#tutorials-getting-started).
-- Your Astro base domain.
-- Your Organization's OpenLineage API key.
+- A [Great Expectations Data Context](https://legacy.docs.greatexpectations.io/en/latest/guides/tutorials/getting_started.html#tutorials-getting-started)
+- If using a Checkpoint or Checkpoint config, your Astro base domain and OpenLineage API key.
 
 #### Setup
 
-If you use the `GreatExpectationsOperator` version 0.2.0 or later and don't use a custom Checkpoint or Checkpoint Config, the operator detects your Astro OpenLineage configuration and sends lineage information automatically. If you use custom Checkpoints, complete the following steps:
+1. Make your Data Context accessible to your DAGs. For most use cases, Astronomer recommends adding the Data Context to your Astro project `include` folder. The GreatExpectationsOperator will access `include/great_expectations/great_expectations.yml` and use the configuration to run your Expectations. Then, add the following lines to your DAGs: 
 
-1. Update your `great_expectations.yml` file to add `OpenLineageValidationAction` to your `action_list_operator` configuration:
+    ```python
+    # Required imports for Great Expectations
+    import os
+    from pathlib import Path
+    from great_expectations_provider.operators.great_expectations import GreatExpectationsOperator
+    # Set base path for Data Context 
+    base_path = Path(__file__).parents[2]
 
-    ```yml
-    validation_operators:
-      action_list_operator:
-        class_name: ActionListValidationOperator
-        action_list:
-          - name: openlineage
-            action:
-              class_name: OpenLineageValidationAction
-              module_name: openlineage.common.provider.great_expectations
-              openlineage_host: https://<your-astro-base-domain>
-              openlineage_apiKey: <your-lineage-api-key>
-              openlineage_namespace: <NAMESPACE_NAME> # Replace with your job namespace; Astronomer recommends using a meaningful namespace such as `dev` or `prod`.
-              job_name: validate_my_dataset
+    ...
+
+    # Example task using GreatExpectationsOperator 
+    ge_task = GreatExpectationsOperator(
+      task_id="ge_task",
+      # Set directory for the Data Context
+      ge_root_dir=os.path.join(base_path, "include", "great_expectations"),
+      ...
+    )
     ```
 
-2. Lineage support for GreatExpectations requires the use of the `ActionListValidationOperator`. In each of your checkpoint's xml files in `checkpoints/`, set the `validation_operator_name` configuration to `action_list_operator`:
-
-    ```xml
-    name: check_users
-    config_version:
+   If you use the `GreatExpectationsOperator` version 0.2.0 or later and don't provide a Checkpoint file or Checkpoint Config, you can skip steps 2 and 3.
+   
+2. In each of your Checkpoint files, add `OpenLineageValidationAction` to your `action_list` like in the following example:
+    
+    ```yaml{10-17}
+    name: my.simple.chk
+    config_version: 1.0
+    template_name:
     module_name: great_expectations.checkpoint
-    class_name: LegacyCheckpoint
-    validation_operator_name: action_list_operator
-    batches:
-      - batch_kwargs:
-    ```
+    class_name: Checkpoint
+    run_name_template:
+    expectation_suite_name:
+    batch_request: {}
+    action_list:
+      - name: open_lineage
+        action:
+          class_name: OpenLineageValidationAction,
+          module_name: openlineage.common.provider.great_expectations,
+          openlineage_host: https://astro-<your-astro-base-domain>.datakin.com,
+          openlineage_apiKey: <your-openlineage-api-key>,
+          openlineage_namespace: <namespace-name> # Replace with your job namespace; Astronomer recommends using a meaningful namespace such as `dev` or `prod`,
+          job_name: validate_task_name,
+   ```
+
+3. Deploy your changes to Astro. See [Deploy code](deploy-code.md).
 
 ### Verify
 
