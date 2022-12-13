@@ -231,7 +231,7 @@ For local environments, the Astro CLI generates an `airflow.cfg` file at runtime
 
 To view your local environment variables in the context of the generated Airflow configuration, run:
 
-````sh
+```sh
 astro dev bash --scheduler "/bin/bash && cat airflow.cfg"
 ```
 
@@ -311,6 +311,7 @@ All changes made to the following files require rebuilding your Astro project in
 - `Dockerfile`
 - `requirements.txt`
 - `airflow_settings.yaml`
+
 #### Apply changes
 
 1. Save the change to your local version control tool, such as VSCode.
