@@ -20,11 +20,12 @@ Release date: December 12, 2022
 
 ### Additional improvements
 
-- The default Astro project `.gitignore` file now includes `__pycache__/`.
+- The `__pycache__/` directory is now included in the `.gitignore` file of an Astro project by default. `__pycache__/` includes compiled versions of DAG and Python files that are automatically generated and should not be committed to Git.
+- Clarified the message that appears when you run `astro deployment update --dag-deploy enable` and DAG-only deploys were already enabled for the Deployment.
 
 ### Bug fixes
 
-- Fixed an issue where a SQL Alchemy deprecation warning was appearing in logs for locally running Airflow components.
+- Fixed an issue related to the [SQLAlchemy connection](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#sql-alchemy-conn) ([`sql_alchemy_conn`]) in local Airflow environments. Now, users running Airflow 2.3 or above do not see deprecation warnings for SQLAlchemy in logs for locally running Airflow components.
 
 ## Astro CLI 1.8.3
 
