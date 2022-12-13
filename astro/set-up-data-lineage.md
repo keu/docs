@@ -110,7 +110,6 @@ To test that lineage was configured correctly on your Databricks cluster, run a 
 
 ## OpenLineage and dbt Core with Airflow
 
-
 Use the information provided here to set up lineage collection for dbt Core tasks. To learn how to create and productionize dbt tasks in Airflow, and how to automatically create dbt Core tasks based on a manifest, see [Orchestrate dbt with Airflow](https://docs.astronomer.io/learn/airflow-dbt).
 
 If your organization wants to orchestrate dbt Cloud jobs with Airflow, contact [Astronomer support](https://cloud.astronomer.io/support). 
@@ -119,36 +118,28 @@ If your organization wants to orchestrate dbt Cloud jobs with Airflow, contact [
 
 - A [dbt project](https://docs.getdbt.com/docs/building-a-dbt-project/projects).
 - The [dbt CLI](https://docs.getdbt.com/dbt-cli/cli-overview) v0.20+.
-- Your Astro base domain.
-- Your Organization's OpenLineage API key.
 
 ### Setup
 
-1. On your local computer, run the following command to install the latest version of the [`openlineage-dbt`](https://pypi.org/project/openlineage-dbt) library:
-
-   ```sh
-   $ pip install openlineage-dbt
-   ```
-
-2. Add the following line to the `requirements.txt` file of your Astro project:
+1. Add the following line to the `requirements.txt` file of your Astro project:
 
    ```text
     openlineage-dbt
     ```
 
-3. Run the following command to generate the [`catalog.json`](https://docs.getdbt.com/reference/artifacts/catalog-json) file for your dbt project:
+2. Run the following command to generate the [`catalog.json`](https://docs.getdbt.com/reference/artifacts/catalog-json) file for your dbt project:
 
    ```bash
    $ dbt docs generate
    ```
 
-4. In your dbt project, run the [OpenLineage](https://openlineage.io/integration/dbt/) wrapper script using the `dbt run` [command](https://docs.getdbt.com/reference/commands/run):
+3. In your dbt project, run the [OpenLineage](https://openlineage.io/integration/dbt/) wrapper script using the `dbt run` [command](https://docs.getdbt.com/reference/commands/run):
 
    ```bash
    $ dbt-ol run
    ```
 
-5. Optional. Run the following command to test your set up:
+4. Optional. Run the following command to test your set up:
 
    ```bash
    $ dbt-ol test
@@ -156,7 +147,7 @@ If your organization wants to orchestrate dbt Cloud jobs with Airflow, contact [
 
 ### Verify setup
 
-To confirm that your setup is successful, run a dbt model in your project. After you run this model, click **Lineage** in the Cloud UI and and then click **Runs** in the left menu. If the setup is successful, the run that you triggered appears in the table of most recent runs.
+To confirm that your setup is successful, run a dbt model in your project. After you run this model, click **Lineage** in the Cloud UI and then click **Runs** in the left menu. If the setup is successful, the run that you triggered appears in the table of most recent runs.
 
 ## OpenLineage and Great Expectations with Airflow
 
