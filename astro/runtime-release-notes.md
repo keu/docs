@@ -46,7 +46,7 @@ To learn more, see [What's New in Apache Airflow 2.5](https://www.astronomer.io/
 - Release date: December 12, 2022
 - Airflow version: 2.4.3 
 
-### Backported Airflow bug fixes
+### Early access Airflow bug fixes
 
 Astro Runtime 6.0.5 includes the following bug fixes from Apache Airflow 2.5:
 
@@ -55,7 +55,6 @@ Astro Runtime 6.0.5 includes the following bug fixes from Apache Airflow 2.5:
 
 ### Additional improvements
 
-- You can now run Astro Runtime images on Red Hat OpenShift.
 - You can now add comments to the `packages.txt` file of an Astro project.
 - In the Airflow UI for Astro Deployments, the **Audit Logs** page now shows the Astro user who performed a given action in the **Owner** column.
 - Upgraded `astronomer-providers` to 1.11.2, which includes a collection of bug fixes. See the [`astronomer-providers` changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#1112-2022-11-19). 
@@ -129,13 +128,11 @@ For a complete list of commits, see the [Apache Airflow 2.4.1 release notes](htt
 
 ### Early access Airflow bug fixes
 
-Astro Runtime 6.0.2 includes the following bug fixes:
+Astro Runtime 6.0.2 includes the following bug fixes from Apache Airflow 2.4.2:
 
 - Remove DAG parsing from StandardTaskRunner ([#26750](https://github.com/apache/airflow/pull/26750))
 - Fix airflow tasks run --local when dags_folder differs from that of processor ([#26509](https://github.com/apache/airflow/pull/26509))
 - Add fixture for CLI tests requiring sample dags ([#26536](https://github.com/apache/airflow/pull/26536))
-
-These changes were backported from Apache Airflow 2.4.2, which is not yet generally available.
 
 ### Additional improvements
 
