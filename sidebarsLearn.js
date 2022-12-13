@@ -68,7 +68,6 @@ module.exports = {
           items: [
             'airflow-components',
             'airflow-database',
-            'using-airflow-plugins',
             'airflow-scaling-workers',
             'airflow-executors-explained',
             'airflow-pools',
@@ -92,6 +91,7 @@ module.exports = {
             'dynamically-generating-dags',
             'dynamic-tasks',
             'airflow-datasets',
+            'using-airflow-plugins',
             'deferrable-operators',
           ],
         },
@@ -121,7 +121,8 @@ module.exports = {
         'astro-python-sdk',
         'cloud-ide-tutorial',
         'custom-airflow-ui-docs-tutorial',
-        'external-python-operator'
+        'external-python-operator',
+        'operator-extra-link-tutorial',
       ],
     },
     {
