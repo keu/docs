@@ -151,14 +151,14 @@ For a complete list of commits, see the [Apache Airflow 2.4.0 release notes](htt
 - Upgraded `astronomer-providers` to 1.9.0, which includes two new deferrable versions of the operators from the dbt provider package. See the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.9.0/CHANGELOG.rst).
 - Upgraded `openlineage-airflow` to version `0.14.1`. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
 
-## Astro Runtime 5.10.13
+## Astro Runtime 5.0.13
 
 - Release date: December 12, 2022
 - Airflow version: 2.3.4
 
 ### Backported Airflow bug fixes
 
-Astro Runtime 5.10.13 includes the following bug fixes from later Apache Airflow releases:
+Astro Runtime 5.0.13 includes the following bug fixes from later Apache Airflow releases:
 
 - Change the template to use human readable task_instance description ([#25960](https://github.com/apache/airflow/pull/25960))
 - Fix deadlock when chaining multiple empty mapped tasks ([#27964](https://github.com/apache/airflow/pull/27964))
