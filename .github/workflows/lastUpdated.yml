@@ -10,7 +10,7 @@ jobs:
       with:
         path: docs
     - name: Run build script
-      run: ./lastUpdated.sh
+      run: docs/lastUpdated.sh
       shell: bash
     - uses: jakejarvis/s3-sync-action@master
       name: Sync to S3
@@ -23,5 +23,5 @@ jobs:
         AWS_REGION: 'eu-west-2' 
         SOURCE_DIR: 'metrics' 
     - name: Removing unnecessary files
-      run: rm -r ./github/metrics
+      run: rm -r docs/.github/metrics
       shell: bash
