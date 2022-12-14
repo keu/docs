@@ -7,8 +7,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
       name: Checkout repo
-      with:
-        path: docs
     - name: Run build script
       run: chmod +x docs/lastUpdated.sh
       shell: bash
