@@ -10,7 +10,7 @@ jobs:
       with:
         path: docs
     - name: Run build script
-      run: docs/lastUpdated.sh
+      run: chmod +x docs/lastUpdated.sh
       shell: bash
     - uses: jakejarvis/s3-sync-action@master
       name: Sync to S3
