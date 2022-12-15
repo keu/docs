@@ -50,7 +50,7 @@ The following templates are available to implement your CI/CD workflows:
 
 ## Deploy with GitHub Actions
 
-The following templates use Astronomer's [Deploy Action](https://github.com/astronomer/deploy-action) to deploy code to Astronomer. The Deploy Action is the easiest way to create CI/CD pipelines with Astro. Take a look at the [Deploy Action readme](https://github.com/astronomer/deploy-action#readme) to learn more about its many input options.
+The following templates use Astronomer's [Deploy Action](https://github.com/astronomer/deploy-action) to deploy code to Astronomer. The Deploy Action is the easiest way to create CI/CD pipelines for Astro. See the [Deploy Action README](https://github.com/astronomer/deploy-action#readme) to learn more about using and customizing this action.
 
 ### GitHub Actions (Image-only deploys)
 
@@ -263,7 +263,7 @@ To complete this setup, you need:
 
 ### GitHub Actions (DAG-based deploy)
 
-The following templates are examples of how to implement DAG-only deploys in GitHub Actions. They use the [Deploy Action's](https://github.com/astronomer/deploy-action) `dag-deploy-enabled` option to implement a dag-based deploy workflow.
+The following templates are examples of how to implement DAG-only deploys in GitHub Actions. They use the [Deploy Actions](https://github.com/astronomer/deploy-action) `dag-deploy-enabled` option to implement a DAG-based deploy workflow.
 
 <Tabs
     defaultValue="standard"
