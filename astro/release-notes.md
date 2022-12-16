@@ -53,7 +53,6 @@ You can now configure worker queues with the following `n2` node types on GCP:
 ### Bug fixes 
 
 - Fixed an issue where DAG-only deploys did not work if you included helper functions in your `dags` directory.
-- Fixed an issue where you had to trigger a DAG-only deploy.
 - Fixed an issue where task runs triggered in the Cloud IDE did not have access to project environment variables.
 - Fixed an issue where Deployment metrics for memory usage were not always accurate.  
 
