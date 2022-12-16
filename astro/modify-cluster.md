@@ -1,9 +1,11 @@
 ---
-sidebar_label: 'Request a cluster change'
-title: "Request a cluster change"
+sidebar_label: 'Modify a cluster'
+title: "Modify a cluster"
 id: modify-cluster
 description: Learn what changes are supported on existing Astro clusters.
 ---
+
+New clusters on Astro are created with a default configuration that is suitable for standard use cases. However, your organization might need modifications to an existing cluster to meet specific business requirements. 
 
 The following are some of the cluster and Deployment-level modifications that require Astronomer support and can't be completed in the Cloud UI or with the Astro CLI:
 
@@ -13,7 +15,7 @@ The following are some of the cluster and Deployment-level modifications that re
 - Update an existing worker node pool, including its node instance type or maximum node count.
 - Create a VPC connection or a transit gateway connection between a cluster and a target VPC. See [Connect Astro to external data sources](https://docs.astronomer.io/astro/category/connect-astro).
 
-To modify a cluster in these ways, you'll need the following:
+To modify a cluster, you'll need the following:
 
 - A cluster on Astro.
 - Permissions to make changes to cluster configurations.
