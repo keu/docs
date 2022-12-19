@@ -1,6 +1,6 @@
 ---
-sidebar_label: "Azure"
-title: "Microsoft Azure cluster configurations"
+sidebar_label: "Azure cluster settings"
+title: "Microsoft Azure cluster settings"
 id: resource-reference-azure
 description: Reference of all supported configurations for new Astro clusters on Microsoft Azure.
 sidebar_custom_props: { icon: 'img/azure.png' }
@@ -40,11 +40,16 @@ Astro supports the following Azure regions:
 
 - Australia East
 - Canada Central
+- Central India
 - Central US
+- East Asia
 - East US
 - Japan East
+- Korea Central
+- North Europe
 - South Africa North
 - South Central US
+- UK South
 - West Europe
 - West US 3
 

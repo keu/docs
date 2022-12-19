@@ -13,9 +13,65 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 If you have any questions or a bug to report, reach out to [Astronomer support](https://cloud.astronomer.io/support).
 
-**Latest Astro Runtime Version**: 6.0.4 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 7.0.0 ([Release notes](runtime-release-notes.md))
 
-**Latest CLI Version**: 1.7.0 ([Release notes](cli/release-notes.md))
+**Latest CLI Version**: 1.8.4 ([Release notes](cli/release-notes.md))
+
+## December 13, 2022 
+
+### Improvements to the Cloud IDE
+
+The [Cloud IDE](cloud-ide/overview.md) includes several new features which improve DAG authoring and testing:
+
+- GitHub commits and configuring a GitHub repository are now separated in the Cloud UI.
+- The default CI/CD pipeline included in the Cloud IDE project supports DAG-only deploys. Using the CI/CD pipeline speeds the deploy of DAG changes to Astro.
+- The **Configure GitHub** menu in the Cloud UI now includes a **Clone Repo** toggle. Enabling this option makes files such as helper functions in the `include` folder of your repository accessible when you run DAGs in the Cloud IDE.
+- You can now explicitly mark upstream dependencies for a task cell from the cell's configuration menu.
+
+For more information about configuring GitHub and deploying code with the Cloud IDE, see [Deploy a project from the Cloud IDE to Astro](deploy-project.md).
+
+### Support for n2 worker types on GCP
+
+You can now configure worker queues with the following `n2` worker types on Google Cloud Platform (GCP) clusters:
+
+- `n2-standard-4`
+- `n2-standard-8`
+- `n2-standard-16`
+- `n2-highmem-4`
+- `n2-highmem-8`
+- `n2-highmem-16`
+- `n2-highcpu-4`
+- `n2-highcpu-8`
+- `n2-highcpu-16`
+
+For more information about these worker types, see [N2 machine series](https://cloud.google.com/compute/docs/general-purpose-machines#n2_machines). For a list of all worker types available on GCP, see [Worker node size resource reference](resource-reference-gcp.md#worker-node-size-resource-reference).
+
+### Additional improvements 
+
+- In the **Clusters** tab of the Cloud UI, you can now click a cluster entry to see details about the cluster configuration, including which **Worker Types** are enabled for the cluster.
+- The Deployment details page in the Cloud UI now includes an **ID** pane. The Deployment ID is required when you deploy code using the CI/CD process.
+- An **OpenLineage URL** field is now available on the Cloud UI **Settings** page.
+- Workspaces are now sorted alphabetically in the Cloud UI.
+- In Astro CLI version 1.8.0 or later, when you run `astro deploy` with an empty `dags` folder, the `dags` folder  is excluded when building and pushing an image of your project to Astro. This lets you manage your DAGs and project files in separate repositories when using [DAG-only deploys](deploy-code.md#deploy-dags-only).
+
+### Bug fixes 
+
+- Fixed an issue where Astro temporarily stored DAGs for DAG-only deploys in a new directory named `/usr/local/airflow/dags/current`, which caused import errors in the user code.
+- Fixed an issue where task runs triggered in the Cloud IDE did not have access to project environment variables.
+- Fixed an issue where Deployment metrics for memory usage were not always accurate.  
+
+## November 15, 2022
+
+### Additional improvements 
+
+- In the Cloud UI, the **People** page now shows the IDs of users belonging to your Organization.
+- In the Cloud UI, the **Deployments** page now shows the user or API key that most recently updated each Deployment and when they updated it.
+
+### Bug fixes
+
+- Availability zone (AZ) rebalancing has been disabled for worker node pools on AWS clusters. This change should result in fewer [zombie tasks](https://airflow.apache.org/docs/apache-airflow/stable/concepts/tasks.html#zombie-undead-tasks) and less volatility across workers. AZ rebalancing is enabled for other system components on Astro.
+- The **Updated at** field for a transferred Deployment now displays the correct time.
+- `astro deploy --dags` now handles deferrable tasks correctly.
 
 ## November 8, 2022
 

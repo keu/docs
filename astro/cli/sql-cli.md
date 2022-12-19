@@ -88,15 +88,20 @@ An environment requires a connection to the external databases in which you will
 For example, a Snowflake connection in `dev/configuration.yml` might look like the following: 
 
 ```yaml
-snowflake_default:
-  login: mylogin
-  password: mypassword
-  schema: myschema
-  account: myaccount
-  database: MYDATABASE
-  region: us-east-1
-  warehouse: MYWAREHOUSE
-  role: ADMIN
+connections:
+  - conn_id: snowflake_conn
+    conn_type: snowflake
+    host: HOST_DNS
+    port: 443
+    login: Username
+    password: Password
+    schema: "SchemaName"
+    extra:
+      account: "AcountId"
+      region: "us-east-1"
+      role: "Role"
+      warehouse: Warehouse
+      database: Database
 ```
 
 Your Astro project currently can't access the connections configured in this directory. Similarly, your SQL project can't access connections configured in your Astro project. Features for unifying these two sets of connections will be available in upcoming releases.
@@ -106,7 +111,7 @@ Your Astro project currently can't access the connections configured in this dir
 To test all configured databases within an environment, run the following command from your SQL project directory:
 
 ```sh
-astro flow validate --environment=<env-directory-name>
+astro flow validate --env=<env-directory-name>
 ```
 
 This command runs a connection test for all databases configured in the `configuration.yml` file of your environment subdirectory. 
@@ -114,7 +119,7 @@ This command runs a connection test for all databases configured in the `configu
 You can also test individual databases within an environment. For example, to test a `snowflake_default` connection in the `dev/configuration.yml`, you run the following command to test the connection:
 
 ```sh
-astro flow validate --connection=snowflake_default --environment=dev
+astro flow validate --connection=snowflake_default --env=dev
 ```
 
 ### Create SQL workflows 
@@ -149,13 +154,13 @@ If you define a database connection in a `.sql` file with a downstream dependenc
 To run a SQL workflow in your project, run the following command: 
 
 ```sh
-astro flow run <workflow-directory> --environment=<your-environment>
+astro flow run <workflow-directory> --env=<your-environment>
 ```
 
 This command automatically builds and runs your project as an Airflow DAG based on the configurations in your project directory. For example, consider the following command using the default SQL project assets:
 
 ```sh
-astro flow run example_templating --environment=dev
+astro flow run example_templating --env=dev
 ```
 
 After running this command, the CLI:
