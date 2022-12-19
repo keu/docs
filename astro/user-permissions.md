@@ -21,6 +21,7 @@ An Organization role grants a user some level of access to an Astro Organization
 | Workspace Admin permissions to all Workspaces               |                         |                                | ✔️                      |
 | Update roles and permissions of existing Organization users |                         |                                | ✔️                      |
 | Invite a new user to an Organization                        |                         |                                | ✔️                      |
+| Authorize a Workspace to a cluster                          |                         |                                | ✔️                      |
 | Remove a user from an Organization                          |                         |                                | ✔️                      |
 
 ### Update Organization roles

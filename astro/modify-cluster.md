@@ -13,7 +13,7 @@ The following are some of the cluster and Deployment-level modifications that re
 - Update an existing worker node pool, including its node instance type or maximum node count.
 - Create a VPC connection or a transit gateway connection between a cluster and a target VPC. See [Connect Astro to external data sources](https://docs.astronomer.io/astro/category/connect-astro).
 
-To modify a cluster in these ways, you'll need the following:
+When you need a cluster modification that involves Astronomer support, you'll need to provide the following information:
 
 - A cluster on Astro.
 - Permissions to make changes to cluster configurations.
@@ -28,4 +28,4 @@ When Astronomer support receives your change request, it will be reviewed and yo
 
 For modifications that do require downtime, such as changing your cluster's node instance type, Astronomer support will inform you of the expected impact and ask you to confirm if you want to proceed.
 
-To confirm a modification was completed, open the **Clusters** tab in the Cloud UI. You should see the updated configuration in the table entry for your cluster.
+To confirm a modification was completed, click **Clusters** in the Cloud UI. The updated configuration appears on your cluster's information page.

@@ -9,11 +9,11 @@ import PremiumBadge from '@site/src/components/PremiumBadge';
 
 Use the Cloud UI to get an overview of your Organization's clusters and retrieve cluster information that may be required by Astronomer support.
 
-Some cluster changes can be made only by Astronomer. See [Request a cluster change](modify-cluster.md).
+Some cluster changes can be made only by Astronomer support. See [Request a cluster change](modify-cluster.md).
 
 ## View all clusters
 
-In the Cloud UI, click the **Clusters** tab to view information about the clusters in your Organization. The following table provides descriptions for each cluster value.
+In the Cloud UI, click **Clusters** to view information about the clusters in your Organization. The following table provides descriptions for each cluster value.
 
 | Value              | Description                                                                                                                 |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------- |
@@ -32,30 +32,30 @@ In the Cloud UI, click the **Clusters** tab to view information about the cluste
 | Updated            | The date and time the cluster's settings were last updated                                                                  |
 | Created            | The date and time the cluster was created                                                                          |
 
-All users in your Organization have access to this view. For more information about each value, see [Cluster settings reference](https://docs.astronomer.io/astro/category/cluster-settings).
+All users in your Organization have access to the **Clusters** page. For more information about each value, see [Cluster settings reference](https://docs.astronomer.io/astro/category/cluster-settings).
 
 ## Configure a cluster
 
-To view and update settings for a specific cluster, click the cluster's name in the **Clusters** tab. A cluster's configuration menu includes the following pages:
+To view and update settings for a specific cluster, click the cluster name on the **Clusters** page. The configuration details page for the cluster includes the following tabs:
 
-- **Worker Types**: Shows all available worker types on the cluster. To add or remove a worker type on a cluster, see [Request a cluster change](modify-cluster.md).
-- **Workspace Authorization**: Shows which Workspaces are allowed to create Deployments on the cluster.
-- **Details**: Shows the same information available from the  **Clusters** tab. See [View all clusters](#view-all-clusters).
+- **Worker Types**: A list of all available worker types on the cluster. To add or remove a worker type on a cluster, see [Request a cluster change](modify-cluster.md).
+- **Workspace Authorization**: Shows which Workspaces that are authorized to create Deployments on the cluster.
+- **Details**: A list of all available configuration information for the cluster. See [View all clusters](#view-all-clusters).
 
-### Limit Deployment creation on a cluster 
+### Authorize Workspaces to a Cluster
 
 <PremiumBadge />
 
-You can configure a cluster so that it contains Deployments only from specific Workspaces that are mapped to the cluster. Use this feature to establish fine-grained control over who can use your cluster resources and how.
+As an Organization Owner, you can keep teams and projects isolated by authorizing Workspaces only to specific Clusters. Gain greater management over cloud resources by ensuring that only authorized pipelines are running on specific clusters.
 
-1. In the Cloud UI, go to the **Clusters** tab, select a cluster, and then go to **Workspace Authorization**.
-2. Check each Workspace that you want to map to the cluster. 
-3. Click **Save**.
+1. In the Cloud UI, go to the **Clusters** tab, select a cluster, go to **Workspace Authorization**, and then click **Edit Workspace Authorization**.
+2. Click **Restricted** and select the Workspaces that you want to map to the cluster. 
+3. Click **Update**.
 
 :::info 
 
-A cluster with mapped Workspaces can't host Deployments from any Workspaces that aren't mapped to the cluster. To map Workspaces to a cluster, you must first transfer any existing Deployments on the cluster to one of these Workspace.
+A cluster with authorized Workspaces can't host Deployments from any Workspaces that aren't authorized to the cluster. To map Workspaces to a cluster, you must first transfer any existing Deployments on the cluster to one of these Workspace.
 
-Similarly, to unmap a Workspace but keep its Deployments in the cluster, you must transfer your Deployments to a new cluster which is still mapped to the Workspace. See [Transfer a Deployment to another Workspace](configure-deployment-resources.md#transfer-a-deployment-to-another-workspace).
+Similarly, to unauthorize a Workspace but keep its Deployments in the cluster, you must transfer your Deployments to a Workspace which is still authorized to the cluster. See [Transfer a Deployment to another Workspace](configure-deployment-resources.md#transfer-a-deployment-to-another-workspace).
 
 :::
