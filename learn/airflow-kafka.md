@@ -70,7 +70,7 @@ You can learn more about connecting to local Kafka from within a Docker containe
 
 :::info
 
-If you are running Airflow as a standalone application and using an M1 Mac, complete the additional setup in the [`airflow-provider-kafka` README](https://github.com/astronomer/airflow-provider-kafka#setup-on-m1-mac).
+If you are running Airflow as a standalone application and are using an M1 Mac, complete the additional setup in the [`airflow-provider-kafka` README](https://github.com/astronomer/airflow-provider-kafka#setup-on-m1-mac).
 
 :::
 
@@ -175,6 +175,7 @@ The ConsumeFromTopicOperator enables Airflow to consume messages from topics.
 
     ```python
     consumer_logger = logging.getLogger("airflow")
+
     def consumer_function(message, prefix=None):
         try:
             key = json.loads(message.key())
@@ -182,6 +183,7 @@ The ConsumeFromTopicOperator enables Airflow to consume messages from topics.
             consumer_logger.info(f"{prefix} {message.topic()} @ {message.offset()}; {key} : {value}")
             return
         except:
+            consumer_logger.info(f"Unable to consume message!")
             return
 
     consumer_task = ConsumeFromTopicOperator(
@@ -212,7 +214,7 @@ The ConsumeFromTopicOperator enables Airflow to consume messages from topics.
 
 :::tip
 
-A common use case is to directly connect an Amazon S3 bucket to your Kafka topic as a consumer. The ConsumeFromTopicOperator is helpful if you want to use Airflow to schedule the consuming task. Instead of writing the messages retrieved to the Airflow logs, you can write them to S3 using the [S3CreateObjectOperator](https://registry.astronomer.io/providers/amazon/modules/s3createobjectoperator).
+A common use case is to directly connect a blob storage (for example an Amazon S3 bucket) to your Kafka topic as a consumer. The ConsumeFromTopicOperator is helpful if you want to use Airflow to schedule the consuming task. Instead of writing the messages retrieved to the Airflow logs, you can for example write them to S3 using the [S3CreateObjectOperator](https://registry.astronomer.io/providers/amazon/modules/s3createobjectoperator).
 
 :::
 
@@ -228,7 +230,7 @@ A deferrable operator is a sensor that will go into a deferred state in between 
     from airflow_provider_kafka.operators.await_message import AwaitKafkaMessageOperator
     ```
 
-2. Copy and past the following code at the end of your DAG:
+2. Copy and paste the following code at the end of your DAG:
 
     ```python
     def await_function(message):
@@ -307,7 +309,7 @@ The ConsumeFromTopicOperator can be used to create a Kafka consumer to read batc
 
 ### AwaitKafkaMessageOperator
 
-The AwaitKafkaMessageOperator is a [deferrable operators]((https://docs.astronomer.io/learn/deferrable-operators)) that can be used to wait for a specific message to be published to one of more Kafka topics. You can define the following parameters:
+The AwaitKafkaMessageOperator is a [deferrable operator]((https://docs.astronomer.io/learn/deferrable-operators)) that can be used to wait for a specific message to be published to one of more Kafka topics. You can define the following parameters:
 
 - `topics`: A list of topics or regex patterns to read from.
 - `apply_function`: A Python function that is applied to all messages that are read. If the function returns any data the task will be ended and marked as successful. The returned data will be pushed to XCom unless the BaseOperator argument `do_xcom_push` is set to `False`.
@@ -320,9 +322,9 @@ The AwaitKafkaMessageOperator is a [deferrable operators]((https://docs.astronom
 
 ## Best practices
 
-Apache Kafka is a tool optimized for streaming messages at high frequencies, for example in an IoT application. Airflow is designed to handle orchestration of data pipelines in batches at a frequency of no more than once per minute.
+Apache Kafka is a tool optimized for streaming messages at high frequencies, for example in an IoT application. Airflow is designed to handle orchestration of data pipelines in batches.
 
-Astronomer recommends to combine these two open sources tools by handling low-latency processes with Kafka and data orchestration with Airflow. 
+Astronomer recommends to combine these two open source tools by handling low-latency processes with Kafka and data orchestration with Airflow. 
 
 Common patterns include:
 
@@ -333,5 +335,5 @@ Common patterns include:
 
 ## Conclusion
 
-The Airflow Kafka provider offers 3 easy to use operators to interact with topics and messages in Kafka. You know now how to use these operators to connect Kafka and Airflow. 
+The Airflow Kafka provider offers 3 easy to use operators to interact with topics and messages in Kafka. You now know how to use these operators to connect Kafka and Airflow. 
 
