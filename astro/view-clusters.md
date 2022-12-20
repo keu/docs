@@ -52,6 +52,8 @@ As an Organization Owner, you can keep teams and projects isolated by authorizin
 2. Click **Restricted** and select the Workspaces that you want to map to the cluster. 
 3. Click **Update**.
 
+Once you authorize select Workspaces to a cluster, Astro treats the cluster as restricted. Restricted clusters appear as an option when creating a new Deployment only if the Deployment's Workspace is authorized to the cluster. 
+
 :::info 
 
 A cluster with authorized Workspaces can't host Deployments from any Workspaces that aren't authorized to the cluster. To map Workspaces to a cluster, you must first transfer any existing Deployments on the cluster to one of these Workspace.
