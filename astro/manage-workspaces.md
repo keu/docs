@@ -7,6 +7,8 @@ description: Create, delete, and update Workspaces on Astro.
 
 Workspaces are collections of Deployments that can be accessed by a specific group of users. You can use Workspaces to group Deployments that share a business use case or environment trait. For example, you might create one Workspace that stores all of your production pipelines and another Workspace that stores all of your development pipelines.
 
+To learn about managing Workspaces at the cluster level, see [Authorize Workspaces to a Cluster](view-clusters.md#authorize-workspaces-to-a-cluster).
+
 ## Create a Workspace
 
 :::info
