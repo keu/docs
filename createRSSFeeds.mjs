@@ -3,6 +3,7 @@ import xml from "xml";
 import { JSDOM } from 'jsdom';
 import MarkdownIt from 'markdown-it'
 const md = new MarkdownIt();
+const currentDate = new Date().toUTCString()
 
 
 // Get all the markdown files for release notes
@@ -80,7 +81,7 @@ async function createRssFeed(feedTitle, feedDescription, feedPageURL, content) {
 
   const websiteURL = "https://docs.astronomer.io/";
   const feedSlug = feedTitle.replace(/ /g, "-",).toLowerCase();
-  const feedRSSLink = websiteURL + feedSlug + '.rss';
+  const feedRSSLink = websiteURL + feedSlug + '.xml';
 
   console.log(`📡 Creating ${feedTitle} RSS feed`);
 
@@ -105,6 +106,9 @@ async function createRssFeed(feedTitle, feedDescription, feedPageURL, content) {
           },
           {
             title: feedTitle,
+          },
+          {
+            lastBuildDate: currentDate
           },
           {
             link: feedPageURL,
