@@ -23,6 +23,21 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.8.4 ([Release notes](cli/release-notes.md))
 
+## December 20, 2022 
+
+### Additional improvements 
+
+- You can now configure OneLogin and Ping Identity as identity providers on Astro. See [Configure your identity provider](configure-idp.md#configure-your-identity-provider).
+- Workspace Members can now view **Workspace settings** in the Cloud UI.
+- Node groups that are collapsed in the lineage graph in the Cloud UI now show only the total number of connected **Jobs** and **Datasets**, instead of listing each job and dataset. This makes the lineage graph easier to navigate.
+
+    ![Collapsed node in lineage graph of Cloud UI](/img/release-notes/collapsed-lineage-node.png)
+
+### Bug fixes 
+
+- Fixed an issue where the lineage UI did not show dataset metrics when a dataset had no column-level metrics.
+- Fixed an issue where some instances of a dataset's name were inconsistent in the lineage UI.
+
 ## December 13, 2022 
 
 ### Improvements to the Cloud IDE
