@@ -58,7 +58,7 @@ To set up Okta as your IdP, submit a request to [Astronomer support](https://clo
 - A Single Sign-On (SSO) URL
 - An Audience URI
 
-Save these values for Step 2.
+These values are required for Step 2.
 
 #### Step 2: Configure Okta
 
@@ -181,6 +181,11 @@ To integrate OneLogin as your IdP for Astro, you must have a [OneLogin account](
 #### Step 1: Contact Astronomer support
 
 To set up OneLogin as your IdP, submit a request to [Astronomer support](https://cloud.astronomer.io/support). After receiving your request, Astronomer support will provide you with the following:
+
+- A Single Sign-On (SSO) URL
+- An Audience URI
+
+These values are required for Step 2.
 
 #### Step 2: Create the OneLogin Astro application
 
