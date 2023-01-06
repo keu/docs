@@ -264,3 +264,23 @@ astro flow generate example_templating --env=dev
 ```
 
 After you run this command, you can add the DAG to an existing Astro project and run it locally or deploy it to Astro.
+
+### Export a SQL workflow to an Astro project
+
+Export a SQL workflow to an Astro project to locally test the workflow as a DAG and view execution information in the Airflow UI. 
+
+1. In the `config/global.yml` file of your SQL project, set `dags_folder` to the absolute file path of your Astro project `dags` folder. Set `data_dir` to the absolute file path of your Astro project `include` folder.
+2. To export a DAG from an existing SQL project, copy the contents your SQL project `data` folder into your Astro project `include` folder. To export a DAG from a new SQL CLI project, run `astro flow init --data-dir` to copy the contents of the default `data` folder into your Astro project.
+3. Run the following command to execute your SQL workflow and export the DAG to your Astro CLI `dags` folder:
+
+    ```sh
+    astro flow run <your-workflow> --project-dir <filepath-to-astro-project-directory>`
+    ```
+
+You can now run the SQL workflow as a DAG from your Astro project. See [Build and run a project locally](https://docs.astronomer.io/astro/develop-project#build-and-run-a-project-locally).
+
+:::info 
+
+If you configured databases in your SQL CLI project, you must manually reconfigure these databases in your Astro project through the Airflow UI. See [Manage connections in Apache Airflow](https://docs.astronomer.io/learn/connections).
+
+:::
