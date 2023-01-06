@@ -37,16 +37,33 @@ Use the Astronomer CI/CD templates to automate deploying code to Astro with popu
 
 Templates allow you to easily configure automated workflows using popular CI/CD tools. Each template can be implemented as-is to produce a simple CI/CD pipeline. Astronomer recommends reconfiguring the templates to work with your own directory structures, tools, and best practices.
 
-Astro supports the following CI/CD workflows:
-
-- Image-only workflows: All files in your Astro project are built into a Docker image and pushed to Astro in a single step.
-- DAG-based workflows: The [DAG-only deploy feature](deploy-code.md#deploy-dags-only) is used to deploy DAGs in your Astro project separate from the Docker image that is built for all other project files.
-
-The following templates are available to implement your CI/CD workflows: 
+There are two workflow types, image-only workflows and DAG-based workflows, which are described in detail below. The following templates are available for each workflow type: 
 
 - Single branch: Deploys a single branch from your version control tool to Astro. This is the default template for all CI/CD tools. 
-- Multiple branch:  Deploys multiple branches to separate Deployments on Astro.
-- Custom image:  Deploys an Astro project with a customized Runtime image and additional build arguments.
+- Multiple branch: Deploys multiple branches to separate Deployments on Astro.
+- Custom image: Deploys an Astro project with a customized Runtime image and additional build arguments.
+
+### Image-only workflows  
+
+The image-only workflow builds a Docker image and pushes it to Astro whenever you update any file in your Astro project. This type of template is simple to set up and works well for development workflows that include complex Docker customization or logic.
+
+CI/CD templates that use image-only workflows do the following:
+
+- Access Deployment API key credentials. These credentials must be set as OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
+- Install the latest version of the Astro CLI.
+- Run `astro deploy`. This creates a Docker image for your Astro project, authenticates to Astro using your Deployment API key, and pushes the image to your Deployment.
+
+### DAG-based workflows
+
+The DAG-based workflow uses the `--dags` flag in the Astro CLI to enable a faster way to push DAG changes to Astro. These CI/CD pipelines deploy your DAGs only when files in your `dags` folder are modified, and they deploy the rest of your Astro project as a Docker image when other files or directories are modified. For more information about the benefits of this workflow, see [Deploy DAGs only](deploy-code.md#deploy-dags-only).
+
+CI/CD templates that use the DAG-based workflow do the following:
+
+- Access Deployment API key credentials. These credentials must be set as OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
+- Install the latest version of the Astro CLI.
+- Determine which files were updated by the commit:
+    - If only DAG files in the `dags` folder have changed, run `astro deploy --dags`. This pushes your `dags` folder to your Deployment.
+    - If any file not in the `dags` folder has changed, run `astro deploy`. This triggers two subprocesses. One that creates a Docker image for your Astro project, authenticates to Astro using your Deployment API key, and pushes the image to your Deployment. A second that pushes your `dags` folder to your Deployment.
 
 ## Deploy with GitHub Actions
 
@@ -443,17 +460,9 @@ If your Astro project requires additional build-time arguments to build an image
 
 If you'd like to use a tool other than Github Actions you will have to create a custom CI/CD script using the [Astro CLI](cli/overview.md). Below is the basic scripts for the Image-only and DAG-based workflows as well as templates to use these scripts with various CI/CD tools. Check out our [Astro CLI reference](cli/reference.md) for a full list of commands that you can use within your scripts.
 
-### Image-only workflows
+### Image-only workflows custom script 
 
-The image-only workflow builds a Docker image and pushes it to Astro whenever you update any file in your Astro project. This type of template is simple to set up and works well for development workflows that include complex Docker customization or logic.
-
-CI/CD templates for image-only workflows:
-
-- Access Deployment API key credentials. These credentials must be set as OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
-- Install the latest version of the Astro CLI.
-- Run `astro deploy`. This creates a Docker image for your Astro project, authenticates to Astro using your Deployment API key, and pushes the image to your Deployment.
-
-This workflow is equivalent to the following bash script:
+You can use the following bash script as the basis for a custom script that implements the image-only workflow:
 
 ```sh
 # Set Deployment API key credentials as environment variables
@@ -473,7 +482,7 @@ All image-only templates use [Astro CLI v1.0+](cli/release-notes.md) to deploy v
 
 :::
 
-### DAG-based workflows
+### DAG-based workflows custom script
 
 :::caution
 
@@ -481,17 +490,7 @@ The features used in this workflow are in [Public Preview](feature-previews.md).
 
 :::
 
-The DAG-based workflow uses the `--dags` flag in the Astro CLI to enable a faster way to push DAG changes to Astro. These CI/CD pipelines deploy your DAGs only when files in your `dags` folder are modified, and they deploy the rest of your Astro project as a Docker image when other files or directories are modified. For more information about the benefits of this workflow, see [Deploy DAGs only](deploy-code.md#deploy-dags-only).
-
-CI/CD templates that use the DAG-based workflow do the following:
-
-- Access Deployment API key credentials. These credentials must be set as OS-level environment variables named `ASTRONOMER_KEY_ID` and `ASTRONOMER_KEY_SECRET`.
-- Install the latest version of the Astro CLI.
-- Determine which files were updated by the commit:
-    - If only DAG files in the `dags` folder have changed, run `astro deploy --dags`. This pushes your `dags` folder to your Deployment.
-    - If any file not in the `dags` folder has changed, run `astro deploy`. This triggers two subprocesses. One that creates a Docker image for your Astro project, authenticates to Astro using your Deployment API key, and pushes the image to your Deployment. A second that pushes your `dags` folder to your Deployment.
-
-This workflow is equivalent to the following bash script:
+You can use the following bash script as the basis for a custom script that implements the DAG-based workflow:
 
 ```sh
 # Set Deployment API key credentials as environment variables
