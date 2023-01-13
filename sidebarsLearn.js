@@ -83,7 +83,6 @@ module.exports = {
           },
           items: [
             'testing-airflow',
-            'custom-xcom-backends',
             'logging',
             'kubepod-operator',
             'data-quality',
@@ -123,6 +122,7 @@ module.exports = {
         'custom-airflow-ui-docs-tutorial',
         'external-python-operator',
         'operator-extra-link-tutorial',
+        'xcom-backend-tutorial'
       ],
     },
     {
