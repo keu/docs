@@ -22,7 +22,7 @@ If you need to set one of these variables for a particular use case, contact [As
 | Environment Variable                       | Description                                                                                                          | Value                                   |
 | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
 |`AIRFLOW__LOGGING__DAG_PROCESSOR_LOG_TARGET`| Routes scheduler logs to stdout                                                                                      | `stdout`                                |
-| `AIRFLOW__LOGGING__REMOTE_LOGGING`         | Enables remote logging                                                                                               | `True`                                  |
+| `AIRFLOW__LOGGING__REMOTE_LOGGING`         | Enables remote logging                                                                                               | `True` (AWS)   `False` (Azure and GCP)                              |
 | `AIRFLOW__LOGGING__REMOTE_BASE_LOG_FOLDER` | Location of remote logging storage                                                                                   | `baseLogFolder`                         |
 | `AIRFLOW_CONN_ASTRO_S3_LOGGING`            | Connection URI for writing task logs to Astro's managed S3 bucket                                                    | `<Connection-URI>`                      |
 | `AIRFLOW__LOGGING__ENCRYPT_S3_LOGS`        | Determines whether to use server-side encryption for S3 logs                                                         | `False`                                 |
