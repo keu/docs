@@ -46,6 +46,7 @@ The following cell types have been added to the Astro Cloud IDE:
 
 ### Bug fixes 
 
+- When you click **Clear** or **Mark Success** for a task instance in the Airflow UI, you are now correctly redirected to the **DAGs** home page instead of the **Grid** view.
 - Sorting the **Organization Role** column in the **People** tab of the Cloud UI now works as expected.
 - Fixed an issue where lineage groups would occasionally not collapse as expected in the **Lineage Graph** view. 
 
