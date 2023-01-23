@@ -13,17 +13,21 @@ For upgrade instructions, see [Upgrade Airflow on Astronomer Software](manage-ai
 
 ## Astro Runtime 7.2.0
 
-- Release date: January 20, 2022
+- Release date: January 20, 2023
 - Airflow version: 2.5.1
 
 ### Airflow 2.5.1
 
-Astro Runtime 7.2.0 includes same-day support for Airflow 2.5.1, which includes a collection of bug fixes. Fixes include:
+Astro Runtime 7.2.0 includes same-day support for Airflow 2.5.1. Airflow 2.5.1 contains a number of bug fixes including:
 
-- Return list of tasks that will be queued([28066](https://github.com/apache/airflow/pull/28066))
+- Return list of tasks that will be queued ([28066](https://github.com/apache/airflow/pull/28066))
 - Fix masking of non-sensitive environment variables ([28802](https://github.com/apache/airflow/pull/28802))
 
 For a complete list of the changes, see the [Apache Airflow 2.5.1 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-5-1-2023-01-20).
+
+### Astro Runtime now includes the Astro Python SDK
+
+Astro Runtime now includes the Astro Python SDK by default. The Astro Python SDK is an open source tool and Python package for DAG development that is built and maintained by Astronomer. See the [Astro Python SDK ReadTheDocs](https://astro-sdk-python.readthedocs.io/en/stable/) and [The Astro Python SDK for ETL](https://docs.astronomer.io/learn/astro-python-sdk-etl) for more information. 
 
 ### Early access Airflow bug fixes
 
@@ -33,9 +37,8 @@ For a complete list of the changes, see the [Apache Airflow 2.5.1 release notes]
 
 ### Additional improvements
 
-- Upgraded `astro-sdk-python` to 1.4.0, which includes support for FTP/SFTP, Databricks, and Azure Blob Storage. For a complete list of changes, see the [Astro Python SDK Changelog](https://astro-sdk-python.readthedocs.io/en/1.4/CHANGELOG.html).
-- Upgraded `astronomer-providers` to 1.13.0, which includes support for using a role ARN with `AwsBaseHookAsync`. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.13.0/CHANGELOG.rst).
-- Upgraded `openlineage-airflow` to 0.19.2, which includes new support for Airflow operators like the `S3FileTransformOperator` and additional facets for task runs. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/releases/tag/0.19.2) for more information. 
+- Upgraded `astronomer-providers` to 1.13.0, which includes support for using a role ARN with `AwsBaseHookAsync`. See the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.13.0/CHANGELOG.rst) for a complete list of changes.
+- Upgraded `openlineage-airflow` to 0.19.2, which includes new support for Airflow operators like the `S3FileTransformOperator` and additional facets for task runs. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/releases/tag/0.19.2) for a complete list of changes.
 
 ## Astro Runtime 7.1.0
 

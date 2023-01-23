@@ -38,7 +38,13 @@ Astro Runtime 7.2.0 includes same-day support for Airflow 2.5.1. Airflow 2.5.1 c
 
 For a complete list of the changes, see the [Apache Airflow 2.5.1 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-5-1-2023-01-20).
 
+### Astro Runtime now includes the Astro Python SDK
+
+Astro Runtime now includes the Astro Python SDK by default. The Astro Python SDK is an open source tool and Python package for DAG development that is built and maintained by Astronomer. See the [Astro Python SDK ReadTheDocs](https://astro-sdk-python.readthedocs.io/en/stable/) and [The Astro Python SDK for ETL](https://docs.astronomer.io/learn/astro-python-sdk-etl) for more information. 
+
 ### Early access Airflow bug fixes
+
+In anticipation of Kubernetes executor support on Astro, Astro Runtime includes the following bug fixes from Airflow 2.5.2:
 
 - Be more selective when adopting pods with KubernetesExecutor ([28899](https://github.com/apache/airflow/pull/28899))
 - KubenetesExecutor sends state even when successful ([28871](https://github.com/apache/airflow/pull/28871))
@@ -46,7 +52,6 @@ For a complete list of the changes, see the [Apache Airflow 2.5.1 release notes]
 
 ### Additional improvements
 
-- Upgraded `astro-sdk-python` to 1.4.0, which includes support for FTP/SFTP, Databricks, and Azure Blob Storage. See the [Astro Python SDK Changelog](https://astro-sdk-python.readthedocs.io/en/1.4/CHANGELOG.html) for a complete list of changes.
 - Upgraded `astronomer-providers` to 1.13.0, which includes support for using a role ARN with `AwsBaseHookAsync`. See the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.13.0/CHANGELOG.rst) for a complete list of changes.
 - Upgraded `openlineage-airflow` to 0.19.2, which includes new support for Airflow operators like the `S3FileTransformOperator` and additional facets for task runs. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/releases/tag/0.19.2) for a complete list of changes.
 
