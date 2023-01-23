@@ -31,9 +31,9 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
 
 ### Airflow 2.5.1
 
-Astro Runtime 7.2.0 includes same-day support for Airflow 2.5.1, which includes a collection of bug fixes. Fixes include:
+Astro Runtime 7.2.0 includes same-day support for Airflow 2.5.1. Airflow 2.5.1 contains a number of bug fixes including:
 
-- Return list of tasks that will be queued([28066](https://github.com/apache/airflow/pull/28066))
+- Return list of tasks that will be queued ([28066](https://github.com/apache/airflow/pull/28066))
 - Fix masking of non-sensitive environment variables ([28802](https://github.com/apache/airflow/pull/28802))
 
 For a complete list of the changes, see the [Apache Airflow 2.5.1 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-5-1-2023-01-20).
