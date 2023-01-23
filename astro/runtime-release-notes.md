@@ -46,9 +46,9 @@ For a complete list of the changes, see the [Apache Airflow 2.5.1 release notes]
 
 ### Additional improvements
 
-- Upgraded `astro-sdk-python` to 1.4.0, which includes support for FTP/SFTP, Databricks, and Azure Blob Storage. For a complete list of changes, see the [Astro Python SDK Changelog](https://astro-sdk-python.readthedocs.io/en/1.4/CHANGELOG.html).
-- Upgraded `astronomer-providers` to 1.13.0, which includes support for using a role ARN with `AwsBaseHookAsync`. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.13.0/CHANGELOG.rst).
-- Upgraded `openlineage-airflow` to 0.19.2, which includes new support for Airflow operators like the `S3FileTransformOperator` and additional facets for task runs. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/releases/tag/0.19.2) for more information. 
+- Upgraded `astro-sdk-python` to 1.4.0, which includes support for FTP/SFTP, Databricks, and Azure Blob Storage. See the [Astro Python SDK Changelog](https://astro-sdk-python.readthedocs.io/en/1.4/CHANGELOG.html) for a complete list of changes.
+- Upgraded `astronomer-providers` to 1.13.0, which includes support for using a role ARN with `AwsBaseHookAsync`. See the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.13.0/CHANGELOG.rst) for a complete list of changes.
+- Upgraded `openlineage-airflow` to 0.19.2, which includes new support for Airflow operators like the `S3FileTransformOperator` and additional facets for task runs. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/releases/tag/0.19.2) for a complete list of changes.
 
 ## Astro Runtime 7.1.0
 
