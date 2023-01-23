@@ -212,8 +212,7 @@ To run a query against data hosted outside of your project, you create a `YAML` 
     LIMIT 5;
     ```
 
-    - Reference the table name directly in your queries. For example: 
-
+    - Reference the table name directly in your queries. When you run your workflow, the CLI automatically uses the configured data source in your `YAML` file for all queries. This option does not work if you have multiple configured data sources in your workflow. For example: 
 
     ```sql
     ---
@@ -223,8 +222,6 @@ To run a query against data hosted outside of your project, you create a `YAML` 
     FROM <your-input-table>
     LIMIT 5;
     ```
-    
-    When you run your workflow, the CLI automatically uses the configured data source in your `YAML` file for all queries. This option does not work if you have multiple configured data sources in your workflow.
 
 ## Run a SQL workflow
 
