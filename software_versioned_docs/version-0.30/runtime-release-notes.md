@@ -11,6 +11,32 @@ Astro Runtime is a Docker image built and published by Astronomer that extends t
 
 For upgrade instructions, see [Upgrade Airflow on Astronomer Software](manage-airflow-versions.md). For general product release notes, go to [Software release notes](release-notes.md). If you have any questions or a bug to report, contact [Astronomer support](https://support.astronomer.io).
 
+## Astro Runtime 7.2.0
+
+- Release date: January 20, 2022
+- Airflow version: 2.5.1
+
+### Airflow 2.5.1
+
+Astro Runtime 7.2.0 includes same-day support for Airflow 2.5.1, which includes a collection of bug fixes. Fixes include:
+
+- Return list of tasks that will be queued([28066](https://github.com/apache/airflow/pull/28066))
+- Fix masking of non-sensitive environment variables ([28802](https://github.com/apache/airflow/pull/28802))
+
+For a complete list of the changes, see the [Apache Airflow 2.5.1 release notes](https://airflow.apache.org/docs/apache-airflow/stable/release_notes.html#airflow-2-5-1-2023-01-20).
+
+### Early access Airflow bug fixes
+
+- Be more selective when adopting pods with KubernetesExecutor ([28899](https://github.com/apache/airflow/pull/28899))
+- KubenetesExecutor sends state even when successful ([28871](https://github.com/apache/airflow/pull/28871))
+- Annotate KubeExecutor pods that we don't delete ([28844](https://github.com/apache/airflow/pull/28844))
+
+### Additional improvements
+
+- Upgraded `astro-sdk-python` to 1.4.0, which includes support for FTP/SFTP, Databricks, and Azure Blob Storage. For a complete list of changes, see the [Astro Python SDK Changelog](https://astro-sdk-python.readthedocs.io/en/1.4/CHANGELOG.html).
+- Upgraded `astronomer-providers` to 1.13.0, which includes support for using a role ARN with `AwsBaseHookAsync`. For a complete list of changes, see the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.13.0/CHANGELOG.rst).
+- Upgraded `openlineage-airflow` to 0.19.2, which includes new support for Airflow operators like the `S3FileTransformOperator` and additional facets for task runs. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/releases/tag/0.19.2) for more information. 
+
 ## Astro Runtime 7.1.0
 
 - Release date: December 21, 2022
