@@ -47,7 +47,7 @@ Astro Runtime now includes the Astro Python SDK by default. The Astro Python SDK
 In anticipation of Kubernetes executor support on Astro, Astro Runtime includes the following bug fixes from Airflow 2.5.2:
 
 - Be more selective when adopting pods with KubernetesExecutor ([28899](https://github.com/apache/airflow/pull/28899))
-- KubenetesExecutor sends state even when successful ([28871](https://github.com/apache/airflow/pull/28871))
+- KubernetesExecutor sends state even when successful ([28871](https://github.com/apache/airflow/pull/28871))
 - Annotate KubeExecutor pods that we don't delete ([28844](https://github.com/apache/airflow/pull/28844))
 
 ### Additional improvements
