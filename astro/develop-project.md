@@ -444,11 +444,11 @@ This example assumes that the name of each of your Python packages is identical 
     LABEL io.astronomer.docker.build.number=$BUILD_NUMBER
     LABEL io.astronomer.docker.airflow.onbuild=true
     # Install OS-Level packages
+    USER root
     COPY packages.txt .
     RUN apt-get update && cat packages.txt | xargs apt-get install -y
 
     FROM stage1 AS stage2
-    USER root
     RUN apt-get -y install git python3 openssh-client \
       && mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
     # Install Python packages
