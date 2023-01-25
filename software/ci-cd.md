@@ -367,7 +367,7 @@ workflows:
 
 ## Jenkins Script
 
-```yaml
+```groovy
 pipeline {
  agent any
    stages {
