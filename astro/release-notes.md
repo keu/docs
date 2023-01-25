@@ -48,7 +48,6 @@ For more information about a specific cell type, see [Run SQL in the Astro Cloud
 
 ### Bug fixes 
 
-- After clicking **Clear** or **Mark Success** for a task instance in the Airflow UI, you are now redirected to the **Grid** view of the corresponding DAG instead of the **DAGs** home page.
 - Sorting the **Organization Role** column in the **People** tab of the Cloud UI now works as expected.
 - Fixed an issue where lineage groups would occasionally not collapse as expected in the **Lineage Graph** view.
 
