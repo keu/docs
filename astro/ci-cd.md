@@ -760,7 +760,7 @@ To automate code deploys across multiple Deployments using [Jenkins](https://www
 </TabItem>
 </Tabs>
 
-### Jenkins (DAG-based deploy)
+### Jenkins (DAG-based deploys)
 
 Use the following template to implement DAG-only deploys with Jenkins.
 
