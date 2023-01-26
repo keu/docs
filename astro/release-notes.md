@@ -23,6 +23,29 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.9.0 ([Release notes](cli/release-notes.md))
 
+## January 24, 2023
+
+### New Workspace Home page 
+
+When you select a Workspace in the Cloud UI, the **Home** page now appears first. On this page, you can:
+
+- Check the status of your Deployments.
+- Quickly access your most recently viewed Deployments and Cloud IDE projects. 
+- View release notes for all Astro products.
+
+![Workspace home page in the Cloud UI](/img/release-notes/workspace-home.png)
+
+### Additional improvements
+
+- Data plane cluster access is now limited to control plane IPs. This change will be implemented on all clusters in the coming weeks.
+- You can now request custom tags for your clusters by submitting a support request to [Astronomer support](https://cloud.astronomer.io/support). You can view your cluster tags in the Cloud UI by selecting **Clusters**, selecting a cluster, and then clicking the **Details** tab. See [View clusters](view-clusters.md).
+- You can now create new clusters in France Central for Bring Your Own Cloud installations of Astro on Azure.
+- Improved the speed of DAGs appearing in the Airflow after completing a DAG-only deploy.
+
+### Bug fixes 
+
+- Fixed [CVE-2022-48195](https://avd.aquasec.com/nvd/2022/cve-2022-48195/)
+
 ## January 18, 2023
 
 ### Bug fixes
