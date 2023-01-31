@@ -179,8 +179,8 @@ If you're upgrading through multiple Astronomer Software versions in a single up
 | Current version | Target version | Upgrade path                |
 | --------------- | -------------- | --------------------------- |
 | 0.27            | 0.29 or later  | 0.27 > 0.28 > 0.29 or later |
-| 0.26            | 0.29 or later  | 0.26 > 0.28 > 0.29          |
-| 0.25            | 0.29 or later  | 0.25 > 0.28 > 0.29          |
+| 0.26            | 0.29 or later  | 0.26 > 0.28 > 0.29 or later |
+| 0.25            | 0.29 or later  | 0.25 > 0.28 > 0.29 or later |
 
 ### Upgrading to Kubernetes 1.22
 
