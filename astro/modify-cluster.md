@@ -14,7 +14,7 @@ The following are some of the cluster and Deployment-level modifications that re
 - Create a new node pool. This enables a new worker type for all Deployments in the cluster. See [Cluster settings reference](https://docs.astronomer.io/astro/category/cluster-settings-reference).
 - Update an existing worker node pool, including its node instance type or maximum node count.
 - Create a VPC connection or a transit gateway connection between a cluster and a target VPC. See [Connect Astro to external data sources](https://docs.astronomer.io/astro/category/connect-astro).
-- Apply custom tags (AWS only). Custom tags help your organization quickly identify and categorize your clusters by purpose, owner, or other business need. For example, you can request tags that help you quickly identify a production or a test cluster, or tags that assist with cost reporting.
+- Apply custom tags (AWS only). Custom tags help your organization quickly identify and categorize your clusters by purpose, owner, or other business need. For example, you can request tags that help you quickly identify a production or a test cluster, or tags that assist with cost analysis.
 
 To modify a cluster, you'll need the following:
 
