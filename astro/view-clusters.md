@@ -27,7 +27,7 @@ The **Worker Types** tab displays the following information:
 
 The **Workspace Authorization** tab lets you define what Workspaces can create Deployments on the cluster.
 
-The **Tags** tab displays custom tags for the AWS clusters created by Astronomer support. When the clusters are created, you can request custom tags to quickly identify and categorize your clusters by purpose, owner, or other business need. For example, you can request a tag that helps you quickly identify a production or a test cluster.
+The **Tags** tab displays custom tags for the AWS clusters created by Astronomer support. When the clusters are created, you can request custom tags to quickly identify and categorize your clusters by purpose, owner, or other business need. For example, you can request tags that help you quickly identify a production or a test cluster, or tags that assist with cost reporting.
 
 The **Details** tab displays the following information:
 
