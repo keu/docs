@@ -63,9 +63,9 @@ Depending on how you installed Astro, you can host Astro clusters in the followi
 
 Modifying the region of an existing Astro cluster isn't supported. If you're interested in a region that isn't listed, contact [Astronomer support](https://cloud.astronomer.io/support).
 
-<sup>1</sup> 
-
+$^1$ 
 When hosting Astro in a dedicated AWS account owned by your organization (Bring Your Own Cloud) in one of these regions, you'll need to contact [Microsoft Azure Support](https://support.microsoft.com/en-us/topic/contact-microsoft-azure-support-2315e669-8b1f-493b-5fb1-d88a8736ffe4) to enable the regions. If you require clarification about this requirement, contact [Astronomer support](https://cloud.astronomer.io/support). 
+
 
 ### Worker node pools
 
