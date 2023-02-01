@@ -48,20 +48,22 @@ Depending on how you installed Astro, you can host Astro clusters in the followi
 | `centralus`        | Central US         | ✔️                            |                     |
 | `eastasia`         | East Asia          | ✔️                            |                     |
 | `eastus`           | East US            | ✔️                            |                     |
-| `eastus2`          | East US 2          | ✔️                            | ✔️ (Private Preview) |
-| `francecentral`    | France Central     | ✔️                            |                     |
+| `eastus2` <sup>1</sup>          | East US 2          | ✔️                            | ✔️ (Private Preview) |
+| `francecentral` <sup>1</sup>    | France Central     | ✔️                            |                     |
 | `japaneast`        | Japan East         | ✔️                            |                     |
 | `koreacentral`     | Korea Central      | ✔️                            |                     |
 | `northeurope`      | North Europe       | ✔️                            | ✔️                   |
 | `southafricanorth` | South Africa North | ✔️                            |                     |
 | `southcentralus`   | South Central US   | ✔️                            |                     |
-| `southeastasia`    | South East Asia    | ✔️                            | ✔️ (Private Preview) |
+| `southeastasia` <sup>1</sup>    | South East Asia    | ✔️                            | ✔️ (Private Preview) |
 | `uksouth`          | UK South           | ✔️                            |                     |
-| `westeurope`       | West Europe        | ✔️                            | ✔️                   |
-| `westus2`          | West US 2          | ✔️                            | ✔️ (Private preview) |
+| `westeurope` <sup>1</sup>       | West Europe        | ✔️                            | ✔️                   |
+| `westus2` <sup>1</sup>          | West US 2          | ✔️                            | ✔️ (Private preview) |
 | `westus3`          | West US 3          | ✔️                            |                     |
 
 Modifying the region of an existing Astro cluster isn't supported. If you're interested in a region that isn't listed, contact [Astronomer support](https://cloud.astronomer.io/support).
+
+<sup>1</sup> When hosting Astro in a dedicated AWS account owned by your organization (Bring Your Own Cloud) in one of these regions, you'll need to contact [Microsoft Azure Support](https://support.microsoft.com/en-us/topic/contact-microsoft-azure-support-2315e669-8b1f-493b-5fb1-d88a8736ffe4) to enable the regions. If you require clarification about this requirement, contact [Astronomer support](https://cloud.astronomer.io/support). 
 
 ### Worker node pools
 
