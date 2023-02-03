@@ -18,7 +18,7 @@ While secret values of Airflow variables and connections are encrypted in the Ai
 
 :::tip
 
-If you only need a local connection to your cloud for testing purposes, consider mounting your own AWS user credentials to a local Airflow environment. While this implementation is not recommended for deployed environments, lets you quickly test pipelines with data hosted in your cloud. See [Authenticate to cloud services](authenticate-to-clouds.md).
+If you only need a local connection to your cloud for testing purposes, consider mounting your user credentials to a local Airflow environment. While this implementation is not recommended for deployed environments, it lets you quickly test pipelines with data hosted in your cloud. See [Authenticate to cloud services](authenticate-to-clouds.md).
 
 :::
 
