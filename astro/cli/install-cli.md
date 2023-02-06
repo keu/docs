@@ -43,33 +43,33 @@ To install the latest version of the Astro CLI, run the following command:
 brew install astro
 ```
 
-If Homebrew doesn't install the latest version of the CLI when you run this command:
-
-1. Run the following command to update all package definitions (formulae) and Homebrew:
-
-    ```sh
-    brew update
-    ```
-
-2. Run the following command to install the latest version of the Astro CLI:
-
-    ```sh
-    brew install astro
-    ```
-
-3. Run the following command to verify the correct Astro CLI version was installed:
-
-    ```sh
-    astro version
-    ```
-
 To install a specific version of the Astro CLI, specify the version you want to install at the end of the command:
 
 ```sh
 brew install astro@<major.minor.patch-version>
 ```
 
-If you specify only a major version, this command installs the latest minor or patch version available for the major version. For a list of all available versions, see the [CLI release notes](cli/release-notes.md). If you specify only a major version, this command installs the latest minor or patch version available for the major version. For a list of all available versions, see the [CLI release notes](cli/release-notes.md).
+If you specify only a major version, this command installs the latest minor or patch version available for the major version. For a list of all available versions, see the [CLI release notes](/astro/cli/release-notes.md).
+
+#### Confirmation
+
+To verify that the correct Astro CLI version was installed, run:
+
+```sh
+astro version
+```
+
+#### Resolve installation issues
+
+Follow this procedure when Homebrew fails to install the latest Astro CLI version or the error `No formulae or casks found for astro@<major.minor.patch-version>` appears. To troubleshoot other Homebrew issues, see [Common Issues](https://docs.brew.sh/Common-Issues) in the Homebrew documentation.
+
+1. Run the following command to update Homebrew and all package definitions (formulae):
+
+    ```sh
+    brew update
+    ```
+
+2. Install the Astro CLI. See [Installation](cli/install-cli.md?tab=mac#installation). 
 
 </TabItem>
 
@@ -153,7 +153,6 @@ If you specify only a major version, this command installs the latest minor or p
 
 </Tabs>
 
-
 ## Upgrade the CLI
 
 <Tabs
@@ -170,7 +169,7 @@ If you specify only a major version, this command installs the latest minor or p
 To upgrade the Astro CLI to the latest version, run the following command:
 
 ```sh
-brew install astro
+brew upgrade astro
 ```
 
 </TabItem>
@@ -268,104 +267,3 @@ sudo rm /usr/local/bin/astro
 </TabItem>
 
 </Tabs>
-
-## Migrate from `astrocloud` to `astro`
-
-The `astrocloud` executable is no longer maintained by Astronomer. Complete this migration if all of the following are true:
-
-- You are an Astro user.
-- You're currently using the `astrocloud` CLI executable.
-
-For more information about Astro CLI version 1.0.0, see [Astro CLI Release Notes](cli/release-notes.md).
-
-### Step 1: Uninstall `astrocloud`
-
-<Tabs
-    defaultValue="mac"
-    groupId= "step-1-uninstall-astrocloud"
-    values={[
-        {label: 'Mac', value: 'mac'},
-        {label: 'Windows with winget', value: 'windowswithwinget'},
-        {label: 'Windows (Manual)', value: 'windows'},
-        {label: 'Linux', value: 'linux'},
-    ]}>
-<TabItem value="mac">
-
-To uninstall `astrocloud` on Mac, run:
-
-```sh
-brew uninstall astronomer/cloud/astrocloud
-```
-
-</TabItem>
-
-<TabItem value="windowswithwinget">
-
-Starting with Astro CLI version 1.6, you can use the winget command line tool to uninstall the Astro CLI.
-
-To uninstall the Astro CLI, open Windows PowerShell as an administrator and run the following command:
-
-```sh
-winget uninstall -e --id Astronomer.Astro
-```
-
-</TabItem>
-
-<TabItem value="windows">
-
-To uninstall `astrocloud` on Windows:
-
-1. Delete the filepath for `astrocloud.exe` from your Windows PATH environment variable.
-2. Delete `astrocloud.exe` from your machine.
-
-</TabItem>
-
-<TabItem value="linux">
-
-To uninstall `astrocloud` on Linux:
-
-1. Delete the filepath for `astrocloud.exe` from your Linux PATH environment variable.
-2. Delete `astrocloud.exe` from your machine.
-
-</TabItem>
-
-</Tabs>
-
-### Step 2: Install the Astro CLI 
-
-Install the latest version of `astro` on your machine. See [Install the CLI](cli/install-cli.md).
-
-### Step 3: Migrate existing Astro projects
-
-To run and deploy your existing Astro projects using the `astro` executable, you need to populate these projects with a new `.astro` directory.
-
-1. In your terminal, go to the location of your Astro project.
-2. Run `astro dev init` to generate a new `.astro` directory in your project. This subdirectory might be hidden in graphical file browsers. You can show hidden files using `⌘ + Shift + .` on Mac or by selecting **View > Hidden items** in Windows file explorer.
-
-    If a prompt appears asking you about whether you want to create a project in a directory that isn't empty, enter `Yes`. The CLI only creates files that aren't in your directory. In this case, the only files that it creates are `./astro/test_dag_integrity_default.py` and `.astro/config.yaml`.
-
-### Step 4: Migrate project configurations (_Optional_)
-
-If you manually updated the `.astrocloud/config.yaml` file of an existing Astro project:
-
-1. In your terminal, go to the location of your Astro project.
-2. Copy the contents from `.astrocloud/config.yaml` into `.astro/config.yaml`.
-3. Delete `.astrocloud/config.yaml` from your project.
-
-### Step 5: Update CI/CD pipelines (_Optional_)
-
-If you have an existing [CI/CD](ci-cd.md) pipeline that uses the `astrocloud` executable, update it to use `astro`. For example, in a GitHub Actions CI/CD pipeline you would update the following:
-
-```yaml
-# Before:
-    - name: Deploy to Astro
-      run: |
-        brew install astronomer/cloud/astrocloud
-        astrocloud deploy ${{ secrets.DEPLOYMENT_ID }}
-
-# After:
-    - name: Deploy to Astro
-      run: |
-        curl -sSL install.astronomer.io | sudo bash -s
-        astro deploy ${{ secrets.DEPLOYMENT_ID }}
-```
