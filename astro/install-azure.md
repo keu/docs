@@ -45,6 +45,7 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
 
 - A clean Azure subscription. For security reasons, Azure subscriptions with existing tooling running aren't supported. Also, the subscription must be included in an Azure management group that doesn't apply Azure policies. See [What are Azure management groups](https://docs.microsoft.com/en-us/azure/governance/management-groups/overview).
 - An Azure AD user with the following role assignments:
+
     - `Application Administrator`. See [Understand roles in Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/roles/concept-understand-roles).
     - `Owner` with permission to create and manage subscription resources of all types. See [Azure built-in roles](https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles).
 
@@ -64,7 +65,7 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
     ResourceType     Locations    Name                    Zones    Restrictions
     virtualMachines  centralus    Standard_D4d_v5          1,2,3    NotAvailableForSubscription, type: Zone, locations: centralus, zones: 1
     ```
-    
+
 - A subscription to the [Astro status page](https://status.astronomer.io). This ensures that you're alerted when an incident occurs or when scheduled maintenance is planned.
 - The following domains added to your organization's allowlist for any user and CI/CD environments:
     - `https://cloud.astronomer.io/`
