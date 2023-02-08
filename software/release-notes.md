@@ -84,7 +84,7 @@ See [Manage the root user](manage-root-user.md).
 
 ### Manage Astronomer users through a SCIM integration 
 
-Astronomer Software now supports managing users through System for Cross-domain Identity Management (SCIM), which allows you to automatically provision and deprovision users based on templates for access and permissions. See [Manage users with SCIM](integrate-auth-system.md#manage-users-with-scim).
+Astronomer Software now supports managing users through System for Cross-domain Identity Management (SCIM), which allows you to automatically provision and deprovision users based on templates for access and permissions. See [Manage users with SCIM](integrate-auth-system.md#manage-users-and-teams-with-scim).
 
 ### Invite users only through Teams
 
