@@ -11,7 +11,7 @@ def simple_xcom_dag():
 
     @task
     def pick_a_random_number():
-        return random.randint(1, 10     ) # push to XCom
+        return random.randint(1, 10   ) # push to XCom
 
     @task
     def print_a_number(num): # retrieve from XCom
