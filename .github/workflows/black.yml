@@ -12,5 +12,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: psf/black@stable
         with:
-          options: "--check"
           src: "./code-samples/dags"
