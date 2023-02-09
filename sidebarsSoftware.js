@@ -163,6 +163,7 @@ module.exports = {
       type: 'category',
       label: 'Troubleshoot',
       items: [
+      'troubleshoot-software',
       'kubectl',
       'debug-install',
       'disaster-recovery',

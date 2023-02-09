@@ -154,6 +154,7 @@ module.exports = {
       label: "Reference",
       items: [
         "astro-support",
+        "troubleshoot-astro",
         {
           type: "category",
           label: "Astro Runtime",
@@ -271,6 +272,11 @@ module.exports = {
         'cli/astro-user-invite',
         'cli/astro-version',
         'cli/astro-workspace',],
+    },
+    {
+      type: "doc",
+      label: "Troubleshoot the CLI",
+      id: "cli/troubleshoot-cli",
     },
   ],
 };
