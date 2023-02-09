@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Troubleshoot the Astro CLI'
 title: 'Troubleshoot the Astro CLI'
-id: troubleshoot-astro-cli
+id: troubleshoot-cli
 ---
 
 import Tabs from '@theme/Tabs';
