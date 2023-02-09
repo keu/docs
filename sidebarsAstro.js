@@ -62,6 +62,7 @@ module.exports = {
         "environment-variables",
         "secrets-backend",
         "manage-deployments-as-code",
+        "manage-connections-variables",
       ],
     },
     {
