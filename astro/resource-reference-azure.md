@@ -6,7 +6,7 @@ description: Reference of all supported configurations for new Astro clusters on
 sidebar_custom_props: { icon: 'img/azure.png' }
 ---
 
-Unless otherwise specified, new clusters on Astro are created with a set of default AWS resources that should be suitable for most use cases.
+Unless otherwise specified, new clusters on Astro are created with a set of default Azure resources that should be suitable for most use cases.
 
 Read the following document for a reference of our default resources as well as supported cluster configurations.
 
