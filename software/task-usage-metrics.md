@@ -1,13 +1,13 @@
 ---
-title: 'Set up task usage metrics on Astronomer Software'
-sidebar_label: 'Set up task usage metrics'
+title: 'View task usage metrics on Astronomer Software'
+sidebar_label: 'Task usage metrics'
 id: task-usage-metrics
 description: Configure the Astronomer Software platform to record metrics about task usage.
 ---
 
 Task usage metrics provide an overview of your Airflow task runs and can help you quickly identify Deployments where more tasks are running or failing than expected.
 
-## Enable task usage metrics on your Software installation
+## Enable task usage metrics
 
 To enable task usage metrics for your entire Astronomer installation, configure the following values in your `config,yaml` file:
 
