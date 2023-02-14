@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Troubleshoot Astro'
-title: 'Troubleshoot Astro'
+sidebar_label: 'Troubleshooting/ FAQ'
+title: 'Troubleshooting Astro'
 id: troubleshoot-astro
 ---
 

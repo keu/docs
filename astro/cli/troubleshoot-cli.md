@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Troubleshoot the Astro CLI'
+sidebar_label: 'Troubleshooting/ FAQ'
 title: 'Troubleshoot the Astro CLI'
 id: troubleshoot-cli
 ---

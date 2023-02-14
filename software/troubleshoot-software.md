@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Troubleshoot Astronomer Software'
+sidebar_label: 'Troubleshooting/ FAQ'
 title: 'Troubleshoot Astronomer Software'
 id: troubleshoot-software
 ---

@@ -151,10 +151,16 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Reference",
+      label: "Support",
       items: [
         "astro-support",
         "troubleshoot-astro",
+      ]
+    },
+    {
+      type: "category",
+      label: "Reference",
+      items: [
         {
           type: "category",
           label: "Astro Runtime",
@@ -275,7 +281,7 @@ module.exports = {
     },
     {
       type: "doc",
-      label: "Troubleshoot the CLI",
+      label: "Troubleshooting/ FAQ",
       id: "cli/troubleshoot-cli",
     },
   ],

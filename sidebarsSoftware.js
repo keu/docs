@@ -183,6 +183,14 @@ module.exports = {
     ],
     },
     {
+      type: "category",
+      label: "Support",
+      items: [
+        "support",
+        "troubleshoot-software",
+      ]
+    },
+    {
       type: 'category',
       label: 'Reference',
       items: [
@@ -193,7 +201,6 @@ module.exports = {
       },
       'role-permission-reference',
       'system-components',
-      'support',
       'version-compatibility-reference',
       'release-lifecycle-policy',
       'faq',
