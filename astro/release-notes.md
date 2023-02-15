@@ -4,6 +4,8 @@ title: 'Astro release notes'
 id: release-notes
 ---
 
+import PremiumBadge from '@site/src/components/PremiumBadge'
+
 <head>
   <meta name="description" content="This is where you’ll find information about the latest Astro features and bug fixes. Check in regularly to know when issues are resolved and new features are added." />
   <meta name="og:description" content="This is where you’ll find information about the latest Astro features and bug fixes. Check in regularly to know when issues are resolved and new features are added." />
@@ -24,6 +26,20 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 **Latest CLI Version**: 1.10.0 ([Release notes](cli/release-notes.md))
 
 ## February 14, 2023
+
+### Authorize Workspaces to clusters
+
+:::info
+
+This is a [Public Preview](feature-previews.md) feature.
+
+:::
+
+<PremiumBadge />
+
+You can now keep teams and projects isolated by authorizing Workspaces to specific clusters. Use this feature to better manage cloud resources by ensuring that only authorized Deployments are running on specific clusters.
+
+To authorize Workspaces to clusters, see [Authorize Workspaces to a Cluster](modify-cluster.md#authorize-workspaces-to-a-cluster).
 
 ### New Deployment health statuses and information in the Cloud UI
 
