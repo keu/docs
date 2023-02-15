@@ -285,7 +285,7 @@ For a complete list of commits, see the [Apache Airflow 2.4.0 release notes](htt
 - Upgraded `astronomer-providers` to 1.9.0, which includes two new deferrable versions of the operators from the dbt provider package. See the [Astronomer Providers changelog](https://github.com/astronomer/astronomer-providers/blob/1.9.0/CHANGELOG.rst).
 - Upgraded `openlineage-airflow` to version `0.14.1`. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md).
 
-## Astro Runtime 6.3.0
+## Astro Runtime 5.3.0
 
 - Release date: February 14, 2023
 - Airflow version: 2.3.4
