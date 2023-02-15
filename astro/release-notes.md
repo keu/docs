@@ -23,6 +23,30 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.10.0 ([Release notes](cli/release-notes.md))
 
+## February 14, 2023
+
+### New Deployment health statuses and information in the Cloud UI
+
+The Cloud UI now includes three additional [Deployment health statuses](deployment-metrics.md#deployment-health) that you might see when creating or pushing code to a Deployment. 
+
+- The **Creating** status indicates that Astro is still provisioning the resources for the Deployment.
+- The **Deploying** status indicates that a code deploy is in progress. Hover over the status indicator to view specific information about the deploy, including whether it was an image deploy or a DAG-only deploy.
+- The **Unknown** status indicates that Deployment status can't be determined.
+
+Additionally, the Deployment information page in the Cloud UI now includes fields for **Docker Image** and **DAG Bundle Version** that show unique timestamps and tags based on your latest code deploy. Use this information as the source of truth for which version of your code is currently running on the Deployment. See [Deploy code](deploy-code.md#step-3-validate-your-changes).
+
+### View OpenLineage facets for lineage job runs
+
+[OpenLineage facets](https://openlineage.io/docs/spec/facets/) are JSON objects that provide additional context about a given job run. By default, a job run includes facets that show what kind of job was completed, whether the job run was successful, and who owns the job. 
+
+You can now view all available facets for a job run, including [custom facets](https://openlineage.io/docs/spec/facets/custom-facets), by opening the job run's **Lineage Graph** and then selecting the **Info** tab. You can check the status of your facets, including whether they are correctly formatted, so that you can resolve potential issues in your data pipelines. See [View metrics for a specific run or dataset](data-lineage.md#view-metrics-for-a-specific-run-or-dataset).
+
+![Example OpenLineage facet page in the Cloud UI](/img/release-notes/view-facets.png)
+
+### Security fixes
+
+- Fixed [CVE-2023-0286](https://avd.aquasec.com/nvd/2022/cve-2023-0286/).
+
 ## February 7, 2023
 
 ### Additional improvements 
