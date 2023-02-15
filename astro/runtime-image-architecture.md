@@ -61,6 +61,8 @@ The following table lists the default Runtime environment variables. You can ove
 All Astro Runtime images have the following open source provider packages pre-installed:
 
 - Amazon [`apache-airflow-providers-amazon`](https://pypi.org/project/apache-airflow-providers-amazon/)
+- Astronomer Providers [`astronomer-providers`](https://pypi.org/project/astronomer-providers/)
+- Astro Python SDK [`astro-sdk-python`](https://pypi.org/project/astronomer-sdk-python/)
 - Apache Hive [`apache-airflow-providers-apache-hive`](https://pypi.org/project/apache-airflow-providers-apache-hive/)
 - Apache Livy [`apache-airflow-providers-apache-livy`](https://pypi.org/project/apache-airflow-providers-apache-livy/)
 - Databricks [`apache-airflow-providers-databricks`](https://pypi.org/project/apache-airflow-providers-databricks/)
@@ -75,7 +77,6 @@ All Astro Runtime images have the following open source provider packages pre-in
 - Snowflake [`apache-airflow-snowflake`](https://pypi.org/project/apache-airflow-snowflake/)
 - Virtualenv [`apache-airflow-virtualenv`](https://pypi.org/project/virtualenv/)
 - OpenLineage with Airflow [`openlineage-airflow`](https://pypi.org/project/openlineage-airflow/)
-- Astronomer Providers [`astronomer-providers`](https://pypi.org/project/astronomer-providers/)
 - Microsoft Azure [`apache-airflow-providers-microsoft-azure`](https://pypi.org/project/apache-airflow-providers-microsoft-azure/)
 
 ### Provider package versioning
