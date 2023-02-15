@@ -35,7 +35,7 @@ For modifications that do require downtime, such as changing your cluster's node
 
 To confirm a modification was completed, open the **Clusters** tab in the Cloud UI. You should see the updated configuration in the table entry for your cluster.
 
-### Authorize Workspaces to a Cluster
+## Authorize Workspaces to a Cluster
 
 <PremiumBadge />
 
