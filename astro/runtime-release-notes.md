@@ -41,6 +41,7 @@ To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For g
     - `freetds-dev`
     - `libssl-dev`
     - `libkrb5-dev`
+    
 - Upgraded `astro-sdk-python` to 1.5.0, which includes support for Microsoft SQL and DuckDB. See the [Astro Python SDK changelog](https://github.com/astronomer/astro-sdk/blob/main/python-sdk/docs/CHANGELOG.md#150) for a complete list of changes.
 - Upgraded `openlineage-airflow` to 0.20.4, which includes a new extractor for the GCSToGCSOperator. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/releases/tag/0.17.0) for a complete list of changes. 
 
