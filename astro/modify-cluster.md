@@ -58,7 +58,7 @@ To modify the node instance type of an existing worker node pool, contact [Astro
 
 ### Configure maximum node count
 
-Each worker node pool on Astro must be configured with a **Maximum Node Count**, which represents the maximum total number of nodes that a worker node pool can have at any given time across Deployments. The default maximum node count for each worker node pool is 20. When this limit is reached, the worker node pool can't auto-scale and worker Pods may fail to schedule. A cluster's node count is most affected by the number of tasks that are running at the same time across your cluster, and the number of worker Pods that are executing those tasks. See [Worker autoscaling logic](configure-worker-queues.md#worker-autoscaling-logic).
+Each worker node pool on Astro has a **Maximum Node Count**, which represents the maximum total number of nodes that a worker node pool can have at any given time across Deployments. The default maximum node count for each worker node pool is 20. When this limit is reached, the worker node pool can't auto-scale and worker Pods may fail to schedule. A cluster's node count is most affected by the number of tasks that are running at the same time across your cluster, and the number of worker Pods that are executing those tasks. See [Worker autoscaling logic](configure-worker-queues.md#worker-autoscaling-logic).
 
 Maximum node count is different than **Maximum Worker Count**, which is configured within the Cloud UI for each worker queue and determines the maximum total number of nodes that the worker queue can scale to. Maximum node count for a node pool must always be equal to or greater than the sum of all maximum possible workers across all worker queues that are configured with that worker node type.
 
@@ -86,13 +86,19 @@ Astro uses the following databases:
 
 During the cluster creation process, you are asked to specify a **DB Instance Type** according to your use case and expected workload, but it can be modified at any time. Each database instance type costs a different amount of money and comprises of varying combinations of CPU, memory, and network performance.
 
-For the list of database instance types available on Astro, see [Supported RDS instance types](resource-reference-aws.md#supported-rds-instance-types), [Azure DB Instance Type](resource-reference-azure.md#db-instance-type), or [GCP DB Instance Type](resource-reference-gcp.md#db-instance-type). To request a different database instance type, contact [Astronomer support](https://cloud.astronomer.io/support).
+For the list of database instance types available on Astro, see: 
 
-## Authorize Workspaces to a Cluster
+- [Supported RDS instance types](resource-reference-aws.md#supported-rds-instance-types)
+- [Supported Cloud SQL instance types](resource-reference-gcp.md#supported-cloud-sql-instance-types).
+- [Supported Azure Database for PostgreSQL instance types](resource-reference-azure.md#supported-azure-database-for-postgresql-instance-types)
+
+To request support for a different database instance type, contact [Astronomer support](https://cloud.astronomer.io/support).
+
+## Authorize Workspaces to a cluster
 
 <PremiumBadge />
 
-As an Organization Owner, you can keep teams and projects isolated by authorizing Workspaces only to specific clusters. You can gain greater control over your cloud resources by ensuring that only authorized pipelines are running on specific clusters.
+As an Organization Owner, you can keep teams, resources, and projects isolated by authorizing Workspaces only to specific clusters. You can gain greater control over your cloud resources by ensuring that only authorized pipelines are running on specific clusters.
 
 1. In the Cloud UI, click the **Clusters** tab and then select a cluster.
 2. Click the **Workspace Authorization** tab and then click **Edit Workspace Authorization**.

@@ -89,7 +89,7 @@ The following AWS RDS instance types are supported on Astro:
 - db.m5.16xlarge
 - db.m5.24xlarge
 
-To meet your specific business requirements, each instance type has varying amounts of CPU, memory, storage, and networking capacity. For detailed information about each instance type, see [Amazon RDS Instance Types](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, contact [Astronomer support](https://cloud.astronomer.io/support).
+For detailed information about each instance type, see [Amazon RDS Instance Types](https://aws.amazon.com/rds/instance-types/). If you're interested in an RDS instance type that is not on this list, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Supported worker node pool instance types
 
