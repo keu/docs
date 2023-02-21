@@ -99,7 +99,7 @@ You can belong to more than one Astro Organization. Having a role in an Organiza
 
 If SSO is enabled for your domain, then you can enter your email on the `https://cloud.astronomer.io` login page and click **Continue** to access Astro through your IdP login page.
 
-### I no longer see the option to login with a username and password. Is this expected?
+### I no longer see the option to log in with a username and password. Is this expected?
 
 If SSO is enabled for your email domain, then authenticating with a username and password is no longer an option. This allows your team to manage users only through your IdP.
 
