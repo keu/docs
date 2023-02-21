@@ -33,7 +33,7 @@ An Organization role grants a user some level of access to an Astro Organization
 | Remove a user from an Organization                               |                         |                                | ✔️                      |
 | Access, regenerate, and delete single sign-on (SSO) bypass links |                         |                                | ✔️                      |
 
-To update user Organization roles, see [Manage an Organization](#manage-organization.md)
+To update user Organization roles, see [Manage an Organization](manage-organization.md)
 
 ## Workspace roles
 
