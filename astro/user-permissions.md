@@ -33,7 +33,7 @@ An Organization role grants a user some level of access to an Astro Organization
 | Remove a user from an Organization                               |                         |                                | ✔️                      |
 | Access, regenerate, and delete single sign-on (SSO) bypass links |                         |                                | ✔️                      |
 
-To update user Organization roles, see [Manage an Organization](manage-organization.md)
+To update user Organization roles, see [Manage users](add-user.md).
 
 ## Workspace roles
 
@@ -60,4 +60,4 @@ A Workspace role grants a user some level of access to a specific Workspace. The
 | Update Airflow connections and Variables            |                      |                      | ✔️                   |
 | Invite users to a Workspace                         |                      |                      | ✔️                   |
 
-To update user Workspace roles, see [Manage Workspaces](#manage-workspace-users.md)
+To update user Workspace roles, see [Manage users](add-user.md).
