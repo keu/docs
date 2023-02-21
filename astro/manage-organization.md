@@ -5,6 +5,8 @@ id: manage-organization
 description: Configure details about your Astro Organization including user authentication methods and Organization membership
 ---
 
+import PremiumBadge from '@site/src/components/PremiumBadge';
+
 Organizations are the highest level user group on Astro. All Astro users belong to at least one Organization and have an Organization role. See [Manage user permissions](user-permissions.md#organization-roles)
 
 As an Organization Owner, you can manage Organization authentication and users in the Cloud UI and by contacting [Astronomer support](https://cloud.astronomer.io/support). This document explains how to configure Organization settings. To manage Organization users, see [Manage Astro users](add-user.md).
