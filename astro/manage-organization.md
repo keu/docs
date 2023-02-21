@@ -22,13 +22,13 @@ Contact [Astronomer support](https://astronomer.io/support) for assistance with 
 
 ## Bypass single sign-on
 
-:::warning
+:::caution
 
-Do not share your single sign-on (SSO) bypass link. With an SSO bypass link, anyone with an email and a password can access your Organization. 
+Do not share your single sign-on (SSO) bypass link. With an SSO bypass link, anyone with an email and a password can log in to Astro. Astronomer recommends periodically regenerating the link from the **Settings** tab in the Cloud UI.
 
 :::
 
-An SSO bypass link allows you to authenticate to an Organization without using SSO. This link should be used to access your Organization only when you can't access Astro due to an issue with Astro or your identity provider.
+An SSO bypass link allows you to authenticate to an Organization without using SSO. This link should be used to access your Organization only when you can't access Astro due to an issue your identity provider.
 
 1. In the Cloud UI, click the **Settings** tab.
    
