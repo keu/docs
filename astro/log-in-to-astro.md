@@ -99,7 +99,7 @@ You can belong to more than one Astro Organization. Having a role in an Organiza
 
 If SSO is enabled for your domain, then you can enter your email on the `https://cloud.astronomer.io` login page and click **Continue** to access Astro through your IdP login page.
 
-### I no longer see the option to login with a username and password. Is that expected?
+### I no longer see the option to login with a username and password. Is this expected?
 
 If SSO is enabled for your email domain, then authenticating with a username and password is no longer an option. This allows your team to manage users only through your IdP.
 
@@ -109,4 +109,4 @@ It's likely that your Organization has not configured SSO for your email domain.
 
 ### Why do I see the error “User is not assigned to this application” when I log in through SSO?
 
-This error indicates that your Organization you have not been assigned to Astro through your IdP. Contact your administrator to be added either through your IdP or through an Astro invite.
+This error indicates that your Organization has not assigned you to Astro through your IdP. Contact your administrator to be added either through your IdP or through an Astro invite.
