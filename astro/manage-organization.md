@@ -15,7 +15,7 @@ As an Organization Owner, you can manage Organization authentication and users i
 
 Astro supports just-in-time provisioning by default for all [single sign-on (SSO) integrations](configure-idp.md). This means that if someone without an Astronomer account tries logging into Astronomer with an email address from a domain that you manage, they are automatically granted a default role in your Organization without needing an invite. Users with emails outside of this domain need to be invited to your Organization to access it. 
 
-Contact [Astronomer support](https://astronomer.io/support) for assistance with the following just-in-time provisioning settings:
+Contact [Astronomer support](https://cloud.astronomer.io/support) for assistance with the following just-in-time provisioning settings:
 
 - Enabling or disabling just-in-time provisioning.
 - Adding or removing a managed domain.
