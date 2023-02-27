@@ -5,12 +5,11 @@ from pendulum import datetime
 from fivetran_provider.operators.fivetran import FivetranOperator
 from airflow.sensors.filesystem import FileSensor
 
-FIVETRAN_CONNECTOR_ID = "gloating_thunder"
+FIVETRAN_CONNECTOR_ID = "your connector id"
 
 
 @dag(start_date=datetime(2023, 1, 1), schedule="@daily", catchup=False)
 def my_fivetran_dag():
-
     wait_for_file = FileSensor(
         task_id="wait_for_file",
         fs_conn_id="in_docker_file_conn",
