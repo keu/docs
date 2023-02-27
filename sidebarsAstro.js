@@ -179,7 +179,6 @@ module.exports = {
         },
         'platform-variables',
         "feature-previews",
-        'data-lineage-support-and-compatibility',
         {
           type: "category",
           label: "Security",
