@@ -9,6 +9,7 @@ import CodeBlock from '@theme/CodeBlock';
 import fivetran_tutorial_dag_1 from '!!raw-loader!../code-samples/dags/airflow-fivetran/fivetran_tutorial_dag_1.py';
 
 [Fivetran](https://www.fivetran.com/) is a popular ELT platform built to automate ingestion of data from a variety of sources into a database, offering pre-built integration elements called Connectors, Transformations and Destinations for many common data tools.
+Fivetran is optimized to simplify data ingestion from many sources by just configuring the relevant connectors. Use Airflow with Fivetran to allow your Fivetran sync jobs to be scheduled based on events in your larger data ecosystem, as well as kick-off downstream actions the moment a sync job has finished.
 
 In this tutorial, you'll learn how to install and use the Airflow Fivetran provider to submit and monitor Fivetran sync jobs.
 
@@ -43,13 +44,7 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
     ```text
     airflow-provider-fivetran-async
-    astronomer-providers[all]
-    ```
-
-3. In your `.env` file add the following Airflow connection with the Connection ID `in_docker_file_conn`. This connection will be used by the `FileSensor` in subsequent steps. It does not need any credentials since it simply connects to the file system of your Airflow environment.
-
-    ```text
-    AIRFLOW_CONN_IN_DOCKER_FILE_CONN='fs://'
+    apache-airflow-providers-github
     ```
 
 3. Run the following command to start your project in a local environment:
@@ -77,21 +72,15 @@ Fivetran needs at least one destination to be configured in order to create sync
 
     ![Fivetran Destination](/img/guides/fivetran_destination.png)
 
-:::info
-
-If you choose to connect to an existing data warehouse make sure you are able to connect a BI tool to it if you want to complete the optional Step 8. In Step 8 we will use [Tableau](https://www.tableau.com/) to visualize our data but you are free to use any BI tool compatible with your data warehouse.
-
-:::
-
-3. Configure your destination connection. You can choose any configuration. Astronomer recommends using UTC as your timezone in all data tools as a best practice. Click **SAVE & TEST** to save your destination.
+4. Configure your destination connection. You can choose any configuration. Astronomer recommends using UTC as your timezone in all data tools as a best practice. Click **SAVE & TEST** to save your destination.
 
     ![Fivetran-managed BigQuery](/img/guides/fivetran_managed_bigquery.png)
 
-4. Click **Continue** to get back to the list of your destinations.
+5. Click **Continue** to get back to the list of your destinations.
 
     ![Fivetran-managed BigQuery connection successful](/img/guides/fivetran_managed_bigquery_conn_success.png)
 
-## Step 4: Connect Fivetran to a connector
+## Step 4: Configure a Fivetran connector
 
 Fivetran needs at least one connector to be configured in order to create sync jobs. A connector is one of many data sources. View the Fivetran website for an [up-to-date list of connectors](https://www.fivetran.com/connectors).
 
@@ -113,7 +102,7 @@ Fivetran needs at least one connector to be configured in order to create sync j
 
 6. Click **SAVE & TEST**. After your connection has been tested click **CONTINUE**.
 
-7. Click on **Start Sync** to start your initial sync. This will extract metadata about your GitHub repository and load it into your destination. Once the initial sync is completed and your Fivetran job is active, you can set the sync frequencies under the **Setup** tab.
+7. Click on **Start Sync** to start your initial sync. This initial synchronization will load all historic metadata from your GitHub repository and has to be completed in Fivetran for the sync job to become active. Once Fivetran job is active, you can set the sync frequency under the **Setup** tab or kick-off the sync job via the Fivetran API with Airflow.
 
     ![Initial sync completed](/img/guides/complete_initial_sync.png)
 
@@ -188,28 +177,15 @@ This DAG contains two tasks:
 
     ![Fivetran additional sync](/img/guides/fivetran_additional_sync.png)
 
-## (Optional) Step 7: Use deferrable operators
+## (Optional) Step 7: Visualize your commits with Tableau
 
-Both operators used in the example DAG have asynchronous versions, called [deferrable operators](deferrable-operators.md). The [FileSensorAsync](https://registry.astronomer.io/providers/astronomer-providers/modules/filesensorasync) can be imported from the [Astronomer provider](https://registry.astronomer.io/providers/astronomer-providers), the [FivetranOperatorAsync](https://registry.astronomer.io/providers/fivetran/modules/fivetranoperatorasync) from the new [Fivetran provider](https://registry.astronomer.io/providers/fivetran), both providers were already added to your `requirements.txt` in Step 1 of this tutorial. A deferrable operator creates a task that is handed over (deferred) to the Airflow Triggerer component, freeing up a worker slot. Switching out regular operators for deferrable ones is quite simple, you just need to change the import statement and the operator name.
+So far this tutorial has shown you how to integrate Fivetran and Airflow but we haven't had a look at the data we've been running through the pipeline. If you are using a custom Fivetran Destination you can simply view your data directly and connect your favorite BI tool to it. If you followed this tutorial using Fivetran's managed BigQuery service, you can add a BI tool in order to view your data!
 
-1. Copy and past the code below into your DAG file. Note the changes in the operator import statements and operator names.
+:::info
 
+If you choose to connect to an existing data warehouse not managed by Fivetran, you can directly connect a BI tool to it to complete this step. We will use [Tableau](https://www.tableau.com/) to visualize our data but you are free to use any BI tool compatible with your data warehouse.
 
-2. Manually run your DAG by clicking the play button in the Airflow UI.
-
-3. Notice how the `wait_for_file` task goes into a deferred state (violet square) instead of running continuously and taking up a worker slot (light green square). Take note of the `filepath` the sensor is looking for, it will use today's date, in the screenshot this is `2023-02-27`.
-
-    ![Fivetran FileSensor deferred](/img/guides/fivetran_filesensor_deferred.png)
-
-4. In your Airflow project add a file to the `include` directory called `<your-date>_customer_data.csv` using the date from the logs seen in the previous step. The file can be empty. Save the file.
-
-5. See how the `wait_for_file` task completes successfully and the `kick_off_fivetran_sync` task will go into a deferred state as well. This task will only complete once the Fivetran sync job has completed, allowing you to schedule downstream actions in your data pipeline on the completing of Fivetran sync jobs!
-
-    ![Fivetran FivetranOperatorAsync deferred](/img/guides/fivetran_deferred.png)
-
-## (Optional) Step 8: Visualize your commits with Tableau
-
-So far this tutorial has shown you how to integrate Fivetran and Airflow but we haven't had a look at the data we've been running through the pipeline. If you are using a custom Fivetran Destination you can simply view your data directly and connect your favorite BI tool to it. If you followed this tutorial using Fivetrans managed BigQuery service, you can add a BI tool in order to view your data!
+:::
 
 1. In the Fivetran UI navigate to **Destinations**, click on your warehouse and then select the **BI tools** tab and click on **+ BI tool**.
 
