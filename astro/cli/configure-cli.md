@@ -142,8 +142,6 @@ If you receive an error after running `podman ps`, there is likely a problem wit
 
 3. Set your `DOCKER_HOST` environment variable to the value of the URI.
 
-For more information, see [Podman documentation](https://docs.podman.io/en/latest/).
-
 :::
 
 ### Setup
@@ -202,8 +200,6 @@ If you receive an error after running `podman ps`, there is likely a problem wit
 2. Copy the value in the `URI` column from `podman-machine-default*`. This is typically `unix:///run/podman/podman.sock`, but it can vary based on your installation.
 
 3. Set your `DOCKER_HOST` environment variable to the value of the URI.
-
-For more information, see [Podman documentation](https://docs.podman.io/en/latest/).
 
 :::
 
@@ -268,8 +264,6 @@ If you receive an error after running `podman ps`, there is likely a problem wit
 2. Copy the value in the `URI` column from `podman-machine-default*`. This is typically `unix:///run/podman/podman.sock`, but it can vary based on your installation.
 
 3. Set your `DOCKER_HOST` environment variable to the value of the URI.
-
-For more information, see [Podman documentation](https://docs.podman.io/en/latest/).
 
 :::
 
