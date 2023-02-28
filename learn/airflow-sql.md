@@ -188,7 +188,7 @@ First, create a DAG that pulls cat facts from an [API endpoint](http://catfact.n
 
 <Tabs
     defaultValue="taskflow"
-    groupId= "snowflake-load-data"
+    groupId= "example-3-load-data"
     values={[
         {label: 'TaskFlow API', value: 'taskflow'},
         {label: 'Traditional syntax', value: 'traditional'},

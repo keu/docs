@@ -69,7 +69,7 @@ The following example DAG shows how you might use the `SqlSensor` sensor:
 
 <Tabs
     defaultValue="taskflow"
-    groupId= "sql-sensor-example"
+    groupId= "example-implementation"
     values={[
         {label: 'TaskFlow API', value: 'taskflow'},
         {label: 'Traditional syntax', value: 'traditional'},

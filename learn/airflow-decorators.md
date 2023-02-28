@@ -39,7 +39,7 @@ Using decorators to define your Python functions as tasks is easy. Let's take a 
 
 <Tabs
     defaultValue="traditional"
-    groupId= "decorator-example"
+    groupId= "how-to-use-airflow-decorators"
     values={[
         {label: 'Traditional syntax', value: 'traditional'},
         {label: 'TaskFlow API', value: 'taskflow'},

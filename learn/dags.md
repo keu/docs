@@ -72,7 +72,7 @@ The following DAG consists of 3 tasks and its TaskFlow API version is generated 
 
 <Tabs
     defaultValue="taskflow"
-    groupId= "example-dag-basic"
+    groupId= "writing-dags-with-the-taskflow-api"
     values={[
         {label: 'TaskFlow API', value: 'taskflow'},
         {label: 'Traditional syntax', value: 'traditional'},
@@ -101,7 +101,7 @@ In the previous example, DAG parameters were set within the `@dag()` function ca
 
 <Tabs
     defaultValue="taskflow"
-    groupId= "dag-parameters-example"
+    groupId= "dag-parameters"
     values={[
         {label: 'TaskFlow API', value: 'taskflow'},
         {label: 'Traditional syntax', value: 'traditional'},
