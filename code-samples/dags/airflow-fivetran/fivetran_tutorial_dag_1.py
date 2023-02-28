@@ -47,7 +47,7 @@ def my_fivetran_dag():
     )
 
     @task
-    def increase_release_var():
+    def increase_tag_var():
         """
         Increases the number associated with the Airflow Variable TAG_NAME by 1.
         """
@@ -62,7 +62,7 @@ def my_fivetran_dag():
         generate_tag_to_await()
         >> wait_for_tag
         >> kick_off_fivetran_sync
-        >> increase_release_var()
+        >> increase_tag_var()
     )
 
 

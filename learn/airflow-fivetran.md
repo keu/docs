@@ -126,11 +126,23 @@ In order to connect Airflow to Fivetran, you will need a Fivetran API key.
 
 3. Name your connection `fivetran_conn` and select the **Fivetran** connection type. Provide your Fivetran API Key and Fivetran API Secret. If the connection type does not show up, double check that you added the Fivetran provider to your `requirements.txt` file prior to last starting your Airflow instance.
 
-    ![Fivetran generate API key](/img/guides/fivetran_airflow_connection.png)
+    ![Fivetran connection](/img/guides/fivetran_airflow_connection.png)
 
 4. Click **Test** to test your connection. Once you see `Connection tested successfully` click **Save**.
 
-## Step 5: Create your Airflow DAG
+## Step 7: Create an Airflow connection to GitHub
+
+The DAG you are about to build will wait for a specific tag to be added to a GitHub repository. In order for this to be possible you will need to add an Airflow connection to GitHub.
+
+1. Click on **Admin** -> **Connections** -> **+** to create a new connection.
+
+2. Name your connection `github_conn` and select the **GitHub** connection type. Provide a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to your GitHub account. The PAT only needs to have one permission: `Read-only` access to the Metadata, which is the lowest level of access available to a PAT. You can restrict access to the `airflow-fivetran-tutorial` repository by using the `fine-grained personal access token` feature.
+
+    ![GitHub connection](/img/guides/github_connection.png)
+
+4. Click **Test** to test your connection. Once you see `Connection tested successfully` click **Save**.
+
+## Step 8: Create your Airflow DAG
 
 1. Open your `astro-fivetran-project` in a code-editor.
 
@@ -140,22 +152,32 @@ In order to connect Airflow to Fivetran, you will need a Fivetran API key.
 
     <CodeBlock language="python">{fivetran_tutorial_dag_1}</CodeBlock>
 
-This DAG contains two tasks: 
+This DAG contains four tasks: 
 
-- the `wait_for_file` task uses the [FileSensor](https://registry.astronomer.io/providers/apache-airflow/modules/filesensor) to wait for a file to drop at a specific file path in the environment configured in the connection provided to `fs_conn_id`. In Step 1 you already added a connection with the ID `in_docker_file_conn` that connects to the Airflow environment within the Docker file. The `filepath` parameter in the copied DAG code uses a [Jinja template](templating.md) to wait for a csv file with a name starting with the logical date of the DAG in the format `yyyy-mm-dd` to be created in the `include` folder.
-- the `kick_off_fivetran_sync` task uses the FivetranOperator to kick of the Fivetran connector specified as `FIVETRAN_CONNECTOR_ID` as soon as the `wait_for_file` task has completed successfully.
+- the `generate_tag_to_await` uses the `@task` decorator to turn a Python function into an Airflow task. This task will pull a number from the Airflow Variable `sync-metadata` or create the Airflow Variable and assign it to `1` if it does not exist yet. It returns the tag to wait for in the format `sync-metadata/{num}`. 
+- the `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for a specific tag to be present in a GitHub repository. In the example DAG we wait for `sync-metadata/{num}` to appear in the same repository that has been connected to Fivetran but you could also wait for a tag to be added in a different repository that the PAT you used in [Step 7](#step-7-create-an-airflow-connection-to-github) has access to.
+- the `kick_off_fivetran_sync` task uses the FivetranOperatorAsync to kick of the Fivetran connector specified as `FIVETRAN_CONNECTOR_ID` as soon as the `wait_for_tag` task has completed successfully. This task will wait in a deferred state, not taking up an Airflow worker, until the Fivetran sync job has been completed successfully.
+- the `increase_tag_var` task will only run after `kick_off_fivetran_sync` has completed successfully and increases the value assigned to the `sync-metadata` Airflow Variable by 1.
 
 4. Add the `FIVETRAN_CONNECTOR_ID` of your connector. You can find the ID of your connector in the Fivetran UI under the **Setup** tab:
 
     ![Fivetran connector ID](/img/guides/fivetran_connector_id.png)
 
-5. Save your DAG file with the new `FIVETRAN_CONNECTOR_ID`.
+5. Add your GitHub username to the `GITHUB_REPOSITORY` variable.
 
-## Step 6: Run your DAG
+6. Save your DAG file with the changed variable names.
+
+:::info
+
+Add infobox on deferrable operators.
+
+:::
+
+## Step 9: Run your DAG
 
 1. In the Airflow UI, unpause your DAG to start its last scheduled DAG run with a logical date of yesterday.
 
-2. Once the `wait_for_file` task is running check the task logs to see what `filepath` the task is waiting for. In the screenshot this is `include/2023-02-26*.csv`.
+2. Once the `wait_for_tag` task is running check the task logs to see what `filepath` the task is waiting for. In the screenshot this is `include/2023-02-26*.csv`.
 
     ![File sensor waiting](/img/guides/fivetran_filesensor_highlight.png)
 
@@ -177,7 +199,7 @@ This DAG contains two tasks:
 
     ![Fivetran additional sync](/img/guides/fivetran_additional_sync.png)
 
-## (Optional) Step 7: Visualize your commits with Tableau
+## (Optional) Step 10: Visualize your commits with Tableau
 
 So far this tutorial has shown you how to integrate Fivetran and Airflow but we haven't had a look at the data we've been running through the pipeline. If you are using a custom Fivetran Destination you can simply view your data directly and connect your favorite BI tool to it. If you followed this tutorial using Fivetran's managed BigQuery service, you can add a BI tool in order to view your data!
 
