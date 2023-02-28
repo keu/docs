@@ -4,8 +4,6 @@ title: 'Astro release notes'
 id: release-notes
 ---
 
-import PremiumBadge from '@site/src/components/PremiumBadge'
-
 <head>
   <meta name="description" content="This is where you’ll find information about the latest Astro features and bug fixes. Check in regularly to know when issues are resolved and new features are added." />
   <meta name="og:description" content="This is where you’ll find information about the latest Astro features and bug fixes. Check in regularly to know when issues are resolved and new features are added." />
@@ -98,8 +96,6 @@ In the Cloud UI, when using **Compare** on the **Lineage Graph** page, you can n
 This is a [Public Preview](feature-previews.md) feature.
 
 :::
-
-<PremiumBadge />
 
 You can now keep teams and projects isolated by authorizing Workspaces to specific clusters. Use this feature to better manage cloud resources by ensuring that only authorized Deployments are running on specific clusters.
 

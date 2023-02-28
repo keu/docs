@@ -5,8 +5,6 @@ id: manage-organization
 description: Configure details about your Astro Organization including user authentication methods and Organization membership
 ---
 
-import PremiumBadge from '@site/src/components/PremiumBadge';
-
 Organizations are the highest level user group on Astro. All Astro users belong to at least one Organization and have an Organization role. See [Manage user permissions](user-permissions.md#organization-roles)
 
 As an Organization Owner, you can manage Organization authentication and users in the Cloud UI and by contacting [Astronomer support](https://cloud.astronomer.io/support). This document explains how to configure Organization settings. To manage Organization users, see [Manage Astro users](add-user.md).
@@ -39,8 +37,6 @@ An SSO bypass link allows you to authenticate to an Organization without using S
     If you don't want to maintain an SSO bypass link, click **Delete**. You can always regenerate a link if you need one in the future. 
 
 ## Restrict authentication options 
-
-<PremiumBadge />
 
 By default, users have access to all possible authentication methods when logging into Astro. You can remove specific authentication options so that users can use only the methods that your Organization wants to support, such as your third party identity provider.
 
