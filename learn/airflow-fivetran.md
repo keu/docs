@@ -43,7 +43,6 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
     ```text
     airflow-provider-fivetran-async
-    airflow-provider-fivetran
     astronomer-providers[all]
     ```
 
@@ -61,7 +60,7 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 ## Step 2: Create a new private GitHub repository
 
-We will use metadata from a GitHub repository as a data source for Fivetran. While you can connect to any existing repository in your account we recommend to use a new repository in order to prevent large amounts of data to be ingested.
+For this tutorial you will use metadata from a GitHub repository as a data source for Fivetran. We recommend using a new repository in order to prevent unintentionally ingesting large amounts of data.
 
 1. [Create a new private GitHub repository](https://docs.github.com/en/get-started/quickstart/create-a-repo) called `airflow-fivetran-tutorial`.
 2. Commit at least one change to the repository. The content of your commit does not matter for this tutorial.
@@ -74,7 +73,7 @@ Fivetran needs at least one destination to be configured in order to create sync
 
 2. Click on **Destinations** in the sidebar on the left side of the screen and then on **ADD DESTINATION** in the upper right corner.
 
-2. Choose either **Connect your destination** or **I don't have one**. For this tutorial you can either connect to an existing data warehouse you have access to by following the [relevant Fivetran documentation](https://fivetran.com/docs/databases) or use a [Fivetran-managed BigQuery service](https://fivetran.com/docs/destinations/bigquery/managed-bigquery). In this tutorial we will use Fivetrans managed BigQuery service by selecting **I don't have one** and then clicking on **CONTINUE SETUP**.
+3. Choose either **Connect your destination** or **I don't have one**. For this tutorial you can either connect to an existing data warehouse by following the [relevant Fivetran documentation](https://fivetran.com/docs/databases), or use a [Fivetran-managed BigQuery service](https://fivetran.com/docs/destinations/bigquery/managed-bigquery). In this tutorial we will use Fivetran's managed BigQuery service by selecting **I don't have one** and then clicking on **CONTINUE SETUP**.
 
     ![Fivetran Destination](/img/guides/fivetran_destination.png)
 
@@ -84,7 +83,7 @@ If you choose to connect to an existing data warehouse make sure you are able to
 
 :::
 
-3. Configure your destination connection. You can choose the configuration freely. Astronomer recommends to use UTC as your timezone in all data tools as a best practice to. Click **SAVE & TEST** to save your destination.
+3. Configure your destination connection. You can choose any configuration. Astronomer recommends using UTC as your timezone in all data tools as a best practice. Click **SAVE & TEST** to save your destination.
 
     ![Fivetran-managed BigQuery](/img/guides/fivetran_managed_bigquery.png)
 
@@ -108,23 +107,23 @@ Fivetran needs at least one connector to be configured in order to create sync j
 
     ![Authorize Fivetran to GH](/img/guides/authorize_fivetran_github.png)
 
-5. Select the repository `your-github-username/airflow-fivetran-tutorial` repository to be synced. You don't need to enable Webhooks for this tutorial.
+5. Select the `your-github-username/airflow-fivetran-tutorial` repository to be synced. You don't need to enable Webhooks for this tutorial.
 
     ![Select tutorial repository](/img/guides/fivetran_select_tutorial_repo.png)
 
 6. Click **SAVE & TEST**. After your connection has been tested click **CONTINUE**.
 
-7. Click on **Start Sync** to start your initial sync. This will extract metadata about your GitHub repository and load it into your destination. Once the initial sync is completed your Fivetran job is active, you can set the sync frequencies under the **Setup** tab.
+7. Click on **Start Sync** to start your initial sync. This will extract metadata about your GitHub repository and load it into your destination. Once the initial sync is completed and your Fivetran job is active, you can set the sync frequencies under the **Setup** tab.
 
     ![Initial sync completed](/img/guides/complete_initial_sync.png)
 
 ## Step 5: Generate a Fivetran API key
 
-We have now created a Fivetran sync job that will extract new metadata from a GitHub repository and load it into a relational database on a time-based schedule. But what if we want to run the sync job every time a specific event happens in our data ecosystem? This is where orchestration via Airflow can help Fivetran sync jobs to become event-driven. 
+You have now created a Fivetran sync job that will extract new metadata from a GitHub repository and load it into a relational database on a time-based schedule. But to run the sync job every time a specific event happens in your data ecosystem, you will need to use Airflow for orchestration. 
 
-In order to connect Airflow to Fivetran you will need a Fivetran API key. 
+In order to connect Airflow to Fivetran, you will need a Fivetran API key. 
 
-1. Click on you account name in the right Fivetran sidebar and then on **API Key**. 
+1. Click on your account name in Fivetran's sidebar and then on **API Key**. 
 
     ![Fivetran generate API key](/img/guides/fivetran_generate_api_key.png)
 
