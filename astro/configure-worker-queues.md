@@ -69,7 +69,9 @@ The number of workers subsequently determines the Deployment's [parallelism](htt
 
 `[Parallelism]= ([Total number of running workers for all worker queues] * [The sum of all **Maximum tasks per worker*** values for all worker queues])`.
 
-These calculations are computed by KEDA every 10 seconds. For more information on how workers are affected by changes to a Deployment, read [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
+These calculations are computed by KEDA every ten seconds. When KEDA determines that it can scale down, it waits for five minutes after the last running task on the worker finishes before terminating that worker Pod.
+
+To learn more about how changes to a Deployment can affect worker resource allocation, see [What happens during a code deploy](deploy-code.md#what-happens-during-a-code-deploy).
 
 ## Request a worker type
 
