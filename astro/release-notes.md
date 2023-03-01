@@ -23,6 +23,33 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.11.0 ([Release notes](cli/release-notes.md))
 
+## March 1, 2023
+
+### Access Astronomer through the Okta dashboard
+
+If your Organization uses Okta as your Astro identity provider, you can now log in to Astro directly from your [Okta Apps dashboard](https://help.okta.com/eu/en-us/Content/Topics/end-user/dashboard-overview.htm). If you've been authenticated by Okta, you no longer need to be authenticated by Astro when you access it through your dashboard.
+
+If you want users to always authenticate through Astro, you can disable this feature. See [Restrict identity provider initiated logins](manage-organization.md#restrict-identity-provider-initiated-logins).
+
+### Additional improvements
+
+- Ingress to the Kubernetes API on Google Cloud Platform (GCP) and Azure clusters is now limited to Astro control plane IPs. This change will be implemented on all clusters in the coming weeks.
+
+### Bug fixes
+
+- To protect the functionality of Astro monitoring services, you can no longer override the values of the following environment variables:
+  
+    - `AIRFLOW__METRICS__STATSD_ON` 
+    - `AIRFLOW__METRICS__STATSD_HOST`
+    - `AIRFLOW__METRICS__STATSD_PORT`
+    - `AIRFLOW__METRICS__STATSD_ALLOW_LIST` 
+    - `AIRFLOW__METRICS__STATSD_STATSD_CUSTOM_CLIENT_PATH`
+    - `AIRFLOW__METRICS__STATSD_PREFIX`
+
+    You can still set new values for these variables, but the values will be automatically overwritten in the Astro data plane. See [Platform variables](platform-variables.md).
+  
+- Fixed an issue where a user could provision multiple accounts when their login email address included differently cased characters.
+
 ## February 21, 2023
 
 ### New identity-first authentication model
@@ -162,7 +189,7 @@ See [Introducing Astro’s New Workspace Homepage](https://www.astronomer.io/blo
 
 ### Additional improvements
 
-- Data plane cluster access is now limited to control plane IPs. This change will be implemented on all clusters in the coming weeks.
+- Ingress to the Airflow UI and API on Astro clusters is now limited to control plane IPs. This change will be implemented on all clusters in the coming weeks.
 - You can now request custom tags for your AWS clusters by submitting a support request to [Astronomer support](https://cloud.astronomer.io/support). You can view your cluster tags in the Cloud UI by selecting **Clusters**, selecting a cluster, and then clicking the **Details** tab. See [View clusters](modify-cluster.md#view-clusters).
 - You can now create new clusters in France Central for Bring Your Own Cloud installations of Astro on Azure.
 - Improved the speed of DAGs appearing in the Airflow after completing a DAG-only deploy.
