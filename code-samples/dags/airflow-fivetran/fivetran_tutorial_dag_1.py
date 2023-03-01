@@ -2,7 +2,7 @@ from airflow.decorators import dag, task
 from airflow.models import Variable
 from pendulum import datetime
 from fivetran_provider_async.operators import FivetranOperatorAsync
-from include.custom_githubtagsensor import GithubTagSensor
+from airflow.providers.github.sensors.github import GithubTagSensor
 import logging
 
 # get the airflow.task logger
@@ -25,13 +25,13 @@ def my_fivetran_dag():
         """
 
         try:
-            num = Variable.get(f"{TAG_NAME}")
+            number = Variable.get(f"{TAG_NAME}")
         except KeyError as err:
             task_logger.info(f"{err}" + " setting expected release number to 1.")
-            num = 1
-            Variable.set("sync_number", num)
+            number = 1
+            Variable.set(f"{TAG_NAME}", number)
 
-        return f"{TAG_NAME}/{num}"
+        return f"{TAG_NAME}/{number}"
 
     wait_for_tag = GithubTagSensor(
         task_id="wait_for_file",
@@ -54,7 +54,7 @@ def my_fivetran_dag():
 
         old_num = Variable.get(f"{TAG_NAME}")
         new_num = int(old_num) + 1
-        Variable.set("sync_number", new_num)
+        Variable.set(f"{TAG_NAME}", new_num)
         task_logger.info(f"Set Variable '{TAG_NAME}' to {new_num}")
         return new_num
 

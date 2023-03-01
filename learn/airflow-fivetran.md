@@ -154,8 +154,8 @@ The DAG you are about to build will wait for a specific tag to be added to a Git
 
 This DAG contains four tasks: 
 
-- the `generate_tag_to_await` uses the `@task` decorator to turn a Python function into an Airflow task. This task will pull a number from the Airflow Variable `sync-metadata` or create the Airflow Variable and assign it to `1` if it does not exist yet. It returns the tag to wait for in the format `sync-metadata/{num}`. 
-- the `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for a specific tag to be present in a GitHub repository. In the example DAG we wait for `sync-metadata/{num}` to appear in the same repository that has been connected to Fivetran but you could also wait for a tag to be added in a different repository that the PAT you used in [Step 7](#step-7-create-an-airflow-connection-to-github) has access to.
+- the `generate_tag_to_await` task uses the `@task` decorator to turn a Python function into an Airflow task. This task will pull a number from the [Airflow Variable](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) `sync-metadata` or create the Airflow Variable and assign it to `1` if it does not exist yet. The task returns the tag to wait for in the format `sync-metadata/{number}`. 
+- the `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for a specific tag to be present in a GitHub repository. In the example DAG we wait for `sync-metadata/{number}` to appear in the same repository that has been connected to the Fivetran job but you could also wait for a tag to be added in a different repository that the PAT you used in [Step 7](#step-7-create-an-airflow-connection-to-github) has access to.
 - the `kick_off_fivetran_sync` task uses the FivetranOperatorAsync to kick of the Fivetran connector specified as `FIVETRAN_CONNECTOR_ID` as soon as the `wait_for_tag` task has completed successfully. This task will wait in a deferred state, not taking up an Airflow worker, until the Fivetran sync job has been completed successfully.
 - the `increase_tag_var` task will only run after `kick_off_fivetran_sync` has completed successfully and increases the value assigned to the `sync-metadata` Airflow Variable by 1.
 
@@ -169,7 +169,7 @@ This DAG contains four tasks:
 
 :::info
 
-Add infobox on deferrable operators.
+The FivetranOperatorAsync is one of many [deferrable operators](deferrable-operators.md). Instead of taking up a worker slot these operators will hand their task to the Airflow Triggerer component to wait for a condition to be fulfilled. Thanks to handing off the asynchronous process using deferrable operators will make running Airflow more efficient, especially if the waiting time until a condition in an external tool is fulfilled is expected to be several minutes or longer.
 
 :::
 
@@ -177,27 +177,40 @@ Add infobox on deferrable operators.
 
 1. In the Airflow UI, unpause your DAG to start its last scheduled DAG run with a logical date of yesterday.
 
-2. Once the `wait_for_tag` task is running check the task logs to see what `filepath` the task is waiting for. In the screenshot this is `include/2023-02-26*.csv`.
+2. Once the `wait_for_tag` task is running check the task logs to see what `tag` in which repository the task is waiting for. It should be `sync-metadata/1` in `<your GH name>/airflow-fivetran-tutorial`.
 
-    ![File sensor waiting](/img/guides/fivetran_filesensor_highlight.png)
+    ![GH tag sensor waiting](/img/guides/fivetran_githubtagsensor.png)
 
-3. In your Airflow project add a file to the `include` directory called `<your-date>_customer_data.csv` using the date from the logs seen in the previous step. The file can be empty. Save the file. (Files in the `include` directory will automatically be synchronized to your running Astro CLI project.)
+3. Add a tag with the name of `sync-metadata/1` to `<your GH name>/airflow-fivetran-tutorial`. You can either [use the GitHub UI to add tags](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/managing-commits/managing-tags) or run the following bash commands in your local repository clone:
+
+    ```sh
+    git tag sync-metadata/1
+    git push --tags
+    ```
 
 4. After a few seconds the sensor will detect the added file and print logs similar to the ones shown below.
 
     ```text
-    [2023-02-27, 14:13:57 UTC] {filesystem.py:64} INFO - Poking for file include/2023-02-26*.csv
-    [2023-02-27, 14:13:57 UTC] {filesystem.py:69} INFO - Found File include/2023-02-26_customer_data.csv last modified: 20230227141347
-    [2023-02-27, 14:13:57 UTC] {base.py:228} INFO - Success criteria met. Exiting.
+    [2023-03-01, 00:31:35 UTC] {custom_githubtagsensor.py:127} INFO - Poking for tag: sync-metadata/1 in repository: TJaniF/airflow-fivetran-tutorial
+    [2023-03-01, 00:31:35 UTC] {base.py:73} INFO - Using connection ID 'github_conn' for task execution.
+    [2023-03-01, 00:31:36 UTC] {custom_githubtagsensor.py:146} INFO - Tag sync-metadata/1 exists in TJaniF/airflow-fivetran-tutorial repository, Success.
+    [2023-03-01, 00:31:36 UTC] {base.py:228} INFO - Success criteria met. Exiting.
+    [2023-03-01, 00:31:36 UTC] {taskinstance.py:1318} INFO - Marking task as SUCCESS. 
     ```
 
-5. After the `wait_for_file` task has completed, the `kick_off_fivetran_sync` task will run. Wait for it to finish successfully.
+5. After the `wait_for_tag` task has completed, the `kick_off_fivetran_sync` task will start. This task will be in a deferred state (violet square) until the Fivetran sync job is completed. 
 
-    ![Fivetran DAG successful](/img/guides/fivetran_dag_successful.png)
+    ![Fivetran Deferred](/img/guides/fivetran_deferred_operator.png)
 
-6. Verify in your Fivetran UI that the sync job shows an additional `Manual Update Triggered` entry in its  `User Actions`.
+6. After the DAG run has finished successfully, verify in your Fivetran UI that the sync job shows an additional `Manual Update Triggered` entry in its `User Actions`.
 
     ![Fivetran additional sync](/img/guides/fivetran_additional_sync.png)
+
+:::info
+
+When running the DAG again after it has run successfully the `number` Variable will have increased by one, meaning in its second run, the `wait_for_tag` task will wait for a tag with the name `sync-metadata/2` and so forth. To reset the Airflow Variable manually go to the Airflow UI and navigate to **Admin** -> **Variables**.
+
+:::
 
 ## (Optional) Step 10: Visualize your commits with Tableau
 
@@ -227,7 +240,7 @@ If you choose to connect to an existing data warehouse not managed by Fivetran, 
 
 6. Add a few commits to your `airflow-fivetran-tutorial` repository.
 
-7. Rerun the Fivetran sync job by rerunning the Airflow DAG.
+7. Rerun the Fivetran sync job by rerunning the Airflow DAG and adding the GitHub tag the `wait_for_tag` task is listening to to your `airflow-fivetran-tutorial` repository.
 
 8. View your updated dashboard with commits per minute of the hour aggregated.
 
