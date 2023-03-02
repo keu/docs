@@ -65,6 +65,10 @@ gcloud services list --available --filter="name:googleapis.com"
 
 </TabItem>
 
+<TabItem value="Site">
+
+A site-to-site virtual private network (VPN) connects two or more networks to each other and provides a stable and secure connection between Google Cloud Platform (GCP) and Astro. 
+
 </Tabs>
 
 ## Authorization options
@@ -129,9 +133,3 @@ When you create a connection from Astro to GCP, you can specify the service acco
 Astronomer recommends using Google Cloud Secret Manager to store your GCP service account keys and other secrets. See [Google Cloud Secret Manager](secrets-backend?tab=gcp#setup).
 
 </TabItem>
-
-<TabItem value="Site">
-
-A site-to-site virtual private network (VPN) connects two or more networks to each other and provides a stable and secure connection between Google Cloud Platform (GCP) and Astro. 
-
-</Tabs>
