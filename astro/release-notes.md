@@ -25,6 +25,10 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 ## March 1, 2023
 
+### Astro no longer requires administrator access on AWS
+
+Astro no longer requires administrator permissions for its dedicated AWS account. Instead, Astro now assumes a cross-account IAM role with the minimum necessary permissions for running and managing clusters. See [Install Astro on AWS](install-aws.md) for more information.
+
 ### Access Astronomer through the Okta dashboard
 
 If your Organization uses Okta as your Astro identity provider, you can now log in to Astro directly from your [Okta Apps dashboard](https://help.okta.com/eu/en-us/Content/Topics/end-user/dashboard-overview.htm). If you've been authenticated by Okta, you no longer need to be authenticated by Astro when you access it through your dashboard.
@@ -33,7 +37,6 @@ If you want users to always authenticate through Astro, you can disable this fea
 
 ### Additional improvements
 
-- Astro no longer requires administrator access to AWS clusters. Instead, Astro now assumes a cross-account IAM role with the minimum necessary permissions for running and managing Airflow. See [Install Astro on AWS](install-aws.md) for more information.
 - Ingress to the Kubernetes API on Google Cloud Platform (GCP) and Azure clusters is now limited to Astro control plane IPs. This change will be implemented on all clusters in the coming weeks.
 
 ### Bug fixes
