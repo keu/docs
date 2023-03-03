@@ -29,12 +29,27 @@ To create an Astro cluster on AWS, Microsoft Azure, or Google Cloud Platform (GC
 ## AWS
 
 <Tabs
-    defaultValue="byoc"
-    groupId= "byoc"
+    defaultValue="astronomer hosted data plane"
+    groupId= "astronomer hosted data plane"
     values={[
-        {label: 'Bring Your Own Cloud', value: 'byoc'},
         {label: 'Hosted', value: 'astronomer hosted data plane'},
+        {label: 'Bring Your Own Cloud', value: 'byoc'},
     ]}>
+<TabItem value="astronomer hosted data plane">
+
+### Submit a request to Astronomer support
+
+To create a new Astro cluster on the hosted cloud, submit a request to [Astronomer support](astro-support.md). In your request, provide the following information for every new cluster that you want to provision:
+
+- Your preferred cluster installation region. See [Supported regions](resource-reference-aws.md#aws-region).
+- Optional. Your preferred worker instance type for your first cluster. See [Worker node types](resource-reference-aws.md#worker-node-types).
+- Optional. Your VPC peering requirements. See [VPC peering prerequisites](install-aws#vpc-peering-prerequisites-optional).
+- The email address of your first Astro user.
+
+If you don't specify your configuration preferences, Astronomer support creates a cluster with a default configuration.
+
+</TabItem>
+
 <TabItem value="byoc">
 
 ### Submit a request to Astronomer support
@@ -112,49 +127,17 @@ To create a cluster in one of these regions, complete the following additional s
 
 </TabItem>
 
-<TabItem value="astronomer hosted data plane">
-
-### Submit a request to Astronomer support
-
-To create a new Astro cluster on the hosted cloud, submit a request to [Astronomer support](astro-support.md). In your request, provide the following information for every new cluster that you want to provision:
-
-- Your preferred cluster installation region. See [Supported regions](resource-reference-aws.md#aws-region).
-- Optional. Your preferred worker instance type for your first cluster. See [Worker node types](resource-reference-aws.md#worker-node-types).
-- Optional. Your VPC peering requirements. See [VPC peering prerequisites](install-aws#vpc-peering-prerequisites-optional).
-- The email address of your first Astro user.
-
-If you don't specify your configuration preferences, Astronomer support creates a cluster with a default configuration.
-
-</TabItem>
-
 </Tabs>
 
 ## Azure
 
 <Tabs
-    defaultValue="byoc"
-    groupId= "byoc"
+    defaultValue="astronomer hosted data plane"
+    groupId= "astronomer hosted data plane"
     values={[
-        {label: 'Bring Your Own Cloud', value: 'byoc'},
         {label: 'Hosted', value: 'astronomer hosted data plane'},
+        {label: 'Bring Your Own Cloud', value: 'byoc'},
     ]}>
-<TabItem value="byoc">
-
-### Submit a request to Astronomer support
-
-To create a new Astro cluster on Azure for your Organization, submit a request to [Astronomer support](astro-support.md). In your request, provide the following information for every new cluster that you want to provision:
-
-- Your preferred Astro cluster name.
-- The Azure region that you want to host your cluster in.
-- Your preferred node instance type.
-- Your preferred maximum node count.
-
-If you don't specify configuration preferences, Astronomer support creates a cluster with `Standard_D4d_v5 nodes`, one Postgres Flexible Server instance (`D4ds_v4`), and a maximum node count of 20 in `CentralUS`. If you're using Virtual Private Cloud (VPC) peering, a CIDR block (RFC 1918 IP Space) with the default CIDR range `172.20.0.0/19` is implemented.
-
-For information on all supported regions and configurations, see [Resources required for Astro on Azure](resource-reference-azure.md).  
-
-</TabItem>
-
 <TabItem value="astronomer hosted data plane">
 
 :::info
@@ -176,34 +159,34 @@ If you don't specify your configuration preferences, Astronomer support creates 
 
 </TabItem>
 
+<TabItem value="byoc">
+
+### Submit a request to Astronomer support
+
+To create a new Astro cluster on Azure for your Organization, submit a request to [Astronomer support](astro-support.md). In your request, provide the following information for every new cluster that you want to provision:
+
+- Your preferred Astro cluster name.
+- The Azure region that you want to host your cluster in.
+- Your preferred node instance type.
+- Your preferred maximum node count.
+
+If you don't specify configuration preferences, Astronomer support creates a cluster with `Standard_D4d_v5 nodes`, one Postgres Flexible Server instance (`D4ds_v4`), and a maximum node count of 20 in `CentralUS`. If you're using Virtual Private Cloud (VPC) peering, a CIDR block (RFC 1918 IP Space) with the default CIDR range `172.20.0.0/19` is implemented.
+
+For information on all supported regions and configurations, see [Resources required for Astro on Azure](resource-reference-azure.md).  
+
+</TabItem>
+
 </Tabs>
 
 ## GCP
 
 <Tabs
-    defaultValue="byoc"
-    groupId= "byoc"
+    defaultValue="astronomer hosted data plane"
+    groupId= "astronomer hosted data plane"
     values={[
-        {label: 'Bring Your Own Cloud', value: 'byoc'},
         {label: 'Hosted', value: 'astronomer hosted data plane'},
+        {label: 'Bring Your Own Cloud', value: 'byoc'},
     ]}>
-<TabItem value="byoc">
-
-### Submit a request to Astronomer support
-
-To create a new Astro cluster on Google Cloud Platform (GCP) for your Organization, submit a request to [Astronomer support](astro-support.md). In your request, provide the following information for every new cluster that you want to provision:
-
-- Your preferred Astro cluster name.
-- The GCP region that you want to host your cluster in.
-- Your preferred node instance type.
-- Your preferred CloudSQL instance type.
-- Your preferred maximum node count.
-- Your preferred VPC CIDR.
-
-If you don't specify configuration preferences, Astronomer support creates a cluster with a VPC CIDR of 172.20.0.0/22, `e2-medium-4 nodes`, one Medium General Purpose CloudSQL instance (4vCPU, 16GB), and a maximum node count of 20 in `us-central1`.  For information on all supported regions and configurations, see [Resources required for Astro on GCP](resource-reference-gcp.md). 
-
-</TabItem>
-
 <TabItem value="astronomer hosted data plane">
 
 :::info
@@ -222,6 +205,23 @@ To create a new Astro cluster on the hosted cloud, submit a request to [Astronom
 - The email address of your first Astro user.
 
 If you don't specify your configuration preferences, Astronomer support creates a cluster with a default configuration.
+
+</TabItem>
+
+<TabItem value="byoc">
+
+### Submit a request to Astronomer support
+
+To create a new Astro cluster on Google Cloud Platform (GCP) for your Organization, submit a request to [Astronomer support](astro-support.md). In your request, provide the following information for every new cluster that you want to provision:
+
+- Your preferred Astro cluster name.
+- The GCP region that you want to host your cluster in.
+- Your preferred node instance type.
+- Your preferred CloudSQL instance type.
+- Your preferred maximum node count.
+- Your preferred VPC CIDR.
+
+If you don't specify configuration preferences, Astronomer support creates a cluster with a VPC CIDR of 172.20.0.0/22, `e2-medium-4 nodes`, one Medium General Purpose CloudSQL instance (4vCPU, 16GB), and a maximum node count of 20 in `us-central1`.  For information on all supported regions and configurations, see [Resources required for Astro on GCP](resource-reference-gcp.md). 
 
 </TabItem>
 
