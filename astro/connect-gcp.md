@@ -67,7 +67,15 @@ gcloud services list --available --filter="name:googleapis.com"
 
 <TabItem value="Site">
 
-A site-to-site virtual private network (VPN) connects two or more networks to each other and provides a stable and secure connection between Google Cloud Platform (GCP) and Astro. 
+A site-to-site virtual private network (VPN) connects two or more networks to each other and provides a stable and secure connection between a GCP VPN and Astro. To implement this connection type, Astronomer supports uses the [Google Cloud VPN](https://cloud.google.com/network-connectivity/docs/vpn/concepts/overview).
+
+To create a site-to-site VPN connection between an Astro and a GCP VPN contact [Astronomer support](https://cloud.astronomer.io/support) and provide the following information:
+
+- Astro cluster ID and name
+- Google Cloud project ID of the target VPC
+- VPC NAME of the target VPC
+
+To get a better understanding of how to configure a site-to-site VPN connection, see [Create the HA VPN gateways](https://cloud.google.com/network-connectivity/docs/vpn/how-to/creating-ha-vpn2#creating-ha-gw-2-gw-and-tunnel).
 
 </TabItem>
 </Tabs>
