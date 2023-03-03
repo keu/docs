@@ -27,12 +27,63 @@ For a list of the AWS resources and configurations that Astronomer supports, see
 ## Set up
 
 <Tabs
-    defaultValue="byoc"
-    groupId= "byoc"
+    defaultValue="astronomer hosted data plane"
+    groupId= "astronomer hosted data plane"
     values={[
         {label: 'Bring Your Own Cloud', value: 'byoc'},
         {label: 'Hosted', value: 'astronomer hosted data plane'},
     ]}>
+<TabItem value="astronomer hosted data plane">
+
+When providing hosted services, Astronomer adheres to industry best practices and standards, including the Health Insurance Portability and Accountability Act (HIPAA), Service Organization Control 2 (SOC2), and  General Data Protection Regulation (GDPR). 
+
+### Prerequisites
+
+The setup process assumes that you've already provided Astronomer support with the following information: 
+
+- Your preferred cluster installation region. See the supported region lists for [AWS](resource-reference-aws.md#aws-region).
+- Optional. Your preferred worker instance type for your first cluster. See [AWS cluster configurations](resource-reference-aws.md#worker-node-types).
+- Optional. Your VPC peering requirements for [AWS](install-aws.md#vpc-peering-prerequisites-optional-2).
+- The email address of your first Astro user.
+
+If you haven't provided this information to Astronomer support, contact your Astronomer representative.
+
+#### VPC peering prerequisites (Optional)
+
+If any AWS resources are on a private network, you can choose between two options:
+
+- Allow traffic through the public internet and use allow-lists for communication.
+- Create a VPC Peering connection between the Astronomer VPC and the VPCs for your broader network.
+
+If you want to continue with the second option, you'll additionally need to provide Astronomer support with:
+
+- A CIDR block (RFC 1918 IP Space) no smaller than a `/19` range. You must ensure it does not overlap with the AWS VPC(s) that you will be peering with later. The default CIDR range is `172.20.0.0/19`.
+- VPC Name / ID for peering with Astronomer (accessible through the [AWS VPC console](https://console.aws.amazon.com/vpc/)).
+- The IP addresses of your DNS servers.
+
+### Astronomer support creates the cluster
+
+Astronomer support creates your first Astro cluster in a dedicated AWS account after you've provided your setup information.
+
+Wait for confirmation that the installation is successful before you access Astro and create a Deployment.
+
+### Access Astro
+
+1. Optional. If you haven't created an Astronomer account, go to https://cloud.astronomer.io/ and create an account.
+
+2. Go to https://cloud.astronomer.io, enter your email address, and then click **Continue**.
+
+3. Select one of the following options to access the Cloud UI:
+
+    - Enter your password and click **Continue**.
+    - To authenticate with an identity provider (IdP), click **Continue with SSO**, enter your username and password, and then click **Sign In**.
+    - To authenticate with your GitHub account, click **Continue with GitHub**, enter your username or email address, enter your password, and then click **Sign in**.
+    - To authenticate with your Google account, click **Continue with Google**, choose an account, enter your username and password, and then click **Sign In**.
+
+    If you're the first person in an Organization to authenticate, you're added as a Workspace Admin to a new Workspace named after your Organization. You can add other team members to the Workspace without the assistance of Astronomer support. See [Add a user](add-user.md). To integrate an identity provider (IdP) with Astro, see [Set up an identity provider](configure-idp.md).
+
+</TabItem>
+
 <TabItem value="byoc">
 
 To install Astro in a dedicated AWS account owned by your organization, you'll complete the following tasks:
@@ -193,57 +244,6 @@ When VPC peering with Astronomer is complete, configure and validate the followi
 
 - Egress Routes on Astronomer Route Table
 - [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html#nacl-tasks) and/or [Security Group](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html#working-with-security-groups) rules of your resources
-
-</TabItem>
-
-<TabItem value="astronomer hosted data plane">
-
-When providing hosted services, Astronomer adheres to industry best practices and standards, including the Health Insurance Portability and Accountability Act (HIPAA), Service Organization Control 2 (SOC2), and  General Data Protection Regulation (GDPR). 
-
-### Prerequisites
-
-The setup process assumes that you've already provided Astronomer support with the following information: 
-
-- Your preferred cluster installation region. See the supported region lists for [AWS](resource-reference-aws.md#aws-region).
-- Optional. Your preferred worker instance type for your first cluster. See [AWS cluster configurations](resource-reference-aws.md#worker-node-types).
-- Optional. Your VPC peering requirements for [AWS](install-aws.md#vpc-peering-prerequisites-optional-2).
-- The email address of your first Astro user.
-
-If you haven't provided this information to Astronomer support, contact your Astronomer representative.
-
-#### VPC peering prerequisites (Optional)
-
-If any AWS resources are on a private network, you can choose between two options:
-
-- Allow traffic through the public internet and use allow-lists for communication.
-- Create a VPC Peering connection between the Astronomer VPC and the VPCs for your broader network.
-
-If you want to continue with the second option, you'll additionally need to provide Astronomer support with:
-
-- A CIDR block (RFC 1918 IP Space) no smaller than a `/19` range. You must ensure it does not overlap with the AWS VPC(s) that you will be peering with later. The default CIDR range is `172.20.0.0/19`.
-- VPC Name / ID for peering with Astronomer (accessible through the [AWS VPC console](https://console.aws.amazon.com/vpc/)).
-- The IP addresses of your DNS servers.
-
-### Astronomer support creates the cluster
-
-Astronomer support creates your first Astro cluster in a dedicated AWS account after you've provided your setup information.
-
-Wait for confirmation that the installation is successful before you access Astro and create a Deployment.
-
-### Access Astro
-
-1. Optional. If you haven't created an Astronomer account, go to https://cloud.astronomer.io/ and create an account.
-
-2. Go to https://cloud.astronomer.io, enter your email address, and then click **Continue**.
-
-3. Select one of the following options to access the Cloud UI:
-
-    - Enter your password and click **Continue**.
-    - To authenticate with an identity provider (IdP), click **Continue with SSO**, enter your username and password, and then click **Sign In**.
-    - To authenticate with your GitHub account, click **Continue with GitHub**, enter your username or email address, enter your password, and then click **Sign in**.
-    - To authenticate with your Google account, click **Continue with Google**, choose an account, enter your username and password, and then click **Sign In**.
-
-    If you're the first person in an Organization to authenticate, you're added as a Workspace Admin to a new Workspace named after your Organization. You can add other team members to the Workspace without the assistance of Astronomer support. See [Add a user](add-user.md). To integrate an identity provider (IdP) with Astro, see [Set up an identity provider](configure-idp.md).
 
 </TabItem>
 

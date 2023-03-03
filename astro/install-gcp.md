@@ -29,12 +29,56 @@ For more information about managing Google Cloud projects, see [GCP documentatio
 ## Set up
 
 <Tabs
-    defaultValue="byoc"
-    groupId= "byoc"
+    defaultValue="astronomer hosted data plane"
+    groupId= "astronomer hosted data plane"
     values={[
         {label: 'Bring Your Own Cloud', value: 'byoc'},
         {label: 'Hosted', value: 'astronomer hosted data plane'},
     ]}>
+<TabItem value="astronomer hosted data plane">
+
+:::info
+
+This feature is currently Private Preview. Contact [Astronomer support](https://cloud.astronomer.io/support) to enable it.
+
+:::
+
+When providing hosting services, Astronomer adheres to industry best practices and standards including the Health Insurance Portability and Accountability Act (HIPAA), Service Organization Control 2 (SOC2), and  General Data Protection Regulation (GDPR). 
+
+### Prerequisites
+
+The setup process assumes that you've already provided Astronomer support with the following information: 
+
+- Your preferred cluster installation region. See the supported region lists for [GCP](resource-reference-gcp.md#supported-regions).
+- Optional. Your preferred worker instance type for your first cluster. See [GCP cluster configurations](resource-reference-gcp.md#supported-cluster-configurations).
+- Optional. Your VPC peering requirements for [GCP](install-gcp#vpc-peering-with-astronomer).
+- The email address of your first Astro user.
+
+If you haven't provided this information to Astronomer support, contact your Astronomer representative. 
+
+### Astronomer support creates the cluster
+
+Astronomer support creates your first Astro cluster in a dedicated GCP account after you've provided your setup information.
+
+Wait for confirmation that the installation is successful before you access Astro and create a Deployment.
+
+### Access Astro
+
+1. Optional. If you haven't created an Astronomer account, go to https://cloud.astronomer.io/ and create an account.
+
+2. Go to https://cloud.astronomer.io/, enter your email address, and then click **Continue**.
+
+3. Select one of the following options to access the Cloud UI:
+
+    - Enter your password and click **Continue**.
+    - To authenticate with an identity provider (IdP), click **Continue with SSO**, enter your username and password, and then click **Sign In**.
+    - To authenticate with your GitHub account, click **Continue with GitHub**, enter your username or email address, enter your password, and then click **Sign in**.
+    - To authenticate with your Google account, click **Continue with Google**, choose an account, enter your username and password, and then click **Sign In**.
+
+    If you're the first person in an Organization to authenticate, you're added as a Workspace Admin to a new Workspace named after your Organization. You can add other team members to the Workspace without the assistance of Astronomer support. See [Add a user](add-user.md). To integrate an identity provider (IdP) with Astro, see [Set up an identity provider](configure-idp.md).
+
+</TabItem>
+
 <TabItem value="byoc">
 
 ### Prerequisites
@@ -152,50 +196,6 @@ When VPC peering with Astronomer is complete, configure and validate the followi
 
 - [Egress routes](https://cloud.google.com/vpc/docs/routes#routing_in)
 - [Network ACLs](https://cloud.google.com/storage/docs/access-control/lists) or [Security Group](https://cloud.google.com/identity/docs/how-to/update-group-to-security-group) rules of your resources
-
-</TabItem>
-
-<TabItem value="astronomer hosted data plane">
-
-:::info
-
-This feature is currently Private Preview. Contact [Astronomer support](https://cloud.astronomer.io/support) to enable it.
-
-:::
-
-When providing hosting services, Astronomer adheres to industry best practices and standards including the Health Insurance Portability and Accountability Act (HIPAA), Service Organization Control 2 (SOC2), and  General Data Protection Regulation (GDPR). 
-
-### Prerequisites
-
-The setup process assumes that you've already provided Astronomer support with the following information: 
-
-- Your preferred cluster installation region. See the supported region lists for [GCP](resource-reference-gcp.md#supported-regions).
-- Optional. Your preferred worker instance type for your first cluster. See [GCP cluster configurations](resource-reference-gcp.md#supported-cluster-configurations).
-- Optional. Your VPC peering requirements for [GCP](install-gcp#vpc-peering-with-astronomer).
-- The email address of your first Astro user.
-
-If you haven't provided this information to Astronomer support, contact your Astronomer representative. 
-
-### Astronomer support creates the cluster
-
-Astronomer support creates your first Astro cluster in a dedicated GCP account after you've provided your setup information.
-
-Wait for confirmation that the installation is successful before you access Astro and create a Deployment.
-
-### Access Astro
-
-1. Optional. If you haven't created an Astronomer account, go to https://cloud.astronomer.io/ and create an account.
-
-2. Go to https://cloud.astronomer.io/, enter your email address, and then click **Continue**.
-
-3. Select one of the following options to access the Cloud UI:
-
-    - Enter your password and click **Continue**.
-    - To authenticate with an identity provider (IdP), click **Continue with SSO**, enter your username and password, and then click **Sign In**.
-    - To authenticate with your GitHub account, click **Continue with GitHub**, enter your username or email address, enter your password, and then click **Sign in**.
-    - To authenticate with your Google account, click **Continue with Google**, choose an account, enter your username and password, and then click **Sign In**.
-
-    If you're the first person in an Organization to authenticate, you're added as a Workspace Admin to a new Workspace named after your Organization. You can add other team members to the Workspace without the assistance of Astronomer support. See [Add a user](add-user.md). To integrate an identity provider (IdP) with Astro, see [Set up an identity provider](configure-idp.md).
 
 </TabItem>
 
