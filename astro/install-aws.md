@@ -30,8 +30,8 @@ For a list of the AWS resources and configurations that Astronomer supports, see
     defaultValue="astronomer hosted data plane"
     groupId= "astronomer hosted data plane"
     values={[
-        {label: 'Bring Your Own Cloud', value: 'byoc'},
         {label: 'Hosted', value: 'astronomer hosted data plane'},
+        {label: 'Bring Your Own Cloud', value: 'byoc'},
     ]}>
 <TabItem value="astronomer hosted data plane">
 

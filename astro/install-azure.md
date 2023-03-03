@@ -36,8 +36,8 @@ For more information about managing Azure subscriptions with the Azure CLI, see 
     defaultValue="astronomer hosted data plane"
     groupId= "astronomer hosted data plane"
     values={[
-        {label: 'Bring Your Own Cloud', value: 'byoc'},
         {label: 'Hosted', value: 'astronomer hosted data plane'},
+        {label: 'Bring Your Own Cloud', value: 'byoc'},
     ]}>
 <TabItem value="astronomer hosted data plane">
 
