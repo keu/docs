@@ -136,13 +136,15 @@ The DAG you are about to build will wait for a specific tag to be added to a Git
 
 1. Click on **Admin** -> **Connections** -> **+** to create a new connection.
 
-2. Name your connection `github_conn` and select the **GitHub** connection type. Provide a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (PAT) for your GitHub account. The PAT only needs to have one permission: `Read-only` access to the metadata, which is the lowest level of access available to a PAT. You can restrict access to the `airflow-fivetran-tutorial` repository by using the `fine-grained personal access token` feature.
+2. Name your connection `github_conn` and select the **GitHub** connection type. Provide a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (PAT) for your GitHub account. The PAT needs to have read access to the metadata (includes tags) of the `airflow-fivetran-tutorial` repository.
 
     ![GitHub connection](/img/guides/github_connection.png)
 
 4. Click **Test** to test your connection. Once you see `Connection tested successfully` click **Save**.
 
 ## Step 8: Create your Airflow DAG
+
+For this tutorial you will create a DAG that waits for a GitHub tag to be present in your GitHub repo, and then kicks off the Fivetran sync job you configured to ingest the GitHub repo metadata to your destination.
 
 1. Open your `astro-fivetran-project` in a code-editor.
 
@@ -154,8 +156,8 @@ The DAG you are about to build will wait for a specific tag to be added to a Git
 
 This DAG contains four tasks: 
 
-- The `generate_tag_to_await` task pulls a number from the [Airflow Variable](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) `sync-metadata`, or create sthe Airflow Variable and assigns a value of `1` if it does not exist yet. The task returns the tag to wait for in the format `sync-metadata/{number}`. This task helps set up the GitHubTagSensor and ensures that DAG can be run repeatedly.
-- The `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for a specific tag to be present in your GitHub repository. This DAG is set up to wait for `sync-metadata/{number}` to appear in the repository that has been connected to the Fivetran job. 
+- The `generate_tag_to_await` task pulls a number from the [Airflow Variable](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) `sync-metadata`, or creates the Airflow Variable and assigns a value of `1` if it does not exist yet. The task returns the tag to wait for in the format `sync-metadata/{number}`. This task helps set up the GitHubTagSensor and ensures that DAG can be run repeatedly.
+- The `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for a specific tag to be present in your GitHub repository. This DAG is set up to wait for `sync-metadata/{number}` to appear in the repository that has been connected to the Fivetran job. If you want to wait for a tag to appear in a different repository change `repository_name` parameter in your GitHubTagSensor to another repo the PAT you provided to the GitHub connection in [Step 7](#step-7-create-an-airflow-connection-to-github) has access to.
 - The `kick_off_fivetran_sync` task uses the FivetranOperatorAsync to kick of the Fivetran connector specified as `FIVETRAN_CONNECTOR_ID` as soon as the `wait_for_tag` task has completed successfully.
 - The `increase_tag_var` task increases the value assigned to the `sync-metadata` Airflow Variable by 1. This task ensures that next time you run the DAG, the sensor will wait for a new tag value to be added to your GitHub repo.
 
