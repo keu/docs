@@ -1,7 +1,7 @@
 ---
 title: "Use Fivetran with Apache Airflow"
 sidebar_label: "Fivetran"
-description: "How to orchestrate Fivetran sync jobs from within Airflow"
+description: "How to orchestrate Fivetran syncs from within Airflow"
 id: airflow-fivetran
 ---
 
@@ -9,9 +9,9 @@ import CodeBlock from '@theme/CodeBlock';
 import fivetran_tutorial_dag_1 from '!!raw-loader!../code-samples/dags/airflow-fivetran/fivetran_tutorial_dag_1.py';
 
 [Fivetran](https://www.fivetran.com/) is a popular ELT platform built to automate ingestion of data from a variety of sources into a database, offering pre-built integration elements called Connectors, Transformations and Destinations for many common data tools.
-Fivetran is optimized to simplify data ingestion from many sources by easily configuring relevant connectors. Using Airflow with Fivetran allows you to schedule your Fivetran sync jobs based on events in your larger data ecosystem, as well as kick-off downstream actions the moment a sync job has finished.
+Fivetran is optimized to simplify data ingestion from many sources by easily configuring relevant connectors. Using Airflow with Fivetran allows you to schedule your Fivetran syncs based on events in your larger data ecosystem, as well as kick-off downstream actions the moment a sync has finished.
 
-In this tutorial, you'll learn how to install and use the Airflow Fivetran provider to submit and monitor Fivetran sync jobs.
+In this tutorial, you'll learn how to install and use the Airflow Fivetran provider to submit and monitor Fivetran syncs.
 
 ## Time to complete
 
@@ -62,7 +62,7 @@ For this tutorial you will use metadata from a GitHub repository as a data sourc
 
 ## Step 3: Connect Fivetran to a destination
 
-Fivetran needs at least one destination to be configured in order to create sync jobs. A destination is a relational database where your ingested data will be loaded into.
+Fivetran needs at least one destination to be configured in order to create syncs. A destination is a relational database where your ingested data will be loaded into.
 
 1. Log into your [Fivetran account](https://www.fivetran.com/). 
 
@@ -82,7 +82,7 @@ Fivetran needs at least one destination to be configured in order to create sync
 
 ## Step 4: Configure a Fivetran connector
 
-Fivetran needs at least one connector to be configured in order to create sync jobs. A connector is one of many data sources. View the Fivetran website for an [up-to-date list of connectors](https://www.fivetran.com/connectors).
+Fivetran needs at least one connector to be configured in order to create syncs. A Fivetran connector reaches out to a specific data source, receives data from it and writes it to your destination. View the Fivetran website for an [up-to-date list of connectors](https://www.fivetran.com/connectors).
 
 1. Click on **Connectors** in the sidebar on the left side of the screen and then on **ADD CONNECTOR** in the upper right corner.
 
@@ -102,13 +102,13 @@ Fivetran needs at least one connector to be configured in order to create sync j
 
 6. Click **SAVE & TEST**. After your connection has been tested click **CONTINUE**.
 
-7. Click on **Start Sync** to start your initial sync. This initial synchronization will load all historic metadata from your GitHub repository and has to be completed in Fivetran for the sync job to become active. Once Fivetran job is active, you can set the sync frequency under the **Setup** tab or kick-off the sync job via the Fivetran API with Airflow.
+7. Click on **Start Sync** to start your initial sync. This initial synchronization will load all historic metadata from your GitHub repository and has to be completed in Fivetran for the sync to become active. Once the Fivetran sync is active, you can set the sync frequency under the **Setup** tab or kick-off the sync via the Fivetran API with Airflow.
 
     ![Initial sync completed](/img/guides/complete_initial_sync.png)
 
 ## Step 5: Generate a Fivetran API key
 
-You have now created a Fivetran sync job that will extract new metadata from a GitHub repository and load it into a relational database on a time-based schedule. But to run the sync job every time a specific event happens in your data ecosystem, you will need to use Airflow for orchestration. 
+You have now created a Fivetran sync that will extract new metadata from a GitHub repository and load it into a relational database on a time-based schedule. But to run the sync every time a specific event happens in your data ecosystem, you will need to use Airflow for orchestration. 
 
 In order to connect Airflow to Fivetran, you will need a Fivetran API key. 
 
@@ -144,7 +144,7 @@ The DAG you are about to build will wait for a specific tag to be added to a Git
 
 ## Step 8: Create your Airflow DAG
 
-For this tutorial you will create a DAG that waits for a GitHub tag to be present in your GitHub repo, and then kicks off the Fivetran sync job you configured to ingest the GitHub repo metadata to your destination.
+For this tutorial you will create a DAG that waits for a GitHub tag to be present in your GitHub repo, and then kicks off the Fivetran sync you configured to ingest the GitHub repo metadata to your destination.
 
 1. Open your `astro-fivetran-project` in a code-editor.
 
@@ -157,7 +157,7 @@ For this tutorial you will create a DAG that waits for a GitHub tag to be presen
 This DAG contains four tasks: 
 
 - The `generate_tag_to_await` task pulls a number from the [Airflow Variable](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) `sync-metadata`, or creates the Airflow Variable and assigns a value of `1` if it does not exist yet. The task returns the tag to wait for in the format `sync-metadata/{number}`. This task helps set up the GitHubTagSensor and ensures that DAG can be run repeatedly.
-- The `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for a specific tag to be present in your GitHub repository. This DAG is set up to wait for `sync-metadata/{number}` to appear in the repository that has been connected to the Fivetran job. If you want to wait for a tag to appear in a different repository change `repository_name` parameter in your GitHubTagSensor to another repo the PAT you provided to the GitHub connection in [Step 7](#step-7-create-an-airflow-connection-to-github) has access to.
+- The `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for a specific tag to be present in your GitHub repository. This DAG is set up to wait for `sync-metadata/{number}` to appear in the repository that has been connected to the Fivetran sync. If you want to wait for a tag to appear in a different repository change `repository_name` parameter in your GitHubTagSensor to another repo the PAT you provided to the GitHub connection in [Step 7](#step-7-create-an-airflow-connection-to-github) has access to.
 - The `kick_off_fivetran_sync` task uses the FivetranOperatorAsync to kick of the Fivetran connector specified as `FIVETRAN_CONNECTOR_ID` as soon as the `wait_for_tag` task has completed successfully.
 - The `increase_tag_var` task increases the value assigned to the `sync-metadata` Airflow Variable by 1. This task ensures that next time you run the DAG, the sensor will wait for a new tag value to be added to your GitHub repo.
 
@@ -200,11 +200,11 @@ The FivetranOperatorAsync is one of many [deferrable operators](deferrable-opera
     [2023-03-01, 00:31:36 UTC] {taskinstance.py:1318} INFO - Marking task as SUCCESS. 
     ```
 
-5. After the `wait_for_tag` task has completed, the `kick_off_fivetran_sync` task will start. This task will be in a deferred state (violet square) until the Fivetran sync job is completed. 
+5. After the `wait_for_tag` task has completed, the `kick_off_fivetran_sync` task will start. This task will be in a deferred state (violet square) until the Fivetran sync is completed. 
 
     ![Fivetran Deferred](/img/guides/fivetran_deferred_operator.png)
 
-6. After the DAG run has finished successfully, verify in your Fivetran UI that the sync job shows an additional `Manual Update Triggered` entry in its `User Actions`.
+6. After the DAG run has finished successfully, verify in your Fivetran UI that the sync shows an additional `Manual Update Triggered` entry in its `User Actions`.
 
     ![Fivetran additional sync](/img/guides/fivetran_additional_sync.png)
 
@@ -242,7 +242,7 @@ If you choose to connect to an existing data warehouse not managed by Fivetran, 
 
 6. Add a few commits to your `airflow-fivetran-tutorial` repository.
 
-7. Rerun the Fivetran sync job by rerunning the Airflow DAG and adding the GitHub tag the `wait_for_tag` task is listening to to your `airflow-fivetran-tutorial` repository.
+7. Rerun the Fivetran sync by rerunning the Airflow DAG and adding the GitHub tag the `wait_for_tag` task is listening to to your `airflow-fivetran-tutorial` repository.
 
 8. View your updated dashboard with commits per minute of the hour aggregated.
 
@@ -250,4 +250,4 @@ If you choose to connect to an existing data warehouse not managed by Fivetran, 
 
 ## Conclusion
 
-Using Airflow with Fivetran allows you to embed your Fivetran jobs in your larger data ecosystem, making the scheduling of Fivetran jobs event- and data-driven. The [`airflow-provider-fivetran-async`](https://registry.astronomer.io/providers/fivetran) offers asynchronous capabilities to make your architecture more scalable and efficient.
+Using Airflow with Fivetran allows you to embed your Fivetran syncs in your larger data ecosystem, making the scheduling of Fivetran syncs event- and data-driven. The [`airflow-provider-fivetran-async`](https://registry.astronomer.io/providers/fivetran) offers asynchronous capabilities to make your architecture more scalable and efficient.
