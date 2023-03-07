@@ -153,25 +153,25 @@ After you've created your Organization and Workspace, your new Workspace homepag
 
     <TabItem value="powershell">
 
-    6. Run the following command to log in to your Azure account:
+    1. Run the following command to log in to your Azure account:
     
         ```sh
         Connect-AzAccount
         ```
     
-    7. Run the following command to select your Azure subscription:
+    2. Run the following command to select your Azure subscription:
     
         ```sh
         Set-AzContext -SubscriptionId <subscription-id>
         ```
 
-    8. Run the following command to create the Astronomer service principal:
+    3. Run the following command to create the Astronomer service principal:
     
         ```sh
         $sp = New-AzADServicePrincipal -AppId a67e6057-7138-4f78-bbaf-fd9db7b8aab0
         ```
 
-    9. Run the following commands to get details about the Azure subscription and create a new role assignment for the Astronomer service principal:
+    4. Run the following commands to get details about the Azure subscription and create a new role assignment for the Astronomer service principal:
     
         ```sh
         $sp = Get-AzADServicePrincipal -ApplicationId a67e6057-7138-4f78-bbaf-fd9db7b8aab0
@@ -185,7 +185,7 @@ After you've created your Organization and Workspace, your new Workspace homepag
         $ra = New-AzRoleAssignment -ObjectId $sp.id -RoleDefinitionName Owner -Scope "/subscriptions/$subid"
         ```
 
-    10. Run the following commands to register the `EncryptionAtHost` feature:
+    5. Run the following commands to register the `EncryptionAtHost` feature:
     
         ```sh
         Register-AzProviderFeature -FeatureName EncryptionAtHost -ProviderNamespace Microsoft.Compute
