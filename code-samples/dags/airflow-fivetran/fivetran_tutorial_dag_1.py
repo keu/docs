@@ -34,14 +34,14 @@ def my_fivetran_dag():
         return f"{TAG_NAME}/{number}"
 
     wait_for_tag = GithubTagSensor(
-        task_id="wait_for_file",
+        task_id="wait_for_tag",
         github_conn_id="github_conn",
         repository_name=GITHUB_REPOSITORY,
         tag_name="{{ ti.xcom_pull(task_ids='generate_tag_to_await', key='return_value') }}",
     )
 
-    kick_off_fivetran_sync = FivetranOperatorAsync(
-        task_id="kick_off_fivetran_sync",
+    run_fivetran_sync = FivetranOperatorAsync(
+        task_id="run_fivetran_sync",
         fivetran_conn_id="fivetran_conn",
         connector_id=FIVETRAN_CONNECTOR_ID,
     )
@@ -58,12 +58,7 @@ def my_fivetran_dag():
         task_logger.info(f"Set Variable '{TAG_NAME}' to {new_num}")
         return new_num
 
-    (
-        generate_tag_to_await()
-        >> wait_for_tag
-        >> kick_off_fivetran_sync
-        >> increase_tag_var()
-    )
+    (generate_tag_to_await() >> wait_for_tag >> run_fivetran_sync >> increase_tag_var())
 
 
 my_fivetran_dag()

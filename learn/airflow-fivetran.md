@@ -9,7 +9,7 @@ import CodeBlock from '@theme/CodeBlock';
 import fivetran_tutorial_dag_1 from '!!raw-loader!../code-samples/dags/airflow-fivetran/fivetran_tutorial_dag_1.py';
 
 [Fivetran](https://www.fivetran.com/) is a popular ELT platform that automates ingesting data from a variety of sources into a database, offering pre-built integrations for many common data tools.
-Using Airflow with Fivetran allows you to schedule your Fivetran syncs based on events in your larger data ecosystem, as well as kick-off downstream actions after a sync has finished.
+Using Airflow with Fivetran allows you to schedule your Fivetran syncs based on events in your larger data ecosystem, as well as trigger downstream actions after a sync has finished.
 
 In this tutorial, you'll learn how to install and use the Airflow Fivetran provider to submit and monitor Fivetran syncs.
 
@@ -93,13 +93,11 @@ Fivetran needs at least one [connector](https://fivetran.com/docs/getting-starte
 
 4. Authenticate Fivetran to your Github Account.
 
-5. Select the `your-github-username/airflow-fivetran-tutorial` repository to be synced. You don't need to enable Webhooks for this tutorial.
-
-    ![Select tutorial repository](/img/guides/fivetran_select_tutorial_repo.png)
+5. In **Sync Mode** select **Sync Specific Repositories**, then in **Repositories** select the `airflow-fivetran-tutorial` repository.
 
 6. Click **SAVE & TEST**. After your connection has been tested click **CONTINUE**.
 
-7. Click **Start Sync** to start your initial sync. This initial synchronization will load all historic metadata from your GitHub repository and has to be completed in Fivetran for the sync to become active. Once the Fivetran sync is active, you can set the sync frequency under the **Setup** tab or kick off the sync using the Fivetran API in Airflow.
+7. Click **Start Sync** to start your initial sync. This initial synchronization will load all historic metadata from your GitHub repository and has to be completed in Fivetran for the sync to become active. Once the Fivetran sync is active, you can set the sync frequency under the **Setup** tab or run the sync using the Fivetran API in Airflow.
 
 ## Step 5: Generate a Fivetran API key
 
@@ -125,9 +123,11 @@ To connect Airflow to Fivetran, create a Fivetran API key.
 
 The DAG in this tutorial waits for a specific tag to be added to a GitHub repository. To grant Airflow access to your GitHub repository, create a connection to GitHub in Airflow.
 
-1. In the Airflow UI, click **Admin** -> **Connections** -> **+** to create a new connection.
+1. Create a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (PAT) for your GitHub account. The PAT needs to have read access to the metadata of the `airflow-fivetran-tutorial` repository.
 
-2. Name your connection `github_conn` and select the **GitHub** connection type. Provide a [Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) (PAT) for your GitHub account. The PAT needs to have read access to the metadata of the `airflow-fivetran-tutorial` repository.
+2. In the Airflow UI, click **Admin** -> **Connections** -> **+** to create a new connection.
+
+3. Name your connection `github_conn` and select the **GitHub** connection type. Provide the PAT you created in Step 7.1.
 
 4. Click **Test** to test your connection. Once you see `Connection tested successfully` click **Save**.
 
@@ -143,12 +143,12 @@ For this tutorial you will create a DAG that waits for a GitHub tag to be presen
 
     <CodeBlock language="python">{fivetran_tutorial_dag_1}</CodeBlock>
 
-This DAG contains four tasks: 
+    This DAG contains four tasks: 
 
-- The `generate_tag_to_await` task pulls a number from the custom [Airflow variable](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) `TAG_NAME`, or creates the Airflow variable and assigns a value of `1` if it does not exist yet. The task returns the tag to wait for in the format `sync-metadata/{number}`. This task helps set up the GitHubTagSensor and ensures that DAG can be run repeatedly.
-- The `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for the `sync-metadata/{number}`tag to be present in your GitHub repository.
-- The `kick_off_fivetran_sync` task uses the FivetranOperatorAsync to trigger the Fivetran connector specified as `FIVETRAN_CONNECTOR_ID` as soon as the `wait_for_tag` task has completed successfully.
-- The `increase_tag_var` task increases the value assigned to the `sync-metadata` Airflow Variable by 1. This task ensures that next time you run the DAG, the sensor will wait for a new tag value to be added to your GitHub repo.
+    - The `generate_tag_to_await` task pulls a number from the custom [Airflow variable](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) `TAG_NAME`, or creates the Airflow variable and assigns a value of `1` if it does not exist yet. The task returns the tag to wait for in the format `sync-metadata/{number}`. This task helps set up the GitHubTagSensor and ensures that DAG can be run repeatedly.
+    - The `wait_for_tag` task uses the [GitHubTagSensor](https://registry.astronomer.io/providers/github/modules/githubtagsensor) to wait for the `sync-metadata/{number}`tag to be present in your GitHub repository.
+    - The `run_fivetran_sync` task uses the FivetranOperatorAsync to trigger the Fivetran connector specified as `FIVETRAN_CONNECTOR_ID` as soon as the `wait_for_tag` task has completed successfully.
+    - The `increase_tag_var` task increases the value assigned to the `sync-metadata` Airflow Variable by 1. This task ensures that next time you run the DAG, the sensor will wait for a new tag value to be added to your GitHub repo.
 
 4. Update the `FIVETRAN_CONNECTOR_ID` variable with the ID of your connector. You can find the ID of your connector in the Fivetran UI under the **Setup** tab:
 
@@ -159,6 +159,7 @@ This DAG contains four tasks:
 6. Save your DAG file with the changed variable names.
 
 The FivetranOperatorAsync is one of many [deferrable operators](deferrable-operators.md). Instead of taking up a worker slot, these operators will hand their task to the Airflow Triggerer component while waiting for a condition to be fulfilled. For longer running tasks, this can result in cost savings and greater scalability as more worker slots area available.
+
 ## Step 9: Run your DAG
 
 1. In the Airflow UI, unpause your DAG to start its last scheduled DAG run with a logical date of yesterday.
@@ -174,21 +175,21 @@ The FivetranOperatorAsync is one of many [deferrable operators](deferrable-opera
     git push --tags
     ```
 
-4. After a few seconds the sensor will detect the added file and print logs similar to the ones shown below.
+    After a few seconds the running GithubTagSensor task will detect the added file and print Airflow task logs similar to the ones shown below.
 
     ```text
-    [2023-03-01, 00:31:35 UTC] {custom_githubtagsensor.py:127} INFO - Poking for tag: sync-metadata/1 in repository: TJaniF/airflow-fivetran-tutorial
+    [2023-03-01, 00:31:35 UTC] {custom_githubtagsensor.py:127} INFO - Poking for tag: sync-metadata/1 in repository: <your-github-username>/airflow-fivetran-tutorial
     [2023-03-01, 00:31:35 UTC] {base.py:73} INFO - Using connection ID 'github_conn' for task execution.
-    [2023-03-01, 00:31:36 UTC] {custom_githubtagsensor.py:146} INFO - Tag sync-metadata/1 exists in TJaniF/airflow-fivetran-tutorial repository, Success.
+    [2023-03-01, 00:31:36 UTC] {custom_githubtagsensor.py:146} INFO - Tag sync-metadata/1 exists in <your-github-username>/airflow-fivetran-tutorial repository, Success.
     [2023-03-01, 00:31:36 UTC] {base.py:228} INFO - Success criteria met. Exiting.
     [2023-03-01, 00:31:36 UTC] {taskinstance.py:1318} INFO - Marking task as SUCCESS. 
     ```
 
-5. After the `wait_for_tag` task has completed, the `kick_off_fivetran_sync` task will start. This task will be in a deferred state (violet square) until the Fivetran sync is completed. 
+4. Click on the `run_fivetran_sync` task in the Airflow **Grid View**. This task will be in a deferred state (violet square) until the Fivetran sync is completed. 
 
     ![Fivetran Deferred](/img/guides/fivetran_deferred_operator.png)
 
-6. After the DAG run has finished successfully, verify in your Fivetran UI that the sync shows an additional `Manual Update Triggered` entry in its `User Actions`.
+5. After the DAG run has finished successfully, verify in your Fivetran UI that the sync shows an additional `Manual Update Triggered` entry in its `User Actions`.
 
     ![Fivetran additional sync](/img/guides/fivetran_additional_sync.png)
 
@@ -205,7 +206,7 @@ As a bonus, you can implement data observability into your data pipeline. If you
 
 1. In the Fivetran UI go to **Destinations** and select your warehouse, click the **BI tools** tab, and click **+ BI tool**.
 
-2. Authenticate to Tableau. See [Fivetran documentation](https://fivetran.com/docs/destinations/bigquery/managed-bigquery/tableau-setup-guide#spanclassstepitemauthorizegoogleuserintableauspan). Note that you have to authorize the same Google user to Tableau as you authorized to the Fivetran managed BigQuery service.
+2. Authenticate to Tableau. See [Fivetran documentation](https://fivetran.com/docs/destinations/bigquery/managed-bigquery/tableau-setup-guide). Note that you have to authorize the same Google user to Tableau as you authorized to the Fivetran managed BigQuery service.
 
 3. [Create a new Tableau worksheet](https://help.tableau.com/current/pro/desktop/en-us/environment_workspace.htm) either in Tableau desktop or in Tableau Cloud.
 
