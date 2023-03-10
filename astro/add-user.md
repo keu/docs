@@ -87,9 +87,9 @@ You can use the Astro CLI and a shell script to add multiple users to an Organiz
 2. Open the text file and add a list of user email addresses that you want to invite to an Organization or Workspace. Every email address should include the user's assigned role. The following is an example of how you can write a list for inviting users to an Organization:
 
     ```sh
-    user1@astronomer.io ORGANIZATION_VIEWER
+    user1@astronomer.io ORGANIZATION_MEMBER
     user2@astronomer.io ORGANIZATION_OWNER
-    user3@astronomer.io ORGANIZATION_ADMIN
+    user3@astronomer.io ORGANIZATION_BILLING_ADMIN
     user4@astronomer.io ORGANIZATION_OWNER
     ```
 
