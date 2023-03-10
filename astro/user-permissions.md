@@ -59,8 +59,8 @@ A Workspace role grants a user some level of access to a specific Workspace. The
 | Create and Delete Deployments                       |                      | ✔️                    | ✔️                   |
 | Create, Update and Delete Environment Variables     |                      | ✔️                    | ✔️                   |
 | Create, update, and delete Astro Cloud IDE projects |                      | ✔️                    | ✔️                   |
-| View Airflow connections and Variables              |                      | ✔️                    | ✔️                   |
-| Update Airflow connections and Variables            |                      | ✔️                    | ✔️                   |
+| View Airflow connections and Variables              |                      |                      | ✔️                   |
+| Update Airflow connections and Variables            |                      |                      | ✔️                   |
 | Create, Update and Delete API Keys                  |                      |                      | ✔️                   |
 | Update user roles and permissions                   |                      |                      | ✔️                   |
 | Invite users to a Workspace                         |                      |                      | ✔️                   |
