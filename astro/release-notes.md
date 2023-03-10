@@ -1060,7 +1060,7 @@ For more information about the **DAGs** page, see [Deployment metrics](deploymen
 
 ### Support for third-party identity providers
 
-You can now integrate both Azure AD and Okta as identity providers (IdPs) for federated authentication on Astro. By setting up a third-party identity provider, a user in your organization will be automatically logged in to Astro if they're already logged in via your IdP. By adding new Astro users through your IdP's own user management system, Workspace admins can automatically add new users to their Workspace without those users needing to individually sign up for Astro.
+You can now integrate both Azure AD and Okta as identity providers (IdPs) for federated authentication on Astro. By setting up a third-party identity provider, a user in your organization will be automatically logged in to Astro if they're already logged in via your IdP. By adding new Astro users through your IdP's own user management system, Workspace Admins can automatically add new users to their Workspace without those users needing to individually sign up for Astro.
 
 For more information about this feature read [Set up an identity provider](configure-idp.md).
 
