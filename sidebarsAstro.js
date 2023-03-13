@@ -279,10 +279,5 @@ module.exports = {
         'cli/astro-version',
         'cli/astro-workspace',],
     },
-    {
-      type: "doc",
-      label: "Troubleshooting/ FAQ",
-      id: "cli/troubleshoot-cli",
-    },
   ],
 };
