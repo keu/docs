@@ -1,7 +1,7 @@
 ---
 sidebar_label: 'Troubleshooting FAQ'
 title: 'Astronomer Software Troubleshooting FAQ'
-id: troubleshoot-astro
+id: troubleshoot-software
 ---
 
 import Tabs from '@theme/Tabs';
