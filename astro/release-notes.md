@@ -23,6 +23,40 @@ If you have any questions or a bug to report, reach out to [Astronomer support](
 
 **Latest CLI Version**: 1.11.0 ([Release notes](cli/release-notes.md))
 
+## March 15, 2023
+
+### Run the Kubernetes executor in Astro
+
+You can now configure your Deployments to use the Kubernetes executor for executing tasks. Using the Kubernetes executor, you can:
+
+- Ensure that tasks running longer than 24 hours are not interrupted when your team deploys code.
+- Run tasks with different version dependencies in the same Astro project.
+- Request specific amounts of CPU and memory for individual tasks.
+- Automatically down your resources when no tasks are running.
+
+The Kubernetes executor runs each task in its own Kubernetes Pod instead of in shared Celery workers. Astronomer fully manages the infrastructure required to run the executor and automatically spins Pods up and down for each of your task runs. This executor is a good fit for teams that want fine-grained control over the execution environment for each of their tasks. 
+
+To learn whether the Kubernetes executor works for your use case, see [Choose an executor](executors.md#choose-an-executor). To configure the Kubernetes executor for a task or Deployment, see [Configure the Kubernetes executor](executors.md#configure-the-kubernetes-executor).
+
+### Simplified Organization management in the Cloud UI
+
+The Cloud UI has been redesigned so that Organization settings tabs are now available in the left menu. Use this new menu to switch between pages as you can for Workspace settings.
+
+While most tabs were migrated directly to the left menu with the same name, some pages have been renamed and moved:
+
+- Formerly located in **Overview**, your Workspace list is now available in **Workspaces**.
+- Formerly located in the **People** tab, Organization user management settings are now in **Settings** > **Access Management**.
+- Formerly located in the **Settings** tab, general Organization settings are now in **Settings** > **General**.
+
+### New Astro Cloud IDE integration with GitLab
+
+You can now configure a GitLab repository in your Astro Cloud IDE project. Configuring a GitLab repository allows you to commit your pipelines and deploy them to Astro directly from the Astro Cloud IDE. See [Deploy a project from a Git repository to Astro](cloud-ide/deploy-project.md#deploy-a-project-from-a-git-repository-to-astro).
+
+### Additional improvements
+
+- Clusters on an Astro - Hosted installation no longer retain Airflow logs which are older than 90 days.
+- The Data Plane System node pool instance type on GCP clusters has been reduced from `n2-standard-4` to `n2-standard-2`.
+
 ## March 7, 2023
 
 ### Get expert advice on Astro and Airflow in office hours
