@@ -260,7 +260,7 @@
 /astro/scheduler-logs /astro/view-logs 301
 /astro/cross-account-role-setup /astro/install-aws 301
 /astro/cloud-ide/deploy-project.md#commit-your-project-to-github /astro/cloud-ide/deploy-project.md#commit-your-project-to-a-git-repository 301
-/astro/configure-executors /astro/executors 301
+/configure-executors /astro/executors 301
 /software/manage-platform-users#reference-system-permissions /software/role-permission-reference 301
 /software/cli-podman /astro/cli/configure-cli#run-the-astro-cli-using-podman 301
 /software/*/cli-podman /astro/cli/configure-cli#run-the-astro-cli-using-podman 301
