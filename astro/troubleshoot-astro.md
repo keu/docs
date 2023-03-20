@@ -11,22 +11,22 @@ Use this document to learn more about common issues on Astro and how to resolve 
 
 ## Why does my Deployment have zombie tasks? 
 
-Zombie tasks are task runs that Airflow assumes are running but have somehow died. Zombie tasks often occur when a process running a task is killed killed or the node running a task worker is terminated.
+Zombie tasks are task runs that Airflow assumes are running but have somehow died. Zombie tasks often occur when a process running a task is killed or the node running a task worker is terminated.
 
 There are a few reasons why your Deployment could have zombie tasks:
 
 - You are receiving `FailedScheduling` errors due to insufficient scheduler CPU and memory.
 - You have DAG parsing issues.
 - You are encountering a known Airflow bug in versions 2.0.0 - 2.3.2.
-- (AWS only) T2 and T3 instance types are being throttled due to lack of credits.
+- (AWS only) T2 and T3 instance types are throttled due to lack of credits.
 
-### Symptoms of zombie tasks
+### Context: Symptoms of zombie tasks
 
 Use the following methods to find zombie tasks on a Deployment:
 
 - Search for missing log errors in your task logs. For example, the following log might indicate a zombie task run because there was no evidence of it running to completion:
 
-    ```
+    ```text
     *** Falling back to local log 
     *** Log file does not exist: /usr/local/airflow/logs/dag_id=<dag>/run_id=<run>/task_id=<task>/attempt=1.log 
     *** Fetching from: http://<ip>/log/dag_id=<dag>/run_id=<run>/task_id=<task>/attempt=1.log 
@@ -39,7 +39,7 @@ Use the following methods to find zombie tasks on a Deployment:
     ERROR - Detected zombie job
     ```
 
-    Because Airflow occasionally creates these logs with irregular spacing, search only for "zombie" to find all available zombie logs. 
+    Because Airflow occasionally creates these logs with irregular spacing, search only for `zombie` to find all available zombie logs. 
     
 ### Solution: Use safeguards for preventing zombie tasks
 
