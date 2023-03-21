@@ -21,7 +21,6 @@
   left: 1rem;
   position: absolute;
   bottom: 0;
-  background: white;
   width: calc(100% - 20px);
   padding: 2rem 0;
 }
