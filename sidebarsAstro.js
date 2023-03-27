@@ -279,11 +279,20 @@ module.exports = {
         'cli/astro-dev-restart',
         'cli/astro-login',
         'cli/astro-logout',
-        'cli/astro-organization',
+        {
+          type: "category",
+          label: "astro organization",
+          items: [
+            "cli/astro-organization-list",
+            "cli/astro-organization-switch",
+            "cli/astro-organization-user-invite",
+            "cli/astro-organization-user-list",
+            "cli/astro-organization-user-update",
+          ],
+        },
         'cli/astro-run',
         'cli/astro-team',
         'cli/astro-user-create',
-        'cli/astro-user-invite',
         'cli/astro-version',
         {
           type: "category",
