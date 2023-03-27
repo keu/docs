@@ -137,7 +137,7 @@ Astronomer recommends using the `airflow_settings.yaml` file so that you don’t
 
 ## Add test data or files for local testing
 
-Use the `include` folder of your Astro project to store files for testing locally, such as test data or a dbt project file. These files are not included when you deploy your project to Astro.
+Use the `include` folder of your Astro project to store files for testing locally, such as test data or a dbt project file. The files in your `include` folder are included in your deploys to Astro, but they are not parsed by Airflow. Therefore, you don't need to specify them in `.airflowignore` to prevent parsing. 
 
 If you're running Airflow locally, apply your changes by refreshing the Airflow UI.
 
