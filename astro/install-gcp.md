@@ -86,9 +86,22 @@ To activate the data plane on your GCP project:
 2. Run the following commands in your Google Cloud Shell:
 
     ```sh
-    export MY_PROJECT_NUMBER=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectNumber)")
-    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:$MY_PROJECT_NUMBER@cloudservices.gserviceaccount.com --role=roles/owner
-    gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member=serviceAccount:astronomer@astro-remote-mgmt.iam.gserviceaccount.com --role=roles/owner
+    export GCP_PROJECT_NUMBER=$(gcloud projects describe $GOOGLE_CLOUD_PROJECT --format="value(projectNumber)")
+    export GCP_PROJECT_ID="Insert your project ID here"
+    curl -s -O https://raw.githubusercontent.com/astronomer/astro-roles/main/gcp/astro-gcp-role.yaml
+    curl -s -O https://raw.githubusercontent.com/astronomer/astro-roles/main/gcp/astro-gcp-role-api-service-agent.yaml
+    gcloud iam roles create astro_deployment_role_service_agent \
+        --project=$GCP_PROJECT_ID \
+        --file=astro-gcp-role-api-service-agent.yaml
+    gcloud iam roles create astro_deployment_role \
+        --project=$GCP_PROJECT_ID \
+        --file=astro-gcp-role.yaml
+    gcloud projects add-iam-policy-binding $GCP_PROJECT_ID \
+        --member=serviceAccount:$GCP_PROJECT_NUMBER@cloudservices.gserviceaccount.com \
+        --role=projects/$GCP_PROJECT_ID/roles/astro_deployment_role_service_agent
+    gcloud projects add-iam-policy-binding $GCP_PROJECT_ID \
+        --member=serviceAccount:astronomer@astro-remote-mgmt.iam.gserviceaccount.com \
+        --role=projects/$GCP_PROJECT_ID/roles/astro_deployment_role
     ```
 
 ## Step 3: Provide setup information to Astronomer
