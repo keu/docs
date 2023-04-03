@@ -151,6 +151,10 @@ If you used CI/CD to deploy code to your source Airflow environment, read the fo
 
 If you currently store Airflow variables or connections in a secrets backend, you need to integrate your secrets backend with Astro to access those objects from your migrated DAGs. See [Configure a Secrets Backend](secrets-backend.md) for setup steps.
 
+### Set up DAG-Only Deploy from GCS Bucket 
+
+If you would like to continue deploying DAGs from GCS Bucket directly to your Airflow Deployment, you can setup the CI/CD to push the DAGs to the bucket and then follow the steps [here](https://docs.astronomer.io/astro/ci-cd#cloud-storage-to-astro-dag-based-deploys) using Google Cloud Functions for deploying to Astro.
+
 #### Instance permissions and trust policies
 
 You can utilize Workload Identity or Service Account Keys to grant your Astro Deployment the same level of access to Google Services as your source Airflow environment. See [Connect GCP - Authorization options](connect-gcp.md#authentication-options).
