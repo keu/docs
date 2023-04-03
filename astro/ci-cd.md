@@ -1054,3 +1054,225 @@ Use the following template to implement DAG-only deploys with Jenkins.
         }
     }`}</code></pre>
 
+## Cloud Storage Bucket to Astro (DAG-based deploys)
+
+### Pre-Requisites
+
+1. Create a bucket, if not exists, where the DAGs will be stored. For example, `my-demo-bucket`
+2. Create two folder within the bucket `my-demo-bucket` named called `dags` and `cli_binary`
+3. If it is a new setup, make sure you upload all your DAGs to your bucket path `my-demo-bucket/dags/` before turning on the Lambda or Cloud Function
+4. Download the latest Astro CLI Binary from the [Binary Releases Page](https://github.com/astronomer/astro-cli/releases). For example, download `astro_1.13.0_linux_amd64.tar.gz` and rename it to `astro_cli.tar.gz`.
+5. Generate the API Keys for the CI/CD Setup on your Airflow Deployment, and save them for later use.
+6. [Enable DAG-only Deploy](https://docs.astronomer.io/astro/deploy-code#enable-dag-only-deploys-on-a-deployment) for your deployment.
+
+
+### AWS Lambda 
+
+1. Create a new AWS Lambda function with RunTime as Python 3.9
+2. Create a new Role for Lambda with the following permissions:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "lambdacreateloggroup",
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:us-east-1:123456789012:*"
+        },
+        {
+            "Sid": "lambdaputlogevents",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:123456789012:log-group:/aws/lambda/s3_to_astro:*"
+            ]
+        },
+        {
+            "Sid": "bucketpermission",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::my-demo-bucket"
+        }
+    ]
+}
+```
+
+3. Create the following Environment Variables:
+
+`ASTRO_HOME` = '\tmp'
+`ASTRONOMER_KEY_ID` = 'Your Airflow Deployment API key ID'
+`ASTRONOMER_KEY_SECRET` = 'Your Airflow Deployment API key Secret'
+
+4. Add the following Code to `lambda_function.py`
+
+```python
+
+import boto3
+import subprocess
+import os
+import tarfile
+
+
+def untar(filename):
+    # open file
+    file = tarfile.open(filename)
+    # extracting file
+    file.extractall('/tmp/astro/')
+    file.close()
+
+s3 = boto3.resource('s3')
+
+
+def run_command(cmd):
+    p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+    out, err = p.communicate()
+    print(out)
+    p.kill()
+
+
+def download_s3_folder(bucket_name, s3_folder, local_dir=None):
+    """
+    Download the contents of a folder directory
+    Args:
+        bucket_name: the name of the s3 bucket
+        s3_folder: the folder path in the s3 bucket
+        local_dir: a relative or absolute directory path in the local file system
+    """
+    bucket = s3.Bucket(bucket_name)
+    for obj in bucket.objects.filter(Prefix=s3_folder):
+        target = obj.key if local_dir is None \
+            else os.path.join(local_dir, os.path.relpath(obj.key, s3_folder))
+        if not os.path.exists(os.path.dirname(target)):
+            os.makedirs(os.path.dirname(target))
+        if obj.key[-1] == '/':
+            continue
+        bucket.download_file(obj.key, target)
+    print("downloaded file")
+
+
+def lambda_handler(event, context):
+    print("downloading files from s3")
+    download_s3_folder('my-demo-bucket', 'dags', '/tmp/astro/dags')
+    download_s3_folder('my-demo-bucket', 'cli_binary', '/tmp/astro')
+
+    print("Untar Astro CLI Binary")
+    untar('/tmp/astro/astro_cli.tar.gz')
+    
+    print("Deploy to Astro")
+    os.chdir('/tmp/astro')
+    run_command('echo y | ./astro dev init')
+    run_command('./astro deploy --dags')
+    
+    return {"statusCode": 200}
+
+```
+
+5. Add Trigger to the Lambda Function on `Object Create` Event for the `my-demo-bucket`. Add the prefix for the DAGs folder as `dags/` and suffix as `.py`
+
+6. Upload a new DAG file in the `dags` folder to test the function.
+
+7. Verify via the Cloud UI that the Astro Deployment is updated.
+
+
+
+### Google Cloud Functions
+
+1. Create a new 1st Gen Cloud function in the same region as your DAGs Storage Bucket
+2. Select the Trigger as `Cloud Storage` with Event Type as `On finalizing/creating file in the selected bucket` and select the bucket `my-demo-bucket`. Then click Save
+
+3. In the Runtime Section, add the environment variables as below:
+  `ASTRO_HOME` = '\tmp'
+  `ASTRONOMER_KEY_ID` = 'Your Airflow Deployment API key ID'
+  `ASTRONOMER_KEY_SECRET` = 'Your Airflow Deployment API key Secret'
+
+4. Click `NEXT` and select Runtime as Python 3.9.
+
+5. Add the dependency `google-cloud-storage` to `requirements.txt`
+
+6. Add the following code to main.py
+
+  ```python
+
+  import os
+  import tarfile
+  import subprocess
+  from google.cloud import storage
+
+  def untar(filename):
+      # open file
+      file = tarfile.open(filename)
+      # extracting file
+      file.extractall('/tmp/astro/')
+      file.close()
+
+  def run_command(cmd):
+      print("running command: ", cmd)
+      p = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)
+      out, err = p.communicate()
+      print(out)
+      print(err)
+      p.kill()
+
+
+  def download_to_local(bucket_name, gcs_folder, local_dir=None):
+      """
+      Download the contents of a folder directory
+      Args:
+          bucket_name: the name of the gcs bucket
+          gcs_folder: the folder path in the gcs bucket
+          local_dir: a relative or absolute directory path in the local file system
+      """
+      ## create a storage client to access GCS objects
+      storage_client = storage.Client()
+      source_bucket = storage_client.bucket(bucket_name)
+
+      ## get a list of all the files in the bucket folder
+      blobs = source_bucket.list_blobs(prefix=gcs_folder)
+
+      ## download each of the dag to local
+      for blob in blobs:
+          if blob.name.endswith('/'):
+              continue
+
+          target = blob.name if local_dir is None \
+              else os.path.join(local_dir, os.path.relpath(blob.name, gcs_folder))
+          print(target)
+          if not os.path.exists(os.path.dirname(target)):
+              os.makedirs(os.path.dirname(target))
+
+          blob.download_to_filename(target)
+      print("downloaded file")
+      
+
+  def astro_deploy(event, context):
+      """Triggered by a change to a Cloud Storage bucket.
+      Args:
+          event (dict): Event payload.
+          context (google.cloud.functions.Context): Metadata for the event.
+      """
+
+      ## download dag files to temp local storage
+      download_to_local('my-demo-bucket', 'dags', '/tmp/astro/dags')
+      
+      ## download astro cli binary and move to /tmp/astro
+      download_to_local('my-demo-bucket', 'cli_binary', '/tmp/astro')
+      untar('/tmp/astro/astro_cli.tar.gz')
+
+      ## deploy to astro
+      os.chdir('/tmp/astro')
+      run_command('echo y | ./astro dev init')
+      run_command('./astro deploy --dags')
+
+  ```
+
+6. Upload a new DAG file in the `dags` folder of the bucket `my-demo-bucket` to test the function.
+
+7. Verify via the Cloud UI that the Astro Deployment is updated.
