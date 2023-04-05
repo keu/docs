@@ -32,7 +32,7 @@ The Celery executor is a good option for most use cases. Specifically, the Celer
 
 If you regularly experience dependency conflicts or find that some tasks consume the resources of other tasks and cause them to fail, Astronomer recommends implementing worker queues or moving to the Kubernetes executor.
 
-See [Manage the Celery executor](#manage-the-celery-executor) to learn more about how to configure the Celery executor.
+See [Configure the Celery executor](#configure-the-celery-executor) to learn more about how to configure the Celery executor.
 
 ### Kubernetes executor
 
