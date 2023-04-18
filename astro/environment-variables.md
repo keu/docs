@@ -19,6 +19,8 @@ An environment variable on Astro is a key-value configuration that is applied to
 - Integrate with Datadog or other third-party tooling to [export Deployment metrics](deployment-metrics.md#export-airflow-metrics-to-datadog).
 - Set [Airflow configurations](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html?), such as default timezone and maximum active runs per DAG.
 
+You can use environment variables to configure the same keys and values that you would configure as [Airflow variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/index.html). However, the variables that you configure in Astro are exposed as environment variables and managed differently than Airflow variables. For more information, see [How environment variables are stored on Astro](#how-environment-variables-are-stored-on-astro).
+
 Some environment variables on Astro are set globally and cannot be overridden for individual Deployments. For more information on these environment variables, see [Global environment variables](platform-variables.md).
 
 ## Set environment variables in the Cloud UI
@@ -65,11 +67,14 @@ After you set an environment variable key, only the environment variable value c
 
 Non-secret environment variables set in the Cloud UI are stored in a database that is managed by Astronomer and hosted in the Astro control plane. When you configure a secret environment variable in the Cloud UI, the following methodology is used:
 
-- Astro generates a manifest that defines a Kubernetes secret containing your variable's key and value.
+- Astro generates a manifest that defines a Kubernetes secret, named `env-secrets`, that contains your variable's key and value.
 - Astro applies this manifest to your Deployment's namespace in the data plane.
 - After the manifest is applied, the key and value of your environment variable are stored in a managed [etcd cluster](https://etcd.io/) at rest within the Astro data plane.
 
-This process occurs every time you update the environment variable's key or value.
+This process occurs every time you update the environment variable's key or value. To use a secret environment variable value in a task running on the Kubernetes executor or the KubernetesPodOperator, you need to mount the value from the Astro kubernetes secret to your Kubernetes Pod. See:
+
+- [Mount secret environment variables to worker pods](executors.md#mount-secret-environment-variables-to-worker-pods)
+- [Use secret environment variables with the KubernetesPodOperator](kubernetespodoperator.md#use-secret-environment-variables-with-the-kubernetespodoperator)
 
 :::caution
 
@@ -107,8 +112,55 @@ After you add your environment variables, use one of the following options to de
 On Astro, environment variables are applied and overridden in the following order:
 
 - Cloud UI
-- [.env (local development only)](develop-project.md#set-environment-variables-local-development)
+- [.env (local development only)](develop-project.md#set-environment-variables-locally)
 - Dockerfile
-- Default Airflow values
 
 For example, if you set `AIRFLOW__CORE__PARALLELISM` with one value in the Cloud UI and you set the same environment variable with another value in your `Dockerfile`, the value set in the Cloud UI takes precedence.
+
+## Add Airflow connections and variables using environment variables
+
+If you regularly use [Airflow connections](https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/connections.html) and [variables](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/variables.html), Astronomer recommends storing and fetching them with environment variables instead of adding them to the Airflow UI.
+
+Airflow connections and variables are stored in the Airflow metadata database. Calling them outside of task definitions and operators requires an additional connection to the Airflow metadata database which is used every time the scheduler parses a DAG.
+
+By adding connections and variables as environment variables, you can lower the amount of open connections and improve the performance of your database and resources.
+
+### Airflow connections
+
+In Astro Runtime version 4.2 and earlier, use the Airflow [connection URI format](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#uri-format) to store connections as environment variables. The naming convention for Airflow environment variable connections is:
+
+- Key: `AIRFLOW_CONN_<CONN_ID>` 
+- Value: `<connection-uri>`
+
+For example, consider the following Airflow connection:
+
+- Connection ID: `MY_PROD_DB`
+- Connection URI: `my-conn-type://login:password@host:5432/schema`
+
+To store this connection as an environment variable, you create an environment variable with the key `AIRFLOW_CONN_MY_PROD_DB` and the value `my-conn-type://login:password@host:5432/schema`.
+
+In Astro Runtime version 5.0 and later, you can also use JSON format to store connections. See [JSON format example](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html#json-format-example). When using the JSON format in environment variables, the JSON object must be defined in a single, unbroken line. 
+
+:::info
+
+Airflow connections set with environment variables do not appear in the Airflow UI. They can only be seen and updated in the Cloud UI or your Dockerfile. 
+
+:::
+
+### Airflow variables
+
+Use environment variables to store values you would normally store as [Airflow variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/index.html). This gives you better control and security of custom values. To fetch a Deployment environment variable value from a DAG, you must format the variable key as `AIRFLOW_VAR_<VAR_NAME>`.
+
+For example, consider the following Airflow variable:
+
+- Variable name: `My_Var`
+- Value: `2`
+
+To store this Airflow variable as an environment variable, you create an environment variable with the key `AIRFLOW_VAR_MY_VAR` and the value `2`.
+
+You can then use the following Python functions in the top level of your DAG code to fetch the variable value:
+
+- `Variable.get('<VAR_NAME>')`: This method is more secure for fetching secret values. However, this method can affect performance because it makes a request to the Airflow metadata database every time your DAGs are parsed, which can occur every 30 seconds. See [DAG writing best practices](https://docs.astronomer.io/learn/dag-best-practices#avoid-top-level-code-in-your-dag-file) for more information about avoiding repeated requests in top level code.
+- `os.getenv('AIRFLOW_VAR_<VAR_NAME>','<default-value>')`: This method is faster because it reduces the number of Airflow metadata database requests. However, it's less secure. Astronomer does not recommend using `os.getenv` with secret values because calling these values with the function can print them to your logs. 
+
+    Replace `<default_value>` with a default value to use if Airflow can't find the environment variable. Typically, this is the value you defined for the environment variable in the Cloud UI. 

@@ -9,7 +9,15 @@ id: what-is-a-sensor
   <meta name="og:description" content="Get an overview of Airflow sensors and see the new sensor-related features included in Airflow 2. Learn best practices for implementing sensors in production." />
 </head>
 
-[Apache Airflow sensors](https://airflow.apache.org/docs/apache-airflow/stable/concepts/sensors.html) are a special kind of operator that are designed to wait for something to happen. When sensors run, they check to see if a certain condition is met before they are marked successful and let their downstream tasks execute. When used properly, they can be a great tool for making your DAGs more event driven.
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import CodeBlock from '@theme/CodeBlock';
+import sensor_decorator_example from '!!raw-loader!../code-samples/dags/what-is-a-sensor/sensor_decorator_example.py';
+import sql_sensor_example_taskflow from '!!raw-loader!../code-samples/dags/what-is-a-sensor/sql_sensor_example_taskflow.py';
+import sql_sensor_example_traditional from '!!raw-loader!../code-samples/dags/what-is-a-sensor/sql_sensor_example_traditional.py';
+
+[Apache Airflow sensors](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/sensors.html) are a special kind of operator that are designed to wait for something to happen. When sensors run, they check to see if a certain condition is met before they are marked successful and let their downstream tasks execute. When used properly, they can be a great tool for making your DAGs more event driven.
 
 In this guide, you'll learn how sensors are used in Airflow, best practices for implementing sensors in production, and how to use deferrable versions of sensors.
 
@@ -35,7 +43,7 @@ All sensors inherit from the [`BaseSensorOperator`](https://github.com/apache/ai
 - `mode`: How the sensor operates. There are two types of modes:
     - `poke`: This is the default mode. When using `poke`, the sensor occupies a worker slot for the entire execution time and sleeps between pokes. This mode is best if you expect a short runtime for the sensor.
     - `reschedule`: When using this mode, if the criteria is not met then the sensor releases its worker slot and reschedules the next check for a later time. This mode is best if you expect a long runtime for the sensor, because it is less resource intensive and frees up workers for other tasks.
-- `poke_interval`: When using `poke` mode, this is the time in seconds that the sensor waits before checking the condition again. The default is 30 seconds.
+- `poke_interval`: When using `poke` mode, this is the time in seconds that the sensor waits before checking the condition again. The default is 60 seconds.
 - `exponential_backoff`: When set to `True`, this setting creates exponentially longer wait times between pokes in `poke` mode.
 - `timeout`: The maximum amount of time in seconds that the sensor checks the condition. If the condition is not met within the specified period, the task fails.
 - `soft_fail`: If set to `True`, the task is marked as skipped if the condition is not met by the `timeout`.
@@ -51,58 +59,33 @@ Many Airflow provider packages contain sensors that wait for various criteria in
 - [`DateTimeSensor`](https://registry.astronomer.io/providers/apache-airflow/modules/datetimesensor): Waits for a specified date and time. This sensor is useful if you want different tasks within the same DAG to run at different times.
 - [`ExternalTaskSensor`](https://registry.astronomer.io/providers/apache-airflow/modules/externaltasksensor): Waits for an Airflow task to be completed. This sensor is useful if you want to implement [cross-DAG dependencies](cross-dag-dependencies.md) in the same Airflow environment.
 - [`HttpSensor`](https://registry.astronomer.io/providers/http/modules/httpsensor): Waits for an API to be available. This sensor is useful if you want to ensure your API requests are successful.
-- [`SqlSensor`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlsensor): Waits for data to be present in a SQL table. This sensor is useful if you want your DAG to process data as it arrives in your database.
+- [`SqlSensor`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlsensor): Waits for data to be present in a SQL table. This sensor is useful if you want your DAG to process data as it arrives in your database.
 
 To review the available Airflow sensors, go to the [Astronomer Registry](https://registry.astronomer.io/modules?types=sensors).
 
 ### Example implementation
 
-The following example DAG shows how you might use the `SqlSensor` sensor: 
+The following example DAG shows how you might use the `SqlSensor` sensor:
 
-```python
-from airflow.decorators import task, dag
-from airflow.sensors.sql import SqlSensor
+<Tabs
+    defaultValue="taskflow"
+    groupId= "example-implementation"
+    values={[
+        {label: 'TaskFlow API', value: 'taskflow'},
+        {label: 'Traditional syntax', value: 'traditional'},
+    ]}>
 
-from typing import Dict
-from datetime import datetime
+<TabItem value="taskflow">
 
-def _success_criteria(record):
-        return record
+<CodeBlock language="python">{sql_sensor_example_taskflow}</CodeBlock>
 
-def _failure_criteria(record):
-        return True if not record else False
+</TabItem>
+<TabItem value="traditional">
 
-@dag(description='DAG in charge of processing partner data',
-     start_date=datetime(2021, 1, 1), schedule='@daily', catchup=False)
-def partner():
-    
-    waiting_for_partner = SqlSensor(
-        task_id='waiting_for_partner',
-        conn_id='postgres',
-        sql='sql/CHECK_PARTNER.sql',
-        parameters={
-            'name': 'partner_a'
-        },
-        success=_success_criteria,
-        failure=_failure_criteria,
-        fail_on_empty=False,
-        poke_interval=20,
-        mode='reschedule',
-        timeout=60 * 5
-    )
-    
-    @task
-    def validation() -> Dict[str, str]:
-        return {'partner_name': 'partner_a', 'partner_validation': True}
-    
-    @task
-    def storing():
-        print('storing')
-    
-    waiting_for_partner >> validation() >> storing()
-    
-dag = partner()
-```
+<CodeBlock language="python">{sql_sensor_example_traditional}</CodeBlock>
+
+</TabItem>
+</Tabs>
 
 This DAG waits for data to be available in a Postgres database before running validation and storing tasks. The `SqlSensor` runs a SQL query and is marked successful when that query returns data. Specifically, when the result is not in the set (0, '0', '', None). The `SqlSensor` task in the example DAG (`waiting_for_partner`) runs the `CHECK_PARTNER.sql` script every 20 seconds (the `poke_interval`) until the data is returned. The `mode` is set to `reschedule`, meaning between each 20 second interval the task will not take a worker slot. The `timeout` is set to 5 minutes, and the task fails if the data doesn't arrive within that time. When the `SqlSensor` criteria is met, the DAG moves to the downstream tasks. You can find the full code for this example in the [webinar-sensors repo](https://github.com/marclamberti/webinar-sensors).
 
@@ -110,55 +93,7 @@ This DAG waits for data to be available in a Postgres database before running va
 
 Starting in Airflow 2.5, you can use the `@task.sensor` decorator from the TaskFlow API to use any Python function that returns a `PokeReturnValue` as an instance of the BaseSensorOperator. The following DAG shows how to use the sensor decorator:
 
-```python
-from airflow import DAG
-from airflow.decorators import task
-from pendulum import datetime
-import requests
-
-# importing the PokeReturnValue
-from airflow.sensors.base import PokeReturnValue
-
-with DAG(
-    dag_id="sensor_decorator",
-    start_date=datetime(2022, 12, 1),
-    schedule="@daily",
-    catchup=False
-):
-
-    # supply inputs to the BaseSensorOperator parameters in the decorator
-    @task.sensor(
-        poke_interval=30,
-        timeout=3600,
-        mode="poke"
-    )
-    def check_shibe_availability() -> PokeReturnValue:
-
-        r = requests.get("http://shibe.online/api/shibes?count=1&urls=true")
-        print(r.status_code)
-
-        # set the condition to True if the API response was 200
-        if r.status_code == 200:
-            condition_met=True
-            operator_return_value=r.json()
-        else:
-            condition_met=False
-            operator_return_value=None
-            print(f"Shibe URL returned the status code {r.status_code}")
-
-        # the function has to return a PokeReturnValue
-        # if is_done = True the sensor will exit successfully, if is_done=False, the sensor will either poke or be rescheduled
-        return PokeReturnValue(is_done=condition_met, xcom_value=operator_return_value)
-
-
-    # print the URL to the picture
-    @task
-    def print_shibe_picture_url(url):
-        print(url)
-
-
-    print_shibe_picture_url(check_shibe_availability())
-```
+<CodeBlock language="python">{sensor_decorator_example}</CodeBlock>
 
 Here, `@task.sensor` decorates the `check_shibe_availability()` function, which checks if a given API returns a 200 status code. If the API returns a 200 status code, the sensor task is marked as successful. If any other status code is returned, the sensor pokes again after the `poke_interval` has passed.
 
@@ -171,7 +106,7 @@ When using sensors, keep the following in mind to avoid potential performance is
 - Always define a meaningful `timeout` parameter for your sensor. The default for this parameter is seven days, which is a long time for your sensor to be running. When you implement a sensor, consider your use case and how long you expect the sensor to wait and then define the sensor's timeout accurately.
 - Whenever possible and especially for long-running sensors, use the `reschedule` mode so your sensor is not constantly occupying a worker slot. This helps avoid deadlocks in Airflow where sensors take all of the available worker slots.
 - If your `poke_interval` is very short (less than about 5 minutes), use the `poke` mode. Using `reschedule` mode in this case can overload your scheduler.
-- Define a meaningful `poke_interval` based on your use case. There is no need for a task to check a condition every 30 seconds (the default) if you know the total amount of wait time will be 30 minutes.
+- Define a meaningful `poke_interval` based on your use case. There is no need for a task to check a condition every 60 seconds (the default) if you know the total amount of wait time will be 30 minutes.
 
 ## Deferrable operators
 

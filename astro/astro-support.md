@@ -8,7 +8,7 @@ description: Get Astro support when you need it.
 In addition to product documentation, the following resources are available to help you resolve issues:
 
 - [Astronomer Forum](https://forum.astronomer.io)
-- [Airflow Guides](https:/docs.astronomer.io/learn/)
+- [Airflow Guides](https://docs.astronomer.io/learn/)
 
 If you're experiencing an issue or have a question that requires Astronomer expertise, or if you want to [modify a cluster configuration](modify-cluster.md), use one of the following methods to contact Astronomer support:
 
@@ -57,9 +57,7 @@ Examples:
 Examples:
 
 - There are package incompatibilities caused by a specific, complex use case.
-- You have questions about best practices for an action in Airflow or on Astro.
 - You have an inquiry or a small bug report for a Public Preview feature.
-- You have a feature request related to Astro or Airflow.
 
 ### Be as descriptive as possible
 
@@ -81,18 +79,9 @@ If you've already copied task logs or Airflow component logs, send them as a par
 
     Alternatively, you can directly access the support form by going to `https://cloud.astronomer.io/support`.
 
-2. Complete the following fields:
-
-    - **Problem Statement**: Enter a description of the issue you are experiencing. Provide as much detail as possible.
-    - **Workspace**: Optional. Select the Workspace where the issue is occurring. This list is auto-populated when you submit a support request from a Workspace or a Deployment.
-    - **Deployment**: Optional. Select the Deployment where the issue is occurring. This list is auto-populated when you submit a support request from a Deployment. If you submit it from the Workspace view, you'll be prompted to select from the list of Deployments in that Workspace.
-    - **Problem Start**: Optional. Select the date and time the issue started.
-    - **Description**: Enter a thorough description of the issue. Provide as much detail as possible.
-    - **Priority**: Select the severity of your issue based on how the issue is affecting your organization. For severity level explanations, see [Best practices for submitting support requests](astro-support.md#best-practices-for-support-request-submissions).
-    - **Business Impact**: Optional. Describe how this issue is affecting your organization.
-    - **CC Emails**: Optional. Enter the email address of a team member that you want to notify about this issue. Click **Add Additional Email** to add additional email addresses.
-
-3. Click **Submit**.
+2. Select a **Request Type**. Your request type determines which other fields appear in the support request.
+3. Complete the rest of the support request. 
+4. Click **Submit**.
 
     You'll receive an email when your ticket is created and follow-up emails as Astronomer support replies to your request. To check the status of a support request, you can also sign in to the [Astronomer support portal](https://support.astronomer.io).
 
@@ -116,3 +105,12 @@ If you've submitted your support request on the Astronomer support portal, sign 
 To add a teammate to an existing support request, cc them when replying on the support ticket email thread.
 
 :::
+
+## Book office hours in the Cloud UI
+
+If you don't require break-fix support, Astronomer recommends scheduling a meeting with the Astronomer Data Engineering team during office hours. In an office hour meeting, you can ask questions, make feature requests, or get expert advice for your data pipelines. Office hours are recommended if:
+
+- You have questions about best practices for an action in Airflow or on Astro.
+- You have a feature request related to Astro or Airflow.
+
+To book an office hour meeting, open the Cloud UI and click **Help** > **Book Office Hours**. Use the provided Calendly form to schedule a 30-minute office hour meeting. In the form, provide details about the new issues and questions that you want to discuss during the meeting.

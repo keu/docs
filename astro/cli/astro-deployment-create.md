@@ -31,6 +31,10 @@ Create a Deployment on Astro. This command is functionally identical to using th
 astro deployment create
 ```
 
+When you use `astro deployment create`, it creates a Deployment with a default Worker Queue that uses default worker types.
+
+Some Deployment configurations, including worker queue and worker type, can be set only by using the `--deployment-file` flag to apply a Deployment file. See [Manage Deployments as code](manage-deployments-as-code.md).
+
 ## Options
 
 | Option                      | Description                                                                                                                                 | Possible Values                                                                             |
@@ -42,7 +46,6 @@ astro deployment create
 | `-n`,`--name`               | The name of the Deployment                                                                                                                  | Any string. Multiple-word descriptions should be specified in quotations                    |
 | `-v`,`--runtime-version`    | The Astro Runtime version for the Deployment                                                                                                | Any supported version of Astro Runtime. Major, minor, and patch versions must be specified. |
 | `-s`,`--scheduler-au`       | The number of AU to allocate towards the Deployment's Scheduler(s). The default is`5`.                                                      | Integer between `0` and `24`                                                                |
-| `-a`,`--worker-au`          | The number of AU to allocate towards the Deployment's worker(s). The default is `10`.                                                       | Integer between `0` and `175`                                                               |
 | `-r`,`--scheduler-replicas` | The number of scheduler replicas for the Deployment. The default is `1`.                                                                    | Integer between `0` and `4`                                                                 |
 | `--wait`                    | The time to wait for the new Deployment to have a [healthy](deployment-metrics.md#deployment-health) status before completing the command . | None                                                                                        |
 | `--workspace-id`            | The Workspace in which to create a Deployment. If not specified, your current Workspace is assumed.                                         | Any valid Workspace ID                                                                      |

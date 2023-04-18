@@ -22,19 +22,19 @@ To get the most out of this guide, you should have an understanding of:
 
 ## SQL Check operators
 
-The SQL Check operators are versions of the `SQLOperator` that abstract SQL queries to streamline data quality checks. One difference between the SQL Check operators and the standard [`BaseSQLOperator`](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/operators/sql/index.html#airflow.operators.sql.BaseSQLOperator) is that the SQL Check operators respond with a boolean, meaning the task fails when any of the resulting queries fail. This is particularly helpful in stopping a data pipeline before bad data makes it to a given destination. The lines of code and values that fail the check are observable in the Airflow logs.
+The SQL Check operators are versions of the `SQLOperator` that abstract SQL queries to streamline data quality checks. One difference between the SQL Check operators and the standard [`BaseSQLOperator`](https://airflow.apache.org/docs/apache-airflow/2.2.0/_api/airflow/operators/sql/index.html#airflow.operators.sql.BaseSQLOperator) is that the SQL Check operators respond with a boolean, meaning the task fails when any of the resulting queries fail. This is particularly helpful in stopping a data pipeline before bad data makes it to a given destination. The lines of code and values that fail the check are observable in the Airflow logs.
 
 The following SQL Check operators are recommended for implementing data quality checks:
 
-- **[`SQLColumnCheckOperator`](https://registry.astronomer.io/providers/common-sql/modules/sqlcolumncheckoperator)**: Runs multiple predefined data quality checks on multiple columns within the same task.
-- **[`SQLTableCheckOperator`](https://registry.astronomer.io/providers/common-sql/modules/sqltablecheckoperator)**: Runs multiple user-defined checks on one or more columns of a table.
-- **[`SQLCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlcheckoperator)**: Takes any SQL query and returns a single row that is evaluated to booleans. This operator is useful for more complicated checks that could span several tables of your database.
-- **[`SQLIntervalCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlintervalcheckoperator)**: Checks current data against historical data.
+- **[`SQLColumnCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlcolumncheckoperator)**: Runs multiple predefined data quality checks on multiple columns within the same task.
+- **[`SQLTableCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqltablecheckoperator)**: Runs multiple user-defined checks on one or more columns of a table.
+- **[`SQLCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlcheckoperator)**: Takes any SQL query and returns a single row that is evaluated to booleans. This operator is useful for more complicated checks that could span several tables of your database.
+- **[`SQLIntervalCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlintervalcheckoperator)**: Checks current data against historical data.
 
 Additionally, two older SQL Check operators exist that can run one check at a time against a defined value or threshold:
 
-- [`SQLValueCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlvaluecheckoperator): A simpler operator that can be used when a specific, known value is being checked either as an exact value or within a percentage threshold.
-- [`SQLThresholdCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlthresholdcheckoperator): An operator with flexible upper and lower thresholds, where the threshold bounds may also be described as SQL queries that return a numeric value.
+- [`SQLValueCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlvaluecheckoperator): A simpler operator that can be used when a specific, known value is being checked either as an exact value or within a percentage threshold.
+- [`SQLThresholdCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlthresholdcheckoperator): An operator with flexible upper and lower thresholds, where the threshold bounds may also be described as SQL queries that return a numeric value.
 
 Astronomer recommends using the `SQLColumnCheckOperator` and `SQLTableCheckOperator` over the `SQLValueCheckOperator` and `SQLThresholdCheckOperator` whenever possible to improve code readability.
 
@@ -75,23 +75,21 @@ In the example below, 5 checks are performed on 3 different columns using the `S
 
 ```python
 check_columns = SQLColumnCheckOperator(
-        task_id="check_columns",
-        conn_id="MY_DB_CONNECTION",
-        table="MY_TABLE",
-        column_mapping={
-            "MY_DATE_COL": {
-                "unique_check": {"equal_to": 0}
-            },
-            "MY_TEXT_COL": {
-                "distinct_check": {"geq_to": 10},
-                "null_check": {"equal_to": 0}
-            },
-            "MY_NUM_COL": {
-                "min": {"less_than": 10},
-                "max": {"equal_to": 100, "tolerance": 0.1}
-            },
-        }
-    )
+    task_id="check_columns",
+    conn_id="MY_DB_CONNECTION",
+    table="MY_TABLE",
+    column_mapping={
+        "MY_DATE_COL": {"unique_check": {"equal_to": 0}},
+        "MY_TEXT_COL": {
+            "distinct_check": {"geq_to": 10},
+            "null_check": {"equal_to": 0},
+        },
+        "MY_NUM_COL": {
+            "min": {"less_than": 10},
+            "max": {"equal_to": 100, "tolerance": 0.1},
+        },
+    },
+)
 ```
 
 The `SQLColumnCheckOperator` offers 5 options for column checks which are abstractions over SQL statements:
@@ -160,24 +158,17 @@ Both of the above checks only run on rows that fulfill the operator-level partit
 
 ```python
 column_checks = SQLColumnCheckOperator(
-        task_id="column_checks",
-        conn_id="MY_DB_CONNECTION",
-        table="MY_TABLE",
-        partition_clause="CUSTOMER_NAME IS NOT NULL",
-        column_mapping={
-            "MY_NUM_COL_1": {
-                "min": {
-                    "greater_than": 10
-                }
-            },
-            "MY_NUM_COL_2": {
-                "max": {
-                    "less_than": 300,
-                    "partition_clause": "CUSTOMER_STATUS = 'active'"
-                }
-            }
-        }
-    )
+    task_id="column_checks",
+    conn_id="MY_DB_CONNECTION",
+    table="MY_TABLE",
+    partition_clause="CUSTOMER_NAME IS NOT NULL",
+    column_mapping={
+        "MY_NUM_COL_1": {"min": {"greater_than": 10}},
+        "MY_NUM_COL_2": {
+            "max": {"less_than": 300, "partition_clause": "CUSTOMER_STATUS = 'active'"}
+        },
+    },
+)
 ```
 
 ## Example: SQLTableCheckOperator
@@ -200,19 +191,17 @@ table_checks = SQLTableCheckOperator(
     task_id="table_checks",
     conn_id="MY_DB_CONNECTION",
     table="MY_TABLE",
-    partition_clause="START_DATE >= '2022-01-01'"
+    partition_clause="START_DATE >= '2022-01-01'",
     checks={
-        "my_row_count_check": {
-            "check_statement": "COUNT(*) >= 1000"
-            },
+        "my_row_count_check": {"check_statement": "COUNT(*) >= 1000"},
         "my_column_sum_comparison_check": {
             "check_statement": "SUM(MY_COL_1) < SUM(MY_COL_2)",
-            "partition_clause": "MY_COL_4 > 100"
-            },
+            "partition_clause": "MY_COL_4 > 100",
+        },
         "my_column_addition_check": {
             "check_statement": "MY_COL_1 + MY_COL_2 = MY_COL_3"
-            }
-    }
+        },
+    },
 )
 ```
 
@@ -231,7 +220,7 @@ The following code snippet shows you how to use the operator in a DAG:
 
 ```python
 yellow_tripdata_row_quality_check = SQLCheckOperator(
-    conn_id=example_conn,
+    conn_id="example_conn",
     task_id="yellow_tripdata_row_quality_check",
     sql="row_quality_yellow_tripdata_check.sql",
     params={"pickup_datetime": "2021-01-01"},

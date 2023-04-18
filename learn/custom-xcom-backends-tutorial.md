@@ -32,7 +32,7 @@ After you complete this tutorial, you'll be able to:
 
 :::caution
 
-While a custom XCom backend allows you to store virtually unlimited amounts of data as XCom, you will also need to scale other Airflow components to pass large amounts of data between tasks. For help running Airflow at scale, [reach out to Astronomer](https://www.astronomer.io/get-started/).
+While a custom XCom backend allows you to store virtually unlimited amounts of data as XCom, you will also need to scale other Airflow components to pass large amounts of data between tasks. For help running Airflow at scale, [reach out to Astronomer](https://www.astronomer.io/try-astro/?referral=docs-content-link).
 
 :::
 
@@ -44,7 +44,7 @@ This tutorial takes approximately 1.5 hours to complete.
 
 To get the most out of this tutorial, make sure you have an understanding of:
 
-- XCom basics. See the [Airflow documentation on XCom](https://airflow.apache.org/docs/apache-airflow/stable/concepts/xcoms.html).
+- XCom basics. See the [Airflow documentation on XCom](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/xcoms.html).
 - Passing data between tasks. See [Passing data between Airflow tasks](airflow-passing-data-between-tasks.md).
 - The TaskFlow API. See [the TaskFlow API in Airflow 2.0](https://www.astronomer.io/events/webinars/taskflow-api-airflow-2.0/).
 
@@ -74,7 +74,7 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 <Tabs
     defaultValue="aws"
-    groupId= "object-storage-provider"
+    groupId= "step-2-set-up-your-object-storage-account"
     values={[
         {label: 'AWS S3', value: 'aws'},
         {label: 'GCP Cloud Storage', value: 'gcp'},
@@ -149,7 +149,7 @@ To get the most out of this tutorial, make sure you have an understanding of:
 
 1. Log into your Azure account and if you do not have one, [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create). Astronomer recommends preventing public access to the storage account.
 
-2. In the storage account, [create a new container](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-porta) called `custom-xcom-backend`. 
+2. In the storage account, [create a new container](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal) called `custom-xcom-backend`. 
 
 3. [Create a shared access token](https://learn.microsoft.com/en-us/azure/cognitive-services/Translator/document-translation/how-to-guides/create-sas-tokens?tabs=Containers) for the `custom-xcom-backend` container. 
 
@@ -188,7 +188,7 @@ There are several local object storage solutions available to configure as a cus
 
 <Tabs
     defaultValue="aws"
-    groupId= "object-storage-provider"
+    groupId= "step-3-create-a-connection"
     values={[
         {label: 'AWS S3', value: 'aws'},
         {label: 'GCP Cloud Storage', value: 'gcp'},
@@ -254,7 +254,7 @@ For Airflow to use your custom XCom backend, you need to define an XCom backend 
 
 <Tabs
     defaultValue="aws"
-    groupId= "object-storage-provider"
+    groupId= "step-4-define-a-custom-xcom-class-using-json-serialization"
     values={[
         {label: 'AWS S3', value: 'aws'},
         {label: 'GCP Cloud Storage', value: 'gcp'},
@@ -656,7 +656,7 @@ To test your custom XCom backend you will run a simple DAG which pushes a random
 
 <Tabs
     defaultValue="aws"
-    groupId= "object-storage-provider"
+    groupId= "step-5-create-and-run-your-dag-to-generate-xcoms"
     values={[
         {label: 'AWS S3', value: 'aws'},
         {label: 'GCP Cloud Storage', value: 'gcp'},
@@ -696,7 +696,7 @@ A powerful feature of custom XCom backends is the possibility to create custom s
 
 <Tabs
     defaultValue="aws"
-    groupId= "object-storage-provider"
+    groupId= "step-6-create-a-custom-serialization-method-to-handle-pandas-dataframes"
     values={[
         {label: 'AWS S3', value: 'aws'},
         {label: 'GCP Cloud Storage', value: 'gcp'},

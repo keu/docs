@@ -3,6 +3,7 @@ title: "Use Apache Kafka with Apache Airflow"
 sidebar_label: "Apache Kafka/Confluent"
 description: "How to produce to and consume from Kafka topics using the Airflow Kafka provider"
 id: airflow-kafka
+sidebar_custom_props: { icon: 'img/integrations/kafka.png' }
 ---
 
 [Apache Kafka](https://kafka.apache.org/documentation/) is an open source tool for handling event streaming. Combining Kafka and Airflow allows you to build powerful pipelines that integrate streaming data with batch processing.
@@ -163,7 +164,7 @@ The [Airflow Kafka provider package](https://github.com/astronomer/airflow-provi
 
 ## Step 3: Add a consumer task
 
-The ConsumeFromTopicOperator enables Airflow to consume messages from topics. 
+The ConsumeFromTopicOperator enables Airflow to consume messages from topics.
 
 1. Add the following import statement to `kafka_example_dag_1`.
 
@@ -222,7 +223,7 @@ A common use case is to directly connect a blob storage (for example an Amazon S
 
 A common use case is to run a downstream task when a specific message appears in your Kafka topic. The AwaitKafkaMessageOperator is a deferrable operator that will listen to your Kafka topic for a message that fulfills a specific criteria.
 
-A deferrable operator is a sensor that will go into a deferred state in between checking for its condition in the target system. While in the deferred state the operator does not take up a worker slot, offering a significant efficiency improvement. See [Deferrable operators]((https://docs.astronomer.io/learn/deferrable-operators)).
+A deferrable operator is a sensor that will go into a deferred state in between checking for its condition in the target system. While in the deferred state the operator does not take up a worker slot, offering a significant efficiency improvement. See [Deferrable operators](https://docs.astronomer.io/learn/deferrable-operators).
 
 1. In `kafka_example_dag_1`, add the following import statement:
 
@@ -340,16 +341,15 @@ You can define the following parameters for this operator:
 
 Apache Kafka is a tool optimized for streaming messages at high frequencies, for example in an IoT application. Airflow is designed to handle orchestration of data pipelines in batches.
 
-Astronomer recommends to combine these two open source tools by handling low-latency processes with Kafka and data orchestration with Airflow. 
+Astronomer recommends to combine these two open source tools by handling low-latency processes with Kafka and data orchestration with Airflow.
 
 Common patterns include:
 
-- Configuring a Kafka cluster with a blob storage like S3 as a sink. Batch process data from S3 at regular intervals. 
+- Configuring a Kafka cluster with a blob storage like S3 as a sink. Batch process data from S3 at regular intervals.
 - Using the ProduceToTopicOperator in Airflow to produce messages to a Kafka cluster as one of several producers.
 - Consuming data from a Kafka cluster via the ConsumeFromTopicOperator in batches using the apply function to extract and load information to a blob storage or data warehouse.
 - Listening for specific messages in a data stream running through a Kafka cluster using the AwaitKafkaMessageOperator to trigger downstream tasks once the message appears.
 
 ## Conclusion
 
-The Airflow Kafka provider offers 3 easy to use operators to interact with topics and messages in Kafka. You now know how to use these operators to connect Kafka and Airflow. 
-
+The Airflow Kafka provider offers 3 easy to use operators to interact with topics and messages in Kafka. You now know how to use these operators to connect Kafka and Airflow.

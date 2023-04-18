@@ -5,6 +5,10 @@ id: data-quality
 sidebar_label: "Data quality"
 ---
 
+import CodeBlock from '@theme/CodeBlock';
+import example_dag_sql_check_operators from '!!raw-loader!../code-samples/dags/data-quality/example_dag_sql_check_operators.py';
+import gx_example_dag from '!!raw-loader!../code-samples/dags/data-quality/gx_example_dag.py';
+
 ## Overview
 
 Checking the quality of your data is essential to getting actionable insights from your data pipelines. Airflow offers many ways to orchestrate data quality checks directly from your DAGs.
@@ -126,14 +130,14 @@ SQL Check operators execute a SQL statement that results in a set of booleans. A
 
 The SQL Check operators work with any backend solution that accepts SQL queries and supports Airflow, and differ in what kind of data quality checks they can perform and how they are defined.
 
-The `SQLColumnCheckOperator` and `SQLTableCheckOperator` are part of the [Common SQL provider](https://registry.astronomer.io/providers/common-sql). The other SQL Check operators are built into core Airflow and do not require separate package installation.
+The `SQLColumnCheckOperator` and `SQLTableCheckOperator` are part of the [Common SQL provider](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/). The other SQL Check operators are built into core Airflow and do not require separate package installation.
 
-- [`SQLColumnCheckOperator`](https://registry.astronomer.io/providers/common-sql/modules/sqlcolumncheckoperator): Can quickly define checks on columns of a table using a Python dictionary.
-- [`SQLTableCheckOperator`](https://registry.astronomer.io/providers/common-sql/modules/sqltablecheckoperator): Can run aggregated and non-aggregated statements involving several columns of a table.
-- [`SQLCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlcheckoperator): Can be used with any SQL statement that returns a single row of booleans.
-- [`SQLIntervalCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlintervalcheckoperator): Runs checks against historical data.
-- [`SQLValueCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlvaluecheckoperator): Compares the result of a SQL query against a value with or without a tolerance window.
-- [`SQLThresholdCheckOperator`](https://registry.astronomer.io/providers/apache-airflow/modules/sqlthresholdcheckoperator): Compares the result of a SQL query against upper and lower thresholds which may also be described as SQL queries.
+- [`SQLColumnCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlcolumncheckoperator): Can quickly define checks on columns of a table using a Python dictionary.
+- [`SQLTableCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqltablecheckoperator): Can run aggregated and non-aggregated statements involving several columns of a table.
+- [`SQLCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlcheckoperator): Can be used with any SQL statement that returns a single row of booleans.
+- [`SQLIntervalCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlintervalcheckoperator): Runs checks against historical data.
+- [`SQLValueCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlvaluecheckoperator): Compares the result of a SQL query against a value with or without a tolerance window.
+- [`SQLThresholdCheckOperator`](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/sqlthresholdcheckoperator): Compares the result of a SQL query against upper and lower thresholds which may also be described as SQL queries.
 
 The logs from SQL Check operators can be found in the regular Airflow task logs. For more details and examples of SQL Check operators and logs, see [Airflow Data Quality Checks with SQL Operators](airflow-sql-data-quality.md).
 
@@ -166,7 +170,7 @@ For more information on data lineage and setting up OpenLineage with Airflow, se
 
 :::
 
-Both the `SQLColumnCheckOperator` and the `SQLTableCheckOperator` have OpenLineage extractors that emit lineage data. While the other SQL Check operators will show up on the lineage graph, they do not emit test data to the OpenLineage backend. The `GreatExpectationsOperator` will automatically trigger the OpenLineage action if an OpenLineage environment is recognized. If you are working with open source tools, you can view the resulting lineage from the extractors using Marquez.
+Both the `SQLColumnCheckOperator` and the `SQLTableCheckOperator` have OpenLineage extractors that emit lineage metadata. While the other SQL Check operators will show up on the lineage graph, they do not emit test data to the OpenLineage backend. The `GreatExpectationsOperator` will automatically trigger the OpenLineage action if an OpenLineage environment is recognized. If you are working with open source tools, you can view the resulting lineage from the extractors using Marquez.
 
 The output from the `SQLColumnCheckOperator` contains each individual check and whether or not it succeeded:
 
@@ -201,121 +205,7 @@ The example DAG includes the following tasks:
 
 While this example shows all the checks being written within the Python file defining the DAG, it is possible to modularize commonly used checks and SQL statements in separate files. If you're using the Astro CLI, you can add the files to the `/include` directory.
 
-```python
-from airflow import DAG
-from datetime import datetime
-
-from airflow.operators.empty import EmptyOperator
-from airflow.providers.common.sql.operators.sql import (
-  SQLColumnCheckOperator,
-  SQLTableCheckOperator,
-  SQLCheckOperator
-)  
-
-with DAG(
-    dag_id="example_dag_sql_check_operators",
-    schedule='@daily',
-    start_date=datetime(2022, 7, 15),
-    catchup=False,
-    doc_md="""
-    Example DAG for SQL Check operators.
-    """,
-    default_args={
-      "conn_id": example_connection
-    }
-) as dag:
-
-    start = EmptyOperator(task_id="start")
-    end = EmptyOperator(task_id="end")
-
-    # SQLColumnCheckOperator example: runs checks on 3 columns:
-    #   - MY_DATE_COL is checked to only contain unique values ("unique_check")
-    #     and to have dates greater than 2017-01-01 and lesser than 2022-01-01.
-    #   - MY_TEXT_COL is checked to contain no NULL values
-    #     and at least 10 distinct values
-    #   - MY_NUM_COL is checked to have a minimum value between 90 and 110
-    column_checks = SQLColumnCheckOperator(
-        task_id="column_checks",
-        table=example_table,
-        column_mapping={
-            "MY_DATE_COL": {
-                "min": {"greater_than": datetime.date(2017, 1, 1)},
-                "max": {"less_than": datetime.date(2022, 1, 1)},
-                "unique_check": {"equal_to": 0}
-            },
-            "MY_TEXT_COL": {
-                "distinct_check": {"geq_to": 10},
-                "null_check": {"equal_to": 0}
-            },
-            "MY_NUM_COL": {
-                "max": {"equal_to": 100, "tolerance": 0.1}
-            },
-        }
-    )
-
-    # SQLTableCheckOperator example: This operator performs one check:
-    #   - a row count check, making sure the table has >= 1000 rows
-    table_checks_aggregated = SQLTableCheckOperator(
-        task_id="table_checks_aggregated",
-        table=example_table,
-        checks={
-            "my_row_count_check": {
-                "check_statement": "COUNT(*) >= 1000"
-            }
-        }
-    )
-
-    # SQLTableCheckOperator example: This operator performs one check:
-    #   - a columns comparison check to see that the value in MY_COL_1 plus
-    #   the value in MY_COL_2 is 100
-    table_checks_not_aggregated = SQLTableCheckOperator(
-        task_id="table_checks_not_aggregated",
-        table=example_table,
-        checks={
-            "my_column_comparison_check": {
-                "check_statement": "MY_COL_1 + MY_COL_2 = 100"
-            }
-        }
-    )
-
-    # SQLCheckOperator example: ensure categorical values in MY_COL_3
-    # are one of a list of 4 options
-    check_val_in_list = SQLCheckOperator(
-        task_id="check_today_val_in_bounds",
-        conn_id=example_connection,
-        sql="""
-                WITH
-
-                not_in_list AS (
-
-                SELECT COUNT(*) as count_not_in_list
-                FROM {{ params.db_to_query }}.{{ params.schema }}.\
-                     {{ params.table }}
-                WHERE {{ params.col }} NOT IN {{ params.options_tuple }}
-                )
-
-                SELECT
-                    CASE WHEN count_not_in_list = 0 THEN 1
-                    ELSE 0
-                    END AS testresult
-                FROM not_in_list
-            """,
-        params={
-            "db_to_query": example_database,
-            "schema": example_schema,
-            "table": example_table,
-            "col": "MY_COL_3",
-            "options_tuple": "('val1', 'val2', 'val3', 'val4')"
-        }
-    )
-
-    start >> [
-        column_checks,
-        table_checks_aggregated,
-        table_checks_not_aggregated,
-        check_val_in_list
-    ] >> end
-```
+<CodeBlock language="python">{example_dag_sql_check_operators}</CodeBlock>
 
 ### Example: Great Expectations
 
@@ -436,30 +326,7 @@ For each of the checks in this example, an Expectation already exists. This is n
 
 The corresponding DAG code shows how all the Expectations are run within one task using the `GreatExpectationsOperator`. Only the root directory of the data context and the data asset have to be provided. To use XComs with the `GreatExpectationsOperator` you must enable XCom pickling as described in the [Great Expectations](airflow-great-expectations.md) guide.
 
-```python
-from airflow import DAG
-from pendulum import datetime
-
-from great_expectations_provider.operators.great_expectations import (
-  GreatExpectationsOperator
-)
-
-with DAG(
-    schedule=None,
-    start_date=datetime(2022,7,1),
-    dag_id="ge_example_dag",
-    catchup=False,
-) as dag:
-
-    # task running the Expectation Suite defined in the JSON above
-    ge_test = GreatExpectationsOperator(
-        task_id="ge_test",
-        data_context_root_dir="/usr/local/airflow/include/great_expectations",
-        conn_id="my_db_conn",
-        data_asset_name="my_table",
-        do_xcom_push=False
-    )
-```
+<CodeBlock language="python">{gx_example_dag}</CodeBlock>
 
 ## Conclusion
 

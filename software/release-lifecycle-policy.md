@@ -17,7 +17,7 @@ For information on the latest Astronomer Software releases, see [Release notes](
 
 :::info
 
-These policies apply only to the Astronomer Software platform. For release and lifecycle policies related to Astronomer images, see [Astronomer Certified versioning and support](ac-support-policy.md) and [Runtime release and lifecycle Policy](https://docs.astronomer.io/astro/runtime-version-lifecycle-policy).
+These policies apply only to the Astronomer Software platform. For release and lifecycle policies related to Astro Runtime, see [Runtime release and lifecycle Policy](https://docs.astronomer.io/astro/runtime-version-lifecycle-policy).
 
 :::
 
@@ -89,8 +89,6 @@ The following tables contain the exact lifecycle for each published version of A
 
 | Software Version | Release Date    | End of Maintenance Date |
 | ---------------- | --------------- | ----------------------- |
-| 0.28             | Feb 15, 2022    | February 2023           |
-| 0.29             | June 1, 2022    | December 2022           |
 | 0.30             | August 29, 2022 | August 2023             |
 | 0.31             | Nov 29, 2022    | May 2023                |
 
@@ -98,5 +96,4 @@ The following tables contain the exact lifecycle for each published version of A
 
 | Software Version | Release Date | End of Maintenance Date |
 | ---------------- | ------------ | ----------------------- |
-| 0.28             | Feb 15, 2022 | February 2023           |
 | 0.30             | Aug 29, 2022 | August 2023             |

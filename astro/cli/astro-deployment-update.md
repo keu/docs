@@ -24,7 +24,13 @@ The behavior and format of this command differs depending on what Astronomer pro
 <TabItem value="astro">
 
 
-Update the configuration for a Deployment on Astro. This command is functionally identical to using **Edit Configuration** to modify a Deployment in the Cloud UI.
+Update the configuration for a Deployment on Astro. 
+
+:::info
+
+To update existing worker queues or to create new queues for an existing Deployment, you must update your Deployment by using the `--deployment-file` flag to update a [Deployment file](manage-deployments-as-code.md#create-a-template-file-from-an-existing-deployment).
+
+:::
 
 ## Usage
 
@@ -54,7 +60,6 @@ After setting the variables, this command works for a Deployment and you don't n
 | `-d`,`--description`           | The description for the Deployment                                                     | Any string. Multiple-word descriptions should be specified in quotations (`"`) |
 | `-l`,`--name`                  | The Deployment's name                                                                  | Any string. Multiple-word descriptions should be specified in quotations       |
 | `-s`,`--scheduler-au`          | The number of AU to allocate towards the Deployment's Scheduler(s). The default is`5`. | Integer between `0` and `24`                                                   |
-| `-a`,`--worker-au`             | The number of AU to allocate towards the Deployment's worker(s). The default is `10`.  | Integer between `0` and `175`                                                  |
 | `-r`,`--scheduler-replicas`    | The number of scheduler replicas for the Deployment. The default is `1`.               | Integer between `0` and `4`                                                    |
 | `-f`,`--force`          | Force a Deployment update                             | None                                                                             |
 | `-w`,`--workspace-id`          | Specify a Workspace to update a Deployment outside of your current Workspace           | Any valid Workspace ID                                                         |

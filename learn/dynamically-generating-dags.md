@@ -1,5 +1,5 @@
 ---
-title: "Dynamically generating DAGs in Airflow"
+title: "Dynamically generate DAGs in Airflow"
 sidebar_label: "Dynamically generate DAGs"
 id: dynamically-generating-dags
 ---
@@ -9,7 +9,12 @@ id: dynamically-generating-dags
   <meta name="og:description" content="Get to know the best ways to dynamically generate DAGs in Apache Airflow. Use examples to generate DAGs using single- and multiple-file methods." />
 </head>
 
-In Airflow, [DAGs](https://airflow.apache.org/docs/apache-airflow/stable/concepts.html#dags) are defined as Python code. Airflow executes all Python code in the `dags_folder` and loads any `DAG` objects that appear in `globals()`. The simplest way to create a DAG is to write it as a static Python file. 
+import CodeBlock from '@theme/CodeBlock';
+import create_dag_example from '!!raw-loader!../code-samples/dags/dynamically-generating-dags/create_dag_example.py';
+import dags_from_var_example from '!!raw-loader!../code-samples/dags/dynamically-generating-dags/dags_from_var_example.py';
+import dags_from_connections from '!!raw-loader!../code-samples/dags/dynamically-generating-dags/dags_from_connections.py';
+
+In Airflow, [DAGs](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html) are defined as Python code. Airflow executes all Python code in the `dags_folder` and loads any `DAG` objects that appear in `globals()`. The simplest way to create a DAG is to write it as a static Python file. 
 
 Sometimes, manually writing DAGs isn't practical. Maybe you have hundreds or thousands of DAGs that do similar things with just a parameter changing between them. Or maybe you need a set of DAGs to load tables, but don't want to manually update DAGs every time the tables change. In these cases, and others, it makes more sense to dynamically generate DAGs. 
 
@@ -55,74 +60,24 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 
 
-def create_dag(dag_id,
-               schedule,
-               dag_number,
-               default_args):
-
+def create_dag(dag_id, schedule, dag_number, default_args):
     def hello_world_py(*args):
-        print('Hello World')
-        print('This is DAG: {}'.format(str(dag_number)))
+        print("Hello World")
+        print("This is DAG: {}".format(str(dag_number)))
 
-    dag = DAG(dag_id,
-              schedule=schedule,
-              default_args=default_args)
+    dag = DAG(dag_id, schedule=schedule, default_args=default_args)
 
     with dag:
         t1 = PythonOperator(
-            task_id='hello_world',
-            python_callable=hello_world_py,
-            dag_number=dag_number)
+            task_id="hello_world", python_callable=hello_world_py
+        )
 
     return dag
 ```
 
 In this example, the input parameters can come from any source that the Python script can access. You can then set a simple loop (`range(1, 4)`) to generate these unique parameters and pass them to the global scope, thereby registering them as valid DAGs with the Airflow scheduler:
 
-```python
-from datetime import datetime
-
-from airflow import DAG
-from airflow.operators.python import PythonOperator
-
-
-def create_dag(dag_id,
-               schedule,
-               dag_number,
-               default_args):
-
-    def hello_world_py(*args):
-        print('Hello World')
-        print('This is DAG: {}'.format(str(dag_number)))
-
-    dag = DAG(dag_id,
-              schedule=schedule,
-              default_args=default_args)
-
-    with dag:
-        t1 = PythonOperator(
-            task_id='hello_world',
-            python_callable=hello_world_py)
-
-    return dag
-
-
-# build a dag for each number in range(10)
-for n in range(1, 4):
-    dag_id = 'loop_hello_world_{}'.format(str(n))
-
-    default_args = {'owner': 'airflow',
-                    'start_date': datetime(2021, 1, 1)
-                    }
-
-    schedule = '@daily'
-    dag_number = n
-
-    globals()[dag_id] = create_dag(dag_id,
-                                  schedule,
-                                  dag_number,
-                                  default_args)
-```
+<CodeBlock language="python">{create_dag_example}</CodeBlock>
 
 The DAGs appear in the Airflow UI:
 
@@ -136,53 +91,7 @@ As mentioned previously, the input parameters don't have to exist in the DAG fil
 
 You can retrieve this value by importing the Variable class and passing it into your `range`. The `default_var` is set to 3 because you want the interpreter to register this file as valid regardless of whether the variable exists.
 
-```python
-from datetime import datetime
-
-from airflow import DAG
-from airflow.models import Variable
-from airflow.operators.python import PythonOperator
-
-
-def create_dag(dag_id,
-               schedule,
-               dag_number,
-               default_args):
-
-    def hello_world_py(*args):
-        print('Hello World')
-        print('This is DAG: {}'.format(str(dag_number)))
-
-    dag = DAG(dag_id,
-              schedule=schedule,
-              default_args=default_args)
-
-    with dag:
-        t1 = PythonOperator(
-            task_id='hello_world',
-            python_callable=hello_world_py)
-
-    return dag
-
-
-number_of_dags = Variable.get('dag_number', default_var=3)
-number_of_dags = int(number_of_dags)
-
-for n in range(1, number_of_dags):
-    dag_id = 'hello_world_{}'.format(str(n))
-
-    default_args = {'owner': 'airflow',
-                    'start_date': datetime(2021, 1, 1)
-                    }
-
-    schedule = '@daily'
-    dag_number = n
-    globals()[dag_id] = create_dag(dag_id,
-                                  schedule,
-                                  dag_number,
-                                  default_args)
-
-```
+<CodeBlock language="python">{dags_from_var_example}</CodeBlock>
 
 The DAGs appear in the Airflow UI:
 
@@ -196,56 +105,7 @@ To implement this method, you pull the connections from your Airflow metadata da
 
 ![List of connections in the Airflow UI](/img/guides/connections.png)
 
-```python
-from datetime import datetime
-
-from airflow import DAG, settings
-from airflow.models import Connection
-from airflow.operators.python import PythonOperator
-
-
-def create_dag(dag_id,
-               schedule,
-               dag_number,
-               default_args):
-
-    def hello_world_py(*args):
-        print('Hello World')
-        print('This is DAG: {}'.format(str(dag_number)))
-
-    dag = DAG(dag_id,
-              schedule=schedule,
-              default_args=default_args)
-
-    with dag:
-        t1 = PythonOperator(
-            task_id='hello_world',
-            python_callable=hello_world_py)
-
-    return dag
-
-
-session = settings.Session()
-conns = (session.query(Connection.conn_id)
-                .filter(Connection.conn_id.ilike('%MY_DATABASE_CONN%'))
-                .all())
-
-for conn in conns:
-    dag_id = 'connection_hello_world_{}'.format(conn[0])
-
-    default_args = {'owner': 'airflow',
-                    'start_date': datetime(2018, 1, 1)
-                    }
-
-    schedule = '@daily'
-    dag_number = conn
-
-    globals()[dag_id] = create_dag(dag_id,
-                                  schedule,
-                                  dag_number,
-                                  default_args)
-
-```
+<CodeBlock language="python">{dags_from_connections}</CodeBlock>
 
 You are accessing the Models library to bring in the `Connection` class (as you did previously with the `Variable` class). You are also accessing the `Session()` class from `settings`, which will allow us to query the current database session.
 
@@ -276,26 +136,21 @@ One way of implementing a multiple-file method is using a Python script to gener
 To start, you'll create a DAG 'template' file that defines the DAG's structure. This looks just like a regular DAG file, but specific variables have been added to define where the information is going to be dynamically generated, namely `dag_id`, `scheduletoreplace`, and `querytoreplace`. 
 
 ```python
-from datetime import datetime
+from pendulum import datetime
 
 from airflow import DAG
 from airflow.providers.postgres.operators.postgres import PostgresOperator
 
 
-default_args = {'owner': 'airflow',
-                'start_date': datetime(2021, 1, 1)
-                }
+default_args = {"owner": "airflow", "start_date": datetime(2021, 1, 1)}
 
-with DAG(dag_id,
-            schedule=scheduletoreplace,
-            default_args=default_args,
-            catchup=False) as dag:
+with DAG(
+    dag_id, schedule=scheduletoreplace, default_args=default_args, catchup=False
+) as dag:
 
     t1 = PostgresOperator(
-        task_id='postgres_query',
-        postgres_conn_id=connection_id,
-        sql=querytoreplace)
-
+        task_id="postgres_query", postgres_conn_id=connection_id, sql=querytoreplace
+    )
 ```
 
 Next, you create a `dag-config` folder that will contain a JSON config file for each DAG. The config file should define the parameters discussed previously, the DAG ID, schedule interval, and query to be executed.
@@ -316,22 +171,23 @@ import os
 import shutil
 import fileinput
 
-config_filepath = 'include/dag-config/'
-dag_template_filename = 'include/dag-template.py'
+config_filepath = "include/dag-config/"
+dag_template_filename = "include/dag-template.py"
 
 for filename in os.listdir(config_filepath):
     with open(config_filepath + filename) as f:
         config = json.load(f)
-        new_filename = 'dags/' + config['DagId'] + '.py'
+        new_filename = "dags/" + config["DagId"] + ".py"
         shutil.copyfile(dag_template_filename, new_filename)
 
         with fileinput.input(new_filename, inplace=True) as file:
             for line in file:
-                new_line = line.replace('dag_id', "'" + config['DagId'] + "'")\
-                    .replace('scheduletoreplace', config['Schedule'])\
-                    .replace('querytoreplace', config['Query'])
-                print(new_line, end='')
-
+                new_line = (
+                    line.replace("dag_id", "'" + config["DagId"] + "'")
+                    .replace("scheduletoreplace", config["Schedule"])
+                    .replace("querytoreplace", config["Query"])
+                )
+                print(new_line, end="")
 ```
 
 To generate your DAG files, you can either run this script on demand or as part of your CI/CD workflow. After running the script, your final directory will appear similar to the example below, where the `include/` directory contains the files from the previous example, and the `dags/` directory contains the two dynamically generated DAGs:
@@ -351,22 +207,89 @@ To generate your DAG files, you can either run this script on demand or as part 
 
 This is a straightforward example that works only if all of the DAGs follow the same pattern. However, it could be expanded upon to have dynamic inputs for tasks, dependencies, different operators, and so on.
 
-## DAG factory
+## Tools for dynamically creating DAGs
 
-A notable tool for dynamically creating DAGs from the community is [dag-factory](https://github.com/ajbosco/dag-factory). `dag-factory` is an open source Python library for dynamically generating Airflow DAGs from YAML files.
+### gusty
 
-To use `dag-factory`, you can install the package in your Airflow environment and create YAML configuration files for generating your DAGs. You can then build the DAGs by calling the `dag-factory.generate_dags()` method in a Python script. The following example was taken from the `dag-factory` README:
+A popular tool for dynamically creating DAGs is [gusty](https://github.com/chriscardillo/gusty). gusty is an open source Python library for dynamically generating Airflow DAGs. Tasks can be created from YAML, Python, SQL, R Markdown, and Jupyter Notebooks.
+
+You can install gusty in your Airflow environment by running `pip install gusty` from your command line. If you use the Astro CLI, you can alternatively add `gusty` to your Astro project `requirements.txt` file. 
+
+To use gusty, create a new directory in your `dags` folder that will contain all gusty DAGs. Subdirectories of this folder will define DAGs, while nested subdirectories will define task groups within their respective DAGs.
+
+The following file structure will lead to the creation of 2 DAGs from the contents of the `my_gusty_dags` directory. `my_dag_1` contains two tasks each defined in their own YAML file. `my_dag_2` contains one task, `task_0`, defined from a YAML file, as well as the two task groups `my_task_group_1` and `my_task_group_2`, containing two tasks each. The latter task group contains two tasks defined from SQL files.
+
+```text
+.
+└── dags
+    ├── my_gusty_dags
+    │   ├── my_dag_1
+    │   │   ├── METADATA.yml
+    │   │   ├── task_1.yaml
+    │   │   └── task_2.yaml
+    │   └── my_dag_2
+    │       ├── METADATA.yml
+    │       ├── task_0.yaml
+    │       ├── my_taskgroup_1
+    │       │   ├── task_1.yaml
+    │       │   └── task_2.yaml
+    │       └── my_taskgroup_2
+    │           ├── task_3.sql
+    │           └── task_4.sql
+    ├── creating_gusty_dags.py
+    └── my_regular_dag.py
+```
+
+To create DAGs from the `my_gusty_dags` directory, you need a Python script that calls gusty's `create_dags` function. In this example, a script called `creating_gusty_dags.py` in the project's `dags` directory contains the following code.
 
 ```python
-from airflow import DAG
-import dagfactory
+from gusty import create_dags
 
-dag_factory = dagfactory.DagFactory("/path/to/dags/config_file.yml")
-
-dag_factory.clean_dags(globals())
-dag_factory.generate_dags(globals())
-
+dag = create_dags(
+    # provide the path to your gusty DAGs directory
+    '/usr/local/airflow/dags/my_gusty_dags',
+    # provide the namespace for gusty to use
+    globals(),
+    # By default, gusty places a LatestOnlyOperator at the root of the DAG.
+    # We can disable this behavior by setting latest_only=False
+    latest_only=False
+)
 ```
+
+DAG-level parameters can be defined in the `METADATA.yml` file:
+
+```yaml
+description: "An example of a DAG created using gusty!"
+schedule_interval: "1 0 * * *"
+default_args:
+    owner: airflow
+    depends_on_past: False
+    start_date: !days_ago 1
+    email: airflow@example.com
+    email_on_failure: False
+    email_on_retry: False
+    retries: 1
+    retry_delay: !timedelta 'minutes: 5'
+```
+
+Tasks can be defined in YAML for any standard and custom Airflow operator. The example below shows how to use gusty to define a BashOperator task in YAML. The `dependencies` parameter was set to make this task dependent on `task_1` having completed successfully.
+
+```yaml
+operator: airflow.operators.bash.BashOperator
+bash_command: echo $MY_ENV_VAR
+dependencies:
+  - task_1
+env:
+    MY_ENV_VAR: "Hello!"
+```
+
+Note that to use gusty-generated DAGs and standard DAGs in the same Airflow environment, ensure that your standard DAGs are in your `dags` directory outside of the `my_gusty_dags` folder.
+
+Learn more about gusty features in the [repository README](https://github.com/chriscardillo/gusty/blob/main/README.md). Additionally, you can explore two fully functional gusty environments: The [gusty-demo](https://github.com/chriscardillo/gusty-demo) and the [gusty-demo-lite](https://github.com/chriscardillo/gusty-demo-lite).
+
+### dag-factory
+
+Another open source tool for dynamic DAG generation is [dag-factory](https://github.com/ajbosco/dag-factory). The `dag-factory` package allows users to create DAGs from YAML files which contain both DAG and task-level parameters, removing the necessity to know about Airflow specific syntax. For examples of how to use dag-factory see their [GitHub repository](https://github.com/ajbosco/dag-factory/tree/master/examples).
 
 ## Scalability
 

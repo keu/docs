@@ -41,7 +41,6 @@ module.exports = {
         ],
       },
       'deploy-cli',
-      'cli-podman',
       'upgrade-astro-cli',
     ],
     },
@@ -100,6 +99,7 @@ module.exports = {
           'grafana-metrics',
           'kibana-logging',
           'platform-alerts',
+          'task-usage-metrics',
           'logs-to-s3',
           'export-task-logs',
           ],
@@ -140,18 +140,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Astronomer Certified',
-      items: [
-      'image-architecture',
-      'single-node-install',
-      'install-packages',
-      'upgrade-ac',
-      'ac-cve',
-      'ac-support-policy',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Astro Runtime',
       items: [
       'runtime-image-architecture',
@@ -177,8 +165,12 @@ module.exports = {
         type: 'link',
         label: 'Astro CLI',
         href: 'https://docs.astronomer.io/astro/cli/release-notes',
-     },
-      'runtime-release-notes',
+      },
+      {
+        type: 'link',
+        label: 'Astro Runtime',
+        href: 'https://docs.astronomer.io/astro/runtime-release-notes',
+      },
     ],
     },
     {

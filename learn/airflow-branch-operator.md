@@ -32,10 +32,10 @@ In the following example we use a `choose_branch` function that returns one set 
 
 <Tabs
     defaultValue="taskflow"
-    groupId= "operator-use-example"
+    groupId="taskbranch-branchpythonoperator"
     values={[
         {label: 'TaskFlow API', value: 'taskflow'},
-        {label: 'Traditional Operator', value: 'traditional'},
+        {label: 'Traditional syntax', value: 'traditional'},
     ]}>
 
 <TabItem value="taskflow">
@@ -80,10 +80,10 @@ The code below shows a full example of how to use `@task.branch` in a DAG:
 
 <Tabs
     defaultValue="taskflow"
-    groupId= "example-branch"
+    groupId= "taskbranch-branchpythonoperator"
     values={[
         {label: 'TaskFlow API', value: 'taskflow'},
-        {label: 'Traditional Operators', value: 'traditional'},
+        {label: 'Traditional syntax', value: 'traditional'},
     ]}>
 
 <TabItem value="taskflow">
@@ -208,7 +208,7 @@ Finally, note that with the `@task.branch` decorator your Python function *must*
 
 :::info
 
-More examples using the `@task.branch` decorator, can be found on the [Astronomer Registry](https://registry.astronomer.io/dags/example-branch-python-dop-operator-3).
+More examples using the `@task.branch` decorator, can be found on the [Astronomer Registry](https://legacy.registry.astronomer.io/dags/example-branch-python-dop-operator-3).
 
 :::
 
@@ -222,10 +222,10 @@ The following DAG shows an example of how to implement `@task.short_circuit`:
 
 <Tabs
     defaultValue="taskflow"
-    groupId= "example-short-circuit"
+    groupId= "taskshort_circuit-shortcircuitoperator"
     values={[
         {label: 'TaskFlow API', value: 'taskflow'},
-        {label: 'Traditional Operators', value: 'traditional'},
+        {label: 'Traditional syntax', value: 'traditional'},
     ]}>
 
 <TabItem value="taskflow">
@@ -312,7 +312,7 @@ In this DAG there are two short circuits, one which always returns `True` and on
 
 :::info
 
-Another example using the ShortCircuitOperator, can be found on the [Astronomer Registry](https://registry.astronomer.io/dags/example-short-circuit-operator).
+Another example using the ShortCircuitOperator, can be found on the [Astronomer Registry](https://legacy.registry.astronomer.io/dags/example-short-circuit-operator).
 
 :::
 
@@ -320,7 +320,7 @@ Another example using the ShortCircuitOperator, can be found on the [Astronomer 
 
 Airflow offers a few other branching operators that work similarly to the BranchPythonOperator but for more specific contexts: 
 
-- [BranchSQLOperator](https://registry.astronomer.io/providers/apache-airflow/modules/branchsqloperator): Branches based on whether a given SQL query returns `true` or `false`.
+- [BranchSQLOperator](https://registry.astronomer.io/providers/apache-airflow-providers-common-sql/modules/branchsqloperator): Branches based on whether a given SQL query returns `true` or `false`.
 - [BranchDayOfWeekOperator](https://registry.astronomer.io/providers/apache-airflow/modules/branchdayofweekoperator): Branches based on whether the current day of week is equal to a given `week_day` parameter.
 - [BranchDateTimeOperator](https://registry.astronomer.io/providers/apache-airflow/modules/branchdatetimeoperator): Branches based on whether the current time is between `target_lower` and `target_upper` times.
 

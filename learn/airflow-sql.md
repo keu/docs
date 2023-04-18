@@ -9,6 +9,15 @@ sidebar_label: "Run SQL"
   <meta name="og:description" content="Learn the best practices for executing SQL from your DAG. Get to know Airflow’s SQL-related operators and see how to use Airflow for common SQL use cases." />
 </head>
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import CodeBlock from '@theme/CodeBlock';
+import call_snowflake_sprocs from '!!raw-loader!../code-samples/dags/airflow-sql/call_snowflake_sprocs.py';
+import parameterized_query_dag from '!!raw-loader!../code-samples/dags/airflow-sql/parameterized_query_dag.py';
+import cat_data_s3_to_snowflake_decorators_dag from '!!raw-loader!../code-samples/dags/airflow-sql/cat_data_s3_to_snowflake_decorators_dag.py';
+import cat_data_s3_to_snowflake_traditional_dag from '!!raw-loader!../code-samples/dags/airflow-sql/cat_data_s3_to_snowflake_traditional_dag.py';
+
 
 Executing SQL queries is one of the most common use cases for data pipelines. Whether you're extracting and loading data, calling a stored procedure, or executing a complex query for a report, Airflow has you covered. Using Airflow, you can orchestrate all of your SQL tasks elegantly with just a few lines of boilerplate code.
 
@@ -100,42 +109,7 @@ In this first example, a DAG executes two simple interdependent queries using [S
 
 First you need to define your DAG:
 
-```python
-from airflow import DAG
-from airflow.contrib.operators.snowflake_operator import SnowflakeOperator
-from datetime import datetime, timedelta
-
-default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5)
-}
-
-with DAG('call_snowflake_sprocs',
-         start_date=datetime(2020, 6, 1),
-         max_active_runs=3,
-         schedule='@daily',
-         default_args=default_args,
-         template_searchpath='/usr/local/airflow/include',
-         catchup=False
-         ) as dag:
-
-         opr_call_sproc1 = SnowflakeOperator(
-             task_id='call_sproc1',
-             snowflake_conn_id='snowflake',
-             sql='call-sproc1.sql'
-         )
-         opr_call_sproc2 = SnowflakeOperator(
-             task_id='call_sproc2',
-             snowflake_conn_id='snowflake',
-             sql='call-sproc2.sql'
-         )
-
-         opr_call_sproc1 >> opr_call_sproc2
-```
+<CodeBlock language="python">{call_snowflake_sprocs}</CodeBlock>
 
 The `template_searchpath` argument in the DAG definition tells the DAG to look in the given folder for scripts, so you can now add two SQL scripts to your project. In this example, those scripts are `call-sproc1.sql` and c`all-sproc2.sql`, which contain the following SQL code respectively:
 
@@ -163,35 +137,7 @@ Using Airflow, you can also parameterize your SQL queries to make them more dyna
 
 Your DAG will look like the following:
 
-```python
-from airflow import DAG
-from airflow.contrib.operators.snowflake_operator import SnowflakeOperator
-from datetime import datetime, timedelta
-
-default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=1)
-}
-
-with DAG('parameterized_query',
-         start_date=datetime(2020, 6, 1),
-         max_active_runs=3,
-         schedule='@daily',
-         default_args=default_args,
-         template_searchpath='/usr/local/airflow/include',
-         catchup=False
-         ) as dag:
-
-         opr_param_query = SnowflakeOperator(
-             task_id='param_query',
-             snowflake_conn_id='snowflake',
-             sql='param-query.sql'
-         )
-```
+<CodeBlock language="python">{parameterized_query_dag}</CodeBlock>
 
 The DAG is essentially the same that you used in Example 1. The difference is in the query itself:
 
@@ -217,11 +163,11 @@ If you need a parameter that is not available as a built-in variable or a macro,
 
 ```python
 opr_param_query = SnowflakeOperator(
-             task_id='param_query',
-             snowflake_conn_id='snowflake',
-             sql='param-query.sql',
-			 params={"date":mydatevariable}
-         )
+    task_id="param_query",
+    snowflake_conn_id="snowflake",
+    sql="param-query.sql",
+	params={"date":mydatevariable}
+)
 ```
 
 And then reference that param in your SQL file:
@@ -240,68 +186,26 @@ This example uses the [S3toSnowflakeOperator](https://registry.astronomer.io/pro
 
 First, create a DAG that pulls cat facts from an [API endpoint](http://catfact.ninja/fact), saves the data to comma-separated values (CSVs) on S3, and loads each of those CSVs to Snowflake using the transfer operator. Here's the DAG code:
 
-```python
-from datetime import datetime, timedelta
+<Tabs
+    defaultValue="taskflow"
+    groupId= "example-3-load-data"
+    values={[
+        {label: 'TaskFlow API', value: 'taskflow'},
+        {label: 'Traditional syntax', value: 'traditional'},
+    ]}>
 
-import requests
-from airflow import DAG
-from airflow.operators.empty import EmptyOperator
-from airflow.operators.python import PythonOperator
-from airflow.providers.amazon.aws.hooks.s3 import S3Hook
-from airflow.providers.snowflake.transfers.s3_to_snowflake import S3ToSnowflakeOperator
+<TabItem value="taskflow">
 
-S3_CONN_ID = 'astro-s3-workshop'
-BUCKET = 'astro-workshop-bucket'
-name = 'cat_data'  # swap your name here
+<CodeBlock language="python">{cat_data_s3_to_snowflake_decorators_dag}</CodeBlock>
 
-def upload_to_s3(cat_fact_number):
-    # Instantiate
-    s3_hook = S3Hook(aws_conn_id=S3_CONN_ID)
+</TabItem>
 
-    # Base URL
-    url = 'http://catfact.ninja/fact'
+<TabItem value="traditional">
 
-    # Grab data
-    res = requests.get(url)
+<CodeBlock language="python">{cat_data_s3_to_snowflake_traditional_dag}</CodeBlock>
 
-    # Take string, upload to S3 using predefined method
-    s3_hook.load_string(res.text, 'cat_fact_{0}.csv'.format(cat_fact_number), bucket_name=BUCKET, replace=True)
-
-
-number_of_cat_facts = 3
-
-with DAG('cat_data_s3_to_snowflake',
-         start_date=datetime(2020, 6, 1),
-         max_active_runs=3,
-         schedule='@daily',
-         default_args={
-            'retries': 1,
-            'retry_delay': timedelta(minutes=5)
-        },
-         catchup=False
-         ) as dag:
-
-    t0 = EmptyOperator(task_id='start')   
-
-    for i in range(number_of_cat_facts):
-        generate_files = PythonOperator(
-            task_id='generate_file_{0}'.format(i),
-            python_callable=upload_to_s3,
-            op_kwargs={'cat_fact_number': i}
-        )
-
-        snowflake = S3ToSnowflakeOperator(
-            task_id='upload_{0}_snowflake'.format(i),
-            s3_keys=['cat_fact_{0}.csv'.format(i)],
-            stage='cat_stage',
-            table='CAT_DATA',
-            schema='SANDBOX_KENTEND',
-            file_format='cat_csv',
-            snowflake_conn_id='snowflake'
-        )
-
-        t0 >> generate_files >> snowflake
-```
+</TabItem>
+</Tabs>
 
 This image shows a graph view of the DAG:
 
@@ -321,47 +225,48 @@ After this setup, you're ready to run the DAG!
 
 Note that while this example is specific to Snowflake, the concepts apply to any database you might be using. If a transfer operator doesn't exist for your specific source and destination tools, you can always write your own (and maybe contribute it back to the Airflow project)!
 
-### Example 4 - Use dag-factory
+### Example 4: Use gusty
 
-If you're unfamiliar with Airflow or Python, you can use [dag-factory](https://github.com/ajbosco/dag-factory) to generate DAGs using a YAML configuration file.
+If you're unfamiliar with Airflow or Python, you can use [gusty](https://github.com/chriscardillo/gusty) to generate DAGs directly from your SQL code.
 
-Once you've installed dag-factory in your Airflow environment, you can add your SQL query tasks to a YAML configuration file and add this to your project's `include/` directory:
+You can install gusty in your Airflow environment by running `pip install gusty` from your command line. If you use the Astro CLI, you can alternatively add `gusty` to your Astro project `requirements.txt` file. 
 
-```yaml
-dag_factory_query:
-  default_args:
-    owner: 'example_owner'
-    start_date: 2020-12-02
-    retries: 1
-    retry_delay_sec: 300
-  schedule: '0 3 * * *'
-  concurrency: 1
-  max_active_runs: 1
-  dagrun_timeout_sec: 60
-  default_view: 'tree'  # or 'graph', 'duration', 'gantt', 'landing_times'
-  orientation: 'LR'  # or 'TB', 'RL', 'BT'
-  tasks:
-    task_1:
-      operator: airflow.contrib.operators.snowflake_operator.SnowflakeOperator
-      snowflake_conn_id: 'snowflake'
-      sql: 'SELECT * FROM STATE_DATA'
+Once you've installed gusty in your Airflow environment, you can turn your SQL files into Airflow tasks by adding YAML instructions to the front matter your SQL file. The front matter is the section at the top of the SQL file enclosed in `---`.
+
+The example below shows how to turn a simple SQL statement into an Airflow task using the [PostgresOperator](https://registry.astronomer.io/providers/postgres/modules/postgresoperator) with the `postgres_default` connection ID. This SQL file `task_1.sql` defines a task that will only run once `task_0` of the same DAG has completed successfully.
+
+```SQL
+---
+operator: airflow.providers.postgres.operators.postgres.PostgresOperator
+conn_id: postgres_default
+dependencies: 
+    - task_0
+---
+
+SELECT column_1
+FROM table_2;
 ```
 
-Then, create a DAG file:
+Add your modified SQL files within a gusty directory structure:
 
-```python
-from airflow import DAG
-import dagfactory
-
-dag_factory = dagfactory.DagFactory("/usr/local/airflow/include/config_file.yml")
-
-dag_factory.clean_dags(globals())
-dag_factory.generate_dags(globals())
+```text
+.
+└── dags
+    ├── my_gusty_dags
+    │   ├── my_dag_1
+    │   │   ├── METADATA.yml
+    │   │   ├── task_0.sql
+    │   │   └── task_1.sql
+    └── creating_gusty_dags.py
 ```
 
-Once you Deploy it, the DAG will show a single task the Airflow UI:
+The rendered `my_dag_1` DAG will contain two tasks defined as SQL files:
 
-![DAG Factory Graph](/img/guides/dag_factory_graph_view.png)
+![gusty graph](/img/guides/gusty_simple_postgres.png)
+
+See [`METADATA.yml`](https://github.com/chriscardillo/gusty#metadata) and [`creating_gusty_dags.py`](https://github.com/chriscardillo/gusty#create_dags) in the gusty documentation for example configurations.
+
+Note that by default, gusty will add a [LatestOnlyOperator](https://registry.astronomer.io/providers/apache-airflow/modules/latestonlyoperator) to the root of your DAG. You can disable this behavior by passing `latest_only=False` to the `create_dags` function, or setting `latest_only: False` in the `METADATA.yml`.
 
 ## Next steps
 

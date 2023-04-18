@@ -17,6 +17,94 @@ id: release-notes
 
 This document provides a summary of all changes made to the [Astro CLI](cli/overview.md). For general product release notes, go to [Astro Release Notes](release-notes.md). If you have any questions or a bug to report, contact [Astronomer support](https://cloud.astronomer.io/support).
 
+## Astro CLI 1.13.2
+
+Release date: April 11, 2023
+
+### Bug fixes
+
+- Fixed an issue where the CLI added the `dags` folder to `.dockerignore` whenever an image build was interrupted, resulting in DAGs not being deployed on the next image build.
+
+## Astro CLI 1.13.0
+
+Release date: March 30, 2023
+
+:::caution
+
+The command `astro user invite` will be deprecated in Astro CLI v1.15.0. Any use of this command in your projects or automation needs to be updated to [`astro organization user invite`](/cli/astro-organization-user-invite.md) before Astro CLI v1.15.0 is released.
+
+:::
+
+### New flag `--clean-output` for Deployment commands
+
+You can now use the `-—clean-output` flag with the following commands to make sure that any output comes only from the command itself. 
+- `astro deployment inspect`
+- `astro deployment create`
+- `astro deployment update`
+
+This is helpful for users automating actions with deployment files, like using the Deploy Action template with [Github Actions](/astro/ci-cd.md#github-actions).
+
+### New environment variable `ASTRO_HOME`
+
+The new environment variable `ASTRO_HOME` allows you to change the directory where the Astro CLI stores its global config file. This can be useful in environments where the CLI doesn’t have access to the HOME directory.
+
+### Additional improvements
+
+- The command `astro login` won’t ask for email input in the command line anymore. You can now provide your email address in the browser when you log in.
+
+
+## Astro CLI 1.12.1
+
+Release date: March 22, 2023
+
+### Bug fixes 
+
+- Fixed an issue where you couldn't authenticate to the Astro from the Astro CLI using single sign-on (SSO).
+
+## Astro CLI 1.12.0
+
+Release date: March 22, 2023
+
+### Additional improvements
+
+- You can now expose your local Airflow webserver and postgres database to all networks you're connected to using the following command:
+
+    ```sh
+    astro config set airflow.expose_port true
+    ```
+
+- When you trigger a DAG deploy to Astro, the CLI now includes the name of the DAG bundle version that it pushed. You can use this name to verify that your Deployment uses the correct version of your DAGs after a deploy.
+- If you add the environment variable `ASTRO_API_TOKEN=<workspace-api-token>` to your environment, the Astro CLI will use the specified Workspace API token to perform Workspace and Deployment actions without requiring you to log in. 
+- You can now disable [`astro run`](cli/astro-run.md) commands and exclude `astro-run-dag` from any images built by the CLI using the following command:
+
+    ```sh
+    astro config set disable_astro_run true
+    ```
+  
+- In new Astro projects, `requirements.txt` now includes a commented list of the pre-installed provider packages on Astro Runtime. 
+
+### Bug fixes
+
+- Fixed an issue where the default DAG integrity test would sometimes generate an error for valid uses of `os.getenv(key,default)`.
+- Fixed bugs in the default Astro project DAGs.
+
+## Astro CLI 1.11.0
+
+Release date: February 27, 2023
+
+### Support for Podman
+
+You can now configure the Astro CLI to run Airflow locally and deploy to Astro using [Podman](https://podman.io/). Podman is an alternative container engine to Docker that doesn't require root access and orchestrates containers without using a centralized daemon.
+
+To configure the Astro CLI to use Podman, see [Run the Astro CLI using Podman](configure-cli.md#run-the-astro-cli-using-podman).
+
+### Bug fixes 
+
+- Fixed an issue where you couldn't run Astro CLI commands with a Deployment API key if you logged out of your personal account using `astro logout`.
+- Fixed an issue where you couldn't set the minimum worker count for a worker queue to zero.
+- Fixed an issue where running `astro deploy` would not return an error when you specified a Deployment name that didn't exist.
+- Fixed an issue where you could not update a Deployment with a file using a Deployment API key.
+
 ## Astro CLI 1.10.0
 
 Release date: February 2, 2023
@@ -39,7 +127,7 @@ To help you manage users in your Organization, Astro CLI 1.10.0 includes the fol
 
 :::
 
-For more information, see the [`astro organization`](cli/astro-organization.md) and [`astro workspace`](cli/astro-workspace.md) command references.
+For more information, see the [`astro organization`](cli/astro-organization-user-invite.md) and [`astro workspace`](cli/astro-workspace-user-add.md) command references.
 
 ## Astro CLI 1.9.0
 
@@ -254,7 +342,7 @@ For more information, see the [CLI command reference](cli/astro-dev-bash.md).
 
 You can invite new users to an Astro Organization with the new `astro user invite` command. Previously, you could only invite users to Astro with the Cloud UI.
 
-For more information, see the [CLI command reference](cli/astro-user-invite.md).
+For more information, see the [CLI command reference](cli/astro-organization-user-invite.md).
 
 ### Additional improvements
 
@@ -294,7 +382,7 @@ For more information about this command, see the [CLI command reference](cli/ast
 By default, `astro deploy` automatically parses the DAGs in your Astro project for syntax and import errors. To develop more quickly, you can now configure the Astro CLI to automatically skip parsing DAGs before a deploy by updating one of the following configurations:
 
 - Add `skip_parse: true` to your `.astro/config.yaml` file.
-- Add `ASTRONOMER_SKIP_PARSE=true` as en environment variable to your local environment or CI/CD pipeline.
+- Add `ASTRONOMER_SKIP_PARSE=true` as an environment variable to your local environment or CI/CD pipeline.
 
 For more information on parsing DAGs, see [Parse DAGs](test-and-troubleshoot-locally.md#parse-dags). For more information about deploying to Astro, see [Deploy code](deploy-code.md).
 ### Additional improvements
@@ -604,7 +692,7 @@ For users making quick and continuous changes to an Astro project locally, the A
 
 ### Support for the triggerer in local Airflow environments
 
-The Astro CLI now supports the Apache Airflow [triggerer component](https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html?) in a local environment. This means that you can test DAGs that use [deferrable operators](https://docs.astronomer.io/learn/deferrable-operators) locally before pushing them to a Deployment on Astronomer. Additionally, triggerer logs appear alongside webserver and scheduler logs when you run `astro dev logs`.
+The Astro CLI now supports the Apache Airflow [triggerer component](https://airflow.apache.org/docs/apache-airflow/stable/authoring-and-scheduling/deferring.html?) in a local environment. This means that you can test DAGs that use [deferrable operators](https://docs.astronomer.io/learn/deferrable-operators) locally before pushing them to a Deployment on Astronomer. Additionally, triggerer logs appear alongside webserver and scheduler logs when you run `astro dev logs`.
 
 The triggerer will only be created in local environments running Astro Runtime 4.0.0+.
 
