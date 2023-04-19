@@ -17,6 +17,20 @@ id: release-notes
 
 This document provides a summary of all changes made to the [Astro CLI](cli/overview.md). For general product release notes, go to [Astro Release Notes](release-notes.md). If you have any questions or a bug to report, contact [Astronomer support](https://cloud.astronomer.io/support).
 
+## Astro CLI 1.14.0
+
+Release date: April 18, 2023
+
+### New commands to manage Astro Workspaces
+
+You can now manage Astro Workspaces from the Astro CLI using the following new commands:
+
+- [`astro workspace create`](cli/astro-workspace-create.md)
+- [`astro workspace update`](cli/astro-workspace-update.md)
+- [`astro workspace delete`](cli/astro-workspace-delete.md)
+
+To automate Workspace management, you can run these commands using a [Workspace API token](workspace-api-tokens.md).
+
 ## Astro CLI 1.13.2
 
 Release date: April 11, 2023
