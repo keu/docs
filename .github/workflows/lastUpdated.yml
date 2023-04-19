@@ -12,7 +12,7 @@ jobs:
     - name: Install ack
       run: sudo apt-get install ack
     - name: Run build script
-      run: lastUpdated.sh
+      run: ./lastUpdated.sh
       shell: bash
     - uses: EndBug/add-and-commit@v9
       with:
