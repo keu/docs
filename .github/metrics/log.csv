@@ -1,4 +1,5 @@
 commit, age, hash, filename
+<<<<<<< HEAD
 1656452350,10 months ago,e59e45bc,astro/gdpr-compliance.md
 1656452350,10 months ago,e59e45bc,software/kubectl.md
 1657192238,10 months ago,9ef0ed5f,software/configure-platform-resources.md
@@ -274,3 +275,5 @@ commit, age, hash, filename
 1681835190,19 hours ago,699d0f75,astro/configure-idp.md
 1681835190,19 hours ago,699d0f75,astro/manage-domains.md
 1681835190,19 hours ago,699d0f75,astro/release-notes.md
+=======
+>>>>>>> 283cebe981d3c85971619d8abc938acf2c0ea64f
