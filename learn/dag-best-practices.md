@@ -124,6 +124,7 @@ The version shown under the **Good practice** DAG wraps the connection to the da
 </TabItem>
 </Tabs>
 
+When the scheduler parses this DAG, it will use the `hook` and `result` variables to query the `grocery_list` table to construct the operators in the DAG. This query is run on every Scheduler heartbeat, which can cause performance issues. A better implementation leverages [dynamic task mapping](dynamic-tasks.md) to have a task that gets the required information from the `grocery_list` table and dynamically maps downstream tasks based on the result. Dynamic task mapping is available in Airflow 2.3 and later.
 
 ### Treat your DAG file like a config file
 
