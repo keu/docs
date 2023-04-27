@@ -240,9 +240,9 @@ If your current usage is expected and higher than the default resource limits, u
 
 ### Upgrade to Astronomer Software 0.30
 
-#### Running the 0.30 upgrade script with --no-hooks
+#### Do not run the 0.30 upgrade script with --no-hooks
 
-Using the `--no-hooks` flag in [Step 7](#step-7-run-astronomers-upgrade-script) results in the upgrade script skipping a necessary database migration job. Because of this, you should not specify this flag when running the upgrade script.
+Using the `--no-hooks` flag in [Step 7](#step-7-run-astronomers-upgrade-script) results in the upgrade script skipping a necessary database migration job. For almost all use cases, you should not specify this flag when upgrading to 0.30.
 
 If you do specify the `--no-hooks` flag, the upgrade script will return a success message even though it failed, resulting in broken behavior in your upgraded environment.
 
