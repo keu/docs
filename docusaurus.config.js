@@ -111,7 +111,7 @@ module.exports = {
         },
         {
           label: '0.31',
-          to: '/software/',
+          to: '/software/0.31/',
           activeBaseRegex: '(software\/0.31)+',
         },
         {
