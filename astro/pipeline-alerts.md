@@ -1,6 +1,6 @@
 ---
-sidebar_label: 'Pipeline Alerts'
-title: 'Set up pipeline alerts (Private Preview)'
+sidebar_label: 'Astro Alerts'
+title: 'Set up DAG and task alerts on Astro'
 id: pipeline-alerts
 toc_main_heading_level: 2
 ---
@@ -9,11 +9,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {siteVariables} from '@site/src/versions';
 
-:::caution
-This feature is in [Private Preview](https://docs.astronomer.io/astro/feature-previews).
-:::
-
-You can configure your Deployments to alert you in Slack or PagerDuty if you have a DAG run failure or if a task duration exceeds a specified time. 
+With the alerting functionality in Astro, you can configure your Deployments to alert you in Slack or PagerDuty if you have a DAG run failure or if a task duration exceeds a specified time. 
 
 Follow this guide to set up your Slack or PagerDuty to receive alerts from Astro and then configure your Deployment to send alerts in certain circumstances.
 
