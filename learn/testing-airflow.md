@@ -117,7 +117,7 @@ def test_dag_tags(dag_id, dag, fileloc):
 
 :::tip
 
-You can view the attributes and methods available for the `dag` model in the [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/_api/airflow/models/dag/index.html).
+You can view the attributes and methods available for the `dag` model in the [Airflow documentation](https://airflow.apache.org/docs/apache-airflow/stable/stable-rest-api-ref.html#tag/DAG).
 
 :::
 
