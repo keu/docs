@@ -109,6 +109,7 @@ module.exports = {
           items: ["set-up-data-lineage", "data-lineage"],
         },
         "airflow-alerts",
+        "pipeline-alerts",
       ],
     },
     {
