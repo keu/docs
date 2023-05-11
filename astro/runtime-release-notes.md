@@ -24,10 +24,29 @@ Astro Runtime is a Docker image built and published by Astronomer that extends t
 
 To upgrade Astro Runtime, see [Upgrade Astro Runtime](upgrade-runtime.md). For general product release notes, see [Astro Release Notes](release-notes.md). If you have any questions or a bug to report, contact [Astronomer support](https://cloud.astronomer.io/support).
 
+## Astro Runtime 8.1.0
+
+- Release date: May 9, 2023
+- Airflow version: 2.6.0
+
+### Early access Airflow bug fixes
+
+- Ensure the KPO runs pod mutation hooks correctly ([31173](https://github.com/apache/airflow/pull/31173))
+
+### Additional improvements
+
+- Upgraded `astro-sdk` to 1.6, which includes Astro Python SDK support for MySQL. For a complete list of changes, see the [Astro SDK changelog](https://github.com/astronomer/astro-sdk/blob/main/python-sdk/docs/CHANGELOG.md#160).
+
 ## Astro Runtime 8.0.0
 
 - Release date: April 30, 2023
 - Airflow version: 2.6.0
+
+:::warning Breaking change
+
+Runtime 8 includes changes that can result in DAGs running differently after upgrading. See [Runtime upgrade considerations](upgrade-runtime.md#runtime-8-airflow-26) before upgrading.
+
+:::
 
 ### Airflow 2.6
 
@@ -41,12 +60,6 @@ To learn more, see the [Apache Airflow 2.6.0 release notes](https://airflow.apac
 
 ### Fewer dependencies installed by default
 
-:::warning Breaking change
-
-This change can result in DAGs working differently after upgrading. See [Runtime upgrade considerations](upgrade-runtime.md#runtime-8-airflow-26) before upgrading.
-
-:::
-
 Astro Runtime now includes fewer default dependencies to save on memory usage. The following provider packages are no longer installed by default:
 
 - `apache-airflow-providers-apache-hive`
@@ -56,12 +69,16 @@ Astro Runtime now includes fewer default dependencies to save on memory usage. T
 - `apache-airflow-providers-microsoft-mssql`
 - `apache-airflow-providers-sftp`
 - `apache-airflow-providers-snowflake`
+- `apache-airflow-providers-ssh`
 
 If your DAGs use any of these providers, ensure that the provider packages are listed in your Astro project `requirements.txt` file before upgrading. 
 
+### Upgrade to Python 3.10
+
+Astro Runtime now uses Python 3.10 by default. To continue using Python 3.9, see [Python versioning](runtime-image-architecture.md#python-versioning).
+
 ### Additional improvements
 
-- Upgraded to Python 3.10. to continue using Python 3.9, see [Python versioning](runtime-image-architecture.md#python-versioning)
 - Upgraded `astronomer-providers` to 1.15.4, which includes a bug fix for a backwards compatibility issue. See the [`astronomer-providers` changelog](https://github.com/astronomer/astronomer-providers/blob/main/CHANGELOG.rst#1154-2023-04-19) for a complete list of changes. 
 - Upgraded `openlineage-airflow` to 0.23.0, which includes support for dbt snapshots and support for parsing additional SQL commands. See the [OpenLineage changelog](https://github.com/OpenLineage/OpenLineage/blob/main/CHANGELOG.md#0230---2023-4-20) for a complete list of changes.
 
