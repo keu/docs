@@ -76,6 +76,7 @@ def get_api_token() -> str:
 
 </TabItem>
 </Tabs>
+
 :::info
 
 The token is only valid for 24 hours. If you need to call the Airflow API only once, you can retrieve a single 24-hour access token at `https://cloud.astronomer.io/token` in the Cloud UI.
