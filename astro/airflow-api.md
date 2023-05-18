@@ -31,7 +31,7 @@ Updates to the Airflow REST API are released in new Airflow versions and new rel
 
 ## Step 1: Retrieve your access token
 
-<Tabs groupId="retrieve-an-access-token">
+<Tabs groupId="step-1-retrieve-your-access-token">
 
 <TabItem value="workspace" label="Using Workspace API (Recommended)">
 
