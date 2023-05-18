@@ -36,7 +36,7 @@ You can either create a new Workspace API token or add an existing Organization 
 6. Copy the token and store it in a safe place. You will not be able to retrieve this value from Astro again. 
 
 
-### Grant access to Organization API token for a Workspace
+### Add an Organization API token to a Workspace
 
 1. In the Cloud UI, open your Workspace.
    
