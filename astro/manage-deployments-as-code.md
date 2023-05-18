@@ -117,7 +117,7 @@ A Deployment file is a complete snapshot of an existing Deployment at the point 
 
 ### Generate a deployment file 
 
-You can generate a deployment file with the current configurations for a Deployment using Astro CLI. This deployment file can be then be checked-in to a version control system like GitHub for tracking the changes and can be used as part of the CI/CD process to apply changes to a Deployment. To generate a deployment file, run the following command:
+You can generate a Deployment file with the current configurations for a Deployment using the Astro CLI. This Deployment file can be then be stored in a repository can be used in a CI/CD process to apply changes to a Deployment. To generate a deployment file, run the following command:
 
   ```bash
   astro deployment inspect -n my-deployment-name > my-deployment-file.yaml
