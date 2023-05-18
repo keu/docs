@@ -22,7 +22,7 @@ You might want to create or update Deployments programmatically in the following
 | You want to use automation to make modifications to existing Deployments | [Update your Deployment file](#update-a-deployment-using-a-deployment-file) and apply the configuration using the Astro CLI | 
 
 
-For more details about each section of configuration file, refer to [Deployment file reference](#deployment-file-reference).
+For more details about each available setting in the configuration file, refer to the [Deployment file reference](#deployment-file-reference).
 
 ## Prerequisites
 
