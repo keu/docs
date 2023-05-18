@@ -81,7 +81,7 @@ You can create a Deployment according to the configurations specified in a given
 - When creating a new worker queue, the `name` and `worker_type` fields are required.
 - When creating environment variables in the template file, each variable must include a `key` and a `value` in the `environment_variables` section.
 
-After you update the exsiting template file, you can create a new Deployment as below:
+After you update the exsiting template file, you can create a new Deployment using the Astro CLI
 
 1. Run:
 
