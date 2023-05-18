@@ -85,9 +85,7 @@ Rotating a Workspace API token lets you renew a token without needing to reconfi
 
 When you rotate a Workspace API token, you receive a new valid token from Astro that can be used in your existing workflows. The previous token value becomes invalid and any workflows using those previous values stop working. 
 
-:::tip
-Please note that you can only rotate API tokens with Workspace scope from this menu.
-:::
+To rotate an Organization API token with Workspace permissions, see [Organization API tokens](organization-api-tokens.md).
 
 1. In the Cloud UI, open your Workspace.
    
