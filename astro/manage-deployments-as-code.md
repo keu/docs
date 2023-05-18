@@ -141,7 +141,7 @@ You can generate a Deployment file with the current configurations for a Deploym
 
 ## Deployment file reference
 
-When you `inspect` a Deployment, a deployment file is created with the following sections:
+When you `inspect` a Deployment, a Deployment file is created with the following sections:
 
 - `environment_variables`
 - `configuration`
