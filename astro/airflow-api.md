@@ -29,7 +29,7 @@ Updates to the Airflow REST API are released in new Airflow versions and new rel
 - [cURL](https://curl.se/) or, if using Python, the [Requests library](https://docs.python-requests.org/en/latest/index.html).
 - The [Astro CLI](cli/overview.md).
 
-## Step 1: Retreive an access token
+## Step 1: Retrieve your access token
 
 <Tabs groupId="retrieve-an-access-token">
 
