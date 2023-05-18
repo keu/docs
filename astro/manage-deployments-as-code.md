@@ -127,7 +127,7 @@ You can generate a Deployment file with the current configurations for a Deploym
 
 1. Modify the Deployment file and save your changes. You can modify any value in the `environment_variables` and `worker_queues` sections, and most values in the `configuration` section.
 
-2. Update your Deployment according to the configurations in the Deployment file:
+2. Run the following command to apply your configuration to a Deployment:
 
   ```bash
   astro deployment update --deployment-file my-deployment-file.yaml
