@@ -12,7 +12,7 @@ You can export configuration settings of an existing Deployment to a `JSON` or `
 - A _Deployment file_ is a configuration file which contains the metadata for a specific Deployment. Use a Deployment file to update the same Deployment from which you created the file.
 - A _template file_ is a configuration file which contains a Deployment configuration, but is not associated with an existing Deployment. Use template files to create and update Deployments file by specifying the `name` field in the template.
 
-You might want to create or update deployments programmatically in the following scenarios:
+You might want to create or update Deployments programmatically in the following scenarios:
 
 | Scenario | Approach | 
 |----------|----------|
