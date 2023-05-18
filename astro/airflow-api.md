@@ -62,7 +62,7 @@ Refer to [Organization API tokens](organization-api-tokens#create-an-organizatio
 
 </TabItem>
 
-<TabItem value="deployment" label="Using Deployment API Key">
+<TabItem value="deployment" label="Deployment API key">
 
 :::info
 Deployment API keys are useful when you want to manage each Deployment using different access. When you use Deployment API keys, you have to perform an extra step to retrieve the auth token. Hence, API keys will be phased out in favour of API tokens where this extra step will not be required.
