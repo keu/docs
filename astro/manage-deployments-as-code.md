@@ -18,7 +18,7 @@ You might want to create or update Deployments programmatically in the following
 |----------|----------|
 | You want to create a Deployment using CI/CD | [Create a Deployment using Astro CLI](#create-a-deployment-using-astro-cli) | 
 | You have a large number of Deployments and want to re-use Deployment configurations through version control | [Create a template file](#create-a-deployment-template-file) to use across multiple Deployments |
-| You want to use your current Dev or Prod Deployment as a template for another project | [Create a template file from current Deployment](#create-a-deployment-template-file) and [create a new Deployment](#create-a-deployment-using-a-template-file) using Astro CLI | 
+| You want to use your current dev or prod Deployment as a template for another project | [Create a template file from current Deployment](#create-a-deployment-template-file) and [create a new Deployment](#create-a-deployment-using-a-template-file) using the Astro CLI | 
 | You want to rely on CI/CD or automated processes to make modifications to your Deployments | [Update your Deployment file](#update-a-deployment-using-a-deployment-file) and apply using Astro CLI | 
 
 
