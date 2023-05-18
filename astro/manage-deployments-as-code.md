@@ -26,7 +26,7 @@ For more details about each available setting in the configuration file, refer t
 
 ## Prerequisites
 
-- [Install Astro CLI](cli/install-cli.md)
+- The [Astro CLI](cli/install-cli.md)
 - [Login using Astro CLI](cli/astro-login.md) for local or [Workspace API Token](workspace-api-tokens.md#use-a-workspace-api-token-with-the-astro-cli) for CI/CD
 
 :::info
