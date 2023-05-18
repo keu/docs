@@ -44,7 +44,7 @@ You can either create a new Workspace API token or add an existing Organization 
    
 3. Click **+ API Token** > **Add Organization API Token**
    
-4. Select the Organization API token from the drop-down and choose the appropriate access.
+4. In **Organization API Tokens**, select the Organization API token you want to use. In **Workspace Role**, select the permissions that you want the Organization API token to have in the Workspace.
 
 5. Click **Add**.
 
