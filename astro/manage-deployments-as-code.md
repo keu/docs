@@ -136,7 +136,7 @@ You can generate a Deployment file with the current configurations for a Deploym
 3. Optional. Confirm that your Deployment was updated successfully by running the following command. You can also go to the Deployment page in the Cloud UI to confirm the new values.
 
   ```bash
-  astro deployment inspect -n my-deployment-name
+  astro deployment inspect -n <your-deployment-name>
   ```
 
 ## Deployment file reference
