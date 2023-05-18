@@ -75,9 +75,7 @@ If you delete a Workspace API token or remove an Organization API token from you
 
 3. Click **Edit** next to your API token.
 
-4. Optional. If the token scope is Organiztion, then click **Remove API token**.
-
-5. Optional. If the token scope if Workspace, then click on **Delete API Token**, enter `Delete`, and then click **Yes, Continue**.
+4. If you're removing an Organization API token, click **Remove API token**. If you're deleting a Workspace API token, click **Delete API Token**, enter `Delete`, then click **Yes, Continue**.
 
 ## Rotate a Workspace API token
 
