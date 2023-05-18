@@ -130,7 +130,7 @@ You can generate a Deployment file with the current configurations for a Deploym
 2. Run the following command to apply your configuration to a Deployment:
 
   ```bash
-  astro deployment update --deployment-file my-deployment-file.yaml
+  astro deployment update --deployment-file <your-deployment-file>
   ```
 
 3. Optional. Confirm that your Deployment was updated successfully by running the following command. You can also go to the Deployment page in the Cloud UI to confirm the new values.
