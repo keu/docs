@@ -7,7 +7,7 @@ description: "Manage an Astro Deployment with a JSON or YAML file."
 
 To manage Deployments as code or programmatically you can use Astro CLI allowing for faster turnaround time and easy management. This method at a minimum requires some settings and rest are used as per the cluster defaults or the smart defaults. This section will explain how to use Astro CLI to manage your Deployments either using simple commands or configuration files. 
 
-You can export configuration settings of an existing deployment to a `JSON` or `YAML` file format and use it as a deployment file or a template file. This configuration includes worker queues, environment variables, and Astro Runtime version. We will be using these two terms in this section:
+You can export configuration settings of an existing Deployment to a `JSON` or `YAML` configuration file. This configuration includes worker queues, environment variables, and Astro Runtime version. There are two types of configuration files you can work with:
 
 - A ***deployment file*** is a configuration file which contains the *details* and *metadata* for a Deployment and can be used to update an existing Deployment.
 - A ***template file*** is a configuration file which contains the *details* for a given Deployment that can be re-used as a deployment file by adding the `name` field.
