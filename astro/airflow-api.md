@@ -65,7 +65,7 @@ Refer to [Organization API tokens](organization-api-tokens#create-an-organizatio
 <TabItem value="deployment" label="Deployment API key">
 
 :::info
-Deployment API keys are useful when you want to manage each Deployment using different access. When you use Deployment API keys, you have to perform an extra step to retrieve the auth token. Hence, API keys will be phased out in favour of API tokens where this extra step will not be required.
+Deployment API keys will soon be phased out in favor of Deployment-level API tokens. Astronomer recommends using Workspace tokens to reach the Airflow API until Deployment API tokens are released. 
 :::
 
 To retrieve an access token using [cURL](https://curl.se/), run the following API request with your Deployment API key ID and secret:
