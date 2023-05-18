@@ -14,11 +14,15 @@ Use Workspace API tokens to automate Workspace actions such as creating Deployme
 
 ## Create a Workspace API token
 
+You can either create a new Workspace API token or add an existing Organization API token to a Workspace with appropriate permissions. 
+
+### Create a Workspace API token
+
 1. In the Cloud UI, open your Workspace.
    
 2. Go to **Workspace Settings** > **Access Management** > **API Tokens**.
    
-3. Click **API Token**.
+3. Click **API Token** > **Create Workspace API Token**
    
 4. Configure the new Workspace API token:
 
@@ -31,7 +35,21 @@ Use Workspace API tokens to automate Workspace actions such as creating Deployme
    
 6. Copy the token and store it in a safe place. You will not be able to retrieve this value from Astro again. 
 
-## Update or delete a Workspace API token
+
+### Grant access to Organization API token for a Workspace
+
+1. In the Cloud UI, open your Workspace.
+   
+2. Go to **Workspace Settings** > **Access Management** > **API Tokens**.
+   
+3. Click **API Token** > **Add Organization API Token**
+   
+4. Select the Organization API token from the drop-down and choose the appropriate access.
+
+5. Click **Add**. A message appears on the bottom right corner "API token added".
+
+
+## Update a Workspace API token
 
 If you delete a Workspace API token, make sure that no existing CI/CD pipelines are using it. After it's deleted, an API token cannot be recovered. If you unintentionally delete an API token, create a new one and update any CI/CD workflows that used the deleted API token.
 
@@ -45,11 +63,32 @@ If you delete a Workspace API token, make sure that no existing CI/CD pipelines 
    
 5. Optional. To delete a Workspace API token, click **Delete API Token**, enter `Delete`, and then click **Yes, Continue**.
 
+
+## Delete or remove a Workspace API token
+
+If you delete a Workspace API token, make sure that no existing CI/CD pipelines are using it. After it's deleted, an API token cannot be recovered. If you unintentionally delete an API token, create a new one and update any CI/CD workflows that used the deleted API token.
+
+If you are using an Organization API token for a Workspace, you can remove it's access from the Workspace. This API token will lose it's access to the given Workspace.
+
+1. In the Cloud UI, open your Workspace.
+   
+2. Go to **Workspace Settings** > **Access Management** > **API Tokens**.
+
+3. Click **Edit** next to your API token.
+
+4. Optional. If the token scope is Organiztion, then click **Remove API token**.
+
+5. Optional. If the token scope if Workspace, then click on **Delete API Token**, enter `Delete`, and then click **Yes, Continue**.
+
 ## Rotate a Workspace API token
 
 Rotating a Workspace API token lets you renew a token without needing to reconfigure its name, description, and permissions. You can also rotate a token if you lose your current token value and need it for additional workflows. 
 
 When you rotate a Workspace API token, you receive a new valid token from Astro that can be used in your existing workflows. The previous token value becomes invalid and any workflows using those previous values stop working. 
+
+:::tip
+Please note that you can only rotate API tokens with Workspace scope from this menu.
+:::
 
 1. In the Cloud UI, open your Workspace.
    

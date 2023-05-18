@@ -29,20 +29,36 @@ Updates to the Airflow REST API are released in new Airflow versions and new rel
 - [cURL](https://curl.se/) or, if using Python, the [Requests library](https://docs.python-requests.org/en/latest/index.html).
 - The [Astro CLI](cli/overview.md).
 
-
 ## Step 1: Retreive an access token
 
 <Tabs groupId="retrieve-an-access-token">
 
 <TabItem value="workspace" label="Using Workspace API (Recommended)">
 
-Workspace API tokens allow users to programmatically perform Workspace actions. Keep in mind the following when creating Workspace API tokens:
+Workspace API tokens allow users to programmatically perform Workspace actions as well as Airflow API access. 
+
+Keep in mind the following when creating Workspace API tokens for Airflow REST API access:
 
 - You can create these tokens using the Cloud UI only and can also set the expiration period for it. 
 - You can assign [Workspace roles](user-permissions.md#workspace-roles) to the API token during creation based on the actions you want to perform.
 - Workspace API tokens are an easy way to control access to all your Deployments that you want to manage with same set of permissions.
 
 Refer to [Workspace API tokens](workspace-api-tokens.md#create-a-workspace-api-token) to create a token.
+
+</TabItem>
+
+<TabItem value="organization" label="Using Organization API">
+
+Organization API tokens allow users to programmatically perform Organization operations in Astro as well as Airflow API access. 
+
+Keep in mind the following when creating Organization API tokens for Airflow REST API access:
+
+- You can create these tokens using the Cloud UI only and can also set the expiration period for it. 
+- Organization API token with `Organization Member` role will not be able to access any Workspaces or Deployments. You will need to give permission to it to a specific Workspace. See Give Workspace permissions to an Organization token for more details.
+- You can assign [Organization roles](user-permissions.md#user-permissions#organization-roles) to the API token during creation based on the actions you want to perform.
+- Organization API tokens are an easy way to control access to all your Workspaces and Deployments, so you might want to use and share them with caution.
+
+Refer to [Organization API tokens](organization-api-tokens#create-an-organization-api-token) to create a token.
 
 </TabItem>
 
