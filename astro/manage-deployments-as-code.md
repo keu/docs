@@ -99,7 +99,7 @@ After you update the exsiting template file, you can create a new Deployment usi
 
 3. Optional. Reconfigure any Airflow connections or variables for the Deployment that you created using the `environment_variables` section in the template file. See [Manage connections in Airflow](https://docs.astronomer.io/learn/connections).
 
-## Update a Deployment using a deployment file
+## Update a Deployment using a Deployment file
 
 :::warning 
 
