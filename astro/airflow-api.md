@@ -105,7 +105,7 @@ def get_api_token() -> str:
 Run the following command to retrieve a Deployment URL:
 
 ```bash
-astro deployment inspect -n my-deployment-name -k metadata.webserver_url
+astro deployment inspect -n <deployment-name> -k metadata.webserver_url
 ```
 
 The Deployment URL is used to access your Astro Deployment's Airflow UI. It includes the name of your Organization and first 7 letters of your Deployment ID. 
