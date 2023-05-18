@@ -9,8 +9,8 @@ Use the Astro CLI to programmatically manage your Deployments as configuration f
 
 You can export configuration settings of an existing Deployment to a `JSON` or `YAML` configuration file. This configuration includes worker queues, environment variables, and Astro Runtime version. There are two types of configuration files you can work with:
 
-- A ***deployment file*** is a configuration file which contains the *details* and *metadata* for a Deployment and can be used to update an existing Deployment.
-- A ***template file*** is a configuration file which contains the *details* for a given Deployment that can be re-used as a deployment file by adding the `name` field.
+- A _Deployment file_ is a configuration file which contains the metadata for a specific Deployment. Use a Deployment file to update the same Deployment from which you created the file.
+- A _template file_ is a configuration file which contains a Deployment configuration, but is not associated with an existing Deployment. Use template files to create and update Deployments file by specifying the `name` field in the template.
 
 You might want to create or update deployments programmatically in the following scenarios:
 
