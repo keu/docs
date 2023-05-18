@@ -33,7 +33,7 @@ Updates to the Airflow REST API are released in new Airflow versions and new rel
 
 <Tabs groupId="step-1-retrieve-your-access-token">
 
-<TabItem value="workspace" label="Using Workspace API (Recommended)">
+<TabItem value="workspace" label="Workspace token (Recommended)">
 
 Workspace API tokens allow users to programmatically perform Workspace actions as well as Airflow API access. 
 
