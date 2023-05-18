@@ -42,7 +42,7 @@ You can either create a new Workspace API token or add an existing Organization 
    
 2. Go to **Workspace Settings** > **Access Management** > **API Tokens**.
    
-3. Click **API Token** > **Add Organization API Token**
+3. Click **+ API Token** > **Add Organization API Token**
    
 4. Select the Organization API token from the drop-down and choose the appropriate access.
 
