@@ -47,7 +47,7 @@ Refer to [Workspace API tokens](workspace-api-tokens.md#create-a-workspace-api-t
 
 </TabItem>
 
-<TabItem value="organization" label="Using Organization API">
+<TabItem value="organization" label="Organization token">
 
 Organization API tokens allow users to programmatically perform Organization operations in Astro as well as Airflow API access. 
 
