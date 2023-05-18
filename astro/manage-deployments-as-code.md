@@ -71,7 +71,7 @@ astro deployment inspect -n my-deployment-name --template
 
 For more information on how to `inspect` a Deployment, see [Astro CLI command reference](/cli/astro-deployment-inspect.md).
 
-## Create a Deployment using a template file
+### Create a Deployment using a template file
 
 You can create a Deployment according to the configurations specified in a given template file using Astro CLI. Before you do, keep the following in mind:
 
