@@ -64,17 +64,17 @@ There is an incompatibility between Astro Runtime 8 and the following provider p
 
 That can be resolved by pinning `apache-airflow-providers-cncf-kubernetes==5.2.2` in your `requirements.txt`file.
 
-This incompatibility occurs because Runtime 8 includes both of these packages as built-in components. A new function used in the new version of `KubernetesHook`, `get_xcom_sidecar_container_resources`, sets resource limits for the XCOM sidecar container. But, because Google uses `GKEPodHook`, which doesn't set any limits, it breaks `GKEStartPodOperator`. 
+This incompatibility results in breaking the GKEStartPodOperator. This operator inherits from the KubernetesPodOperator, but then overrides the hook attribute with the GKEPodHook. In the included version of the `cncf-kubernetes` providers package, the KubernetesPodOperator uses a new method, `get_xcom_sidecar_container_resources`. This method is present in the KubernetesHook, but not the GKEPodHook. Therefore, when it is called it causes the task execution to break. 
 
 ##### Using the KubernetesPodOperator on Astro Runtime 8
 
-Astro Runtime 8.0 introduced a bug related to using the KubernetesPodOperator without a configured Airflow connection. If you're using the KubernetesPodOperator on Astro Runtime 8.0.0, complete only one of the following setup steps to ensure that your tasks continue to work:
+Astro Runtime 8 introduced a bug related to using the KubernetesPodOperator without a configured Airflow connection. If you're using the KubernetesPodOperator on Astro Runtime 8, complete only one of the following setup steps to ensure that your tasks continue to work:
 
-- Upgrade to Astro Runtime 8.1
-- Pin `apache-airflow-providers-cncf-kubernetes==5.3.0` in your `requirements.txt` file.
+- Pin `apache-airflow-providers-cncf-kubernetes==5.2.2` in your `requirements.txt` file.
 - Create an Airflow connection in your Deployment with the following values:
      - **Connection Id:**: `kubernetes_default`
      - **Connection Type**: **Kubernetes Cluster Connection**
+- Add `AIRFLOW_CONN_KUBERNETES_DEFAULT="kubernetes://"` as an environment variable.
   
 #### Runtime 6 (Airflow 2.4)
 
