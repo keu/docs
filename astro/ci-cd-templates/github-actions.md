@@ -536,3 +536,5 @@ The Astronomer [Deploy Action](https://github.com/astronomer/deploy-action/tree/
           with:
             deployment-id: <main-deployment-id>
     ```
+
+    All four workflow files must have the same Deployment ID specified. The actions use this Deployment ID to create and delete preview Deployments based on your main Deployment.
