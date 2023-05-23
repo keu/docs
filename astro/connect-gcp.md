@@ -2,7 +2,7 @@
 sidebar_label: 'GCP'
 title: 'Connect Astro to GCP data sources'
 id: connect-gcp
-description: Connect your Astro data plane to GCP.
+description: Connect Astro to GCP.
 sidebar_custom_props: { icon: 'img/gcp.png' }
 ---
 
@@ -10,7 +10,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {siteVariables} from '@site/src/versions';
 
-Use the information provided here to learn how you can securely connect your Astro data plane to your existing Google Cloud Platform (GCP) instance. A connection to GCP allows Astro to access data stored on your GCP instance and is a necessary step to running pipelines in a production environment.
+Use the information provided here to learn how you can securely connect Astro to your existing Google Cloud Platform (GCP) instance. A connection to GCP allows Astro to access data stored on your GCP instance and is a necessary step to running pipelines in a production environment.
 
 ## Connection options
 
@@ -31,13 +31,19 @@ Publicly accessible endpoints allow you to quickly connect Astro to GCP. To conf
 - Set environment variables on Astro with your endpoint information. See [Set environment variables on Astro](environment-variables.md).
 - Create an Airflow connection with your endpoint information. See [Managing Connections](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html).
 
-When you use publicly accessible endpoints to connect Astro and GCP, traffic moves directly between your Astro data plane and the GCP API endpoint. Data in this traffic never reaches the control plane, which is managed by Astronomer.
+When you use publicly accessible endpoints to connect Astro and GCP, traffic moves directly between your Astro clusters and the GCP API endpoint. Data in this traffic never reaches the control plane, which is managed by Astronomer.
 
 </TabItem>
 
 <TabItem value="VPC peering">
 
-Every Astro cluster runs in a dedicated Virtual Private Cloud (VPC). To set up a private connection between an Astro VPC and a GCP VPC, you can create a VPC peering connection. VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
+:::info 
+
+This connection option is only available for dedicated Astro Hosted clusters and Astro Hybrid.
+
+:::
+
+VPC peering ensures private and secure connectivity, reduces network transit costs, and simplifies network layouts.
 
 To create a VPC peering connection between an Astro VPC and a GCP VPC, contact [Astronomer support](https://cloud.astronomer.io/support) and provide the following information:
 
@@ -54,7 +60,7 @@ After receiving your request, Astronomer support initiates a peering request and
 
 Use Private Service Connect (PSC) to create private connections from Astro to GCP services without connecting over the public internet. See [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect) to learn more.
 
-The Astro data plane is by default configured with a PSC endpoint with a target of [All Google APIs](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis#supported-apis). To provide a secure-by-default configuration, a DNS zone is created with a resource record that will route all requests made to `*.googleapis.com` through this PSC endpoint. This ensures that requests made to these services are made over PSC without any additional user configuration. As an example, requests to `storage.googleapis.com` will be routed through this PSC endpoint.
+Astro clusters are by default configured with a PSC endpoint with a target of [All Google APIs](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis#supported-apis). To provide a secure-by-default configuration, a DNS zone is created with a resource record that will route all requests made to `*.googleapis.com` through this PSC endpoint. This ensures that requests made to these services are made over PSC without any additional user configuration. As an example, requests to `storage.googleapis.com` will be routed through this PSC endpoint.
 
 A list of Google services and their associated service names are provided in the [Google APIs Explorer Directory](https://developers.google.com/apis-explorer). Alternatively, you can run the following command in the Google Cloud CLI to return a list of Google services and their associated service names:
 
@@ -83,7 +89,7 @@ To allow data pipelines running on GCP to access Google Cloud services in a secu
 
 To grant a Deployment on Astro access to external data services on GCP, such as BigQuery:
 
-1. In the Cloud UI, select your Deployment, then click **Details**.
+1. In the Cloud UI, select your Deployment, then click **Details**
 
 2. Copy the service account shown under **Workload Identity**.
 
