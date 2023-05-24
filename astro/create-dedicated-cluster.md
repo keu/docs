@@ -16,6 +16,7 @@ A _dedicated cluster_ exclusively runs Deployments from your Organization within
 Dedicated clusters offer the self-service convenience of a fully managed service while respecting the need to keep data private, secure, and within a single-tenant environment. If you don't need the aforementioned features, you can use one of the standard clusters when you [Create a Deployment](create-deployment.md).
 
 ## Setup
+
 <Tabs
     defaultValue="aws"
     groupId= "create-a-cluster"
@@ -24,8 +25,9 @@ Dedicated clusters offer the self-service convenience of a fully managed service
         {label: 'GCP', value: 'gcp'},
         {label: 'Azure', value: 'azure'},
     ]}>
+
 <TabItem value="aws">
-   
+
 1. In the Cloud UI, open your Organization page by clicking the Astronomer logo in the upper left corner.
    
 2. Click **Cluster** > **+ Cluster**.
@@ -35,10 +37,11 @@ Dedicated clusters offer the self-service convenience of a fully managed service
     - **Name**: The name for your cluster.
     - **Region**: Select the region that you want your cluster to run in.
     - **VPC Subnet Range**: Provide a subnet range for Astro to connect to your existing AWS resources through VPC peering. The default is `172.20.0.0/20`.
-   
+  
 4. Click **Create cluster**. After Astro finishes creating the cluster, users in your Organization can select the cluster when they [create a Deployment](create-deployment.md). 
    
 </TabItem>
+
 <TabItem value="gcp">
 
 1. In the Cloud UI, open your Organization page by clicking the Astronomer logo in the upper left corner.
@@ -57,9 +60,11 @@ Dedicated clusters offer the self-service convenience of a fully managed service
 4. Click **Create cluster**. After Astro finishes creating the cluster, users in your Organization can select the cluster when they [create a Deployment](create-deployment.md). 
 
 </TabItem>
+
 <TabItem value="azure">
 
 You cannot currently create dedicated Azure clusters from the Cloud UI. If you are interested in creating a dedicated Azure cluster, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 </TabItem>
+
 </Tabs>
