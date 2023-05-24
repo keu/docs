@@ -51,7 +51,7 @@ On Astro Hybrid clusters, worker type is defined as a node instance type that is
 
 Your Organization can enable up to 10 additional different worker types for each Hybrid cluster. After a worker type is enabled on an Astro Hybrid cluster, the worker type becomes available to any Deployment in that cluster and appears in the **Worker Type** menu of the Cloud UI.
 
-1. Review the list of supported worker types for your cloud provider. See [AWS](resource-reference-aws.md#worker-node-types), [Azure](resource-reference-azure.md#worker-node-size-resource-reference), or [GCP resource references](resource-reference-gcp.md#worker-node-size-resource-reference).
+1. Review the list of supported worker types for your cloud provider. See [AWS](resource-reference-aws-hybrid.md#worker-node-types), [Azure](resource-reference-azure-hybrid.md#worker-node-size-resource-reference), or [GCP resource references](resource-reference-gcp-hybrid.md#worker-node-size-resource-reference).
 2. Contact [Astronomer support](https://cloud.astronomer.io/support) and provide the following information: 
   
     - The name of your cluster. 
