@@ -26,7 +26,7 @@ body:
   - type: input
     id: reviewers
     attributes:
-      label: Due date
+      label: Due Date
       description: For example, 'Q2 2023', '2/12/2023', 'Within the next month'
   - type: input
     id: deadline
