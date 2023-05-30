@@ -21,6 +21,12 @@ To configure Airflow notifications, see [Airflow email notifications](airflow-em
 - An [Astro Deployment](create-deployment.md). Your Deployment must run Astro Runtime 7.1.0 or later to configure Astro alerts.
 - A Slack workspace and/or PagerDuty service.
 
+:::caution
+
+You must use an Astro Runtime version 7.1.0 or greater to use Astro Alerts.
+
+:::
+
 ## Step 1: Configure your communication channel
 
 <Tabs
@@ -117,3 +123,18 @@ In the Cloud UI, you can enable alerts from the **Workspace Settings** page.
      You can add more DAGs or tasks after you create your alert. 
 
 8. Click **Create alert**.
+
+## Step 3 (Optional): Test your DAG run failure alert
+
+Because manually stopping your DAG triggers Astro to send an alert, you can test your integration by manually testing your DAG.
+
+1. To test your alert, open the **DAGs** page.
+
+2. Choose the DAG that has your alert configured.
+
+3. Initiate a DAG run.
+
+4. Manually stop your DAG. 
+
+5. Check your Slack or PagerDuty alerts for your DAG failure.
+
