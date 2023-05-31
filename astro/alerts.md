@@ -50,14 +50,14 @@ To set up alerts in Slack, you need to create a Slack app in your Slack workspac
   If you do not have permission to install apps into your Slack workspace, you can still create the app, but you will need to request that an administrator from your team completes the installation.
   :::
 
-  ![Create your app in a Slack workspace](/img/docs/slack_alerts_2.3.png)
+  ![Create your app in a Slack workspace](/img/docs/slack_alerts_1.3.png)
 
 
 4. Select **Incoming webhooks**.
 
 5. On the **Incoming webhooks** page, click to turn on **Activate Incoming Webhooks**.
 
-  ![Activate an incoming webhook](/img/docs/slack_alerts_2.5.png)
+  ![Activate an incoming webhook](/img/docs/slack_alerts_1.5.png)
 
 
 6. In the **Webhook URLs for your Workspace** section, click **Add new Webhook to Workspace**. 
@@ -68,13 +68,13 @@ To set up alerts in Slack, you need to create a Slack app in your Slack workspac
   
   :::
 
-  ![Add your webhook](/img/docs/slack_alerts_2.6.png)
+  ![Add your webhook](/img/docs/slack_alerts_1.6.png)
 
 7. Choose the channel where you want to send your Astro alerts and click **Allow**.
 
 8. After your webhook is created, copy the webhook URL from the new entry in the **Webhook URLs for your Workspace** table.
 
-    ![Copy your webhook URL](/img/docs/slack_alerts_2.8.png)
+    ![Copy your Webhook URL](/img/docs/slack_alerts_1.8.png)
 
 </TabItem>
 <TabItem value="PagerDuty">
@@ -83,21 +83,21 @@ To set up an alert integration with PagerDuty, you need access to your organizat
 
 1. Open your PagerDuty service and click the **Integrations** tab.
 
-  ![Select PagerDuty integrations](/img/docs/pagerduty_alerts_2.1.png)
+  ![Select PagerDuty integrations](/img/docs/pagerduty_alerts_1.1.png)
 
 2. Click **Add an integration**.
 
-  ![Add a new integration](/img/docs/pagerduty_alerts_2.2.png)
+  ![Add a new integration](/img/docs/pagerduty_alerts_1.2.png)
 
 3. Select **Events API v2** as the **Integration Type**.
 
-  ![Select integration type](/img/docs/pagerduty_alerts_2.3.png)
+  ![Select integration type](/img/docs/pagerduty_alerts_1.3.png)
 
 4. On your **Integrations** page, open your new integration and enter an **Integration Name**.
 
 5. Copy the **Integration Key** for your new Astro alert integration.
 
-  ![Copy your integration key](/img/docs/pagerduty_alerts_2.5.png)
+  ![Copy your integration key](/img/docs/pagerduty_alerts_1.5.png)
 
 </TabItem>
 </Tabs>
@@ -123,11 +123,17 @@ In the Cloud UI, you can enable alerts from the **Workspace Settings** page.
     <TabItem value="Slack">
     
     Paste the Webhook URL from your Slack workspace app. If you need to find a URL for an app you've already created, go to your [Slack Apps](https://api.slack.com/apps) page, select your app, and then choose the **Incoming Webhooks** page. 
+
+    ![Add your Slack Webhook URL](/img/docs/slack_alerts_2.6.png)
     
     </TabItem>
     <TabItem value="PagerDuty">
 
     Paste the Integration Key from your PagerDuty Integration and select the **Severity** of the alert.
+
+    ![Paste the Integration Key](/img/docs/pagerduty_alerts_2.6.png)
+
+
     
     </TabItem>
     </Tabs>
