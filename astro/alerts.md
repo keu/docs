@@ -50,9 +50,15 @@ To set up alerts in Slack, you need to create a Slack app in your Slack workspac
   If you do not have permission to install apps into your Slack workspace, you can still create the app, but you will need to request that an administrator from your team completes the installation.
   :::
 
+  ![Create your app in a Slack workspace](/img/docs/slack_alerts_2.3.png)
+
+
 4. Select **Incoming webhooks**.
 
 5. On the **Incoming webhooks** page, click to turn on **Activate Incoming Webhooks**.
+
+  ![Activate an incoming webhook](/img/docs/slack_alerts_2.5.png)
+
 
 6. In the **Webhook URLs for your Workspace** section, click **Add new Webhook to Workspace**. 
 
@@ -62,9 +68,13 @@ To set up alerts in Slack, you need to create a Slack app in your Slack workspac
   
   :::
 
+  ![Add your webhook](/img/docs/slack_alerts_2.6.png)
+
 7. Choose the channel where you want to send your Astro alerts and click **Allow**.
 
 8. After your webhook is created, copy the webhook URL from the new entry in the **Webhook URLs for your Workspace** table.
+
+    ![Copy your webhook URL](/img/docs/slack_alerts_2.8.png)
 
 </TabItem>
 <TabItem value="PagerDuty">
