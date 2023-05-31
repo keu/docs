@@ -21,6 +21,8 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 **Latest CLI Version**: 1.15.1 ([Release notes](cli/release-notes.md))
 
+<!-- Make sure that all links to internal docs are the complete URLS including HTTPS. Otherwise the links will break in RSS. -->
+
 ## May 30, 2023
 
 ### Manage permissions for groups of users with Teams
