@@ -152,13 +152,16 @@ In the Cloud UI, you can enable alerts from the **Workspace Settings** page.
 
 Because manually stopping your DAG triggers Astro to send an alert, you can test your integration by manually testing your DAG.
 
-1. To test your alert, open the **DAGs** page.
+1. To test your alert, **Open Airflow** for the Deployment where you configured your alert.
 
 2. Choose the DAG that has your alert configured.
 
-3. Initiate a DAG run.
+3. Trigger a DAG run.
 
-4. Manually stop your DAG. 
+4. Manually mark your DAG's state as **Failed** by clicking the DAG run in the Grid view, then clicking **Mark state as...** and choose **Failed**.
 
-5. Check your Slack or PagerDuty alerts for your DAG failure.
+  ![Manually marking a successful DAG run as Failed.](/img/docs/slack_alerts_3.4.png)
 
+5. Check your Slack or PagerDuty alerts for your DAG failure alert.
+
+  ![Example of a Slack test alert.](/img/docs/slack_alerts_3.5.png)
