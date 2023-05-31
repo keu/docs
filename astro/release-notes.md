@@ -27,7 +27,7 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 Configure Teams from the Cloud UI to manage the permissions for many users across Workspaces from a single page. _Teams_ are a group of users in an Organization that you grant the same Workspace permissions, without needing to define them individually. 
 
-See [Make a Team](add-users.md#make-a-team) for setup steps.
+See [Make a Team](https://docs.astronomer.io/astro/add-user#make-a-team) for setup steps.
 
 ### Bug fixes
 
