@@ -71,15 +71,23 @@ To set up alerts in Slack, you need to create a Slack app in your Slack workspac
 
 To set up an alert integration with PagerDuty, you need access to your organization's PagerDuty Service. PagerDuty uses the [Events API v2](https://developer.pagerduty.com/docs/ZG9jOjExMDI5NTgw-events-api-v2-overview#getting-started) to create a new integration that connects your Service with Astro.
 
-1. Open your PagerDuty service.
+1. Open your PagerDuty service and click the **Integrations** tab.
 
-2. On the **Integrations** tab, click **Add an integration**.
+  ![Select PagerDuty integrations](/img/docs/pagerduty_alerts_2.1.png)
+
+2. Click **Add an integration**.
+
+  ![Add a new integration](/img/docs/pagerduty_alerts_2.2.png)
 
 3. Select **Events API v2** as the **Integration Type**.
+
+  ![Select integration type](/img/docs/pagerduty_alerts_2.3.png)
 
 4. On your **Integrations** page, open your new integration and enter an **Integration Name**.
 
 5. Copy the **Integration Key** for your new Astro alert integration.
+
+  ![Copy your integration key](/img/docs/pagerduty_alerts_2.5.png)
 
 </TabItem>
 </Tabs>
