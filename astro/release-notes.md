@@ -21,6 +21,19 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 **Latest CLI Version**: 1.15.1 ([Release notes](cli/release-notes.md))
 
+## May 30, 2023
+
+### Manage permissions for groups of users with Teams
+
+Configure Teams from the Cloud UI to manage the permissions for many users across Workspaces from a single page. _Teams_ are a group of users in an Organization that you grant the same Workspace permissions, without needing to define them individually. 
+
+See [Make a Team](add-users.md#make-a-team) for setup steps.
+
+### Bug fixes
+
+- In Astro Hosted, an irrelevant **AWS external ID** info page has been removed from the Cloud UI.
+- Fixed an issue where DAG-only deploys could be unreliable due to the deploy process not requesting enough resources in the cluster. 
+
 ## May 23, 2023
 
 ### Introducing Astro Hosted and Hybrid
