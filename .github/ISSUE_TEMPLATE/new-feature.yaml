@@ -1,6 +1,6 @@
 name: New Feature
-description: Request documentation or a new or upcoming Astro, Astro CLI, or Astronomer Software feature.
-labels: ["kind/new-feature"]
+description: Request documentation or an upcoming Astro, Astro CLI, or Astronomer Software feature. Mainly for use by Astronomer product managers.
+labels: ["new-feature"]
 body:
   - type: markdown
     attributes:
