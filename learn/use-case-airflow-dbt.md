@@ -1,5 +1,5 @@
 ---
-title: "Create an ELT pipeline with Airflow, dbt Core, Cosmos and the Astro Python SDK"
+title: "ELT for renewable energy analysis with Airflow, dbt Core, Cosmos and the Astro Python SDK"
 description: "Use Airflow, dbt Core, Cosmos and the Astro Python SDK in an ELT pipeline to analyze energy data."
 id: use-case-airflow-dbt
 sidebar_label: "Airflow and dbt Core"
@@ -27,7 +27,7 @@ To use this example you should have an understanding of:
 - Airflow task groups. See [Airflow task groups](task-groups.md).
 - Airflow connections. See [Manage connections in Apache Airflow](connections.md).
 
-You will need:
+Before trying this example, make sure you have:
 
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/overview) and an Astro project created by running `astro dev start`.
 - Access to a data warehouse supported by dbt Core and the Astro Python SDK. See [dbt documentation](https://docs.getdbt.com/docs/supported-data-platforms) for all supported warehouses of dbt Core and the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html) for all supported warehouses of the Astro Python SDK. This example uses a local [PostgreSQL](https://www.postgresql.org/) database with a database called `energy_db` and a schema called `energy_schema`.
@@ -72,7 +72,7 @@ For a connection to a PostgreSQL database, define the following parameters:
 - **Password**: Your Postgres password.
 - **Port**: Your Postgres port.
 
-## Get the data
+## The data
 
 This tutorial uses an Airflow DAG to orchestrate dbt Core jobs that calculate the percentage of solar and renewable energy capacity in different years for a selected country.
 
@@ -81,7 +81,7 @@ This tutorial uses an Airflow DAG to orchestrate dbt Core jobs that calculate th
 
 This tutorial uses a subset of the original data. The full data source provided by Open Power System Data can be found [here](https://doi.org/10.25832/national_generation_capacity/2020-10-01).
 
-## Prepare your dbt Core models
+## dbt Core models
 
 When using dbt Core with Airflow by leveraging Cosmos you need to add your dbt project in a `dbt` directory within your Astro projects `dags` folder.
 
@@ -142,7 +142,7 @@ After adding all files you should have this structure in your Astro project.
     └── subset_energy_capacity.csv
 ```
 
-## Create a DAG
+## The ELT DAG
 
 Add the following Airflow DAG to your Astro project:
 
@@ -158,16 +158,16 @@ The `DbtTaskGroup` function of the Astro dbt provider package automatically scan
 
 You can choose which country's data to analyze by specifying your desired `country_code` in the `dbt_args` parameter of the DbtTaskGroup. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
 
-## Result
+## Results
 
 Open the logs of the `log_data_analysis` task to see the proportional solar and renewable energy capacity development in the country you selected.
 
 ![Energy Analysis logs](/img/guides/cosmos_energy_analysis_logs.png)
 
-## Learn more
+## See also
 
-- Tutorial: [Orchestrate dbt Core jobs with Airflow and Cosmos](airflow-dbt.md).
-- Webinar: [The easiest way to orchestrate your dbt workflows from Airflow](https://www.astronomer.io/events/webinars/the-easiest-way-to-orchestrate-your-dbt-workflows-from-airflow/).
-- Tutorial: [Orchestrate dbt Cloud jobs with Airflow](airflow-dbt-cloud.md).
-- Documentation: [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/index.html).
-- Documentation: [Astronomer Cosmos](https://astronomer.github.io/astronomer-cosmos/).
+- [Orchestrate dbt Core jobs with Airflow and Cosmos](airflow-dbt.md).
+- [The easiest way to orchestrate your dbt workflows from Airflow](https://www.astronomer.io/events/webinars/the-easiest-way-to-orchestrate-your-dbt-workflows-from-airflow/).
+- [Orchestrate dbt Cloud jobs with Airflow](airflow-dbt-cloud.md).
+- [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/index.html).
+- [Astronomer Cosmos](https://astronomer.github.io/astronomer-cosmos/).
