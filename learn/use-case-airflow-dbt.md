@@ -79,7 +79,7 @@ For a connection to a PostgreSQL database, define the following parameters:
 
 ## dbt Core models
 
-When using Cosmos, any dbt project can be converted into an Airflow task groups by putting it in a `dbt` directory within the Astro projects `dags` folder.
+When using Cosmos, any dbt project can be converted into an Airflow task group by putting it in a `dbt` directory within the Astro projects `dags` folder.
 
 The `my_energy_project` dbt project contains the following information in its `dbt_project.yml`:
 
@@ -123,7 +123,7 @@ If you are using a different data warehouse than Postgres you will need to adapt
 
 :::
 
-The resulting file structure of in the Astro project is:
+The resulting file structure of the Astro project is:
 
 ```text
 .
@@ -147,7 +147,7 @@ Add the following Airflow DAG to your Astro project:
 This DAG consists of two tasks and one task group:
 
 - The `load_file` task uses the [Astro Python SDK `load file` operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/load_file.html) to load the contents of the local CSV file into the data warehouse.
-- The `transform_data` task group is created from the dbt models. The task group will contain two nested task groups with two tasks each, one for `dbt run`, the other for `dbt test`.
+- The `transform_data` task group is created from the dbt models. The task group contains two nested task groups with two tasks each, one for `dbt run`, the other for `dbt test`.
 - The `log_data_analysis` task uses the [Astro Python SDK dataframe operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) to run an analysis on the final table using `pandas` and logs the results.
 
 The `DbtTaskGroup` function of the Astro dbt provider package automatically scans the `dbt` folder for dbt projects and creates a task group (`transform_data` in this example) containing Airflow tasks for running and testing your dbt models. Additionally, the provider can infer dependencies within the dbt project and will set your Airflow task dependencies accordingly.
