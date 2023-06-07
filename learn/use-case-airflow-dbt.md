@@ -1,14 +1,15 @@
 ---
-title: "Create an ELT pipeline with Airflow, dbt Core, cosmos and the Astro Python SDK"
-description: "Use Airflow, dbt Core, cosmos and the Astro Python SDK in an ELT pipeline to analyze energy data."
+title: "Create an ELT pipeline with Airflow, dbt Core, Cosmos and the Astro Python SDK"
+description: "Use Airflow, dbt Core, Cosmos and the Astro Python SDK in an ELT pipeline to analyze energy data."
 id: use-case-airflow-dbt
 sidebar_label: "Airflow and dbt Core"
+sidebar_custom_props: { icon: 'img/integrations/dbt.png' }
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import cosmos_dag from '!!raw-loader!../code-samples/dags/airflow-dbt/cosmos_dag.py';
+import cosmos_energy_dag from '!!raw-loader!../code-samples/dags/use-case-airflow-dbt/cosmos_energy_dag.py';
 
-[dbt Core](https://docs.getdbt.com/) is a popular open-source library for analytics engineering that helps users build interdependent SQL models. Thanks to the [Cosmos](https://astronomer.github.io/astronomer-cosmos/) provider package, you can integrate any dbt project into your DAG with only a few lines of code. This example combines transformation steps in dbt Core integrated via Cosmos with ELT tasks defined using the [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/index.html) to create pipeline that analyzes energy data.
+[dbt Core](https://docs.getdbt.com/) is a popular open-source library for analytics engineering that helps users build interdependent SQL models. Thanks to the [Cosmos](https://astronomer.github.io/astronomer-cosmos/) provider package, you can integrate any dbt project into your DAG with only a few lines of code. This example combines transformation steps in dbt Core integrated via Cosmos with ELT tasks defined using the [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/index.html) to create a pipeline that analyzes energy data.
 
 :::info
 
@@ -29,44 +30,44 @@ To use this example you should have an understanding of:
 You will need:
 
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/overview) and an Astro project created by running `astro dev start`.
-- Access to a data warehouse supported by dbt Core and the Astro Python SDK. See [dbt documentation](https://docs.getdbt.com/docs/supported-data-platforms) for all supported warehouses of dbt Core and the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html) for all supported warehouses of the Astro Python SDK. This example uses a local [PostgreSQL](https://www.postgresql.org/) database with a database called `postgres` and a schema called `postgres`.
+- Access to a data warehouse supported by dbt Core and the Astro Python SDK. See [dbt documentation](https://docs.getdbt.com/docs/supported-data-platforms) for all supported warehouses of dbt Core and the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html) for all supported warehouses of the Astro Python SDK. This example uses a local [PostgreSQL](https://www.postgresql.org/) database with a database called `energy_db` and a schema called `energy_schema`.
 
 ## Configure your Astro project
 
-In order to use Cosmos you need to install a dbt adapter in a virtual environment in your Airflow instance. 
+In order to use Cosmos you need to install the dbt adapter for your data warehouse in a virtual environment in your Airflow instance. 
 
 Add the following to your Dockerfile:
 
-```text
+```Dockerfile
 # install dbt into a virtual environment
 # replace dbt-postgres with another supported adapter if you're using a different warehouse type
 RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
 pip install --no-cache-dir dbt-postgres && deactivate
 ```
 
-Next, add the Cosmos and Astro Python SDK packages to the requirements.txt file in your project:
+Add the Cosmos and Astro Python SDK packages to the requirements.txt file in your project:
 
 ```text
 astronomer-cosmos==0.7.0
 astro-sdk-python==1.6.1
 ```
 
-Finally, make sure Astro Python SDK objects can be serialized by setting the following environment variable:
+Set the following environment variable to enable deserialization of Astro Python SDK objects:
 
 ```text
 AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES = airflow\.* astro\.*
 ```
 
-## Connection
+## Connect Airflow to your database
 
-This example runs ELT operations in a data warehouse. Set a connection to your data warehouse either in the Airflow UI or as an environment variable. See [Manage connections in Apache Airflow](connections.md) for more information.
+This example runs ELT operations in a data warehouse. Set a connection to your data warehouse either in the Airflow UI or as an environment variable. See [Manage connections in Apache Airflow](connections.md) for more information. Both dbt Core via Cosmos and the Astro Python SDK will be able to use the same connection.
 
 For a connection to a PostgreSQL database, define the following parameters:
 
 - **Connection ID**: `db_conn`.
 - **Connection Type**: `Postgres`.
 - **Host**: Your Postgres host address.
-- **Schema**: Your Postgres database (`postgres`). 
+- **Schema**: Your Postgres database (`energy_db`). 
 - **Login**: Your Postgres login username.
 - **Password**: Your Postgres password.
 - **Port**: Your Postgres port.
@@ -90,6 +91,9 @@ Create a dbt project called `my_energy_project` with the following information i
 name: 'my_energy_project'
 # while you need to name a profile, you do not need to have a profiles.yml file defined when using Cosmos
 profile: my_profile
+models:
+  my_energy_project:
+    materialized: table
 # create a variable called country_code and give it the default value "FR" (for France)
 vars:
   country_code: "FR"
@@ -102,7 +106,7 @@ Add these two models to your dbt Core project:
 ```sql
 select 
     "YEAR", "COUNTRY", "SOLAR_CAPACITY", "TOTAL_CAPACITY", "RENEWABLES_CAPACITY"
-from postgres.postgres.energy
+from energy_db.energy_schema.energy
 where "COUNTRY" = '{{ var("country_code") }}'
 ```
 
@@ -138,11 +142,11 @@ After adding all files you should have this structure in your Astro project.
     └── subset_energy_capacity.csv
 ```
 
-## DAG
+## Create a DAG
 
 Add the following Airflow DAG to your Astro project:
 
-<CodeBlock language="python">{cosmos_dag}</CodeBlock>
+<CodeBlock language="python">{cosmos_energy_dag}</CodeBlock>
 
 This DAG consists of two tasks and one task group:
 
