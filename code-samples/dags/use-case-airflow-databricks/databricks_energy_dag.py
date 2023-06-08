@@ -26,7 +26,7 @@ import matplotlib.pyplot as plt
 # Setting variables #
 # ----------------- #
 
-COUNTRY = "United States"
+COUNTRY = "Switzerland"
 DATABRICKS_LOGIN_EMAIL = "<your email>"
 S3_BUCKET = "<your bucket>"
 AWS_REGION = "<your region>"
