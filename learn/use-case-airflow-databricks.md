@@ -62,9 +62,9 @@ Add the three CSV files with the electricity share data to the `include` folder 
 
 #### Airflow connections
 
-This example runs transformations in Databricks, stores information in an S3 bucket and utilizes a PostgreSQL database. Set a connection to each tool in the Airflow UI or as an environment variable. See [Manage connections in Apache Airflow](connections.md) for more information. You can use use other blob and database storage providers if they are [supported by the Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html).
+This example runs transformations in Databricks, stores information in an S3 bucket and utilizes a PostgreSQL database. Set a connection to each tool in the Airflow UI or as an environment variable. See [Manage connections in Apache Airflow](connections.md) for more information. You can use other object and database storage providers if they are [supported by the Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html).
 
-The Databricks connection needs to contain the following:
+Databricks connection:
 
 - **Connection ID**: `databricks_conn`.
 - **Connection Type**: `Databricks`.
@@ -72,14 +72,14 @@ The Databricks connection needs to contain the following:
 - **Login**: Your Databricks login username (email).
 - **Password**: Your [Databricks personal access token](https://docs.databricks.com/dev-tools/auth.html#databricks-personal-access-tokens).
 
-Connect to S3 by providing your AWS credentials:
+Amazon S3 connection:
 
 - **Connection ID**: `aws_conn`.
 - **Connection Type**: `Amazon Web Services`.
 - **AWS Access Key ID**: Your [AWS Access Key ID](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html). 
 - **AWS Secret Access Key**: Your AWS Secret Access Key.
 
-For a connection to a PostgreSQL database, define the following parameters:
+PostgreSQL connection:
 
 - **Connection ID**: `db_conn`.
 - **Connection Type**: `Postgres`.
@@ -107,7 +107,7 @@ If you are using a different object storage than AWS S3 you will need to change 
 
 ## The short end-to-end DAG
 
-Here is the short end-to-end DAG. Make sure to replace relevant variables such as `DATABRICKS_LOGIN_EMAIL` and `S3_BUCKET` to your information. You can also pick which country to analzye by changing the `COUNTRY` variable.
+Here is the short end-to-end DAG. Make sure to replace relevant variables such as `DATABRICKS_LOGIN_EMAIL` and `S3_BUCKET` with your information. You can also pick which country to analzye by changing the `COUNTRY` variable.
 
 <CodeBlock language="python">{uc_databricks_dag}</CodeBlock>
 
@@ -143,7 +143,7 @@ After the DAG runs, the line graph showing combined share of solar, hydro and wi
 
 Tutorials:
 
-- [Orchestrate dbt Core jobs with Airflow and Cosmos](airflow-databricks.md).
+- [Orchestrate Databricks jobs with Airflow](airflow-databricks.md).
 - [Write a DAG with the Astro Python SDK](astro-python-sdk.md).
 
 Concept guides:
