@@ -7,7 +7,7 @@ sidebar_custom_props: { icon: 'img/integrations/databricks.png' }
 ---
 
 import CodeBlock from '@theme/CodeBlock';
-import databricks_energy_dag from '!!raw-loader!../code-samples/dags/use-case-airflow-databricks/databricks_energy_dag.py';
+import uc_databricks_dag from '!!raw-loader!../code-samples/dags/use-case-airflow-databricks/uc_databricks_dag.py';
 
 [Databricks](https://databricks.com/) is a popular unified data and analytics platform built around [Apache Spark](https://spark.apache.org/) that provides users with fully managed Apache Spark clusters and interactive workspaces. The open-source [Astro Databricks provider](https://github.com/astronomer/astro-provider-databricks) provides full observability and control from Airflow so you can manage your Workflows from one place, which enables you to orchestrate your Databricks notebooks from Airflow and execute them as Databricks Workflows.
 
