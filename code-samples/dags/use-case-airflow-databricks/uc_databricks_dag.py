@@ -7,7 +7,7 @@ Python SDK to:
 - run a transformation to select information from one country,
 - load the results into an S3 bucket as CSV files,
 - perform transformations on the data using two Databricks notebooks in a DatabricksWorkflowTaskGroup
-- create a visualization of the transformation results to save in a local png.
+- create a visualization of the transformation results to save in a local png file.
 """
 
 from airflow.decorators import dag
