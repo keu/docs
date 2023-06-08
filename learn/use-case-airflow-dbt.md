@@ -66,7 +66,7 @@ AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES = airflow\.* astro\.*
 
 Add the CSV file with the energy data to the `include` folder in your Astro project.
 
-Airflow connections:
+#### Airflow connections
 
 This example runs ELT operations in a data warehouse. Set a connection to your data warehouse either in the Airflow UI or as an environment variable. See [Manage connections in Apache Airflow](connections.md) for more information. Both dbt Core via Cosmos and the Astro Python SDK will be able to use the same connection.
 
