@@ -23,6 +23,16 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 <!-- Make sure that all links to internal docs are the complete URLS including HTTPS. Otherwise the links will break in RSS. -->
 
+## June 6, 2023
+
+### Track user actions and ensure compliance with audit logs
+
+You can now export audit logs from the Cloud UI to view all actions taken in your Organization over a given time period. See [Export audit logs](audit-logs.md) for setup steps, and see [Audit log fields](audit-logs-reference.md) for a reference of all available audit log fields.
+
+### Additional improvements 
+
+- You can now configure Hybrid GCP clusters with additional Memory Optimized and Compute Optimized Cloud SQL instance types. See [Supported Cloud SQL instance types](resource-reference-gcp-hybrid.md#supported-cloud-sql-instance-types).
+
 ## May 30, 2023
 
 ### Manage permissions for groups of users with Teams
