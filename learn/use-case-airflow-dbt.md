@@ -2,7 +2,7 @@
 title: "ELT for renewable energy analysis with Airflow, dbt Core, Cosmos and the Astro Python SDK"
 description: "Use Airflow, dbt Core, Cosmos and the Astro Python SDK in an ELT pipeline to analyze energy data."
 id: use-case-airflow-dbt
-sidebar_label: "ELT of energy data with Airflow and dbt Core"
+sidebar_label: "ELT with Airflow, dbt + Astro SDK"
 sidebar_custom_props: { icon: 'img/integrations/dbt.png' }
 ---
 
@@ -22,10 +22,6 @@ The full Astro project used in this example can be cloned from [this repository]
 
 :::
 
-## The Data
-
-This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity. The subset of data used in this example can be found in this [GitHub repository](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv), and is read by the DAG from the `include` folder of the Astro project.
-
 ## Before you start
 
 Before trying this example, make sure you have:
@@ -34,37 +30,43 @@ Before trying this example, make sure you have:
 - An Astro project running locally on your computer. See [Getting started with the Astro CLI](https://docs.astronomer.io/astro/cli/get-started-cli).
 - Access to a data warehouse supported by dbt Core and the Astro Python SDK. See [dbt documentation](https://docs.getdbt.com/docs/supported-data-platforms) for all supported warehouses of dbt Core and the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html) for all supported warehouses of the Astro Python SDK. This example uses a local [PostgreSQL](https://www.postgresql.org/) database with a database called `energy_db` and a schema called `energy_schema`.
 
+## The Data
+
+This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity. The subset of data used in this example can be found in this [GitHub repository](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv), and is read by the DAG from the `include` folder of the Astro project.
+
 ## Basic setup
 
-### Astro project
+Modify your Astro project with the following instructions.
 
-In order to use Cosmos you need to install the dbt adapter for your data warehouse in a virtual environment in your Airflow instance. 
-
-Add the following to your Dockerfile:
+`Dockerfile`:
 
 ```Dockerfile
+FROM quay.io/astronomer/astro-runtime:8.4.0
+
 # install dbt into a virtual environment
 # replace dbt-postgres with another supported adapter if you're using a different warehouse type
 RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
 pip install --no-cache-dir dbt-postgres && deactivate
 ```
 
-Add the Cosmos and Astro Python SDK packages to the requirements.txt file in your project:
+`requirements.txt`:
 
 ```text
 astronomer-cosmos==0.7.0
 astro-sdk-python==1.6.1
 ```
 
-Set the following environment variable to enable deserialization of Astro Python SDK objects:
+`.env`:
 
 ```text
 AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES = airflow\.* astro\.*
 ```
 
+`/include`:
+
 Add the CSV file with the energy data to the `include` folder in your Astro project.
 
-### Airflow connection
+Airflow connections:
 
 This example runs ELT operations in a data warehouse. Set a connection to your data warehouse either in the Airflow UI or as an environment variable. See [Manage connections in Apache Airflow](connections.md) for more information. Both dbt Core via Cosmos and the Astro Python SDK will be able to use the same connection.
 
@@ -179,7 +181,6 @@ Documentation:
 
 - [Astronomer Cosmos](https://astronomer.github.io/astronomer-cosmos/).
 - [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/index.html).
-- [dbt](https://docs.getdbt.com/docs/)
 
 Webinars:
 
