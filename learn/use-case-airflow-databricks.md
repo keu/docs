@@ -109,7 +109,7 @@ If you are using a different object storage than AWS S3 you will need to change 
 
 Here is the short end-to-end DAG. Make sure to replace relevant variables such as `DATABRICKS_LOGIN_EMAIL` and `S3_BUCKET` to your information. You can also pick which country to analzye by changing the `COUNTRY` variable.
 
-<CodeBlock language="python">{databricks_energy_dag}</CodeBlock>
+<CodeBlock language="python">{uc_databricks_dag}</CodeBlock>
 
 This DAG uses the Astro Databricks provider to create a Databricks Workflow that runs two notebooks with the following tasks:
 
