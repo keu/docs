@@ -24,13 +24,14 @@ The full Astro project used in this example can be cloned from [this repository]
 
 ## The Data
 
-This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity, the subset used in this example can be found in this [GitHub repository](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv).
+This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity. The subset of data used in this example can be found in this [GitHub repository](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv), and is read by the DAG from the `include` folder of the Astro project.
 
 ## Before you start
 
 Before trying this example, make sure you have:
 
-- The [Astro CLI](https://docs.astronomer.io/astro/cli/overview) and an Astro project created by running `astro dev start`.
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/overview).
+- An Astro project running locally on your computer. See [Getting started with the Astro CLI](https://docs.astronomer.io/astro/cli/get-started-cli).
 - Access to a data warehouse supported by dbt Core and the Astro Python SDK. See [dbt documentation](https://docs.getdbt.com/docs/supported-data-platforms) for all supported warehouses of dbt Core and the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html) for all supported warehouses of the Astro Python SDK. This example uses a local [PostgreSQL](https://www.postgresql.org/) database with a database called `energy_db` and a schema called `energy_schema`.
 
 ## Basic setup
@@ -140,7 +141,7 @@ The resulting file structure of the Astro project is:
 
 ## The ELT DAG
 
-Add the following Airflow DAG to your Astro project:
+Here is the ELT DAG:
 
 <CodeBlock language="python">{cosmos_energy_dag}</CodeBlock>
 
@@ -150,13 +151,13 @@ This DAG consists of two tasks and one task group:
 - The `transform_data` task group is created from the dbt models. The task group contains two nested task groups with two tasks each, one for `dbt run`, the other for `dbt test`.
 - The `log_data_analysis` task uses the [Astro Python SDK dataframe operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) to run an analysis on the final table using `pandas` and logs the results.
 
-The `DbtTaskGroup` function of the Astro dbt provider package automatically scans the `dbt` folder for dbt projects and creates a task group (`transform_data` in this example) containing Airflow tasks for running and testing your dbt models. Additionally, the provider can infer dependencies within the dbt project and will set your Airflow task dependencies accordingly.
+Cosmos' `DbtTaskGroup` function automatically scans the `dbt` folder for dbt projects and creates a task group (`transform_data` in this example) containing Airflow tasks for running and testing your dbt models. Additionally, Cosmos can infer dependencies within the dbt project and will set your Airflow task dependencies accordingly.
 
 You can choose which country's data to analyze by specifying your desired `country_code` in the `dbt_args` parameter of the DbtTaskGroup. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
 
 ## Results
 
-Open the logs of the `log_data_analysis` task to see the proportional solar and renewable energy capacity development in the country you selected.
+After the DAG runs, the logs of the `log_data_analysis` task show the proportion of solar and renewable energy capacity development in the country you selected.
 
 ![Energy Analysis logs](/img/guides/cosmos_energy_analysis_logs.png)
 
@@ -167,7 +168,6 @@ Tutorials:
 - [Orchestrate dbt Core jobs with Airflow and Cosmos](airflow-dbt.md).
 - [Orchestrate dbt Cloud jobs with Airflow](airflow-dbt-cloud.md).
 - [Write a DAG with the Astro Python SDK](astro-python-sdk.md).
-- [Get started with Apache Airflow](get-started-with-airflow.md).
 
 Concept guides:
 
