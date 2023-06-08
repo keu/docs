@@ -188,6 +188,7 @@ module.exports = {
             },
             items: [
               'use-case-airflow-dbt',
+              'use-case-airflow-databricks',
             ],
           },
       ],
