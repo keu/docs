@@ -129,7 +129,7 @@ This DAG uses the Astro Databricks provider to create a Databricks Workflow that
 
 :::info
 
-If you are using a different object storage you need to change the preceeding DAG code, specifically the `OBJECT_STORAGE_CONN_ID` and the operator used in the `delete_intake_files_S3` task. To find relevant operators for your object storage see the [Astronomer registry](https://registry.astronomer.io/).
+If you are using a different object storage you need to change the preceding DAG code, specifically the `OBJECT_STORAGE_CONN_ID` and the operator used in the `delete_intake_files_S3` task. To find relevant operators for your object storage see the [Astronomer registry](https://registry.astronomer.io/).
 
 :::
 
