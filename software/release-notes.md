@@ -58,6 +58,46 @@ Release date: June 12, 2023
     - [CVE-2023-28840](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-28840)
     - [CVE-2023-2650](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-2650)
 
+## 0.32.1
+
+Release date: June 12, 2023
+
+### Additional improvements
+
+- [Overprovisioning](cluster-resource-provisioning.md) now also applies to the following components:
+
+    - PGBouncer
+    - Statsd
+    - Flower
+  
+- You can now configure `astronomer.houston.config.deployments.overProvisioningComponents` to limit the scope of [overprovisioning](cluster-resource-provisioning.md) only to specific Airflow components.
+- Teams without any users are now automatically deleted when SCIM is disabled.
+- You can now authenticate to an external storage service for [archiving task metadata](configure-deployment.md#clean-deployment-task-metadata) using Workload Identity.
+- You can now set `prometheus.config.scrape_configs.kubernetes_apiservers.tls_config.insecure_skip_verify` in the Prometheus Helm chart.
+- You can now set `astronomer.houston.config.deployments.helm.prometheus.certgenerator.extraAnnotations` in your `config.yaml` file.
+- You can now configure credentials for a registry backend as Kubernetes secrets in your `config.yaml` file. See [Configure a registry backend](registry-backend.md).
+
+### Bug fixes
+
+- Fixed an issue where `git-sync-relay` containers wouldn't restart as expected after being terminated.
+- Fixed an issue where a service account with the Workspace Editor role could update a Deployment when it didn't have any Deployment-level permissions for the Deployment. 
+- Fixed an issue where data for **Disk Usage** and **Platform Overview** did not appear in Grafana.
+- System Admins can no longer change a user's system role if the user is imported to Astronomer through an IdP group and `manageSystemPermissionsViaIdpGroups` is set to `true`.
+- Fixed an issue where you could not create a new Deployment from the Cloud UI if you updated its scheduler count using the text-based input field. 
+- Fixed an issue where container status and usage did not appear in the **Metrics** tab for Deployments with pre-created namespaces.
+- Fixed an issue where resource requests configured from the Software UI could get out of sync with the Houston database.
+- Fixed an issue where where updating a Deployment's resource configuration did not persist in the Houston database when that Deployment had overprovisioning enabled.
+- Reduced the number of redundant calls that Astronomer Software makes to your identity provider (IdP) when a user logs in.
+- Fixed a security vulnerability in logging.
+- Fixed the following vulnerabilities:
+
+    - [CVE-2023-29491](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-29491)
+    - [CVE-2023-1999](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-1999)
+    - [CVE-2023-27561](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-27561)
+    - [CVE-2022-41727](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-41727)
+    - [CVE-2023-28840](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-28840)
+    - [CVE-2023-2650](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-2650)
+
 ## 0.32.0
 
 Release date: April 28, 2023
