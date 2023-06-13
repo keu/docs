@@ -39,7 +39,7 @@ This example analyzes changes in solar and renewable energy capacity in differen
 
 ## Project contents
 
-This project consists of one DAG, [my_energy_dag](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/my_energy_dag.py), which performs the whole ELT process using two tasks defined with Astro Python SDK operators and a task group created through Cosmos from a dbt project consisting of two models.
+This project consists of one DAG, [my_energy_dag](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/my_energy_dag.py), which performs an ELT process using two tasks defined with Astro Python SDK operators and one task group created through Cosmos that orchestrates a dbt project consisting of two models.
 
 First, the full dataset containing solar and renewable energy capacity data for several European cities is loaded into the data warehouse using the [Astro Python SDK `load file` operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/load_file.html). Using the Astro Python SDK in this step allows you to easily switch between data warehouses, simply by changing the connection ID.
 
