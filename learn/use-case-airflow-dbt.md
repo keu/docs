@@ -39,15 +39,49 @@ This example analyzes changes in solar and renewable energy capacity in differen
 
 ## Project contents
 
-The DAG in this use case consists of two tasks and one task group:
+This project consists of one DAG, [my_energy_dag](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/my_energy_dag.py), which performs the whole ELT process using two tasks defined with Astro Python SDK operators and a task group created through Cosmos from a dbt project consisting of two models.
 
-- The `load_file` task uses the [Astro Python SDK `load file` operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/load_file.html) to load the contents of the local CSV file into the data warehouse.
-- The `transform_data` task group is created from the dbt models. The task group contains two nested task groups with two tasks each, one for `dbt run`, the other for `dbt test`.
-- The `log_data_analysis` task uses the [Astro Python SDK dataframe operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) to run an analysis on the final table using `pandas` and logs the results.
+First, the full dataset containing solar and renewable energy capacity data for several European cities is loaded into the data warehouse using the [Astro Python SDK `load file` operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/load_file.html). Using the Astro Python SDK in this step allows you to easily switch between data warehouses, simply by changing the connection ID.
 
-Cosmos' `DbtTaskGroup` function automatically scans the `dbt` folder for dbt projects and creates a task group (`transform_data` in this example) containing Airflow tasks for running and testing your dbt models. Additionally, Cosmos can infer dependencies within the dbt project and will set your Airflow task dependencies accordingly.
+```python
+load_data = aql.load_file(
+    input_file=File(CSV_FILEPATH),
+    output_table=Table(
+        name="energy",
+        conn_id=CONNECTION_ID,
+        metadata=Metadata(
+            database=DB_NAME,
+            schema=SCHEMA_NAME,
+        ),
+    ),
+)
+```
 
-You can choose which country's data to analyze by specifying your desired `country_code` in the `dbt_args` parameter of the DbtTaskGroup. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
+Then, the `transform_data` task group is created using the `DbtTaskGroup` class from Cosmos:
+
+```python
+dbt_tg = DbtTaskGroup(
+    group_id="transform_data",
+    dbt_project_name=DBT_PROJECT_NAME,
+    conn_id=CONNECTION_ID,
+    dbt_root_path=DBT_ROOT_PATH,
+    dbt_args={
+        "dbt_executable_path": DBT_EXECUTABLE_PATH,
+        "schema": SCHEMA_NAME,
+        "vars": '{"country_code": "CH"}',
+    },
+    profile_args={
+        "schema": SCHEMA_NAME,
+    },
+)
+```
+
+The Airflow tasks within the task group are automatically inferred by Cosmos from the dependencies between the two dbt models: 
+
+- The first model, [select_country](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/select_country.sql), creates a subset of the data by only selecting rows for the country that was specified in the `dbt_args` parameter of the `DbtTaskGroup`. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
+- The second model, [create_pct](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/create_pct.sql), divides both the solar and renewable energy capacity by the total energy capacity for each year calculating the fractions of these values.
+
+Finally, the `log_data_analysis` task uses the [Astro Python SDK dataframe operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) to run an analysis on the final table using `pandas` and logs the results.
 
 ## Results
 
