@@ -1,8 +1,8 @@
 ---
-title: "ELT for renewable energy analysis with Airflow, dbt Core, Cosmos and the Astro Python SDK"
+title: "Create an ELT pipeline with Airflow, dbt Core, Cosmos, and the Astro Python SDK"
 description: "Use Airflow, dbt Core, Cosmos and the Astro Python SDK in an ELT pipeline to analyze energy data."
 id: use-case-airflow-dbt
-sidebar_label: "ELT with Airflow, dbt + Astro SDK"
+sidebar_label: "ELT with Airflow + dbt + Astro SDK"
 sidebar_custom_props: { icon: 'img/integrations/dbt.png' }
 ---
 
@@ -11,14 +11,14 @@ import cosmos_energy_dag from '!!raw-loader!../code-samples/dags/use-case-airflo
 
 [dbt Core](https://docs.getdbt.com/) is a popular open-source library for analytics engineering that helps users build interdependent SQL models. Thanks to the [Cosmos](https://astronomer.github.io/astronomer-cosmos/) provider package, you can integrate any dbt project into your DAG with only a few lines of code. The open-source [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/index.html) greatly simplifies common ELT tasks like loading data and allows users to easily use Pandas on data stored in a data warehouse. 
 
-This example shows a DAG that loads data about changes in solar and renewable energy capacity in different European countries from a local CSV into a data warehouse. Transformation steps in dbt Core integrated via Cosmos filter the data for a country selected by the user and calculate the percentage of solar and renewable energy capacity for that country in different years. Depending on the trajectory of the percentage of solar and renewable energy capacity in the selected country, the DAG will print different messages to the logs.
+This example shows a DAG that loads data about changes in solar and renewable energy capacity in different European countries from a local CSV file into a data warehouse. Transformation steps in dbt Core filter the data for a country selected by the user and calculate the percentage of solar and renewable energy capacity for that country in different years. Depending on the trajectory of the percentage of solar and renewable energy capacity in the selected country, the DAG will print different messages to the logs.
 
 
 ![My energy DAG screenshot](/img/examples/uc_dbt_my_energy_dag_screenshot.png)
 
 :::info
 
-The full Astro project used in this example can be cloned from [this repository](https://github.com/astronomer/astro-dbt-provider-tutorial-example). 
+To skip the setup for this example, clone the final example from the [Astronomer GitHub](https://github.com/astronomer/astro-dbt-provider-tutorial-example). 
 
 :::
 
@@ -28,26 +28,23 @@ Before trying this example, make sure you have:
 
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/overview).
 - An Astro project running locally on your computer. See [Getting started with the Astro CLI](https://docs.astronomer.io/astro/cli/get-started-cli).
-- Access to a data warehouse supported by dbt Core and the Astro Python SDK. See [dbt documentation](https://docs.getdbt.com/docs/supported-data-platforms) for all supported warehouses of dbt Core and the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html) for all supported warehouses of the Astro Python SDK. This example uses a local [PostgreSQL](https://www.postgresql.org/) database with a database called `energy_db` and a schema called `energy_schema`.
+- Access to a data warehouse supported by dbt Core and the Astro Python SDK. See [dbt supported warehouses](https://docs.getdbt.com/docs/supported-data-platforms) and [Astro Python SDK supported warehouses](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html). This example uses a local [PostgreSQL](https://www.postgresql.org/) database with a database called `energy_db` and a schema called `energy_schema`.
 
-## The Data
+## Data source
 
 This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity. The subset of data used in this example can be found in this [GitHub repository](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv), and is read by the DAG from the `include` folder of the Astro project.
 
-## Basic setup
+## Setup
 
 Modify your Astro project with the following instructions.
 
-`Dockerfile`:
+1. Add the following lines to your `Dockerfile` under the `FROM` statement:
 
-```Dockerfile
-FROM quay.io/astronomer/astro-runtime:8.4.0
-
-# install dbt into a virtual environment
-# replace dbt-postgres with another supported adapter if you're using a different warehouse type
-RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
-pip install --no-cache-dir dbt-postgres && deactivate
-```
+    ```Dockerfile
+    # install dbt into a virtual environment
+    # replace dbt-postgres with another supported adapter if you're using a different warehouse type
+    RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
+    pip install --no-cache-dir dbt-postgres && deactivate
 
 `requirements.txt`:
 
@@ -66,7 +63,7 @@ AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES = airflow\.* astro\.*
 
 Add the CSV file with the energy data to the `include` folder in your Astro project.
 
-#### Airflow connections
+### Airflow connections
 
 This example runs ELT operations in a data warehouse. Set a connection to your data warehouse either in the Airflow UI or as an environment variable. See [Manage connections in Apache Airflow](connections.md) for more information. Both dbt Core via Cosmos and the Astro Python SDK will be able to use the same connection.
 
@@ -80,7 +77,7 @@ For a connection to a PostgreSQL database, define the following parameters:
 - **Password**: Your Postgres password.
 - **Port**: Your Postgres port.
 
-## dbt Core models
+### dbt Core models
 
 When using Cosmos, any dbt project can be converted into an Airflow task group by putting it in a `dbt` directory within the Astro projects `dags` folder.
 
@@ -143,7 +140,7 @@ The resulting file structure of the Astro project is:
 
 ## The ELT DAG
 
-Here is the ELT DAG:
+Add the following DAG to your `dags` directory in a file called `my_energy_dag.py`.
 
 <CodeBlock language="python">{cosmos_energy_dag}</CodeBlock>
 
