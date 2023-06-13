@@ -78,10 +78,43 @@ dbt_tg = DbtTaskGroup(
 
 The Airflow tasks within the task group are automatically inferred by Cosmos from the dependencies between the two dbt models: 
 
-- The first model, [select_country](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/select_country.sql), creates a subset of the data by only selecting rows for the country that was specified in the `dbt_args` parameter of the `DbtTaskGroup`. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
-- The second model, [create_pct](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/create_pct.sql), divides both the solar and renewable energy capacity by the total energy capacity for each year calculating the fractions of these values.
+- The first model, [select_country](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/select_country.sql), queries the table created by the previous task and creates a subset of the data by only selecting rows for the country that was specified as the `country_code` variable in the `dbt_args` parameter of the `DbtTaskGroup`. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
+
+    ```sql
+    select 
+        "YEAR", "COUNTRY", "SOLAR_CAPACITY", "TOTAL_CAPACITY", "RENEWABLES_CAPACITY"
+    from energy_db.energy_schema.energy
+    where "COUNTRY" = '{{ var("country_code") }}'
+    ```
+
+- The second model, [create_pct](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/create_pct.sql), divides both the solar and renewable energy capacity by the total energy capacity for each year calculating the fractions of these values. Note how the dependency between this model and the upstream model `select_country` is created by the dbt `ref` function and automatically translated into a dependency between Airflow tasks by Cosmos.
+
+    ```sql
+    select 
+        "YEAR", "COUNTRY", "SOLAR_CAPACITY", "TOTAL_CAPACITY", "RENEWABLES_CAPACITY",
+        "SOLAR_CAPACITY" / "TOTAL_CAPACITY" AS "SOLAR_PCT",
+        "RENEWABLES_CAPACITY" / "TOTAL_CAPACITY" AS "RENEWABLES_PCT"
+    from {{ ref('select_country') }}
+    where "TOTAL_CAPACITY" is not NULL
+    ```
 
 Finally, the `log_data_analysis` task uses the [Astro Python SDK dataframe operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) to run an analysis on the final table using `pandas` and logs the results.
+
+```python
+@aql.dataframe
+def log_data_analysis(df: pd.DataFrame):
+
+    "... code to determine the year with the highest solar and renewable energy capacity ..."
+
+    if latest_year == year_with_the_highest_solar_pct:
+        task_logger.info(
+            f"Yay! In {df.COUNTRY.unique()[0]} adoption of solar energy is growing!"
+        )
+    if latest_year == year_with_the_highest_renewables_pct:
+        task_logger.info(
+            f"Yay! In {df.COUNTRY.unique()[0]} adoption of renewable energy is growing!"
+        )
+```
 
 ## Results
 
