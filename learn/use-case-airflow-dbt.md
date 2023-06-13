@@ -31,7 +31,7 @@ Before trying this example, make sure you have:
 
 ## Clone the project
 
-You can clone the example project from this [Astronomer GitHub](https://github.com/astronomer/astro-dbt-provider-tutorial-example). Make sure to create a file called `.env` with the contents of the `.env_example` file in the project root directory and replace the connection details with your own.
+Clone the example project from this [Astronomer GitHub](https://github.com/astronomer/astro-dbt-provider-tutorial-example). Make sure to create a file called `.env` with the contents of the `.env_example` file in the project root directory and replace the connection details with your own.
 
 ## Data source
 
@@ -116,121 +116,9 @@ def log_data_analysis(df: pd.DataFrame):
         )
 ```
 
-## Results
-
-After the DAG runs, the logs of the `log_data_analysis` task show the proportion of solar and renewable energy capacity development in the country you selected.
-
-![Energy Analysis logs](/img/guides/cosmos_energy_analysis_logs.png)
-
-## Setup
-
-If you want to set up a the project from scratch follow these instructions.
-
-### Astro project
-
-Modify your Astro project so each of the named files contain the provided information.
-
-1. `Dockerfile`:
-
-    ```Dockerfile
-    FROM quay.io/astronomer/astro-runtime:8.4.0
-
-    # install dbt into a virtual environment
-    # replace dbt-snowflake with the adapter you need
-    RUN python -m venv dbt_venv && source dbt_venv/bin/activate && \
-        pip install --no-cache-dir dbt-snowflake && deactivate
-
-    ENV AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES = airflow\.* astro\.*
-    ```
-
-2. `requirements.txt`:
-
-    ```text
-    astronomer-cosmos==0.7.0
-    astro-sdk-python==1.6.1
-    ```
-
-3. `.env`:
-
-    ```text
-    # replace with your connection details to your data warehouse
-    AIRFLOW_CONN_DB_CONN='{
-        "conn_type": "Postgres",
-        "login": "<your-postgres-login>",
-        "password": "<your-postgres-password>",
-        "host": "<your-postgres-host>",
-        "port": <your_postgres-port>,
-        "schema": "energy_db",
-    }'
-    ```
-
-4. `/include`: Add the [CSV file](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) with the energy data to the `include` folder in your Astro project.
-
-:::info 
-
-This example runs ELT operations in a data warehouse. The connection set in `.env` is for a PostgreSQL database but you can use any data warehouse [supported by both dbt](https://docs.getdbt.com/docs/supported-data-platforms) and the [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/supported_databases.html). Both dbt Core via Cosmos and the Astro Python SDK will be able to use the same Airflow connection.
-
-:::
-
-### dbt Core models
-
-When using Cosmos, any dbt project can be converted into an Airflow task group by putting it in a `dbt` directory within the Astro projects `dags` folder.
-
-1. Create a `dbt` directory in the `dags` folder of your Astro project.
-
-2. Create a `my_energy_project` directory in the `dbt` directory.
-
-3. Create a file called `dbt_project.yml` in the `my_energy_project` dbt project with the following contents:
-
-    ```yml
-    name: 'my_energy_project'
-    # while you need to name a profile, you do not need to have a profiles.yml file defined when using Cosmos
-    profile: my_profile
-    models:
-    my_energy_project:
-        materialized: table
-    # create a variable called country_code and give it the default value "FR" (for France)
-    vars:
-    country_code: "FR"
-    ```
-
-4. Create a `models` directory in the `my_energy_project` dbt project.
-
-5. Create a file called `select_country.sql` in the `models` directory with the following contents:
-
-    ```sql
-    select 
-        "YEAR", "COUNTRY", "SOLAR_CAPACITY", "TOTAL_CAPACITY", "RENEWABLES_CAPACITY"
-    from energy_db.energy_schema.energy
-    where "COUNTRY" = '{{ var("country_code") }}'
-    ```
-
-6. Create a file called `create_pct.sql` in the `models` directory with the following contents:
-
-    ```sql
-    select 
-        "YEAR", "COUNTRY", "SOLAR_CAPACITY", "TOTAL_CAPACITY", "RENEWABLES_CAPACITY",
-        "SOLAR_CAPACITY" / "TOTAL_CAPACITY" AS "SOLAR_PCT",
-        "RENEWABLES_CAPACITY" / "TOTAL_CAPACITY" AS "RENEWABLES_PCT"
-    from {{ ref('select_country') }}
-    where "TOTAL_CAPACITY" is not NULL
-    ```
-
-:::info
-
-If you are using a different data warehouse than Postgres you might need to adapt the `FROM` statement in the first model and potentially the SQL dialect in both dbt models.
-
-:::
-
-### DAG
-
-Add the following DAG to your `dags` directory in a file called `my_energy_dag.py`.
-
-<CodeBlock language="python">{cosmos_energy_dag}</CodeBlock>
-
 ### Project structure
 
-The resulting file structure of the Astro project is:
+The structure of the relevant files in the Astro project is:
 
 ```text
 .
@@ -242,9 +130,17 @@ The resulting file structure of the Astro project is:
 │   │          ├── select_country.sql
 │   │          └── create_pct.sql
 │   └── my_energy_dag.py
-└── include
-    └── subset_energy_capacity.csv
+├── include
+│   └── subset_energy_capacity.csv
+├── Dockerfile
+└── requirements.txt
 ```
+
+## Results
+
+After the DAG runs, the logs of the `log_data_analysis` task show the proportion of solar and renewable energy capacity development in the country you selected.
+
+![Energy Analysis logs](/img/guides/cosmos_energy_analysis_logs.png)
 
 ## See also
 
