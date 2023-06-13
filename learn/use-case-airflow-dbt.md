@@ -15,6 +15,12 @@ This example shows a DAG that loads data about changes in solar and renewable en
 
 ![My energy DAG screenshot](/img/examples/uc_dbt_my_energy_dag_screenshot.png)
 
+:::info
+
+For simple instructions on how to use dbt Core with Cosmos, see the [dbt Core tutorial](airflow-dbt.md).
+
+:::
+
 ## Before you start
 
 Before trying this example, make sure you have:
