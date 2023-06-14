@@ -21,7 +21,7 @@ After the DAG in this project runs, the logs of the last task (`log_data_analysi
 
 :::info
 
-For a more detailed instructions on using dbt Core with Cosmos, see the [dbt Core tutorial](airflow-dbt.md).
+For more detailed instructions on using dbt Core with Cosmos, see the [dbt Core tutorial](airflow-dbt.md).
 
 :::
 
