@@ -23,6 +23,41 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 <!-- Make sure that all links to internal docs are the complete URLS including HTTPS. Otherwise the links will break in RSS. -->
 
+## June 13, 2023
+
+### Manage billing and track usage for Astro Hosted
+
+Use the new **Billing** page in the Cloud UI to see both high-level and detailed metrics about your spend in Astro Hosted. You can also use this page to configure your billing details and view invoices. See [Manage billing](manage-billing.md) for more information.
+
+### New cell type for using Airflow operators in the Astro Cloud IDE
+
+You can now use any Airflow operator available on the Astronomer Registry in your Astro Cloud IDE pipeline. Operator cells apply formatting and checks for parameter inputs, making it easy to configure operators as part of your pipeline. See [Use Airflow operators in the Astro Cloud IDE](use-airflow-operators.md).
+
+Additionally, you can configure custom cells to use your team's custom operators in a pipeline. See [Create custom operator cells](use-airflow-operators.md#create-custom-operator-cells).
+
+### IMDSv2 is now enforced on AWS clusters
+
+:::warning Breaking change
+
+If your DAGs assume IAM roles to directly access metadata on your cluster using IMDSv1, this change can result in DAG run failures. Upgrade your DAGs to use IMDSv2 for all cluster metadata requests.
+
+See [Use IMDSv2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html) for more information.
+
+:::
+
+Astronomer now enforces IMDSv2 on all AWS clusters. Any requests for resources on your clusters are now session-based and muse include a token in the request body.
+
+### Additional improvements
+
+- Trial Deployments now have [DAG-only deploys](deploy-code.md#deploy-dags-only) enabled by default.
+- The Cloud UI now shows your **Organization Short Name** and **Astro SAML Connection Name** in the Cloud UI.
+- You can now view mapped tasks from the **DAGs** page in the Cloud UI.
+
+### Bug fixes
+
+- Fixed an issue where worker node pools in Hosted dedicated clusters on Azure were not being updated correctly.
+- Fixed an issue the Cloud UI would reset a Deployment's **Min Worker Count** from 0 to 1 after you edited the Deployment in any way.
+
 ## June 6, 2023
 
 ### Track user actions and ensure compliance with audit logs
