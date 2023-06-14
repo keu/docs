@@ -11,13 +11,13 @@ import cosmos_energy_dag from '!!raw-loader!../code-samples/dags/use-case-airflo
 
 [dbt Core](https://docs.getdbt.com/) is a popular open-source library for analytics engineering that helps users build interdependent SQL models. Thanks to the [Cosmos](https://astronomer.github.io/astronomer-cosmos/) provider package, you can integrate any dbt project into your DAG with only a few lines of code. The open-source [Astro Python SDK](https://astro-sdk-python.readthedocs.io/en/stable/index.html) greatly simplifies common ELT tasks like loading data and allows users to easily use Pandas on data stored in a data warehouse. 
 
-This example shows a DAG that loads data about changes in solar and renewable energy capacity in different European countries from a local CSV file into a data warehouse. Transformation steps in dbt Core filter the data for a country selected by the user and calculate the percentage of solar and renewable energy capacity for that country in different years. Depending on the trajectory of the percentage of solar and renewable energy capacity in the selected country, the DAG will print different messages to the logs.
+This example uses a DAG to load data about changes in solar and renewable energy capacity in different European countries from a local CSV file into a data warehouse. Transformation steps in dbt Core filter the data for a country selected by the user and calculate the percentage of solar and renewable energy capacity for that country in different years. Depending on the trajectory of the percentage of solar and renewable energy capacity in the selected country, the DAG will print different messages to the logs.
 
 ![My energy DAG screenshot](/img/examples/uc_dbt_my_energy_dag_screenshot.png)
 
 :::info
 
-For simple instructions on how to use dbt Core with Cosmos, see the [dbt Core tutorial](airflow-dbt.md).
+For a more detailed instructions on using dbt Core with Cosmos, see the [dbt Core tutorial](airflow-dbt.md).
 
 :::
 

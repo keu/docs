@@ -181,11 +181,6 @@ module.exports = {
           {
             type: 'category',
             label: 'Use cases',
-            link: {
-              type: 'generated-index',
-              title: 'Use cases',
-              description: 'Try out use cases for Apache Airflow with example code.'
-            },
             items: [
               'use-case-airflow-dbt',
             ],
