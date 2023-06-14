@@ -138,7 +138,7 @@ Use the new **Billing** page in the Cloud UI to see both high-level and detailed
 
 ### New cell type for using Airflow operators in the Astro Cloud IDE
 
-You can now use any Airflow operator available on the Astronomer Registry in your Astro Cloud IDE pipeline. Operator cells apply formatting and checks for parameter inputs, making it easy to configure operators as part of your pipeline. See [Use Airflow operators in the Astro Cloud IDE](use-airflow-operators.md).
+You can now use any Airflow operator available on the Astronomer Registry in your Astro Cloud IDE pipeline. Operator cells apply formatting and checks for parameter inputs, making it easy to configure operators as part of your pipeline. See [Use Airflow operators in the Astro Cloud IDE](cloud-ide/use-airflow-operators.md).
 
 Additionally, you can configure custom cells to use your team's custom operators in a pipeline. See [Create custom operator cells](use-airflow-operators.md#create-custom-operator-cells).
 
