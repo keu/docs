@@ -138,9 +138,9 @@ Use the new **Billing** page in the Cloud UI to see both high-level and detailed
 
 ### New cell type for using Airflow operators in the Astro Cloud IDE
 
-You can now use any Airflow operator available on the Astronomer Registry in your Astro Cloud IDE pipeline. Operator cells apply formatting and checks for parameter inputs, making it easy to configure operators as part of your pipeline. See [Use Airflow operators in the Astro Cloud IDE](cloud-ide/use-airflow-operators.md).
+You can now use any Airflow operator available on the Astronomer Registry in your Astro Cloud IDE pipeline. Operator cells apply formatting and checks for parameter inputs, making it easy to configure operators as part of your pipeline. See [Use Airflow operators in the Astro Cloud IDE](https://docs.astronomer.io/astro/cloud-ide/use-airflow-operators).
 
-Additionally, you can configure custom cells to use your team's custom operators in a pipeline. See [Create custom operator cells](use-airflow-operators.md#create-custom-operator-cells).
+Additionally, you can configure custom cells to use your team's custom operators in a pipeline. See [Create custom operator cells](https://docs.astronomer.io/astro/cloud-ide/use-airflow-operators#create-custom-operator-cells).
 
 ### IMDSv2 is now enforced on AWS clusters
 
@@ -156,7 +156,7 @@ Astronomer now enforces IMDSv2 on all AWS clusters. Any requests for resources o
 
 ### Additional improvements
 
-- Trial Deployments now have [DAG-only deploys](deploy-code.md#deploy-dags-only) enabled by default.
+- Trial Deployments now have [DAG-only deploys](https://docs.astronomer.io/astro/deploy-code#deploy-dags-only) enabled by default.
 - The Cloud UI now shows your **Organization Short Name** and **Astro SAML Connection Name** in the Cloud UI.
 - You can now view mapped tasks from the **DAGs** page in the Cloud UI.
 
