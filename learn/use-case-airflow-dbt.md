@@ -51,7 +51,7 @@ This command builds your project and spins up 4 Docker containers on your machin
 
 ### Data source
 
-This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity. The subset of data used in this example can be found in this [GitHub repository](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv), and is read by the DAG from the `include` folder of the Astro project.
+This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity. The subset of data used in this example can be found in the [GitHub repository](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/include/subset_energy_capacity.csv), and is read by the DAG from the `include` folder of the Astro project.
 
 ### Project code
 
