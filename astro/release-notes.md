@@ -134,7 +134,7 @@ You can now export audit logs from the Cloud UI to view all actions taken in you
 
 ### Manage billing and track usage for Astro Hosted
 
-Use the new **Billing** page in the Cloud UI to see both high-level and detailed metrics about your spend in Astro Hosted. You can also use this page to configure your billing details and view invoices. See [Manage billing](manage-billing.md) for more information.
+Use the new **Billing** page in the Cloud UI to see both high-level and detailed metrics about your spend in Astro Hosted. You can also use this page to configure your billing details and view invoices.
 
 ### New cell type for using Airflow operators in the Astro Cloud IDE
 
