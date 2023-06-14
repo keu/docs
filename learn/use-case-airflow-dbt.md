@@ -15,17 +15,15 @@ This example uses a DAG to load data about changes in solar and renewable energy
 
 ![My energy DAG screenshot](/img/examples/uc_dbt_my_energy_dag_screenshot.png)
 
+After the DAG in this project runs, the logs of the last task (`log_data_analysis`) show the proportion of solar and renewable energy capacity development in a country you selected.
+
+![Energy Analysis logs](/img/guides/cosmos_energy_analysis_logs.png)
+
 :::info
 
 For a more detailed instructions on using dbt Core with Cosmos, see the [dbt Core tutorial](airflow-dbt.md).
 
 :::
-
-## What to expect
-
-After the DAG in this project runs, the logs of the last task (`log_data_analysis`) show the proportion of solar and renewable energy capacity development in a country you selected.
-
-![Energy Analysis logs](/img/guides/cosmos_energy_analysis_logs.png)
 
 ## Before you start
 
