@@ -178,6 +178,13 @@ module.exports = {
       items: [
           'pycharm-local-dev',
           'vscode-local-dev',
+          {
+            type: 'category',
+            label: 'Use cases',
+            items: [
+              'use-case-airflow-dbt',
+            ],
+          },
       ],
     },
   ],
