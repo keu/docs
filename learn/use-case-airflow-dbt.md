@@ -32,7 +32,12 @@ Before trying this example, make sure you have:
 ## Clone the project
 
 Clone the example project from this [Astronomer GitHub](https://github.com/astronomer/astro-dbt-provider-tutorial-example). Make sure to create a file called `.env` with the contents of the `.env_example` file in the project root directory and replace the connection details with your own.
+## Run the project
 
+To run the example project, first make sure Docker Desktop is running. Then, open your project and run:
+
+```sh
+astro dev start
 ## Data source
 
 This example analyzes changes in solar and renewable energy capacity in different European countries. The full source data provided by [Open Power System Data](https://doi.org/10.25832/national_generation_capacity/2020-10-01) includes information on many types of energy capacity. The subset of data used in this example can be found in this [GitHub repository](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv), and is read by the DAG from the `include` folder of the Astro project.
@@ -78,7 +83,7 @@ dbt_tg = DbtTaskGroup(
 
 The Airflow tasks within the task group are automatically inferred by Cosmos from the dependencies between the two dbt models: 
 
-- The first model, [select_country](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/select_country.sql), queries the table created by the previous task and creates a subset of the data by only selecting rows for the country that was specified as the `country_code` variable in the `dbt_args` parameter of the `DbtTaskGroup`. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
+- The first model, [`select_country`](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/select_country.sql), queries the table created by the previous task and creates a subset of the data by only selecting rows for the country that was specified as the `country_code` variable in the `dbt_args` parameter of the `DbtTaskGroup`. See the [dataset](https://github.com/astronomer/learn-tutorials-data/blob/main/subset_energy_capacity.csv) for all available country codes.
 
     ```sql
     select 
@@ -87,7 +92,7 @@ The Airflow tasks within the task group are automatically inferred by Cosmos fro
     where "COUNTRY" = '{{ var("country_code") }}'
     ```
 
-- The second model, [create_pct](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/create_pct.sql), divides both the solar and renewable energy capacity by the total energy capacity for each year calculating the fractions of these values. Note how the dependency between this model and the upstream model `select_country` is created by the dbt `ref` function and automatically translated into a dependency between Airflow tasks by Cosmos.
+- The second model, [`create_pct`](https://github.com/astronomer/astro-dbt-provider-tutorial-example/blob/main/dags/dbt/my_energy_project/models/create_pct.sql), divides both the solar and renewable energy capacity by the total energy capacity for each year calculating the fractions of these values. Note how the dbt `ref` function creates a dependency between this model and the upstream model `select_country`. Cosmos then automatically translates this into a dependency between Airflow tasks.
 
     ```sql
     select 
@@ -98,7 +103,7 @@ The Airflow tasks within the task group are automatically inferred by Cosmos fro
     where "TOTAL_CAPACITY" is not NULL
     ```
 
-Finally, the `log_data_analysis` task uses the [Astro Python SDK dataframe operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) to run an analysis on the final table using `pandas` and logs the results.
+Finally, the `log_data_analysis` task uses the [Astro Python SDK dataframe operator](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) to run an analysis on the final table and logs the results.
 
 ```python
 @aql.dataframe
@@ -116,9 +121,7 @@ def log_data_analysis(df: pd.DataFrame):
         )
 ```
 
-### Project structure
-
-The structure of the relevant files in the Astro project is:
+The files come together in the following project structure:
 
 ```text
 .
