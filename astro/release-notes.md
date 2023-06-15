@@ -27,7 +27,7 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 ### Manage billing and track usage for Astro Hosted
 
-Use the new **Billing** page in the Cloud UI to see both high-level and detailed metrics about your spend in Astro Hosted. You can also use this page to configure your billing details and view invoices.
+Use the new **Billing** page in the Cloud UI to see both high-level and detailed metrics about your spend in Astro Hosted. You can also use this page to configure your billing details and view invoices. See [Manage billing](manage-billing.md) for more details.
 
 ### New cell type for using Airflow operators in the Astro Cloud IDE
 
