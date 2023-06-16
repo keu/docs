@@ -180,10 +180,17 @@ module.exports = {
           'vscode-local-dev',
           {
             type: 'category',
-            label: 'Connections',
+            label: 'Use cases',
+            items: [
+              'use-case-airflow-dbt'
+            ]
+          },
+          {
+            type: 'category',
+            label: 'How-to Connections',
             link: {
               type: 'generated-index',
-              title: 'Connections',
+              title: 'How-to Connections',
               description: 'Airflow Connections define an entry-point to the external systems that need to be integrated with from Airflow. There are different ways to create and store a connection. ',
             },
             items: [
@@ -197,15 +204,8 @@ module.exports = {
               'azure-synapse',
               'ms-sql-server',
               'postgres'
-            ]
+            ],
           },
-          {
-            type: 'category',
-            label: 'Use cases',
-            items: [
-              'use-case-airflow-dbt',
-            ]
-          }
       ],
     },
   ],
