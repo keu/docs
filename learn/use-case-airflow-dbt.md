@@ -1,8 +1,8 @@
 ---
-title: "ELT with Airflow and dbt Core"
+title: "Create an ELT pipeline with Airflow, dbt Core, Cosmos, and the Astro Python SDK"
 description: "Use Airflow, dbt Core, Cosmos and the Astro Python SDK in an ELT pipeline to analyze energy data."
 id: use-case-airflow-dbt
-sidebar_label: "ELT with Airflow + dbt"
+sidebar_label: "ELT with Airflow + dbt + Astro SDK"
 sidebar_custom_props: { icon: 'img/integrations/dbt.png' }
 ---
 
