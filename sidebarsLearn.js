@@ -178,6 +178,27 @@ module.exports = {
       items: [
           'pycharm-local-dev',
           'vscode-local-dev',
+          {
+            type: 'category',
+            label: 'Connections',
+            link: {
+              type: 'generated-index',
+              title: 'Connections',
+              description: 'Airflow Connections define an entry-point to the external systems that need to be integrated with from Airflow. There are different ways to create and store a connection. ',
+            },
+            items: [
+              'bigquery',
+              'snowflake',
+              'redshift',
+              'azure-storage-account',
+              'azure-data-factory',
+              'databricks',
+              'dbt-cloud',
+              'azure-synapse',
+              'ms-sql-server',
+              'postgres'
+            ],
+          },
       ],
     },
   ],
