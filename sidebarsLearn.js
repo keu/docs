@@ -197,8 +197,15 @@ module.exports = {
               'azure-synapse',
               'ms-sql-server',
               'postgres'
-            ],
+            ]
           },
+          {
+            type: 'category',
+            label: 'Use cases',
+            items: [
+              'use-case-airflow-dbt',
+            ]
+          }
       ],
     },
   ],
