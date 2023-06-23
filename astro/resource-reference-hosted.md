@@ -60,11 +60,19 @@ A _standard cluster_ is a multi-tenant cluster that's hosted and managed by Astr
 
 Currently, standard clusters are available on the following clouds and regions:
 
-| Cloud    | Code          | Region                  |
-| -------- | ------------- | ----------------------- |
-| **GCP** | `us-central1` | Iowa, North America     |
-| **GCP** | `us-east4`    | Virginia, North America |
+### GCP
 
+| Code          | Region                  |
+| ------------- | ----------------------- |
+| `us-central1` | Iowa, North America     |
+| `us-east4`    | Virginia, North America |
+
+### AWS
+
+| Code        | Region                |
+| ----------- | --------------------- |
+| `us-east-1` | US East (N. Virginia) |
+| `us-west-2` | US West (Oregon)      |
 
 ## Dedicated cluster configurations
 
