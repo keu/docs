@@ -10,7 +10,7 @@ sidebar_label: dbt Cloud
 </head>
 
 
-Databricks provides a web-based platform for working with Spark.
+dbt Cloud is a web-based platform for working with dbt Core.
 
 :::tip
 If you are using `dbt-core`, you do not need a `dbt` connection. Refer to [Orchestrate dbt-core Jobs with Airflow](https://docs.astronomer.io/learn/airflow-dbt).
@@ -49,4 +49,5 @@ Airflow uses the HttpHook, which leverages Python `requests` library, to connect
 ## References
 - [Airflow OSS docs](https://airflow.apache.org/docs/apache-airflow-providers-dbt-cloud/stable/connections.html)
 - [dbt Cloud API reference](https://docs.getdbt.com/docs/dbt-cloud-apis/overview)
+- [Airflow and dbt Cloud](https://docs.astronomer.io/learn/airflow-dbt-cloud)
 - [Import and export your connections in JSON or URI foramt](https://docs.astronomer.io/learn)

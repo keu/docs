@@ -9,7 +9,7 @@ sidebar_label: Azure Data Factory
   <meta name="og:description" content="Learn how to create the Azure Data Factory Connection." />
 </head>
 
-Azure Data Factory is a cloud-based data integration and transformation service.
+[Azure Data Factory](https://azure.microsoft.com/en-us/products/data-factory) is a cloud-based data integration and transformation service.
 
 ## Prerequisites
 - Local Airflow environment using [Astro CLI](https://docs.astronomer.io/astro/cli/overview)

@@ -193,25 +193,25 @@ module.exports = {
           },
           {
             type: 'category',
-            label: 'How-to Connections',
+            label: 'Connections',
             link: {
               type: 'generated-index',
               title: 'How-to Connections',
               description: 'Airflow Connections define an entry-point to the external systems that need to be integrated with from Airflow. There are different ways to create and store a connection. ',
             },
             items: [
-              'bigquery',
-              'snowflake',
-              'redshift',
-              'azure-storage-account',
               'azure-data-factory',
+              'azure-storage-account',
+              'azure-synapse',
+              'bigquery',
               'databricks',
               'dbt-cloud',
-              'azure-synapse',
               'ms-sql-server',
-              'postgres'
-            ]
-          }
+              'postgres',
+              'redshift',
+              'snowflake'
+            ],
+          },
       ],
     },
     'airflow-glossary'
