@@ -39,6 +39,9 @@ astro dev pytest --env=myAlternativeEnvFile.env
 
 # Specify an argument for pytest
 astro dev pytest --args "–-cov-config path"
+
+# Export pytest report to be accessed from include/
+astro dev pytest --args "--junitxml=/usr/local/airflow/include/report.xml"
 ```
 
 ## Related Commands
