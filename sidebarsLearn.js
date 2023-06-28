@@ -190,7 +190,7 @@ module.exports = {
             label: 'Connections',
             link: {
               type: 'generated-index',
-              title: 'How-to Connections',
+              title: 'Connections',
               description: 'Airflow Connections define an entry-point to the external systems that need to be integrated with from Airflow. There are different ways to create and store a connection. ',
             },
             items: [
