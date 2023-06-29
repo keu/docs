@@ -40,7 +40,7 @@ When you define a task's `outlets` parameter, Airflow labels the task as a produ
 
 <CodeBlock language="python">{dataset_producer}</CodeBlock>
 
-After a dataset is defined in one or more producer tasks, consumer DAGs in your Airflow environment listen to the producer tasks and run whenever the task completes, rather than running on a time-based schedule. For example, if you have a DAG that should run when the `INSTRUCTIONS` and `INFO` datasets are updated, you define the DAG's schedule using the names of the datasets.
+A consumer DAG runs whenever the dataset(s) it is scheduled on is updated by a producer task, rather than running on a time-based schedule. For example, if you have a DAG that should run when the `INSTRUCTIONS` and `INFO` datasets are updated, you define the DAG's schedule using the names of the datasets.
 
 Any task that is scheduled with a dataset is considered a consumer task even if that task doesn't consume the referenced dataset. In other words, it is up to you as the DAG author to correctly reference and use the dataset that the consumer DAG is scheduled on.
 
