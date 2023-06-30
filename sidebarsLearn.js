@@ -55,7 +55,8 @@ module.exports = {
             'scheduling-in-airflow',
             'what-is-a-sensor',
             'managing-dependencies',
-            'airflow-ui'
+            'airflow-ui',
+            'airflow-variables',
           ],
         },
         {
@@ -69,6 +70,7 @@ module.exports = {
           items: [
             'astro-python-sdk-etl',
             'airflow-branch-operator',
+            'airflow-context',
             'cross-dag-dependencies',
             'airflow-importing-custom-hooks-operators',
             'error-notifications-in-airflow',
@@ -76,6 +78,7 @@ module.exports = {
             'debugging-dags',
             'dynamic-tasks',
             'templating',
+            'airflow-params',
             'airflow-passing-data-between-tasks',
             'rerunning-dags',
             'subdags',
