@@ -1,69 +1,96 @@
 ---
-title: "Creating the Redshift Connection"
+title: "Creating an Amazon Redshift Connection in Airflow "
 id: redshift
 sidebar_label: Redshift
+description: Learn how to create an Amazon Redshift connection.
 ---
 
-<head>
-  <meta name="description" content="Learn how to create the Redshift Connection." />
-  <meta name="og:description" content="Learn how to create the Redshift Connection." />
-</head>
-
-Redshift is a data warehouse product from AWS.
+[Amazon Redshift](https://aws.amazon.com/redshift/) is a data warehouse product from AWS. Integrating Redshift with Airflow allows you to automate, schedule and monitor a variety of tasks like create, delete, resume a cluster, ingest or export data to and from Redshift, run SQL queries against Redshift etc. 
 
 ## Prerequisites
-- Local Airflow environment using [Astro CLI](https://docs.astronomer.io/astro/cli/overview)
-- A Redshift cluster that is accessible from your Airflow Server
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/overview).
+- A locally running [Astro project](https://docs.astronomer.io/astro/cli/get-started-cli).
+- Access to your [Redshift cluster](https://us-east-2.console.aws.amazon.com/redshiftv2/home?region=us-east-2#dashboard)
 - A user/role with valid [authentication](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html) and [authorization](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html) to access Redshift Cluster.
 - Python requirement `apache-airflow-providers-amazon` should be added to `requirements.txt`
 
-## Get Connection details
-1. In your AWS console, select your region, go to **Amazon Redshift** and click on **Clusters**. 
-2. Go to the cluster you want to connect to and note `cluster-identifier`, `endpoint`, `database` and `port`.
-3. Your Key file in JSON format will be downloaded. We will copy it to create Google Cloud connection as explained in the steps below.
+## Get connection details
+
+A connection from Airflow to Amazon Redshift either requires DB credentials or an IAM role. Each of these method requires different information to create a connection.
+
+### Method 1: Use DB credentials
+
+Raw database credentials can be used for establishing a connection to an Amazon Redshift cluster. While straight forward, this approach lacks the strong security and user access controls provided by Identity and access management(IAM). To connect to Redshift using this approach, following information is required:
+
+- Cluster identifier
+- Database name
+- Port
+- User
+- Password
+
+In your AWS console, follow the below steps to retrieve all of these values:
+
+1. Select the region that contains your Redshift cluster and open [Redshift cluster dashboard](https://us-east-2.console.aws.amazon.com/redshiftv2/home?region=us-east-2#dashboard). Click on your cluster, then from the **General information** tab, copy **Cluster identifier** and **Endpoint**.
+2. Click on the **Properties** tab and copy **Database name** and **Port**.
+3. Follow the AWS documentation to [Create User](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) and [Grant Role](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) to create a new user and password for Airflow connection.
+
+### Method 2: Use IAM credentials
+
+IAM Credentials can be supplied to your Airflow environment using an AWS profile. This approach allows users the option of using temporary credentials and limiting the permissions the connected user has.
+
+Following information is required:
+
+- Cluster identifier
+- Database name
+- Port
+- Region
+- IAM user
+- AWS credentials file
+
+In your AWS console, follow the below steps to retrieve all of these values:
+
+1. Select the region that contains your Redshift cluster and open [Redshift cluster dashboard](https://us-east-2.console.aws.amazon.com/redshiftv2/home?region=us-east-2#dashboard). Click on your cluster, then from the **General information** tab, copy **Cluster identifier** and **Endpoint**.
+2. Click on the **Properties** tab and copy **Database name** and **Port**.
+3. Select the region that contains your Redshift cluster and open [IAM](https://us-east-1.console.aws.amazon.com/iam/home?region=us-east-2).
+4. Go to **Users** tab, select your user, go to the **Permissions** tab and follow the [AWS documentation](https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html) to ensure that the IAM user is authorized to connect to Redshift and perform required SQL operations.
+5. If you already have an access key ID and a secret access key, you can use those. Otherwise, follow the [AWS documentation](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html) to generate a new access key ID and secret access key.
 
 ## Create your connection
 
-To connect to AWS Redshift, you either need to use DB credentials or an IAM role. Use any of the below methods to integrate Redshift with Airflow:
+To connect to Redshift from Airflow, you either need to use DB credentials or an IAM role. Use any of the below methods to integrate Redshift with Airflow:
 
-1. Use DB Credentials in an Airflow Connection.
-2. Use IAM Authentication by providing IAM profile in Airflow Connection.
-
-### Use DB credentials
+### Method 1: Use DB credentials
 
 1. Get the user and password for the Redshift cluster from your DB Administrator or DevOps team. See [Create User](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) and [Grant Role](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) for more details.
-2. Go the **Admin** menu on Airflow UI and then click on **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
-3. Enter the `endpoint` in the **Host** field, `database` in **Database**, `user` in **User**, `password` in **Password** and `port` in **Port**. 
+2. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
+3. Paste the values copied in [Get connection details](#method-1-use-db-credentials) to the respective fields as shown in the screenshot. 
 4. Click on **Test** connection to test and then **Save** the connection.
 
 ![aws-connection-db-creds](/img/guides/connection-aws-redshift.png)
 
-### Use IAM credentials
+### Method 2: Use IAM credentials
 
-1. Ensure the IAM User is [authorized](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html) to connect to AWS Redshift and perform required SQL operations.
-2. Copy the `aws` credentials file to your Airflow server. For example, it will look like this for the `default` profile:
-```yaml
-# ~/.aws/credentials
-[default]
-aws_access_key_id="my_aws_access_key_id"
-aws_secret_access_key="my_aws_secret_access_key"
-aws_session_token="my_aws_session_token"
-```
-3. Go the **Admin** menu on Airflow UI and then click on **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
-4. Edit the following JSON with the information about your cluster and your `aws` profile name:
-
-```json
-{
-    "iam": true, 
-    "cluster_identifier": "my-redshift", 
-    "port": 5439, 
-    "region": "us-east-1",
-    "db_user": "awsuser", 
-    "database": "dev", 
-    "profile": "default"
-}
-```
-4. Copy the above JSON and paste it in the **Extra** field of the connection.
+1. Copy the `aws` credentials file to the `include` directory of your Astro project. For example, it will look like this for the `airflow` profile:
+    ```yaml
+    # ~/.aws/credentials
+    [<airflow_profile>]
+    aws_access_key_id="my_aws_access_key_id"
+    aws_secret_access_key="my_aws_secret_access_key"
+    ```
+2. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
+4. Use the following JSON template and update it with the details copied in [Get connection details](#method-2-use-iam-credentials) for your cluster and and paste it in the **Extra** field of the connection. Remember to change the name of the `profile` based on your `aws` credentials file.
+    ```json
+    {
+        "iam": true, 
+        "cluster_identifier": "<my-redshift>", 
+        "port": 5439, 
+        "region": "us-east-2",
+        "db_user": "awsuser", 
+        "database": "dev", 
+        "profile": "<airflow_profile>"
+    }
+    ```
+4. Copy the modified JSON from the above step and paste it in the **Extra** field of the connection.
 5. Click on **Test** connection to test and then **Save** the connection.
 
 ![aws-connection-iam-creds](/img/guides/connection-aws-redshift-extra.png)
