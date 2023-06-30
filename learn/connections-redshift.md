@@ -12,7 +12,7 @@ description: Learn how to create an Amazon Redshift connection.
 - A locally running [Astro project](https://docs.astronomer.io/astro/cli/get-started-cli).
 - Access to your [Redshift cluster](https://us-east-2.console.aws.amazon.com/redshiftv2/home?region=us-east-2#dashboard)
 - A user/role with valid [authentication](https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html) and [authorization](https://docs.aws.amazon.com/redshift/latest/mgmt/authorizing-redshift-service.html) to access Redshift Cluster.
-- Python requirement `apache-airflow-providers-amazon` should be added to `requirements.txt`
+
 
 ## Get connection details
 
@@ -61,24 +61,35 @@ To connect to Redshift from Airflow, you either need to use DB credentials or an
 
 ### Method 1: Use DB credentials
 
-1. Get the user and password for the Redshift cluster from your DB Administrator or DevOps team. See [Create User](https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html) and [Grant Role](https://docs.aws.amazon.com/redshift/latest/dg/r_GRANT.html) for more details.
-2. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
-3. Paste the values copied in [Get connection details](#method-1-use-db-credentials) to the respective fields as shown in the screenshot. 
-4. Click on **Test** connection to test and then **Save** the connection.
+To create a connection, follow the below steps:
+
+1. Add the following line to your Astro project's `requirement.txt` file:
+    ```
+    apache-airflow-providers-amazon
+    ```
+2. If you're not currently running Airflow locally, open your Astro project and run `astro dev start`. Otherwise, run `astro dev restart`.
+3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
+4. Paste the values copied in [Get connection details](#method-1-use-db-credentials) to the respective fields as shown in the screenshot. 
+5. Click on **Test** connection to test and then **Save** the connection.
 
 ![aws-connection-db-creds](/img/guides/connection-aws-redshift.png)
 
 ### Method 2: Use IAM credentials
 
-1. Copy the `aws` credentials file to the `include` directory of your Astro project. For example, it will look like this for the `airflow` profile:
+1. Add the following line to your Astro project's `requirement.txt` file:
+    ```
+    apache-airflow-providers-amazon
+    ```
+2. Copy the `aws` credentials file to the `include` directory of your Astro project. For example, it will look like this for the `airflow` profile:
     ```yaml
     # ~/.aws/credentials
     [<airflow_profile>]
     aws_access_key_id="my_aws_access_key_id"
     aws_secret_access_key="my_aws_secret_access_key"
     ```
-2. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
-4. Use the following JSON template and update it with the details copied in [Get connection details](#method-2-use-iam-credentials) for your cluster and and paste it in the **Extra** field of the connection. Remember to change the name of the `profile` based on your `aws` credentials file.
+3. If you're not currently running Airflow locally, open your Astro project and run `astro dev start`. Otherwise, run `astro dev restart`.
+4. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Amazon Redshift**.
+5. Use the following JSON template and update it with the details copied in [Get connection details](#method-2-use-iam-credentials) for your cluster and and paste it in the **Extra** field of the connection. Remember to change the name of the `profile` based on your `aws` credentials file.
     ```json
     {
         "iam": true, 
@@ -90,8 +101,8 @@ To connect to Redshift from Airflow, you either need to use DB credentials or an
         "profile": "<airflow_profile>"
     }
     ```
-4. Copy the modified JSON from the above step and paste it in the **Extra** field of the connection.
-5. Click on **Test** connection to test and then **Save** the connection.
+6. Copy the modified JSON from the above step and paste it in the **Extra** field of the connection.
+7. Click on **Test** connection to test and then **Save** the connection.
 
 ![aws-connection-iam-creds](/img/guides/connection-aws-redshift-extra.png)
 
