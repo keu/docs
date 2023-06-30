@@ -238,6 +238,24 @@ To complete this setup:
       ports:
       - port: 80
         targetPort: 8080
+    ---
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: astronomer-astronomer-releases-nginx-policy
+    spec:
+      ingress:
+      - from:
+        - namespaceSelector: {}
+          podSelector: {}
+        ports:
+        - port: 8080
+          protocol: TCP
+      podSelector:
+        matchLabels:
+          app: astronomer-releases
+      policyTypes:
+      - Ingress
     ```
 
     Note the Docker image in the deployment and ensure that this is also accessible from within your environment.
