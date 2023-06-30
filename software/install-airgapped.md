@@ -201,7 +201,7 @@ To complete this setup:
         spec:
           containers:
           - name: astronomer-releases
-            image: 012345678910.dkr.ecr.us-east-1.amazonaws.com/nginx:stable # Replace with own image
+            image: <use same image as es-ingress-controller>
             resources:
               requests:
                 memory: "32Mi"
@@ -210,7 +210,7 @@ To complete this setup:
                 memory: "128Mi"
                 cpu: "500m"
             ports:
-            - containerPort: 80
+            - containerPort: 8080
             volumeMounts:
             - name: astronomer-certified
               mountPath: /usr/share/nginx/html/astronomer-certified
@@ -237,7 +237,7 @@ To complete this setup:
         app: astronomer-releases
       ports:
       - port: 80
-        targetPort: 80
+        targetPort: 8080
     ```
 
     Note the Docker image in the deployment and ensure that this is also accessible from within your environment.
