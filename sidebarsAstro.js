@@ -247,6 +247,7 @@ module.exports = {
             "secrets-management",
           ],
         },
+        "astro-glossary"
       ],
     },
   ],
