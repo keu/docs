@@ -104,7 +104,7 @@ DAG-only deploys are an Astro feature that you can use to quickly update your As
     astro login astronomer.io
     ```
 
-    After running this command, you are prompted to open your web browser and enter your credentials to the Cloud UI. The Cloud UI then automatically authenticates you to the CLI. The next time you log in, you can run `astro login` without specifying a domain.
+    After running this command, you are prompted to open your web browser and enter your credentials to the Cloud UI. The Cloud UI then automatically authenticates you to the CLI. The next time you log in, you can run `astro login` without specifying a domain. If you run into issues logging in, check to make sure that you have the latest version of the Astro CLI. See [Upgrade the CLI](cli/install-cli.md#upgrade-the-cli).
 
 2. Run the following command to enable DAG-only code deploys on your Deployment.
    
