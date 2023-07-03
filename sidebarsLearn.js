@@ -183,6 +183,7 @@ module.exports = {
       items: [
           'pycharm-local-dev',
           'vscode-local-dev',
+          'example-ms-teams-callback',
           {
             type: 'category',
             label: 'Use cases',
