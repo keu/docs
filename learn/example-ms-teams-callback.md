@@ -16,7 +16,7 @@ Before trying this example, make sure you have:
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/install-cli)
 - An Astro project running locally on your computer. See [Getting started with the Astro CLI](https://docs.astronomer.io/astro/cli/get-started-cli)
 
-## Write Airflow code with VS Code
+## Send task failure notifications to MS Teams
 
 Follow these steps to receive notifications in MS Teams for failed tasks in an example DAG. Refer to the [Airflow callbacks section](error-notifications-in-airflow.md#airflow-callbacks) of our notifications guide to learn how to set up notifications for other type of events in a DAG run.
 
