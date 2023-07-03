@@ -38,8 +38,8 @@ Follow these steps to receive notifications in MS Teams for failed tasks in an e
 
 3. In the Airflow UI create an Airflow connection by clicking on **Admin** and then **Connections**. Create a new connection with the following parameters:
 
-    - **Conn Id**: `ms_teams_callbacks`
-    - **Conn Type**: `HTTP`
+    - **Connection Id**: `ms_teams_callbacks`
+    - **Connection Type**: `HTTP`
     - **Host**: `outlook.office.com/webhook/<your-webhook-id>`
     - **Schema**: `https`
 
@@ -48,6 +48,12 @@ Follow these steps to receive notifications in MS Teams for failed tasks in an e
 :::info
 
 Some corporate environments make use of outbound proxies. If you are behind an outbound proxy for internet accessput the proxy details in the **Extra** field when creating the HTTP Connection in the Airflow UI (`{"proxy":"http://my-proxy:3128"}`). 
+
+:::
+
+:::info
+
+If the `HTTP` connection type is not available, double check that you have the [HTTP provider](https://registry.astronomer.io/providers/apache-airflow-providers-http/versions/4.4.2) installed in your Airflow environment. 
 
 :::
 
