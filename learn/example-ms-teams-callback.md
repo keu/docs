@@ -53,7 +53,7 @@ Some corporate environments make use of outbound proxies. If you are behind an o
 
 :::info
 
-If the `HTTP` connection type is not available, double check that you have the [HTTP provider](https://registry.astronomer.io/providers/apache-airflow-providers-http/versions/4.4.2) installed in your Airflow environment. 
+If the `HTTP` connection type is not available, double check that you have the [HTTP provider](https://registry.astronomer.io/providers/apache-airflow-providers-http/versions/latest) installed in your Airflow environment. 
 
 :::
 
