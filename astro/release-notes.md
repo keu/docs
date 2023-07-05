@@ -31,7 +31,7 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 ### Configure SCIM provisioning for Okta
 
-If your Organization uses Okta for single sign-on (SSO), you can now set up SCIM provisioning for Astro. SCIM provisioning simplifies user management by allowing you to add and remove Astro users from Okta based on your existing user groups. See [Set up SCIM provisioning](set-up-scim-provisioning.md) for more information.
+If your Organization uses Okta for single sign-on (SSO), you can now set up SCIM provisioning for Astro. SCIM provisioning simplifies user management by allowing you to add and remove Astro users from Okta based on your existing user groups. See [Set up SCIM provisioning](https://docs.astronomer.io/astro/set-up-scim-provisioning) for more information.
 
 ### See pricing estimate when creating a Deployment 
 
@@ -43,7 +43,7 @@ The Deployment creation page in the Cloud UI has been reorganized to make it eas
 
 ### Additional improvements
 
-- You can now configure Deployments with the `A40` machine type, which has 8 vCPU and 16 GiB. See [Astro hosted resource reference](resource-reference-hosted.md).
+- You can now configure Deployments with the `A40` machine type, which has 8 vCPU and 16 GiB. See [Astro hosted resource reference](https://docs.astronomer.io/astro/resource-reference-hosted).
 - You can now access your Organization settings from a Workspace by clicking the name of your Organization/ Workspace.
 - On Astro Hybrid, the default Azure DB instance is now `Standard D2ds_v4`.
 - The Deployment creation screen for Astro Hybrid has been updated to be consistent with Astro Hosted.
