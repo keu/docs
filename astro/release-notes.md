@@ -27,7 +27,7 @@ Astronomer is committed to continuous delivery of both features and bug fixes to
 
 <!-- Make sure that all links to internal docs are the complete URLS including HTTPS. Otherwise the links will break in RSS. -->
 
-## July 4, 2023
+## July 5, 2023
 
 ### Send Astro alerts to email
 
