@@ -73,7 +73,7 @@ To run data pipelines on Astro, you first need to create an Astro project, which
 ## Step 2: Create your DAG
 
 1. Create a new Python file in the `/dags` directory of your Astro project called `my_second_dag.py`.
-2. Copy the code from the **< > Code** tab of the [Tutorial DAG: Airflow Connections](https://legacy.registry.astronomer.io/dags/get-started-tutorial-2-dag) from the Astronomer Registry.
+2. Copy the code by clicking on **Use DAG** in the top right corner on [this page on the Astronomer Registry](https://registry.astronomer.io/).
 3. Paste the code into `my_second_dag.py`.
 
 ## Step 3: Add a provider package
@@ -167,22 +167,23 @@ Now that your Airflow environment is configured correctly, look at the DAG code 
 At the top of the file, all necessary packages are imported. Notice how both the `SimpleHttpOperator` as well as the `GithubTagSensor` are part of the provider packages you installed.
 
 ```python
-from airflow import DAG
+from airflow.decorators import dag
 from airflow.models import Variable
 from airflow.providers.http.operators.http import SimpleHttpOperator
 from airflow.providers.github.sensors.github import GithubTagSensor
-from datetime import datetime
+from pendulum import datetime
 ```
 
-Next, the DAG context is instantiated using the `DAG` class. The DAG has the ID `my_second_dag`, and it starts running on September 1st, 2022. After its start date, the DAG runs every day at 9:00 AM as defined in a [cron](https://crontab.guru/) statement. `catchup` is set to `False` in order to prevent the DAG runs from between the `start_date` and today from being scheduled automatically.
+Next, the DAG context is instantiated using the [`@dag` decorator](airflow-decorators.md). The DAG has the ID `my_second_dag`, and it starts running on July 1st, 2023. After its start date, the DAG runs every day at 9:00 AM as defined in a [cron](https://crontab.guru/) string. `catchup` is set to `False` in order to prevent the DAG runs from between the `start_date` and today from being scheduled automatically.
 
 ```python
-with DAG(
-    dag_id="my_second_dag",
-    start_date=datetime(2022, 9, 1),
+@dag(
+    start_date=datetime(2023, 7, 1),
     schedule="0 9 * * *",
-    catchup=False
-):
+    catchup=False,
+    tags=["connections"],
+)
+def my_second_dag():
 ```
 
 The DAG itself has two tasks. The first task uses the `GithubTagSensor` to check whether a tag named `v1.0` has been added to your GitHub repository. It utilizes the Airflow variable (`my_github_repo`) and connection (`my_github_connection`) to access the correct repository with the appropriate credentials. The sensor checks for the tag every 30 seconds and will time out after one day. It is best practice to always set a `timeout` because the default value is quite long at 7 days, which can impact performance if left unchanged in DAGs that run on a higher frequency.
@@ -209,10 +210,12 @@ The second task uses the `SimpleHttpOperator` to send a `GET` request to the cat
     )
 ```
 
-Lastly, the dependency between the two tasks is set so that the API is only queried after the `tag_sensor` task is successful.
+Lastly, the dependency between the two tasks is set so that the API is only queried after the `tag_sensor` task is successful and the DAG function is called.
 
 ```python
     tag_sensor >> query_API
+
+my_second_dag()
 ```
 
 ## Conclusion
