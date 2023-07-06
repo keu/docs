@@ -1,8 +1,8 @@
 ---
-title: "Creating an Amazon Redshift Connection in Airflow "
+title: "Creating an Amazon Redshift Connection"
 id: redshift
 sidebar_label: Redshift
-description: Learn how to create an Amazon Redshift connection.
+description: Learn how to create an Amazon Redshift connection in Airflow.
 ---
 
 [Amazon Redshift](https://aws.amazon.com/redshift/) is a data warehouse product from AWS. Integrating Redshift with Airflow allows you to automate, schedule and monitor a variety of tasks like create, delete, resume a cluster, ingest or export data to and from Redshift, run SQL queries against Redshift etc. 
@@ -72,7 +72,7 @@ To create a connection, follow the below steps:
 4. Paste the values copied in [Get connection details](#method-1-use-db-credentials) to the respective fields as shown in the screenshot. 
 5. Click on **Test** connection to test and then **Save** the connection.
 
-![aws-connection-db-creds](/img/guides/connection-aws-redshift.png)
+    ![aws-connection-db-creds](/img/guides/connection-aws-redshift.png)
 
 ### Method 2: Use IAM credentials
 
@@ -104,15 +104,13 @@ To create a connection, follow the below steps:
 6. Copy the modified JSON from the above step and paste it in the **Extra** field of the connection.
 7. Click on **Test** connection to test and then **Save** the connection.
 
-![aws-connection-iam-creds](/img/guides/connection-aws-redshift-extra.png)
+    ![aws-connection-iam-creds](/img/guides/connection-aws-redshift-extra.png)
 
 ## How it works
 
-- Airflow Redshift provider uses the python package [Amazon Redshift Python Connector](https://docs.aws.amazon.com/redshift/latest/mgmt/python-configuration-options.html) to connect to Redshift. 
-- When no Key details in connection are provided, Google defaults to using [Application Default Credentials](https://cloud.google.com/docs/authentication/application-default-credentials).
+Airflow uses the python package [Amazon Redshift Python Connector](https://docs.aws.amazon.com/redshift/latest/mgmt/python-configuration-options.html) to connect to Redshift using [RedshiftSQLHook](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/_api/airflow/providers/amazon/aws/hooks/redshift_sql/index.html).
 
-## References
-- [OSS Airflow docs](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/redshift.html)
+## See also
+- [Apache Airflow Amazon provider docs](https://airflow.apache.org/docs/apache-airflow-providers-amazon/stable/connections/redshift.html)
 - [Redshift Connector Python Client](https://github.com/aws/amazon-redshift-python-driver/blob/master/tutorials/001%20-%20Connecting%20to%20Amazon%20Redshift.ipynb)
-- [Create an IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html)
-- [Create an IAM role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html)
+- Redshift [modules](https://registry.astronomer.io/modules?query=redshift) in Astronomer Registry.
