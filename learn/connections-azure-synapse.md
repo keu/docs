@@ -1,21 +1,36 @@
 ---
-title: "Creating the Azure Synapse Connection"
+title: "Creating an Azure Synapse connection in Airflow"
 id: azure-synapse
 sidebar_label: Azure Synapse
+description: Learn how to create an Azure Synapse connection.
 ---
 
-<head>
-  <meta name="description" content="Learn how to create the Azure Synapse Connection." />
-  <meta name="og:description" content="Learn how to create the Azure Synapse Connection." />
-</head>
-
-Azure Synapse is an enterprise analytics service from Microsoft.
+[Azure Synapse](https://azure.microsoft.com/en-us/products/synapse-analytics/#:~:text=Azure%20Synapse%20Analytics%20is%20an,log%20and%20time%20series%20analytics.) is an enterprise analytics service from Microsoft. Integrating Airflow with Synapse allows users to run their Spark jobs on Azure Synapse and run SQL queries in the Synapse SQL pool.
 
 ## Prerequisites
-- Local Airflow environment using [Astro CLI](https://docs.astronomer.io/astro/cli/overview)
-- Microsoft Azure Account with Synapse Workspace. See [Getting Started with Azure Synapse Analytics](https://learn.microsoft.com/en-us/azure/synapse-analytics/get-started)
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/overview).
+- A locally running [Astro project](https://docs.astronomer.io/astro/cli/get-started-cli).
+- Access to a [Azure Synapse workspace](https://learn.microsoft.com/en-us/azure/synapse-analytics/get-started)
 - Access to your Synapse Database from Airflow
-- User with proper authorization to the Database and Schema
+
+## Get Connection details
+
+A connection from Airflow to Azure data factory requires the following information:
+
+- Subscription ID
+- Data factory name
+- Resource group name
+- Application Client ID
+- Tenant ID
+- Client secret
+
+1. Go to [Synapse Analytics](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.Synapse%2Fworkspaces) on Azure Portal
+2. Go to your workspace and copy the following
+    - SQL Endpoint (Either **Dedicated** or **Serverless** whichever you want to use)
+    - SQL Admin username and password
+    - SQL Pool name to run queries in
+
+
 - Python requirement `apache-airflow-providers-odbc` should be added to `requirements.txt`
 - Install ODBC Driver to your Docker image:
   - Add the following OS-level packages to your `packages.txt`
