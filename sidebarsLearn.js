@@ -56,6 +56,7 @@ module.exports = {
             'what-is-a-sensor',
             'managing-dependencies',
             'airflow-ui',
+            'airflow-variables',
           ],
         },
         {
@@ -69,6 +70,7 @@ module.exports = {
           items: [
             'astro-python-sdk-etl',
             'airflow-branch-operator',
+            'airflow-context',
             'cross-dag-dependencies',
             'airflow-importing-custom-hooks-operators',
             'error-notifications-in-airflow',
@@ -76,6 +78,7 @@ module.exports = {
             'debugging-dags',
             'dynamic-tasks',
             'templating',
+            'airflow-params',
             'airflow-passing-data-between-tasks',
             'rerunning-dags',
             'subdags',
@@ -115,7 +118,6 @@ module.exports = {
             'kubepod-operator',
             'using-airflow-plugins',
             'airflow-pools',
-            'airflow-sql-data-quality',
             'testing-airflow',
           ],
         },
@@ -133,6 +135,7 @@ module.exports = {
         'cloud-ide-tutorial',
         'operator-extra-link-tutorial',
         'xcom-backend-tutorial',
+        'airflow-sql-data-quality',
         'astro-python-sdk',
         'external-python-operator',
         'custom-airflow-ui-docs-tutorial',
@@ -156,10 +159,12 @@ module.exports = {
         'airflow-databricks',
         'airflow-dbt-cloud',
         'airflow-dbt',
+        'airflow-duckdb',
         'airflow-fivetran',
         'airflow-great-expectations',
         'execute-notebooks',
         'marquez',
+        'airflow-mlflow',
         'airflow-mongodb',
         'airflow-snowflake',
         'soda-data-quality',
@@ -178,13 +183,6 @@ module.exports = {
       items: [
           'pycharm-local-dev',
           'vscode-local-dev',
-          {
-            type: 'category',
-            label: 'Use cases',
-            items: [
-              'use-case-airflow-dbt'
-            ]
-          },
           {
             type: 'category',
             label: 'Connections',
@@ -206,7 +204,16 @@ module.exports = {
               'snowflake'
             ],
           },
+          {
+            type: 'category',
+            label: 'Use cases',
+            items: [
+              'use-case-airflow-databricks',
+              'use-case-airflow-dbt'
+            ]
+          },
       ],
     },
+    'airflow-glossary'
   ],
 };

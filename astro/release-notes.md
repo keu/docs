@@ -21,17 +21,75 @@ import HybridBadge from '@site/src/components/HybridBadge';
 
 Astronomer is committed to continuous delivery of both features and bug fixes to Astro. To keep your team up to date on what's new, this document will provide a regular summary of all changes released to Astro.
 
-**Latest Astro Runtime Version**: 8.4 ([Release notes](runtime-release-notes.md))
+**Latest Astro Runtime Version**: 8.6 ([Release notes](runtime-release-notes.md))
 
-**Latest CLI Version**: 1.16.1 ([Release notes](cli/release-notes.md))
+**Latest CLI Version**: 1.17.0 ([Release notes](cli/release-notes.md))
 
-<!-- Make sure that all links to internal docs are the complete URLS including HTTPS. Otherwise the links will break in RSS. -->
+<!-- ALL LINKS TO INTERNAL DOCS MUST BE COMPLETE URLS INCLUDING HTTPS. Otherwise the links will break in RSS. -->
+
+## July 5, 2023
+
+### Configure SCIM provisioning for Okta
+
+If your Organization uses Okta for single sign-on (SSO), you can now set up SCIM provisioning for Astro. SCIM provisioning simplifies user management by allowing you to add and remove Astro users from Okta based on your existing user groups. See [Set up SCIM provisioning](https://docs.astronomer.io/astro/set-up-scim-provisioning) for more information.
+
+### See pricing estimate when creating a Deployment 
+
+<HostedBadge/>
+
+The Deployment creation page in the Cloud UI has been reorganized to make it easier to focus on specific configurations for your Deployment. Each configuration is now collapsible and includes guidance for different environment sizes. Additionally, the page now shows cost estimates for a Deployment before you create it.
+
+![Deployment creation screen with new pricing information](/img/release-notes/deployment-pricing.png)
+
+### Additional improvements
+
+- You can now configure Deployments with the `A40` machine type, which has 8 vCPU and 16 GiB. See [Astro hosted resource reference](https://docs.astronomer.io/astro/resource-reference-hosted).
+- You can now access your Organization settings from a Workspace by clicking the name of your Organization/ Workspace.
+- On Astro Hybrid, the default Azure DB instance is now `Standard D2ds_v4`.
+- The Deployment creation screen for Astro Hybrid has been updated to be consistent with Astro Hosted.
+
+### Bug fixes
+
+- Fixed an issue where DAGs that used the KubernetesPodOperator and had tasks with `in_cluster=False` could not be parsed.
+
+## June 27, 2023
+
+### Support for dedicated clusters on Azure
+
+<HostedBadge/>
+
+You can now create a dedicated cluster in the following Azure regions:
+
+- `australiaeast`
+- `eastus2`
+- `northeurope`
+- `westeurope`
+- `uswest2`
+
+See [Astro Hosted resource reference](resource-reference-hosted.md) for more information.
+
+### Additional improvements
+
+- The Cloud UI now shows how many Workspaces each Team belongs to in **Settings** > **Access Management** > **Teams**.
+- You can now create dedicated clusters in `us-west1` on GCP.
+
+## June 20, 2023
+
+### Additional improvements
+
+- You can now add a new Astro user to Workspaces before the user has accepted their invite.
+- The Cloud UI now shows your Team IDs in **Settings** > **Access Management** > **Teams**. Use Team IDs to add Teams to Workspaces using the Astro CLI.
+- A Team's **Updated At** and **Updated By** values are now updated when you change the Team's permissions in a Workspace or Organization.
+
+### Bug fixes
+
+- Fixed an issue where a Workspace descriptions were incorrectly required when creating a new Workspace through the Astro CLI.
 
 ## June 13, 2023
 
 ### Manage billing and track usage for Astro Hosted
 
-Use the new **Billing** page in the Cloud UI to see both high-level and detailed metrics about your spend in Astro Hosted. You can also use this page to configure your billing details and view invoices. See [Manage billing](manage-billing.md) for more details.
+Use the new **Billing** page in the Cloud UI to see both high-level and detailed metrics about your spend in Astro Hosted. You can also use this page to configure your billing details and view invoices. See [Manage billing](https://docs.astronomer.io/astro/manage-billing) for more details.
 
 ### New cell type for using Airflow operators in the Astro Cloud IDE
 
@@ -98,6 +156,12 @@ If you're already an Astro user and your Deployments run in your company's own c
 To see whether you're an Astro Hybrid user, open your Organization in the Cloud UI and go to **Settings** > **General**. Your version of Astro is listed under **Product Type**. 
 
 See [Documentation refactor for Astro Hybrid](#documentation-refactor-for-astro-hybrid) to learn how the documentation has changed for current Astro Hybrid users.
+
+### Configure default Kubernetes Pods on Astro Hosted
+
+One of the biggest risks of running the Kubernetes executor or KubernetesPodOperator is that your tasks can accidentally request more resources than expected, which can drive up costs. To limit this risk, you can now configure default and maximum Pod resources from the Cloud UI. If a task tries to request Pod resources that are more than your configured limits, the task fails. 
+
+See [Configure Kubernetes Pod resources](configure-deployment-resources.md#configure-kubernetes-pod-resources) for setup steps. 
 
 ### Documentation refactor for Astro Hybrid
 
@@ -240,7 +304,7 @@ You can now configure your Deployments to use the Kubernetes executor for execut
 
 The Kubernetes executor runs each task in its own Kubernetes Pod instead of in shared Celery workers. Astronomer fully manages the infrastructure required to run the executor and automatically spins Pods up and down for each of your task runs. This executor is a good fit for teams that want fine-grained control over the execution environment for each of their tasks.
 
-To learn whether the Kubernetes executor works for your use case, see [Choose an executor](executors.md#choose-an-executor). To configure the Kubernetes executor for a task or Deployment, see [Configure the Kubernetes executor](executors.md#configure-the-kubernetes-executor).
+To learn whether the Kubernetes executor works for your use case, see [Choose an executor](executors-overview.md#choose-an-executor). To configure the Kubernetes executor for a task or Deployment, see [Configure the Kubernetes executor](kubernetes-executor.md).
 
 ### Simplified Organization management in the Cloud UI
 
@@ -814,7 +878,7 @@ A new **Maximum Tasks per Worker** configuration is now available in the Deploym
 
 Previously, maximum tasks per worker was permanently set to 16 and was not configurable on Astro. Now, you can set maximum tasks per worker anywhere between 1 and 64 based on the needs of your tasks. It can be set per worker queue on a Deployment.
 
-To learn more, see [Worker autoscaling logic](executors.md#celery-worker-autoscaling-logic).
+To learn more, see [Worker autoscaling logic](celery-executor.md#celery-worker-autoscaling-logic).
 
 ### New Worker Count (Min-Max) setting
 
@@ -982,7 +1046,7 @@ Support requests can now be created and submitted in the Cloud UI. You no longer
 
 To better scale concurrent task runs, Astro now dynamically calculates [`parallelism`](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#parallelism), which is an Airflow configuration that determines the maximum number of tasks that can run concurrently within a single Deployment.
 
-A Deployment's `parallelism` is now equal to the current number of workers multiplied by the [`worker_concurrency`](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) value. This change ensures that your task runs won't be limited by a static parallelism limit as workers autoscale in your Deployment. See [Worker Autoscaling Logic](executors.md#celery-worker-autoscaling-logic) for more information.
+A Deployment's `parallelism` is now equal to the current number of workers multiplied by the [`worker_concurrency`](https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html#worker-concurrency) value. This change ensures that your task runs won't be limited by a static parallelism limit as workers autoscale in your Deployment. See [Worker Autoscaling Logic](celery-executor.md#celery-worker-autoscaling-logic) for more information.
 
 Note that you can still use a static `parallelism` value by setting `AIRFLOW__CORE__PARALLELISM` as an [environment variable](environment-variables.md).
 

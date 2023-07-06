@@ -51,8 +51,9 @@ The following table lists all available worker types on Astro Deployments.
 | A5          | 1    | 2G     |
 | A10         | 2    | 4G     |
 | A20         | 4    | 8G     |
+| A40         | 8    | 16G    |
 
-All worker types additionally have 5 GiB of ephemeral storage that your tasks can use when storing small amounts of data within the worker. 
+All worker types additionally have 10 GiB of ephemeral storage that your tasks can use when storing small amounts of data within the worker. 
 
 ## Standard cluster configurations
 
@@ -60,11 +61,19 @@ A _standard cluster_ is a multi-tenant cluster that's hosted and managed by Astr
 
 Currently, standard clusters are available on the following clouds and regions:
 
-| Cloud    | Code          | Region                  |
-| -------- | ------------- | ----------------------- |
-| **GCP**: | `us-central1` | Iowa, North America     |
-| **GCP**: | `us-east4`    | Virginia, North America |
+### GCP
 
+| Code          | Region                  |
+| ------------- | ----------------------- |
+| `us-central1` | Iowa, North America     |
+| `us-east4`    | Virginia, North America |
+
+### AWS
+
+| Code        | Region                |
+| ----------- | --------------------- |
+| `us-east-1` | US East (N. Virginia) |
+| `us-west-2` | US West (Oregon)      |
 
 ## Dedicated cluster configurations
 
@@ -99,7 +108,6 @@ Currently, dedicated clusters are available on the following clouds and regions:
 | --------------- | -------------- |
 | `australiaeast` | Australia East |
 | `eastus2`       | East US 2      |
-| `japaneast`     | Japan East     |
 | `northeurope`   | North Europe   |
 | `westeurope`    | West Europe    |
 | `westus2`       | West US 2      |
@@ -116,6 +124,7 @@ Currently, dedicated clusters are available on the following clouds and regions:
 | `europe-west2`         | England, Europe         |
 | `us-central1`          | Iowa, North America     |
 | `us-east4`             | Virginia, North America |
+| `us-west1`             | Oregon, North America   |
 
 </TabItem>
 
