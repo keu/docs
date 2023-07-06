@@ -25,7 +25,7 @@ astro workspace token update <flags>
 | `--new-name` | The updated name for the token. | Any string surrounded by quotations |
 | `--role`  | The token's role in the Workspace.                | Possible values are either `WORKSPACE_MEMBER`, `WORKSPACE_OPERATOR`, or `WORKSPACE_OWNER`. |
 
-## Usage
+## Examples
 
 ```sh
 astro workspace token update --new-name "My updated API token" --role WORKSPACE_MEMBER

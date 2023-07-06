@@ -22,7 +22,7 @@ astro workspace token rotate <flags>
 | `--force` | Rotate the token without showing a warning |  None |
 | `--name` | The name for the token. | Any string surrounded by quotations |
 
-## Usage
+## Examples
 
 ```sh
 astro workspace token rotate --name "My token" --force
