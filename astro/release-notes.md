@@ -46,7 +46,7 @@ The Deployment creation page in the Cloud UI has been reorganized to make it eas
 - You can now configure Deployments with the `A40` machine type, which has 8 vCPU and 16 GiB. See [Astro hosted resource reference](https://docs.astronomer.io/astro/resource-reference-hosted).
 - You can now access your Organization settings from a Workspace by clicking the name of your Organization/ Workspace.
 - On Astro Hybrid, the default Azure DB instance is now `Standard D2ds_v4`.
-- The Deployment creation screen for Astro Hybrid has been updated to be consistent with Astro Hosted.
+- The Deployment creation screen for Astro Hybrid has received several updates that were previously only available on Astro Hosted.
 
 ### Bug fixes
 
