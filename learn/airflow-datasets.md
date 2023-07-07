@@ -9,7 +9,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 import dataset_producer from '!!raw-loader!../code-samples/dags/airflow-datasets/dataset_producer.py';
+import dataset_producer_traditional from '!!raw-loader!../code-samples/dags/airflow-datasets/dataset_producer_traditional.py';
 import dataset_consumer from '!!raw-loader!../code-samples/dags/airflow-datasets/dataset_consumer.py';
+import dataset_consumer_traditional from '!!raw-loader!../code-samples/dags/airflow-datasets/dataset_consumer_traditional.py';
 import example_sdk_datasets from '!!raw-loader!../code-samples/dags/airflow-datasets/example_sdk_datasets.py';
 
 Datasets and data-aware scheduling were made available in [Airflow 2.4](https://airflow.apache.org/docs/apache-airflow/2.4.0/release_notes.html#airflow-2-4-0-2022-09-19). DAGs that access the same data now have explicit, visible relationships, and DAGs can be scheduled based on updates to these datasets. This feature helps make Airflow data-aware and expands Airflow scheduling capabilities beyond time-based methods such as cron.
@@ -38,13 +40,51 @@ You can reference the dataset in a task by passing it to the task's `outlets` pa
 
 When you define a task's `outlets` parameter, Airflow labels the task as a producer task that updates the datasets. It is up to you to determine which tasks should be considered producer tasks for a dataset. As long as a task has an outlet dataset, Airflow considers it a producer task even if that task doesn't operate on the referenced dataset. In the following example, the `write_instructions_to_file` and `write_info_to_file` are both producer tasks because they have defined outlets.
 
+<Tabs
+    defaultValue="taskflow"
+    groupId="dataset-concepts"
+    values={[
+        {label: 'TaskFlow API', value: 'taskflow'},
+        {label: 'Traditional syntax', value: 'traditional'},
+    ]}>
+<TabItem value="taskflow">
+
 <CodeBlock language="python">{dataset_producer}</CodeBlock>
+
+</TabItem>
+
+<TabItem value="traditional">
+
+<CodeBlock language="python">{dataset_producer_traditional}</CodeBlock>
+
+</TabItem>
+
+</Tabs>
 
 A consumer DAG runs whenever the dataset(s) it is scheduled on is updated by a producer task, rather than running on a time-based schedule. For example, if you have a DAG that should run when the `INSTRUCTIONS` and `INFO` datasets are updated, you define the DAG's schedule using the names of those two datasets.
 
 Any DAG that is scheduled with a dataset is considered a consumer DAG even if that DAG doesn't actually access the referenced dataset. In other words, it's up to you as the DAG author to correctly reference and use datasets.
 
+<Tabs
+    defaultValue="taskflow"
+    groupId="dataset-concepts"
+    values={[
+        {label: 'TaskFlow API', value: 'taskflow'},
+        {label: 'Traditional syntax', value: 'traditional'},
+    ]}>
+<TabItem value="taskflow">
+
 <CodeBlock language="python">{dataset_consumer}</CodeBlock>
+
+</TabItem>
+
+<TabItem value="traditional">
+
+<CodeBlock language="python">{dataset_consumer_traditional}</CodeBlock>
+
+</TabItem>
+
+</Tabs>
 
 Any number of datasets can be provided to the `schedule` parameter as a list. The DAG is triggered after all of the datasets have received at least one update due to a producing task completing successfully. 
 

@@ -9,6 +9,8 @@ id: templating
   <meta name="og:description" content="Learn about Jinja templating in Apache Airflow and see examples of how to pass dynamic information into task instances at runtime. " />
 </head>
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 Templating allows you to pass dynamic information into task instances at runtime. For example, you can run the following command to print the day of the week every time you run a task:
 
@@ -104,10 +106,31 @@ By default, Airflow searches for the location of your scripts relative to the di
 
 Alternatively, you can set a base path for templates at the DAG-level with the `template_searchpath` argument. For example, the following DAG would look for `script.sh` at `/tmp/script.sh`:
 
+<Tabs
+    defaultValue="taskflow"
+    groupId="templateable-fields-and-scripts"
+    values={[
+        {label: 'TaskFlow API', value: 'taskflow'},
+        {label: 'Traditional syntax', value: 'traditional'},
+    ]}>
+<TabItem value="taskflow">
+
+```python
+@dag(..., template_searchpath="/tmp")
+def my_dag():
+    run_this = BashOperator(task_id="run_this", bash_command="script.sh")
+```
+
+</TabItem>
+<TabItem value="traditional">
+
 ```python
 with DAG(..., template_searchpath="/tmp") as dag:
     run_this = BashOperator(task_id="run_this", bash_command="script.sh")
 ```
+
+</TabItem>
+</Tabs>
 
 ## Validate templates
 
@@ -160,7 +183,8 @@ from datetime import datetime
 
 BashOperator(
     task_id="print_now",
-    bash_command="echo It is currently {{ datetime.now() }}",  # raises jinja2.exceptions.UndefinedError: 'datetime' is undefined
+    # raises jinja2.exceptions.UndefinedError: 'datetime' is undefined
+    bash_command="echo It is currently {{ datetime.now() }}",
 )
 ```
 
@@ -169,7 +193,8 @@ However, it is possible to inject functions into your Jinja environment. In Airf
 ```python
 BashOperator(
     task_id="print_now",
-    bash_command="echo It is currently {{ macros.datetime.now() }}",  # It is currently 2021-08-30 13:51:55.820299
+    # It is currently 2021-08-30 13:51:55.820299
+    bash_command="echo It is currently {{ macros.datetime.now() }}",  
 )
 ```
 
@@ -188,37 +213,48 @@ def days_to_now(starting_date):
     return (datetime.now() - starting_date).days
 
 
-with DAG(
-    dag_id="demo_template",
+@dag(
     start_date=datetime(2021, 1, 1),
     schedule=None,
     user_defined_macros={
         "starting_date": datetime(2015, 5, 1),  # Macro can be a variable
         "days_to_now": days_to_now,  # Macro can also be a function
     },
-) as dag:
+)
+def demo_template():
     print_days = BashOperator(
         task_id="print_days",
-        bash_command="echo Days since {{ starting_date }} is {{ days_to_now(starting_date) }}",  # Call user defined macros
+        # Call user defined macros
+        bash_command="echo Days since {{ starting_date }} is {{ days_to_now(starting_date) }}",  
     )
     # Days since 2015-05-01 00:00:00 is 2313
+
+
+demo_template():
+
 ```
 
 It's also possible to inject functions as Jinja [filters](https://jinja.palletsprojects.com/en/3.0.x/api/#jinja2.Environment.filters) using `user_defined_filters`. You can use filters as pipe-operations. The following example completes the same work as the previous example, only this time filters are used:
 
 ```python
-with DAG(
-    dag_id="bash_script_template",
+@dag(
     start_date=datetime(2021, 1, 1),
     schedule=None,
-    user_defined_filters={"days_to_now": days_to_now},  # Set user_defined_filters to use function as pipe-operation
+    # Set user_defined_filters to use function as pipe-operation
+    user_defined_filters={"days_to_now": days_to_now},  
     user_defined_macros={"starting_date": datetime(2015, 5, 1)},
-) as dag:
+)
+def bash_script_template():
     print_days = BashOperator(
         task_id="print_days",
-        bash_command="echo Days since {{ starting_date }} is {{ starting_date | days_to_now }}",  # Pipe value to function
+        # Pipe value to function
+        bash_command="echo Days since {{ starting_date }} is {{ starting_date | days_to_now }}", 
     )
     # Days since 2015-05-01 00:00:00 is 2313
+
+
+bash_script_template()
+
 ```
 
 Functions injected with `user_defined_filters` and `user_defined_macros` are both usable in the Jinja environment. While they achieve the same result, Astronomer recommends using filters when you need to import multiple custom functions because the filter formatting improves the readability of your code. You can see this when comparing the two techniques side-to-side:
@@ -239,19 +275,30 @@ def sum_numbers(*args):
         total += val
     return total
 
-sum_numbers(1, 2, 3)  # returns 6
-sum_numbers("1", "2", "3")  # TypeError: unsupported operand type(s) for +=: 'int' and 'str'
+sum_numbers(1, 2, 3)
+# returns 6
+sum_numbers("1", "2", "3")
+# TypeError: unsupported operand type(s) for +=: 'int' and 'str'
 ```
 
 Consider a scenario where you're passing a list of values to this function by triggering a DAG with a config that holds some numbers:
 
 ```python
-with DAG(dag_id="failing_template", start_date=datetime.datetime(2021, 1, 1), schedule=None) as dag:
-    sumnumbers = PythonOperator(
+@dag(
+    start_date=datetime.datetime(2021, 1, 1),
+    schedule=None,
+    catchup=False
+)
+def failing_template():
+    PythonOperator(
         task_id="sumnumbers",
         python_callable=sum_numbers,
         op_args="{{ dag_run.conf['numbers'] }}",
     )
+
+
+failing_template()
+
 ```
 
 You would trigger the DAG with the following JSON to the DAG run configuration:
@@ -278,17 +325,22 @@ def sum_numbers(*args):
     return total
 
 
-with DAG(
+@dag(
     dag_id="native_templating",
     start_date=datetime.datetime(2021, 1, 1),
     schedule=None,
-    render_template_as_native_obj=True,  # Render templates using Jinja NativeEnvironment
-) as dag:
+    # Render templates using Jinja NativeEnvironment
+    render_template_as_native_obj=True,
+)
+def native_templating()
     sumnumbers = PythonOperator(
         task_id="sumnumbers",
         python_callable=sum_numbers,
         op_args="{{ dag_run.conf['numbers'] }}",
     )
+
+native_templating()
+
 ```
 
 Passing the same JSON configuration `{"numbers": [1,2,3]}` now renders a list of integers which the `sum_numbers` function processes correctly:

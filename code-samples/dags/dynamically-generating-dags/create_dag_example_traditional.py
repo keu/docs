@@ -1,18 +1,17 @@
-from airflow.decorators import dag, task
 from pendulum import datetime
+from airflow import DAG
+from airflow.operators.python import PythonOperator
 
 
 def create_dag(dag_id, schedule, dag_number, default_args):
-    @dag(dag_id=dag_id, schedule=schedule, default_args=default_args, catchup=False)
-    def hello_world_dag():
-        @task()
-        def hello_world(*args):
-            print("Hello World")
-            print("This is DAG: {}".format(str(dag_number)))
+    def hello_world_py():
+        print("Hello World")
+        print("This is DAG: {}".format(str(dag_number)))
 
-        hello_world()
+    generated_dag = DAG(dag_id, schedule=schedule, default_args=default_args)
 
-    generated_dag = hello_world_dag()
+    with generated_dag:
+        PythonOperator(task_id="hello_world", python_callable=hello_world_py)
 
     return generated_dag
 
@@ -24,7 +23,6 @@ for n in range(1, 4):
     default_args = {"owner": "airflow", "start_date": datetime(2023, 7, 1)}
 
     schedule = "@daily"
-
     dag_number = n
 
     globals()[dag_id] = create_dag(dag_id, schedule, dag_number, default_args)
