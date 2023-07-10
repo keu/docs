@@ -23,6 +23,7 @@ To install Astro Hybrid on Azure, Astronomer will create an Astro cluster in a d
 
 To complete the setup for the installation, you will:
 
+- Create an [Astronomer account](https://docs.astronomer.io/astro/log-in-to-astro#log-in-to-the-cloud-ui).
 - Create a new Azure subscription with required [Azure resources](resource-reference-azure-hybrid.md).
 - Add the Astronomer service principal `astro-remote-mgmt` to your organization's Azure Active Directory (Azure AD).
 - Assign an `Owner` role to Astronomer's service principal in the new subscription.
