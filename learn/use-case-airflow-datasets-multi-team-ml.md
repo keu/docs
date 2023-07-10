@@ -44,4 +44,23 @@ This command builds your project and spins up 6 Docker containers on your machin
 This project uses a Scikit learn dataset that contains information on the California housing market. [Scikit Dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html#sklearn.datasets.fetch_california_housing)
 We use this data as it is custom made to work with the Scikit Machine learning package, which we will be using for our model training and predictions. 
 
+### Project code 
+
+This project consists of two DAG's, one [astro_ml_producer_DAG](https://github.com/astronomer/learn-airflow-databricks-tutorial/blob/main/dags/renewable_analysis_dag.py) which extracts the California Housing dataset from Scikit Learn and builds its model features using the Astro Python SDK [@aql.dataframe]([https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/transform.html](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html)https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) before saving the data into the local S3Filesystem. 
+The second DAG then takes this data from the local S3Filesystem, and uses it to train a Scikit linear model, before using the model to generate a prediction, which is then saved to the local S3Filesystem as well. 
+
+The first astro_ml_producer DAG has three tasks, the first of which is extract_housing_data.
+
+This task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use.
+
+```python
+    @aql.dataframe(task_id='extract')
+    def extract_housing_data() -> DataFrame:
+        from sklearn.datasets import fetch_california_housing
+        return fetch_california_housing(download_if_missing=True, as_frame=True).frame
+```
+
+
+
+
 
