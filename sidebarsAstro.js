@@ -70,9 +70,11 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Deploy",
+      label: "Deploy code",
       items: [
-        "deploy-code", 
+        "deploy-code",
+        "deploy-project-image",
+        "deploy-dags", 
         "set-up-ci-cd", 
         {
           type: "category",
