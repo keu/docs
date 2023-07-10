@@ -13,8 +13,8 @@ This example shows how to set up notifications for Airflow DAG runs and tasks in
 Before trying this example, make sure you have:
 
 - [MS Teams](https://www.microsoft.com/en-us/microsoft-teams/log-in) with a Business account supporting team channels.
-- The [Astro CLI](https://docs.astronomer.io/astro/cli/install-cli)
-- An Astro project running locally on your computer. See [Getting started with the Astro CLI](https://docs.astronomer.io/astro/cli/get-started-cli)
+- The [Astro CLI](https://docs.astronomer.io/astro/cli/install-cli).
+- An Astro project running locally on your computer. See [Getting started with the Astro CLI](https://docs.astronomer.io/astro/cli/get-started-cli).
 
 ## Send task failure notifications to MS Teams
 
@@ -47,7 +47,7 @@ Follow these steps to receive notifications in MS Teams for failed tasks in an e
 
 :::info
 
-Some corporate environments make use of outbound proxies. If you are behind an outbound proxy for internet accessput the proxy details in the **Extra** field when creating the HTTP Connection in the Airflow UI (`{"proxy":"http://my-proxy:3128"}`). 
+Some corporate environments make use of outbound proxies. If you are behind an outbound proxy for internet access, put the proxy details in the **Extra** field when creating the HTTP Connection in the Airflow UI (`{"proxy":"http://my-proxy:3128"}`). 
 
 :::
 
