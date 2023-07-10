@@ -51,7 +51,7 @@ The second DAG then takes this data from the local S3Filesystem, and uses it to 
 
 The first astro_ml_producer DAG has three tasks, the first of which is extract_housing_data.
 
-This task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use.
+This task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use using the Astro SDK dataframe operator [@aql.dataframe]([https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/transform.html](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html)https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) .
 
 ```python
     @aql.dataframe(task_id='extract')
@@ -60,6 +60,42 @@ This task imports data from SciKit learn using the fetch_california_housing modu
         return fetch_california_housing(download_if_missing=True, as_frame=True).frame
 ```
 
+The next task uses the Astro SDK task decorator @aql.dataframe, which means that it operates on a DataFrame and returns a DataFrame as well, eliminating the need to manually convert the raw California Housing Data into a dataframe. It takes two parameters: raw_df, which represents the raw input DataFrame, and model_dir, which is a string representing the directory where the model artifacts will be stored. 
+
+The necessary libraries are imported within the function, including `StandardScaler` from scikit-learn, `pandas` for DataFrame operations, dump from joblib for serialization, and `S3FileSystem` from s3fs for interacting with an S3-compatible object storage system.
+
+An instance of an `S3FileSystem` as FS is created, specifying the access key, secret key, and the endpoint URL of the S3-compatible local storage system. 
+
+Then, this task performs feature engineering by normalizing the input features using a StandardScaler, calculates metrics based on the scaler mean values, saves the scaler object for later monitoring and evaluation, and returns the normalized feature DataFrame `X` with the target column included.
+
+```python
+    @aql.dataframe(task_id='featurize', outlets=Dataset(dataset_uri))
+    def build_features(raw_df:DataFrame, model_dir:str) -> DataFrame:
+        from sklearn.preprocessing import StandardScaler
+        import pandas as pd
+        from joblib import dump
+        from s3fs import S3FileSystem
+
+        fs = S3FileSystem(key='minioadmin', secret='minioadmin', client_kwargs={'endpoint_url': "http://host.docker.internal:9000/"})
+
+        target = 'MedHouseVal'
+        X = raw_df.drop(target, axis=1)
+        y = raw_df[target]
+
+        scaler = StandardScaler()
+        X = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
+        metrics_df = pd.DataFrame(scaler.mean_, index=X.columns)[0].to_dict()
+
+        #Save scalar for later monitoring and eval
+        with fs.open(model_dir+'/scalar.joblib', 'wb') as f:
+            dump([metrics_df, scaler], f)
+
+        X[target]=y
+
+        return X
+```
+
+Finally, the third task in this DAG uses the Astro SDK 
 
 
 
