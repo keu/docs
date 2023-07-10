@@ -27,7 +27,7 @@ The following table suggests possible management strategies for specific use cas
 | I'm getting started and want to quickly create Airflow objects | [Airflow UI](#airflow-ui) |
 | I prefer to manage my Airflow variables in a Git repository and to upload directly to Airflow | [Airflow UI](#airflow-ui) |
 | I need to keep my connections and variables stored in a centralized and secure location. | [Secrets backend](#secrets-backend) |
-| I don't have a secrets backend, but I still want some security and permissions attached to Airflow objects. | [Environment variables](#environment-variables). |
+| I don't have a secrets backend, but I still want some security and permissions attached to Airflow objects. | [Environment variables](#environment-variables) |
 
 Because variables and connections serve different purposes in Airflow, you might want to use a different strategy for each object type. For example, you can use a secrets backend for connections and use combination of a `json` files and the Airflow UI for variables.
 
