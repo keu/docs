@@ -298,7 +298,7 @@ The [Astro Python SDK](https://github.com/astronomer/astro-sdk) provides decorat
 
 The library contains SQL and dataframe decorators that greatly simplify your DAG code and allow you to directly define tasks without boilerplate operator code. It also allows you to transition seamlessly between SQL and Python for transformations without having to explicitly pass data between tasks or convert the results of queries to pandas DataFrames and vice versa. For a full description of functionality, check out the [Astro Python SDK documentation](https://astro-sdk-python.readthedocs.io/en/stable/).
 
-To use the Astro Python SDK, you need to install the `astro-sdk-python` package in your Airflow environment and enable pickling (`AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True`). For more instructions, check out the [Use the Astro Python SDK tutorial](https://docs.astronomer.io/learn/astro-python-sdk).
+To use the Astro Python SDK, you need to install the `astro-sdk-python` package in your Airflow environment and allow serialization of Astro SDK objects by setting the environment variable `AIRFLOW__CORE__ALLOWED_DESERIALIZATION_CLASSES = airflow\.* astro\.*`. For more instructions, check out the [Use the Astro Python SDK tutorial](https://docs.astronomer.io/learn/astro-python-sdk).
 
 To show the Astro Python SDK in action, we'll use a simple ETL example. We have homes data in two different CSVs that we need to aggregate, clean, transform, and append to a reporting table. Some of these tasks are better suited to SQL, and some to Python, but we can easily combine both using `astro-sdk-python` functions. The DAG looks like this:
 
@@ -313,11 +313,11 @@ The general steps in the DAG are:
 3. Transform the data by pivoting using Python. Pivoting is notoriously difficult in Snowflake, so you seamlessly switch to Pandas. In this task you specify an `output_table` that you want the results stored in.
 4. Append the results to an existing reporting table using the `append` function. Because you pass the results of the previous function (`aggregated_data`) to the `append_data` parameter, the SDK infers a dependency between the tasks. You don't need to explicitly define the dependency yourself.
 
-By defining your task dependencies when calling the functions (for example, `cleaned_data = clean_data(combined_data)`), the Astro Python SDK takes care of passing all context and metadata between the tasks. The result is a DAG where you accomplished some tricky transformations without having to write a lot of Airflow code or transition between SQL and Python.
+By defining your task dependencies when calling the functions (for example, `cleaned_data = clean_data(combined_data)`), the Astro Python SDK takes care of passing all context and metadata between the tasks. The result is a DAG where you accomplished some tricky transformations without having to write a lot of Airflow code or explicitly transition between SQL and Python.
 
 ## List of available Airflow decorators
 
-There are a limited number of decorators available to use with Airflow, although more will be added in the future. This list provides a reference of what is currently available so you don't have to dig through source code:
+There are several decorators available to use with Airflow. This list provides a reference of currently available decorators:
 
 - [Astro Python SDK decorators](https://github.com/astronomer/astro-sdk)
 - DAG decorator (`@dag()`)
@@ -328,6 +328,6 @@ There are a limited number of decorators available to use with Airflow, although
 - [Short circuit decorator](airflow-branch-operator.md#taskshortcircuit-and-shortcircuitoperator) (`@task.short_circuit()`), which evaluates a condition and skips downstream tasks if the condition is False
 - [Branch decorator](airflow-branch-operator.md#taskbranch-and-branchpythonoperator) (`@task.branch()`), which creates a branch in your DAG based on an evaluated condition
 - Kubernetes pod decorator (`@task.kubernetes()`), which runs a KubernetesPodOperator task
-- [Sensor decorator](what-is-a-sensor.md#sensor-decorator) (`@task.sensor()`), which turns a Python funtion into a sensor. This sensor was introduced in Airflow 2.5.
+- [Sensor decorator](what-is-a-sensor.md#sensor-decorator) (`@task.sensor()`), which turns a Python function into a sensor. This sensor was introduced in Airflow 2.5.
 
 You can also [create your own custom task decorator](https://airflow.apache.org/docs/apache-airflow/stable/howto/create-custom-decorator.html).
