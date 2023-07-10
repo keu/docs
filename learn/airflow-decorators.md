@@ -180,7 +180,7 @@ If you have a DAG that uses `PythonOperator` and other operators that don't have
 
 <CodeBlock language="python">{airflow_decorators_traditional_mixing}</CodeBlock>
 
-Note that when adding traditional operators, dependencies are still defined using bitshift operators.
+Note that when adding traditional operators, dependencies are still defined using bit-shift operators.
 
 You can pass information between decorated tasks and traditional operators using [XCom](airflow-passing-data-between-tasks.md). See the tabs below for examples.
 
