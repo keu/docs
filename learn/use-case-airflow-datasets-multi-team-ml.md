@@ -63,7 +63,7 @@ This task imports data from SciKit learn using the fetch_california_housing modu
         return fetch_california_housing(download_if_missing=True, as_frame=True).frame
 ```
 
-The next task `build_features` uses the Astro SDK task decorator @aql.dataframe, which means that it operates on a DataFrame and returns a DataFrame as well, eliminating the need to manually convert the raw California Housing Data into a dataframe. It takes two parameters: raw_df, which represents the raw input DataFrame, and model_dir, which is a string representing the directory where the model artifacts will be stored. 
+The next task `build_features` uses the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator, which means that it operates on a DataFrame and returns a DataFrame as well, eliminating the need to manually convert the raw California Housing Data into a dataframe. It takes two parameters: raw_df, which represents the raw input DataFrame, and model_dir, which is a string representing the directory where the model artifacts will be stored. 
 
 The necessary libraries are imported within the function, including `StandardScaler` from scikit-learn, `pandas` for DataFrame operations, dump from joblib for serialization, and `S3FileSystem` from s3fs for interacting with an S3-compatible object storage system.
 
@@ -71,7 +71,7 @@ An instance of an `S3FileSystem` as FS is created, specifying the access key, se
 
 Then, this task performs feature engineering by normalizing the input features using a StandardScaler, calculates metrics based on the scaler mean values, saves the scaler object for later monitoring and evaluation, and returns the normalized feature DataFrame `X` with the target column included.
 
-Finally, if you look at the task decorator, you'll notice an outlets field that references `Dataset(dataset_uri))`. This creates an Airflow Dataset object that references the normalized feature Dataframe `X` that we stored in the S3Filesystem and sets it as an output of this task. We will then use this Dataset in the scheduling parameter of our `astro_ml_consumer` DAG to trigger it to run once this task is complete
+Finally, if you look at the task decorator, you'll notice an outlets field that references `Dataset(dataset_uri))`. This creates an Airflow Dataset object called `built_features` that references the normalized feature Dataframe `X` that we stored in the S3Filesystem and sets it as an output of this task. We will then use this Dataset in the scheduling parameter of our `astro_ml_consumer` DAG to trigger it to run once this task is complete
 
 ```python
     @aql.dataframe(task_id='featurize', outlets=Dataset(dataset_uri))
@@ -121,7 +121,48 @@ We then use the Taskflow API to define the relationships between these tasks, st
     feature_df = build_features(extract_df, model_dir)
 ```
 
-Now that our 
+Now that our first producer DAG has produced normalized feature dataset for us to use in our model, we'll create a second consumer DAG that consumes that dataset and uses it to train a model, before using it to execute a prediction on Median House Value in California. 
+
+At the top of this DAG, we've instantiated the `built_features` Dataset from the previous DAG again with the following code block so that we can use it as a scheduling parameter for this consumer DAG. This has the effect of triggering this DAG to start when the `built_features` Dataset has been created instead of trying to time it to start after the [astro_ml_producer_DAG](https://github.com/astronomer/learn-airflow-databricks-tutorial/blob/main/dags/renewable_analysis_dag.py) has completed. 
+
+```python
+    dataset_uri = "built_features"
+    ingestion_dataset = Dataset(dataset_uri)
+
+    @dag(dag_id='astro_ml_consumer', schedule=[Dataset(dataset_uri)], start_date=datetime(2023, 1, 1), catchup=False)
+    def astro_ml_consumer():
+```
+
+The first task `train_model` in this DAG  uses the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator to load the normalized feature DataFrame `built_features` from the local S3FileSystem, trains a ridge regression model using the features and target values, then saves the trained model to a specified directory, and returns the URI of the saved model file.
+
+```python
+    @aql.dataframe(task_id='train')
+    def train_model(feature_df:ingestion_dataset, model_dir:str) -> str:
+        from sklearn.linear_model import RidgeCV
+        import numpy as np
+        from joblib import dump
+        from s3fs import S3FileSystem
+
+        fs = S3FileSystem(key='minioadmin', secret='minioadmin', client_kwargs={'endpoint_url': "http://host.docker.internal:9000/"})
+        
+        target = 'MedHouseVal'
+        pandasfeature = fs.open("s3://local-xcom/wgizkzybxwtzqffq9oo56ubb5nk1pjjwmp06ehcv2cyij7vte315r9apha22xvfd7.parquet")
+        cleanpanda = pd.read_parquet(pandasfeature)
+
+        model = RidgeCV(alphas=np.logspace(-3, 1, num=30))
+
+        reg = model.fit(cleanpanda.drop(target, axis=1), cleanpanda[target ])
+        model_file_uri = model_dir+'/ridgecv.joblib'
+
+        with fs.open(model_file_uri, 'wb') as f:
+            dump(model, f) 
+
+        return model_file_uri
+```
+
+I
+
+
 
 
 
