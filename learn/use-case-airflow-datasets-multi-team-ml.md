@@ -160,12 +160,47 @@ The first task `train_model` in this DAG  uses the Astro SDK [@aql.dataframe](ht
         return model_file_uri
 ```
 
-I
+The second task `predict_housing` uses Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator to load the trained model and feature DataFrame from the local S3FileSystem, then uses the loaded model to make predictions on the features DataFrame, adds the predicted values to the feature DataFrame, and finally returns the feature DataFrame with the predicted values included.
 
+```python
+    @aql.dataframe(task_id='predict')
+    def predict_housing(feature_df:DataFrame, model_file_uri:str) -> DataFrame:
+        from joblib import load
+        from s3fs import S3FileSystem
 
+        fs = S3FileSystem(key='minioadmin', secret='minioadmin', client_kwargs={'endpoint_url': "http://host.docker.internal:9000/"})
+        with fs.open(model_file_uri, 'rb') as f:
+            loaded_model = load(f) 
+        featdf = fs.open("s3://local-xcom/wgizkzybxwtzqffq9oo56ubb5nk1pjjwmp06ehcv2cyij7vte315r9apha22xvfd7.parquet")
+        cleandf = pd.read_parquet(featdf)
 
+        target = 'MedHouseVal'
 
+        cleandf['preds'] = loaded_model.predict(cleandf.drop(target, axis=1))
 
+        return cleandf
+```
+
+Finally, our last task `save_predictions` uses uses the Astro SDK [@aql.export_file](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/export.html) decorator to save the predictions dataframe in the local S3FileSystem. 
+
+```python
+    pred_file = aql.export_file(task_id='save_predictions', 
+                                     input_data=pred_df, 
+                                     output_file=File(os.path.join(data_bucket, 'housing_pred.csv')),
+                                     if_exists="replace")
+```
+
+We then use the Taskflow API to define the relationships between our tasks, setting them to complete linearly complete in the order defined.  
+
+```python
+    model_file_uri = train_model(ingestion_dataset, model_dir)
+    pred_df = predict_housing(ingestion_dataset, model_file_uri)
+
+    pred_file = aql.export_file(task_id='save_predictions', 
+                                     input_data=pred_df, 
+                                     output_file=File(os.path.join(data_bucket, 'housing_pred.csv')),
+                                     if_exists="replace")
+```
 
 
 
