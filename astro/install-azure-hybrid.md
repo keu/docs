@@ -29,7 +29,7 @@ To complete the setup for the installation, you will:
 - Assign an `Owner` role to Astronomer's service principal in the new subscription.
 - Enable end-to-end encryption using `EncryptionAtHost` feature in the new subscription.
 
-When you've completed the setup process, Astronomer support creates an AKS cluster within your Azure subscription to host the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. Once you have verified the 
+When you've completed the setup process, Astronomer support creates an AKS cluster within your Azure subscription to host the resources and Apache Airflow components necessary to deploy DAGs and execute tasks. If you need more than one Astro cluster, contact [Astronomer support](https://cloud.astronomer.io/support).
 
 ## Prerequisites
 
