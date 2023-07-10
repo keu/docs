@@ -5,10 +5,13 @@ id: use-case-airflow-ml-datasets
 sidebar_label: "Multi-Team ML Pipeline with Airflow Datasets"
 sidebar_custom_props: { icon: 'img/integrations/databricks.png' }
 ---
+Update Links to DAGS, not correct currently
+
+
 
 Airflow plays a pivotal role in machine learning workflows as it provides a robust and scalable platform for orchestrating and managing the entire data pipeline. It facilitates the management of complex ML workflows, handling data dependencies, and ensuring fault tolerance, making it easier for data engineers to handle data inconsistencies, reprocess failed tasks, and maintain the integrity of ML pipelines. 
 
-Many times, ML pipelines are run by two teams in a producer/consumer relationship, where one team produces the clean data for the ML team to consume and use for their models. With the introduction of Datasets and Data Driven scheduling in Airflow, now this relationship can be codified and automated, where upon the arrival of clean data from one team, an ML pipeline can be automatically triggered to run and ingest the clean data for use in model training. 
+Many times, ML pipelines are run by two teams in a producer/consumer relationship, where one team produces the clean data for the ML team to consume and use for their models. With the introduction of Datasets and Data Driven scheduling in Airflow, now this relationship can be codified and automated as well. This because Airflow Datasets can be used as a scheduling parameter, where the production of a Dataset from one DAG can trigger another DAG to begin running. What this enables is a workflow where upon the arrival of clean data from one team, an ML pipeline can be automatically triggered to run and ingest the clean data for use in model training, without needing to coordinate schedules manually.  
 
 In this example we provide a model of that exact relationship with two DAG's, one producer DAG that extracts and loads housing data into a local S3FileSystem, and the creation of that dataset triggers a second consumer DAG. This consumer DAG then takes that data and uses it to train and run a predictive model. This set up has two main advantages. One is that two teams can work independently on their specific sections of the pipeline without needing to co-ordinate with each other outside of the initial set up. The second is that because the consumer DAG will only trigger once the data arrives, we avoid the situation where a producer DAG taking longer than expected to complete leads to the consumer DAG not having data to consume because it's scheduled to run at a certain time.
 
@@ -46,12 +49,12 @@ We use this data as it is custom made to work with the Scikit Machine learning p
 
 ### Project code 
 
-This project consists of two DAG's, one [astro_ml_producer_DAG](https://github.com/astronomer/learn-airflow-databricks-tutorial/blob/main/dags/renewable_analysis_dag.py) which extracts the California Housing dataset from Scikit Learn and builds its model features using the Astro Python SDK [@aql.dataframe]([https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/transform.html](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html)https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) before saving the data into the local S3Filesystem. 
+This project consists of two DAG's, one [astro_ml_producer_DAG](https://github.com/astronomer/learn-airflow-databricks-tutorial/blob/main/dags/renewable_analysis_dag.py) which extracts the California Housing dataset from Scikit Learn and builds its model features using the Astro Python SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator before saving the data into the local S3Filesystem. 
 The second DAG then takes this data from the local S3Filesystem, and uses it to train a Scikit linear model, before using the model to generate a prediction, which is then saved to the local S3Filesystem as well. 
 
-The first astro_ml_producer DAG has three tasks, the first of which is extract_housing_data.
+The first astro_ml_producer DAG has three tasks, the first of which is `extract_housing_data`.
 
-This task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use using the Astro SDK dataframe operator [@aql.dataframe]([https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/transform.html](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html)https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) .
+This task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use using the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator.
 
 ```python
     @aql.dataframe(task_id='extract')
@@ -60,13 +63,15 @@ This task imports data from SciKit learn using the fetch_california_housing modu
         return fetch_california_housing(download_if_missing=True, as_frame=True).frame
 ```
 
-The next task uses the Astro SDK task decorator @aql.dataframe, which means that it operates on a DataFrame and returns a DataFrame as well, eliminating the need to manually convert the raw California Housing Data into a dataframe. It takes two parameters: raw_df, which represents the raw input DataFrame, and model_dir, which is a string representing the directory where the model artifacts will be stored. 
+The next task `build_features` uses the Astro SDK task decorator @aql.dataframe, which means that it operates on a DataFrame and returns a DataFrame as well, eliminating the need to manually convert the raw California Housing Data into a dataframe. It takes two parameters: raw_df, which represents the raw input DataFrame, and model_dir, which is a string representing the directory where the model artifacts will be stored. 
 
 The necessary libraries are imported within the function, including `StandardScaler` from scikit-learn, `pandas` for DataFrame operations, dump from joblib for serialization, and `S3FileSystem` from s3fs for interacting with an S3-compatible object storage system.
 
 An instance of an `S3FileSystem` as FS is created, specifying the access key, secret key, and the endpoint URL of the S3-compatible local storage system. 
 
 Then, this task performs feature engineering by normalizing the input features using a StandardScaler, calculates metrics based on the scaler mean values, saves the scaler object for later monitoring and evaluation, and returns the normalized feature DataFrame `X` with the target column included.
+
+Finally, if you look at the task decorator, you'll notice an outlets field that references `Dataset(dataset_uri))`. This creates an Airflow Dataset object that references the normalized feature Dataframe `X` that we stored in the S3Filesystem and sets it as an output of this task. We will then use this Dataset in the scheduling parameter of our `astro_ml_consumer` DAG to trigger it to run once this task is complete
 
 ```python
     @aql.dataframe(task_id='featurize', outlets=Dataset(dataset_uri))
@@ -95,7 +100,30 @@ Then, this task performs feature engineering by normalizing the input features u
         return X
 ```
 
-Finally, the third task in this DAG uses the Astro SDK 
+Finally, the third task `save_data_to_s3` in this DAG uses the Astro SDK [@aql.export_file](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/export.html) decorator to save the raw California Housing Dataset as `housing.csv` to the local S3Filesystem. It runs in parallel to the `build_features` task, so we save both a clean dataset and a feature engineered one. 
+
+```python
+    loaded_data = aql.export_file(task_id='save_data_to_s3', 
+                                     input_data=extract_df, 
+                                     output_file=File(os.path.join(data_bucket, 'housing.csv')), 
+                                     if_exists="replace")
+```
+
+We then use the Taskflow API to define the relationships between these tasks, starting the DAG with the `extract_housing_data` task to import the housing dataset and return it as a task output. Then, the `extract_housing_data` task output is passed to the `save_data_to_s3` task to be saved to the local S3FileSystem. In parallel, the same dataset is passed to the `build_features` task, where is used for feature engineering.
+
+```python
+    extract_df = extract_housing_data()
+    loaded_data = aql.export_file(task_id='save_data_to_s3', 
+                                     input_data=extract_df, 
+                                     output_file=File(os.path.join(data_bucket, 'housing.csv')), 
+                                     if_exists="replace")
+
+    feature_df = build_features(extract_df, model_dir)
+```
+
+Now that our 
+
+
 
 
 
