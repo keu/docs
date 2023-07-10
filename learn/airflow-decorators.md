@@ -29,7 +29,9 @@ To get the most out of this guide, you should have an understanding of:
 
 ## What is a decorator?
 
-In Python, [decorators](https://realpython.com/primer-on-python-decorators/) are functions that take another function as an argument and extend the behavior of that function. For example, the `@multiply_by_100_decorator` below takes in any function as the `decorated_function` argument and will return the result of that function multiplied by 100. In the context of Airflow, decorators contain much more functionality than this simple example, but the basic idea is the same: the Airflow decorator function turns a normal Python function into an Airflow task, task group or DAG.
+In Python, [decorators](https://realpython.com/primer-on-python-decorators/) are functions that take another function as an argument and extend the behavior of that function. For example, the `@multiply_by_100_decorator` below takes in any function as the `decorated_function` argument and will return the result of that function multiplied by 100. 
+
+In the context of Airflow, decorators contain much more functionality than this simple example, but the basic idea is the same: the Airflow decorator function turns a normal Python function into an Airflow task, task group or DAG.
 
 ```python
 # definition of the decorator function
@@ -58,7 +60,7 @@ print(add(1, 9))  # prints 1000
 print(subtract(4, 2))  # prints 200
 ```
 
-## When to use decorators
+## When to use Airflow decorators
 
 The purpose of decorators in Airflow is to simplify the DAG authoring experience by eliminating the boilerplate code required by traditional operators. The result can be cleaner DAG files that are more concise and easier to read.
 
@@ -105,15 +107,18 @@ Here are some other things to keep in mind when using decorators:
     )
     def taskflow_func():
         retun "Hello World"
+
+    taskflow_func()  # this creates a task with the task_id `say_hello_world`
     ```
 
-- You can override task-level parameters when calling the task by using the `.override()` method. Note the `()` at the end of the line, which call the task with the overrid.
+- You can override task-level parameters when calling the task by using the `.override()` method. Note the `()` at the end of the line, which calls the task with the overridden parameters applied.
 
     ```python
+    # this creates a task with the task_id `greeting`
     taskflow_func.override(retries=5, pool="my_other_pool", task_id="greeting")()
     ```
 
-- For any decorated object in your DAG file, you must call them so that Airflow can register the task or DAG. For example `taskflow()` is called at the end of the DAG above to call the DAG function. Every task defined using decorators has to be called as shown in the code snippet below. If you call the same task multiple times and do not override the `task_id`, multiple tasks will be created in the DAG with automatically generated unique task Ids by appending a unique number to the end of the original task id (e.g. `say_hello`, `say_hello__1`, `say_hello__2` etc). 
+- For any decorated function in your DAG file, you must call them so that Airflow can register the task or DAG. For example `taskflow()` is called at the end of the DAG above to call the DAG function. Every task defined using decorators has to be called as shown in the code snippet below. If you call the same task multiple times and do not override the `task_id`, multiple tasks will be created in the DAG with automatically generated unique task IDs by appending a unique number to the end of the original task id (e.g. `say_hello`, `say_hello__1`, `say_hello__2` etc). 
 
     ```python
     # task definition
@@ -191,7 +196,7 @@ You can pass information between decorated tasks and traditional operators using
 
 <TabItem value="two-flow">
 
-If both tasks are defined using the TaskFlow API, you pass information directly. Airflow will infer the dependency between the two tasks.
+If both tasks are defined using the TaskFlow API, you can pass information directly between them by providing the called task function as a positional argument to the downstream task. Airflow will infer the dependency between the two tasks.
 
 ```python
 @task
@@ -202,13 +207,13 @@ def get_23_TF():
 def plus_10_TF(x):
     return x + 10
 
-plus_10_TF(get_23_TF()) 
+plus_10_TF(get_23_TF())  # plus_10_TF will return 33
 # or `plus_10_TF(x=get_23_TF())` if you want to use kwargs
 ```
 </TabItem>
 <TabItem value="flow-traditional">
 
-You can access the returned value of a traditional operator using the `.output` attribute of the task object. Airflow will infer the dependency between the two tasks.
+You can access the returned value of a traditional operator using the `.output` attribute of the task object and pass it to a downstream task defined using Airflow decorators. Airflow will infer the dependency between the two tasks.
 
 ```python
 def get_23_traditional():
@@ -223,14 +228,14 @@ get_23_task = PythonOperator(
     python_callable=get_23_traditional
 )
 
-plus_10_TF(get_23_task.output)
+plus_10_TF(get_23_task.output)  # plus_10_TF will return 33
 # or `plus_10_TF(x=get_23_task.output)` if you want to use kwargs
 ```
 
 </TabItem>
 <TabItem value="traditional-flow">
 
-When using the result from an upstream TaskFlow task you can provide the called decorated task directly to a parameter in the traditional operator. Airflow will infer the dependency between the two tasks.
+When using the result from an upstream TaskFlow task in a traditional task you can provide the called decorated task directly to a parameter in the traditional operator. Airflow will infer the dependency between the two tasks.
 
 ```python
 @task
@@ -245,12 +250,14 @@ plus_10_task = PythonOperator(
     python_callable=plus_10_traditional,
     op_args=[get_23_TF()]  # note that op_args expects a list as an input
 )
+
+# plus_10_task will return 33
 ```
 
 </TabItem>
 <TabItem value="two-traditional">
 
-For the sake of completion the below example shows how to use the output of one traditional operator in the other one. The dependency has to be defined explicitly using bitshift operators.
+For the sake of completeness the below example shows how to use the output of one traditional operator in another traditional operator by accessing the `.output` attribute of the upstream task. The dependency has to be defined explicitly using bit-shift operators.
 
 ```python
 def get_23_traditional():
@@ -269,6 +276,8 @@ plus_10_task = PythonOperator(
     python_callable=plus_10_traditional,
     op_args=[get_23_task.output]
 )
+
+# plus_10_task will return 33
 
 # when only using traditional operators, define dependencies explicitly
 get_23_task >> plus_10_task
