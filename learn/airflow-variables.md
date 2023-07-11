@@ -72,6 +72,8 @@ astro dev run variables set my_var my_value
 astro dev run variables set -j my_json_var '{"key": "value"}'
 ```
 
+Note that [`astro dev run`](https://docs.astronomer.io/astro/cli/astro-dev-run) executes Airflow commands only in your local Airflow environment and can't be used on Astro Deployments. To set Airflow variables for an Astro Deployment, either create them using the Deployment's Airflow UI or using [Astro environment variables](https://docs.astronomer.io/astro/environment-variables).
+
 </TabItem>
 
 <TabItem value="airflow">
