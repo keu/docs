@@ -29,7 +29,7 @@ Before you try this example, make sure you have:
 
 ## Clone the project
 
-Clone the example project from the [Astronomer GitHub](https://github.com/astronomer/learn-airflow-databricks-tutorial). 
+Clone the example project from the [Astronomer GitHub](https://github.com/astronomer/use-case-produce-consume-ml/tree/main/astromlfinal). 
 
 ## Run the project
 
@@ -50,7 +50,7 @@ We use this data as it is custom made to work with the Scikit Machine learning p
 
 ### Project code 
 
-This project consists of two DAG's, one [astro_ml_producer_DAG](https://github.com/astronomer/learn-airflow-databricks-tutorial/blob/main/dags/renewable_analysis_dag.py) which extracts the California Housing dataset from Scikit Learn and builds its model features using the Astro Python SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator before saving the data into the local S3Filesystem. 
+This project consists of two DAG's, one [astro_ml_producer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_producer.py) which extracts the California Housing dataset from Scikit Learn and builds its model features using the Astro Python SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator before saving the data into the local S3Filesystem. 
 The second DAG then takes this data from the local S3Filesystem, and uses it to train a Scikit linear model, before using the model to generate a prediction, which is then saved to the local S3Filesystem as well. 
 
 The first astro_ml_producer DAG has three tasks, the first of which is `extract_housing_data`.
@@ -122,9 +122,9 @@ We then use the Taskflow API to define the relationships between these tasks, st
     feature_df = build_features(extract_df, model_dir)
 ```
 
-Now that our first producer DAG has produced normalized feature dataset for us to use in our model, we'll create a second consumer DAG that consumes that dataset and uses it to train a model, before using it to execute a prediction on Median House Value in California. 
+Now that our first producer DAG has produced normalized feature dataset for us to use in our model, we'll create a second [astro_ml_consumer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_consumer.py) that consumes that dataset and uses it to train a model, before using it to execute a prediction on Median House Value in California. 
 
-At the top of this DAG, we've instantiated the `built_features` Dataset from the previous DAG again with the following code block so that we can use it as a scheduling parameter for this consumer DAG. This has the effect of triggering this DAG to start when the `built_features` Dataset has been created instead of trying to time it to start after the [astro_ml_producer_DAG](https://github.com/astronomer/learn-airflow-databricks-tutorial/blob/main/dags/renewable_analysis_dag.py) has completed. 
+At the top of this DAG, we've instantiated the `built_features` Dataset from the previous DAG again with the following code block so that we can use it as a scheduling parameter for this consumer DAG. This has the effect of triggering this DAG to start when the `built_features` Dataset has been created instead of trying to time it to start after the [astro_ml_producer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_producer.py) has completed. 
 
 ```python
     dataset_uri = "built_features"
