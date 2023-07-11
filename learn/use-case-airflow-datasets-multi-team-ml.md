@@ -18,6 +18,7 @@ In this example we provide a model of that exact relationship with two DAG's, on
 ![Figma graph screenshot](https://github.com/astronomer/docs/blob/bc981220053224038a752cf0af050ba4316758a7/static/img/examples/usecaseconsumerproducerfigma.png)
 
 
+![Datasets View screenshot](https://github.com/astronomer/docs/blob/602e61f562ed2a67fe77e6961378f9c553df528b/static/img/examples/datasetsview.png)
 
 ## Before you start
 
