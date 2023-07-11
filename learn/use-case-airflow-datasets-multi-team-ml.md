@@ -15,8 +15,8 @@ Many times, ML pipelines are run by two teams in a producer/consumer relationshi
 
 In this example we provide a model of that exact relationship with two DAG's, one producer DAG that extracts and loads housing data into a local S3FileSystem, and the creation of that dataset triggers a second consumer DAG. This consumer DAG then takes that data and uses it to train and run a predictive model. This set up has two main advantages. One is that two teams can work independently on their specific sections of the pipeline without needing to co-ordinate with each other outside of the initial set up. The second is that because the consumer DAG will only trigger once the data arrives, we avoid the situation where a producer DAG taking longer than expected to complete leads to the consumer DAG not having data to consume because it's scheduled to run at a certain time.
 
+![Figma graph screenshot](https://github.com/astronomer/docs/blob/bc981220053224038a752cf0af050ba4316758a7/static/img/examples/usecaseconsumerproducerfigma.png)
 
-*Graph Screenshot*
 
 
 ## Before you start
