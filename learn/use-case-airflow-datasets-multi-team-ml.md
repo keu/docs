@@ -196,14 +196,6 @@ Finally, the `save_predictions` task uses the Astro SDK [@aql.export_file](https
 
 
 ```python
-    model_file_uri = train_model(ingestion_dataset, model_dir)
-    pred_df = predict_housing(ingestion_dataset, model_file_uri)
-
-    pred_file = aql.export_file(task_id='save_predictions', 
-                                     input_data=pred_df, 
-                                     output_file=File(os.path.join(data_bucket, 'housing_pred.csv')),
-                                     if_exists="replace")
-```
 
 
 
