@@ -15,11 +15,7 @@ body:
         - Airflow concepts
         - Airflow tutorials
         - Integrations
-<<<<<<< HEAD
         - Examples
-=======
-        - References
->>>>>>> 266e03ba (Templates for Learn issues (#2325))
         - I am not sure where this best fits
     validations:
       required: true
