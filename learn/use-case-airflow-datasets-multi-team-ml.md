@@ -18,7 +18,7 @@ This example has two DAGs with a producer/consumer relationship. One DAG extract
 ![Figma graph screenshot](/img/examples/usecaseconsumerproducerfigma.png)
 The Airflow datasets and their relationships with the two DAGs can be seen in the Airflow datasets view:
 
-![Datasets View screenshot](https://github.com/astronomer/docs/blob/602e61f562ed2a67fe77e6961378f9c553df528b/static/img/examples/datasetsview.png)
+![Datasets View screenshot](/img/examples/datasetsview.png)
 
 ## Before you start
 
