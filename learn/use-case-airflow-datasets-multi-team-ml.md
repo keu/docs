@@ -194,7 +194,6 @@ Finally, the `save_predictions` task uses the Astro SDK [@aql.export_file](https
                                      if_exists="replace")
 ```
 
-We then use the Taskflow API to define the relationships between our tasks, setting them to complete linearly complete in the order defined.  
 
 ```python
     model_file_uri = train_model(ingestion_dataset, model_dir)
