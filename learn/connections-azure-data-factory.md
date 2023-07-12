@@ -1,11 +1,13 @@
 ---
-title: "Creating an Azure Data Factory connection"
+title: "Create an Azure Data Factory connection in Airflow"
 id: azure-data-factory
 sidebar_label: Azure Data Factory
 description: Learn how to create an Azure Data Factory connection in Airflow.
 ---
 
-[Azure Data Factory](https://azure.microsoft.com/en-in/products/data-factory#overview) is a cloud-based data integration and transformation service used to build data pipelines and jobs. Integrating ADF with Airflow allows users to run their ADF pipelines and check their status from an Airflow DAG.
+[Azure Data Factory](https://azure.microsoft.com/en-in/products/data-factory#overview) is a cloud-based data integration and transformation service used to build data pipelines and jobs. Integrating ADF with Airflow allows users to run their ADF pipelines and check their status from an Airflow DAG. 
+
+To run your ADF pipelines in Airflow, see [Run Azure Data Factory pipelines in Airflow](airflow-azure-data-factory-integration.md).
 
 ## Prerequisites
 - The [Astro CLI](https://docs.astronomer.io/astro/cli/overview).
@@ -37,13 +39,20 @@ In your Azure portal, follow the below steps to retrieve all of these values:
 
 To create a connection, follow the below steps:
 
-1. Add the following line to your Astro project's `requirement.txt` file:
+1. Open your Astro project and add the following line to your `requirement.txt` file to install and use the package for Microsoft Azure in Airflow:
     ```
     apache-airflow-providers-microsoft-azure
     ```
-2. If you're not currently running Airflow locally, open your Astro project and run `astro dev start`. Otherwise, run `astro dev restart`.
-3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Azure Data Factory**.
-4. Paste the values copied in [Get Connection details](azure-data-factory#get-connection-details) to the respective fields as shown in the screenshot.
+2. Restart your local Airflow using `astro dev restart`. If you're not currently running Airflow locally, you can also run `astro dev start`.
+3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection, select the connection type as **Azure Data Factory** and give it a name in the **Connection Id** field. 
+4. Paste the values copied from [Get connection details](#get-connection-details) in the connection fields:
+    - **Client ID**: `<application-client-ID>`
+    - **Secret**: `<client-secret-value>`
+    - **Tenant ID**: `<my-tenant-ID>`
+    - **Subscription ID**: `<my-subscription-ID>`
+    - **Resource Group Name**: `<my-resource-group>`
+    - **Factory Name**: `<my-data-factory>`
+
 4. Click on **Test** connection to test and then **Save** the connection.
 
 ![azure-connection-data-factory](/img/guides/connection-azure-data-factory.png)
@@ -67,5 +76,6 @@ Airflow uses the [`azure-mgmt-datafactory`](https://pypi.org/project/azure-mgmt-
 
 - [Apache Airflow Microsoft Azure OSS docs](https://airflow.apache.org/docs/apache-airflow-providers-microsoft-azure/6.1.1/connections/adf.html)
 - [Run Azure Data Factory pipelines in Airflow](airflow-azure-data-factory-integration.md)
+- [Import and export Airflow connections using Astro CLI](https://docs.astronomer.io/astro/import-export-connections-variables#from-environment-variables)
 - [Create your first pipeline in Azure Data Factory](https://learn.microsoft.com/en-us/azure/data-factory/v1/data-factory-build-your-first-pipeline-using-editor)
 - [Example DAGs](https://registry.astronomer.io/dags?limit=24&sorts=updatedAt%3Adesc&query=azure+data+factory) and [modules](https://registry.astronomer.io/modules?query=azuredatafactory) in Astronomer Registry

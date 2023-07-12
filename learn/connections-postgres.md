@@ -18,13 +18,19 @@ description: Learn how to create a Postgres connection in Airflow.
 
 A connection from Airflow to Postgres requires the following information:
 
-- Host (Endpoint URL or server name for your database)
+- Host (also known as endpoint URL or server name or instance ID)
 - Port (default is 5432)
 - Username 
 - Password
 - Schema (default is `public`)
 
-You can retrieve these values by going to the database console and copying the Host or endpoint URL or server name from your cloud console or database manager. For this example, let's assume you have a Relational Data Store (RDS) running Postgres in AWS. In the AWS console, follow the below steps to retrieve these values:
+The method to retrieve these values will depend on the cloud provider where your Postgres database is hosted. You can see the below links to see how to retrieve these values based on your cloud provider:
+
+- AWS: Connect to Postgres running [on RDS](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToPostgreSQLInstance.html)
+- GCP: Connect to Postgres running [on Cloud SQL](https://cloud.google.com/sql/docs/postgres/connect-instance-local-computer)
+- Azure: Connect to Postgres running on [Azure database](https://learn.microsoft.com/en-us/training/modules/create-connect-to-postgres/4-connect-develop-your-database)
+
+For this example, let's assume you have a Relational Data Store (RDS) running Postgres in AWS. In the AWS console, follow the below steps to retrieve these values:
 
 1. Go to the [RDS service](https://us-east-2.console.aws.amazon.com/rds/home?region=us-east-2) in your region and select your database.
 2. From the **Connectivity & security** tab, copy the **Endpoint** and **Port**.
@@ -35,21 +41,25 @@ You can retrieve these values by going to the database console and copying the H
 
 To create a Postgres connection, follow the below mentioned steps:
 
-1. Add the following line to your Astro project's `requirement.txt` file:
+1. Add the following line to your Astro project's `requirement.txt` file to install and use the package for Postgres in Airflow:
     ```
     apache-airflow-providers-postgres
     ```
-2. If you're not currently running Airflow locally, open your Astro project and run `astro dev start`. Otherwise, run `astro dev restart`.
-3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Postgres**.
-4. Paste the endpoint and port copied in step #2 of [Get connection details](#get-connection-details) in **Host** and **Port** respectively.
-5. Paste the username and password copied in step #3 of [Get connection details](#get-connection-details) in **Login** and **Password** fields respectively.
-4. Click on **Test** connection to test and then **Save** the connection.
+2. Restart your local Airflow using `astro dev restart`. If you're not currently running Airflow locally, you can also run `astro dev start`.
+3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection, select the connection type as **Postgres** and give it a name in the **Connection Id** field.
+4. Paste the values copied in [Get connection details](#get-connection-details) to the connection fields:
+    - **Host**: `<my-hostname-or-my-server-ip>`
+    - **Port**: `<my-port>`
+    - **Login**: `<my-user>`
+    - **Password**: `<my-password>`
+5. Optional. If you want to connect to a specific schema, enter it's name in **Schema** field. If omitted, default schema `public` is assumed.
+6. Click on **Test** connection to test and then **Save** the connection.
 
-![postgres-connection](/img/guides/connection-postgres.png)
+    ![postgres-connection](/img/guides/connection-postgres.png)
 
 ## How it works
 
-Airflow uses [psycopg2](https://pypi.org/project/psycopg2/) python library to connect to Postgres via the [PostgresHook](https://airflow.apache.org/docs/apache-airflow-providers-postgres/stable/_api/airflow/providers/postgres/hooks/postgres/index.html). You can also directly use the PostgresHook to create your own custom operators.
+Airflow uses [psycopg2](https://pypi.org/project/psycopg2/) python library to connect to Postgres using the [PostgresHook](https://airflow.apache.org/docs/apache-airflow-providers-postgres/stable/_api/airflow/providers/postgres/hooks/postgres/index.html). You can also directly use the PostgresHook to create your own custom operators.
 
 ## See also
 
