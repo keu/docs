@@ -164,7 +164,7 @@ The first task `train_model` in this DAG  uses the Astro SDK [@aql.dataframe](ht
         return model_file_uri
 ```
 
-The second task `predict_housing` uses Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator to load the trained model and feature DataFrame from the local S3FileSystem, then uses the loaded model to make predictions on the features DataFrame, adds the predicted values to the feature DataFrame, and finally returns the feature DataFrame with the predicted values included.
+Then, the `predict_housing` task uses the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator to load the trained model and feature DataFrame from the local S3FileSystem, make predictions on the features DataFrame, add the predicted values to the feature DataFrame, and return the feature DataFrame with the predicted values included.
 
 ```python
     @aql.dataframe(task_id='predict')
