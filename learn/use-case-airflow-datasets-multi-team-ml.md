@@ -46,7 +46,6 @@ This command builds your project and spins up 6 Docker containers on your machin
 ### Data source
 
 This project uses a [Scikit learn dataset](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html#sklearn.datasets.fetch_california_housing) that contains information on the California housing market. The data is automatically retrieved as part of the DAG, and does not need to be downloaded separately.
-We use this data as it is custom made to work with the Scikit Machine learning package, which we will be using for our model training and predictions. 
 
 ### Project code 
 
