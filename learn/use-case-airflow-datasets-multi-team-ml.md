@@ -127,7 +127,7 @@ The second DAG, [astro_ml_consumer_DAG](https://github.com/astronomer/use-case-p
 
 #### DAG #2: astro_ml_consumer
 
-At the top of this DAG, we've instantiated the `built_features` Dataset from the previous DAG again with the following code block so that we can use it as a scheduling parameter for this consumer DAG. This has the effect of triggering this DAG to start when the `built_features` Dataset has been created instead of trying to time it to start after the [astro_ml_producer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_producer.py) has completed. 
+First, the `built_features` Dataset from the previous DAG is instantiated so that it can be used as a scheduling parameter. This DAG will start when the `built_features` Dataset is updated by the [astro_ml_producer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_producer.py). 
 
 ```python
     dataset_uri = "built_features"
