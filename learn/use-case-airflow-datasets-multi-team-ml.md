@@ -52,7 +52,7 @@ This project uses a [Scikit learn dataset](https://scikit-learn.org/stable/modul
 This project consists of two DAG's. The [astro_ml_producer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_producer.py) extracts the California Housing dataset from Scikit Learn and builds its model features using the Astro Python SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator before saving the data to the local S3Filesystem. 
 The second DAG then takes this data from the local S3Filesystem, and uses it to train a Scikit linear model, before using the model to generate a prediction, which is then saved to the local S3Filesystem as well. 
 
-The first astro_ml_producer DAG has three tasks, the first of which is `extract_housing_data`.
+The first astro_ml_producer DAG has three tasks.
 
 This task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use using the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator.
 
