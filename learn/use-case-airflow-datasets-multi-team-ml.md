@@ -195,7 +195,6 @@ Finally, the `save_predictions` task uses the Astro SDK [@aql.export_file](https
 ```
 
 
-```python
 
 
 
