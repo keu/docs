@@ -185,7 +185,7 @@ Then, the `predict_housing` task uses the Astro SDK [@aql.dataframe](https://ast
         return cleandf
 ```
 
-Finally, our last task `save_predictions` uses uses the Astro SDK [@aql.export_file](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/export.html) decorator to save the predictions dataframe in the local S3FileSystem. 
+Finally, the `save_predictions` task uses the Astro SDK [@aql.export_file](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/export.html) decorator to save the predictions dataframe in the local S3FileSystem. 
 
 ```python
     pred_file = aql.export_file(task_id='save_predictions', 
