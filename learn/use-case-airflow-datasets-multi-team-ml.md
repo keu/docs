@@ -52,6 +52,8 @@ This project uses a [Scikit learn dataset](https://scikit-learn.org/stable/modul
 This project consists of two DAG's. The [astro_ml_producer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_producer.py) extracts the California Housing dataset from Scikit Learn and builds its model features using the Astro Python SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator before saving the data to the local S3Filesystem. 
 The second [astro_ml_consumer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_consumer.py) then takes this data from the local S3Filesystem, and uses it to train a Scikit linear model, before using the model to generate a prediction, which is then saved to the local S3Filesystem as well. 
 
+#### DAG #1: astro_ml_producer
+
 The first astro_ml_producer DAG has three tasks.
 
 The `extract_housing_data` task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use using the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator.
@@ -122,6 +124,8 @@ We then use the Taskflow API to define the relationships between these tasks, st
 ```
 
 Now that our first producer DAG has produced normalized feature dataset for us to use in our model, we'll create a second [astro_ml_consumer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_consumer.py) that consumes that dataset and uses it to train a model, before using it to execute a prediction on Median House Value in California. 
+
+#### DAG #2: astro_ml_consumer
 
 At the top of this DAG, we've instantiated the `built_features` Dataset from the previous DAG again with the following code block so that we can use it as a scheduling parameter for this consumer DAG. This has the effect of triggering this DAG to start when the `built_features` Dataset has been created instead of trying to time it to start after the [astro_ml_producer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_producer.py) has completed. 
 
