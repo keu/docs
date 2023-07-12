@@ -137,7 +137,25 @@ First, the `built_features` Dataset from the previous DAG is instantiated so tha
     def astro_ml_consumer():
 ```
 
-The first task `train_model` in this DAG  uses the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator to load the normalized feature DataFrame `built_features` from the local S3FileSystem, trains a ridge regression model using the features and target values, then saves the trained model to a specified directory, and returns the URI of the saved model file.
+The first task `train_model` in this DAG  uses the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator to do the following: 
+
+- The necessary libraries are imported, including RidgeCV from scikit-learn for ridge regression, numpy for numerical operations, dump from joblib for serialization, and S3FileSystem from s3fs for interacting with an S3-compatible object storage system.
+
+- An instance of S3FileSystem is created, specifying the access key, secret key, and the endpoint URL of the S3-compatible storage system.
+
+- The target variable is defined as 'MedHouseVal', which represents the column to be predicted.
+
+- A file containing the feature DataFrame from the previous DAG is opened using the S3 file system (fs.open). The file is located at "s3://local-xcom/wgizkzybxwtzqffq9oo56ubb5nk1pjjwmp06ehcv2cyij7vte315r9apha22xvfd7.parquet".
+
+- The feature DataFrame is read from the opened file using pd.read_parquet and assigned to the variable cleanpanda.
+
+- An instance of RidgeCV is created for ridge regression. The alphas parameter specifies a range of alpha values for regularization.
+
+- The ridge regression model is trained (reg = model.fit(...)) using the features obtained from cleanpanda by dropping the target column and the target values from cleanpanda[target].
+
+- The trained model is serialized and saved to the specified model_dir using the dump function from joblib. The file name for the model is set as 'ridgecv.joblib'.
+
+- The function returns the URI of the saved model file (model_file_uri), which is the concatenation of model_dir and 'ridgecv.joblib'.
 
 ```python
     @aql.dataframe(task_id='train')
