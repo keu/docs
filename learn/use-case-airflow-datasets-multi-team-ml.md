@@ -63,15 +63,15 @@ The `extract_housing_data` task imports data from SciKit learn using the fetch_c
         return fetch_california_housing(download_if_missing=True, as_frame=True).frame
 ```
 
-The next task `build_features` uses the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator, which means that it operates on a DataFrame and returns a DataFrame as well, eliminating the need to manually convert the raw California Housing Data into a dataframe. It takes two parameters: raw_df, which represents the raw input DataFrame, and model_dir, which is a string representing the directory where the model artifacts will be stored. 
+The next task `build_features` uses the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator, which means that it operates on a DataFrame and returns a DataFrame as well, eliminating the need to manually convert the raw California Housing Data into a dataframe. It takes two parameters: raw_df, which represents the raw input DataFrame, and model_dir, which is a string representing the directory where the model artifacts will be stored. This is used to accomplish the following
 
-The necessary libraries are imported within the function, including `StandardScaler` from scikit-learn, `pandas` for DataFrame operations, dump from joblib for serialization, and `S3FileSystem` from s3fs for interacting with an S3-compatible object storage system.
+- The necessary libraries are imported within the function, including `StandardScaler` from scikit-learn, `pandas` for DataFrame operations, dump from joblib for serialization, and `S3FileSystem` from s3fs for interacting with an S3-compatible object storage system.
 
-An instance of an `S3FileSystem` as FS is created, specifying the access key, secret key, and the endpoint URL of the S3-compatible local storage system. 
+- Then, An instance of an `S3FileSystem` as FS is created, specifying the access key, secret key, and the endpoint URL of the S3-compatible local storage system. 
 
-Then, this task performs feature engineering by normalizing the input features using a StandardScaler, calculates metrics based on the scaler mean values, saves the scaler object for later monitoring and evaluation, and returns the normalized feature DataFrame `X` with the target column included.
+- Next, this task performs feature engineering by normalizing the input features using a StandardScaler, calculates metrics based on the scaler mean values, saves the scaler object for later monitoring and evaluation, and returns the normalized feature DataFrame `X` with the target column included.
 
-Finally, if you look at the task decorator, you'll notice an outlets field that references `Dataset(dataset_uri))`. This creates an Airflow Dataset object called `built_features` that references the normalized feature Dataframe `X` that we stored in the S3Filesystem and sets it as an output of this task. We will then use this Dataset in the scheduling parameter of our `astro_ml_consumer` DAG to trigger it to run once this task is complete
+- Finally, if you look at the task decorator, you'll notice an outlets field that references `Dataset(dataset_uri))`. This creates an Airflow Dataset object called `built_features` that references the normalized feature Dataframe `X` that we stored in the S3Filesystem and sets it as an output of this task. We will then use this Dataset in the scheduling parameter of our `astro_ml_consumer` DAG to trigger it to run once this task is complete
 
 ```python
     @aql.dataframe(task_id='featurize', outlets=Dataset(dataset_uri))
