@@ -123,7 +123,7 @@ We then use the Taskflow API to define the relationships between these tasks, st
     feature_df = build_features(extract_df, model_dir)
 ```
 
-Now that our first producer DAG has produced normalized feature dataset for us to use in our model, we'll create a second [astro_ml_consumer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_consumer.py) that consumes that dataset and uses it to train a model, before using it to execute a prediction on Median House Value in California. 
+The second DAG, [astro_ml_consumer_DAG](https://github.com/astronomer/use-case-produce-consume-ml/blob/main/astromlfinal/dags/astro_ml_consumer.py), consumes the normalized dataset created by the first DAG and uses it to train a model and execute a prediction on the median house value in California. 
 
 #### DAG #2: astro_ml_consumer
 
