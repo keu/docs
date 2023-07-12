@@ -54,7 +54,7 @@ The second [astro_ml_consumer_DAG](https://github.com/astronomer/use-case-produc
 
 The first astro_ml_producer DAG has three tasks.
 
-This task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use using the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator.
+The `extract_housing_data` task imports data from SciKit learn using the fetch_california_housing module, and returns it as a dataframe for the next tasks to use using the Astro SDK [@aql.dataframe](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/dataframe.html) decorator.
 
 ```python
     @aql.dataframe(task_id='extract')
