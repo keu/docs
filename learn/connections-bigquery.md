@@ -40,7 +40,7 @@ A connection from Airflow to Google BigQuery requires the following information:
         {label: 'Key file value', value: 'key-file-value'},
         {label: 'Key file in container', value: 'key-file-in-container'},
         {label: 'Key file in secrets backend', value: 'key-file-in-secrets-backend'},
-        {label: 'Kubernets service account', value: 'kubernetes-service-account'}
+        {label: 'Kubernetes service account', value: 'kubernetes-service-account'}
     ]}>
 
 <TabItem value="key-file-value">
@@ -124,20 +124,21 @@ For this example, let's assume, you are running Airflow in a GKE cluster. In you
         {label: 'Key file value', value: 'key-file-value'},
         {label: 'Key file in container', value: 'key-file-in-container'},
         {label: 'Key file in secrets backend', value: 'key-file-in-secrets-backend'},
-        {label: 'Workload identity', value: 'kubernetes-service-account'}
+        {label: 'Kubernetes service account', value: 'kubernetes-service-account'}
     ]}>
 
 <TabItem value="key-file-value">
 
 Follow the below steps to create a connection:
 
-1. Open your Astro project and add the following line to your `requirement.txt` file:
+1. Open your Astro project and add the following line to your `requirement.txt` file to install and use the package for Google Cloud in Airflow:
     ```
     apache-airflow-providers-google
     ```
 2. Restart your local Airflow using `astro dev restart`. If you're not currently running Airflow locally, you can also run `astro dev start`.
-3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Google Cloud**.
-4. Paste the contents of the key file downloaded in Step #4 in [Get Connection Details](#get-connection-details) in the **Keyfile JSON** field. 
+3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection, select the connection type as **Google Cloud** and give it a name in the **Connection Id** field.
+4. Paste the value of the key file copied in step #4 of [Get connection details](#get-connection-details) in the connection fields:
+    - **Keyfile JSON**: `<mykeyfile-json>`
 5. Click on **Test** connection to test and then **Save** your connection.
 
     ![gcp-connection-key-in-ui](/img/guides/connection-gcp-key-in-ui.png)
@@ -148,14 +149,15 @@ Follow the below steps to create a connection:
 
 Follow the below steps to create a connection:
 
-1. Open your Astro project and add the following line to your `requirement.txt` file:
+1. Open your Astro project and add the following line to your `requirement.txt` file to install and use the package for Google Cloud in Airflow:
     ```
     apache-airflow-providers-google
     ```
 2. Copy the key file downloaded in Step #5 in [Get Connection Details](bigquery#get-connection-details) to the `include` directory of your Astro project. This will make it available to your Airflow at `/usr/local/airflow/include/<my-key-file.json>`.
 3. Restart your local Airflow using `astro dev restart`. If you're not currently running Airflow locally, you can also run `astro dev start`.
-4. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Google Cloud**.
-5. Enter the path of the SA key file in the Airflow container to the **Keyfile Path** field. 
+4. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection, select the connection type as **Google Cloud** and give it a name in the **Connection Id** field.
+5. Paste the path of the service account key file in the Airflow container in the connection field:
+    - **Keyfile Path**: `/usr/local/airflow/include/<my-key-file.json>`
 6. Click on **Test** connection to test and then **Save** your connection.
 
     ![gcp-connection-key-in-airflow-container](/img/guides/connection-gcp-key-in-airflow-container.png)
@@ -166,14 +168,16 @@ Follow the below steps to create a connection:
 
 Follow the below steps to create a connection:
 
-1. Open your Astro project and add the following line to your `requirement.txt` file:
+1. Open your Astro project and add the following line to your `requirement.txt` file to install and use the package for Google Cloud in Airflow:
     ```
     apache-airflow-providers-google
     ```
 2. Restart your local Airflow using `astro dev restart`. If you're not currently running Airflow locally, you can also run `astro dev start`.
-4. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Google Cloud**.
-5. Enter the GCP project id in **Keyfile Secret Project Id** and the secret name in **Keyfile Secret Name**.
-6. Click on **Test** connection to test and then **Save** your connection.
+3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection, select the connection type as **Google Cloud** and give it a name in the **Connection Id** field.
+4. Paste the GCP project ID copied in step #1 and secret name from step #6 of [Get connection details](#get-connection-details) in the connection fields:
+    - **Keyfile Secret Project Id**: `<gcp-project-id>`
+    - **Keyfile Secret Name**: `<keyfile-secret-name>`
+5. Click on **Test** connection to test and then **Save** your connection.
 
     ![gcp-connection-key-in-secret-manager](/img/guides/connection-gcp-key-in-secret-manager.png)
 
@@ -188,8 +192,10 @@ To configure a Secrets Backend on Astro, see [How to configure external secrets 
 To create a connection using workfload identity, follow the below steps:
 
 1. Login to your Airflow UI
-2. Go to **Admin** > **Connections**. Click the **+** sign to add a new connection and select the connection type as **Google Cloud**.
-3. Enter the GCP project ID in the **Project Id** field and click on **Save** to save your connection.
+2. Go to **Admin** > **Connections**. Click the **+** sign to add a new connection, select the connection type as **Google Cloud** and give it a name in the **Connection Id** field.
+3. Paste the GCP project ID copied in step #1 of [Get connection details](#get-connection-details) to the connection field:
+    - **Project Id**: `<project-id>`
+4. Click on **Save** to save your connection.
 
     ![gcp-connection-using-workload-identity](/img/guides/connection-gcp-workload-identity.png)
 
