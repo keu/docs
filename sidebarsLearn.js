@@ -185,14 +185,6 @@ module.exports = {
           'vscode-local-dev',
           {
             type: 'category',
-            label: 'Use cases',
-            items: [
-              'use-case-airflow-databricks',
-              'use-case-airflow-dbt'
-            ],
-          },
-          {
-            type: 'category',
             label: 'Connections',
             link: {
               type: 'generated-index',
@@ -212,6 +204,14 @@ module.exports = {
               'snowflake'
             ],
           },
+          {
+            type: 'category',
+            label: 'Use cases',
+            items: [
+              'use-case-airflow-databricks',
+              'use-case-airflow-dbt'
+            ]
+          }
       ],
     },
     'airflow-glossary'
