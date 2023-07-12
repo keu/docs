@@ -100,7 +100,7 @@ The next task `build_features` uses the Astro SDK [@aql.dataframe](https://astro
         return X
 ```
 
-Finally, the third task `save_data_to_s3` in this DAG uses the Astro SDK [@aql.export_file](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/export.html) decorator to save the raw California Housing Dataset as `housing.csv` to the local S3Filesystem. It runs in parallel to the `build_features` task, so we save both a clean dataset and a feature engineered one. 
+Finally, the `save_data_to_s3` task uses the Astro SDK [@aql.export_file](https://astro-sdk-python.readthedocs.io/en/stable/astro/sql/operators/export.html) decorator to save the raw California Housing Dataset as `housing.csv` to the local S3Filesystem. It runs in parallel to the `build_features` task, both a clean dataset and a feature engineered dataset are saved. 
 
 ```python
     loaded_data = aql.export_file(task_id='save_data_to_s3', 
