@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 The TaskFlow API is a functional API that allows you to explicitly declare information being passed between tasks while inferring task dependencies. In a nutshell, when using the TaskFlow decorator functions (e.g. `@task`) you can pass data between tasks by providing the output of one task as an argument to another task. Additionally using Airflow decorators often reduces the amount of code needed to define Airflow tasks. Decorators are a simpler, cleaner way to define your tasks and DAGs and can be used in combination with traditional operators.
 
-In this guide, you'll learn about the benefits of decorators, the decorators available in Airflow, and decorators provided in the Astronomer open source Astro Python SDK library. You'll also review examples and learn when you should use decorators and how you can combine them with traditional operators in a DAG.
+In this guide, you'll learn about the benefits of decorators and the decorators available in Airflow. You'll also review an example DAG and learn when you should use decorators and how you can combine them with traditional operators in a DAG.
 
 ## Assumed knowledge
 
@@ -29,7 +29,7 @@ To get the most out of this guide, you should have an understanding of:
 
 In Python, [decorators](https://realpython.com/primer-on-python-decorators/) are functions that take another function as an argument and extend the behavior of that function. For example, the `@multiply_by_100_decorator` below takes in any function as the `decorated_function` argument and will return the result of that function multiplied by 100. 
 
-In the context of Airflow, decorators contain much more functionality than this simple example, but the basic idea is the same: the Airflow decorator function turns a normal Python function into an Airflow task, task group or DAG.
+In the context of Airflow, decorators contain much more functionality than this simple example, but the basic idea is the same: the Airflow decorator function extends the bevhavior of a normal Python function to turn it into an Airflow task, task group or DAG.
 
 ```python
 # definition of the decorator function
@@ -62,7 +62,7 @@ print(subtract(4, 2))  # prints 200
 
 The purpose of the TaskFlow API in Airflow is to simplify the DAG authoring experience by eliminating the boilerplate code required by traditional operators. The result can be cleaner DAG files that are more concise and easier to read.
 
-In general, whether to use the TAskFlow API is a matter of developer preference and style. In most cases, a TaskFlow decorator and the corresponding traditional operator will have the same functionality. You can also easily [mix decorators and traditional operators](#mixing-decorators-with-traditional-operators) within your DAG if your use case requires that.
+In general, whether to use the TAskFlow API is a matter of developer preference and style. In most cases, a TaskFlow decorator and the corresponding traditional operator will have the same functionality. You can also easily [mix decorators and traditional operators](#mixing-decorators-with-traditional-operators) within your DAG if your use case requires it.
 
 ## How to use the TaskFlow API
 
@@ -294,7 +294,7 @@ If you want to access any XCom that is not the returned value an operator, you c
 
 The [Astro Python SDK](https://github.com/astronomer/astro-sdk) provides decorators and modules that allow data engineers to think in terms of data transformations rather than Airflow concepts when writing DAGs. The goal is to allow DAG writers to focus on defining *execution* logic in SQL and Python without having to worry about orchestration logic or the specifics of underlying databases. 
 
-The code snippet below use the use of the `@aql.transform` and `@aql.dataframe` decorators to create transformation tasks. 
+The code snippet below shows how to use the `@aql.transform` and `@aql.dataframe` decorators to create transformation tasks. 
 
 ```python
 # the @aql.transform decorator allows you to run a SQL query on any number of tables
@@ -315,7 +315,7 @@ def transform_dataframe(df: pd.DataFrame):
     return pd.DataFrame(purchase_dates)
 
 # the decorated functions can be used as tasks in a DAG, writing ELT/ETL logic in 
-# functional style
+# a functional style
 join_orders_customers(filter_orders(orders_data), customers_table)
 ```
 
@@ -329,15 +329,15 @@ The Astro Python SDK offers much more functionality that greatly simplifies DAG 
 
 There are several decorators available to use with Airflow. This list provides a reference of currently available decorators:
 
-- [Astro Python SDK decorators](https://github.com/astronomer/astro-sdk)
-- DAG decorator (`@dag()`)
+- DAG decorator (`@dag()`), which creates a DAG
+- TaskGroup decorator (`@task_group()`), which creates a [TaskGroup](task-groups.md)
 - Task decorator (`@task()`), which creates a Python task
-- Python Virtual Env decorator (`@task.virtualenv()`), which runs your Python task in a virtual environment
-- Docker decorator (`@task.docker()`), which creates a `DockerOperator` task
-- TaskGroup decorator (`@task_group()`), which creates a TaskGroup
+- Python Virtual Env decorator (`@task.virtualenv()`), which runs your Python task in a [virtual environment](https://www.astronomer.io/events/webinars/running-airflow-tasks-in-isolated-environments/)
+- Docker decorator (`@task.docker()`), which creates a [DockerOperator](https://registry.astronomer.io/providers/apache-airflow-providers-docker/versions/latest/modules/DockerOperator) task
 - [Short circuit decorator](airflow-branch-operator.md#taskshortcircuit-and-shortcircuitoperator) (`@task.short_circuit()`), which evaluates a condition and skips downstream tasks if the condition is False
 - [Branch decorator](airflow-branch-operator.md#taskbranch-and-branchpythonoperator) (`@task.branch()`), which creates a branch in your DAG based on an evaluated condition
-- Kubernetes pod decorator (`@task.kubernetes()`), which runs a KubernetesPodOperator task
+- Kubernetes pod decorator (`@task.kubernetes()`), which runs a [KubernetesPodOperator](kubepod-operator.md) task
 - [Sensor decorator](what-is-a-sensor.md#sensor-decorator) (`@task.sensor()`), which turns a Python function into a sensor. This sensor was introduced in Airflow 2.5.
+- [Astro Python SDK decorators](https://github.com/astronomer/astro-sdk), which simplify writing ETL/ELT DAGs
 
 You can also [create your own custom task decorator](https://airflow.apache.org/docs/apache-airflow/stable/howto/create-custom-decorator.html).
