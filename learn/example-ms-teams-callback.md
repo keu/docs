@@ -36,11 +36,11 @@ Follow these steps to receive notifications in MS Teams for failed tasks in an e
 
 2. Create a [Microsoft Teams Incoming Webhook](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet#create-incoming-webhooks-1) for the channel for which you want to receive notifications. Copy and save the webhook URL.
 
-3. In the Airflow UI, create an Airflow connection by clicking on **Admin** and then **Connections**. Create a new connection with the following parameters:
+3. In the Airflow UI, create an Airflow connection by clicking on **Admin** and then **Connections**. Create a new connection with the following parameters. Note that the `Test` button does not work for this connection.
 
     - **Connection Id**: `ms_teams_callbacks`
     - **Connection Type**: `HTTP`
-    - **Host**: `outlook.office.com/webhook/<your-webhook-id>`
+    - **Host**: `<your-organization>.office.com/webhook/<your-webhook-id>`
     - **Schema**: `https`
 
     ![Connection](/img/examples/example-ms-teams-callback-connection.png)
