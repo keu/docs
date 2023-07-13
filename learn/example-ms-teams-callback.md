@@ -6,7 +6,7 @@ sidebar_label: "MS Teams Notifications"
 sidebar_custom_props: { icon: 'img/examples/ms_teams_logo.png' }
 ---
 
-This example shows how to set up notifications for Airflow DAG runs and tasks in a [Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software) channel by using [Airflow callbacks](error-notifications-in-airflow.md#airflow-callbacks). Automatic notifications about DAG runs and tasks in a chat system like Microsoft teams allow you to quickly inform many members of your team about the status of your data pipelines and take action if necessary.
+This example shows how to set up Airflow notifications in a [Microsoft Teams](https://www.microsoft.com/en-us/microsoft-teams/group-chat-software) channel by using [Airflow callbacks](error-notifications-in-airflow.md#airflow-callbacks). Automatic notifications about DAG runs and tasks in a chat system like Microsoft Teams allow you to quickly inform many members of your team about the status of your data pipelines and take action if necessary.
 
 ## Before you start
 
@@ -18,7 +18,7 @@ Before trying this example, make sure you have:
 
 ## Send task failure notifications to MS Teams
 
-Follow these steps to receive notifications in MS Teams for failed tasks in an example DAG. Refer to the [Airflow callbacks section](error-notifications-in-airflow.md#airflow-callbacks) of our notifications guide to learn how to set up notifications for other type of events in a DAG run.
+Follow these steps to receive notifications in MS Teams for failed tasks in an example DAG. Refer to the [Airflow callbacks section](error-notifications-in-airflow.md#airflow-callbacks) of our notifications guide to learn how to set up notifications for other types of events.
 
 1. Open the folder containing your Astro Project. And the contents of the `include` folder in [this GitHub repository](https://github.com/astronomer/cs-tutorial-msteams-callbacks/tree/main/include) to your `include` folder.
 
@@ -36,7 +36,7 @@ Follow these steps to receive notifications in MS Teams for failed tasks in an e
 
 2. Create a [Microsoft Teams Incoming Webhook](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet#create-incoming-webhooks-1) for the channel for which you want to receive notifications. Copy and save the webhook URL.
 
-3. In the Airflow UI create an Airflow connection by clicking on **Admin** and then **Connections**. Create a new connection with the following parameters:
+3. In the Airflow UI, create an Airflow connection by clicking on **Admin** and then **Connections**. Create a new connection with the following parameters:
 
     - **Connection Id**: `ms_teams_callbacks`
     - **Connection Type**: `HTTP`
@@ -77,7 +77,7 @@ If the `HTTP` connection type is not available, double check that you have the [
 
 6. Run your DAG. Any failed task will trigger the `failure_callback` function which sends a notification message in your MS Teams channel.
 
-By following the steps above you can configure a callback function to send notifications to your MS Teams channel for any task that fails in a specific DAG. Other pre-built callback functions are available in the files copied from the `include` folder of [this repository](https://github.com/astronomer/cs-tutorial-msteams-callbacks) and can be modified to customize the notification message. To learn more about all available callback parameters see [Airflow callbacks](error-notifications-in-airflow.md#airflow-callbacks).
+The `include` folder of [this repository](https://github.com/astronomer/cs-tutorial-msteams-callbacks) also contains callback functions for other triggers in addition to the failure callback shown here. You can modify any of the functions to customize the notification message. To learn more about all available callback parameters see [Airflow callbacks](error-notifications-in-airflow.md#airflow-callbacks).
 
 ![Notification](/img/examples/example-ms-teams-callback-task-fail-teams-msg.png)
 
