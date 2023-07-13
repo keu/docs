@@ -1,6 +1,6 @@
 ---
-title: "Introduction to the TaskFlow API's Airflow decorators"
-sidebar_label: "TaskFlow API (decorators)"
+title: "Introduction to the TaskFlow API and Airflow decorators"
+sidebar_label: "TaskFlow API & Decorators"
 description: "An overview of Airflow decorators and how they can improve the DAG authoring experience."
 id: airflow-decorators
 ---
@@ -60,15 +60,15 @@ print(add(1, 9))  # prints 1000
 print(subtract(4, 2))  # prints 200
 ```
 
-## When to use Airflow decorators
+## When to use The TaskFlow API
 
-The purpose of decorators in Airflow is to simplify the DAG authoring experience by eliminating the boilerplate code required by traditional operators. The result can be cleaner DAG files that are more concise and easier to read.
+The purpose of the TaskFlow API in Airflow is to simplify the DAG authoring experience by eliminating the boilerplate code required by traditional operators. The result can be cleaner DAG files that are more concise and easier to read.
 
-In general, whether to use decorators is a matter of developer preference and style. In most cases, a decorator and the corresponding traditional operator will have the same functionality. You can also easily [mix decorators and traditional operators](#mixing-decorators-with-traditional-operators) within your DAG if your use case requires that.
+In general, whether to use the TAskFlow API is a matter of developer preference and style. In most cases, a TaskFlow decorator and the corresponding traditional operator will have the same functionality. You can also easily [mix decorators and traditional operators](#mixing-decorators-with-traditional-operators) within your DAG if your use case requires that.
 
-## How to use Airflow decorators
+## How to use the TaskFlow API
 
-Airflow decorators were introduced as part of the TaskFlow API, which also handles passing data between tasks using XCom and inferring task dependencies automatically.
+The TaskFlow API allows you to write your Python tasks with decorators and handles passing data between tasks using XCom and inferring task dependencies automatically.
 
 Using decorators to define your Python functions as tasks is easy. Let's take a before and after example. Under the **Traditional syntax** tab below, there is a basic ETL DAG with tasks to get data from an API, process the data, and store it. Click on the **Decorators** tab to see the same DAG written using Airflow decorators.
 
@@ -315,7 +315,7 @@ The general steps in the DAG are:
 
 By defining your task dependencies when calling the functions (for example, `cleaned_data = clean_data(combined_data)`), the Astro Python SDK takes care of passing all context and metadata between the tasks. The result is a DAG where you accomplished some tricky transformations without having to write a lot of Airflow code or explicitly transition between SQL and Python.
 
-## List of available Airflow decorators
+## Available Airflow decorators
 
 There are several decorators available to use with Airflow. This list provides a reference of currently available decorators:
 
