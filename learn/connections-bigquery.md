@@ -132,9 +132,11 @@ For this example, let's assume, you are running Airflow in a GKE cluster. In you
 Follow the below steps to create a connection:
 
 1. Open your Astro project and add the following line to your `requirement.txt` file to install and use the package for Google Cloud in Airflow:
+
     ```
     apache-airflow-providers-google
     ```
+
 2. Restart your local Airflow using `astro dev restart`. If you're not currently running Airflow locally, you can also run `astro dev start`.
 3. In the Airflow UI, go to **Admin** > **Connections**. Click the **+** sign to add a new connection, select the connection type as **Google Cloud** and give it a name in the **Connection Id** field.
 4. Paste the value of the key file copied in step #4 of [Get connection details](#get-connection-details) in the connection fields:
