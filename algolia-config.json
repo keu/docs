@@ -5,7 +5,7 @@
   ],
   "stop_urls": [
     {
-    "url": "(?=tab=)"
+      "url": "(?=tab=)"
     }
   ],
   "selectors": {
