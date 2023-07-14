@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - reindex-patch-2
 jobs:
   reindex:
     runs-on: ubuntu-latest
@@ -26,9 +27,6 @@ jobs:
           echo 'EOF' >> $GITHUB_ENV
       - name: Run Algolia
         run: |
-          pip install --upgrade pip wheel setuptools requests
-          pip install pipenv
-          python -m pipenv shell
           pipenv install
           pipenv run python -m src.index
         working-directory: /root
