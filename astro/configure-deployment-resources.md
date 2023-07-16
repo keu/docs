@@ -107,7 +107,10 @@ To update a Deployment's [Airflow configurations](https://airflow.apache.org/doc
 
 ## Enforce CI/CD deploys
 
-By default, Deployments accept code deploys from any authenticated source. When you enforce CI/CD deploys for a Deployment, the Deployment only accepts code deploys if they are triggered with a Deployment API key or Workspace token. 
+By default, Deployments accept code deploys from any authenticated source. When you enforce CI/CD deploys for a Deployment:
+
+- The Deployment accepts code deploys only if the deploys are triggered with a Deployment API key, Workspace API token, or Organization API token.
+- You can't enable [DAG-only deploys](deploy-dags.md) for the Deployment.
 
 1. In the Cloud UI, select a Workspace, click **Deployments**, and then select a Deployment.
 2. Click the **Details** tab.
