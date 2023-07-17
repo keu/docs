@@ -74,14 +74,17 @@ To run Airflow data pipelines locally and on Astro, you first need to create an 
 ## Step 2: Create your DAG
 
 1. Create a new Python file in the `dags` directory of your Astro project called `my_second_dag.py`.
-2. Copy the code by clicking on the **`</>`** tag in the middle of [this page on the Astronomer Registry](https://registry.astronomer.io/).
+2. Copy the code by clicking on the **`</>`** tag in the middle of [this page on the Astronomer Registry](https://registry.astronomer.io/dags/my_second_dag/versions/latest).
+
+    ![Copy Code from the registry](/img/tutorials/get-started-with-airflow-part-2_registry_code_copy.png)
+
 3. Paste the code into `my_second_dag.py`.
 
 ## Step 3: Add a provider package
 
 1. Open the Airflow UI to confirm that your DAG was pushed to your environment. On the **DAGs** page, you should see a "DAG Import Error" like the one shown here:
 
-    ![Import Error](/img/tutorials/T2_ImportError.png)
+    ![Import Error](/img/tutorials/get-started-with-airflow-part-2_ImportError.png)
 
 Provider packages are Python packages maintained separately from core Airflow that contain hooks and operators for interacting with external services. You can browse all available providers in the [Astronomer Registry](https://registry.astronomer.io/).
 
@@ -89,7 +92,7 @@ Your DAG uses operators from two Airflow provider packages: the [HTTP provider](
 
 2. Open the [GitHub provider page](https://registry.astronomer.io/providers/apache-airflow-providers-github/versions/latest) in the Astronomer Registry.
 
-    ![GitHub Provider](/img/tutorials/T2_GitHubProvider.png)
+    ![GitHub Provider](/img/tutorials/get-started-with-airflow-part-2_GitHubProvider.png)
 
 3. Copy the provider name and version by clicking on **Use Provider** in the top right corner.
 4. Paste the provider name and version into the `requirements.txt` file of your Astro project. Make sure to only add `apache-airflow-providers-github=<version>` without `pip install`.
@@ -101,7 +104,7 @@ After restarting your Airflow instance, you should not see the same DAG import e
 
 1. Go to **Admin** > **Variables** to open the list of Airflow variables. It will be empty.
 
-    ![Admin Variables](/img/tutorials/T2_AdminVariables.png)
+    ![Admin Variables](/img/tutorials/get-started-with-airflow-part-2_AdminVariables.png)
 
 2. Click on the **+** sign to open the form for adding a new variable. Set the **Key** for the variable as `my_github_repo` and set the **Val** as a GitHub repository you have administrator access to. Make sure the **Val** is in the format `github_account_name/repository_name` (for example `apache/airflow`). The repository can be private.
 
@@ -115,14 +118,14 @@ In your example DAG, you used two operators that interact with two external syst
 
 1. In the Airflow UI, go to **Admin** > **Connections**.
 
-    ![Admin Connections](/img/tutorials/T2_AdminConnections.png)
+    ![Admin Connections](/img/tutorials/get-started-with-airflow-part-2_AdminConnections.png)
 
 2. Click **+** to open the form for adding a new Airflow connection.
 3. Name the connection `my_github_connection` and set its **Connection Type** to `GitHub`. Note that you can only select connection types that are available from either core Airflow or an installed provider package. If you are missing the connection type `GitHub`, double check that you installed the `GitHub` provider correctly in [Step 3](#step-3-add-a-provider-package).
 4. Enter your **GitHub Access Token** in the GitHub Access Token field. If you need to create a token, you can follow the [official GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 5. Test your connection by clicking **Test**. You should see a green banner indicating that your connection was successfully tested.
 
-    ![GitHub Connection](/img/tutorials/T2_GitHubConnection.png)
+    ![GitHub Connection](/img/tutorials/get-started-with-airflow-part-2_GitHubConnection.png)
 
 Note that the option to test connections was added in Airflow 2.2. If you are running an older version of Airflow, you can skip this step.
 
@@ -135,19 +138,19 @@ Note that the option to test connections was added in Airflow 2.2. If you are ru
 3. Enter the host URL for the API you want to query in the **Host** field. For this tutorial we use the Catfact API, which returns a random fact about cats for every `GET` request. The host for this API is `http://catfact.ninja/fact`.
 4. Test your connection by pressing the **Test** button.
 
-    ![HTTP Connection](/img/tutorials/T2_HTTPConnection.png)
+    ![HTTP Connection](/img/tutorials/get-started-with-airflow-part-2_HTTPConnection.png)
 
 5. Click **Save**.
 
 You should now have two connections as shown in the following screenshot:
     
-![Connection List](/img/tutorials/T2_TwoConnections.png)
+![Connection List](/img/tutorials/get-started-with-airflow-part-2_TwoConnections.png)
 
 ## Step 7: Test your DAG
 
 1. Go to the DAGs view and unpause the `my_second_dag` DAG by clicking on the toggle to the left of the DAG name. The last scheduled DAG run automatically starts, and the `tag_sensor` task starts waiting for the `my_awesome_tag` tag to be added to your GitHub repository. You will see two light green circles in the **DAGs** view which indicates that the DAG run is in progress and the `tag_sensor` task is running.
 
-    ![DAG running](/img/tutorials/T2_GraphView.png)
+    ![DAG running](/img/tutorials/get-started-with-airflow-part-2_GraphView.png)
 
 2. Add the tag `my_awesome_tag` to your GitHub repository by [configuring it in the GitHub UI](https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags) or running `git tag my_awesome_tag && git push --tags` in your local repository clone.
 3. Watch for the `tag_sensor` task to finish successfully. The `query_api` task should now start.
