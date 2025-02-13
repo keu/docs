@@ -19,7 +19,6 @@ def duckdb_tutorial_dag_2():
         conn = my_duck_hook.get_conn()
 
         r = conn.execute(f"SELECT * FROM {my_table};").fetchall()
-        print(r, my_duck_hook, conn)
 
         return r
 
