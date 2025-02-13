@@ -9,7 +9,7 @@ from pendulum import datetime
 from duckdb_provider.hooks.duckdb_hook import DuckDBHook
 
 DUCKDB_CONN_ID = "my_local_duckdb_conn"
-DUCKDB_TABLE_NAME = "ducks_garden"
+DUCKDB_TABLE_NAME = "ducks_2_garden"
 
 
 @dag(start_date=datetime(2023, 6, 1), schedule=None, catchup=False)
