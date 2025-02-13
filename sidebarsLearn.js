@@ -17,11 +17,7 @@ module.exports = {
           link: {
             type: 'doc',
             id: 'get-started-with-airflow',
-          },
-          items: [
-            'get-started-with-airflow',
-            'get-started-with-airflow-part-2',
-          ],
+          }
         },
       ],
     },
