@@ -17,12 +17,7 @@ module.exports = {
   organizationName: 'astronomer', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
   themeConfig: {
-    image: 'img/meta.png',
-    docs: {
-      sidebar: {
-        autoCollapseCategories: true,
-      },
-    },
+    
     algolia: {
       apiKey: '99354995bfad26ed950bdb701bc56b6b',
       indexName: 'published-docs',
